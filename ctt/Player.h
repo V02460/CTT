@@ -32,7 +32,7 @@ public:
 	bool hasPreviousFrame();
 	int getVideoLength();
 	int getCurrentFrameNumber();
-	void setLoop(IntergerInterval interval);
+	void setLoop(IntegerInterval interval);
 	IntegerInterval getLoop();
 	bool isLooping();
 	void removeLoop();
