@@ -22,6 +22,7 @@ public:
      * Creates a new VideoScrubber for the submitted video. Initially the Scrubber holds the first frame of the video.
      *
      * @param video the scrubber will use this video to get frames
+	 * @throws InvalidArgumentException if the submitted video is invalid
      */
     VideoScrubber(Video video);
 
@@ -30,6 +31,7 @@ public:
      *
      * @param video video the scrubber will use this video to get frames
      * @param frameNumber the scrubber will initially hold the frame with this number
+     * @throws InvalidArgumentException if the submitted video is invalid or if it doesn't have a frame with the submitted number
      */
     VideoScrubber(Video video, int frameNumber);
 
@@ -65,6 +67,7 @@ public slots:
      * The scrubber loads the frame with the provided frameNumber from the Video, saves it (overwriting the previously saved frame) and signals the change to connected slots.
      *
      * @param frameNumber the number of the frame wich will be requested from the video
+     * @throws InvalidArgumentException if the video doesn't have a frame with the submitted number
      */
     void jumpToFrameNr(int frameNumber) = 0;
 
