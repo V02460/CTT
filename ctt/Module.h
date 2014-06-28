@@ -45,11 +45,11 @@ public:
      */
     virtual bool uses(Module module);
 
-    Memento getMemento();
+    virtual Memento getMemento();
 
-    void restore(Memento memento);
+    virtual void restore(Memento memento);
 
-    Saveable* getDummy();
+    virtual Saveable* getDummy();
 };
 
 #endif  //_MODULE_H
