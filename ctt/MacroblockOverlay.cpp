@@ -21,7 +21,7 @@ void MacroblockOverlay::restore(Memento memento) {
 
 }
 
-Savable* MacroblockOverlay::getDummy() {
+Saveable* MacroblockOverlay::getDummy() {
 
 }
 

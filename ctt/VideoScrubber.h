@@ -4,7 +4,7 @@
 #if !defined(_VIDEOSCRUBBER_H)
 #define _VIDEOSCRUBBER_H
 
-#include "Savable.h"
+#include "Saveable.h"
 #include "Observable.h"
 #include "Frame.h"
 #include "Video.h"
@@ -68,7 +68,7 @@ public:
 
     void restore(Memento memento);
 
-    Savable* getDummy();
+    Saveable* getDummy();
 
 public slots:
     /**

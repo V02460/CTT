@@ -14,7 +14,7 @@ public:
 private:
 	Video video;
 	int index;
-	SavableList<Video> videoList;
+	SaveableList<Video> videoList;
 };
 
 #endif  //_VIDEOLISTOPERATION_H

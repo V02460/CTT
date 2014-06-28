@@ -102,7 +102,7 @@ void Player::restore(Memento memento) {
 
 }
 
-Savable* Player::getDummy() {
+Saveable* Player::getDummy() {
 
 }
 

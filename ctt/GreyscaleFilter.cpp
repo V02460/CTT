@@ -21,7 +21,7 @@ void GreyscaleFilter::restore(Memento memento) {
 
 }
 
-Savable* GreyscaleFilter::getDummy() {
+Saveable* GreyscaleFilter::getDummy() {
 
 }
 

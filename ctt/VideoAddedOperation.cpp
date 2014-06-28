@@ -4,7 +4,7 @@
 #include "VideoAddedOperation.h"
 #include "Video.h"
 
-void VideoAddedOperation::VideoAddedOperation(Video video, SavableList<Video> videoList) {
+void VideoAddedOperation::VideoAddedOperation(Video video, SaveableList<Video> videoList) {
 
 }
 

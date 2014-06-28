@@ -34,7 +34,7 @@ void Filter::restore(Memento memento) {
 
 }
 
-Savable* Filter::getDummy() {
+Saveable* Filter::getDummy() {
 
 }
 

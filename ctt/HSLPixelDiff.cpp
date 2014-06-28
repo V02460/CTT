@@ -25,7 +25,7 @@ void HSLPixelDiff::restore(Memento memento) {
 
 }
 
-Savable* HSLPixelDiff::getDummy() {
+Saveable* HSLPixelDiff::getDummy() {
 
 }
 

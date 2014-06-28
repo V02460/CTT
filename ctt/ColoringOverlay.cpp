@@ -21,7 +21,7 @@ void ColoringOverlay::restore(Memento memento) {
 
 }
 
-Savable* ColoringOverlay::getDummy() {
+Saveable* ColoringOverlay::getDummy() {
 
 }
 

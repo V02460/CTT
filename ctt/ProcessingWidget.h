@@ -16,7 +16,7 @@ public:
 	signal activeVideoChanged(Video video);
 	signal btnChangeViewClicked(ViewType newView);
 private:
-	SavableList<Player> players;
+	SaveableList<Player> players;
 };
 
 #endif  //_PROCESSINGWIDGET_H

@@ -21,7 +21,7 @@ void NoiseFilter::restore(Memento memento) {
 
 }
 
-Savable* NoiseFilter::getDummy() {
+Saveable* NoiseFilter::getDummy() {
 
 }
 

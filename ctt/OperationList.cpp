@@ -20,7 +20,7 @@ void OperationList::setLastSavedState() {
 
 }
 
-bool OperationList::hasSavableChanges() {
+bool OperationList::hasSaveableChanges() {
 
 }
 

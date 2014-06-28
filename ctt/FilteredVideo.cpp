@@ -44,7 +44,7 @@ void FilteredVideo::restore(Memento memento) {
 
 }
 
-Savable* FilteredVideo::getDummy() {
+Saveable* FilteredVideo::getDummy() {
 
 }
 

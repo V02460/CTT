@@ -25,7 +25,7 @@ void YUVPixelDiff::restore(Memento memento) {
 
 }
 
-Savable* YUVPixelDiff::getDummy() {
+Saveable* YUVPixelDiff::getDummy() {
 
 }
 

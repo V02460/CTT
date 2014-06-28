@@ -39,7 +39,7 @@ void VideoScrubber::restore(Memento memento) {
 
 }
 
-Savable* VideoScrubber::getDummy() {
+Saveable* VideoScrubber::getDummy() {
 
 }
 

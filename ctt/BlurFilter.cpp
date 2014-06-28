@@ -21,7 +21,7 @@ void BlurFilter::restore(Memento memento) {
 
 }
 
-Savable* BlurFilter::getDummy() {
+Saveable* BlurFilter::getDummy() {
 
 }
 

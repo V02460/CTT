@@ -4,11 +4,11 @@
 #if !defined(_MODULE_H)
 #define _MODULE_H
 
-#include "Savable.h"
+#include "Saveable.h"
 #include "Frame.h"
 #include "Memento.h"
 
-class Module : public Savable {
+class Module : public Saveable {
 public:
 	virtual Frame getFrame(int frameNumber) = 0;
 	List<Module> getUsesList();
@@ -16,7 +16,7 @@ public:
 	bool uses(Module module);
 	Memento getMemento();
 	void restore(Memento memento);
-	Savable* getDummy();
+	Saveable* getDummy();
 };
 
 #endif  //_MODULE_H

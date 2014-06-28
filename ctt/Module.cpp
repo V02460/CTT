@@ -24,7 +24,7 @@ void Module::restore(Memento memento) {
 
 }
 
-Savable* Module::getDummy() {
+Saveable* Module::getDummy() {
 
 }
 

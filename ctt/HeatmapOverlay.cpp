@@ -21,7 +21,7 @@ void HeatmapOverlay::restore(Memento memento) {
 
 }
 
-Savable* HeatmapOverlay::getDummy() {
+Saveable* HeatmapOverlay::getDummy() {
 
 }
 

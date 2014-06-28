@@ -19,7 +19,7 @@ public:
 	Frame getFrame(int frameNumber);
 	Memento getMemento();
 	void restore(Memento memento);
-	Savable* getDummy();
+	Saveable* getDummy();
 private:
 	Map<QString, FilterParam> parameters;
 	Module *previous;

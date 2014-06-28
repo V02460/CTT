@@ -377,6 +377,12 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_Player.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoScrubber.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Player.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -624,9 +630,6 @@
     <ClInclude Include="ProjectSaverFactory.h">
       <Filter>Header Files\Model\Project</Filter>
     </ClInclude>
-    <ClInclude Include="Savable.h">
-      <Filter>Header Files\Model\Project</Filter>
-    </ClInclude>
     <ClInclude Include="RGBChannelFilter.h">
       <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
@@ -692,6 +695,9 @@
     </ClInclude>
     <ClInclude Include="VideoWidget.h">
       <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="Saveable.h">
+      <Filter>Header Files\Model\Project</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
