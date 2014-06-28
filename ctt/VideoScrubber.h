@@ -16,7 +16,7 @@
  * A VideoScrubber is associated with a video and able to request frames from this video to save one of them internally.
  * It makes this frame available to other objects and notifies them via Qt's signal and slot mechanism when this frame is replaced.
  */
-class VideoScrubber : public Savable, public Observable, public QObject {
+class VideoScrubber : public Saveable, public Observable, public QObject {
 	Q_OBJECT
 public:
     /**
