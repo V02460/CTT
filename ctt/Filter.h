@@ -9,6 +9,7 @@
 #include "Memento.h"
 #include "FilterParam.h"
 #include "IntegerInterval.h"		
+#include "FilterIntervalList.h"	
 
 /**
  * An object which can attach itself to another module and outputs modified versions of the frames of this module.
@@ -58,7 +59,7 @@ public:
 	void deactivate(IntegerInterval interval);
 
 	/**
-	 * Returns a list of all the intervals the filter is active in
+	 * Returns a list of all the intervals the filter is active in.
 	 * @return List<IntegerInterval> a list of all the intervals the filter is active in
 	 */
 	List<IntegerInterval> getListOfActiveIntervals();
