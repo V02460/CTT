@@ -19,6 +19,7 @@ public:
      * Gets the internal state of the object as a Memento.
      *
      * @return Memento the internal state of the object
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     virtual Memento getMemento();
 

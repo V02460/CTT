@@ -29,19 +29,19 @@ public:
 
     /**
      * Starts playback with the currently set playback speed. Does nothing if the player is already playing. When the end of one of the videos is reached, the playback will automatically be paused.
-     *
+     * @throws IllegalStateException if the the method was called on a dummy
      */
     void play();
 
     /**
      * Pauses playback, but keeps the current frame. Does nothing if the player isn't currently playing.
-     *
+     * @throws IllegalStateException if the the method was called on a dummy
      */
     void pause();
 
     /**
      * Starts playback if the player is currently paused, else it pauses the playback.
-     *
+     * @throws IllegalStateException if the the method was called on a dummy
      */
     void togglePlayPause();
 
@@ -50,6 +50,7 @@ public:
      *
      * @param frameNumber The player will jump to this framenumber
 	 * @throws InvalidArgumentException if one of the scrubbers of the player don't have a frame with that number.
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     void jumpToFrameNr(unsigned int frameNumber);
 
@@ -58,6 +59,7 @@ public:
      *
      * @param fps the playback speed in fps
 	 * @throws InvalidArgumentException if the submitted fps aren't greater than zero.
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     void setFPS(double fps);
 
@@ -65,6 +67,7 @@ public:
      * Gets the currently set playback speed in frames per second.
      *
      * @return double the currently set playback speed in frames per second
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     double getFPS();
 
@@ -72,6 +75,7 @@ public:
      * Gets a list of all the VideoScrubbers currently subscribed to this player.
      *
      * @return List<VideoSrubber> a list of all the VideoScrubebrs currently subscribed to this player.
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     List<VideoScrubber> getScrubbers();
 
@@ -79,6 +83,7 @@ public:
      * Checks whether the player is currently playing.
      *
      * @return bool true only if the player is currently playing
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     bool isPlaying();
 
@@ -86,6 +91,7 @@ public:
      * Adds a VideoScrubber to the list of VideoScrubbers controlled by the player at the end of that list.
      *
      * @param scrubber the scrubber that will be added to the list
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     void addScrubber(VideoScrubber scrubber);
 
@@ -94,6 +100,7 @@ public:
      *
      * @param scrubber the scrubber that will be added to the list
      * @param position the position of the list the player will be inserted at
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     void addScrubber(VideoScrubber scrubber, int position);
 
@@ -102,6 +109,7 @@ public:
      *
      * @param position the scrubber at this position will be removed.
 	 * @throws InvalidArgumentException if there is no Scrubber at the submitted position
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     void removeScrubber(int position);
 
@@ -109,6 +117,7 @@ public:
      * Removes the submitted VideoScrubber from the list of VideoScrubbers controlled by the player. If the submitted Scrubber isn't in the list, no changes willl be made.
      *
      * @param scrubber this scrubber will be removed
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     void removeScrubber(VideoScrubber scrubber);
 
@@ -117,6 +126,7 @@ public:
      *
      * @param scrubber for this scrubber will be checked whether the player controls it
      * @return bool true only if the scrubber is controlled by the player
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     bool controlsScrubber(VideoScrubber scrubber);
 
@@ -124,6 +134,7 @@ public:
      * Returns the number of scrubbers controlled by this player.
      *
      * @return int the number of scrubbers controlled by this player
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
 	unsigned int scrubberCount();
 
@@ -131,6 +142,7 @@ public:
      * Checks whether all of the scrubbers controlled by this player can provide the frame after the current frame.
      *
      * @return bool true only if all of the scrubbers controlled by this player can provide the frame after the current frame.
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     bool hasNextFrame();
 
@@ -138,6 +150,7 @@ public:
 	 * Checks whether all of the scrubbers controlled by this player can provide the frame before the current frame.
 	 *
 	 * @return bool true only if all of the scrubbers controlled by this player can provide the frame before the current frame.
+	 * @throws IllegalStateException if the the method was called on a dummy
 	 */
     bool hasPreviousFrame();
 
@@ -145,6 +158,7 @@ public:
      * Gets the length in frames per second of the shortest Video the scrubbers of this player use to get their frames from.
      *
      * @return int the length in frames per second of the shortest Video the scrubbers of this player use to get their frames from
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
 	unsigned int getVideoLength();
 
@@ -152,6 +166,7 @@ public:
      * Gets the number of the current frame.
      *
      * @return int the number of the current frame
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
 	unsigned int getCurrentFrameNumber();
 
@@ -160,6 +175,7 @@ public:
      *
      * @param interval the interval in which the player will loop
 	 * @throws InvalidArgumentException if the bounds of the interval aren't in the bounds of the videos.
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     void setLoop(IntegerInterval interval);
 
@@ -167,6 +183,7 @@ public:
      * Gets the interval the player currently loops in. If the player doesn't loop currently, the last loop will be returned.
      *
      * @return IntegerInterval the interval the player currently loops in
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     IntegerInterval getLoop();
 
@@ -174,12 +191,13 @@ public:
      * Checks whether the player is currently looping.
      *
      * @return bool true only if the player is currently looping.
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     bool isLooping();
 
     /**
      * The player stops looping. If the player isn't currently looping, nothing happens.
-     *
+     * @throws IllegalStateException if the the method was called on a dummy
      */
     void stopLooping();
 
@@ -189,16 +207,18 @@ public:
 
     Saveable* getDummy();
 
+	boolean isDummy();
+
 public slots:
     /**
      * Jumps to the frame after the current frame and updates the state of the scrubbers accordingly.
-     *
+     * @throws IllegalStateException if the the method was called on a dummy
      */
     void nextFrame();
 
     /**
      * Jumps to the frame before the current frame and updates the state of the scrubbers accordingly.
-     *
+     * @throws IllegalStateException if the the method was called on a dummy
      */
     void previousFrame();
 
@@ -207,10 +227,16 @@ signals:
      * Is emitted when the current frame changes.
      *
      * @param currentFrameNr the umber of the new current frame
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
 	void currentFrameNrChanged(unsigned int currentFrameNr);
 
 private:
+	/**
+	 * Creates a dummy Player.
+	 */
+	Player();
+
     int currentFrameNumber; /**< The number of the frame that was requested last */
 	List<VideoScrubber> videoScrubbers; /**< The VideoScrubbers controlled by this player*/
     QTimer timer; /**< The timer controlling the playback speed */
