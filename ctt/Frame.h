@@ -7,6 +7,8 @@
 #include "Histogram.h"
 #include "HistogramType.h"
 #include "FrameMetadata.h"
+#include <QOpenGLTexture>
+#include <QOpenGLContext>
 
 /**
  * Represents a frame (from a video), consisting of the actual image data as an an OpenGL Texture and corresponding Metadata.
