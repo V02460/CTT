@@ -8,6 +8,7 @@
 #include "Frame.h"
 #include "Memento.h"
 #include "VideoMetadata.h"
+#include "VideoFileType.h"
 #include <QDir>
 
 /**
@@ -28,7 +29,7 @@ public:
      *
      * @param path the path to where the video will be saved
      * @param fileType the file type in which the video will be saved
-     * @throws
+     * @throws IOException if it's not possible to save the video to the submitted path
      */
     void save(QDir path, VideoFileType fileType);
 
