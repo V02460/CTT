@@ -21,6 +21,7 @@ public:
      * Gets the metadata of the Video which are valid for the whole video and not just specific frames
      *
      * @return VideoMetadata the metadata of the Video which are valid for the whole video and not just specific frames
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     virtual VideoMetadata getMetadata() = 0;
 
@@ -30,6 +31,7 @@ public:
      * @param path the path to where the video will be saved
      * @param fileType the file type in which the video will be saved
      * @throws IOException if it's not possible to save the video to the submitted path
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     void save(QDir path, VideoFileType fileType);
 
@@ -41,6 +43,7 @@ public:
      * @param x the width of the frame which will be returned
      * @param y the height of the frame which will be returned
      * @return Frame the scaled Frame
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     virtual Frame getScaledFrame(unsigned int frameNumber, unsigned int x, unsigned int y);
 
