@@ -44,7 +44,7 @@ public:
 	 */
 	virtual boolean isDummy();
 
-private:
+protected:
 	boolean is_dummy;
 };
 
