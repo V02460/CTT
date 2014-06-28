@@ -7,23 +7,51 @@
 #include "Module.h"
 #include "Frame.h"
 #include "Memento.h"
+#include "FilterParam.h"
+#include "IntegerInterval.h"		
 
+/**
+ * An object which can attach itself to another module and outputs modified versions of the frames of this module.
+ *
+ */
 class Filter : public Module {
 public:
-	bool supportsIntervals();
-	void Filter();
-	Map getParams();
-	void setPreviousModule(Module previous);
-	virtual QString getName() = 0;
-	Module *nextModule;
-	Frame getFrame(int frameNumber);
-	Memento getMemento();
-	void restore(Memento memento);
-	Saveable* getDummy();
+    /**
+     * Checks whether it is possible to use this Filter not on its previous module as a whole, but only on frames in specific intervals.
+     *
+     * @return bool true only if the Filter supports being active only in specific intervals.
+     */
+    virtual bool supportsIntervals();
+    /**
+     * Returns a map of the different parameters of the filter with their names and values.
+     *
+     * @return Map<QString, FilterParam> a map of the different parameters of the filter
+     */
+    virtual Map<QString, FilterParam> getParams();
+    /**
+     * Tells the Filter to use the frames of the submitted Module as source material for its own frames.
+     *
+     * @param previous the Filter will use the frames of this module as source material for its own frames
+     */
+    virtual void setPreviousModule(Module previous);
+    /**
+     * Returns a designation of this type of Filter
+     *
+     * @return QString a designation of this type of Filter
+     */
+    virtual QString getName();
+
+    virtual Frame getFrame(unsigned int frameNumber);
+
+    virtual Memento getMemento();
+
+    virtual void restore(Memento memento);
+
+    virtual Saveable* getDummy();
 private:
-	Map<QString, FilterParam> parameters;
-	Module *previous;
-	Module *next;
+    Map<QString, FilterParam> parameters; /**< Parameters modifying the filters behaviour */
+    /**< TODO irgendwas mit den intervallen */
+    Module *previous; /**< The Filter gets the frames it modifies from this module */
 };
 
 #endif  //_FILTER_H
