@@ -3,7 +3,7 @@
  * Manages a list of intervals in which a something is active.
  *
  */
-class FilterIntervalList
+class FilterIntervalList : public Saveable
 {
 public:
 	/**
@@ -14,6 +14,13 @@ public:
 
 private:
     List<IntegerInterval> intervals; /**< The list of active Intervals*/
+
+	/**
+	* Creates an empty FilterIntervalList if isDummmy is false, and a dummy FilterIntervalList if isDummmy is true.
+	*
+	*@param isDummy determines whether the new FilterIntervalList is a dummy FilterIntervalList
+	*/
+	FilterIntervalList(bool isDummy);
 
 public:
     /**
@@ -44,5 +51,11 @@ public:
      * @return List<IntegerInterval> a list of all the active Intervals
      */
     List<IntegerInterval> getIntervalList();
+
+	Memento getMemento();
+
+	void restore(Memento memento);
+
+	Saveable* getDummy();
 };
 
