@@ -20,6 +20,7 @@ public:
      * @param frameNumber the number of the frame which shall be returned
      * @return Frame the frame with the submitted number
      * @throws InvalidArgumentException if the submitted frame number is too high.
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     virtual Frame getFrame(unsigned int frameNumber);
 
@@ -27,6 +28,7 @@ public:
      * Gets a list of all Modules this Module uses directly or indirectly to create its frames, including this module itself.
      *
      * @return List<Module> a list of all Modules this Module uses directly or indirectly to create its frames, including this module itself
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     virtual List<Module> getUsesList();
 
@@ -34,6 +36,7 @@ public:
      * Gets the number of the highest frame the module can return.
      *
      * @return int the number of the highest frame the module can return
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     virtual unsigned int getFrameCount();
 
@@ -42,6 +45,7 @@ public:
      *
      * @param module it will be checked whether this module is used
      * @return bool true only if the submitted module is this module, or used by this module directly or indirectly
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     virtual bool uses(Module module);
 
