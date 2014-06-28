@@ -30,7 +30,7 @@ public:
      * @return List<Module> a list of all Modules this Module uses directly or indirectly to create its frames, including this module itself
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual List<Module> getUsesList();
+    virtual QList<Module> getUsesList();
 
     /**
      * Gets the number of the highest frame the module can return.

@@ -30,7 +30,7 @@ double Player::getFPS() {
 
 }
 
-List<VideoScrubber> Player::getScrubbers() {
+QList<VideoScrubber> Player::getScrubbers() {
 
 }
 

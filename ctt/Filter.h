@@ -10,6 +10,7 @@
 #include "FilterParam.h"
 #include "IntegerInterval.h"		
 #include "FilterIntervalList.h"	
+#include <QMap>	
 
 /**
  * An object which can attach itself to another module and outputs modified versions of the frames of this module.
@@ -30,7 +31,7 @@ public:
      * @return Map<QString, FilterParam> a map of the different parameters of the filter
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    Map<QString, FilterParam> getParams();
+    QMap<QString, FilterParam> getParams();
     /**
      * Tells the Filter to use the frames of the submitted Module as source material for its own frames.
      *
@@ -62,7 +63,7 @@ public:
 	 * Returns a list of all the intervals the filter is active in.
 	 * @return List<IntegerInterval> a list of all the intervals the filter is active in
 	 */
-	List<IntegerInterval> getListOfActiveIntervals();
+	QList<IntegerInterval> getListOfActiveIntervals();
 
     virtual Frame getFrame(unsigned int frameNumber);
 
@@ -72,7 +73,7 @@ public:
 
     virtual Saveable* getDummy();
 private:
-    Map<QString, FilterParam> parameters; /**< Parameters modifying the filters behaviour */
+    QMap<QString, FilterParam> parameters; /**< Parameters modifying the filters behaviour */
 	FilterIntervalList intervals; /**< The Intervals in which the Filtr is active/
     Module *previous; /**< The Filter gets the frames it modifies from this module */
 };

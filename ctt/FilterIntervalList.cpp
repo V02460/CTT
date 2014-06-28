@@ -1,12 +1,10 @@
 #include "FilterIntervalList.h"
+#include "IntegerInterval.h"
+#include "Saveable.h"
+#include "Memento.h"
 
 
 FilterIntervalList::FilterIntervalList()
-{
-}
-
-
-FilterIntervalList::~FilterIntervalList()
 {
 }
 
@@ -26,6 +24,6 @@ void FilterIntervalList::deactivate(IntegerInterval interval)
 }
 
 
-List<IntegerInterval> FilterIntervalList::getIntervalList()
+QList<IntegerInterval> FilterIntervalList::getIntervalList()
 {
 }

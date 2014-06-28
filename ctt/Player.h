@@ -77,7 +77,7 @@ public:
      * @return List<VideoSrubber> a list of all the VideoScrubebrs currently subscribed to this player.
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    List<VideoScrubber> getScrubbers();
+    QList<VideoScrubber> getScrubbers();
 
     /**
      * Checks whether the player is currently playing.
@@ -238,7 +238,7 @@ private:
 	Player();
 
     int currentFrameNumber; /**< The number of the frame that was requested last */
-	List<VideoScrubber> videoScrubbers; /**< The VideoScrubbers controlled by this player*/
+	QList<VideoScrubber> videoScrubbers; /**< The VideoScrubbers controlled by this player*/
     QTimer timer; /**< The timer controlling the playback speed */
     double fps; /**< The currently set playback speed in frames per second */
     bool looping; /**< Specifies whether the player is currently in a loop */

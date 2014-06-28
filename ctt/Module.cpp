@@ -4,7 +4,7 @@
 #include "Module.h"
 #include "Memento.h"
 
-List<Module> Module::getUsesList() {
+QList<Module> Module::getUsesList() {
 
 }
 

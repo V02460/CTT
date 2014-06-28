@@ -1,3 +1,7 @@
+#include "IntegerInterval.h"
+#include "Saveable.h"
+#include "Memento.h"
+#include <QObject>
 
 /**
  * Manages a list of intervals in which a something is active.
@@ -13,7 +17,7 @@ public:
 	FilterIntervalList();
 
 private:
-    List<IntegerInterval> intervals; /**< The list of active Intervals*/
+    QList<IntegerInterval> intervals; /**< The list of active Intervals*/
 
 	/**
 	* Creates an empty FilterIntervalList if isDummmy is false, and a dummy FilterIntervalList if isDummmy is true.
@@ -50,7 +54,7 @@ public:
      *
      * @return List<IntegerInterval> a list of all the active Intervals
      */
-    List<IntegerInterval> getIntervalList();
+    QList<IntegerInterval> getIntervalList();
 
 	Memento getMemento();
 
