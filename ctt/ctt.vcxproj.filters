@@ -371,6 +371,12 @@
     <ClCompile Include="YUVVideoSaver.cpp">
       <Filter>Source Files\Model\Video</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoScrubber.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Player.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -381,6 +387,12 @@
     </CustomBuild>
     <CustomBuild Include="ctt.qrc">
       <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="VideoScrubber.h">
+      <Filter>Header Files\Model\Player</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Player.h">
+      <Filter>Header Files\Model\Player</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -582,9 +594,6 @@
     <ClInclude Include="PixelDiff.h">
       <Filter>Header Files\Model\Difference</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files\Model\Player</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerController.h">
       <Filter>Header Files\Controller</Filter>
     </ClInclude>
@@ -677,9 +686,6 @@
     </ClInclude>
     <ClInclude Include="VideoRemovedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
-    </ClInclude>
-    <ClInclude Include="VideoScrubber.h">
-      <Filter>Header Files\Model\Player</Filter>
     </ClInclude>
     <ClInclude Include="VideoSaverFactory.h">
       <Filter>Header Files\Model\Video</Filter>

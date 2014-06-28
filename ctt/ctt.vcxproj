@@ -172,6 +172,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Player.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoScrubber.cpp" />
     <ClCompile Include="GeneratedFiles\qrc_ctt.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </PrecompiledHeader>
@@ -343,7 +345,7 @@
     <ClInclude Include="OverlayController.h" />
     <ClInclude Include="OverlayFactory.h" />
     <ClInclude Include="PixelDiff.h" />
-    <ClInclude Include="Player.h" />
+    <CustomBuild Include="Player.h" />
     <ClInclude Include="PlayerController.h" />
     <ClInclude Include="PlayerFunctions.h" />
     <ClInclude Include="PlayerWidget.h" />
@@ -373,7 +375,7 @@
     <ClInclude Include="VideoRemovedOperation.h" />
     <ClInclude Include="VideoSaver.h" />
     <ClInclude Include="VideoSaverFactory.h" />
-    <ClInclude Include="VideoScrubber.h" />
+    <CustomBuild Include="VideoScrubber.h" />
     <ClInclude Include="VideoWidget.h" />
     <ClInclude Include="ViewState.h" />
     <ClInclude Include="ViewType.h" />

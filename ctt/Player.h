@@ -15,7 +15,9 @@
  * The player will adapt to the shortest video and ignore all parts of the other videos exceeding this length.
  *
  */
-class Player : public Savable {
+class Player : public Savable, public QObject {
+	Q_OBJECT
+
 public:
     /**
      * Creates a new player with an empty list of scrubbers and and initializes the playback speed with the submitted paramater.
