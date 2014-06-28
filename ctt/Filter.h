@@ -29,14 +29,14 @@ public:
      * @return Map<QString, FilterParam> a map of the different parameters of the filter
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual Map<QString, FilterParam> getParams();
+    Map<QString, FilterParam> getParams();
     /**
      * Tells the Filter to use the frames of the submitted Module as source material for its own frames.
      *
      * @param previous the Filter will use the frames of this module as source material for its own frames
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual void setPreviousModule(Module previous);
+    void setPreviousModule(Module previous);
     /**
      * Returns a designation of this type of Filter
      *
@@ -44,6 +44,24 @@ public:
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
     virtual QString getName();
+
+	/**
+	 * Activates the Filter in the submitted interval.
+	 * @param interval the filter will be activated in this interval
+	 */
+	void activate(IntegerInterval interval);
+
+	/**
+	 * Deactivates the Filter in the submitted interval.
+	 * @param interval the filter will be deactivated in this interval
+	 */
+	void deactivate(IntegerInterval interval);
+
+	/**
+	 * Returns a list of all the intervals the filter is active in
+	 * @return List<IntegerInterval> a list of all the intervals the filter is active in
+	 */
+	List<IntegerInterval> getListOfActiveIntervals();
 
     virtual Frame getFrame(unsigned int frameNumber);
 
@@ -54,7 +72,7 @@ public:
     virtual Saveable* getDummy();
 private:
     Map<QString, FilterParam> parameters; /**< Parameters modifying the filters behaviour */
-    /**< TODO irgendwas mit den intervallen */
+	FilterIntervalList intervals; /**< The Intervals in which the Filtr is active/
     Module *previous; /**< The Filter gets the frames it modifies from this module */
 };
 

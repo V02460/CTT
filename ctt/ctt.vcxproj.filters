@@ -383,6 +383,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_Player.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="FilterIntervalList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -698,6 +701,9 @@
     </ClInclude>
     <ClInclude Include="Saveable.h">
       <Filter>Header Files\Model\Project</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterIntervalList.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
