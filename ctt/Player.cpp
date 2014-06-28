@@ -6,7 +6,7 @@
 #include "IntegerInterval.h"
 #include "Memento.h"
 
-void Player::Player(double fps) {
+Player::Player(double fps) {
 
 }
 
@@ -26,7 +26,7 @@ double Player::getFPS() {
 
 }
 
-List<VideoSrubber> Player::getScrubber() {
+List<VideoScrubber> Player::getScrubbers() {
 
 }
 
@@ -34,7 +34,7 @@ bool Player::isPlaying() {
 
 }
 
-void Player::addScrubber(VideoScrubebr scrubber) {
+void Player::addScrubber(VideoScrubber scrubber) {
 
 }
 
@@ -42,7 +42,7 @@ void Player::addScrubber(VideoScrubber scrubber, int position) {
 
 }
 
-void Player::remoteScrubber(int position) {
+void Player::removeScrubber(int position) {
 
 }
 
@@ -74,7 +74,7 @@ int Player::getCurrentFrameNumber() {
 
 }
 
-void Player::setLoop(IntergerInterval interval) {
+void Player::setLoop(IntegerInterval interval) {
 
 }
 
@@ -86,7 +86,7 @@ bool Player::isLooping() {
 
 }
 
-void Player::removeLoop() {
+void Player::stopLooping() {
 
 }
 

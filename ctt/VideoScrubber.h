@@ -56,6 +56,13 @@ public:
      */
     Frame getCurrentFrame();
 
+	/**
+	 * Checks whether the Scrubber is still waiting for the frame it requested last.
+	 *
+	 * @return bool true only if the Scrubber is still waiting for the frame it requested last.
+	 */
+	bool isWaitingForFrame();
+
     Memento getMemento();
 
     void restore(Memento memento);
@@ -69,11 +76,12 @@ public slots:
      * @param frameNumber the number of the frame wich will be requested from the video
      * @throws InvalidArgumentException if the video doesn't have a frame with the submitted number
      */
-    void jumpToFrameNr(int frameNumber) = 0;
+    void jumpToFrameNr(int frameNumber);
 
 private:
     Video *video; /**< The scrubber gets frames and metadata from this video */
     Frame *currentFrame; /**< This is the frame currently held by the scrubber */
+	bool waitingForFrame /**< This is true while Scrubber is still waiting for the frame it requested last*/
 };
 
 #endif  //_VIDEOSCRUBBER_H

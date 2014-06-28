@@ -11,11 +11,11 @@ Frame VideoScrubber::getCurrentFrame() {
 
 }
 
-void VideoScrubber::VideoScrubber(Video video) {
+VideoScrubber::VideoScrubber(Video video) {
 
 }
 
-void VideoScrubber::VideoScrubber(Video video, int frameNumber) {
+VideoScrubber::VideoScrubber(Video video, int frameNumber) {
 
 }
 
