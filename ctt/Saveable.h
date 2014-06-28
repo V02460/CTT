@@ -43,7 +43,7 @@ public:
 	 *
 	 * @return boolean true only if the object is a dummy
 	 */
-	virtual boolean isDummy();
+	boolean isDummy();
 
 protected:
 	boolean is_dummy;
