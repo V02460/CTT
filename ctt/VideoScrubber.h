@@ -40,6 +40,7 @@ public:
      * Gets the metadata of the Video this VideoScrubber is associated with.
      *
      * @return VideoMetadata the metadata of the Video this VideoScrubber is associated with
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     VideoMetadata getVideoMetadata();
 
@@ -47,6 +48,7 @@ public:
      * Gets the Video this VideoScrubber is associated with.
      *
      * @return Video the Video this VideoScrubber is associated with.
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     Video getVideo();
 
@@ -54,6 +56,7 @@ public:
      * Gets the frame currently held by the scrubber.
      *
      * @return Frame the frame currently held by the scrubber
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     Frame getCurrentFrame();
 
@@ -61,6 +64,7 @@ public:
 	 * Checks whether the Scrubber is still waiting for the frame it requested last.
 	 *
 	 * @return bool true only if the Scrubber is still waiting for the frame it requested last.
+	 * @throws IllegalStateException if the the method was called on a dummy
 	 */
 	bool isWaitingForFrame();
 
@@ -76,6 +80,7 @@ public slots:
      *
      * @param frameNumber the number of the frame wich will be requested from the video
      * @throws InvalidArgumentException if the video doesn't have a frame with the submitted number
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     void jumpToFrameNr(unsigned int frameNumber);
 
