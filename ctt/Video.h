@@ -54,8 +54,6 @@ public:
     virtual void restore(Memento memento);
 
     virtual Saveable* getDummy();
-private:
-    VideoMetadata *metadata; /**< the metadata of the Video which are valid for the whole video and not just specific frames */
 };
 
 #endif  //_VIDEO_H
