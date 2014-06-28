@@ -11,11 +11,15 @@ Frame VideoScrubber::getCurrentFrame() {
 
 }
 
+void VideoScrubber::jumpToFrameNr(unsigned int frameNumber); {
+
+}
+
 VideoScrubber::VideoScrubber(Video video) {
 
 }
 
-VideoScrubber::VideoScrubber(Video video, int frameNumber) {
+VideoScrubber::VideoScrubber(Video video, unsigned int frameNumber) {
 
 }
 

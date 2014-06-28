@@ -33,7 +33,7 @@ public:
      * @param frameNumber the scrubber will initially hold the frame with this number
      * @throws InvalidArgumentException if the submitted video is invalid or if it doesn't have a frame with the submitted number
      */
-    VideoScrubber(Video video, int frameNumber);
+    VideoScrubber(Video video, unsigned int frameNumber);
 
     /**
      * Gets the metadata of the Video this VideoScrubber is associated with.
@@ -76,7 +76,7 @@ public slots:
      * @param frameNumber the number of the frame wich will be requested from the video
      * @throws InvalidArgumentException if the video doesn't have a frame with the submitted number
      */
-    void jumpToFrameNr(int frameNumber);
+    void jumpToFrameNr(unsigned int frameNumber);
 
 private:
     Video *video; /**< The scrubber gets frames and metadata from this video */
