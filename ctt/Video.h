@@ -23,7 +23,7 @@ public:
      * @return VideoMetadata the metadata of the Video which are valid for the whole video and not just specific frames
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual VideoMetadata getMetadata() = 0;
+    virtual VideoMetadata getMetadata();
 
     /**
      * Saves the Video to the submitted path in the filesystem
