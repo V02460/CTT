@@ -22,6 +22,10 @@ void Player::previousFrame() {
 
 }
 
+void Player::jumpToFrameNr(unsigned int frameNr) {
+
+}
+
 double Player::getFPS() {
 
 }
@@ -54,7 +58,7 @@ bool Player::controlsScrubber(VideoScrubber scrubber) {
 
 }
 
-int Player::scrubberCount() {
+unsigned int Player::scrubberCount() {
 
 }
 
@@ -66,11 +70,11 @@ bool Player::hasPreviousFrame() {
 
 }
 
-int Player::getVideoLength() {
+unsigned int Player::getVideoLength() {
 
 }
 
-int Player::getCurrentFrameNumber() {
+unsigned int Player::getCurrentFrameNumber() {
 
 }
 

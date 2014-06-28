@@ -8,6 +8,7 @@
 #include "VideoScrubber.h"
 #include "IntegerInterval.h"
 #include "Memento.h"
+#include <QTimer>
 
 /**
  * A player organizes sychronized and complex access to multiple VideoScrubbers by telling them when to load which frames. It provides random access, asynchronous timer controlled playback with custom playback speed and looping.
@@ -48,7 +49,7 @@ public:
      * @param frameNumber The player will jump to this framenumber
 	 * @throws InvalidArgumentException if one of the scrubbers of the player don't have a frame with that number.
      */
-    void jumpToFrameNr(int frameNumber);
+    void jumpToFrameNr(unsigned int frameNumber);
 
     /**
      * Sets the playback speed in frames per second.
@@ -122,7 +123,7 @@ public:
      *
      * @return int the number of scrubbers controlled by this player
      */
-    int scrubberCount();
+	unsigned int scrubberCount();
 
     /**
      * Checks whether all of the scrubbers controlled by this player can provide the frame after the current frame.
@@ -143,14 +144,14 @@ public:
      *
      * @return int the length in frames per second of the shortest Video the scrubbers of this player use to get their frames from
      */
-    int getVideoLength();
+	unsigned int getVideoLength();
 
     /**
      * Gets the number of the current frame.
      *
      * @return int the number of the current frame
      */
-    int getCurrentFrameNumber();
+	unsigned int getCurrentFrameNumber();
 
     /**
      * Tells the player to loop in the submitted interval. If the current frame isn't in the loop interval, the player will jump to the first frame in the loop interval.
@@ -205,7 +206,7 @@ signals:
      *
      * @param currentFrameNr the umber of the new current frame
      */
-    currentFrameNrChanged(currentFrameNr: int);
+	void currentFrameNrChanged(unsigned int currentFrameNr);
 
 private:
     int currentFrameNumber; /**< The number of the frame that was requested last */
