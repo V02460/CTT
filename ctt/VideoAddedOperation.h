@@ -28,7 +28,7 @@ public:
 	/**
 	*	Manages requests to undo adding a Video to a VideoList.
 	**/
-	void undo();
+	void undoOperation();
 };
 
 #endif  //_VIDEOADDEDOPERATION_H
