@@ -21,7 +21,7 @@ void MixFilter::restore(Memento memento) {
 
 }
 
-Savable* MixFilter::getDummy() {
+Saveable* MixFilter::getDummy() {
 
 }
 

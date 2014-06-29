@@ -21,7 +21,7 @@ void RescaleFilter::restore(Memento memento) {
 
 }
 
-Savable* RescaleFilter::getDummy() {
+Saveable* RescaleFilter::getDummy() {
 
 }
 

@@ -12,7 +12,7 @@ public:
 	void undo();
 	void redo();
 	void setLastSavedState();
-	bool hasSavableChanges();
+	bool hasSaveableChanges();
 	bool canUndo();
 	bool canRedo();
 private:

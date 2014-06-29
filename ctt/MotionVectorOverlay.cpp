@@ -21,7 +21,7 @@ void MotionVectorOverlay::restore(Memento memento) {
 
 }
 
-Savable* MotionVectorOverlay::getDummy() {
+Saveable* MotionVectorOverlay::getDummy() {
 
 }
 

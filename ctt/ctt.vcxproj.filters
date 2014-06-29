@@ -179,9 +179,6 @@
     <ClCompile Include="FilterFactory.cpp">
       <Filter>Source Files\Model\Filter</Filter>
     </ClCompile>
-    <ClCompile Include="FilterList.cpp">
-      <Filter>Source Files\Model\Filter</Filter>
-    </ClCompile>
     <ClCompile Include="FilterListOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
@@ -229,9 +226,6 @@
     </ClCompile>
     <ClCompile Include="InsertionWidget.cpp">
       <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="IntegerInterval.cpp">
-      <Filter>Source Files\Model\Misc</Filter>
     </ClCompile>
     <ClCompile Include="LuminanceHistogram.cpp">
       <Filter>Source Files\Model\Histogram</Filter>
@@ -371,6 +365,24 @@
     <ClCompile Include="YUVVideoSaver.cpp">
       <Filter>Source Files\Model\Video</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoScrubber.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Player.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoScrubber.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Player.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterIntervalList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UIntegerInterval.cpp">
+      <Filter>Source Files\Model\Misc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -381,6 +393,12 @@
     </CustomBuild>
     <CustomBuild Include="ctt.qrc">
       <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="VideoScrubber.h">
+      <Filter>Header Files\Model\Player</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Player.h">
+      <Filter>Header Files\Model\Player</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -462,9 +480,6 @@
     <ClInclude Include="FilterListView.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
-    <ClInclude Include="FilterList.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
     <ClInclude Include="FilterParam.h">
       <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
@@ -512,9 +527,6 @@
     </ClInclude>
     <ClInclude Include="InsertionWidget.h">
       <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="IntegerInterval.h">
-      <Filter>Header Files\Model\Misc</Filter>
     </ClInclude>
     <ClInclude Include="LuminanceHistogram.h">
       <Filter>Header Files\Model\Histogram</Filter>
@@ -582,9 +594,6 @@
     <ClInclude Include="PixelDiff.h">
       <Filter>Header Files\Model\Difference</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files\Model\Player</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerController.h">
       <Filter>Header Files\Controller</Filter>
     </ClInclude>
@@ -613,9 +622,6 @@
       <Filter>Header Files\Model\Project</Filter>
     </ClInclude>
     <ClInclude Include="ProjectSaverFactory.h">
-      <Filter>Header Files\Model\Project</Filter>
-    </ClInclude>
-    <ClInclude Include="Savable.h">
       <Filter>Header Files\Model\Project</Filter>
     </ClInclude>
     <ClInclude Include="RGBChannelFilter.h">
@@ -678,14 +684,20 @@
     <ClInclude Include="VideoRemovedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
-    <ClInclude Include="VideoScrubber.h">
-      <Filter>Header Files\Model\Player</Filter>
-    </ClInclude>
     <ClInclude Include="VideoSaverFactory.h">
       <Filter>Header Files\Model\Video</Filter>
     </ClInclude>
     <ClInclude Include="VideoWidget.h">
       <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="Saveable.h">
+      <Filter>Header Files\Model\Project</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterIntervalList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UIntegerInterval.h">
+      <Filter>Header Files\Model\Misc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

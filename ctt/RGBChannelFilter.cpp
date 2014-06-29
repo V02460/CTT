@@ -21,7 +21,7 @@ void RGBChannelFilter::restore(Memento memento) {
 
 }
 
-Savable* RGBChannelFilter::getDummy() {
+Saveable* RGBChannelFilter::getDummy() {
 
 }
 

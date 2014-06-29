@@ -22,7 +22,7 @@ void Filter::setPreviousModule(Module previous) {
 
 }
 
-Frame Filter::getFrame(int frameNumber) {
+Frame Filter::getFrame(unsigned int frameNumber) {
 
 }
 
@@ -34,7 +34,7 @@ void Filter::restore(Memento memento) {
 
 }
 
-Savable* Filter::getDummy() {
+Saveable* Filter::getDummy() {
 
 }
 

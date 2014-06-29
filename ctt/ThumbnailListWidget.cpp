@@ -3,7 +3,7 @@
 
 #include "ThumbnailListWidget.h"
 
-void ThumbnailListWidget::ThumbnailListWidget(SavableList<Video> filteredVideos, int selectableCount) {
+void ThumbnailListWidget::ThumbnailListWidget(SaveableList<Video> filteredVideos, int selectableCount) {
 
 }
 

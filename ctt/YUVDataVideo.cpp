@@ -21,7 +21,7 @@ void YUVDataVideo::restore(Memento memento) {
 
 }
 
-Savable* YUVDataVideo::getDummy() {
+Saveable* YUVDataVideo::getDummy() {
 
 }
 

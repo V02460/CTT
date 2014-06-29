@@ -4,7 +4,7 @@
 #include "Module.h"
 #include "Memento.h"
 
-List<Module> Module::getUsesList() {
+QList<Module> Module::getUsesList() {
 
 }
 
@@ -24,7 +24,7 @@ void Module::restore(Memento memento) {
 
 }
 
-Savable* Module::getDummy() {
+Saveable* Module::getDummy() {
 
 }
 

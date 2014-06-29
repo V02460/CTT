@@ -21,7 +21,7 @@ void EarthMoversHistogramDiff::restore(Memento memento) {
 
 }
 
-Savable* EarthMoversHistogramDiff::getDummy() {
+Saveable* EarthMoversHistogramDiff::getDummy() {
 
 }
 

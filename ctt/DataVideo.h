@@ -16,9 +16,10 @@ public:
 	Frame getFrame(int frameNumber);
 	Memento getMemento();
 	void restore(Memento memento);
-	Savable* getDummy();
+	Saveable* getDummy();
 private:
 	VideoReader *reader;
+	VideoMetadata *metadata; /**< the metadata of the Video which are valid for the whole video and not just specific frames */
 };
 
 #endif  //_DATAVIDEO_H

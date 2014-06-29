@@ -12,7 +12,7 @@ void FrameDiff::restore(Memento memento) {
 
 }
 
-Savable* FrameDiff::getDummy() {
+Saveable* FrameDiff::getDummy() {
 
 }
 

@@ -21,7 +21,7 @@ void MacropartionOverlay::restore(Memento memento) {
 
 }
 
-Savable* MacropartionOverlay::getDummy() {
+Saveable* MacropartionOverlay::getDummy() {
 
 }
 

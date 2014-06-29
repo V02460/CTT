@@ -8,7 +8,7 @@
 
 class VideoRemovedOperation : public VideoListOperation {
 public:
-	void VideoRemovedOperation(int index, int SavableList<Video>);
+	void VideoRemovedOperation(int index, int SaveableList<Video>);
 	void do();
 	void undo();
 };

@@ -21,7 +21,7 @@ void TimeshiftFilter::restore(Memento memento) {
 
 }
 
-Savable* TimeshiftFilter::getDummy() {
+Saveable* TimeshiftFilter::getDummy() {
 
 }
 

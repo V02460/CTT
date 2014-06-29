@@ -25,7 +25,7 @@ void DataVideo::restore(Memento memento) {
 
 }
 
-Savable* DataVideo::getDummy() {
+Saveable* DataVideo::getDummy() {
 
 }
 

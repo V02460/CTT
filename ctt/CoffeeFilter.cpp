@@ -21,7 +21,7 @@ void CoffeeFilter::restore(Memento memento) {
 
 }
 
-Savable* CoffeeFilter::getDummy() {
+Saveable* CoffeeFilter::getDummy() {
 
 }
 

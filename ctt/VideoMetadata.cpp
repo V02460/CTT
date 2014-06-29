@@ -11,7 +11,7 @@ bool VideoMetadata::hasData(QString key) {
 
 }
 
-bool VideoMetadata::getData(QString key) {
+QString VideoMetadata::getData(QString key) {
 
 }
 

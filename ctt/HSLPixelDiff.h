@@ -15,7 +15,7 @@ public:
 	void FrameDif(Video video1, Video video2);
 	Memento getMemento();
 	void restore(Memento memento);
-	Savable* getDummy();
+	Saveable* getDummy();
 };
 
 #endif  //_HSLPIXELDIFF_H

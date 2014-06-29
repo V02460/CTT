@@ -21,7 +21,7 @@ void PixelDiff::restore(Memento memento) {
 
 }
 
-Savable* PixelDiff::getDummy() {
+Saveable* PixelDiff::getDummy() {
 
 }
 

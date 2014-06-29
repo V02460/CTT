@@ -3,10 +3,10 @@
 
 #include "Player.h"
 #include "VideoScrubber.h"
-#include "IntegerInterval.h"
+#include "UIntegerInterval.h"
 #include "Memento.h"
 
-void Player::Player(double fps) {
+Player::Player(double fps) {
 
 }
 
@@ -22,11 +22,15 @@ void Player::previousFrame() {
 
 }
 
+void Player::jumpToFrameNr(unsigned int frameNr) {
+
+}
+
 double Player::getFPS() {
 
 }
 
-List<VideoSrubber> Player::getScrubber() {
+QList<VideoScrubber> Player::getScrubbers() {
 
 }
 
@@ -34,7 +38,7 @@ bool Player::isPlaying() {
 
 }
 
-void Player::addScrubber(VideoScrubebr scrubber) {
+void Player::addScrubber(VideoScrubber scrubber) {
 
 }
 
@@ -42,7 +46,7 @@ void Player::addScrubber(VideoScrubber scrubber, int position) {
 
 }
 
-void Player::remoteScrubber(int position) {
+void Player::removeScrubber(int position) {
 
 }
 
@@ -54,7 +58,7 @@ bool Player::controlsScrubber(VideoScrubber scrubber) {
 
 }
 
-int Player::scrubberCount() {
+unsigned int Player::scrubberCount() {
 
 }
 
@@ -66,19 +70,19 @@ bool Player::hasPreviousFrame() {
 
 }
 
-int Player::getVideoLength() {
+unsigned int Player::getVideoLength() {
 
 }
 
-int Player::getCurrentFrameNumber() {
+unsigned int Player::getCurrentFrameNumber() {
 
 }
 
-void Player::setLoop(IntergerInterval interval) {
+void Player::setLoop(UIntegerInterval interval) {
 
 }
 
-IntegerInterval Player::getLoop() {
+UIntegerInterval Player::getLoop() {
 
 }
 
@@ -86,7 +90,7 @@ bool Player::isLooping() {
 
 }
 
-void Player::removeLoop() {
+void Player::stopLooping() {
 
 }
 
@@ -98,7 +102,7 @@ void Player::restore(Memento memento) {
 
 }
 
-Savable* Player::getDummy() {
+Saveable* Player::getDummy() {
 
 }
 

@@ -21,7 +21,7 @@ void Overlay::restore(Memento memento) {
 
 }
 
-Savable* Overlay::getDummy() {
+Saveable* Overlay::getDummy() {
 
 }
 

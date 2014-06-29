@@ -21,7 +21,7 @@ void FFmpegDataVideo::restore(Memento memento) {
 
 }
 
-Savable* FFmpegDataVideo::getDummy() {
+Saveable* FFmpegDataVideo::getDummy() {
 
 }
 

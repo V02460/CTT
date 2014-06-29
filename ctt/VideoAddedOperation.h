@@ -9,7 +9,7 @@
 
 class VideoAddedOperation : public VideoListOperation {
 public:
-	void VideoAddedOperation(Video video, SavableList<Video> videoList);
+	void VideoAddedOperation(Video video, SaveableList<Video> videoList);
 	void do();
 	void undo();
 };
