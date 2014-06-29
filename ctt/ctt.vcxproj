@@ -155,6 +155,7 @@
     <ClCompile Include="EarthMoversHistogramDiff.cpp" />
     <ClCompile Include="ExtendedTimeline.cpp" />
     <ClCompile Include="FFmpegDataVideo.cpp" />
+    <ClCompile Include="FileVideo.cpp" />
     <ClCompile Include="Filter.cpp" />
     <ClCompile Include="FilterAddedOperation.cpp" />
     <ClCompile Include="FilterController.cpp" />
@@ -317,6 +318,7 @@
     <ClInclude Include="EarthMoversHistogramDiff.h" />
     <ClInclude Include="ExtendedTimeline.h" />
     <ClInclude Include="FFmpegDataVideo.h" />
+    <ClInclude Include="FileVideo.h" />
     <ClInclude Include="Filter.h" />
     <ClInclude Include="FilterAddedOperation.h" />
     <ClInclude Include="FilterController.h" />

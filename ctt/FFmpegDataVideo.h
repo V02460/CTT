@@ -7,12 +7,12 @@
 #include "Video.h"
 #include "Frame.h"
 #include "Memento.h"
-#include <QPath>
+#include "FileVideo.h"
 
 /**
  * A Video read from a mpeg-2, mpeg-4 part 2 or mpeg-4 part 10 video file.
  */
-class FFmpegDataVideo : public Video {
+class FFmpegDataVideo : public FileVideo {
 public:
 	/**
 	 * Creates a new FFmpegDataVideo representing the mpeg-2, mpeg-4 part 2 or mpeg-4 part 10 video at the submitted location in the file system.
@@ -22,12 +22,6 @@ public:
 	 */
 	FFmpegDataVideo(QDir path);
 
-	/**
-	 * Returns the path to the video file this Video loads its frames from.
-	 * @return QDir the path to the video file this Video loads its frames from
-	 */
-	QDir getPath();
-
     VideoMetadata getMetadata();
 
     Frame getFrame(int frameNumber);
@@ -36,16 +30,13 @@ public:
 
     void restore(Memento memento);
 
-    Saveable* getDummy();
+    static Saveable* getDummy();
 
 private:
 	/**
 	 * Creates a dummy FFmpegDataVideo.
 	 */
 	FFmpegDataVideo(QDir path);
-
-	QDir path; /**< the path to the video file this Video loads its frames from. */
-	VideoMetadata metadata; /**< metadata valid for the whole video. */
 };
 
 #endif  //_FFMPEGDATAVIDEO_H

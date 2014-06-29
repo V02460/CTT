@@ -380,6 +380,9 @@
     <ClCompile Include="UIntegerInterval.cpp">
       <Filter>Source Files\Model\Misc</Filter>
     </ClCompile>
+    <ClCompile Include="FileVideo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -692,6 +695,9 @@
     </ClInclude>
     <ClInclude Include="UIntegerInterval.h">
       <Filter>Header Files\Model\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="FileVideo.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

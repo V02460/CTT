@@ -7,12 +7,13 @@
 #include "Video.h"
 #include "Frame.h"
 #include "Memento.h"
+#include "FileVideo.h"
 
 /**
  * A Video read from a YUV 4:4:4 or YUV 4:2:2 video file.
  *
  */
-class YUVDataVideo : public Video {
+class YUVDataVideo : public FileVideo {
 public:
 	/**
 	* Creates a new YUVDataVideo representing the YUV 4:4:4 or YUV 4:2:2 video at the submitted location in the file system.
@@ -31,16 +32,13 @@ public:
 
     void restore(Memento memento);
 
-    Saveable* getDummy();
+    static Saveable* getDummy();
 
 private:
 	/**
 	* Creates a dummy YUVDataVideo.
 	*/
-	YUVDataVideo(QDir path);
-
-	QDir path; /**< the path to the video file this Video loads its frames from. */
-	VideoMetadata metadata; /**< metadata valid for the whole video. */
+	YUVDataVideo();
 };
 
 #endif  //_YUVDATAVIDEO_H
