@@ -5,7 +5,7 @@
 #define _OPERATION_H
 
 /**
-*	The Operation is providing functionality for doing and undoing methods which trigger a change in the underlying model.
+*	The Operation is providing functionality for doing and undoing something that triggers a change in the underlying model.
 **/
 class Operation {
 public:
