@@ -9,7 +9,7 @@ namespace model {
 namespace difference {
 
 /**
- * A FrameDiff compares corresponding frames from two specific videos.
+ * A FrameDiff compares corresponding frames from two specific videos and calculates one-dimensional distances between them.
  *
  */
 class FrameDiff : public Saveable {
