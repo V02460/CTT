@@ -54,7 +54,7 @@ public:
      *
      * @return FilterList a FilterList containing all the Filters this FilteredVideo uses in its filter pipeline in the right order
      */
-    FilterList getFilterList();
+    QList<Filter> getFilterList();
 
     VideoMetadata getMetadata();
 

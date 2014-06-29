@@ -15,6 +15,7 @@ public:
 	int getLength();
 	void setPrevOfFirst(Video base);
 	Filter getLast();
+	QList<Filter> getQList();
 private:
 	int length;
 };
