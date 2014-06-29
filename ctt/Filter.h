@@ -50,21 +50,21 @@ public:
 	/**
 	 * Activates the Filter in the submitted interval.
 	 * @param interval the filter will be activated in this interval
-	 * @throws IllegalStateException if the the method was called on a dummy
+	 * @throws IllegalStateException if the the method was called on a dummy or a Filter without interval support
 	 */
 	void activate(UIntegerInterval interval);
 
 	/**
 	 * Deactivates the Filter in the submitted interval.
 	 * @param interval the filter will be deactivated in this interval
-	 * @throws IllegalStateException if the the method was called on a dummy
+	 * @throws IllegalStateException if the the method was called on a dummy or a Filter without interval support
 	 */
 	void deactivate(UIntegerInterval interval);
 
 	/**
 	 * Returns a list of all the intervals the filter is active in.
 	 * @return List<IntegerInterval> a list of all the intervals the filter is active in
-	 * @throws IllegalStateException if the the method was called on a dummy
+	 * @throws IllegalStateException if the the method was called on a dummy or a Filter without interval support
 	 */
 	QList<UIntegerInterval> getListOfActiveIntervals();
 
