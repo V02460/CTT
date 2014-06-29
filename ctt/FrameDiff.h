@@ -10,12 +10,11 @@
 
 class FrameDiff : public Saveable {
 public:
-	virtual double getDif(int frameNr) = 0;
-	virtual void FrameDif(Video video1, Video video2) = 0;
-	Memento getMemento();
-	void restore(Memento memento);
-	Saveable* getDummy();
-private:
+	virtual double getDif(int frameNr);
+
+	virtual Memento getMemento();
+	virtual void restore(Memento memento);
+protected:
 	Video video1;
 	Video video2;
 };
