@@ -42,9 +42,6 @@
     <Filter Include="Header Files\Model">
       <UniqueIdentifier>{4dedc1ce-bc59-4b6d-8c0d-8fd7f8640c77}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Model\Histogram">
-      <UniqueIdentifier>{1ff31363-c06c-436e-b47b-7d65993e62e9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Model\Filter">
       <UniqueIdentifier>{89b90527-2e07-4a3d-86e1-84bc0a051451}</UniqueIdentifier>
     </Filter>
@@ -66,9 +63,6 @@
     <Filter Include="Header Files\Controller\Operation">
       <UniqueIdentifier>{f4928c0f-9a00-407d-9a76-8b94312709a9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Model\Misc">
-      <UniqueIdentifier>{a28ff68e-ec32-44e0-a8b6-9a87af3568ad}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Model\Project">
       <UniqueIdentifier>{25594692-751f-4db9-99fc-f8df7825e7ef}</UniqueIdentifier>
     </Filter>
@@ -80,9 +74,6 @@
     </Filter>
     <Filter Include="Source Files\Controller">
       <UniqueIdentifier>{3aa2e328-54b6-4585-b500-7cda4d53ce6c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Histogram">
-      <UniqueIdentifier>{ff89e419-03b7-4f06-999d-703d0af24722}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Model\Filter">
       <UniqueIdentifier>{9a8e7b44-5f6e-4388-a155-7642e9e8ab28}</UniqueIdentifier>
@@ -102,14 +93,20 @@
     <Filter Include="Source Files\Model\Difference">
       <UniqueIdentifier>{35e2b08d-a5ce-47ee-8273-417940faa362}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Model\Misc">
-      <UniqueIdentifier>{8f52b48b-f9e4-4dff-b3b2-f2893f3bd57e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Model\Project">
       <UniqueIdentifier>{d4135c21-55dd-48f2-a53c-6bdf8e161c92}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Model\Player">
       <UniqueIdentifier>{f5fcc434-536b-4117-8c8e-a508ed2b92dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Frame\Histogram">
+      <UniqueIdentifier>{1ff31363-c06c-436e-b47b-7d65993e62e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View\BaseComponents">
+      <UniqueIdentifier>{4c575f27-fb52-4b73-a06f-b1fc86dc6c42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Frame\Histogram">
+      <UniqueIdentifier>{ff89e419-03b7-4f06-999d-703d0af24722}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -129,7 +126,7 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="BlueHistogram.cpp">
-      <Filter>Source Files\Model\Histogram</Filter>
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
     </ClCompile>
     <ClCompile Include="AtomicOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
@@ -210,7 +207,7 @@
       <Filter>Source Files\View</Filter>
     </ClCompile>
     <ClCompile Include="GreenHistogram.cpp">
-      <Filter>Source Files\Model\Histogram</Filter>
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
     </ClCompile>
     <ClCompile Include="GreyscaleFilter.cpp">
       <Filter>Source Files\Model\Filter</Filter>
@@ -219,7 +216,7 @@
       <Filter>Source Files\Model\Filter\Overlay</Filter>
     </ClCompile>
     <ClCompile Include="Histogram.cpp">
-      <Filter>Source Files\Model\Histogram</Filter>
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
     </ClCompile>
     <ClCompile Include="HSLPixelDiff.cpp">
       <Filter>Source Files\Model\Difference</Filter>
@@ -228,7 +225,7 @@
       <Filter>Source Files\View</Filter>
     </ClCompile>
     <ClCompile Include="LuminanceHistogram.cpp">
-      <Filter>Source Files\Model\Histogram</Filter>
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
     </ClCompile>
     <ClCompile Include="MacroblockOverlay.cpp">
       <Filter>Source Files\Model\Filter\Overlay</Filter>
@@ -268,12 +265,6 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\Model\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Observable.cpp">
-      <Filter>Source Files\Model\Misc</Filter>
-    </ClCompile>
-    <ClCompile Include="Module.cpp">
-      <Filter>Source Files\Model\Misc</Filter>
     </ClCompile>
     <ClCompile Include="MainWindow.cpp">
       <Filter>Source Files\View</Filter>
@@ -315,10 +306,7 @@
       <Filter>Source Files\View</Filter>
     </ClCompile>
     <ClCompile Include="RedHistogram.cpp">
-      <Filter>Source Files\Model\Histogram</Filter>
-    </ClCompile>
-    <ClCompile Include="Observer.cpp">
-      <Filter>Source Files\Model\Misc</Filter>
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
     </ClCompile>
     <ClCompile Include="VideoAnalysingWidget.cpp">
       <Filter>Source Files\View</Filter>
@@ -377,11 +365,20 @@
     <ClCompile Include="GeneratedFiles\Release\moc_Player.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="FilterIntervalList.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Module.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Observable.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="UIntegerInterval.cpp">
-      <Filter>Source Files\Model\Misc</Filter>
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterIntervalList.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -405,15 +402,6 @@
     <ClInclude Include="GeneratedFiles\ui_ctt.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="TimelineInterval.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AbstractListView.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="AbstractTimeline.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
     <ClInclude Include="AnalysingWidget.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
@@ -421,7 +409,7 @@
       <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
     <ClInclude Include="BlueHistogram.h">
-      <Filter>Header Files\Model\Histogram</Filter>
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
     <ClInclude Include="BlurFilter.h">
       <Filter>Header Files\Model\Filter</Filter>
@@ -443,12 +431,6 @@
     </ClInclude>
     <ClInclude Include="DifferenceFactory.h">
       <Filter>Header Files\Model\Difference</Filter>
-    </ClInclude>
-    <ClInclude Include="DifferenceListView.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="DifferenceTimeline.h">
-      <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="EarthMoversHistogramDiff.h">
       <Filter>Header Files\Model\Difference</Filter>
@@ -477,9 +459,6 @@
     <ClInclude Include="FilterListOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
-    <ClInclude Include="FilterListView.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
     <ClInclude Include="FilterParam.h">
       <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
@@ -488,9 +467,6 @@
     </ClInclude>
     <ClInclude Include="FilterRemovedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterTimeline.h">
-      <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="FPSChangingOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
@@ -508,7 +484,7 @@
       <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="GreenHistogram.h">
-      <Filter>Header Files\Model\Histogram</Filter>
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
     <ClInclude Include="GreyscaleFilter.h">
       <Filter>Header Files\Model\Filter</Filter>
@@ -517,10 +493,10 @@
       <Filter>Header Files\Model\Filter\Overlay</Filter>
     </ClInclude>
     <ClInclude Include="Histogram.h">
-      <Filter>Header Files\Model\Histogram</Filter>
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
     <ClInclude Include="HistogramType.h">
-      <Filter>Header Files\Model\Histogram</Filter>
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
     <ClInclude Include="HSLPixelDiff.h">
       <Filter>Header Files\Model\Difference</Filter>
@@ -529,7 +505,7 @@
       <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="LuminanceHistogram.h">
-      <Filter>Header Files\Model\Histogram</Filter>
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
     <ClInclude Include="MacroblockOverlay.h">
       <Filter>Header Files\Model\Filter\Overlay</Filter>
@@ -546,20 +522,11 @@
     <ClInclude Include="NoiseFilter.h">
       <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
-    <ClInclude Include="Observable.h">
-      <Filter>Header Files\Model\Misc</Filter>
-    </ClInclude>
-    <ClInclude Include="Observer.h">
-      <Filter>Header Files\Model\Misc</Filter>
-    </ClInclude>
     <ClInclude Include="MotionVectorOverlay.h">
       <Filter>Header Files\Model\Filter\Overlay</Filter>
     </ClInclude>
     <ClInclude Include="Video.h">
       <Filter>Header Files\Model\Video</Filter>
-    </ClInclude>
-    <ClInclude Include="Module.h">
-      <Filter>Header Files\Model\Misc</Filter>
     </ClInclude>
     <ClInclude Include="Operation.h">
       <Filter>Header Files\Controller\Operation</Filter>
@@ -571,7 +538,7 @@
       <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="RedHistogram.h">
-      <Filter>Header Files\Model\Histogram</Filter>
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
     <ClInclude Include="ProjectController.h">
       <Filter>Header Files\Controller</Filter>
@@ -651,9 +618,6 @@
     <ClInclude Include="VideoSaver.h">
       <Filter>Header Files\Model\Video</Filter>
     </ClInclude>
-    <ClInclude Include="VideoReader.h">
-      <Filter>Header Files\Model\Video</Filter>
-    </ClInclude>
     <ClInclude Include="ZoomFunctions.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
@@ -693,11 +657,41 @@
     <ClInclude Include="Saveable.h">
       <Filter>Header Files\Model\Project</Filter>
     </ClInclude>
-    <ClInclude Include="FilterIntervalList.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Module.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Observable.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="UIntegerInterval.h">
-      <Filter>Header Files\Model\Misc</Filter>
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractListView.h">
+      <Filter>Header Files\View\BaseComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractTimeline.h">
+      <Filter>Header Files\View\BaseComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="DifferenceListView.h">
+      <Filter>Header Files\View\BaseComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="DifferenceTimeline.h">
+      <Filter>Header Files\View\BaseComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterListView.h">
+      <Filter>Header Files\View\BaseComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterTimeline.h">
+      <Filter>Header Files\View\BaseComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterIntervalList.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="TimelineInterval.h">
+      <Filter>Header Files\View</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
