@@ -50,9 +50,9 @@ public:
     unsigned int getFilterCount();
 
     /**
-     * Returns a FilterList containing all the Filters this FilteredVideo uses in its filter pipeline in the right order.
+     * Returns a QList containing all the Filters this FilteredVideo uses in its filter pipeline in the right order.
      *
-     * @return FilterList a FilterList containing all the Filters this FilteredVideo uses in its filter pipeline in the right order
+     * @return QList<Filter> a QList containing all the Filters this FilteredVideo uses in its filter pipeline in the right order
      */
     QList<Filter> getFilterList();
 
