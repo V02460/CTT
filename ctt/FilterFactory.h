@@ -1,10 +1,10 @@
-
-
-
 #if !defined(_FILTERFACTORY_H)
 #define _FILTERFACTORY_H
 
 #include "Filter.h"
+
+namespace model {
+namespace filter {
 
 class FilterFactory {
 public:
@@ -13,5 +13,8 @@ public:
 private:
 	void FilterFactory();
 };
+
+}  // namespace filter
+}  // namespace model
 
 #endif  //_FILTERFACTORY_H

@@ -1,9 +1,9 @@
-
-
-
 #include "MacropartitionOverlay.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace filter {
 
 QString MacropartionOverlay::getName() {
 
@@ -25,3 +25,5 @@ Saveable* MacropartionOverlay::getDummy() {
 
 }
 
+}  // namespace filter
+}  // namcespace model

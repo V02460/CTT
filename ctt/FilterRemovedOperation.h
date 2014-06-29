@@ -1,11 +1,11 @@
-
-
-
 #if !defined(_FILTERREMOVEDOPERATION_H)
 #define _FILTERREMOVEDOPERATION_H
 
 #include "FilterListOperation.h"
 #include "FilterList.h"
+
+namespace controller {
+namespace operation {
 
 /**
 *	The FilterRemovedOperation is providing functionality for doing and undoing removing a Filter from the FilterList.
@@ -30,5 +30,8 @@ public:
 	**/
 	void undoOperation();
 };
+
+}  // namespace operation
+}  // namespace controller
 
 #endif  //_FILTERREMOVEDOPERATION_H

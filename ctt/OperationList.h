@@ -1,10 +1,10 @@
-
-
-
 #if !defined(_OPERATIONLIST_H)
 #define _OPERATIONLIST_H
 
 #include "Operation.h"
+
+namespace controller {
+namespace operation {
 
 /**
 *	The OperationList contains a list with every Operation executed since the last load of the Project and the functionality to do, undo and redo those Operations.
@@ -50,5 +50,8 @@ public:
 private:
 	Operation *currentOperation;
 };
+
+}  // namespace operation
+}  // namespace controller
 
 #endif  //_OPERATIONLIST_H

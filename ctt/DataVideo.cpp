@@ -1,9 +1,9 @@
-
-
-
 #include "DataVideo.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace video {
 
 void DataVideo::DataVideo(Path path) {
 
@@ -29,3 +29,5 @@ Saveable* DataVideo::getDummy() {
 
 }
 
+}  // namespace video
+}  // namespace model

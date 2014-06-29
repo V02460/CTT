@@ -1,11 +1,10 @@
-
-
-
 #if !defined(_VIDEOLISTCONTROLLER_H)
 #define _VIDEOLISTCONTROLLER_H
 
 #include "Observer.h"
 #include "Video.h"
+
+namespace controller {
 
 /**
 *	The VideoListController manages requests to manipulate the VideoList.
@@ -41,5 +40,7 @@ public slots:
 	**/
 	void removeVideo(Video video);
 };
+
+}  // namespace controller
 
 #endif  //_VIDEOLISTCONTROLLER_H

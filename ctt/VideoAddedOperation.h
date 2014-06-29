@@ -1,11 +1,11 @@
-
-
-
 #if !defined(_VIDEOADDEDOPERATION_H)
 #define _VIDEOADDEDOPERATION_H
 
 #include "VideoListOperation.h"
 #include "Video.h"
+
+namespace controller {
+namespace operation {
 
 /**
 *	The VideoAddedOperation is providing functionality for doing and undoing adding a Video to a VideoList.
@@ -30,5 +30,8 @@ public:
 	**/
 	void undoOperation();
 };
+
+}  // namespace operation
+}  // namespace controller
 
 #endif  //_VIDEOADDEDOPERATION_H

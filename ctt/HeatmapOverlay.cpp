@@ -1,9 +1,9 @@
-
-
-
 #include "HeatmapOverlay.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace filter {
 
 QString HeatmapOverlay::getName() {
 
@@ -25,3 +25,5 @@ Saveable* HeatmapOverlay::getDummy() {
 
 }
 
+}  // namespace filter
+}  // namcespace model

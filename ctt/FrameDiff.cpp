@@ -1,8 +1,8 @@
-
-
-
 #include "FrameDiff.h"
 #include "Memento.h"
+
+namespace model {
+namespace difference {
 
 Memento FrameDiff::getMemento() {
 
@@ -16,3 +16,5 @@ Saveable* FrameDiff::getDummy() {
 
 }
 
+}  // namespace difference
+}  // namcespace model

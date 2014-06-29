@@ -1,5 +1,6 @@
-
 #include "ExtendedTimeline.h"
+
+namespace view {
 
 void ExtendedTimeline::sldStateChanged() {
 
@@ -17,3 +18,4 @@ void ExtendedTimeline::changeViewState() {
 
 }
 
+}  // namespace view

@@ -1,7 +1,6 @@
-
-
-
 #include "UIntegerInterval.h"
+
+namespace model {
 
 UIntegerInterval::UIntegerInterval(unsigned int a, unsigned int b) {
 
@@ -27,3 +26,4 @@ void UIntegerInterval::setEnd(unsigned int end) {
 
 }
 
+}  // namespace model

@@ -1,7 +1,12 @@
+#if !defined(_FILTERINTERVALLIST_H)
+#define _FILTERINTERVALLIST_H
+
 #include "UIntegerInterval.h"
 #include "Saveable.h"
 #include "Memento.h"
 #include <QObject>
+
+namespace model {
 
 /**
  * Manages a list of intervals in which a something is active.
@@ -67,3 +72,6 @@ public:
 	Saveable* getDummy();
 };
 
+}  // namespace model
+
+#endif  //_FILTERINTERVALLIST_H

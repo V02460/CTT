@@ -1,11 +1,10 @@
-
-
-
 #if !defined(_PLAYERCONTROLLER_H)
 #define _PLAYERCONTROLLER_H
 
 #include "Observer.h"
 #include "Player.h"
+
+namespace controller {
 
 /**
 *	The PlayerController is notified when the state of the player changes and passes this information to all relevant components.
@@ -45,5 +44,7 @@ public slots:
 	**/
 	void setPlayer(Player player);
 };
+
+}  // namespace controller
 
 #endif  //_PLAYERCONTROLLER_H

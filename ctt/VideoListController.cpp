@@ -1,8 +1,7 @@
-
-
-
 #include "VideoListController.h"
 #include "Video.h"
+
+namespace controller {
 
 slot VideoListController::addVideo(QString path) {
 
@@ -20,3 +19,4 @@ slot VideoListController::removeVideo(Video video) {
 
 }
 
+}  // namespace controller

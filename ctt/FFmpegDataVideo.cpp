@@ -1,9 +1,9 @@
-
-
-
 #include "FFmpegDataVideo.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace video {
 
 VideoMetadata FFmpegDataVideo::getMetadata() {
 
@@ -25,3 +25,5 @@ Saveable* FFmpegDataVideo::getDummy() {
 
 }
 
+}  // namespace video
+}  // namespace model

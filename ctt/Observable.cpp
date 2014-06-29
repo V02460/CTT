@@ -1,8 +1,7 @@
-
-
-
 #include "Observable.h"
 #include "Observer.h"
+
+namespace model {
 
 signal Observable::changed() {
 
@@ -16,3 +15,4 @@ void Observable::unsubscribe(Observer observer) {
 
 }
 
+}  // namespace model

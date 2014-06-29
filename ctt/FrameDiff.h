@@ -1,12 +1,12 @@
-
-
-
 #if !defined(_FRAMEDIFF_H)
 #define _FRAMEDIFF_H
 
 #include "Saveable.h"
 #include "Video.h"
 #include "Memento.h"
+
+namespace model {
+namespace difference {
 
 /**
  * A FrameDiff compares corresponding frames from two specific videos.
@@ -36,5 +36,8 @@ protected:
     Video video1; /**< The first of the two Videos which this FrameDiff compares. */
     Video video2; /**< The second of the two Videos which this FrameDiff compares. */
 };
+
+}  // namespace difference
+}  // namespace model
 
 #endif  //_FRAMEDIFF_H

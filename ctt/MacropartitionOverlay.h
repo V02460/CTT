@@ -1,12 +1,13 @@
-
-
-
 #if !defined(_MACROPARTITIONOVERLAY_H)
 #define _MACROPARTITIONOVERLAY_H
 
 #include "Overlay.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace filter {
+namespace overlay {
 
 class MacropartionOverlay : public Overlay {
 public:
@@ -16,5 +17,9 @@ public:
 	void restore(Memento memento);
 	Saveable* getDummy();
 };
+
+}  // namespace overlay
+}  // namespace filter
+}  // namespace model
 
 #endif  //_MACROPARTITIONOVERLAY_H

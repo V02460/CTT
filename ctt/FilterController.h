@@ -9,6 +9,8 @@
 #include "FilterParam.h"
 #include "FilteredVideo.h"
 
+namespace controller {
+
 /**
 *	The FilterController receives notifications of changes in the video's filters and passes this information to all relevant components.
 **/
@@ -48,5 +50,7 @@ public slots:
 private:
 	FilteredVideo *currentVideo;
 };
+
+}  // namespace controller
 
 #endif  //_FILTERCONTROLLER_H

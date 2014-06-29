@@ -1,6 +1,3 @@
-
-
-
 #if !defined(_VIDEO_H)
 #define _VIDEO_H
 
@@ -10,6 +7,9 @@
 #include "VideoMetadata.h"
 #include "VideoFileType.h"
 #include <QDir>
+
+namespace model {
+namespace video {
 
 /**
  * Represents a video with all it's frames and metadata.
@@ -54,5 +54,8 @@ public:
 
     virtual Saveable* getDummy();
 };
+
+}  // namespace video
+}  // namespace model
 
 #endif  //_VIDEO_H

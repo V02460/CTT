@@ -1,11 +1,11 @@
-
-
-
 #if !defined(_VIDEOLISTOPERATION_H)
 #define _VIDEOLISTOPERATION_H
 
 #include "Operation.h"
 #include "Video.h"
+
+namespace controller {
+namespace operation {
 
 /**
 *	The VideoListOperation is providing functionality for doing and undoing manipulations of the VideoList which is used for generating test videos or analysing.
@@ -27,5 +27,8 @@ private:
 	int index;
 	SaveableList<Video> videoList;
 };
+
+}  // namespace operation
+}  // namespace controller
 
 #endif  //_VIDEOLISTOPERATION_H

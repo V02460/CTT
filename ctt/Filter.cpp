@@ -1,10 +1,10 @@
-
-
-
 #include "Filter.h"
 #include "Module.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace filter {
 
 bool Filter::supportsIntervals() {
 
@@ -38,3 +38,5 @@ Saveable* Filter::getDummy() {
 
 }
 
+}  // namespace filter
+}  // namespace model

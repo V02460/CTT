@@ -1,10 +1,10 @@
-
-
-
 #if !defined(_FPSCHANGINGOPERATION_H)
 #define _FPSCHANGINGOPERATION_H
 
 #include "Operation.h"
+
+namespace controller {
+namespace operation {
 
 /**
 *	The FPSChangingOperation is providing functionality for doing and undoing changing the FPS with which a video is displayed.
@@ -31,5 +31,8 @@ private:
 	double oldFPS;
 	double newFPS;
 };
+
+}  // namespace operation
+}  // namespace controller
 
 #endif  //_FPSCHANGINGOPERATION_H

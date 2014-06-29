@@ -1,8 +1,8 @@
-
-
-
 #if !defined(_OPERATION_H)
 #define _OPERATION_H
+
+namespace controller {
+namespace operation {
 
 /**
 *	The Operation is providing functionality for doing and undoing something that triggers a change in the underlying model.
@@ -21,5 +21,8 @@ public:
 private:
 	Operation *next;
 };
+
+}  // namespace operation
+}  // namespace controller
 
 #endif  //_OPERATION_H

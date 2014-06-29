@@ -1,8 +1,7 @@
-
-
-
 #include "PlayerController.h"
 #include "Player.h"
+
+namespace controller {
 
 slot PlayerController::playPause() {
 
@@ -28,3 +27,4 @@ slot PlayerController::setPlayer(Player player) {
 
 }
 
+}  // namespace controller

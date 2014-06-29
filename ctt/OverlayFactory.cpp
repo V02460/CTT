@@ -1,7 +1,7 @@
-
-
-
 #include "OverlayFactory.h"
+
+namespace model {
+namespace filter {
 
 List<QString> OverlayFactory::getAllOverlayIDs() {
 
@@ -15,3 +15,5 @@ void OverlayFactory::OverlayFactory() {
 
 }
 
+}  // namespace filter
+}  // namcespace model

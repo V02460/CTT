@@ -1,10 +1,10 @@
-
-
-
 #if !defined(_PROJECTSAVER_H)
 #define _PROJECTSAVER_H
 
 #include "Saveable.h"
+
+namespace model {
+namespace project {
 
 class ProjectSaver {
 public:
@@ -12,5 +12,8 @@ public:
 private:
 	Saveable *toSave;
 };
+
+}  // namespace project
+}  // namespace model
 
 #endif  //_PROJECTSAVER_H

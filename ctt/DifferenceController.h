@@ -7,6 +7,8 @@
 #include "Observer.h"
 #include "SaveableList<T extends Saveable>.h"
 
+namespace controller {
+
 /**
 *	The DifferenceController manages requests to manipulate the list of difference functions.
 **/
@@ -29,5 +31,7 @@ public slots:
 private:
 	SaveableList<T extends Saveable> *diffList;
 };
+
+}  // namespace controller
 
 #endif  //_DIFFERENCECONTROLLER_H

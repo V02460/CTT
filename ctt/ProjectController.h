@@ -1,11 +1,10 @@
-
-
-
 #if !defined(_PROJECTCONTROLLER_H)
 #define _PROJECTCONTROLLER_H
 
 #include "Observer.h"
 #include "SaveFileType.h"
+
+namespace controller {
 
 /**
 *	The ProjectController manages requests to initialise, save or load a Project.
@@ -43,5 +42,7 @@ private:
 	QDir currentSavePath;
 	SaveFileType currentSaveFileType;
 };
+
+}  // namespace controller
 
 #endif  //_PROJECTCONTROLLER_H

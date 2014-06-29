@@ -1,12 +1,12 @@
-
-
-
 #if !defined(_FILTERLISTOPERATION_H)
 #define _FILTERLISTOPERATION_H
 
 #include "Operation.h"
 #include "Filter.h"
 #include "FilterList.h"
+
+namespace controller {
+namespace operation {
 
 /**
 *	The FilterListOperation is providing functionality for doing and undoing manipulations of the FilterList.
@@ -28,5 +28,8 @@ private:
 	int index;
 	FilterList filterList;
 };
+
+}  // namespace operation
+}  // namespace controller
 
 #endif  //_FILTERLISTOPERATION_H

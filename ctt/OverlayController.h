@@ -1,10 +1,9 @@
-
-
-
 #if !defined(_OVERLAYCONTROLLER_H)
 #define _OVERLAYCONTROLLER_H
 
 #include "Observer.h"
+
+namespace controller {
 
 /**
 *	The OverlayController manages requests to manipulate the list of overlays which can be used for analysing.
@@ -26,5 +25,7 @@ public slots:
 	**/
 	void removeOverlay(int pos);
 };
+
+}  // namespace controller
 
 #endif  //_OVERLAYCONTROLLER_H

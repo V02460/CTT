@@ -1,12 +1,12 @@
-
-
-
 #if !defined(_FILTERADDEDOPERATION_H)
 #define _FILTERADDEDOPERATION_H
 
 #include "FilterListOperation.h"
 #include "Filter.h"
 #include "FilterList.h"
+
+namespace controller {
+namespace operation {
 
 /**
 *	The FilterAddedOperation is providing the functionality for doing and undoing adding a filter.
@@ -31,5 +31,8 @@ public:
 	**/
 	void undoOperation();
 };
+
+}  // namespace operation
+}  // namespace controller
 
 #endif  //_FILTERADDEDOPERATION_H

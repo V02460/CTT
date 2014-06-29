@@ -1,9 +1,9 @@
-
-
-
 #include "MotionVectorOverlay.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace filter {
 
 QString MotionVectorOverlay::getName() {
 
@@ -25,3 +25,5 @@ Saveable* MotionVectorOverlay::getDummy() {
 
 }
 
+}  // namespace filter
+}  // namcespace model
