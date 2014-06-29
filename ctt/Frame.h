@@ -47,6 +47,12 @@ public:
      */
     Histogram getHistogram(HistogramType type);
 
+	/**
+	 * Returns a QOpenGLContext in which the texture containing the image data of the frame is accessible.
+	 * @return QOpenGLContext a QOpenGLContext in which the texture containing the image data of the frame is accessible
+	 */
+	QOpenGLContext getContext();
+
 private:
     QOpenGLContext glContext; /**< An OpenGL context, from which the frame texture is accessible. */
     QOpenGLTexture glTexture; /**< The image data in an OpenGL texture */
