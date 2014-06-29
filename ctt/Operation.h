@@ -4,11 +4,20 @@
 #if !defined(_OPERATION_H)
 #define _OPERATION_H
 
-
+/**
+*	The Operation is providing functionality for doing and undoing something that triggers a change in the underlying model.
+**/
 class Operation {
 public:
-	virtual void do() = 0;
-	virtual void undo() = 0;
+	/**
+	*	Manages doing the Operation specified in this class.
+	**/
+	virtual void doOperation() = 0;
+
+	/**
+	*	Manages undoing the Operation specified in this class.
+	**/
+	virtual void undoOperation() = 0;
 private:
 	Operation *next;
 };
