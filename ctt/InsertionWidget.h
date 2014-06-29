@@ -1,6 +1,3 @@
-
-
-
 #if !defined(_INSERTIONWIDGET_H)
 #define _INSERTIONWIDGET_H
 
@@ -9,6 +6,8 @@
 #include <QWidget>
 #include <QList>
 #include <QPushButton>
+
+namespace view {
 
 /**
  * Based on the current state of the view the insertion widget enables the user to choose the filter or difference to add to the list vies
@@ -26,5 +25,7 @@ private:
 	QList<QPushButton> insertionButtons; /**< The list of buttons to insert filters or differences */
 	ViewState viewState; /**< The current state of the whole GUI */
 };
+
+}  // namespace view
 
 #endif  //_INSERTIONWIDGET_H

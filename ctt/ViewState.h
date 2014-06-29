@@ -1,12 +1,11 @@
-
-
-
 #if !defined(_VIEWSTATE_H)
 #define _VIEWSTATE_H
 
 #include "ViewType.h"
 #include "Observable.h"
 #include <QObject>
+
+namespace view {
 
 /**
  *	The view state class determines the state the GUI is currently in and notifies all relevant components when the state changes
@@ -21,5 +20,7 @@ public slots:
 private:
 	ViewType currentView;
 };
+
+}  // namespace view
 
 #endif  //_VIEWSTATE_H

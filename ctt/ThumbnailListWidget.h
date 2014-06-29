@@ -1,10 +1,9 @@
-
-
-
 #if !defined(_THUMBNAILLISTWIDGET_H)
 #define _THUMBNAILLISTWIDGET_H
 
 #include "Observer.h"
+
+namespace view {
 
 class ThumbnailListWidget : public Observer {
 public:
@@ -16,5 +15,7 @@ private:
 	QPushButton btnAddVideo;
 	SaveableList<Video> filteredVideos;
 };
+
+}  // namespace view
 
 #endif  //_THUMBNAILLISTWIDGET_H

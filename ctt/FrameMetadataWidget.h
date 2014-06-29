@@ -1,10 +1,9 @@
-
-
-
 #if !defined(_FRAMEMETADATAWIDGET_H)
 #define _FRAMEMETADATAWIDGET_H
 
 #include "Observer.h"
+
+namespace view {
 
 class FrameMetadataWidget : public Observer {
 public:
@@ -15,5 +14,7 @@ public:
 		void paint();
 	};
 };
+
+}  // namespace view
 
 #endif  //_FRAMEMETADATAWIDGET_H

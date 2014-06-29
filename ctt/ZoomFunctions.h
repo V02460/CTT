@@ -1,6 +1,8 @@
 #if !defined(_ZOOMFUNCTIONS_H)
 #define _ZOOMFUNCTIONS_H
 
+namespace view {
+
 #include <QWidget>
 #include <QPushButton>
 #include <QSlider>
@@ -36,5 +38,7 @@ private:
 	QSlider sliderZoom; /**< The slider for zooming smoothly in the timeline */
 	double zoomFactor; /**< The internally saved zoom factor */
 };
+
+}  // namespace view
 
 #endif  //_ZOOMFUNCTIONS_H

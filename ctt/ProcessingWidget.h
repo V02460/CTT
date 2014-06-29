@@ -1,6 +1,3 @@
-
-
-
 #if !defined(_PROCESSINGWIDGET_H)
 #define _PROCESSINGWIDGET_H
 
@@ -8,6 +5,8 @@
 #include "PlayerWidget.h"
 #include "Video.h"
 #include "ViewType.h"
+
+namespace view {
 
 class ProcessingWidget : public Observer {
 public:
@@ -18,5 +17,7 @@ public:
 private:
 	SaveableList<Player> players;
 };
+
+}  // namespace view
 
 #endif  //_PROCESSINGWIDGET_H
