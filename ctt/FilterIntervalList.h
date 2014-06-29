@@ -32,6 +32,7 @@ public:
      *
      * @param frameNumber it is checked whether this number is in an active interval
      * @return bool true only if the submitted number is in an active interval
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     bool isActive(unsigned int frameNumber);
 
@@ -39,6 +40,7 @@ public:
      * Makes the submitted Interval an active Interval. If possible, it will be merged with existing active Intervals.
      *
      * @param interval this Interval is made an active interval.
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     void activate(UIntegerInterval interval);
 
@@ -46,6 +48,7 @@ public:
 	* Makes the submitted Interval an inactive Interval.
 	*
 	* @param interval this Interval is made an inactive interval.
+	* @throws IllegalStateException if the the method was called on a dummy
 	*/
     void deactivate(UIntegerInterval interval);
 
@@ -53,6 +56,7 @@ public:
      * Returns a list of all the active Intervals.
      *
      * @return List<IntegerInterval> a list of all the active Intervals
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     QList<UIntegerInterval> getIntervalList();
 
