@@ -15,7 +15,7 @@
 class VideoWidget : public QWidget, public Observer {
 public:
 	/**
-	 * Recieves a VideoScrubber to register at and to save it internally
+	 *	Creates a VideoWidget and registeres itself at the corresponding VideoScrubber
 	 *
 	 *	@param scubber The VideoScrubber to register at and which provided the video frames
 	 */
