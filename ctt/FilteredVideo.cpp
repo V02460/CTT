@@ -8,19 +8,19 @@
 #include "Frame.h"
 #include "Memento.h"
 
-void FilteredVideo::FilteredVideo(Video baseVideo) {
+FilteredVideo::FilteredVideo(Video baseVideo) {
 
 }
 
-void FilteredVideo::addFilter(Filter filter, int pos) {
+void FilteredVideo::addFilter(Filter filter, unsigned int pos) {
 
 }
 
-Filter FilteredVideo::removeFilter(int pos) {
+Filter FilteredVideo::removeFilter(unsigned int pos) {
 
 }
 
-int FilteredVideo::getFilterCount() {
+unsigned int FilteredVideo::getFilterCount() {
 
 }
 
@@ -32,7 +32,7 @@ VideoMetadata FilteredVideo::getMetadata() {
 
 }
 
-Frame FilteredVideo::getFrame(int frameNumber) {
+Frame FilteredVideo::getFrame(unsigned int frameNumber) {
 
 }
 
