@@ -40,12 +40,11 @@ public:
      * Rescaling will use bicubic interpolation.
      *
      * @param frameNumber the number of the frame which will be returned
-     * @param x the width of the frame which will be returned
-     * @param y the height of the frame which will be returned
+     * @param size the size of the frame which will be returned
      * @return Frame the scaled Frame
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual Frame getScaledFrame(unsigned int frameNumber, unsigned int x, unsigned int y);
+    virtual Frame getScaledFrame(unsigned int frameNumber, QSize size);
 
     virtual Frame getFrame(unsigned int frameNumber);
 
