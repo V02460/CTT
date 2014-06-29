@@ -8,12 +8,7 @@
 
 class FrameMetadataWidget : public Observer {
 public:
-	class HistogramWidget : public Observer {
-	public:
-		void next();
-	private:
-		void paint();
-	};
+
 };
 
 #endif  //_FRAMEMETADATAWIDGET_H
