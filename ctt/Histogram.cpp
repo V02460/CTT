@@ -4,7 +4,7 @@
 #include "Histogram.h"
 #include "HistogramType.h"
 
-float Histogram::getValue(int i) {
+float Histogram::getValue(unsigned int i) {
 
 }
 
