@@ -7,7 +7,7 @@
 #include "HistogramType.h"
 
 /**
- * A Histogram with 256 values.
+ * A Histogram with 256 values describing the intensity distribution of a channel in a frame.
  *
  */
 class Histogram {

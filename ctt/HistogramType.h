@@ -5,6 +5,10 @@
 #define _HISTOGRAMTYPE_H
 
 
+/**
+ * Labels for the channels histograms describe the intensity distribution of.
+ *
+ */
 enum HistogramType {
 	Red,
 	Green,
