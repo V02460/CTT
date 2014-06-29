@@ -8,7 +8,7 @@ class FileVideo :
 	public Video
 {
 public:
-	virtual VideoMetadata getMetadata();
+	VideoMetadata getMetadata();
 
 	virtual Frame getFrame(int frameNumber);
 
@@ -25,5 +25,6 @@ public:
 protected:
 	QDir path; /**< the path to the video file this Video loads its frames from. */
 	VideoMetadata metadata; /**< metadata valid for the whole video. */
+	QOpenGLContext context; /**< The QOpenGLContext in which the Video creates its frames.*/
 };
 
