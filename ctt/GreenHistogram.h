@@ -7,9 +7,16 @@
 #include "Histogram.h"
 #include "Frame.h"
 
-class GreenHistogram : public Histogram, public Histogram {
+/**
+* A Histogram describing the distribution of the intensity of the green channel in a frame.
+*/
+class GreenHistogram : public Histogram {
 public:
-	void GreenHistogram(Frame frame);
+	/**
+	* Creates a new GreenHistogram describing the distribution of the intensity of the green channel of the submitted frame.
+	* @param frame the GreenHistogram will describe the distribution of the intensity of the green channel of this frame
+	*/
+	GreenHistogram(Frame frame);
 };
 
 #endif  //_GREENHISTOGRAM_H
