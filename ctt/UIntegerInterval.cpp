@@ -3,11 +3,11 @@
 
 #include "UIntegerInterval.h"
 
-void UIntegerInterval::UIntegerInterval(int a, int b) {
+UIntegerInterval::UIntegerInterval(unsigned int a, unsigned int b) {
 
 }
 
-bool UIntegerInterval::contains(int x) {
+bool UIntegerInterval::contains(unsigned int x) {
 
 }
 
@@ -19,11 +19,11 @@ int UIntegerInterval::getEnd() {
 
 }
 
-void UIntegerInterval::setStart(int start) {
+void UIntegerInterval::setStart(unsigned int start) {
 
 }
 
-void UIntegerInterval::setEnd(int end) {
+void UIntegerInterval::setEnd(unsigned int end) {
 
 }
 
