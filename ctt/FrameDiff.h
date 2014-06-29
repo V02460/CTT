@@ -21,7 +21,13 @@ public:
      * @return double the calculated distance between the two frames
 	 * @throws IllegalArgumentException if one or both of the videos don't have a frame with the submitted number
      */
-    virtual double getDif(int frameNr);
+    virtual double getDif(unsigned int frameNr);
+
+	/**
+	 * Returns the number of frames the shorter Video has, i.e. the number of frames the FrameDiff can calculate a difference to.
+	 * @return unsigned int the number of frames the shorter Video has
+	 */
+	unsigned int getFrameCount();
 
     virtual Memento getMemento();
 
