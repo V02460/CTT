@@ -50,18 +50,21 @@ public:
 	/**
 	 * Activates the Filter in the submitted interval.
 	 * @param interval the filter will be activated in this interval
+	 * @throws IllegalStateException if the the method was called on a dummy
 	 */
 	void activate(IntegerInterval interval);
 
 	/**
 	 * Deactivates the Filter in the submitted interval.
 	 * @param interval the filter will be deactivated in this interval
+	 * @throws IllegalStateException if the the method was called on a dummy
 	 */
 	void deactivate(IntegerInterval interval);
 
 	/**
 	 * Returns a list of all the intervals the filter is active in.
 	 * @return List<IntegerInterval> a list of all the intervals the filter is active in
+	 * @throws IllegalStateException if the the method was called on a dummy
 	 */
 	QList<IntegerInterval> getListOfActiveIntervals();
 
@@ -71,7 +74,6 @@ public:
 
     virtual void restore(Memento memento);
 
-    virtual Saveable* getDummy();
 private:
     QMap<QString, FilterParam> parameters; /**< Parameters modifying the filters behaviour */
 	FilterIntervalList intervals; /**< The Intervals in which the Filtr is active/
