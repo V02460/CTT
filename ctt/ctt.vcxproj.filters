@@ -146,9 +146,6 @@
     <ClCompile Include="CompoundOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
-    <ClCompile Include="DataVideo.cpp">
-      <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
     <ClCompile Include="DifferenceController.cpp">
       <Filter>Source Files\Controller</Filter>
     </ClCompile>
@@ -434,9 +431,6 @@
     </ClInclude>
     <ClInclude Include="CompoundOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
-    </ClInclude>
-    <ClInclude Include="DataVideo.h">
-      <Filter>Header Files\Model\Video</Filter>
     </ClInclude>
     <ClInclude Include="DifferenceController.h">
       <Filter>Header Files\Controller</Filter>

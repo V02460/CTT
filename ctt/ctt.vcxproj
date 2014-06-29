@@ -150,7 +150,6 @@
     <ClCompile Include="ColoringOverlay.cpp" />
     <ClCompile Include="CompoundOperation.cpp" />
     <ClCompile Include="ctt.cpp" />
-    <ClCompile Include="DataVideo.cpp" />
     <ClCompile Include="DifferenceController.cpp" />
     <ClCompile Include="DifferenceFactory.cpp" />
     <ClCompile Include="EarthMoversHistogramDiff.cpp" />
@@ -311,7 +310,6 @@
     <ClInclude Include="CoffeeFilter.h" />
     <ClInclude Include="ColoringOverlay.h" />
     <ClInclude Include="CompoundOperation.h" />
-    <ClInclude Include="DataVideo.h" />
     <ClInclude Include="DifferenceController.h" />
     <ClInclude Include="DifferenceFactory.h" />
     <ClInclude Include="DifferenceListView.h" />
