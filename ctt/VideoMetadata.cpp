@@ -1,7 +1,7 @@
-
-
-
 #include "VideoMetadata.h"
+
+namespace model {
+namespace video {
 
 void VideoMetadata::VideoMetadata(QSize size, double fps, QMap additionalData) {
 
@@ -23,3 +23,5 @@ double VideoMetadata::getFPS() {
 
 }
 
+}  // namespace video
+}  // namespace model

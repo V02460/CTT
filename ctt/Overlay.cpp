@@ -1,9 +1,9 @@
-
-
-
 #include "Overlay.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace filter {
 
 QString Overlay::getName() {
 
@@ -25,3 +25,5 @@ Saveable* Overlay::getDummy() {
 
 }
 
+}  // namespace filter
+}  // namcespace model

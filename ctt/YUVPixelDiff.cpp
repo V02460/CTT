@@ -1,9 +1,9 @@
-
-
-
 #include "YUVPixelDiff.h"
 #include "Video.h"
 #include "Memento.h"
+
+namespace model {
+namespace difference {
 
 QOpenGLTexture YUVPixelDiff::getPixelDif(int frameNr) {
 
@@ -29,3 +29,5 @@ Saveable* YUVPixelDiff::getDummy() {
 
 }
 
+}  // namespace difference
+}  // namcespace model

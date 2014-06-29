@@ -1,9 +1,9 @@
-
-
-
 #include "MixFilter.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace filter {
 
 QString MixFilter::getName() {
 
@@ -25,3 +25,5 @@ Saveable* MixFilter::getDummy() {
 
 }
 
+}  // namespace filter
+}  // namespace model

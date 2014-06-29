@@ -1,10 +1,10 @@
-
-
-
 #include "Frame.h"
 #include "Histogram.h"
 #include "HistogramType.h"
 #include "FrameMetadata.h"
+
+namespace model {
+namespace frame {
 
 FrameMetadata Frame::getMetadata() {
 
@@ -22,3 +22,5 @@ void Frame::Frame(QOpenGLContext context, QImage image, FrameMetadata metadata) 
 
 }
 
+}  // namespace frame
+}  // namespace model

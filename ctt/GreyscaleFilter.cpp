@@ -1,9 +1,9 @@
-
-
-
 #include "GreyscaleFilter.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace filter {
 
 QString GreyscaleFilter::getName() {
 
@@ -25,3 +25,5 @@ Saveable* GreyscaleFilter::getDummy() {
 
 }
 
+}  // namespace filter
+}  // namespace model

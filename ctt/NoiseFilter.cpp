@@ -1,9 +1,9 @@
-
-
-
 #include "NoiseFilter.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace filter {
 
 QString NoiseFilter::getName() {
 
@@ -25,3 +25,5 @@ Saveable* NoiseFilter::getDummy() {
 
 }
 
+}  // namespace filter
+}  // namespace model

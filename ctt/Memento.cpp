@@ -1,7 +1,7 @@
-
-
-
 #include "Memento.h"
+
+namespace model {
+namespace project {
 
 void Memento::setBool(bool value, QString name) {
 
@@ -51,3 +51,5 @@ Pointer Memento::getPointer(QString name) {
 
 }
 
+}  // namespace project
+}  // namespace model
