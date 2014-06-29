@@ -1,10 +1,10 @@
-
-
-
 #if !defined(_OPERATIONLIST_H)
 #define _OPERATIONLIST_H
 
 #include "Operation.h"
+
+namespace controller {
+namespace operation {
 
 class OperationList {
 public:
@@ -18,5 +18,8 @@ public:
 private:
 	Operation *currentOperation;
 };
+
+}  // namespace operation
+}  // namespace controller
 
 #endif  //_OPERATIONLIST_H

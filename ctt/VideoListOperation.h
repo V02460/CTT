@@ -1,11 +1,11 @@
-
-
-
 #if !defined(_VIDEOLISTOPERATION_H)
 #define _VIDEOLISTOPERATION_H
 
 #include "Operation.h"
 #include "Video.h"
+
+namespace controller {
+namespace operation {
 
 class VideoListOperation : public Operation {
 public:
@@ -16,5 +16,8 @@ private:
 	int index;
 	SaveableList<Video> videoList;
 };
+
+}  // namespace operation
+}  // namespace controller
 
 #endif  //_VIDEOLISTOPERATION_H

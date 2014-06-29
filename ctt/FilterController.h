@@ -9,6 +9,8 @@
 #include "FilterParam.h"
 #include "FilteredVideo.h"
 
+namespace controller {
+
 class FilterController : public Observer {
 public:
 	slot insertFilter(QString id);
@@ -18,5 +20,7 @@ public:
 private:
 	FilteredVideo *currentVideo;
 };
+
+}  // namespace controller
 
 #endif  //_FILTERCONTROLLER_H

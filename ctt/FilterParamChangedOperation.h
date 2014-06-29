@@ -1,6 +1,3 @@
-
-
-
 #if !defined(_FILTERPARAMCHANGEDOPERATION_H)
 #define _FILTERPARAMCHANGEDOPERATION_H
 
@@ -8,6 +5,9 @@
 #include "FilterParam.h"
 #include "FilterList.h"
 #include "Filter.h"
+
+namespace controller {
+namespace operation {
 
 class FilterParamChangedOperation : public FilterListOperation {
 public:
@@ -19,5 +19,8 @@ private:
 	Filter* filter;
 	FilterParam oldParam;
 };
+
+}  // namespace operation
+}  // namespace controller
 
 #endif  //_FILTERPARAMCHANGEDOPERATION_H
