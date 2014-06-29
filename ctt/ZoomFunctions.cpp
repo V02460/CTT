@@ -11,7 +11,3 @@ double ZoomFunctions::getZoomFactor() {
 
 }
 
-signal ZoomFunctions::zoomFactorChanged(double zoomFactor) {
-
-}
-
