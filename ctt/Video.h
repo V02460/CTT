@@ -46,6 +46,12 @@ public:
      */
     virtual Frame getScaledFrame(unsigned int frameNumber, QSize size);
 
+	/**
+	 * Returns the QOpenGLContext in which the Video creates its frames.
+	 * @return QOpenGLContext the QOpenGLContext in which the Video creates its frames
+	 */
+	QOpenGLContext getContext();
+
     virtual Frame getFrame(unsigned int frameNumber);
 
     virtual Memento getMemento();

@@ -38,6 +38,8 @@ private:
 	 * Creates a dummy FFmpegDataVideo.
 	 */
 	FFmpegDataVideo(QDir path);
+
+	QOpenGLContext context; /**< The QOpenGLContext in which the Video creates its frames.*/
 };
 
 #endif  //_FFMPEGDATAVIDEO_H
