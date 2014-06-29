@@ -11,13 +11,13 @@
 #include <QOpenGLContext>
 
 /**
- * Represents a frame (from a video), consisting of the actual image data as an an OpenGL Texture and corresponding Metadata.
+ * Represents a frame, consisting of image data as an an OpenGL Texture and corresponding Metadata.
  *
  */
 class Frame {
 public:
     /**
-     * Creates a new frame from image data with corresponding metadata in a specific OppenGL context.
+     * Creates a new frame from image data with corresponding metadata in a specific OpenGL context.
      *
      * @param context the OpenGL context in which the frame will be created
      * @param image image the image from which the frame will be generated
