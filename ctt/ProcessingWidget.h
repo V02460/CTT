@@ -20,23 +20,23 @@ class ProcessingWidget : public Observer , public QWidget {
 public slots:
 	/**
 	*	This method is called when one of the PlayerWidgets managed by this class is set as active.
-	*	It emitts the activeVideoChanged signal to all slots connected to this signal
+	*	It emitts the activeVideoChanged signal to all slots connected to this signal.
 	*
-	*	@param playerWidget The playerWidget which was set as active
+	*	@param playerWidget The playerWidget which was set as active.
 	*/
 	void activatePlayer(PlayerWidget playerWidget);
 
 signals:
 	/**
-	 *	This signal is emitted when the user changes the active video
+	 *	This signal is emitted when the user changes the active video.
 	 *
-	 *	@param video The video which is set as active
+	 *	@param video The video which is set as active.
 	 */
 	void activeVideoChanged(Video video);
 	/**
-	 *	This signal is emitted when the current view state should be changed
+	 *	This signal is emitted when the current view state should be changed.
 	 *
-	 *	@param newView The identifier of the new view state
+	 *	@param newView The identifier of the new view state.
 	 */
 	void btnChangeViewClicked(ViewType newView);
 private:

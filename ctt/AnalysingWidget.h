@@ -8,6 +8,7 @@
 #include "ThumbnailListWidget.h"
 #include "VideoAnalysingWidget.h"
 #include "MainControlWidget.h"
+#include <QList>
 
 /**
  *	The AnalysingWidget basically unites the abilities to  display videos and their metadata, to control the player

@@ -12,14 +12,14 @@
 #include <QString>
 /**
  *	The VideoAnalysingWidget provides the interactible components for changing the active overlay as well as it holds the means to
- *	display a video´, its histograms and its frame metadata
+ *	display a video, its histograms and its frame metadata.
  */
 class VideoAnalysingWidget : public QWidget {
 public:
 	/**
 	 *	Returns the identifier string of the currently chosen overlay.
 	 *
-	 *	@return The identifier string of the currentyl chosen overlay as defined in the OverlayFactory
+	 *	@return The identifier string of the currentyl chosen overlay as defined in the OverlayFactory.
 	 */
 	QString getOverlay();
 public slots:
@@ -27,7 +27,7 @@ public slots:
 	 * This method is called when the user changes the currently selected overly via the overlay combobox.
 	 * It emitts the overlayChanged signal
 	 *
-	 *	@param index The index of the currently chosen overlay in the combobox
+	 *	@param index The index of the currently chosen overlay in the combobox.
 	 */
 	void comboboxOverlayCurrentIndexChanged(int index);
 signals:

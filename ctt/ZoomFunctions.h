@@ -12,16 +12,16 @@ class ZoomFunctions : public QWidget {
 public:
 	/**
 	 *	Sets the internal zoomFactor when for example the user clicked on the zoom-out-button.
-	 *	After changing the zoomFactor the zoomFactorChanged signal is emitted
+	 *	After changing the zoomFactor the zoomFactorChanged signal is emitted.
 	 *
-	 *	@param zoomFactor The new zoom factor for the timeline
+	 *	@param zoomFactor The new zoom factor for the timeline.
 	 */
 	void setZoomFactor(double zoomFactor);
 
 	/**
-	 *	Returns the current zoom factor
+	 *	Returns the current zoom factor.
 	 *
-	 *	@return the current zoom factor
+	 *	@return the current zoom factor.
 	 */
 	double getZoomFactor();
 

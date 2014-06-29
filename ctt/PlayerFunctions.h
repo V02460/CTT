@@ -11,20 +11,20 @@
 #include <QSpinBox>
 
 /**
- *	The PlayerFunctions only provides the needed interactable components and maps the signals emitted by these to a PlayerController
+ *	The PlayerFunctions only provides the needed interactable components and maps the signals emitted by these to a PlayerController.
  */
 class PlayerFunctions : public Observable , public QWidget{
 public:
 	/**
-	 *	Connects the signals from the interactable components to the corresponding slots in a PlayerController
+	 *	Connects the signals from the interactable components to the corresponding slots in a PlayerController.
 	 *
-	 *	@param the PlayerController the signals should be connected to
+	 *	@param the PlayerController the signals should be connected to.
 	 */
 	void subscribe(PlayerController observer);
 	/**
-	 *	Disconnects the signals from the interactable components to the corresponding slots in a PlayerController
+	 *	Disconnects the signals from the interactable components to the corresponding slots in a PlayerController.
 	 *
-	 *	@param the PlayerController the signals should be disconnected from
+	 *	@param the PlayerController the signals should be disconnected from.
 	 */
 	void unsubscribe(PlayerController observer);
 private:
