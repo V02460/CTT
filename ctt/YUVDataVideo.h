@@ -4,11 +4,11 @@
 #if !defined(_YUVDATAVIDEO_H)
 #define _YUVDATAVIDEO_H
 
-#include "DataVideo.h"
+#include "Video.h"
 #include "Frame.h"
 #include "Memento.h"
 
-class YUVDataVideo : public DataVideo {
+class YUVDataVideo : public Video {
 public:
 	VideoMetadata getMetadata();
 	Frame getFrame(int frameNumber);
