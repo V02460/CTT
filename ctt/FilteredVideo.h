@@ -66,6 +66,11 @@ public:
 
     Saveable* getDummy();
 private:
+	/**
+	 * Creates a dummy FilteredVideo.
+	 */
+	FilteredVideo();
+
     Video *baseVideo; /**< This provides the frames which will be modified by the filter pipeline. */
     FilterList *filters; /**< The filter pipeline */
 };
