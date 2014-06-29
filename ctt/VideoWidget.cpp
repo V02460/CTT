@@ -4,7 +4,7 @@
 #include "VideoWidget.h"
 #include "VideoScrubber.h"
 
-void VideoWidget::VideoWidget(VideoScrubber scrubber) {
+VideoWidget::VideoWidget(VideoScrubber scrubber) {
 
 }
 

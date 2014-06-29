@@ -1,26 +1,19 @@
 
-
-
 #include "ExtendedTimeline.h"
-#include "FilteredVideo.h"
 
-slot ExtendedTimeline::sldStateChanged() {
-
-}
-
-slot ExtendedTimeline::timelineStateChanged() {
+void ExtendedTimeline::sldStateChanged() {
 
 }
 
-slot ExtendedTimeline::changeActiveVideo(FilteredVideo video) {
+void ExtendedTimeline::timelineStateChanged() {
 
 }
 
-slot ExtendedTimeline::changeSize(double zoomFactor) {
+void ExtendedTimeline::changeSize(double zoomFactor) {
 
 }
 
-slot ExtendedTimeline::changeViewState() {
+void ExtendedTimeline::changeViewState() {
 
 }
 
