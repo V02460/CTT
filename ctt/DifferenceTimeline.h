@@ -6,6 +6,10 @@
 
 #include "AbstractTimeline.h"
 
+/**
+ *	The DifferenceTimeline is the visual representation of a set of differences.
+ *	The active differences are simply plotted as overlapping different-colored graphs.
+ */
 class DifferenceTimeline : public AbstractTimeline {
 };
 
