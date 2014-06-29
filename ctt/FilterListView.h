@@ -1,6 +1,9 @@
 #if !defined(_FILTERLISTVIEW_H)
 #define _FILTERLISTVIEW_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "AbstractListView.h"
 #include "Filter.h"
 #include "FilterParam.h"

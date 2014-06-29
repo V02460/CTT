@@ -4,6 +4,9 @@
 #if !defined(_SAVEABLELIST_H)
 #define _SAVEABLELIST_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Saveable.h"
 #include "Observable.h"
 

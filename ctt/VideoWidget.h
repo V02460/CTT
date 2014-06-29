@@ -1,6 +1,9 @@
 #if !defined(_VIDEOWIDGET_H)
 #define _VIDEOWIDGET_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 #include "VideoScrubber.h"
 #include <QWidget>

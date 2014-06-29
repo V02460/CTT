@@ -1,6 +1,9 @@
 #if !defined(_COLORINGOVERLAY_H)
 #define _COLORINGOVERLAY_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Overlay.h"
 #include "Frame.h"
 #include "Memento.h"

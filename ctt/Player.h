@@ -1,6 +1,9 @@
 #if !defined(_PLAYER_H)
 #define _PLAYER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Saveable.h"
 #include "VideoScrubber.h"
 #include "UIntegerInterval.h"

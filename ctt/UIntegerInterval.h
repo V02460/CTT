@@ -6,6 +6,9 @@ namespace model {
 #define _UINTEGERINTERVAL_H
 
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 /**
  * Represents an interval of integers, defined by a start and end point.
  *

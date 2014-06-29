@@ -1,6 +1,9 @@
 #if !defined(_OPERATIONLIST_H)
 #define _OPERATIONLIST_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Operation.h"
 
 namespace controller {

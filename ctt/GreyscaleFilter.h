@@ -1,6 +1,9 @@
 #if !defined(_GREYSCALEFILTER_H)
 #define _GREYSCALEFILTER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Filter.h"
 #include "Frame.h"
 #include "Memento.h"

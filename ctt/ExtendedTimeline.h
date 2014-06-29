@@ -1,6 +1,9 @@
 #if !defined(_EXTENDEDTIMELINE_H)
 #define _EXTENDEDTIMELINE_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 #include "Observable.h"
 #include "ViewState.h"

@@ -1,6 +1,9 @@
 #if !defined(_MACROBLOCKPARTITION_H)
 #define _MACROBLOCKPARTITION_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 namespace model {
 namespace frame {
 

@@ -1,6 +1,9 @@
 #if !defined(_ABSTRACTLISTVIEW_H)
 #define _ABSTRACTLISTVIEW_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 namespace view {
 namespace base_components {
 

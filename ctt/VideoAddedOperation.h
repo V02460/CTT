@@ -1,6 +1,9 @@
 #if !defined(_VIDEOADDEDOPERATION_H)
 #define _VIDEOADDEDOPERATION_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "VideoListOperation.h"
 #include "Video.h"
 

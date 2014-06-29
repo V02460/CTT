@@ -1,6 +1,9 @@
 #if !defined(_PROCESSINGWIDGET_H)
 #define _PROCESSINGWIDGET_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 #include "PlayerWidget.h"
 #include "Video.h"

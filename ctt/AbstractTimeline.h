@@ -1,6 +1,9 @@
 #if !defined(_ABSTRACTTIMELINE_H)
 #define _ABSTRACTTIMELINE_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 #include "Observable.h"
 #include <QWidget>

@@ -1,6 +1,9 @@
 #if !defined(_OVERLAYFACTORY_H)
 #define _OVERLAYFACTORY_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 namespace model {
 namespace filter {
 namespace overlay {

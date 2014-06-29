@@ -1,6 +1,9 @@
 #if !defined(_MEMENTO_H)
 #define _MEMENTO_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 namespace model {
 namespace project {
 

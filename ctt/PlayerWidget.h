@@ -1,6 +1,9 @@
 #if !defined(_PLAYERWIDGET_H)
 #define _PLAYERWIDGET_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "VideoProcessingWidget.h"
 #include <QWidget>
 namespace view {

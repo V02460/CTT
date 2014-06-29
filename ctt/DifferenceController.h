@@ -4,6 +4,9 @@
 #if !defined(_DIFFERENCECONTROLLER_H)
 #define _DIFFERENCECONTROLLER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 #include "SaveableList<T extends Saveable>.h"
 

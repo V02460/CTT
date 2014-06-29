@@ -1,6 +1,9 @@
 #if !defined(_FILTERFACTORY_H)
 #define _FILTERFACTORY_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Filter.h"
 
 namespace model {

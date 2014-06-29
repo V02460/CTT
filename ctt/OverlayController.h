@@ -1,6 +1,9 @@
 #if !defined(_OVERLAYCONTROLLER_H)
 #define _OVERLAYCONTROLLER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 
 namespace controller {

@@ -1,6 +1,9 @@
 #if !defined(_BLURFILTER_H)
 #define _BLURFILTER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Filter.h"
 #include "Frame.h"
 #include "Memento.h"

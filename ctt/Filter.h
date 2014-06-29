@@ -1,6 +1,9 @@
 #if !defined(_FILTER_H)
 #define _FILTER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Module.h"
 #include "Frame.h"
 #include "Memento.h"

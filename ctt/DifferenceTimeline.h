@@ -1,6 +1,9 @@
 #if !defined(_DIFFERENCETIMELINE_H)
 #define _DIFFERENCETIMELINE_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "AbstractTimeline.h"
 
 namespace view {

@@ -1,6 +1,9 @@
 #if !defined(_FILTERPARAMCHANGEDOPERATION_H)
 #define _FILTERPARAMCHANGEDOPERATION_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "FilterListOperation.h"
 #include "FilterParam.h"
 #include "FilterList.h"

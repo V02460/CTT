@@ -1,6 +1,9 @@
 #if !defined(_FPSCHANGINGOPERATION_H)
 #define _FPSCHANGINGOPERATION_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Operation.h"
 
 namespace controller {

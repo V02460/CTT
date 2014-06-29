@@ -1,6 +1,9 @@
 #if !defined(_YUVVIDEOSAVER_H)
 #define _YUVVIDEOSAVER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 namespace model {
 namespace video {
 

@@ -1,6 +1,9 @@
 #if !defined(_PROJECTCONTROLLER_H)
 #define _PROJECTCONTROLLER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 #include "SaveFileType.h"
 

@@ -1,6 +1,9 @@
 #if !defined(_MAINCONTROLWIDGET_H)
 #define _MAINCONTROLWIDGET_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 #include "ExtendedTimeline.h"
 #include "AbstractListView.h"

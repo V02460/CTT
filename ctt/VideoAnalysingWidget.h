@@ -1,6 +1,9 @@
 #if !defined(_VIDEOANALYSINGWIDGET_H)
 #define _VIDEOANALYSINGWIDGET_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "VideoWidget.h"
 #include "HistogramWidget.h"
 #include "FrameMetadataWidget.h"

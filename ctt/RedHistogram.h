@@ -1,6 +1,9 @@
 #if !defined(_REDHISTOGRAM_H)
 #define _REDHISTOGRAM_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Histogram.h"
 #include "Frame.h"
 

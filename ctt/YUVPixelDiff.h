@@ -1,6 +1,9 @@
 #if !defined(_YUVPIXELDIFF_H)
 #define _YUVPIXELDIFF_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "PixelDiff.h"
 #include "Video.h"
 #include "Memento.h"

@@ -1,6 +1,9 @@
 #if !defined(_DIFFERENCEFACTORY_H)
 #define _DIFFERENCEFACTORY_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "FrameDiff.h"
 #include "Video.h"
 

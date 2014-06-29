@@ -1,6 +1,9 @@
 #if !defined(_MIXFILTER_H)
 #define _MIXFILTER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Filter.h"
 #include "Frame.h"
 #include "Memento.h"

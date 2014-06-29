@@ -1,6 +1,9 @@
 #if !defined(_FILTEREDVIDEO_H)
 #define _FILTEREDVIDEO_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Video.h"
 #include "Observable.h"
 #include "Filter.h"

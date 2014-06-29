@@ -1,6 +1,9 @@
 #if !defined(_VIDEOSAVERFACTORY_H)
 #define _VIDEOSAVERFACTORY_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Video.h"
 #include "VideoFileType.h"
 

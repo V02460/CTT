@@ -1,6 +1,9 @@
 #if !defined(_Saveable_H)
 #define _Saveable_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 #include "Memento.h"
 

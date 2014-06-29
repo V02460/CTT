@@ -1,6 +1,9 @@
 #if !defined(_VIDEOPROCESSINGWIDGET_H)
 #define _VIDEOPROCESSINGWIDGET_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Video.h"
 #include "VideoFileType.h"
 #include "VideoWidget.h"

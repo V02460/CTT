@@ -1,6 +1,9 @@
 #if !defined(_PROJECTSAVERFACTORY_H)
 #define _PROJECTSAVERFACTORY_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "SaveFileType.h"
 
 namespace model {

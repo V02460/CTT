@@ -1,6 +1,9 @@
 #if !defined(_PROJECTLOADER_H)
 #define _PROJECTLOADER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 namespace model {
 namespace project {
 

@@ -1,6 +1,9 @@
 #if !defined(_VIDEOMETADATA_H)
 #define _VIDEOMETADATA_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include <QString>
 
 namespace model {

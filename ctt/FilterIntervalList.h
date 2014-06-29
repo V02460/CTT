@@ -1,6 +1,9 @@
 #if !defined(_FILTERINTERVALLIST_H)
 #define _FILTERINTERVALLIST_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "UIntegerInterval.h"
 #include "Saveable.h"
 #include "Memento.h"

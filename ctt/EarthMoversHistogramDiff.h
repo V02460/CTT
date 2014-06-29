@@ -1,6 +1,9 @@
 #if !defined(_EARTHMOVERSHISTOGRAMDIFF_H)
 #define _EARTHMOVERSHISTOGRAMDIFF_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "FrameDiff.h"
 #include "Video.h"
 #include "Memento.h"

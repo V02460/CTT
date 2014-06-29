@@ -1,6 +1,9 @@
 #if !defined(_HEATMAPOVERLAY_H)
 #define _HEATMAPOVERLAY_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "ColoringOverlay.h"
 #include "Frame.h"
 #include "Memento.h"

@@ -1,6 +1,9 @@
 #if !defined(_OVERLAY_H)
 #define _OVERLAY_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Filter.h"
 #include "Frame.h"
 #include "Memento.h"

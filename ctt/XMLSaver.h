@@ -1,6 +1,9 @@
 #if !defined(_XMLSAVER_H)
 #define _XMLSAVER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "ProjectSaver.h"
 
 namespace model {

@@ -1,6 +1,9 @@
 #if !defined(_YUVDATAVIDEO_H)
 #define _YUVDATAVIDEO_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Video.h"
 #include "Frame.h"
 #include "Memento.h"

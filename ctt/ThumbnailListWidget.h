@@ -1,6 +1,9 @@
 #if !defined(_THUMBNAILLISTWIDGET_H)
 #define _THUMBNAILLISTWIDGET_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 #include "Video.h"
 #include <QWidget>

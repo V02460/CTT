@@ -1,6 +1,9 @@
 #if !defined(_FILTERTIMELINE_H)
 #define _FILTERTIMELINE_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "AbstractTimeline.h"
 
 namespace view {

@@ -1,6 +1,9 @@
 #if !defined(_MOTIONVECTOROVERLAY_H)
 #define _MOTIONVECTOROVERLAY_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Overlay.h"
 #include "Frame.h"
 #include "Memento.h"

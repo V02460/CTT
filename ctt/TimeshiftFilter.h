@@ -1,6 +1,9 @@
 #if !defined(_TIMESHIFTFILTER_H)
 #define _TIMESHIFTFILTER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 namespace model {
 namespace filter {
 

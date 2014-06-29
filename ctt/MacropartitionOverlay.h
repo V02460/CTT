@@ -1,6 +1,9 @@
 #if !defined(_MACROPARTITIONOVERLAY_H)
 #define _MACROPARTITIONOVERLAY_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Overlay.h"
 #include "Frame.h"
 #include "Memento.h"

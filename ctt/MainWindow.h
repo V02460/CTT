@@ -1,6 +1,9 @@
 #if !defined(_MAINWINDOW_H)
 #define _MAINWINDOW_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observable.h"
 #include "Observer.h"
 #include "ViewType.h"

@@ -1,6 +1,9 @@
 #if !defined(_PLAYERFUNCTIONS_H)
 #define _PLAYERFUNCTIONS_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observable.h"
 #include "PlayerController.h"
 #include <QWidget>

@@ -1,6 +1,9 @@
 #if !defined(_FRAMEMETADATA_H)
 #define _FRAMEMETADATA_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include <QSize>
 #include <QVector>
 #include <QVector2D>

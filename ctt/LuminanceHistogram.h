@@ -1,6 +1,9 @@
 #if !defined(_LUMINANCEHISTOGRAM_H)
 #define _LUMINANCEHISTOGRAM_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Histogram.h"
 #include "Frame.h"
 

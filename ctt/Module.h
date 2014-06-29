@@ -1,6 +1,9 @@
 #if !defined(_MODULE_H)
 #define _MODULE_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Saveable.h"
 #include "Frame.h"
 #include "Memento.h"

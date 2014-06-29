@@ -1,6 +1,9 @@
 #if !defined(_ZOOMFUNCTIONS_H)
 #define _ZOOMFUNCTIONS_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 namespace view {
 
 #include <QWidget>

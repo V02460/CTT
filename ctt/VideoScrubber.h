@@ -1,6 +1,9 @@
 #if !defined(_VIDEOSCRUBBER_H)
 #define _VIDEOSCRUBBER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Saveable.h"
 #include "Observable.h"
 #include "Frame.h"

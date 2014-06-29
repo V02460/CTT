@@ -1,6 +1,9 @@
 #if !defined(_COFFEEFILTER_H)
 #define _COFFEEFILTER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Filter.h"
 #include "Frame.h"
 #include "Memento.h"

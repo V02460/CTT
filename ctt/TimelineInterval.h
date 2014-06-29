@@ -1,6 +1,9 @@
 #if !defined(_TIMELINEINTERVAL_H)
 #define _TIMELINEINTERVAL_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 namespace view {
 
 #include "UIntegerInterval.h"

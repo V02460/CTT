@@ -1,6 +1,9 @@
 #if !defined(_HISTOGRAM_H)
 #define _HISTOGRAM_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "HistogramType.h"
 
 namespace model {

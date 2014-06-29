@@ -1,6 +1,9 @@
 #if !defined(_MACROBLOCKOVERLAY_H)
 #define _MACROBLOCKOVERLAY_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "ColoringOverlay.h"
 #include "Frame.h"
 #include "Memento.h"

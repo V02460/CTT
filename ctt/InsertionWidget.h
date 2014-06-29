@@ -1,6 +1,9 @@
 #if !defined(_INSERTIONWIDGET_H)
 #define _INSERTIONWIDGET_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "ViewState.h"
 #include "Observer.h"
 #include <QWidget>

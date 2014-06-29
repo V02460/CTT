@@ -1,6 +1,9 @@
 #ifndef CTT_H
 #define CTT_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include <QtWidgets/QMainWindow>
 #include "ui_ctt.h"
 

@@ -1,6 +1,9 @@
 #if !defined(_VIEWSTATE_H)
 #define _VIEWSTATE_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "ViewType.h"
 #include "Observable.h"
 #include <QObject>

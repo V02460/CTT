@@ -4,6 +4,9 @@
 #if !defined(_HISTOGRAMWIDGET_H)
 #define _HISTOGRAMWIDGET_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 #include "VideoScrubber.h"
 

@@ -1,6 +1,9 @@
 #if !defined(_VIDEOREMOVEDOPERATION_H)
 #define _VIDEOREMOVEDOPERATION_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "VideoListOperation.h"
 
 namespace controller {

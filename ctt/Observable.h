@@ -1,6 +1,9 @@
 #if !defined(_OBSERVABLE_H)
 #define _OBSERVABLE_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 
 namespace model {

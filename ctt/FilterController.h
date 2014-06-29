@@ -4,6 +4,9 @@
 #if !defined(_FILTERCONTROLLER_H)
 #define _FILTERCONTROLLER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 #include "Filter.h"
 #include "FilterParam.h"

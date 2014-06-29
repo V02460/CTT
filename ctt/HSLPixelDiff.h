@@ -1,6 +1,9 @@
 #if !defined(_HSLPIXELDIFF_H)
 #define _HSLPIXELDIFF_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "PixelDiff.h"
 #include "Video.h"
 #include "Memento.h"

@@ -1,6 +1,9 @@
 #if !defined(_XMLLOADER_H)
 #define _XMLLOADER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "ProjectLoader.h"
 
 namespace model {

@@ -1,6 +1,9 @@
 #if !defined(_HISTOGRAMTYPE_H)
 #define _HISTOGRAMTYPE_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 namespace model {
 namespace frame {
 namespace histogram {

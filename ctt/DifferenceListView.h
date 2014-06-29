@@ -1,6 +1,9 @@
 #if !defined(_DIFFERENCELISTVIEW_H)
 #define _DIFFERENCELISTVIEW_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "AbstractListView.h"
 
 namespace view {

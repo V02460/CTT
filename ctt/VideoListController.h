@@ -1,6 +1,9 @@
 #if !defined(_VIDEOLISTCONTROLLER_H)
 #define _VIDEOLISTCONTROLLER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 #include "Video.h"
 

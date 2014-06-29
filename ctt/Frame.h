@@ -1,6 +1,9 @@
 #if !defined(_FRAME_H)
 #define _FRAME_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Histogram.h"
 #include "HistogramType.h"
 #include "FrameMetadata.h"

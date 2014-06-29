@@ -1,6 +1,9 @@
 #if !defined(_FRAMEDIFF_H)
 #define _FRAMEDIFF_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Saveable.h"
 #include "Video.h"
 #include "Memento.h"

@@ -1,6 +1,12 @@
 #if !defined(_VIDEO_H)
 #define _VIDEO_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Module.h"
 #include "Frame.h"
 #include "Memento.h"

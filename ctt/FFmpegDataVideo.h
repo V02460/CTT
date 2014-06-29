@@ -1,6 +1,9 @@
 #if !defined(_FFMPEGDATAVIDEO_H)
 #define _FFMPEGDATAVIDEO_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Video.h"
 #include "Frame.h"
 #include "Memento.h"

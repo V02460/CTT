@@ -1,6 +1,9 @@
 #if !defined(_ANALYSINGWIDGET_H)
 #define _ANALYSINGWIDGET_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Player.h"
 #include "ThumbnailListWidget.h"
 #include "VideoAnalysingWidget.h"

@@ -1,6 +1,9 @@
 #if !defined(_FILTERPARAM_H)
 #define _FILTERPARAM_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 namespace model {
 namespace filter {
 
