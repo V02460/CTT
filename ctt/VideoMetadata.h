@@ -1,9 +1,10 @@
-#include <QString>
-
-
 #if !defined(_VIDEOMETADATA_H)
 #define _VIDEOMETADATA_H
 
+#include <QString>
+
+namespace model {
+namespace video {
 
 /**
  * Represents globally valid Metadata of a Video like length and resolution. Can also store custom metadata.
@@ -72,5 +73,8 @@ private:
     double fps; /**< The default playback speed of the Video described by this object. */
 	unsigned int length; /**< The length in frames of the Video described by this object. */
 };
+
+}  // namespace video
+}  // namespace model
 
 #endif  //_VIDEOMETADATA_H

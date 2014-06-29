@@ -1,10 +1,10 @@
-
-
-
 #if !defined(_FPSCHANGINGOPERATION_H)
 #define _FPSCHANGINGOPERATION_H
 
 #include "Operation.h"
+
+namespace controller {
+namespace operation {
 
 class FPSChangingOperation : public Operation {
 public:
@@ -15,5 +15,8 @@ private:
 	double oldFPS;
 	double newFPS;
 };
+
+}  // namespace operation
+}  // namespace controller
 
 #endif  //_FPSCHANGINGOPERATION_H

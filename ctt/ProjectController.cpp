@@ -1,8 +1,7 @@
-
-
-
 #include "ProjectController.h"
 #include "SaveFileType.h"
+
+namespace controller {
 
 slot ProjectController::saveClicked() {
 
@@ -20,3 +19,4 @@ slot ProjectController::newProject() {
 
 }
 
+}  // namespace controller

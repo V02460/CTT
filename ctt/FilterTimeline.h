@@ -1,10 +1,10 @@
-
-
-
 #if !defined(_FILTERTIMELINE_H)
 #define _FILTERTIMELINE_H
 
 #include "AbstractTimeline.h"
+
+namespace view {
+namespace base_components {
 
 /**
  *	The FilterTimeline displays the filter intervals of ervery filter of a filteredVideo.
@@ -12,5 +12,9 @@
  */
 class FilterTimeline : public AbstractTimeline {
 };
+
+
+}  // namespace base_components
+}  // namespace view
 
 #endif  //_FILTERTIMELINE_H

@@ -1,6 +1,3 @@
-
-
-
 #if !defined(_THUMBNAILLISTWIDGET_H)
 #define _THUMBNAILLISTWIDGET_H
 
@@ -11,6 +8,7 @@
 #include <QList>
 #include <QDir>
 
+namespace view {
 /**
  *	The TumbnailListWidget displays a set of videos by its thumbnails and provides the interactiable components to set one or more videos
  *	active, to add videos to and to remove videos from the program.
@@ -43,5 +41,7 @@ private:
 	QPushButton btnAddVideo; /**< The button to add a new video */
 	SaveableList<Video> filteredVideos; /**< The list of filteredVideo which is needed for the thumbnail generation */
 };
+
+}  // namespace view
 
 #endif  //_THUMBNAILLISTWIDGET_H

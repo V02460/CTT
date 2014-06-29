@@ -1,12 +1,12 @@
-
-
-
 #include "FilteredVideo.h"
 #include "Video.h"
 #include "Filter.h"
 #include "FilterList.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace video {
 
 FilteredVideo::FilteredVideo(Video baseVideo) {
 
@@ -48,3 +48,5 @@ Saveable* FilteredVideo::getDummy() {
 
 }
 
+}  // namespace video
+}  // namespace model

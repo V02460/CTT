@@ -1,10 +1,11 @@
-
-
-
 #if !defined(_HISTOGRAM_H)
 #define _HISTOGRAM_H
 
 #include "HistogramType.h"
+
+namespace model {
+namespace frame {
+namespace histogram {
 
 /**
  * A Histogram with 256 values describing the intensity distribution of a channel in a frame.
@@ -31,5 +32,9 @@ public:
 protected:
 	float values[256];/**< The values of the histogram */
 };
+
+}  // namespace histogram
+}  // namespace frame
+}  // namespace model
 
 #endif  //_HISTOGRAM_H

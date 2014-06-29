@@ -7,6 +7,9 @@
 #include "MacroblockType.h"
 #include "MacroblockPartition.h"
 
+namespace model {
+namespace frame {
+
 /**
  * Holds metdadate information to be used in a Frame.
  * These include the size of the frame, motionvectors,  macroblock types and marcroblock partitions.
@@ -87,5 +90,8 @@ private:
 	const QVector<QVector<MacroblockPartition>> mbPartions;
 	const QVector<QVector<QVector2D>> mbMotionvectors;
 };
+
+}  // namespace frame
+}  // namespace model
 
 #endif  //_FRAMEMETADATA_H

@@ -1,11 +1,11 @@
-
-
-
 #include "VideoScrubber.h"
 #include "Frame.h"
 #include "Video.h"
 #include "VideoMetadata.h"
 #include "Memento.h"
+
+namespace model {
+namespace player {
 
 Frame VideoScrubber::getCurrentFrame() {
 
@@ -43,3 +43,5 @@ Saveable* VideoScrubber::getDummy() {
 
 }
 
+}  // namespace player
+}  // namespace model

@@ -1,12 +1,11 @@
-
-
-
 #if !defined(_MODULE_H)
 #define _MODULE_H
 
 #include "Saveable.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
 
 /**
  * An object able to provide specific frames from a sequentially numbered set of frames.
@@ -55,5 +54,7 @@ public:
 
     virtual Saveable* getDummy();
 };
+
+}  // namespace model
 
 #endif  //_MODULE_H

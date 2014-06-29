@@ -1,11 +1,11 @@
-
-
-
 #if !defined(_Saveable_H)
 #define _Saveable_H
 
 #include "Observer.h"
 #include "Memento.h"
+
+namespace model {
+namespace project {
 
 /**
  * Objects, whose state can be externalised into a memento and restored from one.
@@ -48,5 +48,8 @@ public:
 protected:
 	boolean is_dummy;
 };
+
+}  // namespace project
+}  // namespace model
 
 #endif  //_Saveable_H

@@ -1,7 +1,7 @@
-
-
-
 #include "FrameMetadata.h"
+
+namespace model {
+namespace frame {
 
 QSize FrameMetadata::getSize() {
 
@@ -31,3 +31,5 @@ bool FrameMetadata::hasMbType() {
 
 }
 
+}  // namespace frame
+}  // namespace model

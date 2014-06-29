@@ -1,6 +1,3 @@
-
-
-
 #if !defined(_VIDEOSCRUBBER_H)
 #define _VIDEOSCRUBBER_H
 
@@ -11,6 +8,9 @@
 #include "VideoMetadata.h"
 #include "Memento.h"
 #include <QObject>
+
+namespace model {
+namespace player {
 
 /**
  * A VideoScrubber is associated with a video and able to request frames from this video to save one of them internally.
@@ -89,5 +89,9 @@ private:
     Frame *currentFrame; /**< This is the frame currently held by the scrubber */
 	bool waitingForFrame /**< This is true while Scrubber is still waiting for the frame it requested last*/
 };
+
+}  // namespace player
+}  // namespace model
+
 
 #endif  //_VIDEOSCRUBBER_H

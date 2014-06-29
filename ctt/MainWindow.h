@@ -1,6 +1,3 @@
-
-
-
 #if !defined(_MAINWINDOW_H)
 #define _MAINWINDOW_H
 
@@ -13,6 +10,7 @@
 #include <QMenuBar>
 #include <QMainWindow>
 
+namespace view {
 /**
  *	The MainWindow unites all interactable components which represent the whole functionallity provided by the model.
  */
@@ -30,5 +28,7 @@ private:
 	ProcessingWidget processingWidget; /**< The widget to represent the processing view */
 	AnalysingWidget analysingWidget; /**< The widget to represent the analysing view */
 };
+
+}  // namespace view
 
 #endif  //_MAINWINDOW_H

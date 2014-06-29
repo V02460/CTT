@@ -1,6 +1,3 @@
-
-
-
 #if !defined(_FRAME_H)
 #define _FRAME_H
 
@@ -9,6 +6,9 @@
 #include "FrameMetadata.h"
 #include <QOpenGLTexture>
 #include <QOpenGLContext>
+
+namespace model {
+namespace frame {
 
 /**
  * Represents a frame (from a video), consisting of the actual image data as an an OpenGL Texture and corresponding Metadata.
@@ -58,5 +58,8 @@ private:
     QOpenGLTexture glTexture; /**< The image data in an OpenGL texture */
     FrameMetadata *metadata; /**< Metadata containing additional information about the frame */
 };
+
+}  // namespace frame
+}  // namespace model
 
 #endif  //_FRAME_H

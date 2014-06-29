@@ -1,6 +1,3 @@
-
-
-
 #if !defined(_VIDEOANALYSINGWIDGET_H)
 #define _VIDEOANALYSINGWIDGET_H
 
@@ -10,6 +7,8 @@
 #include <QWidget>
 #include <QComboBox>
 #include <QString>
+
+namespace view {
 /**
  *	The VideoAnalysingWidget provides the interactible components for changing the active overlay as well as it holds the means to
  *	display a video, its histograms and its frame metadata.
@@ -41,5 +40,7 @@ private:
 	HistogramWidget histWidget; /**< The HistogramWidget which shows the histograms for the current frame */
 	FrameMetadataWidget metadataWidget;/**< The FrameMetadataWidget which displays the metadate for the current frame */
 };
+
+}  // namespace view
 
 #endif  //_VIDEOANALYSINGWIDGET_H

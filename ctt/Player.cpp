@@ -1,10 +1,10 @@
-
-
-
 #include "Player.h"
 #include "VideoScrubber.h"
 #include "UIntegerInterval.h"
 #include "Memento.h"
+
+namespace model {
+namespace player {
 
 Player::Player(double fps) {
 
@@ -106,3 +106,5 @@ Saveable* Player::getDummy() {
 
 }
 
+}  // namespace player
+}  // namespace model

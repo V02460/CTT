@@ -1,8 +1,7 @@
-
-
-
 #include "Module.h"
 #include "Memento.h"
+
+namespace model {
 
 QList<Module> Module::getUsesList() {
 
@@ -28,3 +27,4 @@ Saveable* Module::getDummy() {
 
 }
 
+}  // namespace model

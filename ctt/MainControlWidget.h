@@ -1,6 +1,3 @@
-
-
-
 #if !defined(_MAINCONTROLWIDGET_H)
 #define _MAINCONTROLWIDGET_H
 
@@ -10,6 +7,8 @@
 #include "InsertionWidget.h"
 #include "ZoomFunctions.h"
 #include "PlayerFunctions.h"
+
+namespace view {
 
 /**
  *	The MainControlWidget holds all components used for video playback, filer/ difference insertion and changing.
@@ -39,5 +38,7 @@ private:
 	PlayerFunctions playerFunctions; /** The funtionality to control the video player */
 	AbstractListView listView; /** The list view to show the current active differences or filters (depends on the viewState) */
 };
+
+}  // namespace view
 
 #endif  //_MAINCONTROLWIDGET_H

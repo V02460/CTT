@@ -1,12 +1,11 @@
-
-
-
 #if !defined(_VIDEOWIDGET_H)
 #define _VIDEOWIDGET_H
 
 #include "Observer.h"
 #include "VideoScrubber.h"
 #include <QWidget>
+
+namespace view {
 
 /**
  *	The VideoWidget is responsible for showing a concrete video frame.
@@ -31,5 +30,7 @@ public:
 private:
 	VideoScrubber scrubber; /**< The scrubber at which the VideoWidget is registered */
 };
+
+}  // namespace view
 
 #endif  //_VIDEOWIDGET_H

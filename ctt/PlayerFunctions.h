@@ -1,6 +1,3 @@
-
-
-
 #if !defined(_PLAYERFUNCTIONS_H)
 #define _PLAYERFUNCTIONS_H
 
@@ -9,6 +6,8 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QSpinBox>
+
+namespace view {
 
 /**
  *	The PlayerFunctions only provides the needed interactable components and maps the signals emitted by these to a PlayerController.
@@ -34,5 +33,7 @@ private:
 	QPushButton btnDefaultFPS; /**< The button to change back to the default framerate */
 	QSpinBox spinboxFPS; /**< The spinbox to change the framerate */
 };
+
+}  // namespace view
 
 #endif  //_PLAYERFUNCTIONS_H

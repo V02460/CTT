@@ -1,9 +1,8 @@
-
-
-
 #if !defined(_MEMENTO_H)
 #define _MEMENTO_H
 
+namespace model {
+namespace project {
 
 class Memento {
 public:
@@ -23,5 +22,8 @@ private:
 	Map<String, QString> variableMap;
 	Map<String, Pointer> pointerMap;
 };
+
+}  // namespace project
+}  // namespace model
 
 #endif  //_MEMENTO_H

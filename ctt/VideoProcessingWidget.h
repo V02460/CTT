@@ -1,20 +1,20 @@
-
-
-
 #if !defined(_VIDEOPROCESSINGWIDGET_H)
 #define _VIDEOPROCESSINGWIDGET_H
 
 #include "Video.h"
 #include "VideoFileType.h"
 #include "VideoWidget.h"
+#include <QWidget>
 #include <QCheckBox>
 #include <QPushButton>
+
+namespace view {
 
 /**
  *	The VideoProcessingWidget provides the interactable components for saving a video and for using it later in the analysing view as well
  *	as it holds the means to display a video.
  */
-class VideoProcessingWidget {
+class VideoProcessingWidget : public QWidget{
 public slots:
 	/**
 	 *	This method is called when the user changes the state of the checkbox.
@@ -28,6 +28,7 @@ public slots:
 	 *	It opens a file chooser dialog where the user can specify the save directory, the save name and the file type of the video which should be saved
 	 */
 	void btnSaveVideoClicked();
+
 signals:
 	/**
 	 *	This signal is emitted when the checkbox is checked.
@@ -47,5 +48,7 @@ private:
 	QPushButton btnSaveVideo; /** The button which starts the video saving process */
 	VideoWidget *videoWidget; /** The video widget which actually displays the video */
 };
+
+}  // namespace view
 
 #endif  //_VIDEOPROCESSINGWIDGET_H

@@ -1,12 +1,12 @@
-
-
-
 #if !defined(_EARTHMOVERSHISTOGRAMDIFF_H)
 #define _EARTHMOVERSHISTOGRAMDIFF_H
 
 #include "FrameDiff.h"
 #include "Video.h"
 #include "Memento.h"
+
+namespace model {
+namespace difference {
 
 class EarthMoversHistogramDiff : public FrameDiff {
 public:
@@ -16,5 +16,8 @@ public:
 	void restore(Memento memento);
 	Saveable* getDummy();
 };
+
+}  // namespace difference
+}  // namespace model
 
 #endif  //_EARTHMOVERSHISTOGRAMDIFF_H

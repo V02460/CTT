@@ -1,9 +1,7 @@
-
-
-
 #if !defined(_TIMELINEINTERVAL_H)
 #define _TIMELINEINTERVAL_H
 
+namespace view {
 
 #include "UIntegerInterval.h"
 
@@ -22,5 +20,7 @@ public:
 private:
 	UIntegerInterval filterInterval; /**< The corresponding filter interval from the model */
 };
+
+}  // namespace view
 
 #endif  //_TIMELINEINTERVAL_H

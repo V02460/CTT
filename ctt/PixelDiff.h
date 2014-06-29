@@ -1,12 +1,12 @@
-
-
-
 #if !defined(_PIXELDIFF_H)
 #define _PIXELDIFF_H
 
 #include "FrameDiff.h"
 #include "Video.h"
 #include "Memento.h"
+
+namespace model {
+namespace difference {
 
 class PixelDiff : public FrameDiff {
 public:
@@ -17,5 +17,8 @@ public:
 	void restore(Memento memento);
 	Saveable* getDummy();
 };
+
+}  // namespace difference
+}  // namespace model
 
 #endif  //_PIXELDIFF_H

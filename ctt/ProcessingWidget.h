@@ -1,6 +1,3 @@
-
-
-
 #if !defined(_PROCESSINGWIDGET_H)
 #define _PROCESSINGWIDGET_H
 
@@ -13,6 +10,7 @@
 #include "MainControlWidget.h"
 #include <QWidget>
 
+namespace view {
 /**
  *	The ProcessingWidget basically unites the abilities to  display the video, to control the player and to set the active video pair.
  */
@@ -46,5 +44,7 @@ private:
 	MainControlWidget mainControlWidget; /**< The MainControlWidget which provides the player functionality */
 	QList<PlayerWidget> playerWidgets; /**< The different PlayerWidgets which can be set as active */
 };
+
+}  // namespace view
 
 #endif  //_PROCESSINGWIDGET_H

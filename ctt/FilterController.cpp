@@ -1,9 +1,8 @@
-
-
-
 #include "FilterController.h"
 #include "Filter.h"
 #include "FilterParam.h"
+
+namespace controller {
 
 slot FilterController::insertFilter(QString id) {
 
@@ -21,3 +20,4 @@ slot FilterController::removeFilter(int pos) {
 
 }
 
+}  // namespace controller

@@ -7,6 +7,8 @@
 #include "Observer.h"
 #include "SaveableList<T extends Saveable>.h"
 
+namespace controller {
+
 class DifferenceController : public Observer {
 public:
 	slot diffInserted(QString id);
@@ -14,5 +16,7 @@ public:
 private:
 	SaveableList<T extends Saveable> *diffList;
 };
+
+}  // namespace controller
 
 #endif  //_DIFFERENCECONTROLLER_H

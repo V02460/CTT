@@ -1,6 +1,3 @@
-
-
-
 #if !defined(_PLAYER_H)
 #define _PLAYER_H
 
@@ -9,6 +6,9 @@
 #include "UIntegerInterval.h"
 #include "Memento.h"
 #include <QTimer>
+
+namespace model {
+namespace player {
 
 /**
  * A player organizes sychronized and complex access to multiple VideoScrubbers by telling them when to load which frames. It provides random access, asynchronous timer controlled playback with custom playback speed and looping.
@@ -245,5 +245,8 @@ private:
     bool playing; /**< Specifies whether the player is currently playing */
     UIntegerInterval *loop; /**< Specifies the interval in which the player loops. */
 };
+
+}  // namespace player
+}  // namespace model
 
 #endif  //_PLAYER_H

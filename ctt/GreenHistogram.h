@@ -1,11 +1,12 @@
-
-
-
 #if !defined(_GREENHISTOGRAM_H)
 #define _GREENHISTOGRAM_H
 
 #include "Histogram.h"
 #include "Frame.h"
+
+namespace model {
+namespace frame {
+namespace histogram {
 
 /**
 * A Histogram describing the distribution of the intensity of the green channel in a frame.
@@ -18,5 +19,9 @@ public:
 	*/
 	GreenHistogram(Frame frame);
 };
+
+}  // namespace histogram
+}  // namespace frame
+}  // namespace model
 
 #endif  //_GREENHISTOGRAM_H

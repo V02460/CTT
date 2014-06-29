@@ -1,9 +1,9 @@
-
-
-
 #include "RescaleFilter.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace filter {
 
 QString RescaleFilter::getName() {
 
@@ -25,3 +25,5 @@ Saveable* RescaleFilter::getDummy() {
 
 }
 
+}  // namespace filter
+}  // namespace model
