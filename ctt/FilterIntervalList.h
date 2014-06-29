@@ -1,4 +1,4 @@
-#include "IntegerInterval.h"
+#include "UIntegerInterval.h"
 #include "Saveable.h"
 #include "Memento.h"
 #include <QObject>
@@ -17,7 +17,7 @@ public:
 	FilterIntervalList();
 
 private:
-    QList<IntegerInterval> intervals; /**< The list of active Intervals*/
+    QList<UIntegerInterval> intervals; /**< The list of active Intervals*/
 
 	/**
 	* Creates an empty FilterIntervalList if isDummmy is false, and a dummy FilterIntervalList if isDummmy is true.
@@ -40,21 +40,21 @@ public:
      *
      * @param interval this Interval is made an active interval.
      */
-    void activate(IntegerInterval interval);
+    void activate(UIntegerInterval interval);
 
 	/**
 	* Makes the submitted Interval an inactive Interval.
 	*
 	* @param interval this Interval is made an inactive interval.
 	*/
-    void deactivate(IntegerInterval interval);
+    void deactivate(UIntegerInterval interval);
 
     /**
      * Returns a list of all the active Intervals.
      *
      * @return List<IntegerInterval> a list of all the active Intervals
      */
-    QList<IntegerInterval> getIntervalList();
+    QList<UIntegerInterval> getIntervalList();
 
 	Memento getMemento();
 

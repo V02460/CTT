@@ -1,5 +1,5 @@
 #include "FilterIntervalList.h"
-#include "IntegerInterval.h"
+#include "UIntegerInterval.h"
 #include "Saveable.h"
 #include "Memento.h"
 
@@ -14,16 +14,16 @@ bool FilterIntervalList::isActive(unsigned int frameNumber)
 }
 
 
-void FilterIntervalList::activate(IntegerInterval interval)
+void FilterIntervalList::activate(UIntegerInterval interval)
 {
 }
 
 
-void FilterIntervalList::deactivate(IntegerInterval interval)
+void FilterIntervalList::deactivate(UIntegerInterval interval)
 {
 }
 
 
-QList<IntegerInterval> FilterIntervalList::getIntervalList()
+QList<UIntegerInterval> FilterIntervalList::getIntervalList()
 {
 }

@@ -230,9 +230,6 @@
     <ClCompile Include="InsertionWidget.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
-    <ClCompile Include="IntegerInterval.cpp">
-      <Filter>Source Files\Model\Misc</Filter>
-    </ClCompile>
     <ClCompile Include="LuminanceHistogram.cpp">
       <Filter>Source Files\Model\Histogram</Filter>
     </ClCompile>
@@ -386,6 +383,9 @@
     <ClCompile Include="FilterIntervalList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UIntegerInterval.cpp">
+      <Filter>Source Files\Model\Misc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -533,9 +533,6 @@
     </ClInclude>
     <ClInclude Include="InsertionWidget.h">
       <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="IntegerInterval.h">
-      <Filter>Header Files\Model\Misc</Filter>
     </ClInclude>
     <ClInclude Include="LuminanceHistogram.h">
       <Filter>Header Files\Model\Histogram</Filter>
@@ -704,6 +701,9 @@
     </ClInclude>
     <ClInclude Include="FilterIntervalList.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UIntegerInterval.h">
+      <Filter>Header Files\Model\Misc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

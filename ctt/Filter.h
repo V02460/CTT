@@ -8,7 +8,7 @@
 #include "Frame.h"
 #include "Memento.h"
 #include "FilterParam.h"
-#include "IntegerInterval.h"		
+#include "UIntegerInterval.h"		
 #include "FilterIntervalList.h"	
 #include <QMap>	
 
@@ -52,21 +52,21 @@ public:
 	 * @param interval the filter will be activated in this interval
 	 * @throws IllegalStateException if the the method was called on a dummy
 	 */
-	void activate(IntegerInterval interval);
+	void activate(UIntegerInterval interval);
 
 	/**
 	 * Deactivates the Filter in the submitted interval.
 	 * @param interval the filter will be deactivated in this interval
 	 * @throws IllegalStateException if the the method was called on a dummy
 	 */
-	void deactivate(IntegerInterval interval);
+	void deactivate(UIntegerInterval interval);
 
 	/**
 	 * Returns a list of all the intervals the filter is active in.
 	 * @return List<IntegerInterval> a list of all the intervals the filter is active in
 	 * @throws IllegalStateException if the the method was called on a dummy
 	 */
-	QList<IntegerInterval> getListOfActiveIntervals();
+	QList<UIntegerInterval> getListOfActiveIntervals();
 
     virtual Frame getFrame(unsigned int frameNumber);
 

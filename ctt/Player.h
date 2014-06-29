@@ -6,7 +6,7 @@
 
 #include "Saveable.h"
 #include "VideoScrubber.h"
-#include "IntegerInterval.h"
+#include "UIntegerInterval.h"
 #include "Memento.h"
 #include <QTimer>
 
@@ -177,7 +177,7 @@ public:
 	 * @throws InvalidArgumentException if the bounds of the interval aren't in the bounds of the videos.
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    void setLoop(IntegerInterval interval);
+    void setLoop(UIntegerInterval interval);
 
     /**
      * Gets the interval the player currently loops in. If the player doesn't loop currently, the last loop will be returned.
@@ -185,7 +185,7 @@ public:
      * @return IntegerInterval the interval the player currently loops in
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    IntegerInterval getLoop();
+    UIntegerInterval getLoop();
 
     /**
      * Checks whether the player is currently looping.
@@ -243,7 +243,7 @@ private:
     double fps; /**< The currently set playback speed in frames per second */
     bool looping; /**< Specifies whether the player is currently in a loop */
     bool playing; /**< Specifies whether the player is currently playing */
-    IntegerInterval *loop; /**< Specifies the interval in which the player loops. */
+    UIntegerInterval *loop; /**< Specifies the interval in which the player loops. */
 };
 
 #endif  //_PLAYER_H

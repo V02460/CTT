@@ -3,7 +3,7 @@
 
 #include "Player.h"
 #include "VideoScrubber.h"
-#include "IntegerInterval.h"
+#include "UIntegerInterval.h"
 #include "Memento.h"
 
 Player::Player(double fps) {
@@ -78,11 +78,11 @@ unsigned int Player::getCurrentFrameNumber() {
 
 }
 
-void Player::setLoop(IntegerInterval interval) {
+void Player::setLoop(UIntegerInterval interval) {
 
 }
 
-IntegerInterval Player::getLoop() {
+UIntegerInterval Player::getLoop() {
 
 }
 
