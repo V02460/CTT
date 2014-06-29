@@ -9,12 +9,13 @@
 #include "FrameMetadata.h"
 #include <QOpenGLTexture>
 #include <QOpenGLContext>
+#include "Surface.h"
 
 /**
  * Represents a frame, consisting of image data as an an OpenGL Texture and corresponding Metadata.
  *
  */
-class Frame {
+class Frame: public Surface {
 public:
     /**
      * Creates a new frame from image data with corresponding metadata in a specific OpenGL context.
@@ -33,13 +34,6 @@ public:
     FrameMetadata getMetadata();
 
     /**
-     * Gets the texture containing the image data of the frame.
-     *
-     * @return QOpenGLTexture the texture containing the image data of the frame.
-     */
-    QOpenGLTexture getGLTexture();
-
-    /**
      * creates a histogram of the submitted type from the frame and returns it.
      *
      * @param type specifies the histogram type
@@ -47,15 +41,7 @@ public:
      */
     Histogram getHistogram(HistogramType type);
 
-	/**
-	 * Returns a QOpenGLContext in which the texture containing the image data of the frame is accessible.
-	 * @return QOpenGLContext a QOpenGLContext in which the texture containing the image data of the frame is accessible
-	 */
-	QOpenGLContext getContext();
-
 private:
-    QOpenGLContext glContext; /**< An OpenGL context, from which the frame texture is accessible. */
-    QOpenGLTexture glTexture; /**< The image data in an OpenGL texture */
     FrameMetadata *metadata; /**< Metadata containing additional information about the frame */
 };
 

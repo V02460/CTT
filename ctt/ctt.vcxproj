@@ -212,6 +212,7 @@
     <ClCompile Include="Histogram.cpp" />
     <ClCompile Include="HSLPixelDiff.cpp" />
     <ClCompile Include="InsertionWidget.cpp" />
+    <ClCompile Include="Surface.cpp" />
     <ClCompile Include="UIntegerInterval.cpp" />
     <ClCompile Include="LuminanceHistogram.cpp" />
     <ClCompile Include="MacroblockOverlay.cpp" />
@@ -344,6 +345,7 @@
     <ClInclude Include="HistogramType.h" />
     <ClInclude Include="HSLPixelDiff.h" />
     <ClInclude Include="InsertionWidget.h" />
+    <ClInclude Include="Surface.h" />
     <ClInclude Include="UIntegerInterval.h" />
     <ClInclude Include="LuminanceHistogram.h" />
     <ClInclude Include="MacroblockOverlay.h" />
