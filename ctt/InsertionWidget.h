@@ -5,6 +5,7 @@
 #define _INSERTIONWIDGET_H
 
 #include "ViewState.h"
+#include "Observer.h"
 #include <QWidget>
 #include <QList>
 #include <QPushButton>
@@ -12,7 +13,7 @@
 /**
  * Based on the current state of the view the insertion widget enables the user to choose the filter or difference to add to the list vies
  */
-class InsertionWidget : public QWidget {
+class InsertionWidget : public Observer, public QWidget {
 public slots:
 	/**
 	 *	Adjusts the InsertionWidget according to the current state of tht whole view.

@@ -5,11 +5,13 @@
 #define _VIEWSTATE_H
 
 #include "ViewType.h"
+#include "Observable.h"
+#include <QObject>
 
-class ViewState {
-public:
-	signal currentViewChanged();
-	slot changeView(ViewType newView);
+class ViewState : public Observable {
+public slots:
+	void changeView(ViewType newView);
+
 private:
 	ViewType currentView;
 };

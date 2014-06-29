@@ -4,6 +4,7 @@
 #if !defined(_MAINCONTROLWIDGET_H)
 #define _MAINCONTROLWIDGET_H
 
+#include "Observer.h"
 #include "ExtendedTimeline.h"
 #include "AbstractListView.h"
 #include "InsertionWidget.h"
@@ -13,7 +14,7 @@
 /**
  *	The MainControlWidget holds all components used for video playback, filer/ difference insertion and changing.
  */
-class MainControlWidget : public QWidget {
+class MainControlWidget : public Observer, public QWidget {
 public slots:
 	/**
 	 *	Hides the ExtendedTimeline widget and shows the insertion widget, as long as the button is active.
