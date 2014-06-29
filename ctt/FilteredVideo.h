@@ -7,7 +7,6 @@
 #include "Video.h"
 #include "Observable.h"
 #include "Filter.h"
-#include "FilterList.h"
 #include "Frame.h"
 #include "Memento.h"
 
@@ -72,7 +71,7 @@ private:
 	FilteredVideo();
 
     Video *baseVideo; /**< This provides the frames which will be modified by the filter pipeline. */
-    FilterList *filters; /**< The filter pipeline */
+    QList<Filter> *filters; /**< The filter pipeline */
 };
 
 #endif  //_FILTEREDVIDEO_H
