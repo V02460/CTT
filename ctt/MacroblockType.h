@@ -1,6 +1,9 @@
 #if !defined(_MACROBLOCKTYPE_H)
 #define _MACROBLOCKTYPE_H
 
+namespace model {
+namespace frame {
+
 // FFmpeg definitions
 //
 //#define 	MB_TYPE_INTRA4x4   0x0001
@@ -51,5 +54,8 @@ enum MacroblockType{
 	MB_TYPE_QUANT,
 	MB_TYPE_CBP
 };
+
+}  // namespace frame
+}  // namespace model
 
 #endif //_MACROBLOCKTYPE_H

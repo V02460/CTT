@@ -1,6 +1,3 @@
-
-
-
 #if !defined(_FILTER_H)
 #define _FILTER_H
 
@@ -11,6 +8,9 @@
 #include "UIntegerInterval.h"		
 #include "FilterIntervalList.h"	
 #include <QMap>	
+
+namespace model {
+namespace filter {
 
 /**
  * An object which can attach itself to another module and outputs modified versions of the frames of this module.
@@ -79,5 +79,8 @@ private:
 	FilterIntervalList intervals; /**< The Intervals in which the Filtr is active/
     Module *previous; /**< The Filter gets the frames it modifies from this module */
 };
+
+}  // namespace filter
+}  // namespace model
 
 #endif  //_FILTER_H

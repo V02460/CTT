@@ -1,6 +1,3 @@
-
-
-
 #if !defined(_FILTEREDVIDEO_H)
 #define _FILTEREDVIDEO_H
 
@@ -9,6 +6,9 @@
 #include "Filter.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace video {
 
 /**
  * Represents a Video with a filter pipeline modifying its frames.
@@ -73,5 +73,8 @@ private:
     Video *baseVideo; /**< This provides the frames which will be modified by the filter pipeline. */
     QList<Filter> *filters; /**< The filter pipeline */
 };
+
+}  // namespace video
+}  // namespace model
 
 #endif  //_FILTEREDVIDEO_H

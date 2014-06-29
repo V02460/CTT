@@ -1,12 +1,12 @@
-
-
-
 #if !defined(_YUVPIXELDIFF_H)
 #define _YUVPIXELDIFF_H
 
 #include "PixelDiff.h"
 #include "Video.h"
 #include "Memento.h"
+
+namespace model {
+namespace difference {
 
 class YUVPixelDiff : public PixelDiff {
 public:
@@ -17,5 +17,8 @@ public:
 	void restore(Memento memento);
 	Saveable* getDummy();
 };
+
+}  // namespace difference
+}  // namespace model
 
 #endif  //_YUVPIXELDIFF_H

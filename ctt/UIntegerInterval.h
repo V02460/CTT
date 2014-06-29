@@ -1,8 +1,9 @@
-
 #include "Saveable.h"
 
-#if !defined(_INTEGERINTERVAL_H)
-#define _INTEGERINTERVAL_H
+namespace model {
+
+#if !defined(_UINTEGERINTERVAL_H)
+#define _UINTEGERINTERVAL_H
 
 
 /**
@@ -89,4 +90,6 @@ private:
     unsigned int end; /**< The upper bound of the interval */
 };
 
-#endif  //_INTEGERINTERVAL_H
+}  // namespace model
+
+#endif  //_UINTEGERINTERVAL_H

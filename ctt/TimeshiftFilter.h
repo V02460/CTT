@@ -1,8 +1,8 @@
-
-
-
 #if !defined(_TIMESHIFTFILTER_H)
 #define _TIMESHIFTFILTER_H
+
+namespace model {
+namespace filter {
 
 #include "Filter.h"
 #include "Frame.h"
@@ -16,5 +16,8 @@ public:
 	void restore(Memento memento);
 	Saveable* getDummy();
 };
+
+}  // namespace filter
+}  // namespace model
 
 #endif  //_TIMESHIFTFILTER_H

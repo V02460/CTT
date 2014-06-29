@@ -1,11 +1,12 @@
-
-
-
 #if !defined(_BLUEHISTOGRAM_H)
 #define _BLUEHISTOGRAM_H
 
 #include "Histogram.h"
 #include "Frame.h"
+
+namespace model {
+namespace frame {
+namespace histogram {
 
 /**
 * A Histogram describing the distribution of the intensity of the blue channel in a frame.
@@ -18,5 +19,9 @@ public:
 	*/
 	BlueHistogram(Frame frame);
 };
+
+}  // namespace histogram
+}  // namespace frame
+}  // namespace model
 
 #endif  //_BLUEHISTOGRAM_H
