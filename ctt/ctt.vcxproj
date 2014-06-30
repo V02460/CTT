@@ -211,7 +211,10 @@
     <ClCompile Include="HeatmapOverlay.cpp" />
     <ClCompile Include="Histogram.cpp" />
     <ClCompile Include="HSLPixelDiff.cpp" />
+    <ClCompile Include="HueHistogram.cpp" />
     <ClCompile Include="InsertionWidget.cpp" />
+    <ClCompile Include="Saturation.cpp" />
+    <ClCompile Include="SaturationHistogram.cpp" />
     <ClCompile Include="UIntegerInterval.cpp" />
     <ClCompile Include="LuminanceHistogram.cpp" />
     <ClCompile Include="MacroblockOverlay.cpp" />
@@ -340,7 +343,10 @@
     <ClInclude Include="Histogram.h" />
     <ClInclude Include="HistogramType.h" />
     <ClInclude Include="HSLPixelDiff.h" />
+    <ClInclude Include="HueHistogram.h" />
     <ClInclude Include="InsertionWidget.h" />
+    <ClInclude Include="Saturation.h" />
+    <ClInclude Include="SaturationHistogram.h" />
     <ClInclude Include="UIntegerInterval.h" />
     <ClInclude Include="LuminanceHistogram.h" />
     <ClInclude Include="MacroblockOverlay.h" />
