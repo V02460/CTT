@@ -47,7 +47,9 @@ public:
 	 *     id
 	 * @throws InvalidArgumentException if the two submitted videos create their frames in different contexts
      */
-	static FrameDiff::sptr createFrameDiff(QString id, model::video::Video video1, model::video::Video video2);
+	static FrameDiff::sptr createFrameDiff(QString id,
+		                                   model::video::Video::sptr video1,
+										   model::video::Video::sptr video2);
 
 	/**
 	* Creates and returns a PixelDiff of the type specified by the submitted id for the two submitted videos.
@@ -59,7 +61,9 @@ public:
 	* @throws InvalidArgumentException if the factory can't create a PixelDiff of the type specified by the submitted id
 	* @throws InvalidArgumentException if the two submitted videos create their frames in different contexts
 	*/
-	static PixelDiff::sptr createPixelDiff(QString id, model::video::Video video1, model::video::Video video2);
+	static PixelDiff::sptr createPixelDiff(QString id,
+										   model::video::Video::sptr video1,
+										   model::video::Video::sptr video2);
 
 private:
 	DifferenceFactory();

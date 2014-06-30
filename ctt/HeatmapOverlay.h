@@ -17,7 +17,7 @@ namespace overlay {
 /**
  *	Provides a new version of the predecessors frame where any PixelDiff was mixed graphically into it.
  */
-class HeatmapOverlay : public ColoringOverlay {
+class HeatmapOverlay : public model::filter::overlay::ColoringOverlay {
 public:
 	typedef QScopedPointer<HeatmapOverlay> uptr;
 	typedef QSharedPointer<HeatmapOverlay> sptr;
@@ -36,7 +36,7 @@ public:
 	virtual QString getName() const;
 	virtual frame::Frame getFrame(unsigned int frameNumber) const;
 private:
-	PixelDiff::uptr data;
+	model::difference::PixelDiff::uptr data;
 };
 
 }  // namespace overlay

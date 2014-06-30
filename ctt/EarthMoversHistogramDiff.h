@@ -30,8 +30,8 @@ public:
 	 * @param video2 the second of the two videos the EarthMoversHistogramDiff will compare
 	 */
 	EarthMoversHistogramDiff(model::frame::histogram::HistogramType type,
-		                     const model::video::Video &video1,
-							 const model::video::Video &video2);
+		                     video::Video::sptr video1,
+							 video::Video::sptr video2);
 
 	virtual ~EarthMoversHistogramDiff();
 

@@ -28,7 +28,7 @@ public:
 	* @param video1 First Video used for comparisson
 	* @param video2 Second Video comparisson
 	*/
-	PixelDiff(const video::Video &video1, const video::Video &video2);
+	PixelDiff(video::Video::sptr video1, video::Video::sptr video2);
 
 	/**
 	* PixelDiff Destructor
