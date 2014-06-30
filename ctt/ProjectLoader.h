@@ -25,6 +25,8 @@ public:
 	 *
 	 * @param path The path of the file to load the project from.
 	 * @throws NotImplementedException Is thrown by this interface and every implementation, which does not override this method.
+	 * @throws IOException Is thrown if there is any problem acsessing or reading the given file.
+	 * @throws ParseException Is thrown if the content of the file can not be used to restore a project by the loader.
 	 */
 	void restore(QDir path);
 };
