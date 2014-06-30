@@ -5,21 +5,26 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 namespace model {
-namespace filter {
+	namespace filter {
+		/**
+		 * Represents a parameter influencing the behaviour of a Filter.
+		 */
+		class FilterParam {
+		public:
+			typedef QScopedPointer<FilterParam> uptr;
+			typedef QSharedPointer<FilterParam> sptr;
+			typedef QWeakPointer<FilterParam> wptr;
 
-class FilterParam {
-public:
-	typedef QScopedPointer<FilterParam> uptr;
-	typedef QSharedPointer<FilterParam> sptr;
-	typedef QWeakPointer<FilterParam> wptr;
+			any getValue();
+			/**
+			 * Creates a new FilterParam
+			 */
+			FilterParam(QString name, );
+		private:
+			QString name;
+		};
 
-	any getValue();
-	void FilterParam(QString name);
-private:
-	QString name;
-};
-
-}  // namespace filter
+	}  // namespace filter
 }  // namespace model
 
 #endif  //_FILTERPARAM_H
