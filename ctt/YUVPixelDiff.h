@@ -1,6 +1,9 @@
 #if !defined(_YUVPIXELDIFF_H)
 #define _YUVPIXELDIFF_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "PixelDiff.h"
 #include "Video.h"
 #include "Memento.h"
@@ -10,6 +13,10 @@ namespace difference {
 
 class YUVPixelDiff : public PixelDiff {
 public:
+	typedef QScopedPointer<YUVPixelDiff> uptr;
+	typedef QSharedPointer<YUVPixelDiff> sptr;
+	typedef QWeakPointer<YUVPixelDiff> wptr;
+
 	QOpenGLTexture getPixelDif(int frameNr);
 	double getDif(int frameNr);
 	void FrameDif(Video video1, Video video2);

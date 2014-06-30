@@ -1,6 +1,9 @@
 #if !defined(_OPERATIONLIST_H)
 #define _OPERATIONLIST_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Operation.h"
 
 namespace controller {
@@ -11,6 +14,10 @@ namespace operation {
 **/
 class OperationList {
 public:
+	typedef QScopedPointer<OperationList> uptr;
+	typedef QSharedPointer<OperationList> sptr;
+	typedef QWeakPointer<OperationList> wptr;
+
 
 	/**
 	*	Manages doing the given Operation.

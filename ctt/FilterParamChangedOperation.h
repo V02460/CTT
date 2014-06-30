@@ -1,6 +1,9 @@
 #if !defined(_FILTERPARAMCHANGEDOPERATION_H)
 #define _FILTERPARAMCHANGEDOPERATION_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "FilterListOperation.h"
 #include "FilterParam.h"
 #include "FilterList.h"
@@ -14,6 +17,10 @@ namespace operation {
 **/
 class FilterParamChangedOperation : public FilterListOperation {
 public:
+	typedef QScopedPointer<FilterParamChangedOperation> uptr;
+	typedef QSharedPointer<FilterParamChangedOperation> sptr;
+	typedef QWeakPointer<FilterParamChangedOperation> wptr;
+
 
 	/**
 	*	The new parameter that should replace the filter's old parameter.

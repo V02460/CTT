@@ -1,6 +1,9 @@
 #if !defined(_VIDEOMETADATA_H)
 #define _VIDEOMETADATA_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include <QString>
 
 namespace model {
@@ -12,6 +15,10 @@ namespace video {
  */
 class VideoMetadata {
 public:
+	typedef QScopedPointer<VideoMetadata> uptr;
+	typedef QSharedPointer<VideoMetadata> sptr;
+	typedef QWeakPointer<VideoMetadata> wptr;
+
 	/**
 	 * Creates a new VideoMetadata object, initialized with resolution, default playback speed, length and a map of custom data.
 	 *

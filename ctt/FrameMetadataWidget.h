@@ -1,6 +1,9 @@
 #if !defined(_FRAMEMETADATAWIDGET_H)
 #define _FRAMEMETADATAWIDGET_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 #include "VideoScrubber.h"
 #include <QWidget>
@@ -13,6 +16,10 @@ namespace view {
  */
 class FrameMetadataWidget : public Observer , public QWidget{
 public:
+	typedef QScopedPointer<FrameMetadataWidget> uptr;
+	typedef QSharedPointer<FrameMetadataWidget> sptr;
+	typedef QWeakPointer<FrameMetadataWidget> wptr;
+
 	/**
 	 *	Creates a new FrameMetadataWidget which holds a VideoScrubber from where it gets the metadata for the current frame.
 	 *

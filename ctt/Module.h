@@ -1,6 +1,9 @@
 #if !defined(_MODULE_H)
 #define _MODULE_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Saveable.h"
 #include "Frame.h"
 #include "Memento.h"
@@ -13,6 +16,10 @@ namespace model {
  */
 class Module : public Saveable {
 public:
+	typedef QScopedPointer<Module> uptr;
+	typedef QSharedPointer<Module> sptr;
+	typedef QWeakPointer<Module> wptr;
+
     /**
      * Gets the frame with the submitted number.
      *

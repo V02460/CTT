@@ -1,6 +1,9 @@
 #if !defined(_BLURFILTER_H)
 #define _BLURFILTER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Filter.h"
 #include "Frame.h"
 #include "Memento.h"
@@ -10,6 +13,10 @@ namespace filter {
 
 class BlurFilter : public Filter {
 public:
+	typedef QScopedPointer<BlurFilter> uptr;
+	typedef QSharedPointer<BlurFilter> sptr;
+	typedef QWeakPointer<BlurFilter> wptr;
+
 	QString getName();
 	Frame getFrame(int frameNumber);
 	Memento getMemento();

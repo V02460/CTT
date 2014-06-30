@@ -1,6 +1,9 @@
 #if !defined(_HISTOGRAM_H)
 #define _HISTOGRAM_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "HistogramType.h"
 
 namespace model {
@@ -13,6 +16,10 @@ namespace histogram {
  */
 class Histogram {
 public:
+	typedef QScopedPointer<Histogram> uptr;
+	typedef QSharedPointer<Histogram> sptr;
+	typedef QWeakPointer<Histogram> wptr;
+
     /**
      * Gets the value for the entry with the number i.
      *

@@ -1,12 +1,14 @@
 #if !defined(_FILTERLISTVIEW_H)
 #define _FILTERLISTVIEW_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "AbstractListView.h"
 #include "Filter.h"
 #include "FilterParam.h"
 
 namespace view {
-namespace base_components {
 
 /**
  *	The FilterListView displays the list of filters in a filtered video.
@@ -15,6 +17,11 @@ namespace base_components {
  *	value.
  */
 class FilterListView : public AbstractListView {
+public:
+	typedef QScopedPointer<FilterListView> uptr;
+	typedef QSharedPointer<FilterListView> sptr;
+	typedef QWeakPointer<FilterListView> wptr;
+
 signals:
 	/**
 	 *	This signal is emitted when the order of the filters is changed
@@ -33,7 +40,6 @@ signals:
 	void filterParamChanged(Filter filter, FilterParam param);
 };
 
-}  // namespace base_components
 }  // namespace view
 
 #endif  //_FILTERLISTVIEW_H

@@ -1,6 +1,9 @@
 #if !defined(_YUVVIDEOSAVER_H)
 #define _YUVVIDEOSAVER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 namespace model {
 namespace video {
 
@@ -9,6 +12,10 @@ namespace video {
 
 class YUVVideoSaver : public VideoSaver {
 public:
+	typedef QScopedPointer<YUVVideoSaver> uptr;
+	typedef QSharedPointer<YUVVideoSaver> sptr;
+	typedef QWeakPointer<YUVVideoSaver> wptr;
+
 	void writeToFile(Video video, QDir path);
 };
 

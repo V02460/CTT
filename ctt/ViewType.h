@@ -1,6 +1,9 @@
 #if !defined(_VIEWTYPE_H)
 #define _VIEWTYPE_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 namespace view {
 
 /**

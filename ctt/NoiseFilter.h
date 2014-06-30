@@ -1,6 +1,9 @@
 #if !defined(_NOISEFILTER_H)
 #define _NOISEFILTER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Filter.h"
 #include "Frame.h"
 #include "Memento.h"
@@ -10,6 +13,10 @@ namespace filter {
 
 class NoiseFilter : public Filter {
 public:
+	typedef QScopedPointer<NoiseFilter> uptr;
+	typedef QSharedPointer<NoiseFilter> sptr;
+	typedef QWeakPointer<NoiseFilter> wptr;
+
 	QString getName();
 	Frame getFrame(int frameNumber);
 	Memento getMemento();

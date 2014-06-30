@@ -102,9 +102,6 @@
     <Filter Include="Header Files\Model\Frame\Histogram">
       <UniqueIdentifier>{1ff31363-c06c-436e-b47b-7d65993e62e9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\View\BaseComponents">
-      <UniqueIdentifier>{4c575f27-fb52-4b73-a06f-b1fc86dc6c42}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Model\Frame\Histogram">
       <UniqueIdentifier>{ff89e419-03b7-4f06-999d-703d0af24722}</UniqueIdentifier>
     </Filter>
@@ -669,26 +666,29 @@
     <ClInclude Include="UIntegerInterval.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="AbstractListView.h">
-      <Filter>Header Files\View\BaseComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="AbstractTimeline.h">
-      <Filter>Header Files\View\BaseComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="DifferenceListView.h">
-      <Filter>Header Files\View\BaseComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="DifferenceTimeline.h">
-      <Filter>Header Files\View\BaseComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterListView.h">
-      <Filter>Header Files\View\BaseComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterTimeline.h">
-      <Filter>Header Files\View\BaseComponents</Filter>
-    </ClInclude>
     <ClInclude Include="FilterIntervalList.h">
       <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="HistogramWidget.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractListView.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractTimeline.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="DifferenceListView.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="DifferenceTimeline.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterListView.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterTimeline.h">
+      <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="TimelineInterval.h">
       <Filter>Header Files\View</Filter>

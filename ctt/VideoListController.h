@@ -1,6 +1,9 @@
 #if !defined(_VIDEOLISTCONTROLLER_H)
 #define _VIDEOLISTCONTROLLER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 #include "Video.h"
 
@@ -10,6 +13,11 @@ namespace controller {
 *	The VideoListController manages requests to manipulate the VideoList.
 **/
 class VideoListController : public Observer {
+public:
+	typedef QScopedPointer<VideoListController> uptr;
+	typedef QSharedPointer<VideoListController> sptr;
+	typedef QWeakPointer<VideoListController> wptr;
+
 public slots:
 
 	/**

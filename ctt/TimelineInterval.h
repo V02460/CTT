@@ -1,6 +1,9 @@
 #if !defined(_TIMELINEINTERVAL_H)
 #define _TIMELINEINTERVAL_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 namespace view {
 
 #include "UIntegerInterval.h"
@@ -11,6 +14,10 @@ namespace view {
  */
 class TimelineInterval{
 public:
+	typedef QScopedPointer<TimelineInterval> uptr;
+	typedef QSharedPointer<TimelineInterval> sptr;
+	typedef QWeakPointer<TimelineInterval> wptr;
+
 	/**
 	 *	Creates a new TimelineInterval from a concrete filter interval.
 	 *

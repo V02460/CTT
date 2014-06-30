@@ -1,6 +1,9 @@
 #if !defined(_Saveable_H)
 #define _Saveable_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 #include "Memento.h"
 
@@ -14,6 +17,10 @@ namespace project {
 class Saveable {
 
 public:
+	typedef QScopedPointer<Saveable> uptr;
+	typedef QSharedPointer<Saveable> sptr;
+	typedef QWeakPointer<Saveable> wptr;
+
 
     /**
      * Gets the internal state of the object as a Memento.

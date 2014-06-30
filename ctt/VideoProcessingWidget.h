@@ -1,6 +1,9 @@
 #if !defined(_VIDEOPROCESSINGWIDGET_H)
 #define _VIDEOPROCESSINGWIDGET_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Video.h"
 #include "VideoFileType.h"
 #include "VideoWidget.h"
@@ -15,6 +18,11 @@ namespace view {
  *	as it holds the means to display a video.
  */
 class VideoProcessingWidget : public QWidget{
+public:
+	typedef QScopedPointer<VideoProcessingWidget> uptr;
+	typedef QSharedPointer<VideoProcessingWidget> sptr;
+	typedef QWeakPointer<VideoProcessingWidget> wptr;
+
 public slots:
 	/**
 	 *	This method is called when the user changes the state of the checkbox.

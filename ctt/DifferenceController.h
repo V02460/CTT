@@ -4,6 +4,9 @@
 #if !defined(_DIFFERENCECONTROLLER_H)
 #define _DIFFERENCECONTROLLER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 #include "SaveableList<T extends Saveable>.h"
 
@@ -13,6 +16,11 @@ namespace controller {
 *	The DifferenceController manages requests to manipulate the list of difference functions.
 **/
 class DifferenceController : public Observer {
+public:
+	typedef QScopedPointer<DifferenceController> uptr;
+	typedef QSharedPointer<DifferenceController> sptr;
+	typedef QWeakPointer<DifferenceController> wptr;
+
 public slots:
 
 	/**
