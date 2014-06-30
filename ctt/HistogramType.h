@@ -17,7 +17,9 @@ enum HistogramType {
 	Red,
 	Green,
 	Blue,
-	Luminance
+	Luminance,
+	Hue,
+	Saturation
 };
 
 }  // namespace histogram

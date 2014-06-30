@@ -11,12 +11,20 @@
 namespace model {
 namespace filter {
 
+/**
+ *	Provides a new version of the predecessors frame where noise has been added.
+ */
 class NoiseFilter : public Filter {
 public:
 	typedef QScopedPointer<NoiseFilter> uptr;
 	typedef QSharedPointer<NoiseFilter> sptr;
 	typedef QWeakPointer<NoiseFilter> wptr;
 
+	/**
+	*	Creates a new NoiseFilter object with a given previous module.
+	*
+	*	@param previous The previous module of this filter.
+	*/
 	NoiseFilter(const Module &predecessor);
 	virtual ~NoiseFilter();
 
