@@ -8,6 +8,8 @@
 #include "Overlay.h"
 #include "Frame.h"
 #include "Memento.h"
+#include "GreyscaleFilter.h"
+
 
 namespace model {
 namespace filter {
@@ -29,6 +31,12 @@ public:
 	virtual bool supportsIntervals() const;
 	virtual QString getName() const;
 	virtual frame::Frame getFrame(unsigned int frameNumber) const;
+
+protected:
+	const model::filter::GreyscaleFilter &getGreyscaleFilter() const;
+
+private:
+	model::filter::GreyscaleFilter::uptr greyscaleFilter;
 };
 
 
