@@ -372,13 +372,10 @@
       <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="HueHistogram.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Saturation.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
     </ClCompile>
     <ClCompile Include="SaturationHistogram.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -685,13 +682,10 @@
       <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="HueHistogram.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Saturation.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
     <ClInclude Include="SaturationHistogram.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

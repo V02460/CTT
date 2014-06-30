@@ -213,7 +213,6 @@
     <ClCompile Include="HSLPixelDiff.cpp" />
     <ClCompile Include="HueHistogram.cpp" />
     <ClCompile Include="InsertionWidget.cpp" />
-    <ClCompile Include="Saturation.cpp" />
     <ClCompile Include="SaturationHistogram.cpp" />
     <ClCompile Include="UIntegerInterval.cpp" />
     <ClCompile Include="LuminanceHistogram.cpp" />
@@ -345,7 +344,6 @@
     <ClInclude Include="HSLPixelDiff.h" />
     <ClInclude Include="HueHistogram.h" />
     <ClInclude Include="InsertionWidget.h" />
-    <ClInclude Include="Saturation.h" />
     <ClInclude Include="SaturationHistogram.h" />
     <ClInclude Include="UIntegerInterval.h" />
     <ClInclude Include="LuminanceHistogram.h" />
