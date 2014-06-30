@@ -335,9 +335,6 @@
     <ClCompile Include="ViewState.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
-    <ClCompile Include="VideoSaverFactory.cpp">
-      <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
     <ClCompile Include="OperationList.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
@@ -647,9 +644,6 @@
     </ClInclude>
     <ClInclude Include="VideoRemovedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
-    </ClInclude>
-    <ClInclude Include="VideoSaverFactory.h">
-      <Filter>Header Files\Model\Video</Filter>
     </ClInclude>
     <ClInclude Include="VideoWidget.h">
       <Filter>Header Files\View</Filter>

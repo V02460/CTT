@@ -252,7 +252,6 @@
     <ClCompile Include="VideoMetadata.cpp" />
     <ClCompile Include="VideoProcessingWidget.cpp" />
     <ClCompile Include="VideoRemovedOperation.cpp" />
-    <ClCompile Include="VideoSaverFactory.cpp" />
     <ClCompile Include="VideoScrubber.cpp" />
     <ClCompile Include="VideoWidget.cpp" />
     <ClCompile Include="ViewState.cpp" />
@@ -408,7 +407,6 @@
     <ClInclude Include="VideoProcessingWidget.h" />
     <ClInclude Include="VideoRemovedOperation.h" />
     <ClInclude Include="VideoSaver.h" />
-    <ClInclude Include="VideoSaverFactory.h" />
     <CustomBuild Include="VideoScrubber.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing VideoScrubber.h...</Message>
