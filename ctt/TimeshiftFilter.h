@@ -1,6 +1,9 @@
 #if !defined(_TIMESHIFTFILTER_H)
 #define _TIMESHIFTFILTER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 namespace model {
 namespace filter {
 
@@ -10,6 +13,10 @@ namespace filter {
 
 class TimeshiftFilter : public Filter {
 public:
+	typedef QScopedPointer<TimeshiftFilter> uptr;
+	typedef QSharedPointer<TimeshiftFilter> sptr;
+	typedef QWeakPointer<TimeshiftFilter> wptr;
+
 	QString getName();
 	Frame getFrame(int frameNumber);
 	Memento getMemento();

@@ -1,6 +1,9 @@
 #if !defined(_PLAYER_H)
 #define _PLAYER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Saveable.h"
 #include "VideoScrubber.h"
 #include "UIntegerInterval.h"
@@ -19,6 +22,10 @@ class Player : public Saveable, public QObject {
 	Q_OBJECT
 
 public:
+	typedef QScopedPointer<Player> uptr;
+	typedef QSharedPointer<Player> sptr;
+	typedef QWeakPointer<Player> wptr;
+
     /**
      * Creates a new player with an empty list of scrubbers and and initializes the playback speed with the submitted paramater.
      *

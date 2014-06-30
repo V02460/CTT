@@ -1,6 +1,9 @@
 #if !defined(_FILTERLISTOPERATION_H)
 #define _FILTERLISTOPERATION_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Operation.h"
 #include "Filter.h"
 #include "FilterList.h"
@@ -13,6 +16,10 @@ namespace operation {
 **/
 class FilterListOperation : public Operation {
 public:
+	typedef QScopedPointer<FilterListOperation> uptr;
+	typedef QSharedPointer<FilterListOperation> sptr;
+	typedef QWeakPointer<FilterListOperation> wptr;
+
 
 	/**
 	*	Manages requests to manipulate the FilterList.

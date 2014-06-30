@@ -1,6 +1,9 @@
 #if !defined(_INSERTIONWIDGET_H)
 #define _INSERTIONWIDGET_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "ViewState.h"
 #include "Observer.h"
 #include <QWidget>
@@ -13,6 +16,11 @@ namespace view {
  * Based on the current state of the view the insertion widget enables the user to choose the filter or difference to add to the list views
  */
 class InsertionWidget : public Observer, public QWidget {
+public:
+	typedef QScopedPointer<InsertionWidget> uptr;
+	typedef QSharedPointer<InsertionWidget> sptr;
+	typedef QWeakPointer<InsertionWidget> wptr;
+
 public slots:
 	/**
 	 *	Adjusts the InsertionWidget according to the current state of tht whole view.

@@ -1,6 +1,9 @@
 #if !defined(_PLAYERCONTROLLER_H)
 #define _PLAYERCONTROLLER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 #include "Player.h"
 
@@ -10,6 +13,11 @@ namespace controller {
 *	The PlayerController is notified when the state of the player changes and passes this information to all relevant components.
 **/
 class PlayerController : public Observer {
+public:
+	typedef QScopedPointer<PlayerController> uptr;
+	typedef QSharedPointer<PlayerController> sptr;
+	typedef QWeakPointer<PlayerController> wptr;
+
 public slots:
 
 	/**

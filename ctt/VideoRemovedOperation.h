@@ -1,6 +1,9 @@
 #if !defined(_VIDEOREMOVEDOPERATION_H)
 #define _VIDEOREMOVEDOPERATION_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "VideoListOperation.h"
 
 namespace controller {
@@ -11,6 +14,10 @@ namespace operation {
 **/
 class VideoRemovedOperation : public VideoListOperation {
 public:
+	typedef QScopedPointer<VideoRemovedOperation> uptr;
+	typedef QSharedPointer<VideoRemovedOperation> sptr;
+	typedef QWeakPointer<VideoRemovedOperation> wptr;
+
 
 	/**
 	*	Constructs an Operation that is responsible for removing a specified Video from a VideoList.

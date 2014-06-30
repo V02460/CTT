@@ -1,6 +1,9 @@
 #if !defined(_MACROBLOCKTYPE_H)
 #define _MACROBLOCKTYPE_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 namespace model {
 namespace frame {
 

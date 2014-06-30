@@ -1,6 +1,9 @@
 #if !defined(_FFMPEGDATAVIDEO_H)
 #define _FFMPEGDATAVIDEO_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Video.h"
 #include "Frame.h"
 #include "Memento.h"
@@ -14,6 +17,10 @@ namespace video {
  */
 class FFmpegDataVideo : public FileVideo {
 public:
+	typedef QScopedPointer<FFmpegDataVideo> uptr;
+	typedef QSharedPointer<FFmpegDataVideo> sptr;
+	typedef QWeakPointer<FFmpegDataVideo> wptr;
+
 	/**
 	 * Creates a new FFmpegDataVideo representing the mpeg-2, mpeg-4 part 2 or mpeg-4 part 10 video at the submitted location in the file system.
 	 * @param path the path to the video file which will be loaded

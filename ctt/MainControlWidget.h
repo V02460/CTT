@@ -1,6 +1,9 @@
 #if !defined(_MAINCONTROLWIDGET_H)
 #define _MAINCONTROLWIDGET_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 #include "ExtendedTimeline.h"
 #include "AbstractListView.h"
@@ -14,6 +17,11 @@ namespace view {
  *	The MainControlWidget holds all components used for video playback, filer/ difference insertion and changing.
  */
 class MainControlWidget : public Observer, public QWidget {
+public:
+	typedef QScopedPointer<MainControlWidget> uptr;
+	typedef QSharedPointer<MainControlWidget> sptr;
+	typedef QWeakPointer<MainControlWidget> wptr;
+
 public slots:
 	/**
 	 *	Hides the ExtendedTimeline widget and shows the insertion widget, as long as the button is active.

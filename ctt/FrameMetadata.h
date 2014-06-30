@@ -1,6 +1,9 @@
 #if !defined(_FRAMEMETADATA_H)
 #define _FRAMEMETADATA_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include <QSize>
 #include <QVector>
 #include <QVector2D>
@@ -16,6 +19,10 @@ namespace frame {
 */
 class FrameMetadata {
 public:
+	typedef QScopedPointer<FrameMetadata> uptr;
+	typedef QSharedPointer<FrameMetadata> sptr;
+	typedef QWeakPointer<FrameMetadata> wptr;
+
 	/**
 	 * Creates a container holding metadata information for a Frame.
 	 *

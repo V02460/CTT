@@ -1,6 +1,9 @@
 #if !defined(_PLAYERFUNCTIONS_H)
 #define _PLAYERFUNCTIONS_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observable.h"
 #include "PlayerController.h"
 #include <QWidget>
@@ -14,6 +17,10 @@ namespace view {
  */
 class PlayerFunctions : public Observable , public QWidget{
 public:
+	typedef QScopedPointer<PlayerFunctions> uptr;
+	typedef QSharedPointer<PlayerFunctions> sptr;
+	typedef QWeakPointer<PlayerFunctions> wptr;
+
 	/**
 	 *	Connects the signals from the interactable components to the corresponding slots in a PlayerController.
 	 *

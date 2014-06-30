@@ -1,6 +1,9 @@
 #if !defined(_FRAMEDIFF_H)
 #define _FRAMEDIFF_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Saveable.h"
 #include "Video.h"
 #include "Memento.h"
@@ -14,6 +17,10 @@ namespace difference {
  */
 class FrameDiff : public Saveable {
 public:
+	typedef QScopedPointer<FrameDiff> uptr;
+	typedef QSharedPointer<FrameDiff> sptr;
+	typedef QWeakPointer<FrameDiff> wptr;
+
     /**
      * Calculates and returns a one dimensional difference between the frames with the submitted number of the two videos this FrameDiff compares. A low value means the frames were similar, a high value indicates a huge difference.
      *

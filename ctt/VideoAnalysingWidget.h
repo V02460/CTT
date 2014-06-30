@@ -1,6 +1,9 @@
 #if !defined(_VIDEOANALYSINGWIDGET_H)
 #define _VIDEOANALYSINGWIDGET_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "VideoWidget.h"
 #include "HistogramWidget.h"
 #include "FrameMetadataWidget.h"
@@ -15,6 +18,10 @@ namespace view {
  */
 class VideoAnalysingWidget : public QWidget {
 public:
+	typedef QScopedPointer<VideoAnalysingWidget> uptr;
+	typedef QSharedPointer<VideoAnalysingWidget> sptr;
+	typedef QWeakPointer<VideoAnalysingWidget> wptr;
+
 	/**
 	 *	Returns the identifier string of the currently chosen overlay.
 	 *

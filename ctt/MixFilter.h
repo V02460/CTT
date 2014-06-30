@@ -1,6 +1,9 @@
 #if !defined(_MIXFILTER_H)
 #define _MIXFILTER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Filter.h"
 #include "Frame.h"
 #include "Memento.h"
@@ -10,6 +13,10 @@ namespace filter {
 
 class MixFilter : public Filter {
 public:
+	typedef QScopedPointer<MixFilter> uptr;
+	typedef QSharedPointer<MixFilter> sptr;
+	typedef QWeakPointer<MixFilter> wptr;
+
 	QString getName();
 	Frame getFrame(int frameNumber);
 	Memento getMemento();

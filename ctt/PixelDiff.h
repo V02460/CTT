@@ -1,6 +1,9 @@
 #if !defined(_PIXELDIFF_H)
 #define _PIXELDIFF_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "FrameDiff.h"
 #include "Video.h"
 #include "Memento.h"
@@ -14,6 +17,10 @@ namespace difference {
  */
 class PixelDiff : public FrameDiff {
 public:
+	typedef QScopedPointer<PixelDiff> uptr;
+	typedef QSharedPointer<PixelDiff> sptr;
+	typedef QWeakPointer<PixelDiff> wptr;
+
 	/**
 	* Calculates and returns a two-dimensional, pixel by pixel difference between the frames with the submitted number of the two videos this PixelDiff compares. A low value means the frames were similar, a high value indicates a huge difference.
 	* For every pair of corresponding pixels, the distance is written to the corresponding texel in the surface.

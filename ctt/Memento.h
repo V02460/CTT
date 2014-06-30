@@ -1,11 +1,18 @@
 #if !defined(_MEMENTO_H)
 #define _MEMENTO_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 namespace model {
 namespace project {
 
 class Memento {
 public:
+	typedef QScopedPointer<Memento> uptr;
+	typedef QSharedPointer<Memento> sptr;
+	typedef QWeakPointer<Memento> wptr;
+
 	void setBool(bool value, QString name);
 	bool getBool(QString name);
 	void setInt(int value, QString name);

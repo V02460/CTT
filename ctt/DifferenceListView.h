@@ -1,6 +1,9 @@
 #if !defined(_DIFFERENCELISTVIEW_H)
 #define _DIFFERENCELISTVIEW_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "AbstractListView.h"
 
 namespace view {
@@ -11,6 +14,11 @@ namespace base_components {
  *	Every difference is shown with its parameters which are the two videos on which the difference is calculated.
  */
 class DifferenceListView : public AbstractListView {
+public:
+	typedef QScopedPointer<DifferenceListView> uptr;
+	typedef QSharedPointer<DifferenceListView> sptr;
+	typedef QWeakPointer<DifferenceListView> wptr;
+
 };
 
 }  // namespace base_components

@@ -1,6 +1,9 @@
 #if !defined(_FPSCHANGINGOPERATION_H)
 #define _FPSCHANGINGOPERATION_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Operation.h"
 
 namespace controller {
@@ -11,6 +14,10 @@ namespace operation {
 **/
 class FPSChangingOperation : public Operation {
 public:
+	typedef QScopedPointer<FPSChangingOperation> uptr;
+	typedef QSharedPointer<FPSChangingOperation> sptr;
+	typedef QWeakPointer<FPSChangingOperation> wptr;
+
 
 	/**
 	*	Constructs an Operation that is responsible for changing the FPS with which a video is displayed.

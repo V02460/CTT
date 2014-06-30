@@ -1,6 +1,9 @@
 #if !defined(_FILTERREMOVEDOPERATION_H)
 #define _FILTERREMOVEDOPERATION_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "FilterListOperation.h"
 #include "FilterList.h"
 
@@ -12,6 +15,10 @@ namespace operation {
 **/
 class FilterRemovedOperation : public FilterListOperation {
 public:
+	typedef QScopedPointer<FilterRemovedOperation> uptr;
+	typedef QSharedPointer<FilterRemovedOperation> sptr;
+	typedef QWeakPointer<FilterRemovedOperation> wptr;
+
 
 	/**
 	*	Constructs an Operation that is responsible for removing a filter with a specified FilterList-index from this FilterList.

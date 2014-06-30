@@ -1,6 +1,9 @@
 #if !defined(_OPERATION_H)
 #define _OPERATION_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 namespace controller {
 namespace operation {
 
@@ -9,6 +12,10 @@ namespace operation {
 **/
 class Operation {
 public:
+	typedef QScopedPointer<Operation> uptr;
+	typedef QSharedPointer<Operation> sptr;
+	typedef QWeakPointer<Operation> wptr;
+
 	/**
 	*	Manages doing the Operation specified in this class.
 	**/

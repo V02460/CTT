@@ -1,6 +1,12 @@
 #if !defined(_VIDEO_H)
 #define _VIDEO_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Module.h"
 #include "Frame.h"
 #include "Memento.h"
@@ -17,6 +23,10 @@ namespace video {
  */
 class Video : public Module {
 public:
+	typedef QScopedPointer<Video> uptr;
+	typedef QSharedPointer<Video> sptr;
+	typedef QWeakPointer<Video> wptr;
+
     /**
      * Gets the metadata of the Video which are valid for the whole video and not just specific frames
      *
