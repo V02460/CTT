@@ -12,12 +12,21 @@ namespace model {
 namespace filter {
 namespace overlay {
 
+/**
+ *	Provides a new version of the predecessors frame with the graphical representation of motion vectors mixed into it.
+ */
 class MotionVectorOverlay : public Overlay {
 public:
 	typedef QScopedPointer<MotionVectorOverlay> uptr;
 	typedef QSharedPointer<MotionVectorOverlay> sptr;
 	typedef QWeakPointer<MotionVectorOverlay> wptr;
 
+	/**
+	*	Creates a new MotionVectorOverlay object with a given previous module.
+	*
+	*	@param previous The previous module of this filter.
+	*/
+	MotionVectorOverlay(Module previous);
 	QString getName();
 	Frame getFrame(int frameNumber);
 	Memento getMemento();
