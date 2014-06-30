@@ -6,6 +6,8 @@
 #include <QWeakPointer>
 #include "Observer.h"
 #include "SaveFileType.h"
+#include "ProjectSaver.h"
+#include "ProjectLoader.h"
 
 namespace controller {
 
@@ -46,9 +48,24 @@ public slots:
 	*	Is called when a notifaction is received that a new Project should be created.
 	**/
 	void newProject();
+
+	/**
+	 * Sets given saver to be used to save projects.
+	 * 
+	 * @param saver The saver to be used to save projects.
+	 */
+	void setSaver(ProjectSaver saver);
+
+	/**
+	 * Sets given loader to be used to load projects.
+	 *
+	 * @param loader The loader to be used to load projects.
+	 */
+	void setLoader(ProjectLoader loader);
 private:
 	QDir currentSavePath;
-	SaveFileType currentSaveFileType;
+	ProjectSaver saver;
+	ProjectLoader loader;
 };
 
 }  // namespace controller

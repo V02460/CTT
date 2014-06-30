@@ -238,7 +238,6 @@
     <ClCompile Include="ProjectController.cpp" />
     <ClCompile Include="ProjectLoader.cpp" />
     <ClCompile Include="ProjectSaver.cpp" />
-    <ClCompile Include="ProjectSaverFactory.cpp" />
     <ClCompile Include="RedHistogram.cpp" />
     <ClCompile Include="RescaleFilter.cpp" />
     <ClCompile Include="RGBChannelFilter.cpp" />
@@ -391,12 +390,10 @@
     <ClInclude Include="ProjectController.h" />
     <ClInclude Include="ProjectLoader.h" />
     <ClInclude Include="ProjectSaver.h" />
-    <ClInclude Include="ProjectSaverFactory.h" />
     <ClInclude Include="RedHistogram.h" />
     <ClInclude Include="RescaleFilter.h" />
     <ClInclude Include="RGBChannelFilter.h" />
     <ClInclude Include="Saveable.h" />
-    <ClInclude Include="SaveFileType.h" />
     <ClInclude Include="ThumbnailListWidget.h" />
     <ClInclude Include="TimelineInterval.h" />
     <ClInclude Include="TimeshiftFilter.h" />

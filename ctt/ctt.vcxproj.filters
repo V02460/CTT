@@ -311,9 +311,6 @@
     <ClCompile Include="VideoProcessingWidget.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
-    <ClCompile Include="ProjectSaverFactory.cpp">
-      <Filter>Source Files\Model\Project</Filter>
-    </ClCompile>
     <ClCompile Include="ProjectSaver.cpp">
       <Filter>Source Files\Model\Project</Filter>
     </ClCompile>
@@ -582,14 +579,8 @@
     <ClInclude Include="ProjectSaver.h">
       <Filter>Header Files\Model\Project</Filter>
     </ClInclude>
-    <ClInclude Include="ProjectSaverFactory.h">
-      <Filter>Header Files\Model\Project</Filter>
-    </ClInclude>
     <ClInclude Include="RGBChannelFilter.h">
       <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveFileType.h">
-      <Filter>Header Files\Model\Project</Filter>
     </ClInclude>
     <ClInclude Include="ThumbnailListWidget.h">
       <Filter>Header Files\View</Filter>

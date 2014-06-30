@@ -12,7 +12,6 @@ namespace project {
 
 /**
  * Objects, whose state can be externalised into a memento and restored from one.
- *
  */
 class Saveable {
 
@@ -21,6 +20,9 @@ public:
 	typedef QSharedPointer<Saveable> sptr;
 	typedef QWeakPointer<Saveable> wptr;
 
+	/**
+	 * The destructor of this class.
+	 */
 	virtual ~Saveable();
 
     /**
