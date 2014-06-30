@@ -388,7 +388,6 @@
     <ClInclude Include="ProcessingWidget.h" />
     <ClInclude Include="ProjectController.h" />
     <ClInclude Include="ProjectLoader.h" />
-    <ClInclude Include="ProjectLoaderFactory.h" />
     <ClInclude Include="ProjectSaver.h" />
     <ClInclude Include="ProjectSaverFactory.h" />
     <ClInclude Include="RedHistogram.h" />
