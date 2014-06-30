@@ -4,11 +4,12 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QTimer>
+#include <QObject>
 #include "Saveable.h"
 #include "VideoScrubber.h"
 #include "UIntegerInterval.h"
 #include "Memento.h"
-#include <QTimer>
 
 namespace model {
 namespace player {
@@ -18,7 +19,7 @@ namespace player {
  * The player will adapt to the shortest video and ignore all parts of the other videos exceeding this length.
  *
  */
-class Player : public Saveable, public QObject {
+class Player : public project::Saveable, public QObject {
 	Q_OBJECT
 
 public:
@@ -76,15 +77,15 @@ public:
      * @return double the currently set playback speed in frames per second
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    double getFPS();
+    double getFPS() const;
 
     /**
      * Gets a list of all the VideoScrubbers currently subscribed to this player.
      *
-     * @return List<VideoSrubber> a list of all the VideoScrubebrs currently subscribed to this player.
+     * @return QList<VideoScrubber::wptr> a list of all the VideoScrubebrs currently subscribed to this player.
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    QList<VideoScrubber> getScrubbers();
+    QList<VideoScrubber::wptr> getScrubbers() const;
 
     /**
      * Checks whether the player is currently playing.
@@ -92,7 +93,7 @@ public:
      * @return bool true only if the player is currently playing
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    bool isPlaying();
+    bool isPlaying() const;
 
     /**
      * Adds a VideoScrubber to the list of VideoScrubbers controlled by the player at the end of that list.
@@ -100,7 +101,7 @@ public:
      * @param scrubber the scrubber that will be added to the list
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    void addScrubber(VideoScrubber scrubber);
+    void addScrubber(VideoScrubber::sptr scrubber);
 
     /**
      * Adds a VideoScrubber to the list of VideoScrubbers controlled by the player at the submitted position.
@@ -109,7 +110,7 @@ public:
      * @param position the position of the list the player will be inserted at
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    void addScrubber(VideoScrubber scrubber, int position);
+    void addScrubber(VideoScrubber::sptr scrubber, int position);
 
     /**
      * Removes the VideoScrubber with the submitted position from the list of VideoScrbbers controlled by the player.
@@ -126,7 +127,7 @@ public:
      * @param scrubber this scrubber will be removed
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    void removeScrubber(VideoScrubber scrubber);
+    void removeScrubber(const VideoScrubber &scrubber);
 
     /**
      * Checks, whether the player controls a specific scrubber.
@@ -135,7 +136,7 @@ public:
      * @return bool true only if the scrubber is controlled by the player
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    bool controlsScrubber(VideoScrubber scrubber);
+    bool controlsScrubber(const VideoScrubber &scrubber) const;
 
     /**
      * Returns the number of scrubbers controlled by this player.
@@ -143,7 +144,7 @@ public:
      * @return int the number of scrubbers controlled by this player
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-	unsigned int scrubberCount();
+	unsigned int scrubberCount() const;
 
     /**
      * Checks whether all of the scrubbers controlled by this player can provide the frame after the current frame.
@@ -151,7 +152,7 @@ public:
      * @return bool true only if all of the scrubbers controlled by this player can provide the frame after the current frame.
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    bool hasNextFrame();
+    bool hasNextFrame() const;
 
 	/**
 	 * Checks whether all of the scrubbers controlled by this player can provide the frame before the current frame.
@@ -159,7 +160,7 @@ public:
 	 * @return bool true only if all of the scrubbers controlled by this player can provide the frame before the current frame.
 	 * @throws IllegalStateException if the the method was called on a dummy
 	 */
-    bool hasPreviousFrame();
+    bool hasPreviousFrame() const;
 
     /**
      * Gets the length in frames per second of the shortest Video the scrubbers of this player use to get their frames from.
@@ -167,7 +168,7 @@ public:
      * @return int the length in frames per second of the shortest Video the scrubbers of this player use to get their frames from
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-	unsigned int getVideoLength();
+	unsigned int getVideoLength() const;
 
     /**
      * Gets the number of the current frame.
@@ -175,7 +176,7 @@ public:
      * @return int the number of the current frame
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-	unsigned int getCurrentFrameNumber();
+	unsigned int getCurrentFrameNumber() const;
 
     /**
      * Tells the player to loop in the submitted interval. If the current frame isn't in the loop interval, the player will jump to the first frame in the loop interval.
@@ -192,7 +193,7 @@ public:
      * @return IntegerInterval the interval the player currently loops in
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    UIntegerInterval getLoop();
+    UIntegerInterval getLoop() const;
 
     /**
      * Checks whether the player is currently looping.
@@ -200,21 +201,13 @@ public:
      * @return bool true only if the player is currently looping.
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    bool isLooping();
+    bool isLooping() const;
 
     /**
      * The player stops looping. If the player isn't currently looping, nothing happens.
      * @throws IllegalStateException if the the method was called on a dummy
      */
     void stopLooping();
-
-    Memento getMemento();
-
-    void restore(Memento memento);
-
-    Saveable* getDummy();
-
-	boolean isDummy();
 
 public slots:
     /**

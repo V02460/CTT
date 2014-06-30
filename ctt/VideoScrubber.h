@@ -4,13 +4,13 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QObject>
 #include "Saveable.h"
 #include "Observable.h"
 #include "Frame.h"
 #include "Video.h"
 #include "VideoMetadata.h"
 #include "Memento.h"
-#include <QObject>
 
 namespace model {
 namespace player {
@@ -19,7 +19,7 @@ namespace player {
  * A VideoScrubber is associated with a video and able to request frames from this video to save one of them internally.
  * It makes this frame available to other objects and notifies them via Qt's signal and slot mechanism when this frame is replaced.
  */
-class VideoScrubber : public Saveable, public Observable, public QObject {
+class VideoScrubber : public project::Saveable, public Observable, public QObject {
 	Q_OBJECT
 public:
 	typedef QScopedPointer<VideoScrubber> uptr;
@@ -32,7 +32,7 @@ public:
      * @param video the scrubber will use this video to get frames
 	 * @throws InvalidArgumentException if the submitted video is invalid
      */
-    VideoScrubber(Video video);
+    VideoScrubber(video::Video::sptr video);
 
     /**
      * Creates a new VideoScrubber for the submitted video, initially holding the frame with the submitted number.
@@ -41,7 +41,7 @@ public:
      * @param frameNumber the scrubber will initially hold the frame with this number
      * @throws InvalidArgumentException if the submitted video is invalid or if it doesn't have a frame with the submitted number
      */
-    VideoScrubber(Video video, unsigned int frameNumber);
+    VideoScrubber(video::Video::sptr video, unsigned int frameNumber);
 
     /**
      * Gets the metadata of the Video this VideoScrubber is associated with.
@@ -49,7 +49,7 @@ public:
      * @return VideoMetadata the metadata of the Video this VideoScrubber is associated with
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    VideoMetadata getVideoMetadata();
+    video::VideoMetadata getVideoMetadata() const;
 
     /**
      * Gets the Video this VideoScrubber is associated with.
@@ -57,7 +57,7 @@ public:
      * @return Video the Video this VideoScrubber is associated with.
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    Video getVideo();
+    video::Video::sptr getVideo() const;
 
     /**
      * Gets the frame currently held by the scrubber.
@@ -65,7 +65,7 @@ public:
      * @return Frame the frame currently held by the scrubber
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    Frame getCurrentFrame();
+    frame::Frame::sptr getCurrentFrame() const;
 
 	/**
 	 * Checks whether the Scrubber is still waiting for the frame it requested last.
@@ -73,13 +73,7 @@ public:
 	 * @return bool true only if the Scrubber is still waiting for the frame it requested last.
 	 * @throws IllegalStateException if the the method was called on a dummy
 	 */
-	bool isWaitingForFrame();
-
-    Memento getMemento();
-
-    void restore(Memento memento);
-
-    Saveable* getDummy();
+	bool isWaitingForFrame() const;
 
 public slots:
     /**
@@ -92,9 +86,9 @@ public slots:
     void jumpToFrameNr(unsigned int frameNumber);
 
 private:
-    Video *video; /**< The scrubber gets frames and metadata from this video */
-    Frame *currentFrame; /**< This is the frame currently held by the scrubber */
-	bool waitingForFrame /**< This is true while Scrubber is still waiting for the frame it requested last*/
+    video::Video *video; /**< The scrubber gets frames and metadata from this video */
+    frame::Frame *currentFrame; /**< This is the frame currently held by the scrubber */
+	bool waitingForFrame; /**< This is true while Scrubber is still waiting for the frame it requested last*/
 };
 
 }  // namespace player
