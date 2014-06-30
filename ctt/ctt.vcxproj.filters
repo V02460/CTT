@@ -582,9 +582,6 @@
     <ClInclude Include="ProjectSaver.h">
       <Filter>Header Files\Model\Project</Filter>
     </ClInclude>
-    <ClInclude Include="ProjectLoaderFactory.h">
-      <Filter>Header Files\Model\Project</Filter>
-    </ClInclude>
     <ClInclude Include="ProjectSaverFactory.h">
       <Filter>Header Files\Model\Project</Filter>
     </ClInclude>
