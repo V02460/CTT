@@ -25,9 +25,10 @@ public:
 	/**
 	 * Saves the current state of the project to a file.
 	 *
+	 * @param project The project to be loaded to.
 	 * @throws IOException Is thrown if for any reason the file cant be written.
 	 */
-	void save(QDir path);
+	static void save(QDir path, Project project);
 
 private:
 	Saveable *toSave;

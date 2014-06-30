@@ -24,11 +24,12 @@ public:
 	 * The restore method loads a project from the given file. It is highly recommended to override this method.
 	 *
 	 * @param path The path of the file to load the project from.
+	 * @param project The project to be saved.
 	 * @throws NotImplementedException Is thrown by this interface and every implementation, which does not override this method.
 	 * @throws IOException Is thrown if there is any problem acsessing or reading the given file.
 	 * @throws ParseException Is thrown if the content of the file can not be used to restore a project by the loader.
 	 */
-	void restore(QDir path);
+	static void restore(QDir path, Project project);
 };
 
 }  // namespace project

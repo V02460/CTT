@@ -10,8 +10,8 @@
 namespace controller {
 
 /**
-*	The ProjectController manages requests to initialise, save or load a Project.
-**/
+ *	The ProjectController manages requests to initialise, save or load a Project.
+ */
 class ProjectController : public Observer {
 public:
 	typedef QScopedPointer<ProjectController> uptr;

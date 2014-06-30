@@ -690,5 +690,11 @@
     <ClInclude Include="TimelineInterval.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
+    <ClInclude Include="Project.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="FileVideo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

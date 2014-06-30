@@ -2,7 +2,7 @@
 #include "Video.h"
 
 /**
- * A Video read from a mpeg - 2, mpeg - 4 part 2 or mpeg - 4 part 10 video file.
+ * A Video read from a video file.
  */
 class FileVideo :
 	public Video
