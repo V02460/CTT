@@ -12,12 +12,21 @@ namespace model {
 namespace filter {
 namespace overlay {
 
+/**
+ *	Provides a new version of the predecessors frame with the graphical representation of macropartitions mixed into it.
+ */
 class MacropartionOverlay : public Overlay {
 public:
 	typedef QScopedPointer<MacropartionOverlay> uptr;
 	typedef QSharedPointer<MacropartionOverlay> sptr;
 	typedef QWeakPointer<MacropartionOverlay> wptr;
 
+	/**
+	*	Creates a new MacropartitionOverlay object with a given previous module.
+	*
+	*	@param previous The previous module of this filter.
+	*/
+	MacropartitionOverlay(Module previous);
 	QString getName();
 	Frame getFrame(int frameNumber);
 	Memento getMemento();
