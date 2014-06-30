@@ -6,6 +6,7 @@
 #include <QWeakPointer>
 #include "FrameDiff.h"
 #include "Video.h"
+#include "PixelDiff.h"
 
 namespace model {
 namespace difference {
@@ -16,8 +17,10 @@ public:
 	typedef QSharedPointer<DifferenceFactory> sptr;
 	typedef QWeakPointer<DifferenceFactory> wptr;
 
-	List<QString> getAllDiffIDs();
-	FrameDiff createDiff(QString id, Video video1, Video video2);
+	QList<QString> getAllFrameDiffIDs();
+	QList<QString> getAllPixelDiffIDs();
+	FrameDiff createFrameDiff(QString id, model::video::Video video1, model::video::Video video2);
+	PixelDiff createPixelDiff(QString id, model::video::Video video1, model::video::Video video2);
 };
 
 }  // namespace difference
