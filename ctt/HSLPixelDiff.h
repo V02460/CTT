@@ -11,6 +11,9 @@
 namespace model {
 namespace difference {
 
+/**
+ * Calculates the distances in the HSL-colorspace between frames for every pair of corresponding pixels, and is able to normalize the resulting matrix if required.
+ */
 class HSLPixelDiff : public PixelDiff {
 public:
 	typedef QScopedPointer<HSLPixelDiff> uptr;
