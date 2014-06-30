@@ -344,9 +344,6 @@
     <ClCompile Include="YUVPixelDiff.cpp">
       <Filter>Source Files\Model\Difference</Filter>
     </ClCompile>
-    <ClCompile Include="YUVVideoSaver.cpp">
-      <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_VideoScrubber.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -611,9 +608,6 @@
     </ClInclude>
     <ClInclude Include="ZoomFunctions.h">
       <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="YUVVideoSaver.h">
-      <Filter>Header Files\Model\Video</Filter>
     </ClInclude>
     <ClInclude Include="VideoProcessingWidget.h">
       <Filter>Header Files\View</Filter>

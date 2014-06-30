@@ -256,7 +256,6 @@
     <ClCompile Include="ViewState.cpp" />
     <ClCompile Include="YUVDataVideo.cpp" />
     <ClCompile Include="YUVPixelDiff.cpp" />
-    <ClCompile Include="YUVVideoSaver.cpp" />
     <ClCompile Include="ZoomFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -430,7 +429,6 @@
     <ClInclude Include="XMLSaver.h" />
     <ClInclude Include="YUVDataVideo.h" />
     <ClInclude Include="YUVPixelDiff.h" />
-    <ClInclude Include="YUVVideoSaver.h" />
     <ClInclude Include="ZoomFunctions.h" />
   </ItemGroup>
   <ItemGroup>
