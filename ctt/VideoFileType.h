@@ -1,12 +1,12 @@
 #if !defined(_VIDEOFILETYPE_H)
 #define _VIDEOFILETYPE_H
 
-#include <QScopedPointer>
-#include <QSharedPointer>
-#include <QWeakPointer>
 namespace model {
 namespace video {
 
+/**
+ * Provides labels for videofile types.
+ */
 enum VideoFileType {
 	YUV
 };

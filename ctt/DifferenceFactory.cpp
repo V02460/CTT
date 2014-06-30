@@ -5,11 +5,11 @@
 namespace model {
 namespace difference {
 
-List<QString> DifferenceFactory::getAllDiffIDs() {
+QList<QString> DifferenceFactory::getAllDiffIDs() {
 
 }
 
-FrameDiff DifferenceFactory::createDiff(QString id, Video video1, Video video2) {
+FrameDiff::sptr DifferenceFactory::createDiff(QString id, const video::Video &video1, const video::Video &video2) {
 
 }
 

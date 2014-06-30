@@ -18,11 +18,12 @@ public:
 	typedef QSharedPointer<MacropartionOverlay> sptr;
 	typedef QWeakPointer<MacropartionOverlay> wptr;
 
-	QString getName();
-	Frame getFrame(int frameNumber);
-	Memento getMemento();
-	void restore(Memento memento);
-	Saveable* getDummy();
+	MacropartionOverlay(const Module &predecessor);
+	virtual ~MacropartionOverlay();
+
+	virtual bool supportsIntervals() const;
+	virtual QString getName() const;
+	virtual frame::Frame getFrame(unsigned int frameNumber) const;
 };
 
 }  // namespace overlay

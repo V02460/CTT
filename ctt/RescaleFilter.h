@@ -11,17 +11,26 @@
 namespace model {
 namespace filter {
 
+	/**
+	 *	Provides a new version of the predecessors frame which has been rescaled.
+	 */
 class RescaleFilter : public Filter {
 public:
 	typedef QScopedPointer<RescaleFilter> uptr;
 	typedef QSharedPointer<RescaleFilter> sptr;
 	typedef QWeakPointer<RescaleFilter> wptr;
 
-	QString getName();
-	Frame getFrame(int frameNumber);
-	Memento getMemento();
-	void restore(Memento memento);
-	Saveable* getDummy();
+	/**
+	*	Creates a new RescaleFilter object with a given previous module.
+	*
+	*	@param previous The previous module of this filter.
+	*/
+	RescaleFilter(const Module &predecessor);
+	virtual ~RescaleFilter();
+
+	virtual bool supportsIntervals() const;
+	virtual QString getName() const;
+	virtual frame::Frame getFrame(unsigned int frameNumber) const;
 };
 
 }  // namespace filter

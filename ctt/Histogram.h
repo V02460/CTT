@@ -27,14 +27,14 @@ public:
      * @return float the value for the entry with the number i
 	 * @throws Invalid
      */
-    float getValue(unsigned int i);
+    float getValue(unsigned int i) const;
 
     /**
      * Gets the type of the histogram, specifying the type of variable the histogram describes the distribution of. 
      *
      * @return HistogramType the type of the histogram
      */
-    virtual HistogramType getType();
+    virtual HistogramType getType() const = 0;
 
 protected:
 	float values[256];/**< The values of the histogram */

@@ -4,11 +4,12 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QOpenGLTexture>
+#include <QOpenGLContext>
+
 #include "Histogram.h"
 #include "HistogramType.h"
 #include "FrameMetadata.h"
-#include <QOpenGLTexture>
-#include <QOpenGLContext>
 #include "Surface.h"
 
 namespace model {
@@ -38,7 +39,7 @@ public:
      *
      * @return FrameMetadata the metadata of the Frame
      */
-    FrameMetadata getMetadata();
+    FrameMetadata getMetadata() const;
 
     /**
      * creates a histogram of the submitted type from the frame and returns it.
@@ -46,10 +47,10 @@ public:
      * @param type specifies the histogram type
      * @return Histogram a histogram of the submitted type.
      */
-    Histogram getHistogram(HistogramType type);
+    Histogram getHistogram(HistogramType type) const;
 
 private:
-    FrameMetadata *metadata; /**< Metadata containing additional information about the frame */
+    FrameMetadata::uptr metadata; /**< Metadata containing additional information about the frame */
 };
 
 }  // namespace frame

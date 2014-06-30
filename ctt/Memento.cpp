@@ -51,5 +51,13 @@ Pointer Memento::getPointer(QString name) {
 
 }
 
+QMap<QString, QString> Memento::getVariableMap() const {
+
+}
+
+QMap<QString, void*> Memento::getPointerMap() const {
+
+}
+
 }  // namespace project
 }  // namespace model

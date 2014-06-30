@@ -14,7 +14,7 @@ namespace model {
  * An object able to provide specific frames from a sequentially numbered set of frames.
  *
  */
-class Module : public Saveable {
+class Module : public model::project::Saveable {
 public:
 	typedef QScopedPointer<Module> uptr;
 	typedef QSharedPointer<Module> sptr;
@@ -28,12 +28,14 @@ public:
      * @throws InvalidArgumentException if the submitted frame number is too high.
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual Frame getFrame(unsigned int frameNumber);
+    virtual model::frame::Frame getFrame(unsigned int frameNumber);
 
     /**
-     * Gets a list of all Modules this Module uses directly or indirectly to create its frames, including this module itself.
+     * Gets a list of all Modules this Module uses directly or indirectly to create its frames, including this module
+	 * itself.
      *
-     * @return List<Module> a list of all Modules this Module uses directly or indirectly to create its frames, including this module itself
+     * @return List<Module> a list of all Modules this Module uses directly or indirectly to create its frames,
+	 *     including this module itself
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
     virtual QList<Module> getUsesList();
@@ -44,7 +46,7 @@ public:
      * @return int the number of the highest frame the module can return
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual unsigned int getFrameCount();
+    virtual unsigned int getFrameCount() const;
 
     /**
      * Checks whether the submitted module is this module, or used by this module directly or indirectly.
@@ -53,13 +55,7 @@ public:
      * @return bool true only if the submitted module is this module, or used by this module directly or indirectly
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual bool uses(Module module);
-
-    virtual Memento getMemento();
-
-    virtual void restore(Memento memento);
-
-    virtual Saveable* getDummy();
+    virtual bool uses(const model::Module &module) const;
 };
 
 }  // namespace model

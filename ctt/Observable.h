@@ -8,6 +8,10 @@
 
 namespace model {
 
+/**
+ * An Observable is an Object that Observers can subscribe to, to be notified via the changed() signal when the state of the Observable changes.
+ *
+ */
 class Observable : public QObject {
 public:
 	typedef QScopedPointer<Observable> uptr;

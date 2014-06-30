@@ -4,15 +4,11 @@
 namespace model {
 namespace difference {
 
-Memento FrameDiff::getMemento() {
+FrameDiff::FrameDiff(const video::Video &video1, const video::Video &video2) {
 
 }
 
-void FrameDiff::restore(Memento memento) {
-
-}
-
-Saveable* FrameDiff::getDummy() {
+unsigned int FrameDiff::getFrameCount() const {
 
 }
 

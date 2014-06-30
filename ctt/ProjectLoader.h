@@ -5,6 +5,7 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 #include <QDir>
+
 namespace model {
 namespace project {
 

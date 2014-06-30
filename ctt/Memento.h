@@ -4,6 +4,8 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QMap>
+
 namespace model {
 namespace project {
 
@@ -132,17 +134,17 @@ public:
 	 * 
 	 * @return The map of all variables.
 	 */
-	Map<QString, QString> getVariableMap();
+	QMap<QString, QString> getVariableMap();
 
 	/**
 	 * Returns the map of all pointers.
 	 *
 	 * @return The map of all pointers.
 	 */
-
+	QMap<QString, void*> getPointerMap() const;
 private:
-	Map<QString, QString> variableMap;
-	Map<QString, Pointer> pointerMap;
+	QMap<QString, QString> variableMap;
+	QMap<QString, void*> pointerMap;
 };
 
 }  // namespace project

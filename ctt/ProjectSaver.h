@@ -4,6 +4,8 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QDir>
+
 #include "Saveable.h"
 
 namespace model {
