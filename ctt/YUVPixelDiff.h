@@ -28,7 +28,7 @@ public:
 	* @param video1 the second of the two videos which will be compared
 	* @throws InvalidArgumentException if the submitted videos don't create their frames in the same OpenGLContext
 	*/
-	YUVPixelDiff(const video::Video &video1, const video::Video &video2);
+	YUVPixelDiff(video::Video::sptr video1, video::Video::sptr video2);
 	virtual ~YUVPixelDiff();
 
 	virtual Surface getPixelDiff(unsigned int frameNr) const;

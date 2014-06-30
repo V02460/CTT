@@ -8,6 +8,8 @@
 #include "Overlay.h"
 #include "Frame.h"
 #include "Memento.h"
+#include "GreyscaleFilter.h"
+
 
 namespace model {
 namespace filter {
@@ -17,7 +19,7 @@ namespace overlay {
 	 *	A ColoringOverlay modifies the frame of the predecessor in a similar way the Overlay does,
 	 *	but it turns every frame to a greyscale frame before mixig it with the graphical representable information.
 	 */
-class ColoringOverlay : public Overlay {
+class ColoringOverlay : public model::filter::overlay::Overlay {
 public:
 	typedef QScopedPointer<ColoringOverlay> uptr;
 	typedef QSharedPointer<ColoringOverlay> sptr;
@@ -29,6 +31,12 @@ public:
 	virtual bool supportsIntervals() const;
 	virtual QString getName() const;
 	virtual frame::Frame getFrame(unsigned int frameNumber) const;
+
+protected:
+	const model::filter::GreyscaleFilter &getGreyscaleFilter() const;
+
+private:
+	model::filter::GreyscaleFilter::uptr greyscaleFilter;
 };
 
 

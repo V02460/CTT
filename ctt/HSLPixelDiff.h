@@ -28,7 +28,7 @@ public:
 	 * @param video1 the second of the two videos which will be compared
 	 * @throws InvalidArgumentException if the submitted videos don't create their frames in the same OpenGLContext
 	 */
-	HSLPixelDiff(const video::Video &video1, const video::Video &video2);
+	HSLPixelDiff(video::Video::sptr video1, video::Video::sptr video2);
 	~HSLPixelDiff();
 
 	virtual Surface getPixelDiff(unsigned int frameNr) const;

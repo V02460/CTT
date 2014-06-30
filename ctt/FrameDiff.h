@@ -27,7 +27,7 @@ public:
 	 * @param video1 First video used for comparisson
 	 * @param video2 Second video comparisson
 	 */
-	FrameDiff(const video::Video &video1, const video::Video &video2);
+	FrameDiff(video::Video::sptr video1, video::Video::sptr video2);
 
 	/**
 	 * FrameDiff Destructor
@@ -53,8 +53,8 @@ public:
 	 */
 	unsigned int getFrameCount() const;
 protected:
-    video::Video video1; /**< The first of the two Videos which this FrameDiff compares. */
-    video::Video video2; /**< The second of the two Videos which this FrameDiff compares. */
+    video::Video::uptr video1; /**< The first of the two Videos which this FrameDiff compares. */
+    video::Video::uptr video2; /**< The second of the two Videos which this FrameDiff compares. */
 
 private:
 	FrameDiff();
