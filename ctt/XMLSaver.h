@@ -10,6 +10,9 @@
 namespace model {
 namespace project {
 
+/**
+ * Saves a project in xml format to a file. The XMLLoader can be used to load the project from this file again.
+ */
 class XMLSaver : public ProjectSaver {
 public:
 	typedef QScopedPointer<XMLSaver> uptr;
