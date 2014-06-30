@@ -5,7 +5,6 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 namespace view {
-namespace base_components {
 
 #include "Observer.h"
 #include "Observable.h"
@@ -26,7 +25,6 @@ private:
 	SaveableList diplayableComponents; /**< The list over the components that should be displayed by the list view */
 };
 
-}  // namespace base_components
 }  // namespace view
 
 #endif  //_ABSTRACTLISTVIEW_H

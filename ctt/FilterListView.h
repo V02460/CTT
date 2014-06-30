@@ -9,7 +9,6 @@
 #include "FilterParam.h"
 
 namespace view {
-namespace base_components {
 
 /**
  *	The FilterListView displays the list of filters in a filtered video.
@@ -41,7 +40,6 @@ signals:
 	void filterParamChanged(Filter filter, FilterParam param);
 };
 
-}  // namespace base_components
 }  // namespace view
 
 #endif  //_FILTERLISTVIEW_H

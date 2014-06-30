@@ -7,7 +7,6 @@
 #include "AbstractListView.h"
 
 namespace view {
-namespace base_components {
 
 /**
  *	The DifferenceListView displays the list of the differences.
@@ -21,7 +20,6 @@ public:
 
 };
 
-}  // namespace base_components
 }  // namespace view
 
 #endif  //_DIFFERENCELISTVIEW_H

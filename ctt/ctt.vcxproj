@@ -342,6 +342,7 @@
     <ClInclude Include="HeatmapOverlay.h" />
     <ClInclude Include="Histogram.h" />
     <ClInclude Include="HistogramType.h" />
+    <ClInclude Include="HistogramWidget.h" />
     <ClInclude Include="HSLPixelDiff.h" />
     <ClInclude Include="InsertionWidget.h" />
     <ClInclude Include="UIntegerInterval.h" />

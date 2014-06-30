@@ -7,7 +7,6 @@
 #include "AbstractTimeline.h"
 
 namespace view {
-namespace base_components {
 
 /**
  *	The FilterTimeline displays the filter intervals of ervery filter of a filteredVideo.
@@ -22,7 +21,6 @@ public:
 };
 
 
-}  // namespace base_components
 }  // namespace view
 
 #endif  //_FILTERTIMELINE_H
