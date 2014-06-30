@@ -13,7 +13,7 @@ namespace filter {
 
 
 /**
- *	Provides a greyscale version of the predecessors frame
+ *	Provides a greyscale version of the predecessors frame.
  */
 class GreyscaleFilter : public Filter {
 public:
@@ -22,9 +22,9 @@ public:
 	typedef QWeakPointer<GreyscaleFilter> wptr;
 
 	/**
-	*	Creates a new GreyscaleFilter object with a given previous module
+	*	Creates a new GreyscaleFilter object with a given previous module.
 	*
-	*	@param previous The previous module of this filter
+	*	@param previous The previous module of this filter.
 	*/
 	GreyscaleFilter(Module previous);
 	QString getName();
