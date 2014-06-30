@@ -18,6 +18,10 @@ namespace view {
  */
 class ThumbnailListWidget : public Observer, public QWidget {
 public:
+	typedef QScopedPointer<ThumbnailListWidget> uptr;
+	typedef QSharedPointer<ThumbnailListWidget> sptr;
+	typedef QWeakPointer<ThumbnailListWidget> wptr;
+
 	/**
 	 *	Creates a new TumbnailListWidget with a SavableList of filteredVideos which is diplayed by this widget.
 	 *	The ThumbnailListWidget registers itself at the SaveableList to get notified, when the currently managed videos change.

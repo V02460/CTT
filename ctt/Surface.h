@@ -8,6 +8,10 @@
 class Surface
 {
 public:
+	typedef QScopedPointer<Surface> uptr;
+	typedef QSharedPointer<Surface> sptr;
+	typedef QWeakPointer<Surface> wptr;
+
 	/**
 	 * Creates a new Surface from the submitted texture and the submitted context.
 	 * WARNING: It can't be ensured that the submitted texture is accessible from the submitted context! If the caller wants an operative Surface, it's up to him to make that sure!

@@ -14,6 +14,10 @@ namespace operation {
 **/
 class OperationList {
 public:
+	typedef QScopedPointer<OperationList> uptr;
+	typedef QSharedPointer<OperationList> sptr;
+	typedef QWeakPointer<OperationList> wptr;
+
 
 	/**
 	*	Manages doing the given Operation.

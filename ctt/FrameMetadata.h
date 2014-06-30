@@ -19,6 +19,10 @@ namespace frame {
 */
 class FrameMetadata {
 public:
+	typedef QScopedPointer<FrameMetadata> uptr;
+	typedef QSharedPointer<FrameMetadata> sptr;
+	typedef QWeakPointer<FrameMetadata> wptr;
+
 	/**
 	 * Creates a container holding metadata information for a Frame.
 	 *

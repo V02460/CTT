@@ -14,6 +14,10 @@ namespace overlay {
 
 class MacropartionOverlay : public Overlay {
 public:
+	typedef QScopedPointer<MacropartionOverlay> uptr;
+	typedef QSharedPointer<MacropartionOverlay> sptr;
+	typedef QWeakPointer<MacropartionOverlay> wptr;
+
 	QString getName();
 	Frame getFrame(int frameNumber);
 	Memento getMemento();

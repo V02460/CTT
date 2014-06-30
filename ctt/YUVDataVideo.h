@@ -18,6 +18,10 @@ namespace video {
  */
 class YUVDataVideo : public FileVideo {
 public:
+	typedef QScopedPointer<YUVDataVideo> uptr;
+	typedef QSharedPointer<YUVDataVideo> sptr;
+	typedef QWeakPointer<YUVDataVideo> wptr;
+
 	/**
 	* Creates a new YUVDataVideo representing the YUV 4:4:4 or YUV 4:2:2 video at the submitted location in the file system.
 	* @param videoFile the path to the video file which will be loaded

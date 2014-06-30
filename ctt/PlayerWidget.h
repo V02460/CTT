@@ -12,6 +12,11 @@ namespace view {
  *	The main purpose of this class is to handle the activation of a specific player by the user.
  */
 class PlayerWidget : public QWidget{
+public:
+	typedef QScopedPointer<PlayerWidget> uptr;
+	typedef QSharedPointer<PlayerWidget> sptr;
+	typedef QWeakPointer<PlayerWidget> wptr;
+
 public slots:
 	/**
 	 *	Recieves the activation signal form a button in the ThumbnailListWidget and notifies the ProcessingWidget about the activation

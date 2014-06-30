@@ -10,6 +10,11 @@ namespace model {
 namespace project {
 
 class XMLSaver : public ProjectSaver {
+public:
+	typedef QScopedPointer<XMLSaver> uptr;
+	typedef QSharedPointer<XMLSaver> sptr;
+	typedef QWeakPointer<XMLSaver> wptr;
+
 };
 
 }  // namespace project

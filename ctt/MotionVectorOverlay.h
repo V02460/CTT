@@ -14,6 +14,10 @@ namespace overlay {
 
 class MotionVectorOverlay : public Overlay {
 public:
+	typedef QScopedPointer<MotionVectorOverlay> uptr;
+	typedef QSharedPointer<MotionVectorOverlay> sptr;
+	typedef QWeakPointer<MotionVectorOverlay> wptr;
+
 	QString getName();
 	Frame getFrame(int frameNumber);
 	Memento getMemento();

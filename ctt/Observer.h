@@ -8,6 +8,10 @@ namespace model {
 
 class Observer {
 public:
+	typedef QScopedPointer<Observer> uptr;
+	typedef QSharedPointer<Observer> sptr;
+	typedef QWeakPointer<Observer> wptr;
+
 	slot update();
 };
 

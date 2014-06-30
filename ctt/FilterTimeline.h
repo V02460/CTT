@@ -14,6 +14,11 @@ namespace base_components {
  *	Each interval is painted as a bar which is moveable within the video.
  */
 class FilterTimeline : public AbstractTimeline {
+public:
+	typedef QScopedPointer<FilterTimeline> uptr;
+	typedef QSharedPointer<FilterTimeline> sptr;
+	typedef QWeakPointer<FilterTimeline> wptr;
+
 };
 
 

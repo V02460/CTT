@@ -11,6 +11,10 @@
 
 class VideoReader {
 public:
+	typedef QScopedPointer<VideoReader> uptr;
+	typedef QSharedPointer<VideoReader> sptr;
+	typedef QWeakPointer<VideoReader> wptr;
+
 	Frame getFrame(int frameNumber);
 };
 

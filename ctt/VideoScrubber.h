@@ -22,6 +22,10 @@ namespace player {
 class VideoScrubber : public Saveable, public Observable, public QObject {
 	Q_OBJECT
 public:
+	typedef QScopedPointer<VideoScrubber> uptr;
+	typedef QSharedPointer<VideoScrubber> sptr;
+	typedef QWeakPointer<VideoScrubber> wptr;
+
     /**
      * Creates a new VideoScrubber for the submitted video. Initially the Scrubber holds the first frame of the video.
      *

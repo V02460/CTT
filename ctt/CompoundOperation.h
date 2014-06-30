@@ -11,6 +11,10 @@
 
 class CompoundOperation : public Operation {
 public:
+	typedef QScopedPointer<CompoundOperation> uptr;
+	typedef QSharedPointer<CompoundOperation> sptr;
+	typedef QWeakPointer<CompoundOperation> wptr;
+
 	void do();
 	void undo();
 };

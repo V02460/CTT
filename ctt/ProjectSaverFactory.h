@@ -11,6 +11,10 @@ namespace project {
 
 class ProjectSaverFactory {
 public:
+	typedef QScopedPointer<ProjectSaverFactory> uptr;
+	typedef QSharedPointer<ProjectSaverFactory> sptr;
+	typedef QWeakPointer<ProjectSaverFactory> wptr;
+
 	void save(QDir path, SaveFileType fileType);
 };
 

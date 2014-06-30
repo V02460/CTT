@@ -16,6 +16,11 @@ namespace view {
  *	and to set the active videos.
  */
 class AnalysingWidget : public QWidget {
+public:
+	typedef QScopedPointer<AnalysingWidget> uptr;
+	typedef QSharedPointer<AnalysingWidget> sptr;
+	typedef QWeakPointer<AnalysingWidget> wptr;
+
 private:
 	Player player; /**< The player which plays all activated videos */
 	QList<VideoAnalysingWidget> analysingWidgets; /**< The AnalysingWidgets which actually display videos and their metadata */

@@ -8,6 +8,11 @@ namespace model {
 namespace project {
 
 class ProjectLoaderFactory {
+public:
+	typedef QScopedPointer<ProjectLoaderFactory> uptr;
+	typedef QSharedPointer<ProjectLoaderFactory> sptr;
+	typedef QWeakPointer<ProjectLoaderFactory> wptr;
+
 };
 
 }  // namespace project

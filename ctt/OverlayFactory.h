@@ -10,6 +10,10 @@ namespace overlay {
 
 class OverlayFactory {
 public:
+	typedef QScopedPointer<OverlayFactory> uptr;
+	typedef QSharedPointer<OverlayFactory> sptr;
+	typedef QWeakPointer<OverlayFactory> wptr;
+
 	List<QString> getAllOverlayIDs();
 	Diff createOverlay(QString id);
 private:

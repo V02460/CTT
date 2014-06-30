@@ -14,6 +14,10 @@ namespace overlay {
 
 class MacroblockOverlay : public ColoringOverlay {
 public:
+	typedef QScopedPointer<MacroblockOverlay> uptr;
+	typedef QSharedPointer<MacroblockOverlay> sptr;
+	typedef QWeakPointer<MacroblockOverlay> wptr;
+
 	QString getName();
 	Frame getFrame(int frameNumber);
 	Memento getMemento();

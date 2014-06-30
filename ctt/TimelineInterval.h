@@ -14,6 +14,10 @@ namespace view {
  */
 class TimelineInterval{
 public:
+	typedef QScopedPointer<TimelineInterval> uptr;
+	typedef QSharedPointer<TimelineInterval> sptr;
+	typedef QWeakPointer<TimelineInterval> wptr;
+
 	/**
 	 *	Creates a new TimelineInterval from a concrete filter interval.
 	 *

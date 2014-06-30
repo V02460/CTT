@@ -13,6 +13,10 @@ namespace filter {
 
 class RescaleFilter : public Filter {
 public:
+	typedef QScopedPointer<RescaleFilter> uptr;
+	typedef QSharedPointer<RescaleFilter> sptr;
+	typedef QWeakPointer<RescaleFilter> wptr;
+
 	QString getName();
 	Frame getFrame(int frameNumber);
 	Memento getMemento();

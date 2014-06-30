@@ -18,6 +18,11 @@ namespace base_components {
  *	value.
  */
 class FilterListView : public AbstractListView {
+public:
+	typedef QScopedPointer<FilterListView> uptr;
+	typedef QSharedPointer<FilterListView> sptr;
+	typedef QWeakPointer<FilterListView> wptr;
+
 signals:
 	/**
 	 *	This signal is emitted when the order of the filters is changed

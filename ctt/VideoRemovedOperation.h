@@ -14,6 +14,10 @@ namespace operation {
 **/
 class VideoRemovedOperation : public VideoListOperation {
 public:
+	typedef QScopedPointer<VideoRemovedOperation> uptr;
+	typedef QSharedPointer<VideoRemovedOperation> sptr;
+	typedef QWeakPointer<VideoRemovedOperation> wptr;
+
 
 	/**
 	*	Constructs an Operation that is responsible for removing a specified Video from a VideoList.

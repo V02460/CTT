@@ -9,6 +9,10 @@ namespace filter {
 
 class FilterParam {
 public:
+	typedef QScopedPointer<FilterParam> uptr;
+	typedef QSharedPointer<FilterParam> sptr;
+	typedef QWeakPointer<FilterParam> wptr;
+
 	any getValue();
 	void FilterParam(QString name);
 private:

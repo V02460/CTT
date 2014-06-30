@@ -16,6 +16,10 @@ namespace operation {
 **/
 class FilterListOperation : public Operation {
 public:
+	typedef QScopedPointer<FilterListOperation> uptr;
+	typedef QSharedPointer<FilterListOperation> sptr;
+	typedef QWeakPointer<FilterListOperation> wptr;
+
 
 	/**
 	*	Manages requests to manipulate the FilterList.

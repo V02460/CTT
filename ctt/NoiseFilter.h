@@ -13,6 +13,10 @@ namespace filter {
 
 class NoiseFilter : public Filter {
 public:
+	typedef QScopedPointer<NoiseFilter> uptr;
+	typedef QSharedPointer<NoiseFilter> sptr;
+	typedef QWeakPointer<NoiseFilter> wptr;
+
 	QString getName();
 	Frame getFrame(int frameNumber);
 	Memento getMemento();

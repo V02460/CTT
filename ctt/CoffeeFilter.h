@@ -13,6 +13,10 @@ namespace filter {
 
 class CoffeeFilter : public Filter {
 public:
+	typedef QScopedPointer<CoffeeFilter> uptr;
+	typedef QSharedPointer<CoffeeFilter> sptr;
+	typedef QWeakPointer<CoffeeFilter> wptr;
+
 	QString getName();
 	Frame getFrame(int frameNumber);
 	Memento getMemento();

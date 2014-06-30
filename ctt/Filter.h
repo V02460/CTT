@@ -21,6 +21,10 @@ namespace filter {
  */
 class Filter : public Module {
 public:
+	typedef QScopedPointer<Filter> uptr;
+	typedef QSharedPointer<Filter> sptr;
+	typedef QWeakPointer<Filter> wptr;
+
     /**
      * Checks whether it is possible to use this Filter not on its previous module as a whole, but only on frames in specific intervals.
      *

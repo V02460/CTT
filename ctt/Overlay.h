@@ -14,6 +14,10 @@ namespace overlay {
 
 class Overlay : public Filter {
 public:
+	typedef QScopedPointer<Overlay> uptr;
+	typedef QSharedPointer<Overlay> sptr;
+	typedef QWeakPointer<Overlay> wptr;
+
 	QString getName();
 	Frame getFrame(int frameNumber);
 	Memento getMemento();

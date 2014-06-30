@@ -16,6 +16,10 @@
  */
 class HistogramWidget : public Observer {
 public:
+	typedef QScopedPointer<HistogramWidget> uptr;
+	typedef QSharedPointer<HistogramWidget> sptr;
+	typedef QWeakPointer<HistogramWidget> wptr;
+
 	/**
 	 *	Creates a new HistogramWidget with a corresponding VideoScrubber from where it gets the histograms which are displayed.
 	 *

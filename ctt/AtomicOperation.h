@@ -11,6 +11,10 @@
 
 class AtomicOperation : public Operation {
 public:
+	typedef QScopedPointer<AtomicOperation> uptr;
+	typedef QSharedPointer<AtomicOperation> sptr;
+	typedef QWeakPointer<AtomicOperation> wptr;
+
 	void do();
 	void undo();
 };

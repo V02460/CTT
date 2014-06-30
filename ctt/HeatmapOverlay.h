@@ -15,6 +15,10 @@ namespace overlay {
 
 class HeatmapOverlay : public ColoringOverlay {
 public:
+	typedef QScopedPointer<HeatmapOverlay> uptr;
+	typedef QSharedPointer<HeatmapOverlay> sptr;
+	typedef QWeakPointer<HeatmapOverlay> wptr;
+
 	QString getName();
 	Frame getFrame(int frameNumber);
 	Memento getMemento();

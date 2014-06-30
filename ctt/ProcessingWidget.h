@@ -18,6 +18,11 @@ namespace view {
  *	The ProcessingWidget basically unites the abilities to  display the video, to control the player and to set the active video pair.
  */
 class ProcessingWidget : public Observer , public QWidget {
+public:
+	typedef QScopedPointer<ProcessingWidget> uptr;
+	typedef QSharedPointer<ProcessingWidget> sptr;
+	typedef QWeakPointer<ProcessingWidget> wptr;
+
 public slots:
 	/**
 	*	This method is called when one of the PlayerWidgets managed by this class is set as active.

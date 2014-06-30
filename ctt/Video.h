@@ -23,6 +23,10 @@ namespace video {
  */
 class Video : public Module {
 public:
+	typedef QScopedPointer<Video> uptr;
+	typedef QSharedPointer<Video> sptr;
+	typedef QWeakPointer<Video> wptr;
+
     /**
      * Gets the metadata of the Video which are valid for the whole video and not just specific frames
      *

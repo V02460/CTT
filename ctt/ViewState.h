@@ -14,6 +14,11 @@ namespace view {
  *	The view state class determines the state the GUI is currently in and notifies all relevant components when the state changes.
  */
 class ViewState : public Observable {
+public:
+	typedef QScopedPointer<ViewState> uptr;
+	typedef QSharedPointer<ViewState> sptr;
+	typedef QWeakPointer<ViewState> wptr;
+
 public slots:
 	/**
 	 * Changes the internal viewType and notifies all Observers about the state change.

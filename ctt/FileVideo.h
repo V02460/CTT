@@ -8,6 +8,10 @@ class FileVideo :
 	public Video
 {
 public:
+	typedef QScopedPointer<FileVideo> uptr;
+	typedef QSharedPointer<FileVideo> sptr;
+	typedef QWeakPointer<FileVideo> wptr;
+
 	VideoMetadata getMetadata();
 
 	virtual Frame getFrame(int frameNumber);

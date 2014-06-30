@@ -15,6 +15,10 @@ namespace operation {
 **/
 class VideoListOperation : public Operation {
 public:
+	typedef QScopedPointer<VideoListOperation> uptr;
+	typedef QSharedPointer<VideoListOperation> sptr;
+	typedef QWeakPointer<VideoListOperation> wptr;
+
 
 	/**
 	*	Manages requests to manipulate the VideoList which is used for generating test videos or analysing.

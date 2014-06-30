@@ -16,6 +16,10 @@ namespace view {
  */
 class VideoWidget : public QWidget, public Observer {
 public:
+	typedef QScopedPointer<VideoWidget> uptr;
+	typedef QSharedPointer<VideoWidget> sptr;
+	typedef QWeakPointer<VideoWidget> wptr;
+
 	/**
 	 *	Creates a VideoWidget and registeres itself at the corresponding VideoScrubber.
 	 *

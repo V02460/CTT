@@ -15,6 +15,10 @@ namespace operation {
 **/
 class FilterRemovedOperation : public FilterListOperation {
 public:
+	typedef QScopedPointer<FilterRemovedOperation> uptr;
+	typedef QSharedPointer<FilterRemovedOperation> sptr;
+	typedef QWeakPointer<FilterRemovedOperation> wptr;
+
 
 	/**
 	*	Constructs an Operation that is responsible for removing a filter with a specified FilterList-index from this FilterList.

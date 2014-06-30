@@ -14,6 +14,10 @@ namespace operation {
 **/
 class FPSChangingOperation : public Operation {
 public:
+	typedef QScopedPointer<FPSChangingOperation> uptr;
+	typedef QSharedPointer<FPSChangingOperation> sptr;
+	typedef QWeakPointer<FPSChangingOperation> wptr;
+
 
 	/**
 	*	Constructs an Operation that is responsible for changing the FPS with which a video is displayed.

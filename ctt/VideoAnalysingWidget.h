@@ -18,6 +18,10 @@ namespace view {
  */
 class VideoAnalysingWidget : public QWidget {
 public:
+	typedef QScopedPointer<VideoAnalysingWidget> uptr;
+	typedef QSharedPointer<VideoAnalysingWidget> sptr;
+	typedef QWeakPointer<VideoAnalysingWidget> wptr;
+
 	/**
 	 *	Returns the identifier string of the currently chosen overlay.
 	 *

@@ -22,6 +22,10 @@ class Player : public Saveable, public QObject {
 	Q_OBJECT
 
 public:
+	typedef QScopedPointer<Player> uptr;
+	typedef QSharedPointer<Player> sptr;
+	typedef QWeakPointer<Player> wptr;
+
     /**
      * Creates a new player with an empty list of scrubbers and and initializes the playback speed with the submitted paramater.
      *

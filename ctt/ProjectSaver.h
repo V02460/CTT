@@ -11,6 +11,10 @@ namespace project {
 
 class ProjectSaver {
 public:
+	typedef QScopedPointer<ProjectSaver> uptr;
+	typedef QSharedPointer<ProjectSaver> sptr;
+	typedef QWeakPointer<ProjectSaver> wptr;
+
 	void save(QDir path);
 private:
 	Saveable *toSave;

@@ -20,6 +20,10 @@ namespace frame {
  */
 class Frame: public Surface {
 public:
+	typedef QScopedPointer<Frame> uptr;
+	typedef QSharedPointer<Frame> sptr;
+	typedef QWeakPointer<Frame> wptr;
+
     /**
      * Creates a new frame from image data with corresponding metadata in a specific OpenGL context.
      *

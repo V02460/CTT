@@ -11,6 +11,10 @@ namespace video {
 
 class VideoSaver {
 public:
+	typedef QScopedPointer<VideoSaver> uptr;
+	typedef QSharedPointer<VideoSaver> sptr;
+	typedef QWeakPointer<VideoSaver> wptr;
+
 	virtual void writeToFile(Video video, QDir path) = 0;
 };
 

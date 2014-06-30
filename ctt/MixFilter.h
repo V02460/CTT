@@ -13,6 +13,10 @@ namespace filter {
 
 class MixFilter : public Filter {
 public:
+	typedef QScopedPointer<MixFilter> uptr;
+	typedef QSharedPointer<MixFilter> sptr;
+	typedef QWeakPointer<MixFilter> wptr;
+
 	QString getName();
 	Frame getFrame(int frameNumber);
 	Memento getMemento();

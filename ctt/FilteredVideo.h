@@ -19,6 +19,10 @@ namespace video {
  */
 class FilteredVideo : public Video, public Observable {
 public:
+	typedef QScopedPointer<FilteredVideo> uptr;
+	typedef QSharedPointer<FilteredVideo> sptr;
+	typedef QWeakPointer<FilteredVideo> wptr;
+
 
 	/**
 	 * Creates a new FilteredVideo with an initially empty FilterList, using the submitted Video as base video. The base video provides the frames which will be modified by the filter pipeline.

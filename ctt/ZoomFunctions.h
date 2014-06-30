@@ -15,6 +15,10 @@ namespace view {
  */
 class ZoomFunctions : public QWidget {
 public:
+	typedef QScopedPointer<ZoomFunctions> uptr;
+	typedef QSharedPointer<ZoomFunctions> sptr;
+	typedef QWeakPointer<ZoomFunctions> wptr;
+
 	/**
 	 *	Sets the internal zoomFactor when for example the user clicked on the zoom-out-button.
 	 *	After changing the zoomFactor the zoomFactorChanged signal is emitted.

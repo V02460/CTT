@@ -17,6 +17,10 @@ namespace operation {
 **/
 class FilterParamChangedOperation : public FilterListOperation {
 public:
+	typedef QScopedPointer<FilterParamChangedOperation> uptr;
+	typedef QSharedPointer<FilterParamChangedOperation> sptr;
+	typedef QWeakPointer<FilterParamChangedOperation> wptr;
+
 
 	/**
 	*	The new parameter that should replace the filter's old parameter.

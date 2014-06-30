@@ -16,6 +16,11 @@ namespace base_components {
  *	and displays some kind of data that is concretized in the specific implementations.
  */
 class AbstractTimeline : public Observer , public Observable , public QWidget {
+public:
+	typedef QScopedPointer<AbstractTimeline> uptr;
+	typedef QSharedPointer<AbstractTimeline> sptr;
+	typedef QWeakPointer<AbstractTimeline> wptr;
+
 
 private:
 	SaveableList displayableComponents; /**< The list over the components that should be displayed by the timeline */

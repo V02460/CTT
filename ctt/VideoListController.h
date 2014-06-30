@@ -13,6 +13,11 @@ namespace controller {
 *	The VideoListController manages requests to manipulate the VideoList.
 **/
 class VideoListController : public Observer {
+public:
+	typedef QScopedPointer<VideoListController> uptr;
+	typedef QSharedPointer<VideoListController> sptr;
+	typedef QWeakPointer<VideoListController> wptr;
+
 public slots:
 
 	/**

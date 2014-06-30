@@ -16,6 +16,10 @@ namespace model {
  */
 class Module : public Saveable {
 public:
+	typedef QScopedPointer<Module> uptr;
+	typedef QSharedPointer<Module> sptr;
+	typedef QWeakPointer<Module> wptr;
+
     /**
      * Gets the frame with the submitted number.
      *

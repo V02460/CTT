@@ -17,6 +17,10 @@ namespace project {
 class Saveable {
 
 public:
+	typedef QScopedPointer<Saveable> uptr;
+	typedef QSharedPointer<Saveable> sptr;
+	typedef QWeakPointer<Saveable> wptr;
+
 
     /**
      * Gets the internal state of the object as a Memento.

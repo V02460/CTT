@@ -16,6 +16,10 @@ namespace operation {
 **/
 class FilterAddedOperation : public FilterListOperation {
 public:
+	typedef QScopedPointer<FilterAddedOperation> uptr;
+	typedef QSharedPointer<FilterAddedOperation> sptr;
+	typedef QWeakPointer<FilterAddedOperation> wptr;
+
 	
 	/**
 	*	Constructs an operation that is responsible for adding a Filter to a video's FilterList.

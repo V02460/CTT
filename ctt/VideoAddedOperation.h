@@ -15,6 +15,10 @@ namespace operation {
 **/
 class VideoAddedOperation : public VideoListOperation {
 public:
+	typedef QScopedPointer<VideoAddedOperation> uptr;
+	typedef QSharedPointer<VideoAddedOperation> sptr;
+	typedef QWeakPointer<VideoAddedOperation> wptr;
+
 
 	/**
 	*	Constructs an Operation that is responsible for adding a specified Video to a VideoList.

@@ -13,6 +13,10 @@ namespace filter {
 
 class BlurFilter : public Filter {
 public:
+	typedef QScopedPointer<BlurFilter> uptr;
+	typedef QSharedPointer<BlurFilter> sptr;
+	typedef QWeakPointer<BlurFilter> wptr;
+
 	QString getName();
 	Frame getFrame(int frameNumber);
 	Memento getMemento();

@@ -18,6 +18,11 @@ namespace view {
  *	The MainWindow unites all interactable components which represent the whole functionallity provided by the model.
  */
 class MainWindow : public Observable , public Observer, public QMainWindow {
+public:
+	typedef QScopedPointer<MainWindow> uptr;
+	typedef QSharedPointer<MainWindow> sptr;
+	typedef QWeakPointer<MainWindow> wptr;
+
 signals:
 	/**
 	 *	This signal is emitted when the view state is changed.

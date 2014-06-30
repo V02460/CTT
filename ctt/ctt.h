@@ -12,6 +12,10 @@ class ctt : public QMainWindow
 	Q_OBJECT
 
 public:
+	typedef QScopedPointer<ctt> uptr;
+	typedef QSharedPointer<ctt> sptr;
+	typedef QWeakPointer<ctt> wptr;
+
 	ctt(QWidget *parent = 0);
 	~ctt();
 

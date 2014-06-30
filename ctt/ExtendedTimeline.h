@@ -18,6 +18,11 @@ namespace view {
  *	The ExtendedTimeline manages the shown timeline and the navigation of the videos in a given player.
  */
 class ExtendedTimeline : public Observer, public Observable, public QWidget {
+public:
+	typedef QScopedPointer<ExtendedTimeline> uptr;
+	typedef QSharedPointer<ExtendedTimeline> sptr;
+	typedef QWeakPointer<ExtendedTimeline> wptr;
+
 public slots:
 	/**
 	 *	Adjusts the timeline to the frame the progress silder is pointing at and signals the change of the current frame to connected slots.

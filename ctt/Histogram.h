@@ -16,6 +16,10 @@ namespace histogram {
  */
 class Histogram {
 public:
+	typedef QScopedPointer<Histogram> uptr;
+	typedef QSharedPointer<Histogram> sptr;
+	typedef QWeakPointer<Histogram> wptr;
+
     /**
      * Gets the value for the entry with the number i.
      *

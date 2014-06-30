@@ -35,6 +35,10 @@ private:
 	FilterIntervalList(bool isDummy);
 
 public:
+	typedef QScopedPointer<FilterIntervalList> uptr;
+	typedef QSharedPointer<FilterIntervalList> sptr;
+	typedef QWeakPointer<FilterIntervalList> wptr;
+
     /**
      * Checks whether the submitted number is in an active interval.
      *

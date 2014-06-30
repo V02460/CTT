@@ -9,6 +9,10 @@ namespace project {
 
 class ProjectLoader {
 public:
+	typedef QScopedPointer<ProjectLoader> uptr;
+	typedef QSharedPointer<ProjectLoader> sptr;
+	typedef QWeakPointer<ProjectLoader> wptr;
+
 	void restore(QDir path);
 };
 

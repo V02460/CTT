@@ -10,6 +10,10 @@ namespace model {
 
 class Observable {
 public:
+	typedef QScopedPointer<Observable> uptr;
+	typedef QSharedPointer<Observable> sptr;
+	typedef QWeakPointer<Observable> wptr;
+
 	signal changed();
 	void subscribe(Observer observer);
 	void unsubscribe(Observer observer);

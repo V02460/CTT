@@ -15,6 +15,10 @@ namespace model {
  */
 class UIntegerInterval: public Saveable {
 public:
+	typedef QScopedPointer<UIntegerInterval> uptr;
+	typedef QSharedPointer<UIntegerInterval> sptr;
+	typedef QWeakPointer<UIntegerInterval> wptr;
+
     /**
      * Creates an IntegerInterval from a to b if b isn't smaller than a, else it creates an Interval from b to a.
      *

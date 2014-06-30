@@ -18,6 +18,11 @@ namespace controller {
 *	The FilterController receives notifications of changes in the video's filters and passes this information to all relevant components.
 **/
 class FilterController : public Observer {
+public:
+	typedef QScopedPointer<FilterController> uptr;
+	typedef QSharedPointer<FilterController> sptr;
+	typedef QWeakPointer<FilterController> wptr;
+
 public slots:
 
 	/**

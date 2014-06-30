@@ -12,6 +12,11 @@ namespace controller {
 *	The OverlayController manages requests to manipulate the list of overlays which can be used for analysing.
 **/
 class OverlayController : public Observer {
+public:
+	typedef QScopedPointer<OverlayController> uptr;
+	typedef QSharedPointer<OverlayController> sptr;
+	typedef QWeakPointer<OverlayController> wptr;
+
 public slots:
 
 	/**

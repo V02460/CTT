@@ -12,6 +12,10 @@ namespace video {
 
 class VideoSaverFactory {
 public:
+	typedef QScopedPointer<VideoSaverFactory> uptr;
+	typedef QSharedPointer<VideoSaverFactory> sptr;
+	typedef QWeakPointer<VideoSaverFactory> wptr;
+
 	slot writeVideo(Video video, QDir path, VideoFileType fileType);
 };
 
