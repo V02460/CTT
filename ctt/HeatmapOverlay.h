@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+
 #include "ColoringOverlay.h"
 #include "Frame.h"
 #include "Memento.h"
@@ -19,13 +20,14 @@ public:
 	typedef QSharedPointer<HeatmapOverlay> sptr;
 	typedef QWeakPointer<HeatmapOverlay> wptr;
 
-	QString getName();
-	Frame getFrame(int frameNumber);
-	Memento getMemento();
-	void restore(Memento memento);
-	Saveable* getDummy();
+	HeatmapOverlay(const Module &predecessor);
+	virtual ~HeatmapOverlay();
+
+	virtual bool supportsIntervals() const;
+	virtual QString getName() const;
+	virtual frame::Frame getFrame(unsigned int frameNumber) const;
 private:
-	PixelDiff* data;
+	PixelDiff::uptr data;
 };
 
 }  // namespace overlay

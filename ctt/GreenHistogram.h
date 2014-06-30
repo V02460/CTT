@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+
 #include "Histogram.h"
 #include "Frame.h"
 
@@ -21,10 +22,14 @@ public:
 	typedef QWeakPointer<GreenHistogram> wptr;
 
 	/**
-	* Creates a new GreenHistogram describing the distribution of the intensity of the green channel of the submitted frame.
+	* Creates a new GreenHistogram describing the distribution of the intensity of the green channel of the submitted
+	* frame.
+	*
 	* @param frame the GreenHistogram will describe the distribution of the intensity of the green channel of this frame
 	*/
 	GreenHistogram(Frame frame);
+
+	virtual HistogramType getType() const;
 };
 
 }  // namespace histogram

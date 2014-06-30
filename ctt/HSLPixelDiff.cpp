@@ -5,27 +5,15 @@
 namespace model {
 namespace difference {
 
-QOpenGLTexture HSLPixelDiff::getPixelDif(int frameNr) {
+HSLPixelDiff::HSLPixelDiff(const video::Video &video1, const video::Video &video2) : PixelDiff(video1, video2) {
+	
+}
+
+Surface HSLPixelDiff::getPixelDiff(unsigned int frameNr) const {
 
 }
 
-double HSLPixelDiff::getDif(int frameNr) {
-
-}
-
-void HSLPixelDiff::FrameDif(Video video1, Video video2) {
-
-}
-
-Memento HSLPixelDiff::getMemento() {
-
-}
-
-void HSLPixelDiff::restore(Memento memento) {
-
-}
-
-Saveable* HSLPixelDiff::getDummy() {
+double HSLPixelDiff::getDiff(unsigned int frameNr) const{
 
 }
 

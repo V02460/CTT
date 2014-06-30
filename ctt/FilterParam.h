@@ -4,6 +4,12 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QString>
+
+#include "FilterParam.h"
+
+class any; // TODO: Get a class
+
 namespace model {
 namespace filter {
 
@@ -13,8 +19,11 @@ public:
 	typedef QSharedPointer<FilterParam> sptr;
 	typedef QWeakPointer<FilterParam> wptr;
 
-	any getValue();
 	void FilterParam(QString name);
+
+	any getValue() const;
+	void setValue(any value);
+	
 private:
 	QString name;
 };

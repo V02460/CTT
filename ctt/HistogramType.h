@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+
 namespace model {
 namespace frame {
 namespace histogram {
@@ -16,7 +17,9 @@ enum HistogramType {
 	Red,
 	Green,
 	Blue,
-	Luminance
+	Luminance,
+	Hue,
+	Saturation
 };
 
 }  // namespace histogram

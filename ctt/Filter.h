@@ -4,26 +4,41 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QMap>	
+
 #include "Module.h"
 #include "Frame.h"
 #include "Memento.h"
 #include "FilterParam.h"
 #include "UIntegerInterval.h"		
 #include "FilterIntervalList.h"	
-#include <QMap>	
 
 namespace model {
 namespace filter {
+
+class any; // TODO: make a class
 
 /**
  * An object which can attach itself to another module and outputs modified versions of the frames of this module.
  *
  */
-class Filter : public Module {
+class Filter : public Module, public QObject {
 public:
 	typedef QScopedPointer<Filter> uptr;
 	typedef QSharedPointer<Filter> sptr;
 	typedef QWeakPointer<Filter> wptr;
+
+	/**
+	 * Constructs a Filter which works on predecessor. 
+	 *
+	 * @param predecessor The Module Filter is receiving its Frames from.
+	 */
+	Filter(const Module &predecessor);
+
+	/**
+	 * Filter destructor.
+	 */
+	virtual ~Filter();
 
     /**
      * Checks whether it is possible to use this Filter not on its previous module as a whole, but only on frames in specific intervals.
@@ -31,31 +46,35 @@ public:
      * @return bool true only if the Filter supports being active only in specific intervals.
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual bool supportsIntervals();
+    virtual bool supportsIntervals() const = 0;
+
     /**
      * Returns a map of the different parameters of the filter with their names and values.
      *
      * @return Map<QString, FilterParam> a map of the different parameters of the filter
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    QMap<QString, FilterParam> getParams();
+    QMap<QString, FilterParam> getParams() const;
+
     /**
      * Tells the Filter to use the frames of the submitted Module as source material for its own frames.
      *
      * @param previous the Filter will use the frames of this module as source material for its own frames
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    void setPreviousModule(Module previous);
+    void setPreviousModule(Module::sptr previous);
+
     /**
      * Returns a designation of this type of Filter
      *
      * @return QString a designation of this type of Filter
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual QString getName();
+    virtual QString getName() const = 0;
 
 	/**
 	 * Activates the Filter in the submitted interval.
+	 *
 	 * @param interval the filter will be activated in this interval
 	 * @throws IllegalStateException if the the method was called on a dummy or a Filter without interval support
 	 */
@@ -75,15 +94,17 @@ public:
 	 */
 	QList<UIntegerInterval> getListOfActiveIntervals();
 
-    virtual Frame getFrame(unsigned int frameNumber);
+    virtual frame::Frame getFrame(unsigned int frameNumber);
 
-    virtual Memento getMemento();
+	void setFilterParam(QString name, any);
 
-    virtual void restore(Memento memento);
+	any getFilterParam(QString name) const;
 
 private:
+	Q_DISABLE_COPY(Filter)
+
     QMap<QString, FilterParam> parameters; /**< Parameters modifying the filters behaviour */
-	FilterIntervalList intervals; /**< The Intervals in which the Filtr is active/
+	FilterIntervalList intervals; /**< The Intervals in which the Filtr is active */
     Module *previous; /**< The Filter gets the frames it modifies from this module */
 };
 

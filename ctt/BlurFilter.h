@@ -7,21 +7,31 @@
 #include "Filter.h"
 #include "Frame.h"
 #include "Memento.h"
+#include "Saveable.h"
 
 namespace model {
 namespace filter {
 
+/**
+ *	Provides a blured version of the predecessors frame.
+ */
 class BlurFilter : public Filter {
 public:
 	typedef QScopedPointer<BlurFilter> uptr;
 	typedef QSharedPointer<BlurFilter> sptr;
 	typedef QWeakPointer<BlurFilter> wptr;
 
-	QString getName();
-	Frame getFrame(int frameNumber);
-	Memento getMemento();
-	void restore(Memento memento);
-	Saveable* getDummy();
+	/**
+	 *	Creates a new BlurFilter object with a given previous module.
+	 *
+	 *	@param predecessor The previous module of this filter.
+	 */
+	BlurFilter(const Module &predecessor);
+	virtual ~BlurFilter();
+
+	virtual bool supportsIntervals() const;
+	virtual QString getName() const;
+	virtual frame::Frame getFrame(unsigned int frameNumber) const;
 };
 
 }  // namespace filter

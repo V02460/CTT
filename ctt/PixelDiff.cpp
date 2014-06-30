@@ -5,23 +5,11 @@
 namespace model {
 namespace difference {
 
-double PixelDiff::getDif(int frameNr) {
+PixelDiff::PixelDiff(const video::Video &video1, const video::Video &video2) : FrameDiff(video1, video2){
 
 }
 
-void PixelDiff::FrameDif(Video video1, Video video2) {
-
-}
-
-Memento PixelDiff::getMemento() {
-
-}
-
-void PixelDiff::restore(Memento memento) {
-
-}
-
-Saveable* PixelDiff::getDummy() {
+PixelDiff::~PixelDiff() {
 
 }
 

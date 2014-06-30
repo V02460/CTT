@@ -7,6 +7,7 @@
 #include <QSize>
 #include <QVector>
 #include <QVector2D>
+
 #include "MacroblockType.h"
 #include "MacroblockPartition.h"
 
