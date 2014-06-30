@@ -12,6 +12,9 @@ namespace model {
 namespace filter {
 namespace overlay {
 
+/**
+ *	An overlay modifies the frame of the predecessor by mixing it with any kind of graphical representable information.
+ */
 class Overlay : public Filter {
 public:
 	typedef QScopedPointer<Overlay> uptr;
