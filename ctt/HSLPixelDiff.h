@@ -20,6 +20,14 @@ public:
 	typedef QSharedPointer<HSLPixelDiff> sptr;
 	typedef QWeakPointer<HSLPixelDiff> wptr;
 
+	/**
+	 * Creates a new HSLPixelDiff comparing the two submitted videos.
+	 * @param video1 the first of the two videos which will be compared
+	 * @param video1 the second of the two videos which will be compared
+	 * @throws InvalidArgumentException if the submitted videos don't create their frames in the same OpenGLContext
+	 */
+	HSLPixelDiff(Video video1, Video video2);
+
 	QOpenGLTexture getPixelDif(int frameNr);
 	double getDif(int frameNr);
 	void FrameDif(Video video1, Video video2);
