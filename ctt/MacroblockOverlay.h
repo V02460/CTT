@@ -12,12 +12,21 @@ namespace model {
 namespace filter {
 namespace overlay {
 
+/**
+ * Provides a new version of the predecessors frame with the graphical representation of macroblock types mixed into it.
+ */
 class MacroblockOverlay : public ColoringOverlay {
 public:
 	typedef QScopedPointer<MacroblockOverlay> uptr;
 	typedef QSharedPointer<MacroblockOverlay> sptr;
 	typedef QWeakPointer<MacroblockOverlay> wptr;
 
+	/**
+	*	Creates a new MacroblockOverlay object with a given previous module.
+	*
+	*	@param previous The previous module of this filter.
+	*/
+	MacroblockOverlay(Module previous);
 	QString getName();
 	Frame getFrame(int frameNumber);
 	Memento getMemento();
