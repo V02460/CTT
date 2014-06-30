@@ -696,5 +696,8 @@
     <ClInclude Include="FileVideo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SaveableList.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

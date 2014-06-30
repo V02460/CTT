@@ -1,23 +1,27 @@
-#if !defined(_PROJECTCONTROLLER_H)
-#define _PROJECTCONTROLLER_H
+#if !defined(_MAINCONTROLLER_H)
+#define _MAINCONTROLLER_H
 
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QDir>
+
 #include "Observer.h"
 #include "SaveFileType.h"
+#include "Project.h"
 
 namespace controller {
 
 /**
- *	The ProjectController manages requests to initialise, save or load a Project.
+ *	The ProjectController manages requests to initialize, save or load a Project.
  */
-class ProjectController : public Observer {
+class MainController : public model::Observer {
 public:
-	typedef QScopedPointer<ProjectController> uptr;
-	typedef QSharedPointer<ProjectController> sptr;
-	typedef QWeakPointer<ProjectController> wptr;
+	typedef QScopedPointer<MainController> uptr;
+	typedef QSharedPointer<MainController> sptr;
+	typedef QWeakPointer<MainController> wptr;
 
+	controller::Project &getProject() const;
 public slots:
 
 	/**
@@ -29,10 +33,11 @@ public slots:
 	/**
 	*	Initiates saving an existing Project with a specified type and to a specified location.
 	*	Is called when a notifaction is received that the active Project should be saved.
+	*
 	*	@param path The path to where the Project should be saved.
 	*	@param fileType The type of file as which the Project should be saved.
 	**/
-	void saveAsClicked(QDir path, SaveFileType fileType);
+	void saveAsClicked(QDir path, model::project::SaveFileType fileType);
 
 	/**
 	*	Initiates loading an existing Project from a specified location.
@@ -48,9 +53,10 @@ public slots:
 	void newProject();
 private:
 	QDir currentSavePath;
-	SaveFileType currentSaveFileType;
+	model::project::SaveFileType currentSaveFileType;
+	Project::uptr project;
 };
 
 }  // namespace controller
 
-#endif  //_PROJECTCONTROLLER_H
+#endif  //_MAINCONTROLLER_H
