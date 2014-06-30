@@ -33,7 +33,7 @@ public:
      * @return VideoMetadata the metadata of the Video which are valid for the whole video and not just specific frames
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual VideoMetadata getMetadata();
+    virtual model::video::VideoMetadata getMetadata() const = 0;
 
     /**
      * Saves the Video to the submitted path in the filesystem
@@ -43,7 +43,7 @@ public:
      * @throws IOException if it's not possible to save the video to the submitted path
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    void save(QDir path, VideoFileType fileType);
+    void save(QDir path, model::video::VideoFileType fileType);
 
     /**
      * Gets the frame with the submitted number scaled to the submitted resolution.
@@ -54,21 +54,15 @@ public:
      * @return Frame the scaled Frame
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual Frame getScaledFrame(unsigned int frameNumber, QSize size);
+    virtual frame::Frame getScaledFrame(unsigned int frameNumber, QSize size) const;
 
 	/**
 	 * Returns the QOpenGLContext in which the Video creates its frames.
 	 * @return QOpenGLContext the QOpenGLContext in which the Video creates its frames
 	 */
-	QOpenGLContext getContext();
+	QSharedPointer<QOpenGLContext> getContext() const;
 
-    virtual Frame getFrame(unsigned int frameNumber);
-
-    virtual Memento getMemento();
-
-    virtual void restore(Memento memento);
-
-    virtual Saveable* getDummy();
+    virtual frame::Frame getFrame(unsigned int frameNumber) = 0;
 };
 
 }  // namespace video

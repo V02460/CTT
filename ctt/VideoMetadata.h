@@ -20,12 +20,14 @@ public:
 	typedef QWeakPointer<VideoMetadata> wptr;
 
 	/**
-	 * Creates a new VideoMetadata object, initialized with resolution, default playback speed, length and a map of custom data.
+	 * Creates a new VideoMetadata object, initialized with resolution, default playback speed, length and a map of
+	 * custom data.
 	 *
 	 * @param size the resolution of the Video described by this object
 	 * @param fps the default playback speed of the Video described by this object
 	 * @param length the length in frames of the Video described by this object
-	 * @param additionalData custom data describing the Video described by this object, entry labels are mapped to values
+	 * @param additionalData custom data describing the Video described by this object, entry labels are mapped to
+	 *     values
 	 */
 	VideoMetadata(QSize size, double fps, unsigned int length, QMap<QString, QString> additionalData);
 

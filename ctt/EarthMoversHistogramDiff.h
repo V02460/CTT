@@ -22,12 +22,17 @@ public:
 	typedef QWeakPointer<EarthMoversHistogramDiff> wptr;
 
 	/**
-	 * Creates a new EarthMoversHistogramDiff using the histograms of the submitted type to calculate earth mover's distances between frames of the two submitted videos.
+	 * Creates a new EarthMoversHistogramDiff using the histograms of the submitted type to calculate earth mover's
+	 * distances between frames of the two submitted videos.
+	 *
 	 * @param type the type of histogram that will be used for the calculations
 	 * @param video1 the first of the two videos the EarthMoversHistogramDiff will compare 
 	 * @param video2 the second of the two videos the EarthMoversHistogramDiff will compare
 	 */
-	EarthMoversHistogramDiff(model::frame::histogram::HistogramType type, const model::video::Video &video1, const model::video::Video &video2);
+	EarthMoversHistogramDiff(model::frame::histogram::HistogramType type,
+		                     const model::video::Video &video1,
+							 const model::video::Video &video2);
+
 	virtual ~EarthMoversHistogramDiff();
 
 	virtual double getDiff(unsigned int frameNr) const;

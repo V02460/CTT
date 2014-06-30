@@ -17,7 +17,7 @@ namespace video {
  * Represents a Video with a filter pipeline modifying its frames.
  *
  */
-class FilteredVideo : public Video, public Observable {
+class FilteredVideo : public model::video::Video, public model::Observable {
 public:
 	typedef QScopedPointer<FilteredVideo> uptr;
 	typedef QSharedPointer<FilteredVideo> sptr;
@@ -25,10 +25,12 @@ public:
 
 
 	/**
-	 * Creates a new FilteredVideo with an initially empty FilterList, using the submitted Video as base video. The base video provides the frames which will be modified by the filter pipeline.
+	 * Creates a new FilteredVideo with an initially empty FilterList, using the submitted Video as base video. The base
+	 * video provides the frames which will be modified by the filter pipeline.
+	 *
 	 * @param baseVideo this Video will be used as base video
 	 */
-	FilteredVideo(Video baseVideo);
+	FilteredVideo(model::video::Video::sptr baseVideo);
 
     /**
      * Ads the submitted Filter to the filter pipeline at the submitted position.
@@ -37,7 +39,7 @@ public:
      * @param pos the new filter will be added at this position
 	 * @throws IllegalArgumentException if the submitted position is too great
      */
-    void addFilter(Filter filter, unsigned int pos);
+	void addFilter(model::filter::Filter::sptr filter, unsigned int pos);
 
     /**
      * Removes the Filter at the submitted Position
@@ -46,31 +48,25 @@ public:
      * @return Filter the Filter which has been removed
 	 * @throws IllegalArgumentException if there is no Filter at the submitted position
      */
-	Filter removeFilter(unsigned int pos);
+	model::filter::Filter::sptr removeFilter(unsigned int pos);
 
     /**
      * Returns the number of Filters this FilteredVideo has in its filter pipeline.
      *
      * @return unsigned int the number of Filters this FilteredVideo has in its filter pipeline
      */
-    unsigned int getFilterCount();
+    unsigned int getFilterCount() const;
 
     /**
      * Returns a QList containing all the Filters this FilteredVideo uses in its filter pipeline in the right order.
      *
      * @return QList<Filter> a QList containing all the Filters this FilteredVideo uses in its filter pipeline in the right order
      */
-    QList<Filter> getFilterList();
+    QList<model::filter::Filter> getFilterList();
 
-    VideoMetadata getMetadata();
+	virtual model::video::VideoMetadata getMetadata() const;
 
-	Frame getFrame(unsigned int frameNumber);
-	
-	Memento getMemento();
-
-    void restore(Memento memento);
-
-    Saveable* getDummy();
+	virtual frame::Frame getFrame(unsigned int frameNumber);
 private:
 	/**
 	 * Creates a dummy FilteredVideo.
@@ -78,7 +74,7 @@ private:
 	FilteredVideo();
 
     Video *baseVideo; /**< This provides the frames which will be modified by the filter pipeline. */
-    QList<Filter> *filters; /**< The filter pipeline */
+    QList<model::filter::Filter> *filters; /**< The filter pipeline */
 };
 
 }  // namespace video

@@ -12,7 +12,8 @@ namespace model {
 namespace difference {
 
 /**
- * Calculates the distances in the HSL-colorspace between frames for every pair of corresponding pixels, and is able to normalize the resulting matrix if required.
+ * Calculates the distances in the HSL-colorspace between frames for every pair of corresponding pixels, and is able to
+ * normalize the resulting matrix if required.
  */
 class HSLPixelDiff : public PixelDiff {
 public:
@@ -22,6 +23,7 @@ public:
 
 	/**
 	 * Creates a new HSLPixelDiff comparing the two submitted videos.
+	 *
 	 * @param video1 the first of the two videos which will be compared
 	 * @param video1 the second of the two videos which will be compared
 	 * @throws InvalidArgumentException if the submitted videos don't create their frames in the same OpenGLContext

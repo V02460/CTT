@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+
 namespace model {
 namespace project {
 
@@ -12,7 +13,6 @@ public:
 	typedef QScopedPointer<ProjectLoaderFactory> uptr;
 	typedef QSharedPointer<ProjectLoaderFactory> sptr;
 	typedef QWeakPointer<ProjectLoaderFactory> wptr;
-
 };
 
 }  // namespace project

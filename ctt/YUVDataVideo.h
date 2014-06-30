@@ -23,24 +23,21 @@ public:
 	typedef QWeakPointer<YUVDataVideo> wptr;
 
 	/**
-	* Creates a new YUVDataVideo representing the YUV 4:4:4 or YUV 4:2:2 video at the submitted location in the file system.
+	* Creates a new YUVDataVideo representing the YUV 4:4:4 or YUV 4:2:2 video at the submitted location in the file
+	* system.
+	*
 	* @param videoFile the path to the video file which will be loaded
 	* @param metadataFile the path to the file containing the metadata for the video file
 	* @param context the context in which the video creates its frames
 	* @throws IOException if the file at the submitted location can't be accessed.
-	* @throws InvalidArgumentException if the files at the submitted locations aren't valid YUV 4:4:4 or YUV 4:2:2 video or metadata files
+	* @throws InvalidArgumentException if the files at the submitted locations aren't valid YUV 4:4:4 or YUV 4:2:2 video
+	*     or metadata files
 	*/
 	YUVDataVideo(QDir videoFile, QDir metadataFile, QOpenGLContext context);
 
-	VideoMetadata getMetadata();
+	virtual model::video::VideoMetadata getMetadata() const;
 
-	Frame getFrame(int frameNumber);
-
-	Memento getMemento();
-
-	void restore(Memento memento);
-
-    static Saveable* getDummy();
+	virtual frame::Frame getFrame(unsigned int frameNumber);
 
 private:
 	/**

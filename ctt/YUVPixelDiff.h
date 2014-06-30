@@ -12,7 +12,8 @@ namespace model {
 namespace difference {
 
 /**
- * Calculates the distances in the YUV-colorspace between frames for every pair of corresponding pixels, and is able to normalize the resulting matrix if required.
+ * Calculates the distances in the YUV-colorspace between frames for every pair of corresponding pixels, and is able to
+ * normalize the resulting matrix if required.
  */
 class YUVPixelDiff : public PixelDiff {
 public:
