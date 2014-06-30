@@ -28,7 +28,7 @@ public:
 	typedef QSharedPointer<Filter> sptr;
 	typedef QWeakPointer<Filter> wptr;
 
-	/**
+    /**
 	 * Constructs a Filter which works on predecessor. 
 	 *
 	 * @param predecessor The Module Filter is receiving its Frames from.
@@ -49,12 +49,20 @@ public:
     virtual bool supportsIntervals() const = 0;
 
     /**
-     * Returns a map of the different parameters of the filter with their names and values.
+     * Returns a list of the different parameters of the filter with their names and values.
      *
-     * @return Map<QString, FilterParam> a map of the different parameters of the filter
+     * @return QList<FilterParam> a list of the different parameters of the filter
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    QMap<QString, FilterParam> getParams() const;
+    QList<FilterParam> getParams() const;
+
+	/**
+	 * Sets the submitted parameter.
+	 *
+	 * @param parameter this parameter will be set
+	 * @throws InvalidArgumentException if the Filter doesn't have a parameter with the name or type of the submitted parameter
+	 */
+	void setParam(FilterParam parameter);
 
     /**
      * Tells the Filter to use the frames of the submitted Module as source material for its own frames.

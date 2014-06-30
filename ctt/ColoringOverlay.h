@@ -13,6 +13,10 @@ namespace model {
 namespace filter {
 namespace overlay {
 
+	/**
+	 *	A ColoringOverlay modifies the frame of the predecessor in a similar way the Overlay does,
+	 *	but it turns every frame to a greyscale frame before mixig it with the graphical representable information.
+	 */
 class ColoringOverlay : public Overlay {
 public:
 	typedef QScopedPointer<ColoringOverlay> uptr;
