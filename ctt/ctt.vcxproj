@@ -229,7 +229,6 @@
     <ClCompile Include="OperationList.cpp" />
     <ClCompile Include="Overlay.cpp" />
     <ClCompile Include="OverlayController.cpp" />
-    <ClCompile Include="OverlayFactory.cpp" />
     <ClCompile Include="PixelDiff.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerController.cpp" />
@@ -360,7 +359,6 @@
     <ClInclude Include="OperationList.h" />
     <ClInclude Include="Overlay.h" />
     <ClInclude Include="OverlayController.h" />
-    <ClInclude Include="OverlayFactory.h" />
     <ClInclude Include="PixelDiff.h" />
     <CustomBuild Include="Player.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
