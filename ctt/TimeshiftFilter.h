@@ -11,12 +11,21 @@ namespace filter {
 #include "Frame.h"
 #include "Memento.h"
 
+/**
+ *	Provides the unmodified version of a previous or subsequent frame of the predecessor
+ */
 class TimeshiftFilter : public Filter {
 public:
 	typedef QScopedPointer<TimeshiftFilter> uptr;
 	typedef QSharedPointer<TimeshiftFilter> sptr;
 	typedef QWeakPointer<TimeshiftFilter> wptr;
 
+	/**
+	*	Creates a new TimeshiftFilter object with a given previous module.
+	*
+	*	@param previous The previous module of this filter.
+	*/
+	TimeshiftFilter(Module previous);
 	QString getName();
 	Frame getFrame(int frameNumber);
 	Memento getMemento();
