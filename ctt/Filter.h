@@ -83,7 +83,7 @@ public:
 
 private:
     QMap<QString, FilterParam> parameters; /**< Parameters modifying the filters behaviour */
-	FilterIntervalList intervals; /**< The Intervals in which the Filtr is active/
+	FilterIntervalList intervals; /**< The Intervals in which the Filtr is active */
     Module *previous; /**< The Filter gets the frames it modifies from this module */
 };
 
