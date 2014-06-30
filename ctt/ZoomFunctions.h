@@ -1,6 +1,11 @@
 #if !defined(_ZOOMFUNCTIONS_H)
 #define _ZOOMFUNCTIONS_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
+namespace view {
+
 #include <QWidget>
 #include <QPushButton>
 #include <QSlider>
@@ -10,18 +15,22 @@
  */
 class ZoomFunctions : public QWidget {
 public:
+	typedef QScopedPointer<ZoomFunctions> uptr;
+	typedef QSharedPointer<ZoomFunctions> sptr;
+	typedef QWeakPointer<ZoomFunctions> wptr;
+
 	/**
 	 *	Sets the internal zoomFactor when for example the user clicked on the zoom-out-button.
-	 *	After changing the zoomFactor the zoomFactorChanged signal is emitted
+	 *	After changing the zoomFactor the zoomFactorChanged signal is emitted.
 	 *
-	 *	@param zoomFactor The new zoom factor for the timeline
+	 *	@param zoomFactor The new zoom factor for the timeline.
 	 */
 	void setZoomFactor(double zoomFactor);
 
 	/**
-	 *	Returns the current zoom factor
+	 *	Returns the current zoom factor.
 	 *
-	 *	@return the current zoom factor
+	 *	@return the current zoom factor.
 	 */
 	double getZoomFactor();
 
@@ -36,5 +45,7 @@ private:
 	QSlider sliderZoom; /**< The slider for zooming smoothly in the timeline */
 	double zoomFactor; /**< The internally saved zoom factor */
 };
+
+}  // namespace view
 
 #endif  //_ZOOMFUNCTIONS_H

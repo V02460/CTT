@@ -3,6 +3,7 @@
 #include "Saveable.h"
 #include "Memento.h"
 
+namespace model {
 
 FilterIntervalList::FilterIntervalList()
 {
@@ -27,3 +28,5 @@ void FilterIntervalList::deactivate(UIntegerInterval interval)
 QList<UIntegerInterval> FilterIntervalList::getIntervalList()
 {
 }
+
+}  // namespace model

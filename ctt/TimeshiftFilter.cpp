@@ -1,9 +1,9 @@
-
-
-
 #include "TimeshiftFilter.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace filter {
 
 QString TimeshiftFilter::getName() {
 
@@ -25,3 +25,5 @@ Saveable* TimeshiftFilter::getDummy() {
 
 }
 
+}  // namespace filter
+}  // namespace model

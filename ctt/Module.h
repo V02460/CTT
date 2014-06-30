@@ -1,12 +1,14 @@
-
-
-
 #if !defined(_MODULE_H)
 #define _MODULE_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Saveable.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
 
 /**
  * An object able to provide specific frames from a sequentially numbered set of frames.
@@ -14,6 +16,10 @@
  */
 class Module : public Saveable {
 public:
+	typedef QScopedPointer<Module> uptr;
+	typedef QSharedPointer<Module> sptr;
+	typedef QWeakPointer<Module> wptr;
+
     /**
      * Gets the frame with the submitted number.
      *
@@ -55,5 +61,7 @@ public:
 
     virtual Saveable* getDummy();
 };
+
+}  // namespace model
 
 #endif  //_MODULE_H

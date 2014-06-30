@@ -1,16 +1,24 @@
-
 #include "Saveable.h"
 
-#if !defined(_INTEGERINTERVAL_H)
-#define _INTEGERINTERVAL_H
+namespace model {
+
+#if !defined(_UINTEGERINTERVAL_H)
+#define _UINTEGERINTERVAL_H
 
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 /**
  * Represents an interval of integers, defined by a start and end point.
  *
  */
 class UIntegerInterval: public Saveable {
 public:
+	typedef QScopedPointer<UIntegerInterval> uptr;
+	typedef QSharedPointer<UIntegerInterval> sptr;
+	typedef QWeakPointer<UIntegerInterval> wptr;
+
     /**
      * Creates an IntegerInterval from a to b if b isn't smaller than a, else it creates an Interval from b to a.
      *
@@ -89,4 +97,6 @@ private:
     unsigned int end; /**< The upper bound of the interval */
 };
 
-#endif  //_INTEGERINTERVAL_H
+}  // namespace model
+
+#endif  //_UINTEGERINTERVAL_H

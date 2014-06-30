@@ -1,15 +1,22 @@
-
-
-
 #if !defined(_HSLPIXELDIFF_H)
 #define _HSLPIXELDIFF_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "PixelDiff.h"
 #include "Video.h"
 #include "Memento.h"
 
+namespace model {
+namespace difference {
+
 class HSLPixelDiff : public PixelDiff {
 public:
+	typedef QScopedPointer<HSLPixelDiff> uptr;
+	typedef QSharedPointer<HSLPixelDiff> sptr;
+	typedef QWeakPointer<HSLPixelDiff> wptr;
+
 	QOpenGLTexture getPixelDif(int frameNr);
 	double getDif(int frameNr);
 	void FrameDif(Video video1, Video video2);
@@ -17,5 +24,8 @@ public:
 	void restore(Memento memento);
 	Saveable* getDummy();
 };
+
+}  // namespace difference
+}  // namespace model
 
 #endif  //_HSLPIXELDIFF_H

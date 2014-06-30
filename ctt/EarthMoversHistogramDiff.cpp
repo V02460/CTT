@@ -1,9 +1,9 @@
-
-
-
 #include "EarthMoversHistogramDiff.h"
 #include "Video.h"
 #include "Memento.h"
+
+namespace model {
+namespace difference {
 
 double EarthMoversHistogramDiff::getDif(int frameNr) {
 
@@ -25,3 +25,5 @@ Saveable* EarthMoversHistogramDiff::getDummy() {
 
 }
 
+}  // namespace difference
+}  // namcespace model

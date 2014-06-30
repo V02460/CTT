@@ -1,8 +1,8 @@
-
-
-
 #include "OperationList.h"
 #include "Operation.h"
+
+namespace controller {
+namespace operation {
 
 void OperationList::do(Operation operation) {
 
@@ -32,3 +32,5 @@ bool OperationList::canRedo() {
 
 }
 
+}  // namespace operation
+}  // namespace controller

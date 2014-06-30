@@ -1,9 +1,9 @@
-
-
-
 #include "BlurFilter.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace filter {
 
 QString BlurFilter::getName() {
 
@@ -25,3 +25,5 @@ Saveable* BlurFilter::getDummy() {
 
 }
 
+}  // namespace filter
+}  // namespace model

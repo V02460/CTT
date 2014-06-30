@@ -1,9 +1,9 @@
-
-
-
 #include "CoffeeFilter.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace filter {
 
 QString CoffeeFilter::getName() {
 
@@ -25,3 +25,5 @@ Saveable* CoffeeFilter::getDummy() {
 
 }
 
+}  // namespace filter
+}  // namespace model

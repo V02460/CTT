@@ -1,9 +1,9 @@
-
-
-
 #include "PixelDiff.h"
 #include "Video.h"
 #include "Memento.h"
+
+namespace model {
+namespace difference {
 
 double PixelDiff::getDif(int frameNr) {
 
@@ -25,3 +25,5 @@ Saveable* PixelDiff::getDummy() {
 
 }
 
+}  // namespace difference
+}  // namcespace model

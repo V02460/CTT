@@ -1,9 +1,9 @@
-
-
-
 #if !defined(_FILTER_H)
 #define _FILTER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Module.h"
 #include "Frame.h"
 #include "Memento.h"
@@ -12,12 +12,19 @@
 #include "FilterIntervalList.h"	
 #include <QMap>	
 
+namespace model {
+namespace filter {
+
 /**
  * An object which can attach itself to another module and outputs modified versions of the frames of this module.
  *
  */
 class Filter : public Module {
 public:
+	typedef QScopedPointer<Filter> uptr;
+	typedef QSharedPointer<Filter> sptr;
+	typedef QWeakPointer<Filter> wptr;
+
     /**
      * Checks whether it is possible to use this Filter not on its previous module as a whole, but only on frames in specific intervals.
      *
@@ -79,5 +86,8 @@ private:
 	FilterIntervalList intervals; /**< The Intervals in which the Filtr is active/
     Module *previous; /**< The Filter gets the frames it modifies from this module */
 };
+
+}  // namespace filter
+}  // namespace model
 
 #endif  //_FILTER_H

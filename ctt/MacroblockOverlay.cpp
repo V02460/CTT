@@ -1,9 +1,9 @@
-
-
-
 #include "MacroblockOverlay.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace filter {
 
 QString MacroblockOverlay::getName() {
 
@@ -25,3 +25,5 @@ Saveable* MacroblockOverlay::getDummy() {
 
 }
 
+}  // namespace filter
+}  // namcespace model

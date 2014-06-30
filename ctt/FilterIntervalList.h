@@ -1,7 +1,15 @@
+#if !defined(_FILTERINTERVALLIST_H)
+#define _FILTERINTERVALLIST_H
+
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "UIntegerInterval.h"
 #include "Saveable.h"
 #include "Memento.h"
 #include <QObject>
+
+namespace model {
 
 /**
  * Manages a list of intervals in which a something is active.
@@ -27,6 +35,10 @@ private:
 	FilterIntervalList(bool isDummy);
 
 public:
+	typedef QScopedPointer<FilterIntervalList> uptr;
+	typedef QSharedPointer<FilterIntervalList> sptr;
+	typedef QWeakPointer<FilterIntervalList> wptr;
+
     /**
      * Checks whether the submitted number is in an active interval.
      *
@@ -67,3 +79,6 @@ public:
 	Saveable* getDummy();
 };
 
+}  // namespace model
+
+#endif  //_FILTERINTERVALLIST_H

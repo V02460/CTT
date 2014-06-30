@@ -1,9 +1,9 @@
-
-
-
 #include "RGBChannelFilter.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace filter {
 
 QString RGBChannelFilter::getName() {
 
@@ -25,3 +25,5 @@ Saveable* RGBChannelFilter::getDummy() {
 
 }
 
+}  // namespace filter
+}  // namespace model

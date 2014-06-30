@@ -1,11 +1,14 @@
-
-
-
 #if !defined(_Saveable_H)
 #define _Saveable_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
 #include "Memento.h"
+
+namespace model {
+namespace project {
 
 /**
  * Objects, whose state can be externalised into a memento and restored from one.
@@ -14,6 +17,10 @@
 class Saveable {
 
 public:
+	typedef QScopedPointer<Saveable> uptr;
+	typedef QSharedPointer<Saveable> sptr;
+	typedef QWeakPointer<Saveable> wptr;
+
 
     /**
      * Gets the internal state of the object as a Memento.
@@ -48,5 +55,8 @@ public:
 protected:
 	boolean is_dummy;
 };
+
+}  // namespace project
+}  // namespace model
 
 #endif  //_Saveable_H

@@ -1,19 +1,36 @@
-
-
-
 #if !defined(_FRAMEMETADATAWIDGET_H)
 #define _FRAMEMETADATAWIDGET_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Observer.h"
+#include "VideoScrubber.h"
+#include <QWidget>
 
-class FrameMetadataWidget : public Observer {
+namespace view {
+
+/**
+ *	The FrameMetadataWidget displays the metadata information provided by a frame.
+ *	Therefore it registers itself at a VideoScrubber to recieve the metadata for the current frame.
+ */
+class FrameMetadataWidget : public Observer , public QWidget{
 public:
-	class HistogramWidget : public Observer {
-	public:
-		void next();
+	typedef QScopedPointer<FrameMetadataWidget> uptr;
+	typedef QSharedPointer<FrameMetadataWidget> sptr;
+	typedef QWeakPointer<FrameMetadataWidget> wptr;
+
+	/**
+	 *	Creates a new FrameMetadataWidget which holds a VideoScrubber from where it gets the metadata for the current frame.
+	 *
+	 *	@param scrubber The VideoScrubber to regiser at and which provides the metadata.
+	 */
+	FrameMetadataWidget(VideoScrubber scrubber);
+
 	private:
-		void paint();
-	};
+	VideoScrubber scrubber /**< The scrubber at which the FrameMetadataWidget is registered */;
 };
+
+}  // namespace view
 
 #endif  //_FRAMEMETADATAWIDGET_H

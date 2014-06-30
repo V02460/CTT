@@ -1,9 +1,9 @@
-
-
-
 #include "HSLPixelDiff.h"
 #include "Video.h"
 #include "Memento.h"
+
+namespace model {
+namespace difference {
 
 QOpenGLTexture HSLPixelDiff::getPixelDif(int frameNr) {
 
@@ -29,3 +29,5 @@ Saveable* HSLPixelDiff::getDummy() {
 
 }
 
+}  // namespace difference
+}  // namcespace model

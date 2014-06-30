@@ -1,14 +1,17 @@
-
-
-
 #if !defined(_PLAYER_H)
 #define _PLAYER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Saveable.h"
 #include "VideoScrubber.h"
 #include "UIntegerInterval.h"
 #include "Memento.h"
 #include <QTimer>
+
+namespace model {
+namespace player {
 
 /**
  * A player organizes sychronized and complex access to multiple VideoScrubbers by telling them when to load which frames. It provides random access, asynchronous timer controlled playback with custom playback speed and looping.
@@ -19,6 +22,10 @@ class Player : public Saveable, public QObject {
 	Q_OBJECT
 
 public:
+	typedef QScopedPointer<Player> uptr;
+	typedef QSharedPointer<Player> sptr;
+	typedef QWeakPointer<Player> wptr;
+
     /**
      * Creates a new player with an empty list of scrubbers and and initializes the playback speed with the submitted paramater.
      *
@@ -245,5 +252,8 @@ private:
     bool playing; /**< Specifies whether the player is currently playing */
     UIntegerInterval *loop; /**< Specifies the interval in which the player loops. */
 };
+
+}  // namespace player
+}  // namespace model
 
 #endif  //_PLAYER_H

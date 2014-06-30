@@ -406,7 +406,6 @@
     <ClInclude Include="VideoListOperation.h" />
     <ClInclude Include="VideoMetadata.h" />
     <ClInclude Include="VideoProcessingWidget.h" />
-    <ClInclude Include="VideoReader.h" />
     <ClInclude Include="VideoRemovedOperation.h" />
     <ClInclude Include="VideoSaver.h" />
     <ClInclude Include="VideoSaverFactory.h" />

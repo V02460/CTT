@@ -1,9 +1,9 @@
-
-
-
 #if !defined(_VIDEOSCRUBBER_H)
 #define _VIDEOSCRUBBER_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Saveable.h"
 #include "Observable.h"
 #include "Frame.h"
@@ -12,6 +12,9 @@
 #include "Memento.h"
 #include <QObject>
 
+namespace model {
+namespace player {
+
 /**
  * A VideoScrubber is associated with a video and able to request frames from this video to save one of them internally.
  * It makes this frame available to other objects and notifies them via Qt's signal and slot mechanism when this frame is replaced.
@@ -19,6 +22,10 @@
 class VideoScrubber : public Saveable, public Observable, public QObject {
 	Q_OBJECT
 public:
+	typedef QScopedPointer<VideoScrubber> uptr;
+	typedef QSharedPointer<VideoScrubber> sptr;
+	typedef QWeakPointer<VideoScrubber> wptr;
+
     /**
      * Creates a new VideoScrubber for the submitted video. Initially the Scrubber holds the first frame of the video.
      *
@@ -89,5 +96,9 @@ private:
     Frame *currentFrame; /**< This is the frame currently held by the scrubber */
 	bool waitingForFrame /**< This is true while Scrubber is still waiting for the frame it requested last*/
 };
+
+}  // namespace player
+}  // namespace model
+
 
 #endif  //_VIDEOSCRUBBER_H

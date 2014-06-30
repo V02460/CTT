@@ -1,14 +1,17 @@
-
-
-
 #if !defined(_FILTEREDVIDEO_H)
 #define _FILTEREDVIDEO_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include "Video.h"
 #include "Observable.h"
 #include "Filter.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace video {
 
 /**
  * Represents a Video with a filter pipeline modifying its frames.
@@ -16,6 +19,10 @@
  */
 class FilteredVideo : public Video, public Observable {
 public:
+	typedef QScopedPointer<FilteredVideo> uptr;
+	typedef QSharedPointer<FilteredVideo> sptr;
+	typedef QWeakPointer<FilteredVideo> wptr;
+
 
 	/**
 	 * Creates a new FilteredVideo with an initially empty FilterList, using the submitted Video as base video. The base video provides the frames which will be modified by the filter pipeline.
@@ -73,5 +80,8 @@ private:
     Video *baseVideo; /**< This provides the frames which will be modified by the filter pipeline. */
     QList<Filter> *filters; /**< The filter pipeline */
 };
+
+}  // namespace video
+}  // namespace model
 
 #endif  //_FILTEREDVIDEO_H
