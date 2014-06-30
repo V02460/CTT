@@ -254,9 +254,6 @@
     <ClCompile Include="ProjectController.cpp">
       <Filter>Source Files\Controller</Filter>
     </ClCompile>
-    <ClCompile Include="OverlayFactory.cpp">
-      <Filter>Source Files\Model\Filter\Overlay</Filter>
-    </ClCompile>
     <ClCompile Include="Overlay.cpp">
       <Filter>Source Files\Model\Filter\Overlay</Filter>
     </ClCompile>
@@ -553,9 +550,6 @@
       <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
     <ClInclude Include="Overlay.h">
-      <Filter>Header Files\Model\Filter\Overlay</Filter>
-    </ClInclude>
-    <ClInclude Include="OverlayFactory.h">
       <Filter>Header Files\Model\Filter\Overlay</Filter>
     </ClInclude>
     <ClInclude Include="PixelDiff.h">
