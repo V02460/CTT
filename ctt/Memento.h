@@ -142,6 +142,7 @@ public:
 	 * @return The map of all pointers.
 	 */
 	QMap<QString, void*> getPointerMap() const;
+
 private:
 	QMap<QString, QString> variableMap;
 	QMap<QString, void*> pointerMap;

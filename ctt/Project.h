@@ -3,6 +3,8 @@
 
 #include "SaveableList.h"
 #include "Video.h"
+#include "FileVideo.h"
+#include "FilteredVideo.h"
 #include "Player.h"
 #include "FrameDiff.h"
 #include "ViewState.h"
@@ -16,19 +18,9 @@ class Project {
 
 public:
 	/**
-	 * Creates a new project with given savable objects.
-	 *
-	 * @param baseVideoList The base video list of the project.
-	 * @param videoList1 The video list from the first view of the project.
-	 * @param videoList2 The video list from the second view of the project.
-	 * @param playerList1 The player list from the first view of the project.
-	 * @param player2 The player from the second view of the project.
-	 * @param diffList The diff list of the project.
-	 * @param view The view of the project.
+	 * Creates a new project and all savable objects nedded from the start of the program.
 	 */
-	Project(SavableList<model::video::Video> baseVideoList, SavableList < model::video::Video videoList1,
-		SavableList < model::video::Video videoList2, SaveableList<model::player::Player> playerList1,
-		model::player::Player player2, SaveableList<model::difference::FrameDiff> diffList, view::ViewState view);
+	Project();
 
 	/**
 	 * Returns the list of all base videos the project uses, i.e. videos which are directly read from files.
@@ -49,7 +41,7 @@ public:
 	 *
 	 * @return the List of all FilteredVideos the Project uses in the second view
 	 */
-	SaveableList<model::video::Video> getVideoList2();
+	SaveableList<model::video::FilteredVideo> getVideoList2();
 
 	/**
 	 * Returns the player list from the first view (the editing view) of the project.
@@ -80,9 +72,9 @@ public:
 	view::ViewState getView();
 
 private:
-	const SaveableList<model::video::Video> baseVideoList;
-	const SaveableList<model::video::Video> videoList1;
-	const SaveableList<model::video::Video> videoList2;
+	const SaveableList<model::video::FileVideo> baseVideoList;
+	const SaveableList<model::video::FilteredVideo> videoList1;
+	const SaveableList<model::video::FilteredVideo> videoList2;
 	const SaveableList<model::player::Player> playerList1;
 	const model::player::Player player2;
 	const SaveableList<model::difference::FrameDiff> diffList;

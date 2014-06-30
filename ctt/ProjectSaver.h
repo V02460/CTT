@@ -23,15 +23,14 @@ public:
 	typedef QWeakPointer<ProjectSaver> wptr;
 
 	/**
-	 * Saves the current state of the project to a file.
+	 * Saves the current state of the project to given file.
 	 *
-	 * @param project The project to be loaded to.
+	 * @param path The path to save to.
+	 * @param project The project to be saved.
 	 * @throws IOException Is thrown if for any reason the file cant be written.
 	 */
 	static void save(QDir path, Project project);
 
-private:
-	Saveable *toSave;
 };
 
 }  // namespace project
