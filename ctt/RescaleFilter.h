@@ -17,11 +17,12 @@ public:
 	typedef QSharedPointer<RescaleFilter> sptr;
 	typedef QWeakPointer<RescaleFilter> wptr;
 
-	QString getName();
-	Frame getFrame(int frameNumber);
-	Memento getMemento();
-	void restore(Memento memento);
-	Saveable* getDummy();
+	RescaleFilter(const Module &predecessor);
+	virtual ~RescaleFilter();
+
+	virtual bool supportsIntervals() const;
+	virtual QString getName() const;
+	virtual frame::Frame getFrame(unsigned int frameNumber) const;
 };
 
 }  // namespace filter

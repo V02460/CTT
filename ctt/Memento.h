@@ -4,6 +4,8 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QMap>
+
 namespace model {
 namespace project {
 
@@ -14,20 +16,22 @@ public:
 	typedef QWeakPointer<Memento> wptr;
 
 	void setBool(bool value, QString name);
-	bool getBool(QString name);
+	bool getBool(QString name) const;
 	void setInt(int value, QString name);
-	int getInt(QSting name);
+	int getInt(QString name) const;
 	void setFloat(float value, QString name);
-	float getFloat(QString name);
+	float getFloat(QString name) const;
 	void setDouble(double value, QString name);
-	double getDouble(QString name);
+	double getDouble(QString name) const;
 	void setString(QString value, QString name);
-	QString getString(QString name);
-	void setPointer(Pointer pointer, QString name);
-	Pointer getPointer(QString name);
+	QString getString(QString name) const;
+	void setPointer(void* pointer, QString name);
+	void* getPointer(QString name) const;
+	QMap<QString, QString> getVariableMap() const;
+	QMap<QString, void*> getPointerMap() const;
 private:
-	Map<String, QString> variableMap;
-	Map<String, Pointer> pointerMap;
+	QMap<QString, QString> variableMap;
+	QMap<QString, void*> pointerMap;
 };
 
 }  // namespace project

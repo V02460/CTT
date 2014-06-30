@@ -17,12 +17,11 @@ public:
 	typedef QSharedPointer<HSLPixelDiff> sptr;
 	typedef QWeakPointer<HSLPixelDiff> wptr;
 
-	QOpenGLTexture getPixelDif(int frameNr);
-	double getDif(int frameNr);
-	void FrameDif(Video video1, Video video2);
-	Memento getMemento();
-	void restore(Memento memento);
-	Saveable* getDummy();
+	HSLPixelDiff(const video::Video &video1, const video::Video &video2);
+	~HSLPixelDiff();
+
+	virtual Surface getPixelDiff(unsigned int frameNr) const;
+	virtual double getDiff(unsigned int frameNr) const;
 };
 
 }  // namespace difference

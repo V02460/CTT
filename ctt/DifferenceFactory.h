@@ -16,8 +16,11 @@ public:
 	typedef QSharedPointer<DifferenceFactory> sptr;
 	typedef QWeakPointer<DifferenceFactory> wptr;
 
-	List<QString> getAllDiffIDs();
-	FrameDiff createDiff(QString id, Video video1, Video video2);
+	static QList<QString> getAllDiffIDs();
+	static FrameDiff::sptr createDiff(QString id, const video::Video &video1, const video::Video &video2);
+
+private:
+	DifferenceFactory() {}
 };
 
 }  // namespace difference

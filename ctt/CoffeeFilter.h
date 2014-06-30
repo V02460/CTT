@@ -17,11 +17,12 @@ public:
 	typedef QSharedPointer<CoffeeFilter> sptr;
 	typedef QWeakPointer<CoffeeFilter> wptr;
 
-	QString getName();
-	Frame getFrame(int frameNumber);
-	Memento getMemento();
-	void restore(Memento memento);
-	Saveable* getDummy();
+	CoffeeFilter(const Module &predecessor);
+	virtual ~CoffeeFilter();
+
+	virtual bool supportsIntervals() const;
+	virtual QString getName() const;
+	virtual frame::Frame getFrame(unsigned int frameNumber) const;
 };
 
 }  // namespace filter

@@ -4,10 +4,11 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QObject>
+
 #include "UIntegerInterval.h"
 #include "Saveable.h"
 #include "Memento.h"
-#include <QObject>
 
 namespace model {
 
@@ -15,29 +16,18 @@ namespace model {
  * Manages a list of intervals in which a something is active.
  *
  */
-class FilterIntervalList : public Saveable
+class FilterIntervalList : public project::Saveable
 {
 public:
+	typedef QScopedPointer<FilterIntervalList> uptr;
+	typedef QSharedPointer<FilterIntervalList> sptr;
+	typedef QWeakPointer<FilterIntervalList> wptr;
+
 	/**
 	* Creates an empty FilterIntervalList.
 	*
 	*/
 	FilterIntervalList();
-
-private:
-    QList<UIntegerInterval> intervals; /**< The list of active Intervals*/
-
-	/**
-	* Creates an empty FilterIntervalList if isDummmy is false, and a dummy FilterIntervalList if isDummmy is true.
-	*
-	*@param isDummy determines whether the new FilterIntervalList is a dummy FilterIntervalList
-	*/
-	FilterIntervalList(bool isDummy);
-
-public:
-	typedef QScopedPointer<FilterIntervalList> uptr;
-	typedef QSharedPointer<FilterIntervalList> sptr;
-	typedef QWeakPointer<FilterIntervalList> wptr;
 
     /**
      * Checks whether the submitted number is in an active interval.
@@ -46,7 +36,7 @@ public:
      * @return bool true only if the submitted number is in an active interval
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    bool isActive(unsigned int frameNumber);
+    bool isActive(unsigned int frameNumber) const;
 
     /**
      * Makes the submitted Interval an active Interval. If possible, it will be merged with existing active Intervals.
@@ -70,13 +60,10 @@ public:
      * @return List<IntegerInterval> a list of all the active Intervals
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    QList<UIntegerInterval> getIntervalList();
+    QList<UIntegerInterval> getIntervalList() const;
 
-	Memento getMemento();
-
-	void restore(Memento memento);
-
-	Saveable* getDummy();
+private:
+	QList<UIntegerInterval> intervals; /**< The list of active Intervals*/
 };
 
 }  // namespace model

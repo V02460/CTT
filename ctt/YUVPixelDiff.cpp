@@ -5,27 +5,19 @@
 namespace model {
 namespace difference {
 
-QOpenGLTexture YUVPixelDiff::getPixelDif(int frameNr) {
+YUVPixelDiff::YUVPixelDiff(const video::Video &video1, const video::Video &video2) : PixelDiff(video1, video2) {
 
 }
 
-double YUVPixelDiff::getDif(int frameNr) {
+YUVPixelDiff::~YUVPixelDiff() {
 
 }
 
-void YUVPixelDiff::FrameDif(Video video1, Video video2) {
+Surface	YUVPixelDiff::getPixelDiff(unsigned int frameNr) const {
 
 }
 
-Memento YUVPixelDiff::getMemento() {
-
-}
-
-void YUVPixelDiff::restore(Memento memento) {
-
-}
-
-Saveable* YUVPixelDiff::getDummy() {
+double YUVPixelDiff::getDiff(unsigned int frameNr) const {
 
 }
 

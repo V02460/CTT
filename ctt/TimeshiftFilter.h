@@ -4,12 +4,13 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
-namespace model {
-namespace filter {
 
 #include "Filter.h"
 #include "Frame.h"
 #include "Memento.h"
+
+namespace model {
+namespace filter {
 
 class TimeshiftFilter : public Filter {
 public:
@@ -17,11 +18,12 @@ public:
 	typedef QSharedPointer<TimeshiftFilter> sptr;
 	typedef QWeakPointer<TimeshiftFilter> wptr;
 
-	QString getName();
-	Frame getFrame(int frameNumber);
-	Memento getMemento();
-	void restore(Memento memento);
-	Saveable* getDummy();
+	TimeshiftFilter(const Module &predecessor);
+	virtual ~TimeshiftFilter();
+
+	virtual bool supportsIntervals() const;
+	virtual QString getName() const;
+	virtual frame::Frame getFrame(unsigned int frameNumber) const;
 };
 
 }  // namespace filter

@@ -5,28 +5,23 @@
 
 namespace model {
 
-FilterIntervalList::FilterIntervalList()
-{
+FilterIntervalList::FilterIntervalList() {
 }
 
 
-bool FilterIntervalList::isActive(unsigned int frameNumber)
-{
+bool FilterIntervalList::isActive(unsigned int frameNumber) {
 }
 
 
-void FilterIntervalList::activate(UIntegerInterval interval)
-{
+void FilterIntervalList::activate(UIntegerInterval interval) {
 }
 
 
-void FilterIntervalList::deactivate(UIntegerInterval interval)
-{
+void FilterIntervalList::deactivate(UIntegerInterval interval) {
 }
 
 
-QList<UIntegerInterval> FilterIntervalList::getIntervalList()
-{
+QList<UIntegerInterval> FilterIntervalList::getIntervalList() {
 }
 
 }  // namespace model

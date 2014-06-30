@@ -57,7 +57,7 @@ public:
      * @return Video the Video this VideoScrubber is associated with.
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    video::Video::sptr getVideo() const;
+    video::Video::wptr getVideo() const;
 
     /**
      * Gets the frame currently held by the scrubber.
@@ -65,7 +65,7 @@ public:
      * @return Frame the frame currently held by the scrubber
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    frame::Frame::sptr getCurrentFrame() const;
+    frame::Frame::wptr getCurrentFrame() const;
 
 	/**
 	 * Checks whether the Scrubber is still waiting for the frame it requested last.
@@ -86,8 +86,8 @@ public slots:
     void jumpToFrameNr(unsigned int frameNumber);
 
 private:
-    video::Video *video; /**< The scrubber gets frames and metadata from this video */
-    frame::Frame *currentFrame; /**< This is the frame currently held by the scrubber */
+    video::Video::sptr video; /**< The scrubber gets frames and metadata from this video */
+	frame::Frame::sptr currentFrame; /**< This is the frame currently held by the scrubber */
 	bool waitingForFrame; /**< This is true while Scrubber is still waiting for the frame it requested last*/
 };
 

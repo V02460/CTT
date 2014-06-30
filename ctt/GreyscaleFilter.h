@@ -17,11 +17,12 @@ public:
 	typedef QSharedPointer<GreyscaleFilter> sptr;
 	typedef QWeakPointer<GreyscaleFilter> wptr;
 
-	QString getName();
-	Frame getFrame(int frameNumber);
-	Memento getMemento();
-	void restore(Memento memento);
-	Saveable* getDummy();
+	GreyscaleFilter(const Module &predecessor);
+	virtual ~GreyscaleFilter();
+
+	virtual bool supportsIntervals() const;
+	virtual QString getName() const;
+	virtual frame::Frame getFrame(unsigned int frameNumber) const;
 };
 
 }  // namespace filter

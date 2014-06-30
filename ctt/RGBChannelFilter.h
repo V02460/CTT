@@ -17,11 +17,9 @@ public:
 	typedef QSharedPointer<RGBChannelFilter> sptr;
 	typedef QWeakPointer<RGBChannelFilter> wptr;
 
-	QString getName();
-	Frame getFrame(int frameNumber);
-	Memento getMemento();
-	void restore(Memento memento);
-	Saveable* getDummy();
+	virtual bool supportsIntervals() const;
+	virtual QString getName() const;
+	virtual frame::Frame getFrame(unsigned int frameNumber) const;
 };
 
 }  // namespace filter

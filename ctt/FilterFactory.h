@@ -4,6 +4,8 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QList>
+
 #include "Filter.h"
 
 namespace model {
@@ -15,10 +17,10 @@ public:
 	typedef QSharedPointer<FilterFactory> sptr;
 	typedef QWeakPointer<FilterFactory> wptr;
 
-	List<QString> getAllFilterIDs();
-	Filter createFilter(QString id);
+	static QList<QString> getAllFilterIDs();
+	static Filter::sptr createFilter(QString id);
 private:
-	void FilterFactory();
+	FilterFactory() {}
 };
 
 }  // namespace filter

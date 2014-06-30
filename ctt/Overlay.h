@@ -17,12 +17,6 @@ public:
 	typedef QScopedPointer<Overlay> uptr;
 	typedef QSharedPointer<Overlay> sptr;
 	typedef QWeakPointer<Overlay> wptr;
-
-	QString getName();
-	Frame getFrame(int frameNumber);
-	Memento getMemento();
-	void restore(Memento memento);
-	Saveable* getDummy();
 };
 
 }  // namespace overlay

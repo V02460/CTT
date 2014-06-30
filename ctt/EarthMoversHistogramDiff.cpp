@@ -5,23 +5,16 @@
 namespace model {
 namespace difference {
 
-double EarthMoversHistogramDiff::getDif(int frameNr) {
+EarthMoversHistogramDiff::EarthMoversHistogramDiff(const video::Video &video1, const video::Video &video2)
+		: FrameDiff(video1, video2) {
 
 }
 
-void EarthMoversHistogramDiff::FrameDif(Video video1, Video video2) {
+EarthMoversHistogramDiff::~EarthMoversHistogramDiff() {
 
 }
 
-Memento EarthMoversHistogramDiff::getMemento() {
-
-}
-
-void EarthMoversHistogramDiff::restore(Memento memento) {
-
-}
-
-Saveable* EarthMoversHistogramDiff::getDummy() {
+double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
 
 }
 

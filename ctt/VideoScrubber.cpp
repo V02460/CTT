@@ -7,7 +7,23 @@
 namespace model {
 namespace player {
 
-Frame VideoScrubber::getCurrentFrame() {
+VideoScrubber::VideoScrubber(video::Video::sptr video) {
+
+}
+
+VideoScrubber::VideoScrubber(video::Video::sptr video, unsigned int frameNumber) {
+
+}
+
+video::VideoMetadata VideoScrubber::getVideoMetadata() const {
+
+}
+
+video::Video::wptr VideoScrubber::getVideo() const {
+
+}
+
+frame::Frame::wptr VideoScrubber::getCurrentFrame() const{
 
 }
 
@@ -15,27 +31,11 @@ void VideoScrubber::jumpToFrameNr(unsigned int frameNumber); {
 
 }
 
-VideoScrubber::VideoScrubber(Video video) {
+project::Memento VideoScrubber::getMemento() {
 
 }
 
-VideoScrubber::VideoScrubber(Video video, unsigned int frameNumber) {
-
-}
-
-VideoMetadata VideoScrubber::getVideoMetadata() {
-
-}
-
-Video VideoScrubber::getVideo() {
-
-}
-
-Memento VideoScrubber::getMemento() {
-
-}
-
-void VideoScrubber::restore(Memento memento) {
+void VideoScrubber::restore(project::Memento memento) {
 
 }
 

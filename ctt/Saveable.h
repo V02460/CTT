@@ -21,6 +21,7 @@ public:
 	typedef QSharedPointer<Saveable> sptr;
 	typedef QWeakPointer<Saveable> wptr;
 
+	virtual ~Saveable();
 
     /**
      * Gets the internal state of the object as a Memento.
@@ -28,14 +29,14 @@ public:
      * @return Memento the internal state of the object
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual Memento getMemento();
+    virtual Memento getMemento() const = 0;
 
     /**
      * Sets the internal state of the object to the state saved in a submitted Memento.
      *
      * @param memento this state will be restored
      */
-    virtual void restore(Memento memento);
+	virtual void restore(Memento memento) = 0;
 
     /**
      * Creates and returns a dummy instance of the class with the sole purpose to have a state restored from a Memento.
@@ -43,17 +44,17 @@ public:
      * @return Saveable the dummy object
 	 * @throws NotImplementedException if this method is called on a class which isn't meant to be instantiable
      */
-    static Saveable* getDummy();
+    static Saveable::sptr getDummy();
 
 	/**
 	 * Checks whether the object is a dummy object.
 	 *
 	 * @return boolean true only if the object is a dummy
 	 */
-	boolean isDummy();
+	bool isDummy() const;
 
 protected:
-	boolean is_dummy;
+	bool isDummy = false;
 };
 
 }  // namespace project

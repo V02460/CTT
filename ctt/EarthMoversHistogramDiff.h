@@ -17,11 +17,10 @@ public:
 	typedef QSharedPointer<EarthMoversHistogramDiff> sptr;
 	typedef QWeakPointer<EarthMoversHistogramDiff> wptr;
 
-	double getDif(int frameNr);
-	void FrameDif(Video video1, Video video2);
-	Memento getMemento();
-	void restore(Memento memento);
-	Saveable* getDummy();
+	EarthMoversHistogramDiff(const video::Video &video1, const video::Video &video2);
+	virtual ~EarthMoversHistogramDiff();
+
+	virtual double getDiff(unsigned int frameNr) const;
 };
 
 }  // namespace difference

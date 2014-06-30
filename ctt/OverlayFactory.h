@@ -4,6 +4,10 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QList>
+
+#include "Overlay.h"
+
 namespace model {
 namespace filter {
 namespace overlay {
@@ -14,10 +18,10 @@ public:
 	typedef QSharedPointer<OverlayFactory> sptr;
 	typedef QWeakPointer<OverlayFactory> wptr;
 
-	List<QString> getAllOverlayIDs();
-	Diff createOverlay(QString id);
+	QList<QString> getAllOverlayIDs();
+	Overlay createOverlay(QString id);
 private:
-	void OverlayFactory();
+	OverlayFactory() {}
 };
 
 }  // namespace overlay
