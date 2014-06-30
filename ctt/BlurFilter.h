@@ -13,7 +13,7 @@ namespace model {
 namespace filter {
 
 /**
- *	Provides a blured version of the predecessors frame
+ *	Provides a blured version of the predecessors frame.
  */
 class BlurFilter : public Filter {
 public:
@@ -22,9 +22,9 @@ public:
 	typedef QWeakPointer<BlurFilter> wptr;
 
 	/**
-	 *	Creates a new BlurFilter object with a given previous module
+	 *	Creates a new BlurFilter object with a given previous module.
 	 *
-	 *	@param previous The previous module of this filter
+	 *	@param previous The previous module of this filter.
 	 */
 	BlurFilter(Module previous);
 	QString getName();
