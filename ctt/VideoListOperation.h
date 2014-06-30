@@ -22,7 +22,7 @@ public:
 	*	Manages requests to undo manipulations of the VideoList which is used for generating test videos or analysing.
 	**/
 	void undoOperation();
-private:
+protected:
 	Video video;
 	int index;
 	SaveableList<Video> videoList;

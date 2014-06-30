@@ -23,7 +23,7 @@ public:
 	*	Manages requests to undo manipulations of the FilterList.
 	**/
 	void undoOperation();
-private:
+protected:
 	Filter filter;
 	int index;
 	FilterList filterList;
