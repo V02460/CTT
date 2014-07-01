@@ -12,22 +12,24 @@ namespace project {
 
 /**
  * Objects, whose state can be externalised into a memento and restored from one.
- *
  */
 class Saveable {
 
 public:
-    typedef QScopedPointer<Saveable> uptr;
-    typedef QSharedPointer<Saveable> sptr;
-    typedef QWeakPointer<Saveable> wptr;
+	typedef QScopedPointer<Saveable> uptr;
+	typedef QSharedPointer<Saveable> sptr;
+	typedef QWeakPointer<Saveable> wptr;
 
-    virtual ~Saveable();
+	/**
+	 * The destructor of this class.
+	 */
+	virtual ~Saveable();
 
     /**
      * Gets the internal state of the object as a Memento.
      *
      * @return Memento the internal state of the object
-     * @throws IllegalStateException if the the method was called on a dummy
+	 * @throws IllegalStateException if the the method was called on a dummy
      */
     virtual Memento getMemento() const = 0;
 
@@ -36,25 +38,25 @@ public:
      *
      * @param memento this state will be restored
      */
-    virtual void restore(Memento memento) = 0;
+	virtual void restore(Memento memento) = 0;
 
     /**
      * Creates and returns a dummy instance of the class with the sole purpose to have a state restored from a Memento.
      *
      * @return Saveable the dummy object
-     * @throws NotImplementedException if this method is called on a class which isn't meant to be instantiable
+	 * @throws NotImplementedException if this method is called on a class which isn't meant to be instantiable
      */
     static Saveable::sptr getDummy();
 
-    /**
-     * Checks whether the object is a dummy object.
-     *
-     * @return boolean true only if the object is a dummy
-     */
-    bool isDummy() const;
+	/**
+	 * Checks whether the object is a dummy object.
+	 *
+	 * @return boolean true only if the object is a dummy
+	 */
+	bool isDummy() const;
 
 protected:
-    bool isDummy = false;
+	bool isDummy = false;
 };
 
 }  // namespace project
