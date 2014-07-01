@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+
 #include "Filter.h"
 #include "Frame.h"
 #include "Memento.h"
@@ -11,26 +12,30 @@
 namespace model {
 namespace filter {
 
-	/**
-	 *	Provides a new version of the predecessors frame which has been rescaled.
-	 */
+/**
+* Provides a new version of the predecessors frame which has been rescaled.
+*/
 class RescaleFilter : public Filter {
 public:
-	typedef QScopedPointer<RescaleFilter> uptr;
-	typedef QSharedPointer<RescaleFilter> sptr;
-	typedef QWeakPointer<RescaleFilter> wptr;
+    typedef QScopedPointer<RescaleFilter> uptr;
+    typedef QSharedPointer<RescaleFilter> sptr;
+    typedef QWeakPointer<RescaleFilter> wptr;
 
-	/**
-	*	Creates a new RescaleFilter object with a given previous module.
-	*
-	*	@param previous The previous module of this filter.
-	*/
-	RescaleFilter(const Module &predecessor);
-	virtual ~RescaleFilter();
+    /**
+     * Creates a new RescaleFilter object with a given previous module.
+     *
+     * @param previous The previous module of this filter.
+     */
+    explicit RescaleFilter(Module::sptr predecessor);
 
-	virtual bool supportsIntervals() const;
-	virtual QString getName() const;
-	virtual frame::Frame getFrame(unsigned int frameNumber) const;
+    /**
+     * RescaleFilter destructor.
+     */
+    virtual ~RescaleFilter();
+
+    virtual bool supportsIntervals() const;
+    virtual QString getName() const;
+    virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const;
 };
 
 }  // namespace filter

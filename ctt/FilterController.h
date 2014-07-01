@@ -1,12 +1,10 @@
-
-
-
 #if !defined(_FILTERCONTROLLER_H)
 #define _FILTERCONTROLLER_H
 
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+
 #include "Observer.h"
 #include "Filter.h"
 #include "FilterParam.h"
@@ -15,48 +13,63 @@
 namespace controller {
 
 /**
-*	The FilterController receives notifications of changes in the video's filters and passes this information to all relevant components.
-**/
-class FilterController : public Observer {
+ * The FilterController receives notifications of changes in the video's filters and passes this information to all
+ * relevant components.
+ */
+class FilterController : public ::model::Observer, public QObject {
+    Q_OBJECT
 public:
-	typedef QScopedPointer<FilterController> uptr;
-	typedef QSharedPointer<FilterController> sptr;
-	typedef QWeakPointer<FilterController> wptr;
+    typedef QScopedPointer<FilterController> uptr;
+    typedef QSharedPointer<FilterController> sptr;
+    typedef QWeakPointer<FilterController> wptr;
 
 public slots:
 
-	/**
-	*	Initiates inserting a filter to the video's list of filters 
-	*	Is called when it receives a notification that a filter should be inserted.
-	*	@param id The ID of the filter that is to be added.
-	**/
-	void insertFilter(QString id);
+    /**
+     * Creates the FilterController with the Video it will observe filter changes over.
+     *
+     * @param video The observed video
+     */
+    FilterController(::model::filter::FilteredVideo::sptr video);
 
-	/**
-	*	Initiates moving a filter to a specified position in the video's list of filters.
-	*	Is called when it receives a notification that a filter should be moved.
-	*	@param oldPos The position of the filter that is to be moved.
-	*	@param newPos The position the filter is to be moved to.
-	**/
-	void moveFilter(int oldPos, int newPos);
+    /**
+     * Initiates inserting a filter to the video's list of filters 
+     * Is called when it receives a notification that a filter should be inserted.
+     * Does nothing if id is not valid.
+     *
+     * @param id The ID of the filter that is to be added.
+     */
+    void insertFilter(QString id);
 
-	/**
-	*	Initiates changing a filter's parameters.
-	*	Is called when it receives a notification that a filterparameter should be changed.
-	*	@param filter The Filter of which a parameter is to be changed.
-	*	@param param The parameter which is to be changed.
-	**/
-	void changeFilterParam(Filter filter, FilterParam param);
+    /**
+     * Initiates moving a filter to a specified position in the video's list of filters.
+     * Is called when it receives a notification that a filter should be moved.
+     * Moves Filter to the end if newPos is out of bounds.
+     *
+     * @param oldPos The position of the filter that is to be moved.
+     * @param newPos The position the filter is to be moved to.
+     */
+    void moveFilter(int oldPos, int newPos);
 
-	/**
-	*	Initiates removing a filter from a video's list of filters.
-	*	Is called when it receives a notification that a filter should be removed.
-	*	@param pos The position of the filter which is to be removed.
-	**/
-	void removeFilter(int pos);
+    /**
+     * Initiates changing a filter's parameters.
+     * Is called when it receives a notification that a filterparameter should be changed.
+     *
+     * @param filter The Filter of which a parameter is to be changed.
+     * @param param The parameter which is to be changed.
+     */
+    void changeFilterParam(const ::model::filter::Filter &filter, ::model::filter::FilterParam param);
+
+    /**
+     * Initiates removing a filter from a video's list of filters.
+     * Is called when it receives a notification that a filter should be removed.
+     *
+     * @param pos The position of the filter which is to be removed.
+     */
+    void removeFilter(int pos);
 
 private:
-	FilteredVideo *currentVideo;
+    ::model::filter::FilteredVideo::sptr currentVideo;
 };
 
 }  // namespace controller

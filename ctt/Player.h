@@ -21,41 +21,41 @@ namespace player {
  * The player will adapt to the shortest video and ignore all parts of the other videos exceeding this length.
  *
  */
-class Player : public project::Saveable, public QObject {
-	Q_OBJECT
+class Player : public ::model::project::Saveable, public QObject {
+    Q_OBJECT
 
 public:
-	typedef QScopedPointer<Player> uptr;
-	typedef QSharedPointer<Player> sptr;
-	typedef QWeakPointer<Player> wptr;
+    typedef QScopedPointer<Player> uptr;
+    typedef QSharedPointer<Player> sptr;
+    typedef QWeakPointer<Player> wptr;
 
     /**
      * Creates a new player with an empty list of scrubbers and and initializes the playback speed with the submitted
-	 * parameter.
+     * parameter.
      *
      * @param fps playback speed in frames per second
-	 * @throws InvalidArgumentException if the submitted fps aren't greater than zero.
+     * @throws InvalidArgumentException if the submitted fps aren't greater than zero.
      */
-    Player(double fps);
+    explicit Player(double fps);
 
     /**
      * Starts playback with the currently set playback speed. Does nothing if the player is already playing. When the
-	 * end of one of the videos is reached, the playback will automatically be paused.
-	 *
+     * end of one of the videos is reached, the playback will automatically be paused.
+     *
      * @throws IllegalStateException if the the method was called on a dummy
      */
     void play();
 
     /**
      * Pauses playback, but keeps the current frame. Does nothing if the player isn't currently playing.
-	 *
+     *
      * @throws IllegalStateException if the the method was called on a dummy
      */
     void pause();
 
     /**
      * Starts playback if the player is currently paused, else it pauses the playback.
-	 *
+     *
      * @throws IllegalStateException if the the method was called on a dummy
      */
     void togglePlayPause();
@@ -64,8 +64,8 @@ public:
      * Jumps to the submitted framenumber and updates the scrubbers accordingly.
      *
      * @param frameNumber The player will jump to this framenumber
-	 * @throws InvalidArgumentException if one of the scrubbers of the player don't have a frame with that number.
-	 * @throws IllegalStateException if the the method was called on a dummy
+     * @throws InvalidArgumentException if one of the scrubbers of the player don't have a frame with that number.
+     * @throws IllegalStateException if the the method was called on a dummy
      */
     void jumpToFrameNr(unsigned int frameNumber);
 
@@ -73,8 +73,8 @@ public:
      * Sets the playback speed in frames per second.
      *
      * @param fps the playback speed in fps
-	 * @throws InvalidArgumentException if the submitted fps aren't greater than zero.
-	 * @throws IllegalStateException if the the method was called on a dummy
+     * @throws InvalidArgumentException if the submitted fps aren't greater than zero.
+     * @throws IllegalStateException if the the method was called on a dummy
      */
     void setFPS(double fps);
 
@@ -82,23 +82,24 @@ public:
      * Gets the currently set playback speed in frames per second.
      *
      * @return double the currently set playback speed in frames per second
-	 * @throws IllegalStateException if the the method was called on a dummy
+     * @throws IllegalStateException if the the method was called on a dummy
      */
     double getFPS() const;
 
     /**
      * Gets a list of all the VideoScrubbers currently subscribed to this player.
      *
-     * @return QList<VideoScrubber::wptr> a list of all the VideoScrubebrs currently subscribed to this player.
-	 * @throws IllegalStateException if the the method was called on a dummy
+     * @return QList<::model::player::VideoScrubber::wptr> a list of all the VideoScrubebrs currently subscribed to this
+     *     player.
+     * @throws IllegalStateException if the the method was called on a dummy
      */
-    QList<VideoScrubber::wptr> getScrubbers() const;
+    QList<::model::player::VideoScrubber::wptr> getScrubbers() const;
 
     /**
      * Checks whether the player is currently playing.
      *
      * @return bool true only if the player is currently playing
-	 * @throws IllegalStateException if the the method was called on a dummy
+     * @throws IllegalStateException if the the method was called on a dummy
      */
     bool isPlaying() const;
 
@@ -106,106 +107,106 @@ public:
      * Adds a VideoScrubber to the list of VideoScrubbers controlled by the player at the end of that list.
      *
      * @param scrubber the scrubber that will be added to the list
-	 * @throws IllegalStateException if the the method was called on a dummy
+     * @throws IllegalStateException if the the method was called on a dummy
      */
-    void addScrubber(VideoScrubber::sptr scrubber);
+    void addScrubber(::model::player::VideoScrubber::sptr scrubber);
 
     /**
      * Adds a VideoScrubber to the list of VideoScrubbers controlled by the player at the submitted position.
      *
      * @param scrubber the scrubber that will be added to the list
      * @param position the position of the list the player will be inserted at
-	 * @throws IllegalStateException if the the method was called on a dummy
+     * @throws IllegalStateException if the the method was called on a dummy
      */
-    void addScrubber(VideoScrubber::sptr scrubber, int position);
+    void addScrubber(::model::player::VideoScrubber::sptr scrubber, int position);
 
     /**
      * Removes the VideoScrubber with the submitted position from the list of VideoScrbbers controlled by the player.
      *
      * @param position the scrubber at this position will be removed.
-	 * @throws InvalidArgumentException if there is no Scrubber at the submitted position
-	 * @throws IllegalStateException if the the method was called on a dummy
+     * @throws InvalidArgumentException if there is no Scrubber at the submitted position
+     * @throws IllegalStateException if the the method was called on a dummy
      */
     void removeScrubber(int position);
 
     /**
      * Removes the submitted VideoScrubber from the list of VideoScrubbers controlled by the player. If the submitted
-	 * Scrubber isn't in the list, no changes willl be made.
+     * Scrubber isn't in the list, no changes willl be made.
      *
      * @param scrubber this scrubber will be removed
-	 * @throws IllegalStateException if the the method was called on a dummy
+     * @throws IllegalStateException if the the method was called on a dummy
      */
-    void removeScrubber(const VideoScrubber &scrubber);
+    void removeScrubber(const ::model::player::VideoScrubber &scrubber);
 
     /**
      * Checks, whether the player controls a specific scrubber.
      *
      * @param scrubber for this scrubber will be checked whether the player controls it
      * @return bool true only if the scrubber is controlled by the player
-	 * @throws IllegalStateException if the the method was called on a dummy
+     * @throws IllegalStateException if the the method was called on a dummy
      */
-    bool controlsScrubber(const VideoScrubber &scrubber) const;
+    bool controlsScrubber(const ::model::player::VideoScrubber &scrubber) const;
 
     /**
      * Returns the number of scrubbers controlled by this player.
      *
      * @return int the number of scrubbers controlled by this player
-	 * @throws IllegalStateException if the the method was called on a dummy
+     * @throws IllegalStateException if the the method was called on a dummy
      */
-	unsigned int scrubberCount() const;
+    unsigned int scrubberCount() const;
 
     /**
      * Checks whether all of the scrubbers controlled by this player can provide the frame after the current frame.
      *
      * @return bool true only if all of the scrubbers controlled by this player can provide the frame after the current
-	 *     frame.
-	 * @throws IllegalStateException if the the method was called on a dummy
+     *     frame.
+     * @throws IllegalStateException if the the method was called on a dummy
      */
     bool hasNextFrame() const;
 
-	/**
-	 * Checks whether all of the scrubbers controlled by this player can provide the frame before the current frame.
-	 *
-	 * @return bool true only if all of the scrubbers controlled by this player can provide the frame before the current
-	 *     frame.
-	 * @throws IllegalStateException if the the method was called on a dummy
-	 */
+    /**
+     * Checks whether all of the scrubbers controlled by this player can provide the frame before the current frame.
+     *
+     * @return bool true only if all of the scrubbers controlled by this player can provide the frame before the current
+     *     frame.
+     * @throws IllegalStateException if the the method was called on a dummy
+     */
     bool hasPreviousFrame() const;
 
     /**
      * Gets the length in frames per second of the shortest Video the scrubbers of this player use to get their frames
-	 * from.
+     * from.
      *
      * @return int the length in frames per second of the shortest Video the scrubbers of this player use to get their
-	 *     frames from
-	 * @throws IllegalStateException if the the method was called on a dummy
+     *     frames from
+     * @throws IllegalStateException if the the method was called on a dummy
      */
-	unsigned int getVideoLength() const;
+    unsigned int getVideoLength() const;
 
     /**
      * Gets the number of the current frame.
      *
      * @return int the number of the current frame
-	 * @throws IllegalStateException if the the method was called on a dummy
+     * @throws IllegalStateException if the the method was called on a dummy
      */
-	unsigned int getCurrentFrameNumber() const;
+    unsigned int getCurrentFrameNumber() const;
 
     /**
      * Tells the player to loop in the submitted interval. If the current frame isn't in the loop interval, the player
-	 * will jump to the first frame in the loop interval.
+     * will jump to the first frame in the loop interval.
      *
      * @param interval the interval in which the player will loop
-	 * @throws InvalidArgumentException if the bounds of the interval aren't in the bounds of the videos.
-	 * @throws IllegalStateException if the the method was called on a dummy
+     * @throws InvalidArgumentException if the bounds of the interval aren't in the bounds of the videos.
+     * @throws IllegalStateException if the the method was called on a dummy
      */
     void setLoop(UIntegerInterval interval);
 
     /**
      * Gets the interval the player currently loops in. If the player doesn't loop currently, the last loop will be
-	 * returned.
+     * returned.
      *
      * @return IntegerInterval the interval the player currently loops in
-	 * @throws IllegalStateException if the the method was called on a dummy
+     * @throws IllegalStateException if the the method was called on a dummy
      */
     UIntegerInterval getLoop() const;
 
@@ -213,7 +214,7 @@ public:
      * Checks whether the player is currently looping.
      *
      * @return bool true only if the player is currently looping.
-	 * @throws IllegalStateException if the the method was called on a dummy
+     * @throws IllegalStateException if the the method was called on a dummy
      */
     bool isLooping() const;
 
@@ -222,6 +223,10 @@ public:
      * @throws IllegalStateException if the the method was called on a dummy
      */
     void stopLooping();
+
+    virtual ::model::project::Memento getMemento() const;
+    virtual void restore(::model::project::Memento memento);
+    static ::model::project::Saveable::sptr getDummy();
 
 public slots:
     /**
@@ -241,18 +246,18 @@ signals:
      * Is emitted when the current frame changes.
      *
      * @param currentFrameNr the umber of the new current frame
-	 * @throws IllegalStateException if the the method was called on a dummy
+     * @throws IllegalStateException if the the method was called on a dummy
      */
-	void currentFrameNrChanged(unsigned int currentFrameNr);
+    void currentFrameNrChanged(unsigned int currentFrameNr);
 
 private:
-	/**
-	 * Creates a dummy Player.
-	 */
-	Player();
+    /**
+     * Creates a dummy Player.
+     */
+    Player();
 
     int currentFrameNumber; /**< The number of the frame that was requested last */
-	QList<VideoScrubber> videoScrubbers; /**< The VideoScrubbers controlled by this player*/
+    QList<::model::player::VideoScrubber> videoScrubbers; /**< The VideoScrubbers controlled by this player*/
     QTimer timer; /**< The timer controlling the playback speed */
     double fps; /**< The currently set playback speed in frames per second */
     bool looping; /**< Specifies whether the player is currently in a loop */

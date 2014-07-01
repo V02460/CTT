@@ -13,25 +13,29 @@ namespace model {
 namespace filter {
 
 /**
- *	Provides the unmodified version of a previous or subsequent frame of the predecessor
+ * Provides the unmodified version of a previous or subsequent frame of the predecessor
  */
 class TimeshiftFilter : public Filter {
 public:
-	typedef QScopedPointer<TimeshiftFilter> uptr;
-	typedef QSharedPointer<TimeshiftFilter> sptr;
-	typedef QWeakPointer<TimeshiftFilter> wptr;
+    typedef QScopedPointer<TimeshiftFilter> uptr;
+    typedef QSharedPointer<TimeshiftFilter> sptr;
+    typedef QWeakPointer<TimeshiftFilter> wptr;
 
-	/**
-	*	Creates a new TimeshiftFilter object with a given previous module.
-	*
-	*	@param predecessor The previous module of this filter.
-	*/
-	TimeshiftFilter(const Module &predecessor);
-	virtual ~TimeshiftFilter();
+    /**
+     * Creates a new TimeshiftFilter object with a given previous module.
+     *
+     * @param predecessor The previous module of this filter.
+     */
+    explicit TimeshiftFilter(Module::sptr predecessor);
 
-	virtual bool supportsIntervals() const;
-	virtual QString getName() const;
-	virtual frame::Frame getFrame(unsigned int frameNumber) const;
+    /**
+     * TimeshiftFilter destructor.
+     */
+    virtual ~TimeshiftFilter();
+
+    virtual bool supportsIntervals() const;
+    virtual QString getName() const;
+    virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const;
 };
 
 }  // namespace filter

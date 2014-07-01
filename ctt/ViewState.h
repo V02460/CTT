@@ -4,9 +4,11 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QObject>
+
 #include "ViewType.h"
 #include "Observable.h"
-#include <QObject>
+#include "Saveable.h"
 
 namespace view {
 
@@ -14,20 +16,25 @@ namespace view {
  * The view state class determines the state the GUI is currently in and notifies all relevant components when the
  * state changes.
  */
-class ViewState : public model::Observable, public model::project::Saveable {
+class ViewState : public model::Observable, public model::project::Saveable, public QObject {
+    Q_OBJECT
 public:
-	typedef QScopedPointer<ViewState> uptr;
-	typedef QSharedPointer<ViewState> sptr;
-	typedef QWeakPointer<ViewState> wptr;
+    typedef QScopedPointer<ViewState> uptr;
+    typedef QSharedPointer<ViewState> sptr;
+    typedef QWeakPointer<ViewState> wptr;
+
+    virtual ::model::project::Memento getMemento() const;
+    virtual void restore(::model::project::Memento memento);
+    static ::model::project::Saveable::sptr getDummy();
 
 public slots:
-	/**
-	 * Changes the internal viewType and notifies all Observers about the state change.
-	 */
-	void changeView(ViewType newView);
+    /**
+     * Changes the internal viewType and notifies all Observers about the state change.
+     */
+    void changeView(ViewType newView);
 
 private:
-	ViewType currentView;
+    ViewType currentView;
 };
 
 }  // namespace view

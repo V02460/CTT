@@ -377,6 +377,114 @@
     <ClCompile Include="FilterIntervalList.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilterController.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DifferenceController.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FilterController.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MainController.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_PlayerController.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DifferenceController.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_OverlayController.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_PlayerController.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MainController.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoListController.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoListController.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Observable.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_OverlayController.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Observable.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SaveableList.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ExtendedTimeline.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ExtendedTimeline.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MainControlWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_HistogramWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FrameMetadataWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MainWindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MainWindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_PlayerFunctions.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_PlayerFunctions.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ProcessingWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ThumbnailListWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ThumbnailListWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoAnalysingWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoAnalysingWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoProcessingWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoProcessingWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ViewState.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ZoomFunctions.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ZoomFunctions.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_InsertionWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -394,6 +502,72 @@
     <CustomBuild Include="Player.h">
       <Filter>Header Files\Model\Player</Filter>
     </CustomBuild>
+    <CustomBuild Include="FilterController.h">
+      <Filter>Header Files\Controller</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DifferenceController.h">
+      <Filter>Header Files\Controller</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MainController.h">
+      <Filter>Header Files\Controller</Filter>
+    </CustomBuild>
+    <CustomBuild Include="PlayerController.h">
+      <Filter>Header Files\Controller</Filter>
+    </CustomBuild>
+    <CustomBuild Include="OverlayController.h">
+      <Filter>Header Files\Controller</Filter>
+    </CustomBuild>
+    <CustomBuild Include="VideoListController.h">
+      <Filter>Header Files\Controller</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Observable.h">
+      <Filter>Header Files\Model</Filter>
+    </CustomBuild>
+    <CustomBuild Include="SaveableList.h">
+      <Filter>Header Files\Model</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ExtendedTimeline.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MainControlWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="HistogramWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FrameMetadataWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MainWindow.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="PlayerFunctions.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ProcessingWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ThumbnailListWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="VideoAnalysingWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="VideoProcessingWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="VideoWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ViewState.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ZoomFunctions.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="InsertionWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_ctt.h">
@@ -401,9 +575,6 @@
     </ClInclude>
     <ClInclude Include="AnalysingWidget.h">
       <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="AtomicOperation.h">
-      <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
     <ClInclude Include="BlueHistogram.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
@@ -417,23 +588,11 @@
     <ClInclude Include="ColoringOverlay.h">
       <Filter>Header Files\Model\Filter\Overlay</Filter>
     </ClInclude>
-    <ClInclude Include="CompoundOperation.h">
-      <Filter>Header Files\Controller\Operation</Filter>
-    </ClInclude>
-    <ClInclude Include="DataVideo.h">
-      <Filter>Header Files\Model\Video</Filter>
-    </ClInclude>
-    <ClInclude Include="DifferenceController.h">
-      <Filter>Header Files\Controller</Filter>
-    </ClInclude>
     <ClInclude Include="DifferenceFactory.h">
       <Filter>Header Files\Model\Difference</Filter>
     </ClInclude>
     <ClInclude Include="EarthMoversHistogramDiff.h">
       <Filter>Header Files\Model\Difference</Filter>
-    </ClInclude>
-    <ClInclude Include="ExtendedTimeline.h">
-      <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="FFmpegDataVideo.h">
       <Filter>Header Files\Model\Video</Filter>
@@ -443,12 +602,6 @@
     </ClInclude>
     <ClInclude Include="FilterAddedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterController.h">
-      <Filter>Header Files\Controller</Filter>
-    </ClInclude>
-    <ClInclude Include="FilteredVideo.h">
-      <Filter>Header Files\Model\Video</Filter>
     </ClInclude>
     <ClInclude Include="FilterFactory.h">
       <Filter>Header Files\Model\Filter</Filter>
@@ -477,9 +630,6 @@
     <ClInclude Include="FrameMetadata.h">
       <Filter>Header Files\Model\Frame</Filter>
     </ClInclude>
-    <ClInclude Include="FrameMetadataWidget.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
     <ClInclude Include="GreenHistogram.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
@@ -498,9 +648,6 @@
     <ClInclude Include="HSLPixelDiff.h">
       <Filter>Header Files\Model\Difference</Filter>
     </ClInclude>
-    <ClInclude Include="InsertionWidget.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
     <ClInclude Include="LuminanceHistogram.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
@@ -509,12 +656,6 @@
     </ClInclude>
     <ClInclude Include="MacropartitionOverlay.h">
       <Filter>Header Files\Model\Filter\Overlay</Filter>
-    </ClInclude>
-    <ClInclude Include="MainControlWidget.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="MainWindow.h">
-      <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="NoiseFilter.h">
       <Filter>Header Files\Model\Filter</Filter>
@@ -531,17 +672,8 @@
     <ClInclude Include="OperationList.h">
       <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
-    <ClInclude Include="ProcessingWidget.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
     <ClInclude Include="RedHistogram.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
-    </ClInclude>
-    <ClInclude Include="ProjectController.h">
-      <Filter>Header Files\Controller</Filter>
-    </ClInclude>
-    <ClInclude Include="OverlayController.h">
-      <Filter>Header Files\Controller</Filter>
     </ClInclude>
     <ClInclude Include="Memento.h">
       <Filter>Header Files\Model\Project</Filter>
@@ -552,17 +684,8 @@
     <ClInclude Include="Overlay.h">
       <Filter>Header Files\Model\Filter\Overlay</Filter>
     </ClInclude>
-    <ClInclude Include="OverlayFactory.h">
-      <Filter>Header Files\Model\Filter\Overlay</Filter>
-    </ClInclude>
     <ClInclude Include="PixelDiff.h">
       <Filter>Header Files\Model\Difference</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerController.h">
-      <Filter>Header Files\Controller</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerFunctions.h">
-      <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="PlayerWidget.h">
       <Filter>Header Files\View</Filter>
@@ -591,17 +714,11 @@
     <ClInclude Include="SaveFileType.h">
       <Filter>Header Files\Model\Project</Filter>
     </ClInclude>
-    <ClInclude Include="ThumbnailListWidget.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
     <ClInclude Include="TimeshiftFilter.h">
       <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
     <ClInclude Include="VideoAddedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
-    </ClInclude>
-    <ClInclude Include="VideoAnalysingWidget.h">
-      <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="VideoFileType.h">
       <Filter>Header Files\Model\Video</Filter>
@@ -611,18 +728,6 @@
     </ClInclude>
     <ClInclude Include="VideoSaver.h">
       <Filter>Header Files\Model\Video</Filter>
-    </ClInclude>
-    <ClInclude Include="ZoomFunctions.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="YUVVideoSaver.h">
-      <Filter>Header Files\Model\Video</Filter>
-    </ClInclude>
-    <ClInclude Include="VideoProcessingWidget.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="VideoListController.h">
-      <Filter>Header Files\Controller</Filter>
     </ClInclude>
     <ClInclude Include="YUVDataVideo.h">
       <Filter>Header Files\Model\Video</Filter>
@@ -636,25 +741,13 @@
     <ClInclude Include="ViewType.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
-    <ClInclude Include="ViewState.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
     <ClInclude Include="VideoRemovedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
-    </ClInclude>
-    <ClInclude Include="VideoSaverFactory.h">
-      <Filter>Header Files\Model\Video</Filter>
-    </ClInclude>
-    <ClInclude Include="VideoWidget.h">
-      <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="Saveable.h">
       <Filter>Header Files\Model\Project</Filter>
     </ClInclude>
     <ClInclude Include="Module.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="Observable.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="Observer.h">
@@ -665,9 +758,6 @@
     </ClInclude>
     <ClInclude Include="FilterIntervalList.h">
       <Filter>Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="HistogramWidget.h">
-      <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="AbstractListView.h">
       <Filter>Header Files\View</Filter>
@@ -694,10 +784,10 @@
       <Filter>Header Files\Controller</Filter>
     </ClInclude>
     <ClInclude Include="FileVideo.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Model\Video</Filter>
     </ClInclude>
-    <ClInclude Include="SaveableList.h">
-      <Filter>Header Files\Model</Filter>
+    <ClInclude Include="FilteredVideo.h">
+      <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

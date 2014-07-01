@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+
 #include "Filter.h"
 #include "Frame.h"
 #include "Memento.h"
@@ -11,27 +12,30 @@
 namespace model {
 namespace filter {
 
-
 /**
- *	Provides a greyscale version of the predecessors frame.
+ * Provides a greyscale version of the predecessors frame.
  */
 class GreyscaleFilter : public Filter {
 public:
-	typedef QScopedPointer<GreyscaleFilter> uptr;
-	typedef QSharedPointer<GreyscaleFilter> sptr;
-	typedef QWeakPointer<GreyscaleFilter> wptr;
+    typedef QScopedPointer<GreyscaleFilter> uptr;
+    typedef QSharedPointer<GreyscaleFilter> sptr;
+    typedef QWeakPointer<GreyscaleFilter> wptr;
 
-	/**
-	*	Creates a new GreyscaleFilter object with a given previous module.
-	*
-	*	@param previous The previous module of this filter.
-	*/
-	GreyscaleFilter(const Module &predecessor);
-	virtual ~GreyscaleFilter();
+    /**
+     * Creates a new GreyscaleFilter object with a given previous module.
+     *
+     * @param previous The previous module of this filter.
+     */
+    explicit GreyscaleFilter(Module::sptr predecessor);
 
-	virtual bool supportsIntervals() const;
-	virtual QString getName() const;
-	virtual frame::Frame getFrame(unsigned int frameNumber) const;
+    /**
+     * GreyscaleFilter destructor.
+     */
+    virtual ~GreyscaleFilter();
+
+    virtual bool supportsIntervals() const;
+    virtual QString getName() const;
+    virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const;
 };
 
 }  // namespace filter

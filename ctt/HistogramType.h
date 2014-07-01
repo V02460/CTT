@@ -1,10 +1,6 @@
 #if !defined(_HISTOGRAMTYPE_H)
 #define _HISTOGRAMTYPE_H
 
-#include <QScopedPointer>
-#include <QSharedPointer>
-#include <QWeakPointer>
-
 namespace model {
 namespace frame {
 namespace histogram {
@@ -14,12 +10,12 @@ namespace histogram {
  *
  */
 enum HistogramType {
-	Red,
-	Green,
-	Blue,
-	Luminance,
-	Hue,
-	Saturation
+    Red,
+    Green,
+    Blue,
+    Luminance,
+    Hue,
+    Saturation
 };
 
 }  // namespace histogram

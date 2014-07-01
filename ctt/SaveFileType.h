@@ -5,7 +5,7 @@ namespace model {
 namespace project {
 
 enum SaveFileType {
-	XML
+    XML
 };
 
 }  // namespace project

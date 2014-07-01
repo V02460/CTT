@@ -6,8 +6,10 @@
 #include <QWeakPointer>
 
 namespace model {
+
 /**
- * An Observer can be subscribed to an Observable to be notified via a signal to the update() slot when the state of the Observable changes.
+ * An Observer can be subscribed to an Observable to be notified via a signal to the update() slot when the state of the
+ * Observable changes.
  *
  */
 class Observer : public QObject {

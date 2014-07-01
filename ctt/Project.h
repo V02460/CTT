@@ -3,6 +3,8 @@
 
 #include "SaveableList.h"
 #include "Video.h"
+#include "FileVideo.h"
+#include "FilteredVideo.h"
 #include "Player.h"
 #include "FrameDiff.h"
 #include "ViewState.h"
@@ -15,86 +17,72 @@ namespace controller {
 class Project {
 
 public:
-	typedef QScopedPointer<Project> uptr;
-	typedef QSharedPointer<Project> sptr;
-	typedef QWeakPointer<Project> wptr;
+    typedef QScopedPointer<Project> uptr;
+    typedef QSharedPointer<Project> sptr;
+    typedef QWeakPointer<Project> wptr;
 
-	/**
-	 * Creates a new project with given savable objects.
-	 *
-	 * @param baseVideoList The base video list of the project.
-	 * @param videoList1 The video list from the first view of the project.
-	 * @param videoList2 The video list from the second view of the project.
-	 * @param playerList1 The player list from the first view of the project.
-	 * @param player2 The player from the second view of the project.
-	 * @param diffList The diff list of the project.
-	 * @param view The view of the project.
-	 */
-    Project(model::SaveableList<model::video::Video>::sptr baseVideoList,
-            model::SaveableList<model::video::Video>::sptr videoList1,
-            model::SaveableList<model::video::Video>::sptr videoList2,
-            model::SaveableList<model::player::Player>::sptr playerList1,
-		    model::player::Player::sptr player2,
-            model::SaveableList<model::difference::FrameDiff>::sptr diffList,
-            view::ViewState view);
+    /**
+     * Creates a new project and all savable objects nedded from the start of the program.
+     */
+    Project();
 
-	/**
-	 * Returns the list of all base videos the project uses, i.e. videos which are directly read from files.
-	 *
-	 * @return SaveableList<FileVideo> the list of all base videos the project uses.
-	 */
-    model::SaveableList<model::FileVideo> getBaseVideoList();
+    /**
+     * Returns the list of all base videos the project uses, i.e. videos which are directly read from files.
+     *
+     * @return SaveableList<FileVideo> the list of all base videos the project uses.
+     */
+    ::model::SaveableList<const ::model::video::FileVideo&> getBaseVideoList() const;
 
-	/**
-	 * Returns the List of all FilteredVideos the Project uses in the first view, i.e. the editing view.
-	 *
-	 * @return the List of all FilteredVideos the Project uses in the first view.
-	 */
-    model::SaveableList<FilteredVideo> getVideoList1();
+    /**
+     * Returns the List of all FilteredVideos the Project uses in the first view, i.e. the editing view.
+     *
+     * @return the List of all FilteredVideos the Project uses in the first view.
+     */
+    ::model::SaveableList<const ::model::filter::FilteredVideo&> getVideoList1() const;
 
-	/**
-	 * Returns the List of all FilteredVideos the Project uses in the second view, i.e. the analysing view.
-	 *
-	 * @return the List of all FilteredVideos the Project uses in the second view
-	 */
-    model::SaveableList<model::video::Video> getVideoList2();
+    /**
+     * Returns the List of all FilteredVideos the Project uses in the second view, i.e. the analysing view.
+     *
+     * @return the List of all FilteredVideos the Project uses in the second view
+     */
+    ::model::SaveableList<const ::model::video::Video&> getVideoList2() const;
 
-	/**
-	 * Returns the player list from the first view (the editing view) of the project.
-	 *
-	 * @return the player list from the first view of the project.
-	 */
-    model::SaveableList<model::player::Player> getPlayerList1();
+    /**
+     * Returns the player list from the first view (the editing view) of the project.
+     *
+     * @return the player list from the first view of the project.
+     */
+    ::model::SaveableList<const ::model::player::Player&> getPlayerList1() const;
 
-	/**
-	 * Returns the player from the second view (the analysing view) of the project.
-	 *
-	 * @return the player from the second view of the project.
-	 */
-	model::player::Player getPlayer2();
+    /**
+     * Returns the player from the second view (the analysing view) of the project.
+     *
+     * @return the player from the second view of the project.
+     */
+    const ::model::player::Player &getPlayer2() const;
 
-	/**
-	 * Returns the list of all the FrameDiffs the project uses.
-	 *
-	 * @return the list of all the FrameDiffs the project uses.
-	 */
-    model::SaveableList<model::difference::FrameDiff> getDiffList();
+    /**
+     * Returns the list of all the FrameDiffs the project uses.
+     *
+     * @return the list of all the FrameDiffs the project uses.
+     */
+    ::model::SaveableList<const ::model::difference::FrameDiff&> getDiffList() const;
 
-	/**
-	 * Returns the current view of the project.
-	 *
-	 * @return the current view of the project.
-	 */
-	view::ViewState getView();
+    /**
+     * Returns the current view of the project.
+     *
+     * @return the current view of the project.
+     */
+    ::view::ViewState getView() const;
 
 private:
-    const model::SaveableList<model::video::Video> baseVideoList;
-    const model::SaveableList<model::video::Video> videoList1;
-    const model::SaveableList<model::video::Video> videoList2;
-    const model::SaveableList<model::player::Player> playerList1;
-	const model::player::Player player2;
-    const model::SaveableList<model::difference::FrameDiff> diffList;
-	const view::ViewState view;
+    ::model::SaveableList<::model::video::FileVideo> baseVideoList;
+    ::model::SaveableList<::model::filter::FilteredVideo> videoList1;
+    ::model::SaveableList<::model::filter::FilteredVideo> videoList2;
+    ::model::SaveableList<::model::player::Player> playerList1;
+    ::model::player::Player player2;
+    ::model::SaveableList<model::difference::FrameDiff> diffList;
+    view::ViewState view;
 };
 
 }  // namespace controller

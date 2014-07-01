@@ -6,7 +6,7 @@ namespace model {
 namespace difference {
 
 HSLPixelDiff::HSLPixelDiff(const video::Video &video1, const video::Video &video2) : PixelDiff(video1, video2) {
-	
+    
 }
 
 Surface HSLPixelDiff::getPixelDiff(unsigned int frameNr) const {

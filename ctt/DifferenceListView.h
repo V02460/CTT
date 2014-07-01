@@ -4,19 +4,20 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+
 #include "AbstractListView.h"
 
 namespace view {
 
 /**
- *	The DifferenceListView displays the list of the differences.
- *	Every difference is shown with its parameters which are the two videos on which the difference is calculated.
+ * The DifferenceListView displays the list of the differences.
+ * Every difference is shown with its parameters which are the two videos on which the difference is calculated.
  */
 class DifferenceListView : public AbstractListView {
 public:
-	typedef QScopedPointer<DifferenceListView> uptr;
-	typedef QSharedPointer<DifferenceListView> sptr;
-	typedef QWeakPointer<DifferenceListView> wptr;
+    typedef QScopedPointer<DifferenceListView> uptr;
+    typedef QSharedPointer<DifferenceListView> sptr;
+    typedef QWeakPointer<DifferenceListView> wptr;
 
 };
 

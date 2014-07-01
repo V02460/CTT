@@ -17,29 +17,33 @@ namespace filter {
  */
 class FilterFactory {
 public:
-	typedef QScopedPointer<FilterFactory> uptr;
-	typedef QSharedPointer<FilterFactory> sptr;
-	typedef QWeakPointer<FilterFactory> wptr;
-	/**
-	 * Returns a list with identifiers for all types of filters which aren't overlays the factory can create.
-	 * @return QList a list with identifiers for all types of filters which aren't overlays the factory can create
-	 */
-	QList<QString> getAllFilterNotOverlayIDs();
+    typedef QScopedPointer<FilterFactory> uptr;
+    typedef QSharedPointer<FilterFactory> sptr;
+    typedef QWeakPointer<FilterFactory> wptr;
 
-	/**
-	* Returns a list with identifiers for all types of Overlays the factory can create.
-	* @return QList a list with identifiers for all types of overlays the factory can create
-	*/
-	static QList<QString> getAllFilterIDs();
+    /**
+     * Returns a list with identifiers for all types of filters which aren't overlays the factory can create.
+     *
+     * @return QList a list with identifiers for all types of filters which aren't overlays the factory can create
+     */
+    static QList<QString> getAllFilterNotOverlayIDs();
 
-	/**
-	 * Creates and returns a Filter of the type specified by the submitted id.
-	 * @return Filter a Filter of the type specified by the submitted id
-	 * @throws InvalidArgumentException if the submitted id doesn't specify a type of Filter the factory can create.
-	 */
-	static model::filter::Filter::sptr createFilter(QString id);
+    /**
+    * Returns a list with identifiers for all types of Overlays the factory can create.
+    *
+    * @return QList a list with identifiers for all types of overlays the factory can create
+    */
+    static QList<QString> getAllFilterIDs();
+
+    /**
+     * Creates and returns a Filter of the type specified by the submitted id.
+     *
+     * @return Filter a Filter of the type specified by the submitted id
+     * @throws InvalidArgumentException if the submitted id doesn't specify a type of Filter the factory can create.
+     */
+    static ::model::filter::Filter::sptr createFilter(QString id);
 private:
-	FilterFactory() {}
+    FilterFactory() {}
 };
 
 }  // namespace filter

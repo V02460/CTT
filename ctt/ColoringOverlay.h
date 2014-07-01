@@ -10,33 +10,37 @@
 #include "Memento.h"
 #include "GreyscaleFilter.h"
 
-
 namespace model {
 namespace filter {
 namespace overlay {
 
-	/**
-	 *	A ColoringOverlay modifies the frame of the predecessor in a similar way the Overlay does,
-	 *	but it turns every frame to a greyscale frame before mixig it with the graphical representable information.
-	 */
-class ColoringOverlay : public model::filter::overlay::Overlay {
+/**
+ * A ColoringOverlay modifies the frame of the predecessor in a similar way the Overlay does,
+ * but it turns every frame to a greyscale frame before mixig it with the graphical representable information.
+ */
+class ColoringOverlay : public ::model::filter::overlay::Overlay {
 public:
-	typedef QScopedPointer<ColoringOverlay> uptr;
-	typedef QSharedPointer<ColoringOverlay> sptr;
-	typedef QWeakPointer<ColoringOverlay> wptr;
+    typedef QScopedPointer<ColoringOverlay> uptr;
+    typedef QSharedPointer<ColoringOverlay> sptr;
+    typedef QWeakPointer<ColoringOverlay> wptr;
 
-	ColoringOverlay(const Module &predecessor);
-	virtual ~ColoringOverlay();
+    /**
+     * Creates a new ColoringOverlay object with a given previous module.
+     *
+     * @param predecessor The previous module of this overlay.
+     */
+    explicit ColoringOverlay(Module::sptr predecessor);
 
-	virtual bool supportsIntervals() const;
-	virtual QString getName() const;
-	virtual frame::Frame getFrame(unsigned int frameNumber) const;
+    /**
+     * ColoringOverlay destructor.
+     */
+    virtual ~ColoringOverlay();
 
 protected:
-	const model::filter::GreyscaleFilter &getGreyscaleFilter() const;
+    const ::model::filter::GreyscaleFilter &getGreyscaleFilter() const;
 
 private:
-	model::filter::GreyscaleFilter::uptr greyscaleFilter;
+    ::model::filter::GreyscaleFilter::uptr greyscaleFilter;
 };
 
 

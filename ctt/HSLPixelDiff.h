@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+
 #include "PixelDiff.h"
 #include "Video.h"
 #include "Memento.h"
@@ -17,22 +18,22 @@ namespace difference {
  */
 class HSLPixelDiff : public PixelDiff {
 public:
-	typedef QScopedPointer<HSLPixelDiff> uptr;
-	typedef QSharedPointer<HSLPixelDiff> sptr;
-	typedef QWeakPointer<HSLPixelDiff> wptr;
+    typedef QScopedPointer<HSLPixelDiff> uptr;
+    typedef QSharedPointer<HSLPixelDiff> sptr;
+    typedef QWeakPointer<HSLPixelDiff> wptr;
 
-	/**
-	 * Creates a new HSLPixelDiff comparing the two submitted videos.
-	 *
-	 * @param video1 the first of the two videos which will be compared
-	 * @param video1 the second of the two videos which will be compared
-	 * @throws InvalidArgumentException if the submitted videos don't create their frames in the same OpenGLContext
-	 */
-	HSLPixelDiff(video::Video::sptr video1, video::Video::sptr video2);
-	~HSLPixelDiff();
+    /**
+     * Creates a new HSLPixelDiff comparing the two submitted videos.
+     *
+     * @param video1 the first of the two videos which will be compared
+     * @param video1 the second of the two videos which will be compared
+     * @throws InvalidArgumentException if the submitted videos don't create their frames in the same OpenGLContext
+     */
+    HSLPixelDiff(::model::video::Video::sptr video1, ::model::video::Video::sptr video2);
+    ~HSLPixelDiff();
 
-	virtual Surface getPixelDiff(unsigned int frameNr) const;
-	virtual double getDiff(unsigned int frameNr) const;
+    virtual Surface getPixelDiff(unsigned int frameNr) const;
+    virtual double getDiff(unsigned int frameNr) const;
 };
 
 }  // namespace difference

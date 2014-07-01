@@ -17,19 +17,19 @@ namespace histogram {
 */
 class BlueHistogram : public Histogram {
 public:
-	typedef QScopedPointer<BlueHistogram> uptr;
-	typedef QSharedPointer<BlueHistogram> sptr;
-	typedef QWeakPointer<BlueHistogram> wptr;
+    typedef QScopedPointer<BlueHistogram> uptr;
+    typedef QSharedPointer<BlueHistogram> sptr;
+    typedef QWeakPointer<BlueHistogram> wptr;
 
-	/**
-	* Creates a new BlueHistogram describing the distribution of the intensity of the blue channel of the submitted
-	* frame.
-	*
-	* @param frame the BlueHistogram will describe the distribution of the intensity of the blue channel of this frame
-	*/
-	BlueHistogram(Frame frame);
+    /**
+    * Creates a new BlueHistogram describing the distribution of the intensity of the blue channel of the submitted
+    * frame.
+    *
+    * @param frame the BlueHistogram will describe the distribution of the intensity of the blue channel of this frame
+    */
+    explicit BlueHistogram(Frame frame);
 
-	virtual HistogramType getType() const;
+    virtual HistogramType getType() const;
 };
 
 }  // namespace histogram

@@ -6,7 +6,7 @@ namespace model {
 namespace difference {
 
 EarthMoversHistogramDiff::EarthMoversHistogramDiff(const video::Video &video1, const video::Video &video2)
-		: FrameDiff(video1, video2) {
+        : FrameDiff(video1, video2) {
 
 }
 

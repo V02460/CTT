@@ -17,19 +17,19 @@ namespace histogram {
 */
 class GreenHistogram : public Histogram {
 public:
-	typedef QScopedPointer<GreenHistogram> uptr;
-	typedef QSharedPointer<GreenHistogram> sptr;
-	typedef QWeakPointer<GreenHistogram> wptr;
+    typedef QScopedPointer<GreenHistogram> uptr;
+    typedef QSharedPointer<GreenHistogram> sptr;
+    typedef QWeakPointer<GreenHistogram> wptr;
 
-	/**
-	* Creates a new GreenHistogram describing the distribution of the intensity of the green channel of the submitted
-	* frame.
-	*
-	* @param frame the GreenHistogram will describe the distribution of the intensity of the green channel of this frame
-	*/
-	GreenHistogram(Frame frame);
+    /**
+    * Creates a new GreenHistogram describing the distribution of the intensity of the green channel of the submitted
+    * frame.
+    *
+    * @param frame the GreenHistogram will describe the distribution of the intensity of the green channel of this frame
+    */
+    explicit GreenHistogram(Frame frame);
 
-	virtual HistogramType getType() const;
+    virtual HistogramType getType() const;
 };
 
 }  // namespace histogram

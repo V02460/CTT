@@ -4,29 +4,31 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+
 namespace controller {
 namespace operation {
 
 /**
-*	The Operation is providing functionality for doing and undoing something that triggers a change in the underlying model.
-**/
+ * The Operation is providing functionality for doing and undoing something that triggers a change in the underlying
+ * model.
+ */
 class Operation {
 public:
-	typedef QScopedPointer<Operation> uptr;
-	typedef QSharedPointer<Operation> sptr;
-	typedef QWeakPointer<Operation> wptr;
+    typedef QScopedPointer<Operation> uptr;
+    typedef QSharedPointer<Operation> sptr;
+    typedef QWeakPointer<Operation> wptr;
 
-	/**
-	*	Manages doing the Operation specified in this class.
-	**/
-	virtual void doOperation() = 0;
+    /**
+     * Manages doing the Operation specified in this class.
+     */
+    virtual void doOperation() = 0;
 
-	/**
-	*	Manages undoing the Operation specified in this class.
-	**/
-	virtual void undoOperation() = 0;
+    /**
+     * Manages undoing the Operation specified in this class.
+     */
+    virtual void undoOperation() = 0;
 private:
-	Operation *next;
+    Operation::uptr next;
 };
 
 }  // namespace operation

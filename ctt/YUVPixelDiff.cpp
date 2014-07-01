@@ -13,7 +13,7 @@ YUVPixelDiff::~YUVPixelDiff() {
 
 }
 
-Surface	YUVPixelDiff::getPixelDiff(unsigned int frameNr) const {
+Surface    YUVPixelDiff::getPixelDiff(unsigned int frameNr) const {
 
 }
 

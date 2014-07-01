@@ -4,25 +4,25 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QWidget>
+
 #include "Observer.h"
 #include "Observable.h"
-#include <QWidget>
 
 namespace view {
 /**
- *	The AbstracTimeline is a class to unify all used timeline implementations.
- *	It stands basically for some kind of diagram over the frames of a video
- *	and displays some kind of data that is concretized in the specific implementations.
+ * The AbstracTimeline is a class to unify all used timeline implementations.
+ * It stands basically for some kind of diagram over the frames of a video
+ * and displays some kind of data that is concretized in the specific implementations.
  */
-class AbstractTimeline : public Observer , public Observable , public QWidget {
+class AbstractTimeline : public ::model::Observer , public ::model::Observable , public QWidget {
 public:
-	typedef QScopedPointer<AbstractTimeline> uptr;
-	typedef QSharedPointer<AbstractTimeline> sptr;
-	typedef QWeakPointer<AbstractTimeline> wptr;
-
+    typedef QScopedPointer<AbstractTimeline> uptr;
+    typedef QSharedPointer<AbstractTimeline> sptr;
+    typedef QWeakPointer<AbstractTimeline> wptr;
 
 private:
-	SaveableList displayableComponents; /**< The list over the components that should be displayed by the timeline */
+    //SaveableList displayableComponents; /**< The list over the components that should be displayed by the timeline */
 };
 
 }  // namespace view

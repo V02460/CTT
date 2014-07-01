@@ -1,9 +1,9 @@
 #include "ctt.h"
 
 ctt::ctt(QWidget *parent)
-	: QMainWindow(parent)
+    : QMainWindow(parent)
 {
-	ui.setupUi(this);
+    ui.setupUi(this);
 }
 
 ctt::~ctt()

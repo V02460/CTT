@@ -15,23 +15,23 @@ namespace filter {
 namespace overlay {
 
 /**
- *	An overlay modifies the frame of the predecessor by mixing it with any kind of graphical representable information.
+ * An overlay modifies the frame of the predecessor by mixing it with any kind of graphical representable information.
  */
-class Overlay : public model::filter::Filter {
+class Overlay : public ::model::filter::Filter {
 public:
-	typedef QScopedPointer<Overlay> uptr;
-	typedef QSharedPointer<Overlay> sptr;
-	typedef QWeakPointer<Overlay> wptr;
+    typedef QScopedPointer<Overlay> uptr;
+    typedef QSharedPointer<Overlay> sptr;
+    typedef QWeakPointer<Overlay> wptr;
 
-	/**
-	 * Overlay destructor.
-	 */
-	virtual ~Overlay();
+    /**
+     * Overlay destructor.
+     */
+    virtual ~Overlay();
 
 protected:
-	model::filter::Filter &getMixFilter() const;
+    ::model::filter::Filter &getMixFilter() const;
 private:
-	model::filter::MixFilter mixFilter;
+    ::model::filter::MixFilter::uptr mixFilter;
 };
 
 }  // namespace overlay

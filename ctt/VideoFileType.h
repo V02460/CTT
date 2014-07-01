@@ -8,7 +8,7 @@ namespace video {
  * Provides labels for videofile types.
  */
 enum VideoFileType {
-	YUV
+    YUV
 };
 
 }  // namespace video

@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+
 #include "Video.h"
 #include "Observable.h"
 #include "Filter.h"
@@ -11,44 +12,43 @@
 #include "Memento.h"
 
 namespace model {
-namespace video {
+namespace filter {
 
 /**
  * Represents a Video with a filter pipeline modifying its frames.
  *
  */
-class FilteredVideo : public model::video::Video, public model::Observable {
+class FilteredVideo : public ::model::video::Video, public ::model::Observable {
 public:
-	typedef QScopedPointer<FilteredVideo> uptr;
-	typedef QSharedPointer<FilteredVideo> sptr;
-	typedef QWeakPointer<FilteredVideo> wptr;
+    typedef QScopedPointer<FilteredVideo> uptr;
+    typedef QSharedPointer<FilteredVideo> sptr;
+    typedef QWeakPointer<FilteredVideo> wptr;
 
-
-	/**
-	 * Creates a new FilteredVideo with an initially empty FilterList, using the submitted Video as base video. The base
-	 * video provides the frames which will be modified by the filter pipeline.
-	 *
-	 * @param baseVideo this Video will be used as base video
-	 */
-	FilteredVideo(model::video::Video::sptr baseVideo);
+    /**
+     * Creates a new FilteredVideo with an initially empty FilterList, using the submitted Video as base video. The base
+     * video provides the frames which will be modified by the filter pipeline.
+     *
+     * @param baseVideo this Video will be used as base video
+     */
+    explicit FilteredVideo(::model::video::Video::sptr baseVideo);
 
     /**
      * Ads the submitted Filter to the filter pipeline at the submitted position.
      *
      * @param filter this filter will be added to the pipeline
      * @param pos the new filter will be added at this position
-	 * @throws IllegalArgumentException if the submitted position is too great
+     * @throws IllegalArgumentException if the submitted position is too great
      */
-	void addFilter(model::filter::Filter::sptr filter, unsigned int pos);
+    void addFilter(Filter::sptr filter, unsigned int pos);
 
     /**
      * Removes the Filter at the submitted Position
      *
      * @param pos the position of the Filter to be removed
-     * @return Filter the Filter which has been removed
-	 * @throws IllegalArgumentException if there is no Filter at the submitted position
+     * @return model::filter::Filter::sptr the Filter which has been removed
+     * @throws IllegalArgumentException if there is no Filter at the submitted position
      */
-	model::filter::Filter::sptr removeFilter(unsigned int pos);
+    ::model::filter::Filter::sptr removeFilter(unsigned int pos);
 
     /**
      * Returns the number of Filters this FilteredVideo has in its filter pipeline.
@@ -60,24 +60,26 @@ public:
     /**
      * Returns a QList containing all the Filters this FilteredVideo uses in its filter pipeline in the right order.
      *
-     * @return QList<Filter> a QList containing all the Filters this FilteredVideo uses in its filter pipeline in the right order
+     * @return QList<model::filter::Filter> a QList containing all the Filters this FilteredVideo uses in its filter
+     *     pipeline in the right order
      */
-    QList<model::filter::Filter> getFilterList();
+    QList<const ::model::filter::Filter&> getFilterList() const;
 
-	virtual model::video::VideoMetadata getMetadata() const;
+    virtual ::model::project::Memento getMemento() const;
+    virtual void restore(::model::project::Memento memento);
+    static Saveable::sptr getDummy();
 
-	virtual frame::Frame getFrame(unsigned int frameNumber);
 private:
-	/**
-	 * Creates a dummy FilteredVideo.
-	 */
-	FilteredVideo();
+    /**
+     * Creates a dummy FilteredVideo.
+     */
+    FilteredVideo();
 
-    Video *baseVideo; /**< This provides the frames which will be modified by the filter pipeline. */
-    QList<model::filter::Filter> *filters; /**< The filter pipeline */
+    ::model::video::Video *baseVideo; /**< This provides the frames which will be modified by the filter pipeline. */
+    QList<::model::filter::Filter> *filters; /**< The filter pipeline */
 };
 
-}  // namespace video
+}  // namespace filter
 }  // namespace model
 
 #endif  //_FILTEREDVIDEO_H

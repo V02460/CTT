@@ -16,16 +16,16 @@ namespace histogram {
  */
 class Histogram {
 public:
-	typedef QScopedPointer<Histogram> uptr;
-	typedef QSharedPointer<Histogram> sptr;
-	typedef QWeakPointer<Histogram> wptr;
+    typedef QScopedPointer<Histogram> uptr;
+    typedef QSharedPointer<Histogram> sptr;
+    typedef QWeakPointer<Histogram> wptr;
 
     /**
      * Gets the value for the entry with the number i.
      *
      * @param i the value of this entry will be returned
      * @return float the value for the entry with the number i
-	 * @throws Invalid
+     * @throws InvalidArgumentException if i > 255
      */
     float getValue(unsigned int i) const;
 
@@ -37,7 +37,7 @@ public:
     virtual HistogramType getType() const = 0;
 
 protected:
-	float values[256];/**< The values of the histogram */
+    float values[256];/**< The values of the histogram */
 };
 
 }  // namespace histogram

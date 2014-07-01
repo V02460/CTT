@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+
 #include "Overlay.h"
 #include "Frame.h"
 #include "Memento.h"
@@ -13,25 +14,29 @@ namespace filter {
 namespace overlay {
 
 /**
- *	Provides a new version of the predecessors frame with the graphical representation of macropartitions mixed into it.
+ * Provides a new version of the predecessors frame with the graphical representation of macropartitions mixed into it.
  */
 class MacropartionOverlay : public Overlay {
 public:
-	typedef QScopedPointer<MacropartionOverlay> uptr;
-	typedef QSharedPointer<MacropartionOverlay> sptr;
-	typedef QWeakPointer<MacropartionOverlay> wptr;
+    typedef QScopedPointer<MacropartionOverlay> uptr;
+    typedef QSharedPointer<MacropartionOverlay> sptr;
+    typedef QWeakPointer<MacropartionOverlay> wptr;
 
-	/**
-	*	Creates a new MacropartitionOverlay object with a given previous module.
-	*
-	*	@param predecessor The previous module of this filter.
-	*/
-	MacropartionOverlay(const Module &predecessor);
-	virtual ~MacropartionOverlay();
+    /**
+     * Creates a new MacropartitionOverlay object with a given previous module.
+     *
+     * @param predecessor The previous module of this filter.
+     */
+    explicit MacropartionOverlay(Module::sptr predecessor);
 
-	virtual bool supportsIntervals() const;
-	virtual QString getName() const;
-	virtual frame::Frame getFrame(unsigned int frameNumber) const;
+    /**
+     * MacropartionOverlay destructor.
+     */
+    virtual ~MacropartionOverlay();
+
+    virtual bool supportsIntervals() const;
+    virtual QString getName() const;
+    virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const;
 };
 
 }  // namespace overlay

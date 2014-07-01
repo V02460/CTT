@@ -4,37 +4,40 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
-#include "VideoProcessingWidget.h"
 #include <QWidget>
+
+#include "VideoProcessingWidget.h"
+
 namespace view {
+
 /**
- *	The PlayerWidget holds the VideoWidget displaying the original and the filtered video.
- *	The main purpose of this class is to handle the activation of a specific player by the user.
+ * The PlayerWidget holds the VideoWidget displaying the original and the filtered video.
+ * The main purpose of this class is to handle the activation of a specific player by the user.
  */
 class PlayerWidget : public QWidget{
 public:
-	typedef QScopedPointer<PlayerWidget> uptr;
-	typedef QSharedPointer<PlayerWidget> sptr;
-	typedef QWeakPointer<PlayerWidget> wptr;
+    typedef QScopedPointer<PlayerWidget> uptr;
+    typedef QSharedPointer<PlayerWidget> sptr;
+    typedef QWeakPointer<PlayerWidget> wptr;
 
 public slots:
-	/**
-	 *	Recieves the activation signal form a button in the ThumbnailListWidget and notifies the ProcessingWidget about the activation
-	 *	by emitting the playerActivated signal.
-	 */
-	void getActivationSignal();
+    /**
+     * Recieves the activation signal form a button in the ThumbnailListWidget and notifies the ProcessingWidget
+     * about the activation by emitting the playerActivated signal.
+     */
+    void getActivationSignal();
 
 signals:
-	/**
-	 *	This signal is emitted as soon as this PlayerWidget gets activated.
-	 *
-	 *	@param playerWidget The concrete playerWidget which was activated.
-	 */
-	void playerActivated(PlayerWidget playerWidget);
+    /**
+     * This signal is emitted as soon as this PlayerWidget gets activated.
+     *
+     * @param playerWidget The concrete playerWidget which was activated.
+     */
+    void playerActivated(const PlayerWidget &playerWidget);
 
 private:
-	VideoProcessingWidget inputVideo; /**< The original video on which the filters are apllied */
-	VideoProcessingWidget filteredVideo;/**< The original video plus the applied filters */
+    VideoProcessingWidget inputVideo; /**< The original video on which the filters are apllied */
+    VideoProcessingWidget filteredVideo;/**< The original video plus the applied filters */
 };
 
 }  // namespace view

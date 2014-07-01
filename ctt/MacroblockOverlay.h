@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+
 #include "ColoringOverlay.h"
 #include "Frame.h"
 #include "Memento.h"
@@ -17,21 +18,25 @@ namespace overlay {
  */
 class MacroblockOverlay : public ColoringOverlay {
 public:
-	typedef QScopedPointer<MacroblockOverlay> uptr;
-	typedef QSharedPointer<MacroblockOverlay> sptr;
-	typedef QWeakPointer<MacroblockOverlay> wptr;
+    typedef QScopedPointer<MacroblockOverlay> uptr;
+    typedef QSharedPointer<MacroblockOverlay> sptr;
+    typedef QWeakPointer<MacroblockOverlay> wptr;
 
-	/**
-	*	Creates a new MacroblockOverlay object with a given previous module.
-	*
-	*	@param predecessor The previous module of this filter.
-	*/
-	MacroblockOverlay(const Module &predecessor);
-	virtual ~MacroblockOverlay();
+    /**
+     * Creates a new MacroblockOverlay object with a given previous module.
+     *
+     * @param predecessor The previous module of this filter.
+     */
+    explicit MacroblockOverlay(Module::sptr predecessor);
 
-	virtual bool supportsIntervals() const;
-	virtual QString getName() const;
-	virtual frame::Frame getFrame(unsigned int frameNumber) const;
+    /**
+     * MacroblockOverlay destructor.
+     */
+    virtual ~MacroblockOverlay();
+
+    virtual bool supportsIntervals() const;
+    virtual QString getName() const;
+    virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const;
 };
 
 }  // namespace overlay
