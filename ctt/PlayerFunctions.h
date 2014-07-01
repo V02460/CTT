@@ -27,14 +27,14 @@ public:
     /**
      * Connects the signals from the interactable components to the corresponding slots in a PlayerController.
      *
-     * @param the PlayerController the signals should be connected to.
+     * @param observer The PlayerController the signals should be connected to.
      */
     void subscribe(::controller::PlayerController::sptr observer);
 
     /**
      * Disconnects the signals from the interactable components to the corresponding slots in a PlayerController.
      *
-     * @param the PlayerController the signals should be disconnected from.
+     * @param observer The PlayerController the signals should be disconnected from.
      */
     void unsubscribe(const ::controller::PlayerController &observer);
 private:

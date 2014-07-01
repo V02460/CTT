@@ -25,7 +25,7 @@ public:
     /**
      * Creates a VideoWidget and registeres itself at the corresponding VideoScrubber.
      *
-     * @param scubber The VideoScrubber to register at and which provided the video frames.
+     * @param scrubber The VideoScrubber to register at and which provided the video frames.
      */
     VideoWidget(::model::player::VideoScrubber::sptr scrubber);
 

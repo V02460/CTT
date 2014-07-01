@@ -8,6 +8,8 @@
 #include "Observer.h"
 #include "VideoScrubber.h"
 
+namespace view {
+
 /**
  * The HistogramWidget displays different histograms for a video frame.
  * Therefore it registeres itself at a VideoScrubber to recieve the histograms.
@@ -36,5 +38,7 @@ private:
     void paint();
     ::model::player::VideoScrubber::sptr scrubber /**< The scrubber at which the HistogramWidget is registered */;
 };
+
+}  // namespace view
 
 #endif  //_HISTOGRAMWIDGET_H

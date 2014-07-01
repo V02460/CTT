@@ -1,6 +1,10 @@
-#pragma once
+#if !defined(_SURFACE_H)
+#define _SURFACE_H
+
 #include "QOpenGLTexture"
 #include "QOpenGLContext"
+
+namespace model {
 
 /**
  * Encapsulates a QOpenGLTexture and a corresponding QOpenGLContext.
@@ -14,7 +18,9 @@ public:
 
 	/**
 	 * Creates a new Surface from the submitted texture and the submitted context.
-	 * WARNING: It can't be ensured that the submitted texture is accessible from the submitted context! If the caller wants an operative Surface, it's up to him to make that sure!
+	 * WARNING: It can't be ensured that the submitted texture is accessible from the submitted context! If the caller
+     * wants an operative Surface, it's up to him to make that sure!
+     *
 	 * @param glContext an OpenGL context, from which the texture is accessible
 	 * @param glTexture the OpenGL texture
 	 */
@@ -38,3 +44,6 @@ protected:
 	QOpenGLTexture glTexture; /**< The OpenGL texture */
 };
 
+}  // namespace model
+
+#endif  //_SURFACE_H
