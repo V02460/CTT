@@ -8,6 +8,7 @@
 #include "Filter.h"
 #include "Frame.h"
 #include "Memento.h"
+#include "Surface.h"
 
 namespace model {
 namespace filter {
@@ -28,7 +29,7 @@ public:
     * @param predecessor The previous module of this filter.
     * @param surface The surface which provides the texture to be mixed with a frame.
     */
-    explicit MixFilter(Module::sptr predecessor);
+    MixFilter(Module::sptr predecessor, ::model::Surface::sptr surface);
 
     /**
      * MixFilter destructor.

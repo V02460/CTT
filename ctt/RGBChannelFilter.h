@@ -24,7 +24,7 @@ public:
     /**
     * Creates a new RGBChannelFilter object with a given previous module.
     *
-    * @param previous The previous module of this filter.
+    * @param predecessor The previous module of this filter.
     */
     explicit RGBChannelFilter(Module::sptr predecessor);
 

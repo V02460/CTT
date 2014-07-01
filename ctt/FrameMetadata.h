@@ -35,7 +35,7 @@ public:
      * Creates a container holding metadata information for a Frame.
      *
      * @param size Size of the frame in pixel
-     * @param macroblockType Type identifier for every macroblock in the frame
+     * @param macroblockTypes Type identifier for every macroblock in the frame
      * @param macroblockPartitions Macroblock partition information for every macroblock in the frame
      * @param macroblockMotionvectors Motionvectors for every macroblock in the frame
      */

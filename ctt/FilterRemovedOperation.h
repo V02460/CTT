@@ -25,7 +25,7 @@ public:
      * FilterList.
      *
      * @param index The position of the Filter within the FilterList which should be removed from this list.
-     * @param filterList The list from which a certain filter should be removed.
+     * @param filteredVideo The list from which a certain filter should be removed.
      */
     FilterRemovedOperation(int index, ::model::filter::FilteredVideo::sptr filteredVideo);
 

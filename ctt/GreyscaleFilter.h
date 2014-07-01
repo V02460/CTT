@@ -24,7 +24,7 @@ public:
     /**
      * Creates a new GreyscaleFilter object with a given previous module.
      *
-     * @param previous The previous module of this filter.
+     * @param predecessor The previous module of this filter.
      */
     explicit GreyscaleFilter(Module::sptr predecessor);
 

@@ -22,8 +22,8 @@ public:
     /**
      * Creates an IntegerInterval from a to b if b isn't smaller than a, else it creates an Interval from b to a.
      *
-     * @param a one of the end points of the interval.
-     * @param a one of the end points of the interval.
+     * @param a start point of the interval.
+     * @param b end point of the interval.
      */
     UIntegerInterval(unsigned int a, unsigned int b);
 
