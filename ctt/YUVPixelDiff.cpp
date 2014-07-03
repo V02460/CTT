@@ -1,11 +1,11 @@
 #include "YUVPixelDiff.h"
-#include "Video.h"
-#include "Memento.h"
 
 namespace model {
 namespace difference {
 
-YUVPixelDiff::YUVPixelDiff(const video::Video &video1, const video::Video &video2) : PixelDiff(video1, video2) {
+using ::model::video::Video;
+
+YUVPixelDiff::YUVPixelDiff(Video::sptr video1, Video::sptr video2) : PixelDiff(video1, video2) {
 
 }
 
@@ -13,7 +13,7 @@ YUVPixelDiff::~YUVPixelDiff() {
 
 }
 
-Surface    YUVPixelDiff::getPixelDiff(unsigned int frameNr) const {
+Surface YUVPixelDiff::getPixelDiff(unsigned int frameNr) const {
 
 }
 

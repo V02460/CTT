@@ -1,7 +1,4 @@
 #include "Player.h"
-#include "VideoScrubber.h"
-#include "UIntegerInterval.h"
-#include "Memento.h"
 
 namespace model {
 namespace player {
@@ -58,7 +55,7 @@ void Player::removeScrubber(const VideoScrubber &scrubber) {
 
 }
 
-bool Player::controlsScrubber(const VideoScrubber &scrubber) const{
+bool Player::controlsScrubber(const VideoScrubber &scrubber) const {
 
 }
 

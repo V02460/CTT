@@ -1,24 +1,20 @@
 #include "Frame.h"
-#include "Histogram.h"
-#include "HistogramType.h"
-#include "FrameMetadata.h"
 
 namespace model {
 namespace frame {
 
-FrameMetadata Frame::getMetadata() {
+using ::model::frame::histogram::Histogram;
+using ::model::frame::histogram::HistogramType;
+
+Frame::Frame(QSharedPointer<QOpenGLContext> context, QImage image, FrameMetadata metadata) {
 
 }
 
-QOpenGLTexture Frame::getGLTexture() {
+FrameMetadata Frame::getMetadata() const {
 
 }
 
-Histogram Frame::getHistogram(HistogramType type) {
-
-}
-
-void Frame::Frame(QOpenGLContext context, QImage image, FrameMetadata metadata) {
+Histogram::sptr Frame::getHistogram(HistogramType type) const {
 
 }
 

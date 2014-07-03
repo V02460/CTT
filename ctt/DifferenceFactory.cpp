@@ -1,15 +1,24 @@
 #include "DifferenceFactory.h"
-#include "FrameDiff.h"
-#include "Video.h"
 
 namespace model {
 namespace difference {
 
-QList<QString> DifferenceFactory::getAllDiffIDs() {
+using ::model::difference::FrameDiff;
+using ::model::video::Video;
+
+QList<QString> DifferenceFactory::getAllFrameDiffIDs() {
 
 }
 
-FrameDiff::sptr DifferenceFactory::createDiff(QString id, const video::Video &video1, const video::Video &video2) {
+QList<QString> DifferenceFactory::getAllPixelDiffIDs() {
+
+}
+
+FrameDiff::sptr DifferenceFactory::createFrameDiff(QString id, Video::sptr video1, Video::sptr video2) {
+
+}
+
+PixelDiff::sptr DifferenceFactory::createPixelDiff(QString id, Video::sptr video1, Video::sptr video2) {
 
 }
 

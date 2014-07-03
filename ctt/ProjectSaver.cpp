@@ -3,7 +3,9 @@
 namespace model {
 namespace project {
 
-void ProjectSaver::save(QDir path) {
+using ::controller::Project;
+
+void ProjectSaver::save(QDir path, const Project &project) {
 
 }
 

@@ -29,7 +29,7 @@ public:
      *
      * @param size Size of the frame in pixel
      */
-    explicit FrameMetadata(const QSize size);
+    explicit FrameMetadata(QSize size);
 
     /**
      * Creates a container holding metadata information for a Frame.
@@ -39,10 +39,10 @@ public:
      * @param macroblockPartitions Macroblock partition information for every macroblock in the frame
      * @param macroblockMotionvectors Motionvectors for every macroblock in the frame
      */
-    FrameMetadata(const QSize size,
-                  const QVector<QVector<MacroblockType>> macroblockTypes,
-                  const QVector<QVector<MacroblockPartition>> macroblockPartitions,
-                  const QVector<QVector<QVector2D>> macroblockMotionvectors);
+    FrameMetadata(QSize size,
+                  QVector<QVector<MacroblockType>> macroblockTypes,
+                  QVector<QVector<MacroblockPartition>> macroblockPartitions,
+                  QVector<QVector<QVector2D>> macroblockMotionvectors);
 
     /**
      * Get the stored frame size.

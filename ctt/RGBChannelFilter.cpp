@@ -5,23 +5,21 @@
 namespace model {
 namespace filter {
 
-QString RGBChannelFilter::getName() {
+using ::model::frame::Frame;
+
+RGBChannelFilter::RGBChannelFilter(Module::sptr predecessor) : Filter(predecessor) {
 
 }
 
-Frame RGBChannelFilter::getFrame(int frameNumber) {
+bool RGBChannelFilter::supportsIntervals() const {
 
 }
 
-Memento RGBChannelFilter::getMemento() {
+QString RGBChannelFilter::getName() const {
 
 }
 
-void RGBChannelFilter::restore(Memento memento) {
-
-}
-
-Saveable* RGBChannelFilter::getDummy() {
+Frame RGBChannelFilter::getFrame(unsigned int frameNumber) const {
 
 }
 

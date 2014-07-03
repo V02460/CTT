@@ -29,7 +29,7 @@ public:
     * @param predecessor The previous module of this filter.
     * @param surface The surface which provides the texture to be mixed with a frame.
     */
-    MixFilter(Module::sptr predecessor, ::model::Surface::sptr surface);
+    MixFilter(Module::sptr predecessor, Surface::sptr surface);
 
     /**
      * MixFilter destructor.

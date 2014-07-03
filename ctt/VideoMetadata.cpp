@@ -3,11 +3,15 @@
 namespace model {
 namespace video {
 
-void VideoMetadata::VideoMetadata(QSize size, double fps, QMap additionalData) {
+VideoMetadata::VideoMetadata(QSize size, double fps, unsigned int length, QMap<QString, QString> additionalData) {
 
 }
 
-bool VideoMetadata::hasData(QString key) {
+VideoMetadata::VideoMetadata(QSize size, double fps, unsigned int length) {
+
+}
+
+bool VideoMetadata::hasData(QString key) const {
 
 }
 
@@ -20,6 +24,10 @@ QSize VideoMetadata::getSize() {
 }
 
 double VideoMetadata::getFPS() {
+
+}
+
+unsigned int VideoMetadata::getLength() {
 
 }
 

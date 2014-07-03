@@ -1,8 +1,4 @@
 #include "VideoScrubber.h"
-#include "Frame.h"
-#include "Video.h"
-#include "VideoMetadata.h"
-#include "Memento.h"
 
 namespace model {
 namespace player {
@@ -27,19 +23,11 @@ frame::Frame::wptr VideoScrubber::getCurrentFrame() const{
 
 }
 
-void VideoScrubber::jumpToFrameNr(unsigned int frameNumber); {
+bool VideoScrubber::isWaitingForFrame() const {
 
 }
 
-project::Memento VideoScrubber::getMemento() {
-
-}
-
-void VideoScrubber::restore(project::Memento memento) {
-
-}
-
-Saveable* VideoScrubber::getDummy() {
+void VideoScrubber::jumpToFrameNr(unsigned int frameNumber) {
 
 }
 

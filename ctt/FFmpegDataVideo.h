@@ -37,7 +37,7 @@ public:
 
     VideoMetadata getMetadata() const;
 
-    virtual frame::Frame getFrame(unsigned int frameNumber);
+    virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const;
 };
 
 }  // namespace video

@@ -1,11 +1,14 @@
 #include "GreenHistogram.h"
-#include "Frame.h"
 
 namespace model {
 namespace frame {
 namespace histogram {
 
-void GreenHistogram::GreenHistogram(Frame frame) {
+GreenHistogram::GreenHistogram(Frame frame) {
+
+}
+
+HistogramType GreenHistogram::getType() const {
 
 }
 

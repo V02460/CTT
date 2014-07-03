@@ -1,29 +1,13 @@
 #include "Overlay.h"
-#include "Frame.h"
-#include "Memento.h"
 
 namespace model {
 namespace filter {
+namespace overlay {
 
-QString Overlay::getName() {
-
-}
-
-Frame Overlay::getFrame(int frameNumber) {
+Overlay::Overlay(Module::sptr predecessor) :Filter(predecessor) {
 
 }
 
-Memento Overlay::getMemento() {
-
-}
-
-void Overlay::restore(Memento memento) {
-
-}
-
-Saveable* Overlay::getDummy() {
-
-}
-
+}  // namespace overlay
 }  // namespace filter
 }  // namcespace model

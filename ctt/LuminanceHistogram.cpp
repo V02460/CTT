@@ -1,11 +1,14 @@
 #include "LuminanceHistogram.h"
-#include "Frame.h"
 
 namespace model {
 namespace frame {
 namespace histogram {
 
-void LuminanceHistogram::LuminanceHistogram(Frame frame) {
+LuminanceHistogram::LuminanceHistogram(Frame frame) {
+
+}
+
+HistogramType LuminanceHistogram::getType() const {
 
 }
 

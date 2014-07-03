@@ -3,11 +3,15 @@
 namespace model {
 namespace filter {
 
-any FilterParam::getValue() {
+FilterParam::FilterParam(QString name, any value) {
 
 }
 
-void FilterParam::FilterParam(QString name) {
+any FilterParam::getValue() const {
+
+}
+
+QString FilterParam::getName() const {
 
 }
 

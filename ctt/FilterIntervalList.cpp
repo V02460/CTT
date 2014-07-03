@@ -1,15 +1,15 @@
 #include "FilterIntervalList.h"
-#include "UIntegerInterval.h"
-#include "Saveable.h"
-#include "Memento.h"
 
 namespace model {
+
+using ::model::project::Memento;
+using ::model::project::Saveable;
 
 FilterIntervalList::FilterIntervalList() {
 }
 
 
-bool FilterIntervalList::isActive(unsigned int frameNumber) {
+bool FilterIntervalList::isActive(unsigned int frameNumber) const {
 }
 
 
@@ -21,7 +21,20 @@ void FilterIntervalList::deactivate(UIntegerInterval interval) {
 }
 
 
-QList<UIntegerInterval> FilterIntervalList::getIntervalList() {
+QList<UIntegerInterval> FilterIntervalList::getIntervalList() const {
+
+}
+
+Memento FilterIntervalList::getMemento() const {
+
+}
+
+void FilterIntervalList::restore(Memento memento) {
+
+}
+
+Saveable::sptr FilterIntervalList::getDummy() {
+
 }
 
 }  // namespace model

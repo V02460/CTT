@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QFile>
 
 #include "Video.h"
 #include "Frame.h"
@@ -34,11 +35,11 @@ public:
     * @throws InvalidArgumentException if the files at the submitted locations aren't valid YUV 4:4:4 or YUV 4:2:2 video
     *     or metadata files
     */
-    YUVDataVideo(QDir videoFile, QDir metadataFile, QOpenGLContext context);
+    YUVDataVideo(QFile videoFile, QFile metadataFile, QOpenGLContext context);
 
-    virtual ::model::video::VideoMetadata getMetadata() const;
+    virtual VideoMetadata getMetadata() const;
 
-    virtual frame::Frame getFrame(unsigned int frameNumber);
+    virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const;
 
 private:
     /**

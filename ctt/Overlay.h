@@ -23,6 +23,8 @@ public:
     typedef QSharedPointer<Overlay> sptr;
     typedef QWeakPointer<Overlay> wptr;
 
+    explicit Overlay(Module::sptr predecessor);
+
     /**
      * Overlay destructor.
      */

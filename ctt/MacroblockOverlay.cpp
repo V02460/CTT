@@ -1,29 +1,31 @@
 #include "MacroblockOverlay.h"
-#include "Frame.h"
-#include "Memento.h"
 
 namespace model {
 namespace filter {
+namespace overlay {
 
-QString MacroblockOverlay::getName() {
+using ::model::frame::Frame;
 
-}
-
-Frame MacroblockOverlay::getFrame(int frameNumber) {
-
-}
-
-Memento MacroblockOverlay::getMemento() {
+MacroblockOverlay::MacroblockOverlay(Module::sptr predecessor) : ColoringOverlay(predecessor) {
 
 }
 
-void MacroblockOverlay::restore(Memento memento) {
+MacroblockOverlay::~MacroblockOverlay() {
 
 }
 
-Saveable* MacroblockOverlay::getDummy() {
+bool MacroblockOverlay::supportsIntervals() const {
 
 }
 
+QString MacroblockOverlay::getName() const {
+
+}
+
+Frame MacroblockOverlay::getFrame(unsigned int frameNumber) const {
+
+}
+
+}  // namespace overlay
 }  // namespace filter
 }  // namcespace model

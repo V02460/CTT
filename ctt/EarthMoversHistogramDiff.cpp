@@ -1,11 +1,12 @@
 #include "EarthMoversHistogramDiff.h"
-#include "Video.h"
-#include "Memento.h"
 
 namespace model {
 namespace difference {
 
-EarthMoversHistogramDiff::EarthMoversHistogramDiff(const video::Video &video1, const video::Video &video2)
+using ::model::frame::histogram::HistogramType;
+using ::model::video::Video;
+
+EarthMoversHistogramDiff::EarthMoversHistogramDiff(HistogramType type, Video::sptr video1, Video::sptr video2)
         : FrameDiff(video1, video2) {
 
 }

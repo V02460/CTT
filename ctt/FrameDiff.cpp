@@ -1,10 +1,11 @@
 #include "FrameDiff.h"
-#include "Memento.h"
 
 namespace model {
 namespace difference {
 
-FrameDiff::FrameDiff(const video::Video &video1, const video::Video &video2) {
+using ::model::video::Video;
+
+FrameDiff::FrameDiff(Video::sptr video1, Video::sptr video2) {
 
 }
 

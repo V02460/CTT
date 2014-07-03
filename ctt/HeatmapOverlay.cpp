@@ -1,29 +1,24 @@
 #include "HeatmapOverlay.h"
-#include "Frame.h"
-#include "Memento.h"
 
 namespace model {
 namespace filter {
+namespace overlay {
 
-QString HeatmapOverlay::getName() {
+using ::model::difference::PixelDiff;
+using ::model::frame::Frame;
 
-}
-
-Frame HeatmapOverlay::getFrame(int frameNumber) {
-
-}
-
-Memento HeatmapOverlay::getMemento() {
+HeatmapOverlay::HeatmapOverlay(Module::sptr predecessor, PixelDiff::sptr difference) : ColoringOverlay(predecessor) {
 
 }
 
-void HeatmapOverlay::restore(Memento memento) {
+QString HeatmapOverlay::getName() const {
 
 }
 
-Saveable* HeatmapOverlay::getDummy() {
+Frame HeatmapOverlay::getFrame(unsigned int frameNumber) const {
 
 }
 
+}  // namespace overlay
 }  // namespace filter
 }  // namcespace model

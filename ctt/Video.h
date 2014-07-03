@@ -15,7 +15,6 @@
 #include "VideoMetadata.h"
 #include "VideoFileType.h"
 
-
 namespace model {
 namespace video {
 

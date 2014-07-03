@@ -3,7 +3,9 @@
 namespace model {
 namespace project {
 
-void ProjectLoader::restore(QDir path) {
+using ::controller::Project;
+
+void ProjectLoader::restore(QDir path, Project project) {
 
 }
 

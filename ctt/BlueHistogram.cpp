@@ -1,12 +1,15 @@
 #include "BlueHistogram.h"
-#include "Frame.h"
 
 namespace model {
 namespace frame {
 namespace histogram {
 
-void BlueHistogram::BlueHistogram(Frame frame) {
+BlueHistogram::BlueHistogram(Frame frame) {
 
+}
+
+HistogramType BlueHistogram::getType() const {
+    return HistogramType::Blue;
 }
 
 }  // namespace histogram

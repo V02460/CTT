@@ -36,6 +36,9 @@ public:
      */
     virtual ~ColoringOverlay();
 
+    QString getName() const;
+    ::model::frame::Frame ColoringOverlay::getFrame(unsigned int frameNumber) const;
+
 protected:
     const ::model::filter::GreyscaleFilter &getGreyscaleFilter() const;
 

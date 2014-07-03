@@ -1,27 +1,19 @@
 #include "FFmpegDataVideo.h"
-#include "Frame.h"
-#include "Memento.h"
 
 namespace model {
 namespace video {
 
-VideoMetadata FFmpegDataVideo::getMetadata() {
+using ::model::frame::Frame;
+
+FFmpegDataVideo::FFmpegDataVideo(QDir path, QSharedPointer<QOpenGLContext> context) {
 
 }
 
-Frame FFmpegDataVideo::getFrame(int frameNumber) {
+VideoMetadata FFmpegDataVideo::getMetadata() const {
 
 }
 
-Memento FFmpegDataVideo::getMemento() {
-
-}
-
-void FFmpegDataVideo::restore(Memento memento) {
-
-}
-
-Saveable* FFmpegDataVideo::getDummy() {
+Frame FFmpegDataVideo::getFrame(unsigned int frameNumber) const {
 
 }
 

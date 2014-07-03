@@ -7,7 +7,7 @@ void Memento::setBool(bool value, QString name) {
 
 }
 
-bool Memento::getBool(QString name) {
+bool Memento::getBool(QString name) const {
 
 }
 
@@ -15,7 +15,7 @@ void Memento::setInt(int value, QString name) {
 
 }
 
-int Memento::getInt(QSting name) {
+int Memento::getInt(QSting name) const {
 
 }
 
@@ -23,7 +23,7 @@ void Memento::setFloat(float value, QString name) {
 
 }
 
-float Memento::getFloat(QString name) {
+float Memento::getFloat(QString name) const {
 
 }
 
@@ -31,7 +31,7 @@ void Memento::setDouble(double value, QString name) {
 
 }
 
-double Memento::getDouble(QString name) {
+double Memento::getDouble(QString name) const {
 
 }
 
@@ -39,15 +39,15 @@ void Memento::setString(QString value, QString name) {
 
 }
 
-QString Memento::getString(QString name) {
+QString Memento::getString(QString name) const {
 
 }
 
-void Memento::setPointer(Pointer pointer, QString name) {
+void Memento::setPointer(void* pointer, QString name) {
 
 }
 
-Pointer Memento::getPointer(QString name) {
+void* Memento::getPointer(QString name) const {
 
 }
 

@@ -125,9 +125,6 @@
     <ClCompile Include="BlueHistogram.cpp">
       <Filter>Source Files\Model\Frame\Histogram</Filter>
     </ClCompile>
-    <ClCompile Include="AtomicOperation.cpp">
-      <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
     <ClCompile Include="BlurFilter.cpp">
       <Filter>Source Files\Model\Filter</Filter>
     </ClCompile>
@@ -139,9 +136,6 @@
     </ClCompile>
     <ClCompile Include="CompoundOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
-    <ClCompile Include="DataVideo.cpp">
-      <Filter>Source Files\Model\Video</Filter>
     </ClCompile>
     <ClCompile Include="DifferenceController.cpp">
       <Filter>Source Files\Controller</Filter>
@@ -166,9 +160,6 @@
     </ClCompile>
     <ClCompile Include="FilterController.cpp">
       <Filter>Source Files\Controller</Filter>
-    </ClCompile>
-    <ClCompile Include="FilteredVideo.cpp">
-      <Filter>Source Files\Model\Video</Filter>
     </ClCompile>
     <ClCompile Include="FilterFactory.cpp">
       <Filter>Source Files\Model\Filter</Filter>
@@ -251,9 +242,6 @@
     <ClCompile Include="ProjectController.cpp">
       <Filter>Source Files\Controller</Filter>
     </ClCompile>
-    <ClCompile Include="OverlayFactory.cpp">
-      <Filter>Source Files\Model\Filter\Overlay</Filter>
-    </ClCompile>
     <ClCompile Include="Overlay.cpp">
       <Filter>Source Files\Model\Filter\Overlay</Filter>
     </ClCompile>
@@ -311,9 +299,6 @@
     <ClCompile Include="VideoProcessingWidget.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
-    <ClCompile Include="ProjectSaverFactory.cpp">
-      <Filter>Source Files\Model\Project</Filter>
-    </ClCompile>
     <ClCompile Include="ProjectSaver.cpp">
       <Filter>Source Files\Model\Project</Filter>
     </ClCompile>
@@ -332,9 +317,6 @@
     <ClCompile Include="ViewState.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
-    <ClCompile Include="VideoSaverFactory.cpp">
-      <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
     <ClCompile Include="OperationList.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
@@ -346,9 +328,6 @@
     </ClCompile>
     <ClCompile Include="YUVPixelDiff.cpp">
       <Filter>Source Files\Model\Difference</Filter>
-    </ClCompile>
-    <ClCompile Include="YUVVideoSaver.cpp">
-      <Filter>Source Files\Model\Video</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_VideoScrubber.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -362,13 +341,7 @@
     <ClCompile Include="GeneratedFiles\Release\moc_Player.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Module.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="Observable.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="Observer.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="UIntegerInterval.cpp">
@@ -490,6 +463,9 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_VideoWidget.cpp">
       <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="FilteredVideo.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

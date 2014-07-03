@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+
 #include "Observer.h"
 #include "Memento.h"
 
@@ -56,7 +57,7 @@ public:
 	bool isDummy() const;
 
 protected:
-	bool isDummy = false;
+	bool isDummyFlag = false;
 };
 
 }  // namespace project

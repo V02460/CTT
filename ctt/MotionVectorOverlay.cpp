@@ -1,29 +1,32 @@
 #include "MotionVectorOverlay.h"
-#include "Frame.h"
-#include "Memento.h"
 
 namespace model {
 namespace filter {
+namespace overlay {
 
-QString MotionVectorOverlay::getName() {
 
-}
+using ::model::frame::Frame;
 
-Frame MotionVectorOverlay::getFrame(int frameNumber) {
-
-}
-
-Memento MotionVectorOverlay::getMemento() {
+MotionVectorOverlay::MotionVectorOverlay(Module::sptr predecessor) : Overlay(predecessor) {
 
 }
 
-void MotionVectorOverlay::restore(Memento memento) {
+MotionVectorOverlay::~MotionVectorOverlay () {
 
 }
 
-Saveable* MotionVectorOverlay::getDummy() {
+bool MotionVectorOverlay::supportsIntervals() const {
 
 }
 
+QString MotionVectorOverlay::getName() const {
+
+}
+
+Frame MotionVectorOverlay::getFrame(unsigned int frameNumber) const {
+
+}
+
+}  // namespace overlay
 }  // namespace filter
 }  // namcespace model

@@ -3,31 +3,42 @@
 namespace model {
 namespace frame {
 
-QSize FrameMetadata::getSize() {
+FrameMetadata::FrameMetadata(QSize size) {
 
 }
 
-int[] FrameMetadata::getMbType() {
+FrameMetadata::FrameMetadata(QSize size,
+                             QVector<QVector<MacroblockType>> macroblockTypes,
+                             QVector<QVector<MacroblockPartition>> macroblockPartitions,
+                             QVector<QVector<QVector2D>> macroblockMotionvectors) {
 
 }
 
-int[] FrameMetadata::getMbPartition() {
+QSize FrameMetadata::getSize() const {
 
 }
 
-int[] FrameMetadata::getMbMotionvectors() {
+QVector<QVector<MacroblockType>> FrameMetadata::getMbType() const {
 
 }
 
-bool FrameMetadata::hasMbType() {
+QVector<QVector<MacroblockPartition>> FrameMetadata::getMbPartitions() const {
 
 }
 
-bool FrameMetadata::hasMbPartions() {
+QVector<QVector<QVector2D>> FrameMetadata::getMbMotionvectors() const {
 
 }
 
-bool FrameMetadata::hasMbType() {
+bool FrameMetadata::hasMbType() const {
+
+}
+
+bool FrameMetadata::hasMbPartions() const {
+
+}
+
+bool FrameMetadata::hasMbMotionvectors() const {
 
 }
 

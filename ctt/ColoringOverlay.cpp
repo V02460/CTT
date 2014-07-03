@@ -1,29 +1,27 @@
 #include "ColoringOverlay.h"
-#include "Frame.h"
-#include "Memento.h"
 
 namespace model {
 namespace filter {
+namespace overlay {
 
-QString ColoringOverlay::getName() {
+using ::model::frame::Frame;
 
-}
-
-Frame ColoringOverlay::getFrame(int frameNumber) {
-
-}
-
-Memento ColoringOverlay::getMemento() {
+ColoringOverlay::ColoringOverlay(Module::sptr predecessor) {
 
 }
 
-void ColoringOverlay::restore(Memento memento) {
+ColoringOverlay::~ColoringOverlay() {
 
 }
 
-Saveable* ColoringOverlay::getDummy() {
+QString ColoringOverlay::getName() const {
 
 }
 
+Frame ColoringOverlay::getFrame(unsigned int frameNumber) const {
+
+}
+
+}  // namespace overlay
 }  // namespace filter
 }  // namcespace model

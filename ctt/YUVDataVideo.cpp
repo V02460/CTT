@@ -1,27 +1,19 @@
 #include "YUVDataVideo.h"
-#include "Frame.h"
-#include "Memento.h"
 
 namespace model {
 namespace video {
 
-VideoMetadata YUVDataVideo::getMetadata() {
+using ::model::frame::Frame;
+
+YUVDataVideo::YUVDataVideo(QFile videoFile, QFile metadataFile, QOpenGLContext context) {
 
 }
 
-Frame YUVDataVideo::getFrame(int frameNumber) {
+VideoMetadata YUVDataVideo::getMetadata() const {
 
 }
 
-Memento YUVDataVideo::getMemento() {
-
-}
-
-void YUVDataVideo::restore(Memento memento) {
-
-}
-
-Saveable* YUVDataVideo::getDummy() {
+Frame YUVDataVideo::getFrame(unsigned int frameNumber) const {
 
 }
 

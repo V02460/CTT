@@ -5,6 +5,8 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 #include <QString>
+#include <QSize>
+#include <QMap>
 
 namespace model {
 namespace video {
@@ -46,7 +48,7 @@ public:
      * @param key it will be checked whether metadata with this label is available
      * @return bool true only if metadata with the submitted label is available
      */
-    bool hasData(QString key);
+    bool hasData(QString key) const;
 
     /**
      * Returns the metadata with the submitted label.

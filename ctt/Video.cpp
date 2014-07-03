@@ -1,31 +1,19 @@
 #include "Video.h"
-#include "Frame.h"
-#include "Memento.h"
 
 namespace model {
 namespace video {
 
-void Video::save(Path path) {
+using ::model::frame::Frame;
+
+void Video::save(QDir path, VideoFileType fileType) {
 
 }
 
-Frame Video::getScaledFrame(int frameNumber, int x, int y) {
+Frame Video::getScaledFrame(unsigned int frameNumber, QSize size) const {
 
 }
 
-Frame Video::getFrame(int frameNumber) {
-
-}
-
-Memento Video::getMemento() {
-
-}
-
-void Video::restore(Memento memento) {
-
-}
-
-Saveable* Video::getDummy() {
+QSharedPointer<QOpenGLContext> Video::getContext() const {
 
 }
 

@@ -1,27 +1,23 @@
 #include "MixFilter.h"
-#include "Frame.h"
-#include "Memento.h"
 
 namespace model {
 namespace filter {
 
-QString MixFilter::getName() {
+using ::model::frame::Frame;
+
+MixFilter::MixFilter(Module::sptr predecessor, Surface::sptr surface) : Filter(predecessor) {
 
 }
 
-Frame MixFilter::getFrame(int frameNumber) {
+bool MixFilter::supportsIntervals() const {
 
 }
 
-Memento MixFilter::getMemento() {
+QString MixFilter::getName() const {
 
 }
 
-void MixFilter::restore(Memento memento) {
-
-}
-
-Saveable* MixFilter::getDummy() {
+Frame MixFilter::getFrame(unsigned int frameNumber) const {
 
 }
 

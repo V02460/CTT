@@ -1,11 +1,11 @@
 #include "HSLPixelDiff.h"
-#include "Video.h"
-#include "Memento.h"
 
 namespace model {
 namespace difference {
 
-HSLPixelDiff::HSLPixelDiff(const video::Video &video1, const video::Video &video2) : PixelDiff(video1, video2) {
+using ::model::video::Video;
+
+HSLPixelDiff::HSLPixelDiff(Video::sptr video1, Video::sptr video2) : PixelDiff(video1, video2) {
     
 }
 

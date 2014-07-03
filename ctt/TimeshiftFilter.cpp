@@ -1,27 +1,23 @@
 #include "TimeshiftFilter.h"
-#include "Frame.h"
-#include "Memento.h"
 
 namespace model {
 namespace filter {
 
-QString TimeshiftFilter::getName() {
+using ::model::frame::Frame;
+
+TimeshiftFilter::TimeshiftFilter(Module::sptr predecessor) : Filter(predecessor) {
 
 }
 
-Frame TimeshiftFilter::getFrame(int frameNumber) {
+bool TimeshiftFilter::supportsIntervals() const {
 
 }
 
-Memento TimeshiftFilter::getMemento() {
+QString TimeshiftFilter::getName() const {
 
 }
 
-void TimeshiftFilter::restore(Memento memento) {
-
-}
-
-Saveable* TimeshiftFilter::getDummy() {
+Frame TimeshiftFilter::getFrame(unsigned int frameNumber) const {
 
 }
 

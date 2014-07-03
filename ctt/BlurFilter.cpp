@@ -5,23 +5,13 @@
 namespace model {
 namespace filter {
 
-QString BlurFilter::getName() {
+using ::model::frame::Frame;
+
+QString BlurFilter::getName() const {
 
 }
 
-Frame BlurFilter::getFrame(int frameNumber) {
-
-}
-
-Memento BlurFilter::getMemento() {
-
-}
-
-void BlurFilter::restore(Memento memento) {
-
-}
-
-Saveable* BlurFilter::getDummy() {
+Frame BlurFilter::getFrame(unsigned int frameNumber) const {
 
 }
 

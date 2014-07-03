@@ -1,29 +1,31 @@
 #include "MacropartitionOverlay.h"
-#include "Frame.h"
-#include "Memento.h"
 
 namespace model {
 namespace filter {
+namespace overlay {
 
-QString MacropartionOverlay::getName() {
+using ::model::frame::Frame;
 
-}
-
-Frame MacropartionOverlay::getFrame(int frameNumber) {
-
-}
-
-Memento MacropartionOverlay::getMemento() {
+MacropartionOverlay::MacropartionOverlay(Module::sptr predecessor) : Overlay(predecessor) {
 
 }
 
-void MacropartionOverlay::restore(Memento memento) {
+MacropartionOverlay::~MacropartionOverlay() {
 
 }
 
-Saveable* MacropartionOverlay::getDummy() {
+bool MacropartionOverlay::supportsIntervals() const {
 
 }
 
+QString MacropartionOverlay::getName() const {
+
+}
+
+Frame MacropartionOverlay::getFrame(unsigned int frameNumber) const {
+
+}
+
+}  // namespace overlay
 }  // namespace filter
 }  // namcespace model

@@ -29,8 +29,8 @@ public:
     void subscribe(Observer::sptr observer);
 
     /**
-     * Unsubscribes the submitted Observer from the Observable, i.e. the Observer will not/no longer be notified when the
-     * state of the Observable changes.
+     * Unsubscribes the submitted Observer from the Observable, i.e. the Observer will not/no longer be notified when
+     * the state of the Observable changes.
      *
      * @param observer this Observer will be unsubscribed from the Observable.
      */

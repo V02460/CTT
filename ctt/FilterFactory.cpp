@@ -4,15 +4,15 @@
 namespace model {
 namespace filter {
 
-List<QString> FilterFactory::getAllFilterIDs() {
+QList<QString> FilterFactory::getAllFilterNotOverlayIDs() {
 
 }
 
-Filter FilterFactory::createFilter(QString id) {
+QList<QString> FilterFactory::getAllFilterIDs() {
 
 }
 
-void FilterFactory::FilterFactory() {
+Filter::sptr createFilter(QString id) {
 
 }
 

@@ -1,27 +1,23 @@
 #include "RescaleFilter.h"
-#include "Frame.h"
-#include "Memento.h"
 
 namespace model {
 namespace filter {
 
-QString RescaleFilter::getName() {
+using ::model::frame::Frame;
+
+RescaleFilter::RescaleFilter(Module::sptr predecessor) : Filter(predecessor) {
 
 }
 
-Frame RescaleFilter::getFrame(int frameNumber) {
+bool RescaleFilter::supportsIntervals() const {
 
 }
 
-Memento RescaleFilter::getMemento() {
+QString RescaleFilter::getName() const {
 
 }
 
-void RescaleFilter::restore(Memento memento) {
-
-}
-
-Saveable* RescaleFilter::getDummy() {
+Frame RescaleFilter::getFrame(unsigned int frameNumber) const {
 
 }
 

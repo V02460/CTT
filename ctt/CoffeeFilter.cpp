@@ -5,23 +5,21 @@
 namespace model {
 namespace filter {
 
-QString CoffeeFilter::getName() {
+using ::model::frame::Frame;
+
+CoffeeFilter::CoffeeFilter(Module::sptr predecessor) : Filter(predecessor) {
 
 }
 
-Frame CoffeeFilter::getFrame(int frameNumber) {
+CoffeeFilter::~CoffeeFilter() {
 
 }
 
-Memento CoffeeFilter::getMemento() {
+QString CoffeeFilter::getName() const {
 
 }
 
-void CoffeeFilter::restore(Memento memento) {
-
-}
-
-Saveable* CoffeeFilter::getDummy() {
+Frame CoffeeFilter::getFrame(unsigned int frameNumber) const {
 
 }
 

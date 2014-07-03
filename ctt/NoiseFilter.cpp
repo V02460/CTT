@@ -1,27 +1,23 @@
 #include "NoiseFilter.h"
-#include "Frame.h"
-#include "Memento.h"
 
 namespace model {
 namespace filter {
 
-QString NoiseFilter::getName() {
+using ::model::frame::Frame;
+
+NoiseFilter::NoiseFilter(Module::sptr predecessor) : Filter(predecessor) {
 
 }
 
-Frame NoiseFilter::getFrame(int frameNumber) {
+bool NoiseFilter::supportsIntervals() const {
 
 }
 
-Memento NoiseFilter::getMemento() {
+QString NoiseFilter::getName() const {
 
 }
 
-void NoiseFilter::restore(Memento memento) {
-
-}
-
-Saveable* NoiseFilter::getDummy() {
+Frame NoiseFilter::getFrame(unsigned int frameNumber) const {
 
 }
 

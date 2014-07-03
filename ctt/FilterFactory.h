@@ -41,7 +41,7 @@ public:
      * @return Filter a Filter of the type specified by the submitted id
      * @throws InvalidArgumentException if the submitted id doesn't specify a type of Filter the factory can create.
      */
-    static ::model::filter::Filter::sptr createFilter(QString id);
+    static Filter::sptr createFilter(QString id);
 private:
     FilterFactory() {}
 };

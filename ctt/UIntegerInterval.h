@@ -40,14 +40,14 @@ public:
      *
      * @return int the smallest element of the interval
      */
-    int getStart() const;
+    unsigned int getStart() const;
 
     /**
      * Returns the greatest element of the interval.
      *
      * @return int the greatest element of the interval
      */
-    int getEnd() const;
+    unsigned int getEnd() const;
 
     /**
      * Moves the lower bound of the interval to start.

@@ -6,35 +6,34 @@
 namespace model {
 namespace filter {
 
-bool Filter::supportsIntervals() {
+using ::model::frame::Frame;
+using ::model::Module;
+
+Filter::Filter(Module::sptr predecessor) {
 
 }
 
-void Filter::Filter() {
+Filter::~Filter() {
 
 }
 
-Map Filter::getParams() {
+QList<FilterParam> Filter::getParams() const {
 
 }
 
-void Filter::setPreviousModule(Module previous) {
+void Filter::setParam(FilterParam parameter) {
 
 }
 
-Frame Filter::getFrame(unsigned int frameNumber) {
+void Filter::setPreviousModule(Module::sptr previous) {
 
 }
 
-Memento Filter::getMemento() {
+void Filter::activate(UIntegerInterval interval) {
 
 }
 
-void Filter::restore(Memento memento) {
-
-}
-
-Saveable* Filter::getDummy() {
+void Filter::deactivate(UIntegerInterval interval) {
 
 }
 

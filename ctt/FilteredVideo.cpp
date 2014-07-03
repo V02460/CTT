@@ -1,42 +1,33 @@
 #include "FilteredVideo.h"
-#include "Video.h"
-#include "Filter.h"
-#include "FilterList.h"
-#include "Frame.h"
-#include "Memento.h"
 
 namespace model {
-namespace video {
+namespace filter {
 
-FilteredVideo::FilteredVideo(Video baseVideo) {
+using ::model::video::VideoMetadata;
+using ::model::frame::Frame;
+using ::model::project::Memento;
 
-}
-
-void FilteredVideo::addFilter(Filter filter, unsigned int pos) {
-
-}
-
-Filter FilteredVideo::removeFilter(unsigned int pos) {
+FilteredVideo::FilteredVideo(Video::sptr baseVideo) {
 
 }
 
-unsigned int FilteredVideo::getFilterCount() {
+void FilteredVideo::addFilter(Filter::sptr filter, unsigned int pos) {
 
 }
 
-FilterList FilteredVideo::getFilterList() {
+Filter::sptr FilteredVideo::removeFilter(unsigned int pos) {
 
 }
 
-VideoMetadata FilteredVideo::getMetadata() {
+unsigned int FilteredVideo::getFilterCount() const {
 
 }
 
-Frame FilteredVideo::getFrame(unsigned int frameNumber) {
+QList<const Filter&> FilteredVideo::getFilterList() const {
 
 }
 
-Memento FilteredVideo::getMemento() {
+Memento FilteredVideo::getMemento() const {
 
 }
 
@@ -44,9 +35,9 @@ void FilteredVideo::restore(Memento memento) {
 
 }
 
-Saveable* FilteredVideo::getDummy() {
+Saveable::sptr FilteredVideo::getDummy() {
 
 }
 
-}  // namespace video
+}  // namespace filter
 }  // namespace model
