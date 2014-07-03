@@ -2,11 +2,9 @@
 
 namespace view {
 
-void FrameMetadataWidget::HistogramWidget::next() {
+using ::model::player::VideoScrubber;
 
-}
-
-void FrameMetadataWidget::HistogramWidget::paint() {
+FrameMetadataWidget::FrameMetadataWidget(VideoScrubber::sptr scrubber) {
 
 }
 

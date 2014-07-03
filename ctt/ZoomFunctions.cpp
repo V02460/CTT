@@ -6,7 +6,7 @@ void ZoomFunctions::setZoomFactor(double zoomFactor) {
 
 }
 
-double ZoomFunctions::getZoomFactor() {
+double ZoomFunctions::getZoomFactor() const {
 
 }
 

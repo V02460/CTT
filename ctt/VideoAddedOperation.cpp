@@ -1,18 +1,20 @@
 #include "VideoAddedOperation.h"
-#include "Video.h"
 
 namespace controller {
 namespace operation {
 
-void VideoAddedOperation::VideoAddedOperation(Video video, SaveableList<Video> videoList) {
+using ::model::video::Video;
+using ::model::SaveableList;
+
+VideoAddedOperation::VideoAddedOperation(Video::sptr video, SaveableList<Video>::sptr videoList) {
 
 }
 
-void VideoAddedOperation::do() {
+void VideoAddedOperation::doOperation() {
 
 }
 
-void VideoAddedOperation::undo() {
+void VideoAddedOperation::undoOperation() {
 
 }
 

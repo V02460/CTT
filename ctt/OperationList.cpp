@@ -1,18 +1,17 @@
 #include "OperationList.h"
-#include "Operation.h"
 
 namespace controller {
 namespace operation {
 
-void OperationList::do(Operation operation) {
+void OperationList::doOperation(Operation::sptr operation) {
 
 }
 
-void OperationList::undo() {
+void OperationList::undoOperation() {
 
 }
 
-void OperationList::redo() {
+void OperationList::redoOperation() {
 
 }
 
@@ -20,15 +19,15 @@ void OperationList::setLastSavedState() {
 
 }
 
-bool OperationList::hasSaveableChanges() {
+bool OperationList::hasSaveableChanges() const {
 
 }
 
-bool OperationList::canUndo() {
+bool OperationList::canUndo() const {
 
 }
 
-bool OperationList::canRedo() {
+bool OperationList::canRedo() const {
 
 }
 

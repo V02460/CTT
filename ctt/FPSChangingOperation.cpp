@@ -3,15 +3,11 @@
 namespace controller {
 namespace operation {
 
-signal FPSChangingOperation::FPSChanged(double fps) {
+void FPSChangingOperation::doOperation() {
 
 }
 
-void FPSChangingOperation::do() {
-
-}
-
-void FPSChangingOperation::undo() {
+void FPSChangingOperation::undoOperation() {
 
 }
 

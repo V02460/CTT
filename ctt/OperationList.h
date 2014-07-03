@@ -45,17 +45,17 @@ public:
     /**
      * Determines whether there are actual changes since the last saved state.
      */
-    bool hasSaveableChanges();
+    bool hasSaveableChanges() const;
 
     /**
      * Determines whether an Operation has been done previously, making it possible to execute undoOperation.
      */
-    bool canUndo();
+    bool canUndo() const;
 
     /**
      * Determines whether an Operation has been undone previously, making it possible to execute redoOperation.
      */
-    bool canRedo();
+    bool canRedo() const;
 private:
     Operation::uptr currentOperation;
 };

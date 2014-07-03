@@ -1,21 +1,27 @@
 #include "VideoListController.h"
-#include "Video.h"
 
 namespace controller {
 
-slot VideoListController::addVideo(QString path) {
+using ::model::SaveableList;
+using ::model::video::Video;
+
+VideoListController::VideoListController(SaveableList<Video>::sptr videoList) {
 
 }
 
-slot VideoListController::addVideo(Video video) {
+void VideoListController::addVideo(QString path) {
 
 }
 
-slot VideoListController::removeVideo(int index) {
+void VideoListController::addVideo(Video::sptr video) {
 
 }
 
-slot VideoListController::removeVideo(Video video) {
+void VideoListController::removeVideo(int index) {
+
+}
+
+void VideoListController::removeVideo(const Video &video) {
 
 }
 

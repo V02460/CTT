@@ -2,7 +2,11 @@
 
 namespace view {
 
-slot MainControlWidget::btnInsertClicked() {
+void MainControlWidget::btnInsertClicked(bool active) {
+
+}
+
+void changeViewState() {
 
 }
 

@@ -1,29 +1,30 @@
 #include "PlayerController.h"
-#include "Player.h"
 
 namespace controller {
 
-slot PlayerController::playPause() {
+using ::model::player::Player;
+
+void PlayerController::playPause() {
 
 }
 
-slot PlayerController::nextFrame() {
+void PlayerController::nextFrame() {
 
 }
 
-slot PlayerController::previousFrame() {
+void PlayerController::previousFrame() {
 
 }
 
-slot PlayerController::currentFrameChanged(int frameNumber) {
+void PlayerController::currentFrameChanged(int frameNumber) {
 
 }
 
-slot PlayerController::setToDefaultFPS() {
+void PlayerController::setToDefaultFPS() {
 
 }
 
-slot PlayerController::setPlayer(Player player) {
+void PlayerController::setPlayer(Player player) {
 
 }
 

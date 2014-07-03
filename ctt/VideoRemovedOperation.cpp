@@ -3,15 +3,18 @@
 namespace controller {
 namespace operation {
 
-void VideoRemovedOperation::VideoRemovedOperation(int index, int SaveableList<Video>) {
+using ::model::SaveableList;
+using ::model::video::Video;
+
+VideoRemovedOperation::VideoRemovedOperation(int index, SaveableList<Video> videoList) {
 
 }
 
-void VideoRemovedOperation::do() {
+void VideoRemovedOperation::doOperation() {
 
 }
 
-void VideoRemovedOperation::undo() {
+void VideoRemovedOperation::undoOperation() {
 
 }
 

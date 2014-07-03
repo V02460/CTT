@@ -2,11 +2,11 @@
 
 namespace controller {
 
-slot DifferenceController::diffInserted(QString id) {
+void DifferenceController::diffInserted(QString id) {
 
 }
 
-slot DifferenceController::diffRemoved(int pos) {
+void DifferenceController::diffRemoved(int pos) {
 
 }
 

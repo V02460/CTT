@@ -2,7 +2,7 @@
 
 namespace view {
 
-slot InsertionWidget::changeViewState() {
+void InsertionWidget::changeViewState() {
 
 }
 

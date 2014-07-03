@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+
 #include "FilterListOperation.h"
 #include "FilterParam.h"
 #include "FilteredVideo.h"
@@ -45,7 +46,7 @@ private:
     /**
      * The new parameter that should replace the filter's old parameter.
      */
-    ::model::filter::FilterParam newParam;
+    ::model::filter::FilterParam::sptr newParam;
 
     /**
      * The old parameter that is replaced by the filter's new parameter.

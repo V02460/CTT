@@ -134,9 +134,6 @@
     <ClCompile Include="ColoringOverlay.cpp">
       <Filter>Source Files\Model\Filter\Overlay</Filter>
     </ClCompile>
-    <ClCompile Include="CompoundOperation.cpp">
-      <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
     <ClCompile Include="DifferenceController.cpp">
       <Filter>Source Files\Controller</Filter>
     </ClCompile>
@@ -238,9 +235,6 @@
     </ClCompile>
     <ClCompile Include="PlayerWidget.cpp">
       <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="ProjectController.cpp">
-      <Filter>Source Files\Controller</Filter>
     </ClCompile>
     <ClCompile Include="Overlay.cpp">
       <Filter>Source Files\Model\Filter\Overlay</Filter>
@@ -466,6 +460,9 @@
     </ClCompile>
     <ClCompile Include="FilteredVideo.cpp">
       <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="MainController.cpp">
+      <Filter>Source Files\Controller</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

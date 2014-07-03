@@ -2,11 +2,21 @@
 
 namespace controller {
 
-slot OverlayController::insertOverlay(QString id) {
+using ::model::video::Video;
+
+OverlayController::OverlayController(Video::sptr video) {
 
 }
 
-slot OverlayController::removeOverlay(int pos) {
+void OverlayController::insertOverlay(QString id) {
+
+}
+
+void OverlayController::moveOverlay(int oldPos, int newPos) {
+
+}
+
+void OverlayController::removeOverlay(int pos) {
 
 }
 

@@ -1,22 +1,28 @@
 #include "FilterController.h"
-#include "Filter.h"
-#include "FilterParam.h"
 
 namespace controller {
 
-slot FilterController::insertFilter(QString id) {
+using ::model::filter::Filter;
+using ::model::filter::FilterParam;
+using ::model::filter::FilteredVideo;
+
+FilterController::FilterController(FilteredVideo::sptr video) {
 
 }
 
-slot FilterController::moveFilter(int oldPos, int newPos) {
+void FilterController::insertFilter(QString id) {
 
 }
 
-slot FilterController::changeFilterParam(Filter filter, FilterParam param) {
+void FilterController::moveFilter(int oldPos, int newPos) {
 
 }
 
-slot FilterController::removeFilter(int pos) {
+void FilterController::changeFilterParam(const Filter &filter, FilterParam param) {
+
+}
+
+void FilterController::removeFilter(int pos) {
 
 }
 

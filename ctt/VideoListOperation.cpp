@@ -3,11 +3,11 @@
 namespace controller {
 namespace operation {
 
-void VideoListOperation::do() {
+void VideoListOperation::doOperation() {
 
 }
 
-void VideoListOperation::undo() {
+void VideoListOperation::undoOperation() {
 
 }
 

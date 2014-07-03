@@ -2,15 +2,10 @@
 
 namespace view {
 
-void ThumbnailListWidget::ThumbnailListWidget(SaveableList<Video> filteredVideos, int selectableCount) {
+using ::model::SaveableList;
+using ::model::video::Video;
 
-}
-
-signal ThumbnailListWidget::videoAdded(QDir path) {
-
-}
-
-signal ThumbnailListWidget::videoRemoved(int index) {
+ThumbnailListWidget::ThumbnailListWidget(SaveableList<Video>::sptr filteredVideos, int selectableCount) {
 
 }
 

@@ -1,13 +1,14 @@
 #include "VideoWidget.h"
-#include "VideoScrubber.h"
 
 namespace view {
 
-VideoWidget::VideoWidget(VideoScrubber scrubber) {
+using ::model::player::VideoScrubber;
+
+VideoWidget::VideoWidget(VideoScrubber::sptr scrubber) {
 
 }
 
-VideoScrubber VideoWidget::getScrubber() {
+const VideoScrubber &VideoWidget::getScrubber() const {
 
 }
 

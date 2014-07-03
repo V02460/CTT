@@ -2,11 +2,11 @@
 
 namespace view {
 
-signal VideoAnalysingWidget::overlayChanged() {
+QString VideoAnalysingWidget::getOverlay() const {
 
 }
 
-QString VideoAnalysingWidget::getOverlay() {
+void VideoAnalysingWidget::comboboxOverlayCurrentIndexChanged(int index) {
 
 }
 

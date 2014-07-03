@@ -1,19 +1,20 @@
 #include "FilterAddedOperation.h"
-#include "Filter.h"
-#include "FilterList.h"
 
 namespace controller {
 namespace operation {
 
-void FilterAddedOperation::FilterAddedOperation(Filter filter, FilterList filterList) {
+using ::model::filter::Filter;
+using ::model::filter::FilteredVideo;
+
+FilterAddedOperation::FilterAddedOperation(Filter::sptr filter, FilteredVideo::sptr filteredVideo) {
 
 }
 
-void FilterAddedOperation::do() {
+void FilterAddedOperation::doOperation() {
 
 }
 
-void FilterAddedOperation::undo() {
+void FilterAddedOperation::undoOperation() {
 
 }
 

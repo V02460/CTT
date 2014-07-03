@@ -1,19 +1,12 @@
 #include "VideoProcessingWidget.h"
-#include "Video.h"
-#include "VideoFileType.h"
 
 namespace view {
 
-signal VideoProcessingWidget::videoForAnalysingAdded(Video video) {
+void VideoProcessingWidget::checkboxUseForAnalysisValueChanged(int state) {
 
 }
 
-signal VideoProcessingWidget::videoForAnalysingRemoved(Video video) {
+void VideoProcessingWidget::btnSaveVideoClicked() {
 
 }
-
-signal VideoProcessingWidget::saveVideo(Video video, QDir path, VideoFileType fileType) {
-
-}
-
 }  // namespace view

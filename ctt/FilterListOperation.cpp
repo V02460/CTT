@@ -3,11 +3,13 @@
 namespace controller {
 namespace operation {
 
-void FilterListOperation::do() {
+void FilterListOperation::doOperation() {
 
 }
 
-void FilterListOperation::undo() {
+void FilterListOperation::undoOperation() {
 
 }
 
+}  // namespace operation
+}  // namespace controller

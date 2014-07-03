@@ -32,6 +32,7 @@ signals:
      * @param newView The identifier of the view state that should be set as active.
      */
     void menuItemViewStateChanged(ViewType newView);
+
 private:
     ViewState viewState; /**< The current state the whole GUI is in */
     QMenuBar menu; /**< The menu bar which holds all menu items */

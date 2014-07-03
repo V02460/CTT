@@ -1,19 +1,20 @@
 #include "FilterParamChangedOperation.h"
-#include "FilterParam.h"
-#include "FilterList.h"
 
 namespace controller {
 namespace operation {
 
-FilterParamChangedOperation::FilterParamChangedOperation(FilterParam newParam, FilterList filterList) {
+using ::model::filter::Filter;
+using ::model::filter::FilterParam;
+
+FilterParamChangedOperation::FilterParamChangedOperation(FilterParam::sptr newParam, Filter::sptr filterList) {
 
 }
 
-void FilterParamChangedOperation::do() {
+void FilterParamChangedOperation::doOperation() {
 
 }
 
-void FilterParamChangedOperation::undo() {
+void FilterParamChangedOperation::undoOperation() {
 
 }
 
