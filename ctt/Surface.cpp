@@ -1,11 +1,17 @@
 #include "Surface.h"
 
+namespace model {
 
-Surface::Surface()
-{
+Surface::Surface(QSharedPointer<QOpenGLContext> glContext)  {
+
 }
 
+QSharedPointer<QOpenGLTexture> Surface::getGLTexture() {
 
-Surface::~Surface()
-{
 }
+
+QSharedPointer<QOpenGLContext> Surface::getContext() {
+
+}
+
+}  // namespace model

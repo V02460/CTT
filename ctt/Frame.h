@@ -35,6 +35,14 @@ public:
     Frame(QSharedPointer<QOpenGLContext> context, QImage image, FrameMetadata metadata);
 
     /**
+     * Creates a new empty Frame with corresponding metadata in a specific OpenGL context.
+     *
+     * @param context the OpenGL context in which the frame will be created
+     * @param metadata metadata providing additional metadata about the frame
+     */
+    Frame(QSharedPointer<QOpenGLContext> context, FrameMetadata metadata);
+
+    /**
      * Gets the metadata of the Frame.
      *
      * @return FrameMetadata the metadata of the Frame

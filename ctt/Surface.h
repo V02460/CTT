@@ -1,6 +1,10 @@
 #if !defined(_SURFACE_H)
 #define _SURFACE_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
+
 #include "QOpenGLTexture"
 #include "QOpenGLContext"
 
@@ -18,30 +22,28 @@ public:
 
 	/**
 	 * Creates a new Surface from the submitted texture and the submitted context.
-	 * WARNING: It can't be ensured that the submitted texture is accessible from the submitted context! If the caller
-     * wants an operative Surface, it's up to him to make that sure!
      *
 	 * @param glContext an OpenGL context, from which the texture is accessible
 	 * @param glTexture the OpenGL texture
 	 */
-	Surface(QOpenGLContext glContext, QOpenGLTexture glTexture);
+    Surface(QSharedPointer<QOpenGLContext> glContext);
 
 	/**
 	* Gets the texture containing the image data of the frame.
 	*
 	* @return QOpenGLTexture the texture containing the image data of the frame.
 	*/
-	QOpenGLTexture getGLTexture();
+    QSharedPointer<QOpenGLTexture> getGLTexture();
 
 	/**
 	* Returns a QOpenGLContext in which the texture is accessible.
 	* @return QOpenGLContext a QOpenGLContext in which the texture is accessible
 	*/
-	QOpenGLContext getContext();
+    QSharedPointer<QOpenGLContext> getContext();
 
 protected:
-	QOpenGLContext glContext; /**< An OpenGL context, from which the texture is accessible. */
-	QOpenGLTexture glTexture; /**< The OpenGL texture */
+    QSharedPointer<QOpenGLContext> glContext; /**< An OpenGL context, from which the texture is accessible. */
+    QSharedPointer<QOpenGLTexture> glTexture; /**< The OpenGL texture */
 };
 
 }  // namespace model
