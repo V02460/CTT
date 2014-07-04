@@ -35,7 +35,7 @@ public:
     * @throws InvalidArgumentException if the files at the submitted locations aren't valid YUV 4:4:4 or YUV 4:2:2 video
     *     or metadata files
     */
-    YUVDataVideo(QFile videoFile, QFile metadataFile, QOpenGLContext context);
+    YUVDataVideo(QDir videoFile, QDir metadataFile, QOpenGLContext context);
 
     virtual VideoMetadata getMetadata() const;
 

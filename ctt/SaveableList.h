@@ -14,8 +14,7 @@ namespace model {
  * Subscribeable list for storing objects and communicating with signals and slots.
  */
 template < class T >
-class SaveableList : public Saveable, public Observable, public QObject {
-    Q_OBJECT
+class SaveableList : public Saveable, public Observable {
 public:
     typedef QScopedPointer<SaveableList> uptr;
     typedef QSharedPointer<SaveableList> sptr;
@@ -24,29 +23,29 @@ public:
     /**
      * Creates a new empty list.
      */
-    SaveableList()
+    SaveableList();
 
     /**
      * Add the element at the given index into the list.
      */
-    void insert(unsigned int index, T element);
+    void insert(unsigned int index, const T &element);
 
     /**
      * Remove the list element at the given index.
      *
      * @return T Returns the removed element
      */
-    T remove(unsigned int index);
+    T &remove(unsigned int index);
 
     /**
      * Get the list element at the given index.
      *
      * @return T Returns the element at the index
      */
-    T get(unsigned int index);
+    const T &get(unsigned int index) const;
 
 private: 
-    T firstElement;
+    T *firstElement;
     QList<T> list;
 };
 

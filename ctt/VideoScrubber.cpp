@@ -3,6 +3,11 @@
 namespace model {
 namespace player {
 
+using ::model::video::Video;
+using ::model::video::VideoMetadata;
+using ::model::frame::Frame;
+using ::model::project::Memento;
+
 VideoScrubber::VideoScrubber(video::Video::sptr video) {
 
 }
@@ -11,15 +16,15 @@ VideoScrubber::VideoScrubber(video::Video::sptr video, unsigned int frameNumber)
 
 }
 
-video::VideoMetadata VideoScrubber::getVideoMetadata() const {
+VideoMetadata VideoScrubber::getVideoMetadata() const {
 
 }
 
-video::Video::wptr VideoScrubber::getVideo() const {
+Video::sptr VideoScrubber::getVideo() const {
 
 }
 
-frame::Frame::wptr VideoScrubber::getCurrentFrame() const{
+Frame::sptr VideoScrubber::getCurrentFrame() const{
 
 }
 
@@ -28,6 +33,16 @@ bool VideoScrubber::isWaitingForFrame() const {
 }
 
 void VideoScrubber::jumpToFrameNr(unsigned int frameNumber) {
+
+}
+
+Memento VideoScrubber::getMemento() const {
+}
+
+void VideoScrubber::restore(Memento memento) {
+}
+
+Saveable::sptr VideoScrubber::getDummy() {
 
 }
 

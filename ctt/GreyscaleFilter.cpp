@@ -3,16 +3,25 @@
 namespace model {
 namespace filter {
 
-GreyscaleFilter(Module::sptr predecessor) {
+using ::model::frame::Frame;
+
+GreyscaleFilter::GreyscaleFilter(Module::sptr predecessor) {
 
 }
 
-
-QString GreyscaleFilter::getName() {
+GreyscaleFilter::~GreyscaleFilter() {
 
 }
 
-Frame GreyscaleFilter::getFrame(int frameNumber) {
+bool GreyscaleFilter::supportsIntervals() const {
+
+}
+
+QString GreyscaleFilter::getName() const {
+
+}
+
+Frame GreyscaleFilter::getFrame(unsigned int frameNumber) const {
 
 }
 

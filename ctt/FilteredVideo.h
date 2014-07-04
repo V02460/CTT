@@ -63,7 +63,9 @@ public:
      * @return QList<model::filter::Filter> a QList containing all the Filters this FilteredVideo uses in its filter
      *     pipeline in the right order
      */
-    QList<const ::model::filter::Filter&> getFilterList() const;
+    QList<::model::filter::Filter::sptr> getFilterList() const;
+
+    ::model::frame::Frame getFrame(unsigned int frameNumber) const;
 
     virtual ::model::project::Memento getMemento() const;
     virtual void restore(::model::project::Memento memento);

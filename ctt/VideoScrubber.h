@@ -60,7 +60,7 @@ public:
      * @return Video the Video this VideoScrubber is associated with.
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    ::model::video::Video::wptr getVideo() const;
+    ::model::video::Video::sptr getVideo() const;
 
     /**
      * Gets the frame currently held by the scrubber.
@@ -68,7 +68,7 @@ public:
      * @return Frame the frame currently held by the scrubber
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    ::model::frame::Frame::wptr getCurrentFrame() const;
+    ::model::frame::Frame::sptr getCurrentFrame() const;
 
     /**
      * Checks whether the Scrubber is still waiting for the frame it requested last.
@@ -77,6 +77,10 @@ public:
      * @throws IllegalStateException if the the method was called on a dummy
      */
     bool isWaitingForFrame() const;
+
+    ::model::project::Memento VideoScrubber::getMemento() const;
+    void VideoScrubber::restore(::model::project::Memento memento);
+    static Saveable::sptr VideoScrubber::getDummy();
 
 public slots:
     /**

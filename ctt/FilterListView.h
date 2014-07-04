@@ -39,7 +39,7 @@ signals:
      * @param filter The filter of which the parameter has changed.
      * @param param The parameter that has changed with its new value.
      */
-    void filterParamChanged(::model::filter::Filter filter, ::model::filter::FilterParam param);
+    void filterParamChanged(const ::model::filter::Filter &filter, const ::model::filter::FilterParam &param);
 };
 
 }  // namespace view

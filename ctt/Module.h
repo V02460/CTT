@@ -42,7 +42,7 @@ public:
     virtual QList<Module> getUsesList() = 0;
 
     /**
-     * Gets the number of the highest frame the module can return.
+     * Gets the number of frames the module can return.
      *
      * @return int the number of the highest frame the module can return
      * @throws IllegalStateException if the the method was called on a dummy

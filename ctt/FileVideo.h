@@ -1,6 +1,11 @@
 #if !defined(_FILEVIDEO_H)
 #define _FILEVIDEO_H
 
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
+#include <QDir>
+
 #include "Video.h"
 
 namespace model {
@@ -16,19 +21,19 @@ public:
     typedef QSharedPointer<FileVideo> sptr;
     typedef QWeakPointer<FileVideo> wptr;
 
-    virtual VideoMetadata getMetadata() const;
-    virtual ::model::frame::Frame getFrame(int frameNumber);
+    FileVideo(QDir path);
 
     /**
-     * Returns the path to the video file this Video loads its frames from.
-     * @return QDir the path to the video file this Video loads its frames from
-     */
+    * Returns the path to the video file this Video loads its frames from.
+    *
+    * @return QDir the path to the video file this Video loads its frames from
+    */
     QDir getPath() const;
 
 protected:
     QDir path; /**< the path to the video file this Video loads its frames from. */
-    VideoMetadata metadata; /**< metadata valid for the whole video. */
-    QOpenGLContext context; /**< The QOpenGLContext in which the Video creates its frames.*/
+    VideoMetadata::uptr metadata; /**< metadata valid for the whole video. */
+    QScopedPointer<QOpenGLContext> context; /**< The QOpenGLContext in which the Video creates its frames.*/
 };
 
 }  // namespace video

@@ -6,6 +6,7 @@ namespace filter {
 using ::model::video::VideoMetadata;
 using ::model::frame::Frame;
 using ::model::project::Memento;
+using ::model::project::Saveable;
 
 FilteredVideo::FilteredVideo(Video::sptr baseVideo) {
 
@@ -23,7 +24,11 @@ unsigned int FilteredVideo::getFilterCount() const {
 
 }
 
-QList<const Filter&> FilteredVideo::getFilterList() const {
+QList<Filter::sptr> FilteredVideo::getFilterList() const {
+
+}
+
+Frame FilteredVideo::getFrame(unsigned int) const{
 
 }
 

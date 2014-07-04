@@ -44,7 +44,7 @@ public:
      * @throws IOException if it's not possible to save the video to the submitted path
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    void save(QDir path, VideoFileType fileType);
+    void save(QDir path, VideoFileType fileType) const;
 
     /**
      * Gets the frame with the submitted number scaled to the submitted resolution.
@@ -59,11 +59,12 @@ public:
 
     /**
      * Returns the QOpenGLContext in which the Video creates its frames.
+     *
      * @return QOpenGLContext the QOpenGLContext in which the Video creates its frames
      */
     QSharedPointer<QOpenGLContext> getContext() const;
 
-    virtual ::model::frame::Frame getFrame(unsigned int frameNumber) = 0;
+    virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const = 0;
 };
 
 }  // namespace video

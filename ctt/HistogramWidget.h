@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QWidget>
 
 #include "Observer.h"
 #include "VideoScrubber.h"

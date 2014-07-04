@@ -32,9 +32,9 @@ public:
     void undoOperation();
 
 protected:
-    ::model::filter::Filter filter;
+    ::model::filter::Filter::uptr filter;
     int index;
-    ::model::filter::FilteredVideo filteredVideo;
+    ::model::filter::FilteredVideo::uptr filteredVideo;
 };
 
 }  // namespace operation

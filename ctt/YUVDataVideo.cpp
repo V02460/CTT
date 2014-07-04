@@ -5,7 +5,7 @@ namespace video {
 
 using ::model::frame::Frame;
 
-YUVDataVideo::YUVDataVideo(QFile videoFile, QFile metadataFile, QOpenGLContext context) {
+YUVDataVideo::YUVDataVideo(QDir videoFile, QDir metadataFile, QOpenGLContext context) : FileVideo(videoFile) {
 
 }
 

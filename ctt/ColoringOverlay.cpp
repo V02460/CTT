@@ -6,7 +6,7 @@ namespace overlay {
 
 using ::model::frame::Frame;
 
-ColoringOverlay::ColoringOverlay(Module::sptr predecessor) {
+ColoringOverlay::ColoringOverlay(Module::sptr predecessor) : Overlay(predecessor) {
 
 }
 

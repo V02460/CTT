@@ -13,7 +13,7 @@ namespace controller {
 /**
  * The DifferenceController manages requests to manipulate the list of difference functions.
  */
-class DifferenceController : public ::model::Observer, public QObject {
+class DifferenceController : public ::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<DifferenceController> uptr;
@@ -38,7 +38,7 @@ public slots:
      */
     void diffRemoved(int pos);
 private:
-    ::model::SaveableList<::model::project::Saveable> diffList;
+    ::model::SaveableList<::model::project::Saveable::sptr> diffList;
 };
 
 }  // namespace controller

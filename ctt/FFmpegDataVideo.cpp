@@ -5,7 +5,7 @@ namespace video {
 
 using ::model::frame::Frame;
 
-FFmpegDataVideo::FFmpegDataVideo(QDir path, QSharedPointer<QOpenGLContext> context) {
+FFmpegDataVideo::FFmpegDataVideo(QDir path, QSharedPointer<QOpenGLContext> context) : FileVideo(path) {
 
 }
 
