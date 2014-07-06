@@ -458,32 +458,50 @@
     <ClCompile Include="FilteredVideo.cpp">
       <Filter>Source Files\Model\Filter</Filter>
     </ClCompile>
-    <ClCompile Include="DataVideo.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="MainController.cpp">
+      <Filter>Source Files\Controller</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_SaveableList.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Project.cpp">
+      <Filter>Source Files\Controller</Filter>
     </ClCompile>
-    <ClCompile Include="Module.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="SaveableList.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="Observer.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Surface.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="OverlayFactory.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="HueHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
     </ClCompile>
-    <ClCompile Include="ProjectController.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="SaturationHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
     </ClCompile>
-    <ClCompile Include="ProjectSaverFactory.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="AbstractListView.cpp">
+      <Filter>Source Files\View</Filter>
     </ClCompile>
-    <ClCompile Include="VideoSaverFactory.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="AbstractTimeline.cpp">
+      <Filter>Source Files\View</Filter>
     </ClCompile>
-    <ClCompile Include="YUVVideoSaver.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="AnalysingWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="DifferenceListView.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="DifferenceTimeline.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterTimeline.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="HistogramWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerFunctions.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="TimelineInterval.cpp">
+      <Filter>Source Files\View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -705,9 +723,6 @@
     <ClInclude Include="ProjectSaver.h">
       <Filter>Header Files\Model\Project</Filter>
     </ClInclude>
-    <ClInclude Include="ProjectSaverFactory.h">
-      <Filter>Header Files\Model\Project</Filter>
-    </ClInclude>
     <ClInclude Include="RGBChannelFilter.h">
       <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
@@ -791,6 +806,12 @@
     </ClInclude>
     <ClInclude Include="Surface.h">
       <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="HueHistogram.h">
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
+    </ClInclude>
+    <ClInclude Include="SaturationHistogram.h">
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

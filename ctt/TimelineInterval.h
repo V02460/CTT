@@ -31,4 +31,11 @@ private:
 
 }  // namespace view
 
+class TimelineInterval
+{
+public:
+	TimelineInterval();
+	~TimelineInterval();
+};
+
 #endif  //_TIMELINEINTERVAL_H

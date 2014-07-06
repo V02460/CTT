@@ -2,32 +2,36 @@
 
 namespace controller {
 
-class Project {
+using ::model::SaveableList;
+using ::model::video::FileVideo;
+using ::model::video::Video;
+using ::model::filter::FilteredVideo;
+using ::model::player::Player;
+using ::model::difference::FrameDiff;
+using ::view::ViewState;
 
-    Project();
+Project::Project() {
+}
 
-    ::model::SaveableList<const ::model::video::FileVideo&> getBaseVideoList() const;
+SaveableList<const FileVideo&> Project::getBaseVideoList() const {
+}
 
-    ::model::SaveableList<const ::model::filter::FilteredVideo&> getVideoList1() const;
+SaveableList<const FilteredVideo&> Project::getVideoList1() const {
+}
 
-    ::model::SaveableList<const ::model::video::Video&> getVideoList2() const;
+SaveableList<const Video&> Project::getVideoList2() const {
+}
 
-    ::model::SaveableList<const ::model::player::Player&> getPlayerList1() const;
+SaveableList<const Player&> Project::getPlayerList1() const {
+}
 
-    const ::model::player::Player &getPlayer2() const;
+const Player &Project::getPlayer2() const {
+}
 
-    ::model::SaveableList<const ::model::difference::FrameDiff&> getDiffList() const;
+SaveableList<const FrameDiff&> Project::getDiffList() const {
+}
 
-    ::view::ViewState getView() const;
-
-private:
-    ::model::SaveableList<::model::video::FileVideo> baseVideoList;
-    ::model::SaveableList<::model::filter::FilteredVideo> videoList1;
-    ::model::SaveableList<::model::filter::FilteredVideo> videoList2;
-    ::model::SaveableList<::model::player::Player> playerList1;
-    ::model::player::Player player2;
-    ::model::SaveableList<model::difference::FrameDiff> diffList;
-    view::ViewState view;
-};
+ViewState Project::getView() const {
+}
 
 }  // namespace controller

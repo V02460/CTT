@@ -47,4 +47,11 @@ private:
 
 }  // namespace view
 
+class PlayerFunctions
+{
+public:
+	PlayerFunctions();
+	~PlayerFunctions();
+};
+
 #endif  //_PLAYERFUNCTIONS_H
