@@ -9,7 +9,7 @@
 #include "Saveable.h"
 #include "Project.h"
 
-namespace model {
+namespace controller {
 namespace project {
 
 /**
@@ -31,11 +31,11 @@ public:
      * @param project The project to be saved.
      * @throws IOException Is thrown if for any reason the file cant be written.
      */
-    static void save(QDir path, const ::controller::Project &project);
+    static void save(QDir path, const ::controller::project::Project &project);
 
 };
 
 }  // namespace project
-}  // namespace model
+}  // namespace controller
 
 #endif  //_PROJECTSAVER_H

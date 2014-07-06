@@ -8,7 +8,7 @@
 
 #include "Project.h"
 
-namespace model {
+namespace controller {
 namespace project {
 
 /**
@@ -30,13 +30,13 @@ public:
      * @param project The project to load changes to.
      * @throws NotImplementedException Is thrown by this interface and every implementation, which does not override
      *     this method.
-     * @throws IOException Is thrown if there is any problem acsessing or reading the given file.
+     * @throws IOException Is thrown if there is any problem accessing or reading the given file.
      * @throws ParseException Is thrown if the content of the file can not be used to restore a project by the loader.
      */
     static void restore(QDir path, ::controller::Project project);
 };
 
 }  // namespace project
-}  // namespace model
+}  // namespace controller
 
 #endif  //_PROJECTLOADER_H

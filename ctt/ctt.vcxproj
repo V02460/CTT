@@ -391,6 +391,8 @@
     <ClCompile Include="VideoScrubber.cpp" />
     <ClCompile Include="VideoWidget.cpp" />
     <ClCompile Include="ViewState.cpp" />
+    <ClCompile Include="XMLLoader.cpp" />
+    <ClCompile Include="XMLSaver.cpp" />
     <ClCompile Include="YUVDataVideo.cpp" />
     <ClCompile Include="YUVPixelDiff.cpp" />
     <ClCompile Include="ZoomFunctions.cpp" />
