@@ -1,6 +1,7 @@
 #include "FilterIntervalList.h"
 
 namespace model {
+namespace filter {
 
 using ::model::project::Memento;
 using ::model::project::Saveable;
@@ -37,4 +38,5 @@ Saveable::sptr FilterIntervalList::getDummy() {
 
 }
 
+}  // namespace filter
 }  // namespace model

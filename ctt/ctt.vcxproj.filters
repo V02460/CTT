@@ -458,6 +458,7 @@
     <ClCompile Include="FilteredVideo.cpp">
       <Filter>Source Files\Model\Filter</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="MainController.cpp">
       <Filter>Source Files\Controller</Filter>
     </ClCompile>
@@ -466,6 +467,10 @@
     </ClCompile>
     <ClCompile Include="SaveableList.cpp">
       <Filter>Source Files\Model</Filter>
+=======
+    <ClCompile Include="Module.cpp">
+      <Filter>Source Files</Filter>
+>>>>>>> 5bda10524a5cab7dcaae3344398745b85c4fea86
     </ClCompile>
     <ClCompile Include="Surface.cpp">
       <Filter>Source Files\Model</Filter>
@@ -771,9 +776,6 @@
     <ClInclude Include="UIntegerInterval.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="FilterIntervalList.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
     <ClInclude Include="AbstractListView.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
@@ -807,11 +809,16 @@
     <ClInclude Include="Surface.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="HueHistogram.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
     <ClInclude Include="SaturationHistogram.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
+=======
+    <ClInclude Include="FilterIntervalList.h">
+      <Filter>Header Files\Model\Filter</Filter>
+>>>>>>> 5bda10524a5cab7dcaae3344398745b85c4fea86
     </ClInclude>
   </ItemGroup>
 </Project>

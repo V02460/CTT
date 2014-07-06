@@ -16,8 +16,6 @@
 namespace model {
 namespace filter {
 
-class any; // TODO: make a class
-
 /**
  * An object which can attach itself to another module and outputs modified versions of the frames of this module.
  *
@@ -55,7 +53,7 @@ public:
      * @return QList<FilterParam> a list of the different parameters of the filter
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    QList<FilterParam> getParams() const;
+    QList<::model::filter::FilterParam> getParams() const;
 
     /**
      * Sets the submitted parameter.
@@ -63,7 +61,7 @@ public:
      * @param parameter this parameter will be set
      * @throws InvalidArgumentException if the Filter doesn't have a parameter with the name or type of the submitted parameter
      */
-    void setParam(FilterParam parameter);
+    void setParam(::model::filter::FilterParam parameter);
 
     /**
      * Tells the Filter to use the frames of the submitted Module as source material for its own frames.
@@ -112,8 +110,8 @@ public:
 private:
     Q_DISABLE_COPY(Filter)
 
-    QMap<QString, FilterParam> parameters; /**< Parameters modifying the filters behaviour */
-    ::model::FilterIntervalList intervals; /**< The Intervals in which the Filter is active */
+    QMap<QString, ::model::filter::FilterParam> parameters; /**< Parameters modifying the filters behavior */
+    ::model::filter::FilterIntervalList intervals; /**< The Intervals in which the Filter is active */
     ::model::Module *previous; /**< The Filter gets the frames it modifies from this module */
 };
 
