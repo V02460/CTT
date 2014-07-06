@@ -458,9 +458,6 @@
     <ClCompile Include="FilteredVideo.cpp">
       <Filter>Source Files\Model\Filter</Filter>
     </ClCompile>
-    <ClCompile Include="SaveableList.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="AbstractListView.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
@@ -503,6 +500,12 @@
     <ClCompile Include="XMLSaver.cpp">
       <Filter>Source Files\Controller\Project</Filter>
     </ClCompile>
+    <ClCompile Include="Saveable.cpp">
+      <Filter>Source Files\Model\Saveable</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveableList.cpp">
+      <Filter>Source Files\Model\Saveable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -539,9 +542,6 @@
       <Filter>Header Files\Controller</Filter>
     </CustomBuild>
     <CustomBuild Include="Observable.h">
-      <Filter>Header Files\Model</Filter>
-    </CustomBuild>
-    <CustomBuild Include="SaveableList.h">
       <Filter>Header Files\Model</Filter>
     </CustomBuild>
     <CustomBuild Include="ExtendedTimeline.h">
@@ -585,6 +585,9 @@
     </CustomBuild>
     <CustomBuild Include="InsertionWidget.h">
       <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="SaveableList.h">
+      <Filter>Header Files\Model\Saveable</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -714,9 +717,6 @@
     <ClInclude Include="RGBChannelFilter.h">
       <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
-    <ClInclude Include="SaveFileType.h">
-      <Filter>Header Files\Model\Saveable</Filter>
-    </ClInclude>
     <ClInclude Include="TimeshiftFilter.h">
       <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
@@ -808,6 +808,9 @@
       <Filter>Header Files\Controller\Project</Filter>
     </ClInclude>
     <ClInclude Include="Project.h">
+      <Filter>Header Files\Controller\Project</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveFileType.h">
       <Filter>Header Files\Controller\Project</Filter>
     </ClInclude>
   </ItemGroup>

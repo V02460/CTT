@@ -1,6 +1,7 @@
 #include "SaveableList.h"
 
 namespace model {
+namespace saveable {
 
 SaveableList::SaveableList() {
 }
@@ -14,4 +15,5 @@ T &SaveableList::remove(unsigned int index) {
 const T &SaveableList::get(unsigned int index) const {
 }
 
+}  // namespace saveable
 }  // namespace model

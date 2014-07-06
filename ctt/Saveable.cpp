@@ -1,11 +1,11 @@
 #include "Saveable.h"
 
 namespace model {
-namespace project {
+namespace saveable {
 
 bool Saveable::isDummy() const {
 	return isDummy;
 }
 
-}  // namespace project
+}  // namespace savable
 }  // namespace model

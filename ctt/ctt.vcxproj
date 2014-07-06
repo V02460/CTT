@@ -351,6 +351,7 @@
     <ClCompile Include="InsertionWidget.cpp" />
     <ClCompile Include="PlayerFunctions.cpp" />
     <ClCompile Include="Project.cpp" />
+    <ClCompile Include="Saveable.cpp" />
     <ClCompile Include="SaveableList.cpp" />
     <ClCompile Include="TimelineInterval.cpp" />
     <ClCompile Include="UIntegerInterval.cpp" />
