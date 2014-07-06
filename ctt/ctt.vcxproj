@@ -143,12 +143,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AtomicOperation.cpp" />
     <ClCompile Include="BlueHistogram.cpp" />
     <ClCompile Include="BlurFilter.cpp" />
     <ClCompile Include="CoffeeFilter.cpp" />
     <ClCompile Include="ColoringOverlay.cpp" />
-    <ClCompile Include="CompoundOperation.cpp" />
     <ClCompile Include="ctt.cpp" />
     <ClCompile Include="DataVideo.cpp" />
     <ClCompile Include="DifferenceController.cpp" />
@@ -866,7 +864,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_Win32="qtbase" Qt5Version_x0020_x64="msvc2013_64" MocOptions="" />
+      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_Win32="qtbase" Qt5Version_x0020_x64="qt5 + openGL" MocOptions="" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

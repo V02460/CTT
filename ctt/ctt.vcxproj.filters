@@ -458,17 +458,32 @@
     <ClCompile Include="FilteredVideo.cpp">
       <Filter>Source Files\Model\Filter</Filter>
     </ClCompile>
-    <ClCompile Include="MainController.cpp">
-      <Filter>Source Files\Controller</Filter>
+    <ClCompile Include="DataVideo.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_ViewState.cpp">
-      <Filter>Generated Files\Release</Filter>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SaveableList.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Surface.cpp">
-      <Filter>Source Files\Model</Filter>
+    <ClCompile Include="Module.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FileVideo.cpp">
-      <Filter>Source Files\Model\Video</Filter>
+    <ClCompile Include="Observer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OverlayFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectSaverFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoSaverFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="YUVVideoSaver.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
