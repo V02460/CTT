@@ -1,11 +1,5 @@
 #include "DifferenceListView.h"
 
+namespace view {
 
-DifferenceListView::DifferenceListView()
-{
-}
-
-
-DifferenceListView::~DifferenceListView()
-{
-}
+}  // namespace view

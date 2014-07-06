@@ -23,11 +23,4 @@ public:
 
 }  // namespace view
 
-class DifferenceTimeline
-{
-public:
-	DifferenceTimeline();
-	~DifferenceTimeline();
-};
-
 #endif  //_DIFFERENCETIMELINE_H

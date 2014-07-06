@@ -1,11 +1,5 @@
 #include "AnalysingWidget.h"
 
+namespace view {
 
-AnalysingWidget::AnalysingWidget()
-{
-}
-
-
-AnalysingWidget::~AnalysingWidget()
-{
-}
+}  // namespace view

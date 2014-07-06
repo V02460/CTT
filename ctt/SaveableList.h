@@ -51,11 +51,4 @@ private:
 
 }  // namespace model
 
-class SaveableList
-{
-public:
-	SaveableList();
-	~SaveableList();
-};
-
 #endif  //_SAVEABLELIST_H

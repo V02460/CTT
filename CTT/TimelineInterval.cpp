@@ -1,11 +1,7 @@
 #include "TimelineInterval.h"
 
+namespace view {
 
-TimelineInterval::TimelineInterval()
-{
-}
+TimelineInterval::TimelineInterval(::model::UIntegerInterval filterInterval);
 
-
-TimelineInterval::~TimelineInterval()
-{
-}
+}  // namespace view

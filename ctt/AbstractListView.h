@@ -27,11 +27,4 @@ private:
 
 }  // namespace view
 
-class AbstractListView
-{
-public:
-	AbstractListView();
-	~AbstractListView();
-};
-
 #endif  //_ABSTRACTLISTVIEW_H

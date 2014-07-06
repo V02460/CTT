@@ -27,11 +27,4 @@ private:
 
 }  // namespace view
 
-class AbstractTimeline
-{
-public:
-	AbstractTimeline();
-	~AbstractTimeline();
-};
-
 #endif  //_ABSTRACTTIMELINE_H

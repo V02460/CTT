@@ -32,11 +32,4 @@ private:
 
 }  // namespace view
 
-class AnalysingWidget
-{
-public:
-	AnalysingWidget();
-	~AnalysingWidget();
-};
-
 #endif  //_ANALYSINGWIDGET_H

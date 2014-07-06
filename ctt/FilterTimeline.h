@@ -21,14 +21,6 @@ public:
 
 };
 
-
 }  // namespace view
-
-class FilterTimeline
-{
-public:
-	FilterTimeline();
-	~FilterTimeline();
-};
 
 #endif  //_FILTERTIMELINE_H
