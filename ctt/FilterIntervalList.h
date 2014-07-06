@@ -11,7 +11,6 @@
 #include "Memento.h"
 
 namespace model {
-namespace filter {
 
 /**
  * Manages a list of intervals in which a something is active.
@@ -71,7 +70,6 @@ private:
     QList<UIntegerInterval> intervals; /**< The list of active Intervals*/
 };
 
-}  // namespace filter
 }  // namespace model
 
 #endif  //_FILTERINTERVALLIST_H

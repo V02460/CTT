@@ -6,7 +6,7 @@
 #include "FileVideo.h"
 #include "FilteredVideo.h"
 #include "Player.h"
-#include "FrameDiff.h"w
+#include "FrameDiff.h"
 #include "ViewState.h"
 
 namespace controller {

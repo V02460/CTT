@@ -5,7 +5,7 @@ namespace video {
 
 using ::model::frame::Frame;
 
-void Video::save(QDir path, VideoFileType fileType) const {
+void Video::save(QDir path, VideoFileType fileType) {
 
 }
 

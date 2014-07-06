@@ -14,7 +14,7 @@ namespace controller {
  * The PlayerController is notified when the state of the player changes and passes this information to all relevant
  * components.
  */
-class PlayerController : public ::model::Observer {
+class PlayerController : public ::model::Observer, QObject {
     Q_OBJECT
 public:
     typedef QScopedPointer<PlayerController> uptr;

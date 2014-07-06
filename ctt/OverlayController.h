@@ -15,7 +15,7 @@ namespace controller {
 /**
  * The OverlayController manages requests to manipulate the list of overlays which can be used for analysing.
  */
-class OverlayController : public ::model::Observer {
+class OverlayController : public ::model::Observer, public QObject {
     Q_OBJECT
 public:
     typedef QScopedPointer<OverlayController> uptr;

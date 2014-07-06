@@ -11,10 +11,10 @@
 namespace model {
 
 /**
- * Subscribable list for storing objects and communicating with signals and slots.
+ * Subscribeable list for storing objects and communicating with signals and slots.
  */
-template <class T>
-class SaveableList : public ::model::project::Saveable, public Observable {
+template < class T >
+class SaveableList : public Saveable, public Observable {
 public:
     typedef QScopedPointer<SaveableList> uptr;
     typedef QSharedPointer<SaveableList> sptr;
@@ -28,14 +28,14 @@ public:
     /**
      * Add the element at the given index into the list.
      */
-    void insert(unsigned int index, typename T::sptr element);
+    void insert(unsigned int index, const T &element);
 
     /**
      * Remove the list element at the given index.
      *
      * @return T Returns the removed element
      */
-    typename T::sptr remove(unsigned int index);
+    T &remove(unsigned int index);
 
     /**
      * Get the list element at the given index.
@@ -44,15 +44,9 @@ public:
      */
     const T &get(unsigned int index) const;
 
-    virtual ::model::project::Memento getMemento() const;
-    virtual void restore(::model::project::Memento memento);
-    static Saveable::sptr getDummy();
-
-private:
-    //Q_DISABLE_COPY
-
-    typename T::sptr firstElement;
-    QList<typename T::sptr> list;
+private: 
+    T *firstElement;
+    QList<T> list;
 };
 
 }  // namespace model

@@ -15,7 +15,7 @@ void Memento::setInt(int value, QString name) {
 
 }
 
-int Memento::getInt(QString name) const {
+int Memento::getInt(QSting name) const {
 
 }
 
