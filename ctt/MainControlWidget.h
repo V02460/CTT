@@ -15,7 +15,7 @@
 namespace view {
 
 /**
- * The MainControlWidget holds all components used for video playback, filer/ difference insertion and changing.
+ * The MainControlWidget holds all components used for video playback, filter/ difference insertion and changing.
  */
 class MainControlWidget : public ::model::Observer, public QWidget {
     Q_OBJECT

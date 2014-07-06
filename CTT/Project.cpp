@@ -13,22 +13,22 @@ using ::view::ViewState;
 Project::Project() {
 }
 
-SaveableList<const FileVideo&> Project::getBaseVideoList() const {
+SaveableList<FileVideo> Project::getBaseVideoList() const {
 }
 
-SaveableList<const FilteredVideo&> Project::getVideoList1() const {
+SaveableList<FilteredVideo> Project::getVideoList1() const {
 }
 
-SaveableList<const Video&> Project::getVideoList2() const {
+SaveableList<Video> Project::getVideoList2() const {
 }
 
-SaveableList<const Player&> Project::getPlayerList1() const {
+SaveableList<Player> Project::getPlayerList1() const {
 }
 
-const Player &Project::getPlayer2() const {
+Player::sptr Project::getPlayer2() const {
 }
 
-SaveableList<const FrameDiff&> Project::getDiffList() const {
+SaveableList<FrameDiff> Project::getDiffList() const {
 }
 
 ViewState Project::getView() const {

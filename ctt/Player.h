@@ -16,7 +16,7 @@ namespace model {
 namespace player {
 
 /**
- * A player organizes sychronized and complex access to multiple VideoScrubbers by telling them when to load which
+ * A player organizes synchronized and complex access to multiple VideoScrubbers by telling them when to load which
  * frames. It provides random access, asynchronous timer controlled playback with custom playback speed and looping.
  * The player will adapt to the shortest video and ignore all parts of the other videos exceeding this length.
  *
@@ -28,6 +28,11 @@ public:
     typedef QScopedPointer<Player> uptr;
     typedef QSharedPointer<Player> sptr;
     typedef QWeakPointer<Player> wptr;
+
+    /**
+     * Creates a Player.
+     */
+    Player();
 
     /**
      * Creates a new player with an empty list of scrubbers and and initializes the playback speed with the submitted
@@ -251,11 +256,6 @@ signals:
     void currentFrameNrChanged(unsigned int currentFrameNr);
 
 private:
-    /**
-     * Creates a dummy Player.
-     */
-    Player();
-
     int currentFrameNumber; /**< The number of the frame that was requested last */
     QList<::model::player::VideoScrubber> videoScrubbers; /**< The VideoScrubbers controlled by this player*/
     QTimer timer; /**< The timer controlling the playback speed */

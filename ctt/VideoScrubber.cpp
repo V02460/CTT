@@ -7,6 +7,7 @@ using ::model::video::Video;
 using ::model::video::VideoMetadata;
 using ::model::frame::Frame;
 using ::model::project::Memento;
+using ::model::project::Saveable;
 
 VideoScrubber::VideoScrubber(video::Video::sptr video) {
 

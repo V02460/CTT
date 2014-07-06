@@ -8,7 +8,7 @@
 
 #include "FilterParam.h"
 
-class any; // TODO: Get a class
+typedef int any; // TODO: Get a class
 
 namespace model {
 namespace filter {

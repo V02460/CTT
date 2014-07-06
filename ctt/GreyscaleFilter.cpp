@@ -5,7 +5,7 @@ namespace filter {
 
 using ::model::frame::Frame;
 
-GreyscaleFilter::GreyscaleFilter(Module::sptr predecessor) {
+GreyscaleFilter::GreyscaleFilter(Module::sptr predecessor) : Filter(predecessor) {
 
 }
 

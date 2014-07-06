@@ -15,7 +15,7 @@ namespace controller {
 /**
  * The ProjectController manages requests to initialize, save or load a Project.
  */
-class MainController : public ::model::Observer, public QObject {
+class MainController : public ::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<MainController> uptr;
@@ -27,13 +27,13 @@ public slots:
 
     /**
      * Initiates saving an existing Project.
-     * Is called when a notifaction is received that the active Project should be saved.
+     * Is called when a notification is received that the active Project should be saved.
      */
     void saveClicked();
 
     /**
      * Initiates saving an existing Project with a specified type and to a specified location.
-     * Is called when a notifaction is received that the active Project should be saved.
+     * Is called when a notification is received that the active Project should be saved.
      *
      * @param path The path to where the Project should be saved.
      * @param fileType The type of file as which the Project should be saved.
@@ -42,7 +42,7 @@ public slots:
 
     /**
      * Initiates loading an existing Project from a specified location.
-     * Is called when a notifaction is received that a Project should be loaded.
+     * Is called when a notification is received that a Project should be loaded.
      *
      * @param path The path from where the Project should be loaded.
      */
@@ -50,7 +50,7 @@ public slots:
 
     /**
      * Initiates creating a new Project.
-     * Is called when a notifaction is received that a new Project should be created.
+     * Is called when a notification is received that a new Project should be created.
      */
     void newProject();
 

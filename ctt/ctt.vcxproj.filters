@@ -491,6 +491,9 @@
     <ClCompile Include="TimelineInterval.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MainControlWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">

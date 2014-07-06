@@ -22,7 +22,7 @@ public:
     typedef QWeakPointer<Project> wptr;
 
     /**
-     * Creates a new project and all savable objects nedded from the start of the program.
+     * Creates a new project and all savable objects needed from the start of the program.
      */
     Project();
 
@@ -31,42 +31,42 @@ public:
      *
      * @return SaveableList<FileVideo> the list of all base videos the project uses.
      */
-    ::model::SaveableList<const ::model::video::FileVideo&> getBaseVideoList() const;
+    ::model::SaveableList<::model::video::FileVideo> getBaseVideoList() const;
 
     /**
      * Returns the List of all FilteredVideos the Project uses in the first view, i.e. the editing view.
      *
      * @return the List of all FilteredVideos the Project uses in the first view.
      */
-    ::model::SaveableList<const ::model::filter::FilteredVideo&> getVideoList1() const;
+    ::model::SaveableList<::model::filter::FilteredVideo> getVideoList1() const;
 
     /**
-     * Returns the List of all FilteredVideos the Project uses in the second view, i.e. the analysing view.
+     * Returns the List of all FilteredVideos the Project uses in the second view, i.e. the analyzing view.
      *
      * @return the List of all FilteredVideos the Project uses in the second view
      */
-    ::model::SaveableList<const ::model::video::Video&> getVideoList2() const;
+    ::model::SaveableList<::model::video::Video> getVideoList2() const;
 
     /**
      * Returns the player list from the first view (the editing view) of the project.
      *
      * @return the player list from the first view of the project.
      */
-    ::model::SaveableList<const ::model::player::Player&> getPlayerList1() const;
+    ::model::SaveableList<::model::player::Player> getPlayerList1() const;
 
     /**
-     * Returns the player from the second view (the analysing view) of the project.
+     * Returns the player from the second view (the analyzing view) of the project.
      *
      * @return the player from the second view of the project.
      */
-    const ::model::player::Player &getPlayer2() const;
+    ::model::player::Player::sptr getPlayer2() const;
 
     /**
      * Returns the list of all the FrameDiffs the project uses.
      *
      * @return the list of all the FrameDiffs the project uses.
      */
-    ::model::SaveableList<const ::model::difference::FrameDiff&> getDiffList() const;
+    ::model::SaveableList<::model::difference::FrameDiff> getDiffList() const;
 
     /**
      * Returns the current view of the project.

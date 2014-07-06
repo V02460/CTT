@@ -13,9 +13,9 @@
 namespace controller {
 
 /**
- * The OverlayController manages requests to manipulate the list of overlays which can be used for analysing.
+ * The OverlayController manages requests to manipulate the list of overlays which can be used for analyzing.
  */
-class OverlayController : public ::model::Observer, public QObject {
+class OverlayController : public ::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<OverlayController> uptr;
@@ -32,8 +32,8 @@ public slots:
     OverlayController(::model::video::Video::sptr video);
 
     /**
-     * Initiates the insertion of an overlay to the list of overlays which can be used for analysing.
-     * Is called when a notifaction is received that an overlay should be inserted.
+     * Initiates the insertion of an overlay to the list of overlays which can be used for analyzing.
+     * Is called when a notification is received that an overlay should be inserted.
      *
      * @param id The ID of the overlay which is to be inserted.
      */
@@ -50,8 +50,8 @@ public slots:
     void moveOverlay(int oldPos, int newPos);
 
     /**
-    *    Initiates the removal of an overlay from the list of overlays which can be used for analysing.
-    *    Is called when a notifaction is received that an overlay should be removed.
+    *    Initiates the removal of an overlay from the list of overlays which can be used for analyzing.
+    *    Is called when a notification is received that an overlay should be removed.
     *    @param pos The position of the overlay which is to be removed.
     **/
     void removeOverlay(int pos);

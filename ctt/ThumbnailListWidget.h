@@ -31,7 +31,7 @@ public:
      * change.
      *
      * @param filteredVideos The list of videos which should be displayed by this widget.
-     * @param selectableCount The number of video which can be activated simultaniously.
+     * @param selectableCount The number of video which can be activated simultaneously.
      */
     ThumbnailListWidget(::model::SaveableList<::model::video::Video>::sptr filteredVideos, int selectableCount);
 signals:
@@ -43,7 +43,7 @@ signals:
     void videoAdded(QDir path);
 
     /**
-     * This signal is emitted when an exisitng video is removed from the program.
+     * This signal is emitted when an existing video is removed from the program.
      *
      * @param index The index in the filteredVideos list of the video which should be removed.
      */
