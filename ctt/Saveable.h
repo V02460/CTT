@@ -45,7 +45,7 @@ public:
      * Creates and returns a dummy instance of the class with the sole purpose to have a state restored from a Memento.
      *
      * @return Saveable the dummy object
-	 * @throws NotImplementedException if this method is called on a class which isn't meant to be instantiable
+	 * @throws NotImplementedException if this method is called on a class which isn't meant to be instantiatable
      */
     static Saveable::sptr getDummy();
 

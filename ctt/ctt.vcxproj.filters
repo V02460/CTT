@@ -458,12 +458,6 @@
     <ClCompile Include="FilteredVideo.cpp">
       <Filter>Source Files\Model\Filter</Filter>
     </ClCompile>
-    <ClCompile Include="DataVideo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_SaveableList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Module.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -756,9 +750,6 @@
     <ClInclude Include="UIntegerInterval.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="FilterIntervalList.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
     <ClInclude Include="AbstractListView.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
@@ -791,6 +782,9 @@
     </ClInclude>
     <ClInclude Include="Surface.h">
       <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterIntervalList.h">
+      <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
