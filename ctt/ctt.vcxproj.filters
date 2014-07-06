@@ -458,23 +458,11 @@
     <ClCompile Include="FilteredVideo.cpp">
       <Filter>Source Files\Model\Filter</Filter>
     </ClCompile>
-    <ClCompile Include="MainController.cpp">
-      <Filter>Source Files\Controller</Filter>
-    </ClCompile>
     <ClCompile Include="Project.cpp">
       <Filter>Source Files\Controller</Filter>
     </ClCompile>
     <ClCompile Include="SaveableList.cpp">
       <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="Surface.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="HueHistogram.cpp">
-      <Filter>Source Files\Model\Frame\Histogram</Filter>
-    </ClCompile>
-    <ClCompile Include="SaturationHistogram.cpp">
-      <Filter>Source Files\Model\Frame\Histogram</Filter>
     </ClCompile>
     <ClCompile Include="AbstractListView.cpp">
       <Filter>Source Files\View</Filter>
@@ -807,11 +795,8 @@
     <ClInclude Include="Surface.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="HueHistogram.h">
-      <Filter>Header Files\Model\Frame\Histogram</Filter>
-    </ClInclude>
-    <ClInclude Include="SaturationHistogram.h">
-      <Filter>Header Files\Model\Frame\Histogram</Filter>
+    <ClInclude Include="ProjectSaverFactory.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

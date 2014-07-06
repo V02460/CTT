@@ -143,14 +143,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AbstractListView.cpp" />
+    <ClCompile Include="AbstractTimeline.cpp" />
+    <ClCompile Include="AnalysingWidget.cpp" />
     <ClCompile Include="BlueHistogram.cpp" />
     <ClCompile Include="BlurFilter.cpp" />
     <ClCompile Include="CoffeeFilter.cpp" />
     <ClCompile Include="ColoringOverlay.cpp" />
     <ClCompile Include="ctt.cpp" />
-    <ClCompile Include="DataVideo.cpp" />
     <ClCompile Include="DifferenceController.cpp" />
     <ClCompile Include="DifferenceFactory.cpp" />
+    <ClCompile Include="DifferenceListView.cpp" />
+    <ClCompile Include="DifferenceTimeline.cpp" />
     <ClCompile Include="EarthMoversHistogramDiff.cpp" />
     <ClCompile Include="ExtendedTimeline.cpp" />
     <ClCompile Include="FFmpegDataVideo.cpp" />
@@ -165,6 +169,7 @@
     <ClCompile Include="FilterParam.cpp" />
     <ClCompile Include="FilterParamChangedOperation.cpp" />
     <ClCompile Include="FilterRemovedOperation.cpp" />
+    <ClCompile Include="FilterTimeline.cpp" />
     <ClCompile Include="FPSChangingOperation.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="FrameDiff.cpp" />
@@ -222,7 +227,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_ProcessingWidget.cpp" />
-    <ClCompile Include="GeneratedFiles\Debug\moc_SaveableList.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_ThumbnailListWidget.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -342,8 +346,13 @@
     <ClCompile Include="GreyscaleFilter.cpp" />
     <ClCompile Include="HeatmapOverlay.cpp" />
     <ClCompile Include="Histogram.cpp" />
+    <ClCompile Include="HistogramWidget.cpp" />
     <ClCompile Include="HSLPixelDiff.cpp" />
     <ClCompile Include="InsertionWidget.cpp" />
+    <ClCompile Include="PlayerFunctions.cpp" />
+    <ClCompile Include="Project.cpp" />
+    <ClCompile Include="SaveableList.cpp" />
+    <ClCompile Include="TimelineInterval.cpp" />
     <ClCompile Include="UIntegerInterval.cpp" />
     <ClCompile Include="LuminanceHistogram.cpp" />
     <ClCompile Include="MacroblockOverlay.cpp" />
@@ -353,24 +362,19 @@
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Memento.cpp" />
     <ClCompile Include="MixFilter.cpp" />
-    <ClCompile Include="Module.cpp" />
     <ClCompile Include="MotionVectorOverlay.cpp" />
     <ClCompile Include="NoiseFilter.cpp" />
     <ClCompile Include="Observable.cpp" />
-    <ClCompile Include="Observer.cpp" />
     <ClCompile Include="OperationList.cpp" />
     <ClCompile Include="Overlay.cpp" />
     <ClCompile Include="OverlayController.cpp" />
-    <ClCompile Include="OverlayFactory.cpp" />
     <ClCompile Include="PixelDiff.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerController.cpp" />
     <ClCompile Include="PlayerWidget.cpp" />
     <ClCompile Include="ProcessingWidget.cpp" />
-    <ClCompile Include="ProjectController.cpp" />
     <ClCompile Include="ProjectLoader.cpp" />
     <ClCompile Include="ProjectSaver.cpp" />
-    <ClCompile Include="ProjectSaverFactory.cpp" />
     <ClCompile Include="RedHistogram.cpp" />
     <ClCompile Include="RescaleFilter.cpp" />
     <ClCompile Include="RGBChannelFilter.cpp" />
@@ -384,13 +388,11 @@
     <ClCompile Include="VideoMetadata.cpp" />
     <ClCompile Include="VideoProcessingWidget.cpp" />
     <ClCompile Include="VideoRemovedOperation.cpp" />
-    <ClCompile Include="VideoSaverFactory.cpp" />
     <ClCompile Include="VideoScrubber.cpp" />
     <ClCompile Include="VideoWidget.cpp" />
     <ClCompile Include="ViewState.cpp" />
     <ClCompile Include="YUVDataVideo.cpp" />
     <ClCompile Include="YUVPixelDiff.cpp" />
-    <ClCompile Include="YUVVideoSaver.cpp" />
     <ClCompile Include="ZoomFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
