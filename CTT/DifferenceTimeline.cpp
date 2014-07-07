@@ -1,11 +1,5 @@
 #include "DifferenceTimeline.h"
 
+namespace view {
 
-DifferenceTimeline::DifferenceTimeline()
-{
-}
-
-
-DifferenceTimeline::~DifferenceTimeline()
-{
-}
+}  // namespace view

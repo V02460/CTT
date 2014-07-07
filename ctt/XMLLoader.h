@@ -7,7 +7,7 @@
 
 #include "ProjectLoader.h"
 
-namespace model {
+namespace controller {
 namespace project {
 /**
  * Loads a project saved as XML file by the XMLSaver.
@@ -21,6 +21,6 @@ public:
 };
 
 }  // namespace project
-}  // namespace model
+}  // namespace controller
 
 #endif  //_XMLLOADER_H

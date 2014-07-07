@@ -1,6 +1,6 @@
 #include "ProjectLoader.h"
 
-namespace model {
+namespace controller {
 namespace project {
 
 using ::controller::Project;
@@ -10,4 +10,4 @@ void ProjectLoader::restore(QDir path, Project project) {
 }
 
 }  // namespace project
-}  // namespace model
+}  // namespace controller

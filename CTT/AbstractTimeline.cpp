@@ -1,11 +1,5 @@
 #include "AbstractTimeline.h"
 
+namespace view {
 
-AbstractTimeline::AbstractTimeline()
-{
-}
-
-
-AbstractTimeline::~AbstractTimeline()
-{
-}
+}  // namespace view

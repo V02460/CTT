@@ -1,7 +1,7 @@
 #if !defined(_SAVEFILETYPE_H)
 #define _SAVEFILETYPE_H
 
-namespace model {
+namespace controller {
 namespace project {
 
 enum SaveFileType {
@@ -9,6 +9,5 @@ enum SaveFileType {
 };
 
 }  // namespace project
-}  // namespace model
-
+}  // namespace controller
 #endif  //_SAVEFILETYPE_H

@@ -1,11 +1,5 @@
 #include "FilterTimeline.h"
 
+namespace view {
 
-FilterTimeline::FilterTimeline()
-{
-}
-
-
-FilterTimeline::~FilterTimeline()
-{
-}
+}  // namespace view

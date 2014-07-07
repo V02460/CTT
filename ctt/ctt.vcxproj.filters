@@ -63,9 +63,6 @@
     <Filter Include="Header Files\Controller\Operation">
       <UniqueIdentifier>{f4928c0f-9a00-407d-9a76-8b94312709a9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Model\Project">
-      <UniqueIdentifier>{25594692-751f-4db9-99fc-f8df7825e7ef}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Model">
       <UniqueIdentifier>{ae8f0018-8ca0-4399-8c40-16ddbdee6155}</UniqueIdentifier>
     </Filter>
@@ -93,9 +90,6 @@
     <Filter Include="Source Files\Model\Difference">
       <UniqueIdentifier>{35e2b08d-a5ce-47ee-8273-417940faa362}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Model\Project">
-      <UniqueIdentifier>{d4135c21-55dd-48f2-a53c-6bdf8e161c92}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Model\Player">
       <UniqueIdentifier>{f5fcc434-536b-4117-8c8e-a508ed2b92dc}</UniqueIdentifier>
     </Filter>
@@ -104,6 +98,18 @@
     </Filter>
     <Filter Include="Source Files\Model\Frame\Histogram">
       <UniqueIdentifier>{ff89e419-03b7-4f06-999d-703d0af24722}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Saveable">
+      <UniqueIdentifier>{25594692-751f-4db9-99fc-f8df7825e7ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Saveable">
+      <UniqueIdentifier>{d4135c21-55dd-48f2-a53c-6bdf8e161c92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controller\Project">
+      <UniqueIdentifier>{e8764084-685c-4104-a07a-b24e7b1332bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controller\Project">
+      <UniqueIdentifier>{f6f13754-3d88-43d5-9ff2-bf5eb5e60448}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -249,7 +255,7 @@
       <Filter>Source Files\View</Filter>
     </ClCompile>
     <ClCompile Include="Memento.cpp">
-      <Filter>Source Files\Model\Project</Filter>
+      <Filter>Source Files\Model\Saveable</Filter>
     </ClCompile>
     <ClCompile Include="MixFilter.cpp">
       <Filter>Source Files\Model\Filter</Filter>
@@ -292,12 +298,6 @@
     </ClCompile>
     <ClCompile Include="VideoProcessingWidget.cpp">
       <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="ProjectSaver.cpp">
-      <Filter>Source Files\Model\Project</Filter>
-    </ClCompile>
-    <ClCompile Include="ProjectLoader.cpp">
-      <Filter>Source Files\Model\Project</Filter>
     </ClCompile>
     <ClCompile Include="Video.cpp">
       <Filter>Source Files\Model\Video</Filter>
@@ -458,12 +458,6 @@
     <ClCompile Include="FilteredVideo.cpp">
       <Filter>Source Files\Model\Filter</Filter>
     </ClCompile>
-    <ClCompile Include="Project.cpp">
-      <Filter>Source Files\Controller</Filter>
-    </ClCompile>
-    <ClCompile Include="SaveableList.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="AbstractListView.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
@@ -491,8 +485,26 @@
     <ClCompile Include="TimelineInterval.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_MainControlWidget.cpp">
-      <Filter>Generated Files\Release</Filter>
+    <ClCompile Include="Project.cpp">
+      <Filter>Source Files\Controller\Project</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectLoader.cpp">
+      <Filter>Source Files\Controller\Project</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectSaver.cpp">
+      <Filter>Source Files\Controller\Project</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLLoader.cpp">
+      <Filter>Source Files\Controller\Project</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLSaver.cpp">
+      <Filter>Source Files\Controller\Project</Filter>
+    </ClCompile>
+    <ClCompile Include="Saveable.cpp">
+      <Filter>Source Files\Model\Saveable</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveableList.cpp">
+      <Filter>Source Files\Model\Saveable</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -530,9 +542,6 @@
       <Filter>Header Files\Controller</Filter>
     </CustomBuild>
     <CustomBuild Include="Observable.h">
-      <Filter>Header Files\Model</Filter>
-    </CustomBuild>
-    <CustomBuild Include="SaveableList.h">
       <Filter>Header Files\Model</Filter>
     </CustomBuild>
     <CustomBuild Include="ExtendedTimeline.h">
@@ -576,6 +585,9 @@
     </CustomBuild>
     <CustomBuild Include="InsertionWidget.h">
       <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="SaveableList.h">
+      <Filter>Header Files\Model\Saveable</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -685,7 +697,7 @@
       <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
     <ClInclude Include="Memento.h">
-      <Filter>Header Files\Model\Project</Filter>
+      <Filter>Header Files\Model\Saveable</Filter>
     </ClInclude>
     <ClInclude Include="MixFilter.h">
       <Filter>Header Files\Model\Filter</Filter>
@@ -702,23 +714,8 @@
     <ClInclude Include="RescaleFilter.h">
       <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
-    <ClInclude Include="XMLLoader.h">
-      <Filter>Header Files\Model\Project</Filter>
-    </ClInclude>
-    <ClInclude Include="XMLSaver.h">
-      <Filter>Header Files\Model\Project</Filter>
-    </ClInclude>
-    <ClInclude Include="ProjectLoader.h">
-      <Filter>Header Files\Model\Project</Filter>
-    </ClInclude>
-    <ClInclude Include="ProjectSaver.h">
-      <Filter>Header Files\Model\Project</Filter>
-    </ClInclude>
     <ClInclude Include="RGBChannelFilter.h">
       <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveFileType.h">
-      <Filter>Header Files\Model\Project</Filter>
     </ClInclude>
     <ClInclude Include="TimeshiftFilter.h">
       <Filter>Header Files\Model\Filter</Filter>
@@ -751,7 +748,7 @@
       <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
     <ClInclude Include="Saveable.h">
-      <Filter>Header Files\Model\Project</Filter>
+      <Filter>Header Files\Model\Saveable</Filter>
     </ClInclude>
     <ClInclude Include="Module.h">
       <Filter>Header Files\Model</Filter>
@@ -786,9 +783,6 @@
     <ClInclude Include="TimelineInterval.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
-    <ClInclude Include="Project.h">
-      <Filter>Header Files\Controller</Filter>
-    </ClInclude>
     <ClInclude Include="FileVideo.h">
       <Filter>Header Files\Model\Video</Filter>
     </ClInclude>
@@ -800,6 +794,24 @@
     </ClInclude>
     <ClInclude Include="ProjectSaverFactory.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectLoader.h">
+      <Filter>Header Files\Controller\Project</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectSaver.h">
+      <Filter>Header Files\Controller\Project</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLLoader.h">
+      <Filter>Header Files\Controller\Project</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLSaver.h">
+      <Filter>Header Files\Controller\Project</Filter>
+    </ClInclude>
+    <ClInclude Include="Project.h">
+      <Filter>Header Files\Controller\Project</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveFileType.h">
+      <Filter>Header Files\Controller\Project</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

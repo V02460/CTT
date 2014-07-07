@@ -1,13 +1,13 @@
 #include "ProjectSaver.h"
 
-namespace model {
+namespace controller {
 namespace project {
 
-using ::controller::Project;
+using ::controller::project::Project;
 
 void ProjectSaver::save(QDir path, const Project &project) {
 
 }
 
 }  // namespace project
-}  // namespace model
+}  // namespace controller

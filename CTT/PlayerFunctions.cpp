@@ -1,11 +1,9 @@
 #include "PlayerFunctions.h"
 
+namespace view {
 
-PlayerFunctions::PlayerFunctions()
-{
-}
+void PlayerFunctions::subscribe(::controller::PlayerController::sptr observer);
 
+void PlayerFunctions::unsubscribe(const ::controller::PlayerController &observer);
 
-PlayerFunctions::~PlayerFunctions()
-{
-}
+}  // namespace view

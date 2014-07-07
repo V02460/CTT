@@ -7,13 +7,13 @@
 #include <QMap>
 
 namespace model {
-namespace project {
+namespace saveable {
 
 /**
  * A memento capsules a set of variables and pointers used to save and restore the state of savable objects.
  * It is only possible to save variables as strings, but casting them to different types is hidden behind the methods of
  * this class.
- * Furthermore pointers will be saved as voidpointer. Those two restrictions are the reason savable classes need to know
+ * Furthermore pointers will be saved as void pointer. Those two restrictions are the reason savable classes need to know
  * what variable- / pointer-types they use and use the correct method / cast to the correct pointer type.
  */
 class Memento {
@@ -118,7 +118,7 @@ public:
     QString getString(QString name) const;
 
     /**
-     * Saves the given pointer as voidpointer with the given name.
+     * Saves the given pointer as void pointer with the given name.
      *
      * @param pointer The pointer to be saved in this memento.
      * @param name The name of the pointer to be saved in this memento.
@@ -153,7 +153,7 @@ private:
     QMap<QString, void*> pointerMap;
 };
 
-}  // namespace project
+}  // namespace saveable
 }  // namespace model
 
 #endif  //_MEMENTO_H

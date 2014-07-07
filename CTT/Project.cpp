@@ -1,6 +1,7 @@
 #include "Project.h"
 
 namespace controller {
+namespace project {
 
 using ::model::SaveableList;
 using ::model::video::FileVideo;
@@ -34,4 +35,5 @@ SaveableList<FrameDiff> Project::getDiffList() const {
 ViewState Project::getView() const {
 }
 
+}  // namespace project
 }  // namespace controller

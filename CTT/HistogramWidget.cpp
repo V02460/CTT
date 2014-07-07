@@ -1,11 +1,11 @@
 #include "HistogramWidget.h"
 
+namespace view {
 
-HistogramWidget::HistogramWidget()
-{
-}
+HistogramWidget::HistogramWidget(::model::player::VideoScrubber::sptr scrubber);
 
+void HistogramWidget::next();
 
-HistogramWidget::~HistogramWidget()
-{
-}
+void HistogramWidget::paint();
+
+}  // namespace view

@@ -7,7 +7,7 @@
 
 #include "ProjectSaver.h"
 
-namespace model {
+namespace controller {
 namespace project {
 
 /**
@@ -22,6 +22,6 @@ public:
 };
 
 }  // namespace project
-}  // namespace model
+}  // namespace controller
 
 #endif  //_XMLSAVER_H

@@ -9,10 +9,10 @@
 #include "Memento.h"
 
 namespace model {
-namespace project {
+namespace saveable {
 
 /**
- * Objects, whose state can be externalised into a memento and restored from one.
+ * Objects, whose state can be externalized into a memento and restored from one.
  */
 class Saveable {
 
@@ -60,7 +60,7 @@ protected:
 	bool isDummyFlag = false;
 };
 
-}  // namespace project
+}  // namespace savable
 }  // namespace model
 
 #endif  //_Saveable_H

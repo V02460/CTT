@@ -10,6 +10,7 @@
 #include "ViewState.h"
 
 namespace controller {
+namespace project {
 
 /**
  * The project contains all savable objects that already exist in an empty project.
@@ -22,7 +23,7 @@ public:
     typedef QWeakPointer<Project> wptr;
 
     /**
-     * Creates a new project and all savable objects needed from the start of the program.
+	* Creates a new project and all savable objects needed from the start of the program.
      */
     Project();
 
@@ -41,7 +42,7 @@ public:
     ::model::SaveableList<::model::filter::FilteredVideo> getVideoList1() const;
 
     /**
-     * Returns the List of all FilteredVideos the Project uses in the second view, i.e. the analyzing view.
+	* Returns the List of all FilteredVideos the Project uses in the second view, i.e. the analyzing view.
      *
      * @return the List of all FilteredVideos the Project uses in the second view
      */
@@ -55,7 +56,7 @@ public:
     ::model::SaveableList<::model::player::Player> getPlayerList1() const;
 
     /**
-     * Returns the player from the second view (the analyzing view) of the project.
+	* Returns the player from the second view (the analyzing view) of the project.
      *
      * @return the player from the second view of the project.
      */
@@ -85,6 +86,7 @@ private:
     view::ViewState view;
 };
 
+}  // namespace project
 }  // namespace controller
 
 #endif  //_PROJECTCONTROLLER_H

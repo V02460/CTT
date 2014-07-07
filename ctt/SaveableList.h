@@ -9,6 +9,7 @@
 #include "Observable.h"
 
 namespace model {
+namespace saveable {
 
 /**
  * Subscribable list for storing objects and communicating with signals and slots.
@@ -53,6 +54,7 @@ private:
     QList<typename T::sptr> list;
 };
 
+}  // namespace saveable
 }  // namespace model
 
 #endif  //_SAVEABLELIST_H

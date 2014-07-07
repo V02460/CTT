@@ -1,11 +1,5 @@
 #include "AbstractListView.h"
 
+namespace view {
 
-AbstractListView::AbstractListView()
-{
-}
-
-
-AbstractListView::~AbstractListView()
-{
-}
+}  // namespace view

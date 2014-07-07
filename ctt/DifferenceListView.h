@@ -23,11 +23,4 @@ public:
 
 }  // namespace view
 
-class DifferenceListView
-{
-public:
-	DifferenceListView();
-	~DifferenceListView();
-};
-
 #endif  //_DIFFERENCELISTVIEW_H

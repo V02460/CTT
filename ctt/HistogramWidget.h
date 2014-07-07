@@ -42,11 +42,4 @@ private:
 
 }  // namespace view
 
-class HistogramWidget
-{
-public:
-	HistogramWidget();
-	~HistogramWidget();
-};
-
 #endif  //_HISTOGRAMWIDGET_H
