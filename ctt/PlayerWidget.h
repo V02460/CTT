@@ -1,4 +1,4 @@
-#if !defined(_PLAYERWIDGET_H)
+#ifndef _PLAYERWIDGET_H
 #define _PLAYERWIDGET_H
 
 #include <QScopedPointer>
@@ -20,9 +20,14 @@ public:
     typedef QSharedPointer<PlayerWidget> sptr;
     typedef QWeakPointer<PlayerWidget> wptr;
 
+    /**
+     * Creates a PlayerWidget.
+     */
+    PlayerWidget();
+
 public slots:
     /**
-     * Recieves the activation signal form a button in the ThumbnailListWidget and notifies the ProcessingWidget
+     * Receives the activation signal form a button in the ThumbnailListWidget and notifies the ProcessingWidget
      * about the activation by emitting the playerActivated signal.
      */
     void getActivationSignal();
@@ -36,7 +41,9 @@ signals:
     void playerActivated(const PlayerWidget &playerWidget);
 
 private:
-    VideoProcessingWidget inputVideo; /**< The original video on which the filters are apllied */
+    Q_DISABLE_COPY(PlayerWidget);
+
+    VideoProcessingWidget inputVideo; /**< The original video on which the filters are applied */
     VideoProcessingWidget filteredVideo;/**< The original video plus the applied filters */
 };
 

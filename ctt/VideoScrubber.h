@@ -1,4 +1,4 @@
-#if !defined(_VIDEOSCRUBBER_H)
+#ifndef _VIDEOSCRUBBER_H
 #define _VIDEOSCRUBBER_H
 
 #include <QScopedPointer>
@@ -21,7 +21,7 @@ namespace player {
  * It makes this frame available to other objects and notifies them via Qt's signal and slot mechanism when this frame
  * is replaced.
  */
-class VideoScrubber : public ::model::project::Saveable, public Observable {
+class VideoScrubber : public QObject, public ::model::saveable::Saveable, public Observable {
     Q_OBJECT
 public:
     typedef QScopedPointer<VideoScrubber> uptr;
@@ -35,6 +35,11 @@ public:
      * @throws InvalidArgumentException if the submitted video is invalid
      */
     explicit VideoScrubber(::model::video::Video::sptr video);
+
+    /**
+     * Destructor of VideoScrubber.
+     */
+    ~VideoScrubber();
 
     /**
      * Creates a new VideoScrubber for the submitted video, initially holding the frame with the submitted number.
@@ -78,9 +83,9 @@ public:
      */
     bool isWaitingForFrame() const;
 
-    ::model::project::Memento VideoScrubber::getMemento() const;
-    void VideoScrubber::restore(::model::project::Memento memento);
-    static ::model::project::Saveable::sptr VideoScrubber::getDummy();
+    ::model::saveable::Memento VideoScrubber::getMemento() const;
+    void VideoScrubber::restore(::model::saveable::Memento memento);
+    static ::model::saveable::Saveable::sptr VideoScrubber::getDummy();
 
 public slots:
     /**
@@ -92,7 +97,6 @@ public slots:
      * @throws IllegalStateException if the the method was called on a dummy
      */
     void jumpToFrameNr(unsigned int frameNumber);
-
 private:
     ::model::video::Video::sptr video; /**< The scrubber gets frames and metadata from this video */
     ::model::frame::Frame::sptr currentFrame; /**< This is the frame currently held by the scrubber */

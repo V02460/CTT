@@ -1,4 +1,4 @@
-#if !defined(_VIDEOFILETYPE_H)
+#ifndef _VIDEOFILETYPE_H
 #define _VIDEOFILETYPE_H
 
 namespace model {

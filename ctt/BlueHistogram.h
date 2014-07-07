@@ -1,4 +1,4 @@
-#if !defined(_BLUEHISTOGRAM_H)
+#ifndef _BLUEHISTOGRAM_H
 #define _BLUEHISTOGRAM_H
 
 #include <QScopedPointer>

@@ -1,4 +1,4 @@
-#if !defined(_FPSCHANGINGOPERATION_H)
+#ifndef _FPSCHANGINGOPERATION_H
 #define _FPSCHANGINGOPERATION_H
 
 #include <QScopedPointer>

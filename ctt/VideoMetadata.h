@@ -1,4 +1,4 @@
-#if !defined(_VIDEOMETADATA_H)
+#ifndef _VIDEOMETADATA_H
 #define _VIDEOMETADATA_H
 
 #include <QScopedPointer>

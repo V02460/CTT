@@ -1,4 +1,4 @@
-#if !defined(_FILTERFACTORY_H)
+#ifndef _FILTERFACTORY_H
 #define _FILTERFACTORY_H
 
 #include <QScopedPointer>

@@ -9,7 +9,7 @@ RescaleFilter::RescaleFilter(Module::sptr predecessor) : Filter(predecessor) {
 
 }
 
-bool RescaleFilter::supportsIntervals() const {
+RescaleFilter::~RescaleFilter() {
 
 }
 

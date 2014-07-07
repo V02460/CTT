@@ -1,4 +1,4 @@
-#if !defined(_BLURFILTER_H)
+#ifndef _BLURFILTER_H
 #define _BLURFILTER_H
 
 #include <QScopedPointer>
@@ -34,7 +34,7 @@ public:
      */
     virtual ~BlurFilter();
 
-    virtual bool supportsIntervals() const;
+    virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
     virtual QString getName() const;
     virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const;
 };

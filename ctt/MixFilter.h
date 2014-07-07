@@ -1,4 +1,4 @@
-#if !defined(_MIXFILTER_H)
+#ifndef _MIXFILTER_H
 #define _MIXFILTER_H
 
 #include <QScopedPointer>
@@ -23,7 +23,7 @@ public:
     typedef QWeakPointer<MixFilter> wptr;
 
     /**
-    * Creates a new MixFilter object with a given previous module and a sufrace which provides the texture to be
+    * Creates a new MixFilter object with a given previous module and a Surface which provides the texture to be
     * mixed with a frame.
     *
     * @param predecessor The previous module of this filter.
@@ -36,7 +36,7 @@ public:
      */
     virtual ~MixFilter();
 
-    virtual bool supportsIntervals() const;
+    virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
     virtual QString getName() const;
     virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const;
 };

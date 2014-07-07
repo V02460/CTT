@@ -1,4 +1,4 @@
-#if !defined(_PLAYERFUNCTIONS_H)
+#ifndef _PLAYERFUNCTIONS_H
 #define _PLAYERFUNCTIONS_H
 
 #include <QScopedPointer>
@@ -14,10 +14,10 @@
 namespace view {
 
 /**
- * The PlayerFunctions only provides the needed interactable components and maps the signals emitted by these to a
+ * The PlayerFunctions only provides the needed intractable components and maps the signals emitted by these to a
  * PlayerController.
  */
-class PlayerFunctions : public ::model::Observable , public QWidget{
+class PlayerFunctions : public QWidget, public::model::Observable {
     Q_OBJECT
 public:
     typedef QScopedPointer<PlayerFunctions> uptr;
@@ -25,14 +25,14 @@ public:
     typedef QWeakPointer<PlayerFunctions> wptr;
 
     /**
-     * Connects the signals from the interactable components to the corresponding slots in a PlayerController.
+     * Connects the signals from the intractable components to the corresponding slots in a PlayerController.
      *
      * @param observer The PlayerController the signals should be connected to.
      */
     void subscribe(::controller::PlayerController::sptr observer);
 
     /**
-     * Disconnects the signals from the interactable components to the corresponding slots in a PlayerController.
+     * Disconnects the signals from the intractable components to the corresponding slots in a PlayerController.
      *
      * @param observer The PlayerController the signals should be disconnected from.
      */
@@ -41,8 +41,8 @@ private:
     QPushButton btnPlayPause; /**< The button to play/pause the player */
     QPushButton btnNextFrame; /**< The button to go to the next frame */
     QPushButton btnPreviousFrame; /**< The button to go to the previous frame */
-    QPushButton btnDefaultFPS; /**< The button to change back to the default framerate */
-    QSpinBox spinboxFPS; /**< The spinbox to change the framerate */
+    QPushButton btnDefaultFPS; /**< The button to change back to the default frame rate */
+    QSpinBox spinboxFPS; /**< The spin box to change the frame rate */
 };
 
 }  // namespace view

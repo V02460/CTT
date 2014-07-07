@@ -1,4 +1,4 @@
-#if !defined(_SURFACE_H)
+#ifndef _SURFACE_H
 #define _SURFACE_H
 
 #include <QScopedPointer>
@@ -33,13 +33,13 @@ public:
 	*
 	* @return QOpenGLTexture the texture containing the image data of the frame.
 	*/
-    QSharedPointer<QOpenGLTexture> getGLTexture();
+    QSharedPointer<QOpenGLTexture> getGLTexture() const;
 
 	/**
 	* Returns a QOpenGLContext in which the texture is accessible.
 	* @return QOpenGLContext a QOpenGLContext in which the texture is accessible
 	*/
-    QSharedPointer<QOpenGLContext> getContext();
+    QSharedPointer<QOpenGLContext> getContext() const;
 
 protected:
     QSharedPointer<QOpenGLContext> glContext; /**< An OpenGL context, from which the texture is accessible. */

@@ -1,4 +1,4 @@
-#if !defined(_LUMINANCEHISTOGRAM_H)
+#ifndef _LUMINANCEHISTOGRAM_H
 #define _LUMINANCEHISTOGRAM_H
 
 #include <QScopedPointer>

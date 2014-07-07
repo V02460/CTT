@@ -1,4 +1,4 @@
-#if !defined(_VIDEOREMOVEDOPERATION_H)
+#ifndef _VIDEOREMOVEDOPERATION_H
 #define _VIDEOREMOVEDOPERATION_H
 
 #include <QScopedPointer>
@@ -26,7 +26,7 @@ public:
      * @param index The index of a video which should be removed from the list of videos.
      * @param videoList The list from which a certain video should be removed.
      */
-    VideoRemovedOperation(int index, ::model::SaveableList<::model::video::Video> videoList);
+    VideoRemovedOperation(int index, ::model::saveable::SaveableList<::model::video::Video> videoList);
 
     /**
      * Manages requests to remove a Video from a VideoList.

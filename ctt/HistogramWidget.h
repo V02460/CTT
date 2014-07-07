@@ -1,4 +1,4 @@
-#if !defined(_HISTOGRAMWIDGET_H)
+#ifndef _HISTOGRAMWIDGET_H
 #define _HISTOGRAMWIDGET_H
 
 #include <QScopedPointer>
@@ -13,9 +13,9 @@ namespace view {
 
 /**
  * The HistogramWidget displays different histograms for a video frame.
- * Therefore it registeres itself at a VideoScrubber to recieve the histograms.
+ * Therefore it registers itself at a VideoScrubber to receive the histograms.
  */
-class HistogramWidget : public ::model::Observer, public QWidget {
+class HistogramWidget : public QWidget, public::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<HistogramWidget> uptr;

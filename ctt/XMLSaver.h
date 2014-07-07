@@ -1,4 +1,4 @@
-#if !defined(_XMLSAVER_H)
+#ifndef _XMLSAVER_H
 #define _XMLSAVER_H
 
 #include <QScopedPointer>

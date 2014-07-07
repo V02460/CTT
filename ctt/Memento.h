@@ -1,4 +1,4 @@
-#if !defined(_MEMENTO_H)
+#ifndef _MEMENTO_H
 #define _MEMENTO_H
 
 #include <QScopedPointer>

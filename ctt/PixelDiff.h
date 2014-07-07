@@ -1,4 +1,4 @@
-#if !defined(_PIXELDIFF_H)
+#ifndef _PIXELDIFF_H
 #define _PIXELDIFF_H
 
 #include <QScopedPointer>

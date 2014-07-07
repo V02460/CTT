@@ -1,4 +1,4 @@
-#if !defined(_VIDEOPROCESSINGWIDGET_H)
+#ifndef _VIDEOPROCESSINGWIDGET_H
 #define _VIDEOPROCESSINGWIDGET_H
 
 #include <QScopedPointer>

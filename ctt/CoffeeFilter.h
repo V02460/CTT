@@ -1,4 +1,4 @@
-#if !defined(_COFFEEFILTER_H)
+#ifndef _COFFEEFILTER_H
 #define _COFFEEFILTER_H
 
 #include <QScopedPointer>
@@ -29,7 +29,7 @@ public:
     CoffeeFilter(Module::sptr predecessor);
     virtual ~CoffeeFilter();
 
-    virtual bool supportsIntervals() const;
+    virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
     virtual QString getName() const;
     virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const;
 };

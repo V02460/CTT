@@ -1,4 +1,4 @@
-#if !defined(_FFMPEGDATAVIDEO_H)
+#ifndef _FFMPEGDATAVIDEO_H
 #define _FFMPEGDATAVIDEO_H
 
 #include <QScopedPointer>

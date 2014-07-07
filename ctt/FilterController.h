@@ -1,9 +1,10 @@
-#if !defined(_FILTERCONTROLLER_H)
+#ifndef _FILTERCONTROLLER_H
 #define _FILTERCONTROLLER_H
 
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QObject>
 
 #include "Observer.h"
 #include "Filter.h"
@@ -16,14 +17,12 @@ namespace controller {
  * The FilterController receives notifications of changes in the video's filters and passes this information to all
  * relevant components.
  */
-class FilterController : public ::model::Observer {
+class FilterController : public QObject, public ::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<FilterController> uptr;
     typedef QSharedPointer<FilterController> sptr;
     typedef QWeakPointer<FilterController> wptr;
-
-public slots:
 
     /**
      * Creates the FilterController with the Video it will observe filter changes over.
@@ -53,7 +52,7 @@ public slots:
 
     /**
      * Initiates changing a filter's parameters.
-     * Is called when it receives a notification that a filterparameter should be changed.
+     * Is called when it receives a notification that a filter parameter should be changed.
      *
      * @param filter The Filter of which a parameter is to be changed.
      * @param param The parameter which is to be changed.

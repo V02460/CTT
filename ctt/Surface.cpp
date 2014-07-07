@@ -6,11 +6,11 @@ Surface::Surface(QSharedPointer<QOpenGLContext> glContext)  {
 
 }
 
-QSharedPointer<QOpenGLTexture> Surface::getGLTexture() {
+QSharedPointer<QOpenGLTexture> Surface::getGLTexture() const {
 
 }
 
-QSharedPointer<QOpenGLContext> Surface::getContext() {
+QSharedPointer<QOpenGLContext> Surface::getContext() const {
 
 }
 

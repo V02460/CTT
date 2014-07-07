@@ -1,4 +1,4 @@
-#if !defined(_HISTOGRAM_H)
+#ifndef _HISTOGRAM_H
 #define _HISTOGRAM_H
 
 #include <QScopedPointer>

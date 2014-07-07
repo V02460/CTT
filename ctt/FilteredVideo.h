@@ -1,4 +1,4 @@
-#if !defined(_FILTEREDVIDEO_H)
+#ifndef _FILTEREDVIDEO_H
 #define _FILTEREDVIDEO_H
 
 #include <QScopedPointer>
@@ -67,8 +67,8 @@ public:
 
     ::model::frame::Frame getFrame(unsigned int frameNumber) const;
 
-    virtual ::model::project::Memento getMemento() const;
-    virtual void restore(::model::project::Memento memento);
+    virtual ::model::saveable::Memento getMemento() const;
+    virtual void restore(::model::saveable::Memento memento);
     static Saveable::sptr getDummy();
 
 private:

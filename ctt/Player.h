@@ -1,4 +1,4 @@
-#if !defined(_PLAYER_H)
+#ifndef _PLAYER_H
 #define _PLAYER_H
 
 #include <QScopedPointer>
@@ -21,7 +21,7 @@ namespace player {
  * The player will adapt to the shortest video and ignore all parts of the other videos exceeding this length.
  *
  */
-class Player : public ::model::project::Saveable, public QObject {
+class Player : public QObject, public::model::saveable::Saveable {
     Q_OBJECT
 
 public:
@@ -30,18 +30,18 @@ public:
     typedef QWeakPointer<Player> wptr;
 
     /**
-     * Creates a Player.
-     */
-    Player();
+    * Creates a new player with an empty list of scrubbers and and initializes the playback speed with the submitted
+    * parameter.
+    *
+    * @param fps playback speed in frames per second
+    * @throws InvalidArgumentException if the submitted fps aren't greater than zero.
+    */
+    explicit Player(double fps);
 
     /**
-     * Creates a new player with an empty list of scrubbers and and initializes the playback speed with the submitted
-     * parameter.
-     *
-     * @param fps playback speed in frames per second
-     * @throws InvalidArgumentException if the submitted fps aren't greater than zero.
+     * Destroys the Player.
      */
-    explicit Player(double fps);
+     ~Player();
 
     /**
      * Starts playback with the currently set playback speed. Does nothing if the player is already playing. When the
@@ -66,9 +66,9 @@ public:
     void togglePlayPause();
 
     /**
-     * Jumps to the submitted framenumber and updates the scrubbers accordingly.
+     * Jumps to the submitted frame number and updates the scrubbers accordingly.
      *
-     * @param frameNumber The player will jump to this framenumber
+     * @param frameNumber The player will jump to this frame number
      * @throws InvalidArgumentException if one of the scrubbers of the player don't have a frame with that number.
      * @throws IllegalStateException if the the method was called on a dummy
      */
@@ -136,7 +136,7 @@ public:
 
     /**
      * Removes the submitted VideoScrubber from the list of VideoScrubbers controlled by the player. If the submitted
-     * Scrubber isn't in the list, no changes willl be made.
+     * Scrubber isn't in the list, no changes will be made.
      *
      * @param scrubber this scrubber will be removed
      * @throws IllegalStateException if the the method was called on a dummy
@@ -229,9 +229,9 @@ public:
      */
     void stopLooping();
 
-    virtual ::model::project::Memento getMemento() const;
-    virtual void restore(::model::project::Memento memento);
-    static ::model::project::Saveable::sptr getDummy();
+    virtual ::model::saveable::Memento getMemento() const;
+    virtual void restore(::model::saveable::Memento memento);
+    static ::model::saveable::Saveable::sptr getDummy();
 
 public slots:
     /**

@@ -1,4 +1,4 @@
-#if !defined(_THUMBNAILLISTWIDGET_H)
+#ifndef _THUMBNAILLISTWIDGET_H
 #define _THUMBNAILLISTWIDGET_H
 
 #include <QScopedPointer>
@@ -15,10 +15,10 @@
 
 namespace view {
 /**
- * The TumbnailListWidget displays a set of videos by its thumbnails and provides the interactiable components to set
+ * The TumbnailListWidget displays a set of videos by its thumbnails and provides the interactable components to set
  * one or more videos active, to add videos to and to remove videos from the program.
  */
-class ThumbnailListWidget : public ::model::Observer, public QWidget {
+class ThumbnailListWidget : public QWidget, public::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<ThumbnailListWidget> uptr;
@@ -26,14 +26,15 @@ public:
     typedef QWeakPointer<ThumbnailListWidget> wptr;
 
     /**
-     * Creates a new TumbnailListWidget with a SavableList of filteredVideos which is diplayed by this widget.
+     * Creates a new TumbnailListWidget with a SavableList of filteredVideos which is displayed by this widget.
      * The ThumbnailListWidget registers itself at the SaveableList to get notified, when the currently managed videos
      * change.
      *
      * @param filteredVideos The list of videos which should be displayed by this widget.
      * @param selectableCount The number of video which can be activated simultaneously.
      */
-    ThumbnailListWidget(::model::SaveableList<::model::video::Video>::sptr filteredVideos, int selectableCount);
+    ThumbnailListWidget(::model::saveable::SaveableList<::model::video::Video>::sptr filteredVideos,
+                        int selectableCount);
 signals:
     /**
      * This signal is emitted when a new video is added to the program.
@@ -55,7 +56,7 @@ private:
     /**
      * The list of filteredVideo which is needed for the thumbnail generation.
      */
-    ::model::SaveableList<::model::video::Video>::sptr filteredVideos;
+    ::model::saveable::SaveableList<::model::video::Video>::sptr filteredVideos;
 };
 
 }  // namespace view

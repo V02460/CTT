@@ -1,5 +1,5 @@
-#if !defined(_Saveable_H)
-#define _Saveable_H
+#ifndef _SAVEABLE_H
+#define _SAVEABLE_H
 
 #include <QScopedPointer>
 #include <QSharedPointer>
@@ -24,7 +24,7 @@ public:
 	/**
 	 * The destructor of this class.
 	 */
-	virtual ~Saveable();
+    virtual ~Saveable() = 0 {} // must have an implementation (linking errors, probably MOC)
 
     /**
      * Gets the internal state of the object as a Memento.

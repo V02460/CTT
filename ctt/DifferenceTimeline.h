@@ -1,4 +1,4 @@
-#if !defined(_DIFFERENCETIMELINE_H)
+#ifndef _DIFFERENCETIMELINE_H
 #define _DIFFERENCETIMELINE_H
 
 #include <QScopedPointer>

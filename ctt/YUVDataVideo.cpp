@@ -9,6 +9,10 @@ YUVDataVideo::YUVDataVideo(QDir videoFile, QDir metadataFile, QOpenGLContext con
 
 }
 
+YUVDataVideo::~YUVDataVideo() {
+
+}
+
 VideoMetadata YUVDataVideo::getMetadata() const {
 
 }

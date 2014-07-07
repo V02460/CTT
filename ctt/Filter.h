@@ -1,4 +1,4 @@
-#if !defined(_FILTER_H)
+#ifndef _FILTER_H
 #define _FILTER_H
 
 #include <QScopedPointer>
@@ -105,14 +105,12 @@ public:
      */
     QList<UIntegerInterval> getListOfActiveIntervals();
 
-    virtual ::model::project::Memento getMemento() const;
-    virtual void restore(::model::project::Memento memento);
-    static Saveable::sptr getDummy();
+    virtual unsigned int getFrameCount() const Q_DECL_OVERRIDE;
 
 private:
     Q_DISABLE_COPY(Filter)
 
-    QMap<QString, FilterParam> parameters; /**< Parameters modifying the filters behaviour */
+    QMap<QString, FilterParam> parameters; /**< Parameters modifying the filters behavior */
     ::model::FilterIntervalList intervals; /**< The Intervals in which the Filter is active */
     ::model::Module *previous; /**< The Filter gets the frames it modifies from this module */
 };

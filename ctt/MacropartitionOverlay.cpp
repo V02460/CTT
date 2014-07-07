@@ -14,10 +14,6 @@ MacropartionOverlay::~MacropartionOverlay() {
 
 }
 
-bool MacropartionOverlay::supportsIntervals() const {
-
-}
-
 QString MacropartionOverlay::getName() const {
 
 }

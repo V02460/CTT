@@ -1,4 +1,4 @@
-#if !defined(_MACROBLOCKPARTITION_H)
+#ifndef _MACROBLOCKPARTITION_H
 #define _MACROBLOCKPARTITION_H
 
 #include <QScopedPointer>

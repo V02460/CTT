@@ -1,4 +1,4 @@
-#if !defined(_ABSTRACTTIMELINE_H)
+#ifndef _ABSTRACTTIMELINE_H
 #define _ABSTRACTTIMELINE_H
 
 #include <QScopedPointer>

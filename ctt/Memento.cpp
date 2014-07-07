@@ -3,6 +3,8 @@
 namespace model {
 namespace saveable {
 
+using ::model::video::Video;
+
 void Memento::setBool(bool value, QString name) {
 
 }

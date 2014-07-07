@@ -1,4 +1,4 @@
-#if !defined(_HISTOGRAMTYPE_H)
+#ifndef _HISTOGRAMTYPE_H
 #define _HISTOGRAMTYPE_H
 
 namespace model {

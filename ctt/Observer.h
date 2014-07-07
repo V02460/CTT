@@ -1,4 +1,4 @@
-#if !defined(_OBSERVER_H)
+#ifndef _OBSERVER_H
 #define _OBSERVER_H
 
 #include <QScopedPointer>
@@ -12,11 +12,13 @@ namespace model {
  * Observable changes.
  *
  */
-class Observer : public QObject {
+class Observer {
 public:
     typedef QScopedPointer<Observer> uptr;
     typedef QSharedPointer<Observer> sptr;
     typedef QWeakPointer<Observer> wptr;
+
+    virtual ~Observer();
 
 public slots:
     /**

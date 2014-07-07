@@ -1,4 +1,4 @@
-#if !defined(_NOISEFILTER_H)
+#ifndef _NOISEFILTER_H
 #define _NOISEFILTER_H
 
 #include <QScopedPointer>
@@ -29,11 +29,11 @@ public:
     explicit NoiseFilter(Module::sptr predecessor);
   
     /**
-     * NoiseFilter destructor.
+     * Destroys the NoiseFilter.
      */
     virtual ~NoiseFilter();
 
-    virtual bool supportsIntervals() const;
+    virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
     virtual QString getName() const;
     virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const;
 };

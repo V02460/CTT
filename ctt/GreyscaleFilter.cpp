@@ -13,10 +13,6 @@ GreyscaleFilter::~GreyscaleFilter() {
 
 }
 
-bool GreyscaleFilter::supportsIntervals() const {
-
-}
-
 QString GreyscaleFilter::getName() const {
 
 }

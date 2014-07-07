@@ -1,4 +1,4 @@
-#if !defined(_SAVEFILETYPE_H)
+#ifndef _SAVEFILETYPE_H
 #define _SAVEFILETYPE_H
 
 namespace controller {

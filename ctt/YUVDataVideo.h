@@ -1,4 +1,4 @@
-#if !defined(_YUVDATAVIDEO_H)
+#ifndef _YUVDATAVIDEO_H
 #define _YUVDATAVIDEO_H
 
 #include <QScopedPointer>
@@ -36,6 +36,11 @@ public:
     *     or metadata files
     */
     YUVDataVideo(QDir videoFile, QDir metadataFile, QOpenGLContext context);
+
+    /**
+     * Destructor of YUVDataVideo.
+     */
+    ~YUVDataVideo();
 
     virtual VideoMetadata getMetadata() const;
 

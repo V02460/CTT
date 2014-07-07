@@ -1,4 +1,4 @@
-#if !defined(_MOTIONVECTOROVERLAY_H)
+#ifndef _MOTIONVECTOROVERLAY_H
 #define _MOTIONVECTOROVERLAY_H
 
 #include <QScopedPointer>
@@ -34,7 +34,7 @@ public:
      */
     virtual ~MotionVectorOverlay();
 
-    virtual bool supportsIntervals() const;
+    virtual bool supportsIntervals() const Q_DECL_OVERRIDE{ return true; }
     virtual QString getName() const;
     virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const;
 };

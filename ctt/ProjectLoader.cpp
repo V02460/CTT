@@ -3,7 +3,7 @@
 namespace controller {
 namespace project {
 
-using ::controller::Project;
+using ::controller::project::Project;
 
 void ProjectLoader::restore(QDir path, Project project) {
 

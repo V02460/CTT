@@ -1,4 +1,4 @@
-#if !defined(_VIEWSTATE_H)
+#ifndef _VIEWSTATE_H
 #define _VIEWSTATE_H
 
 #include <QScopedPointer>
@@ -16,16 +16,16 @@ namespace view {
  * The view state class determines the state the GUI is currently in and notifies all relevant components when the
  * state changes.
  */
-class ViewState : public model::Observable, public model::project::Saveable {
+class ViewState : public QObject, public model::Observable, public ::model::saveable::Saveable {
     Q_OBJECT
 public:
     typedef QScopedPointer<ViewState> uptr;
     typedef QSharedPointer<ViewState> sptr;
     typedef QWeakPointer<ViewState> wptr;
 
-    virtual ::model::project::Memento getMemento() const;
-    virtual void restore(::model::project::Memento memento);
-    static ::model::project::Saveable::sptr getDummy();
+    virtual ::model::saveable::Memento getMemento() const;
+    virtual void restore(::model::saveable::Memento memento);
+    static ::model::saveable::Saveable::sptr getDummy();
 
 public slots:
     /**

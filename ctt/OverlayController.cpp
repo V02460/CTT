@@ -8,6 +8,10 @@ OverlayController::OverlayController(Video::sptr video) {
 
 }
 
+OverlayController::~OverlayController() {
+
+}
+
 void OverlayController::insertOverlay(QString id) {
 
 }

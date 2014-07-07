@@ -1,4 +1,4 @@
-#if !defined(_ABSTRACTLISTVIEW_H)
+#ifndef _ABSTRACTLISTVIEW_H
 #define _ABSTRACTLISTVIEW_H
 
 #include <QScopedPointer>

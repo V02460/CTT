@@ -1,4 +1,4 @@
-#if !defined(_HEATMAPOVERLAY_H)
+#ifndef _HEATMAPOVERLAY_H
 #define _HEATMAPOVERLAY_H
 
 #include <QScopedPointer>
@@ -37,7 +37,7 @@ public:
      */
     virtual ~HeatmapOverlay();
 
-    virtual bool supportsIntervals() const;
+    virtual bool supportsIntervals() const Q_DECL_OVERRIDE{ return true; }
     virtual QString getName() const;
     virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const;
 private:

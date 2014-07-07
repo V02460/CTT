@@ -1,4 +1,4 @@
-#if !defined(_VIDEOWIDGET_H)
+#ifndef _VIDEOWIDGET_H
 #define _VIDEOWIDGET_H
 
 #include <QScopedPointer>
@@ -23,14 +23,14 @@ public:
     typedef QWeakPointer<VideoWidget> wptr;
 
     /**
-     * Creates a VideoWidget and registeres itself at the corresponding VideoScrubber.
+     * Creates a VideoWidget and registers itself at the corresponding VideoScrubber.
      *
      * @param scrubber The VideoScrubber to register at and which provided the video frames.
      */
     VideoWidget(::model::player::VideoScrubber::sptr scrubber);
 
     /**
-     * Returns the VideoScrubber at which the VideoWidget is registered and where the VideoWidget recieves its frames
+     * Returns the VideoScrubber at which the VideoWidget is registered and where the VideoWidget receives its frames
      * from.
      *
      * @return The VideoScrubber which holds the current frame.

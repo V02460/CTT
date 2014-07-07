@@ -1,4 +1,4 @@
-#if !defined(_ANALYSINGWIDGET_H)
+#ifndef _ANALYSINGWIDGET_H
 #define _ANALYSINGWIDGET_H
 
 #include <QScopedPointer>

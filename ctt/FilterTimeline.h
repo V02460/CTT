@@ -1,4 +1,4 @@
-#if !defined(_FILTERTIMELINE_H)
+#ifndef _FILTERTIMELINE_H
 #define _FILTERTIMELINE_H
 
 #include <QScopedPointer>

@@ -2,7 +2,7 @@
 
 namespace controller {
 
-using ::model::SaveableList;
+using ::model::saveable::SaveableList;
 using ::model::video::Video;
 
 VideoListController::VideoListController(SaveableList<Video>::sptr videoList) {

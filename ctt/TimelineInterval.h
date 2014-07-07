@@ -1,4 +1,4 @@
-#if !defined(_TIMELINEINTERVAL_H)
+#ifndef _TIMELINEINTERVAL_H
 #define _TIMELINEINTERVAL_H
 
 #include <QScopedPointer>
@@ -26,7 +26,7 @@ public:
      */
     TimelineInterval(::model::UIntegerInterval filterInterval);
 private:
-    ::model::UIntegerInterval filterInterval; /**< The corresponding filter interval from the model */
+    ::model::UIntegerInterval::sptr filterInterval; /**< The corresponding filter interval from the model */
 };
 
 }  // namespace view

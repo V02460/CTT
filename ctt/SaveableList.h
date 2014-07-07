@@ -1,4 +1,4 @@
-#if !defined(_SAVEABLELIST_H)
+#ifndef _SAVEABLELIST_H
 #define _SAVEABLELIST_H
 
 #include <QScopedPointer>
@@ -15,7 +15,7 @@ namespace saveable {
  * Subscribable list for storing objects and communicating with signals and slots.
  */
 template <class T>
-class SaveableList : public project::Saveable, public Observable {
+class SaveableList : public Saveable, public Observable {
 public:
     typedef QScopedPointer<SaveableList> uptr;
     typedef QSharedPointer<SaveableList> sptr;
@@ -45,9 +45,9 @@ public:
      */
     const T &get(unsigned int index) const;
 
-    virtual project::Memento getMemento() const;
-    virtual void restore(project::Memento memento);
-    static project::Saveable::sptr getDummy();
+    virtual Memento getMemento() const Q_DECL_OVERRIDE;
+    virtual void restore(Memento memento) Q_DECL_OVERRIDE;
+    static Saveable::sptr getDummy();
 
 private: 
     T *firstElement;

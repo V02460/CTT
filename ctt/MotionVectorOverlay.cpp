@@ -15,10 +15,6 @@ MotionVectorOverlay::~MotionVectorOverlay () {
 
 }
 
-bool MotionVectorOverlay::supportsIntervals() const {
-
-}
-
 QString MotionVectorOverlay::getName() const {
 
 }
@@ -29,4 +25,4 @@ Frame MotionVectorOverlay::getFrame(unsigned int frameNumber) const {
 
 }  // namespace overlay
 }  // namespace filter
-}  // namcespace model
+}  // namespace model

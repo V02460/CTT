@@ -1,4 +1,4 @@
-#if !defined(_VIEWTYPE_H)
+#ifndef _VIEWTYPE_H
 #define _VIEWTYPE_H
 
 namespace view {

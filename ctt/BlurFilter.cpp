@@ -1,6 +1,4 @@
 #include "BlurFilter.h"
-#include "Frame.h"
-#include "Memento.h"
 
 namespace model {
 namespace filter {

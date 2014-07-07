@@ -1,4 +1,4 @@
-#if !defined(_FRAMEMETADATAWIDGET_H)
+#ifndef _FRAMEMETADATAWIDGET_H
 #define _FRAMEMETADATAWIDGET_H
 
 #include <QScopedPointer>
@@ -13,9 +13,9 @@ namespace view {
 
 /**
  * The FrameMetadataWidget displays the metadata information provided by a frame.
- * Therefore it registers itself at a VideoScrubber to recieve the metadata for the current frame.
+ * Therefore it registers itself at a VideoScrubber to receive the metadata for the current frame.
  */
-class FrameMetadataWidget : public ::model::Observer , public QWidget{
+class FrameMetadataWidget : public QWidget, public::model::Observer{
     Q_OBJECT
 public:
     typedef QScopedPointer<FrameMetadataWidget> uptr;
@@ -26,12 +26,12 @@ public:
      * Creates a new FrameMetadataWidget which holds a VideoScrubber from where it gets the metadata for the current
      * frame.
      *
-     * @param scrubber The VideoScrubber to regiser at and which provides the metadata.
+     * @param scrubber The VideoScrubber to register at and which provides the metadata.
      */
     FrameMetadataWidget(::model::player::VideoScrubber::sptr scrubber);
 
 private:
-    ::model::player::VideoScrubber::sptr scrubber /**< The scrubber at which the FrameMetadataWidget is registered */;
+    ::model::player::VideoScrubber::sptr scrubber; /**< The scrubber at which the FrameMetadataWidget is registered */
 };
 
 }  // namespace view

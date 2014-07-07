@@ -1,4 +1,4 @@
-#if !defined(_FILTERLISTVIEW_H)
+#ifndef _FILTERLISTVIEW_H
 #define _FILTERLISTVIEW_H
 
 #include <QScopedPointer>

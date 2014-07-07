@@ -1,4 +1,4 @@
-#if !defined(_REDHISTOGRAM_H)
+#ifndef _REDHISTOGRAM_H
 #define _REDHISTOGRAM_H
 
 #include <QScopedPointer>

@@ -2,10 +2,16 @@
 
 namespace view {
 
-HistogramWidget::HistogramWidget(::model::player::VideoScrubber::sptr scrubber);
+HistogramWidget::HistogramWidget(::model::player::VideoScrubber::sptr scrubber) {
 
-void HistogramWidget::next();
+}
 
-void HistogramWidget::paint();
+void HistogramWidget::next() {
+
+}
+
+void HistogramWidget::paint() {
+
+}
 
 }  // namespace view

@@ -1,4 +1,4 @@
-#if !defined(_VIDEOLISTOPERATION_H)
+#ifndef _VIDEOLISTOPERATION_H
 #define _VIDEOLISTOPERATION_H
 
 #include <QScopedPointer>
@@ -7,13 +7,14 @@
 
 #include "Operation.h"
 #include "Video.h"
+#include "SaveableList.h"
 
 namespace controller {
 namespace operation {
 
 /**
  * The VideoListOperation is providing functionality for doing and undoing manipulations of the VideoList which is used
- * for generating test videos or analysing.
+ * for generating test videos or analyzing.
  */
 class VideoListOperation : public Operation {
 public:
@@ -22,18 +23,18 @@ public:
     typedef QWeakPointer<VideoListOperation> wptr;
 
     /**
-     * Manages requests to manipulate the VideoList which is used for generating test videos or analysing.
+     * Manages requests to manipulate the VideoList which is used for generating test videos or analyzing.
      */
     void doOperation();
 
     /**
-     * Manages requests to undo manipulations of the VideoList which is used for generating test videos or analysing.
+     * Manages requests to undo manipulations of the VideoList which is used for generating test videos or analyzing.
      */
     void undoOperation();
 protected:
     ::model::video::Video::uptr video;
     int index;
-    ::model::SaveableList<::model::video::Video> videoList;
+    ::model::saveable::SaveableList<::model::video::Video> videoList;
 };
 
 }  // namespace operation

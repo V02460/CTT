@@ -2,7 +2,7 @@
 
 namespace view {
 
-void ProcessingWidget::activatePlayer(PlayerWidget playerWidget) {
+void ProcessingWidget::activatePlayer(const PlayerWidget &playerWidget) {
 
 }
 

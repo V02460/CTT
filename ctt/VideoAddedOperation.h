@@ -1,4 +1,4 @@
-#if !defined(_VIDEOADDEDOPERATION_H)
+#ifndef _VIDEOADDEDOPERATION_H
 #define _VIDEOADDEDOPERATION_H
 
 #include <QScopedPointer>
@@ -28,7 +28,7 @@ public:
      * @param videoList The list to which a certain video should be added.
      */
     VideoAddedOperation(::model::video::Video::sptr video,
-                        ::model::SaveableList<::model::video::Video>::sptr videoList);
+                        ::model::saveable::SaveableList<::model::video::Video>::sptr videoList);
 
     /**
      * Manages requests to add a Video to a VideoList.

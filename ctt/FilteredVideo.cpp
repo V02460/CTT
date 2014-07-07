@@ -5,8 +5,8 @@ namespace filter {
 
 using ::model::video::VideoMetadata;
 using ::model::frame::Frame;
-using ::model::project::Memento;
-using ::model::project::Saveable;
+using ::model::saveable::Memento;
+using ::model::saveable::Saveable;
 
 FilteredVideo::FilteredVideo(Video::sptr baseVideo) {
 

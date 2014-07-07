@@ -1,4 +1,4 @@
-#if !defined(_XMLLOADER_H)
+#ifndef _XMLLOADER_H
 #define _XMLLOADER_H
 
 #include <QScopedPointer>
@@ -9,6 +9,7 @@
 
 namespace controller {
 namespace project {
+
 /**
  * Loads a project saved as XML file by the XMLSaver.
  */

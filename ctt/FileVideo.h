@@ -1,4 +1,4 @@
-#if !defined(_FILEVIDEO_H)
+#ifndef _FILEVIDEO_H
 #define _FILEVIDEO_H
 
 #include <QScopedPointer>

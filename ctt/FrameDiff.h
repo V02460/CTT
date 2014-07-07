@@ -1,4 +1,4 @@
-#if !defined(_FRAMEDIFF_H)
+#ifndef _FRAMEDIFF_H
 #define _FRAMEDIFF_H
 
 #include <QScopedPointer>
@@ -15,24 +15,11 @@ namespace difference {
  * A FrameDiff compares corresponding frames from two specific videos and calculates one-dimensional distances between them.
  *
  */
-class FrameDiff : public project::Saveable {
+class FrameDiff : public ::model::saveable::Saveable {
 public:
     typedef QScopedPointer<FrameDiff> uptr;
     typedef QSharedPointer<FrameDiff> sptr;
     typedef QWeakPointer<FrameDiff> wptr;
-
-    /**
-     * Constructs the FrameDiff by taking two videos used to calculate their frame difference.
-     *
-     * @param video1 First video used for comparisson
-     * @param video2 Second video comparisson
-     */
-    FrameDiff(::model::video::Video::sptr video1, ::model::video::Video::sptr video2);
-
-    /**
-     * FrameDiff Destructor
-     */
-    virtual ~FrameDiff();
 
     /**
      * Calculates and returns a one dimensional difference between the frames with the submitted number of the two
@@ -52,7 +39,21 @@ public:
      * @return unsigned int the number of frames the shorter Video has
      */
     unsigned int getFrameCount() const;
+
 protected:
+    /**
+    * Constructs the FrameDiff by taking two videos used to calculate their frame difference.
+    *
+    * @param video1 First video used for comparison
+    * @param video2 Second video comparison
+    */
+    FrameDiff(::model::video::Video::sptr video1, ::model::video::Video::sptr video2);
+
+    /**
+    * FrameDiff Destructor
+    */
+    virtual ~FrameDiff();
+
     ::model::video::Video::uptr video1; /**< The first of the two Videos which this FrameDiff compares. */
     ::model::video::Video::uptr video2; /**< The second of the two Videos which this FrameDiff compares. */
 

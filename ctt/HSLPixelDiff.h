@@ -1,4 +1,4 @@
-#if !defined(_HSLPIXELDIFF_H)
+#ifndef _HSLPIXELDIFF_H
 #define _HSLPIXELDIFF_H
 
 #include <QScopedPointer>
@@ -13,7 +13,7 @@ namespace model {
 namespace difference {
 
 /**
- * Calculates the distances in the HSL-colorspace between frames for every pair of corresponding pixels, and is able to
+ * Calculates the distances in the HSL color space between frames for every pair of corresponding pixels, and is able to
  * normalize the resulting matrix if required.
  */
 class HSLPixelDiff : public PixelDiff {
@@ -30,6 +30,10 @@ public:
      * @throws InvalidArgumentException if the submitted videos don't create their frames in the same OpenGLContext
      */
     HSLPixelDiff(::model::video::Video::sptr video1, ::model::video::Video::sptr video2);
+
+    /**
+     * Destroys the HSLPixelDiff.
+     */
     ~HSLPixelDiff();
 
     virtual Surface getPixelDiff(unsigned int frameNr) const;

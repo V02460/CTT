@@ -3,7 +3,7 @@
 namespace controller {
 namespace project {
 
-using ::model::SaveableList;
+using ::model::saveable::SaveableList;
 using ::model::video::FileVideo;
 using ::model::video::Video;
 using ::model::filter::FilteredVideo;
@@ -11,7 +11,7 @@ using ::model::player::Player;
 using ::model::difference::FrameDiff;
 using ::view::ViewState;
 
-Project::Project() {
+Project::Project() : player2(24.0) {
 }
 
 SaveableList<FileVideo> Project::getBaseVideoList() const {

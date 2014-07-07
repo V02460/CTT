@@ -1,4 +1,4 @@
-#if !defined(_EXTENDEDTIMELINE_H)
+#ifndef _EXTENDEDTIMELINE_H
 #define _EXTENDEDTIMELINE_H
 
 #include <QScopedPointer>
@@ -18,7 +18,7 @@ namespace view {
 /**
  * The ExtendedTimeline manages the shown timeline and the navigation of the videos in a given player.
  */
-class ExtendedTimeline : public ::model::Observer, public ::model::Observable, public QWidget {
+class ExtendedTimeline : public QWidget, public::model::Observer, public ::model::Observable {
     Q_OBJECT
 public:
     typedef QScopedPointer<ExtendedTimeline> uptr;
@@ -27,7 +27,7 @@ public:
 
 public slots:
     /**
-     * Adjusts the timeline to the frame the progress silder is pointing at and signals the change of the current frame
+     * Adjusts the timeline to the frame the progress slider is pointing at and signals the change of the current frame
      * to connected slots.
      */
     void sldStateChanged();
@@ -53,7 +53,7 @@ public slots:
     void changeViewState();
 
 private:
-    QSlider sliderProgress; /**< This is the slider to naviagte the video */
+    QSlider sliderProgress; /**< This is the slider to navigate the video */
     ViewState viewState; /**< This is the current state of the whole GUI */
     
     /**

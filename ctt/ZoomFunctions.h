@@ -1,4 +1,4 @@
-#if !defined(_ZOOMFUNCTIONS_H)
+#ifndef _ZOOMFUNCTIONS_H
 #define _ZOOMFUNCTIONS_H
 
 #include <QScopedPointer>

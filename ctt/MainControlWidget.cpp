@@ -6,7 +6,7 @@ void MainControlWidget::btnInsertClicked(bool active) {
 
 }
 
-void changeViewState() {
+void MainControlWidget::changeViewState() {
 
 }
 

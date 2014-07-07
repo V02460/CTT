@@ -9,7 +9,7 @@ TimeshiftFilter::TimeshiftFilter(Module::sptr predecessor) : Filter(predecessor)
 
 }
 
-bool TimeshiftFilter::supportsIntervals() const {
+TimeshiftFilter::~TimeshiftFilter() {
 
 }
 

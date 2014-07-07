@@ -1,4 +1,4 @@
-#if !defined(_FRAME_H)
+#ifndef _FRAME_H
 #define _FRAME_H
 
 #include <QScopedPointer>

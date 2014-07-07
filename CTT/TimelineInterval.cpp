@@ -2,6 +2,8 @@
 
 namespace view {
 
-TimelineInterval::TimelineInterval(::model::UIntegerInterval filterInterval);
+TimelineInterval::TimelineInterval(::model::UIntegerInterval filterInterval) {
+
+}
 
 }  // namespace view

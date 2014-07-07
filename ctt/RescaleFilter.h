@@ -1,4 +1,4 @@
-#if !defined(_RESCALEFILTER_H)
+#ifndef _RESCALEFILTER_H
 #define _RESCALEFILTER_H
 
 #include <QScopedPointer>
@@ -29,11 +29,11 @@ public:
     explicit RescaleFilter(Module::sptr predecessor);
 
     /**
-     * RescaleFilter destructor.
+     * Destroys the RescaleFilter.
      */
     virtual ~RescaleFilter();
 
-    virtual bool supportsIntervals() const;
+    virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return false; }
     virtual QString getName() const;
     virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const;
 };

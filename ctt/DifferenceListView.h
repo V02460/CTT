@@ -1,4 +1,4 @@
-#if !defined(_DIFFERENCELISTVIEW_H)
+#ifndef _DIFFERENCELISTVIEW_H
 #define _DIFFERENCELISTVIEW_H
 
 #include <QScopedPointer>

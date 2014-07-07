@@ -9,6 +9,10 @@ HSLPixelDiff::HSLPixelDiff(Video::sptr video1, Video::sptr video2) : PixelDiff(v
     
 }
 
+HSLPixelDiff::~HSLPixelDiff() {
+
+}
+
 Surface HSLPixelDiff::getPixelDiff(unsigned int frameNr) const {
 
 }
@@ -18,4 +22,4 @@ double HSLPixelDiff::getDiff(unsigned int frameNr) const{
 }
 
 }  // namespace difference
-}  // namcespace model
+}  // namespace model

@@ -11,6 +11,10 @@ HeatmapOverlay::HeatmapOverlay(Module::sptr predecessor, PixelDiff::sptr differe
 
 }
 
+HeatmapOverlay::~HeatmapOverlay() {
+
+}
+
 QString HeatmapOverlay::getName() const {
 
 }
@@ -21,4 +25,4 @@ Frame HeatmapOverlay::getFrame(unsigned int frameNumber) const {
 
 }  // namespace overlay
 }  // namespace filter
-}  // namcespace model
+}  // namespace model

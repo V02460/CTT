@@ -1,4 +1,4 @@
-#if !defined(_GREYSCALEFILTER_H)
+#ifndef _GREYSCALEFILTER_H
 #define _GREYSCALEFILTER_H
 
 #include <QScopedPointer>
@@ -33,7 +33,7 @@ public:
      */
     virtual ~GreyscaleFilter();
 
-    virtual bool supportsIntervals() const;
+    virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
     virtual QString getName() const;
     virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const;
 };

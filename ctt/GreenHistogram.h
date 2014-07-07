@@ -1,4 +1,4 @@
-#if !defined(_GREENHISTOGRAM_H)
+#ifndef _GREENHISTOGRAM_H
 #define _GREENHISTOGRAM_H
 
 #include <QScopedPointer>

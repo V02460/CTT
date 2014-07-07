@@ -8,6 +8,7 @@ namespace filter {
 
 using ::model::frame::Frame;
 using ::model::Module;
+using ::model::saveable::Memento;
 
 Filter::Filter(Module::sptr predecessor) {
 
@@ -34,6 +35,10 @@ void Filter::activate(UIntegerInterval interval) {
 }
 
 void Filter::deactivate(UIntegerInterval interval) {
+
+}
+
+unsigned int Filter::getFrameCount() const {
 
 }
 

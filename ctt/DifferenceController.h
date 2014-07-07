@@ -1,9 +1,10 @@
-#if !defined(_DIFFERENCECONTROLLER_H)
+#ifndef _DIFFERENCECONTROLLER_H
 #define _DIFFERENCECONTROLLER_H
 
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QObject>
 
 #include "Observer.h"
 #include "SaveableList.h"
@@ -13,7 +14,7 @@ namespace controller {
 /**
  * The DifferenceController manages requests to manipulate the list of difference functions.
  */
-class DifferenceController : public ::model::Observer {
+class DifferenceController : public QObject, public ::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<DifferenceController> uptr;
@@ -38,7 +39,7 @@ public slots:
      */
     void diffRemoved(int pos);
 private:
-    ::model::SaveableList<::model::project::Saveable> diffList;
+    ::model::saveable::SaveableList<::model::saveable::Saveable> diffList;
 };
 
 }  // namespace controller

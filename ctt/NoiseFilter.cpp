@@ -9,7 +9,7 @@ NoiseFilter::NoiseFilter(Module::sptr predecessor) : Filter(predecessor) {
 
 }
 
-bool NoiseFilter::supportsIntervals() const {
+NoiseFilter::~NoiseFilter() {
 
 }
 

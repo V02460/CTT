@@ -1,4 +1,4 @@
-#if !defined(_PROJECTSAVER_H)
+#ifndef _PROJECTSAVER_H
 #define _PROJECTSAVER_H
 
 #include <QScopedPointer>

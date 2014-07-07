@@ -2,7 +2,7 @@
 
 namespace view {
 
-using ::model::SaveableList;
+using ::model::saveable::SaveableList;
 using ::model::video::Video;
 
 ThumbnailListWidget::ThumbnailListWidget(SaveableList<Video>::sptr filteredVideos, int selectableCount) {

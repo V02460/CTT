@@ -1,4 +1,4 @@
-#if !defined(_FILTERREMOVEDOPERATION_H)
+#ifndef _FILTERREMOVEDOPERATION_H
 #define _FILTERREMOVEDOPERATION_H
 
 #include <QScopedPointer>

@@ -54,9 +54,6 @@
     <Filter Include="Header Files\Model\Video">
       <UniqueIdentifier>{5671bac6-9ae7-4c3a-ab77-fa7b3deafedb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Model\Player">
-      <UniqueIdentifier>{10a7901b-c1a8-4e9a-994b-43c11d4f69ab}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Model\Difference">
       <UniqueIdentifier>{bcb2145a-a009-4132-aeae-de5d3bb1b16b}</UniqueIdentifier>
     </Filter>
@@ -110,6 +107,9 @@
     </Filter>
     <Filter Include="Header Files\Controller\Project">
       <UniqueIdentifier>{f6f13754-3d88-43d5-9ff2-bf5eb5e60448}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Player">
+      <UniqueIdentifier>{10a7901b-c1a8-4e9a-994b-43c11d4f69ab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -377,13 +377,7 @@
     <ClCompile Include="GeneratedFiles\Release\moc_VideoListController.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_Observable.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_OverlayController.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_Observable.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_ExtendedTimeline.cpp">
@@ -505,6 +499,33 @@
     </ClCompile>
     <ClCompile Include="SaveableList.cpp">
       <Filter>Source Files\Model\Saveable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MainControlWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ViewState.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ProcessingWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FrameMetadataWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_InsertionWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="MainController.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="FileVideo.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Surface.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

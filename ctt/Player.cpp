@@ -3,7 +3,14 @@
 namespace model {
 namespace player {
 
+using ::model::saveable::Memento;
+using ::model::saveable::Saveable;
+
 Player::Player(double fps) {
+
+}
+
+Player::~Player() {
 
 }
 
@@ -91,6 +98,18 @@ bool Player::isLooping() const {
 }
 
 void Player::stopLooping() {
+
+}
+
+Memento Player::getMemento() const {
+
+}
+
+void Player::restore(Memento memento) {
+
+}
+
+Saveable::sptr Player::getDummy() {
 
 }
 

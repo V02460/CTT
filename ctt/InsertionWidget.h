@@ -1,4 +1,4 @@
-#if !defined(_INSERTIONWIDGET_H)
+#ifndef _INSERTIONWIDGET_H
 #define _INSERTIONWIDGET_H
 
 #include <QScopedPointer>
@@ -17,7 +17,7 @@ namespace view {
  * Based on the current state of the view the insertion widget enables the user to choose the filter or difference to
  * add to the list views.
  */
-class InsertionWidget : public ::model::Observer, public QWidget {
+class InsertionWidget : public QWidget, public::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<InsertionWidget> uptr;

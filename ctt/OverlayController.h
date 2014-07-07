@@ -1,9 +1,10 @@
-#if !defined(_OVERLAYCONTROLLER_H)
+#ifndef _OVERLAYCONTROLLER_H
 #define _OVERLAYCONTROLLER_H
 
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QObject>
 
 #include "Observer.h"
 #include "SaveableList.h"
@@ -15,14 +16,13 @@ namespace controller {
 /**
  * The OverlayController manages requests to manipulate the list of overlays which can be used for analyzing.
  */
-class OverlayController : public ::model::Observer {
+class OverlayController : public QObject, public::model::Observer {
     Q_OBJECT
+
 public:
     typedef QScopedPointer<OverlayController> uptr;
     typedef QSharedPointer<OverlayController> sptr;
     typedef QWeakPointer<OverlayController> wptr;
-
-public slots:
 
     /**
      * Creates the FilterController with the Video it will observe filter changes over.
@@ -30,6 +30,11 @@ public slots:
      * @param video The observed video
      */
     OverlayController(::model::video::Video::sptr video);
+
+    /**
+     * Destroys the Overlay.
+     */
+    ~OverlayController();
 
     /**
      * Initiates the insertion of an overlay to the list of overlays which can be used for analyzing.
@@ -58,7 +63,7 @@ public slots:
 
 private:
     ::model::video::Video::sptr currentVideo;
-    ::model::SaveableList<::model::filter::overlay::Overlay> overlayList;
+    ::model::saveable::SaveableList<::model::filter::overlay::Overlay> overlayList;
 };
 
 }  // namespace controller

@@ -1,4 +1,4 @@
-#if !defined(_YUVPIXELDIFF_H)
+#ifndef _YUVPIXELDIFF_H
 #define _YUVPIXELDIFF_H
 
 #include <QScopedPointer>

@@ -1,9 +1,10 @@
-#if !defined(_VIDEOLISTCONTROLLER_H)
+#ifndef _VIDEOLISTCONTROLLER_H
 #define _VIDEOLISTCONTROLLER_H
 
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QObject>
 
 #include "Observer.h"
 #include "Video.h"
@@ -14,7 +15,7 @@ namespace controller {
 /**
  * The VideoListController manages requests to manipulate the VideoList.
  */
-class VideoListController : public ::model::Observer, public QObject {
+class VideoListController : public QObject, public::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<VideoListController> uptr;
@@ -26,13 +27,13 @@ public:
      *
      * @param videoList The list the controller will manage
      */
-    VideoListController(::model::SaveableList<::model::video::Video>::sptr videoList);
+    VideoListController(::model::saveable::SaveableList<::model::video::Video>::sptr videoList);
 
 public slots:
 
     /**
      * Initiates adding a video to the VideoList.
-     * Is called when a notifaction is received that a video should be added to the VideoList.
+     * Is called when a notification is received that a video should be added to the VideoList.
      *
      * @param path The path to the video which is to be added.
      */
@@ -40,7 +41,7 @@ public slots:
 
     /**
      * Initiates adding a video to the VideoList.
-     * Is called when a notifaction is received that a video should be added to the VideoList.
+     * Is called when a notification is received that a video should be added to the VideoList.
      *
      * @param video The video which is to be added.
      */
@@ -48,7 +49,7 @@ public slots:
 
     /**
     * Initiates removing a video from the VideoList.
-    * Is called when a notifaction is received that a video should be removed from the VideoList.
+    * Is called when a notification is received that a video should be removed from the VideoList.
     *
     * @param index The index of the video which is to be removed.
     **/
@@ -56,7 +57,7 @@ public slots:
     
     /**
     * Initiates removing a video from the VideoList.
-    * Is called when a notifaction is received that a video should be removed from the VideoList.
+    * Is called when a notification is received that a video should be removed from the VideoList.
     *
     * @param video The video which is to be removed.
     **/

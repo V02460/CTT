@@ -1,4 +1,4 @@
-#if !defined(_FILTERINTERVALLIST_H)
+#ifndef _FILTERINTERVALLIST_H
 #define _FILTERINTERVALLIST_H
 
 #include <QScopedPointer>
@@ -16,8 +16,7 @@ namespace model {
  * Manages a list of intervals in which a something is active.
  *
  */
-class FilterIntervalList : public project::Saveable
-{
+class FilterIntervalList : public ::model::saveable::Saveable {
 public:
     typedef QScopedPointer<FilterIntervalList> uptr;
     typedef QSharedPointer<FilterIntervalList> sptr;
@@ -62,8 +61,8 @@ public:
      */
     QList<UIntegerInterval> getIntervalList() const;
 
-    virtual ::model::project::Memento getMemento() const;
-    virtual void restore(::model::project::Memento memento);
+    virtual ::model::saveable::Memento getMemento() const;
+    virtual void restore(::model::saveable::Memento memento);
     static Saveable::sptr getDummy();
 
 private:

@@ -1,4 +1,4 @@
-#if !defined(_OPERATIONLIST_H)
+#ifndef _OPERATIONLIST_H
 #define _OPERATIONLIST_H
 
 #include <QScopedPointer>

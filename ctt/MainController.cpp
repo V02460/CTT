@@ -2,7 +2,8 @@
 
 namespace controller {
 
-using ::model::project::SaveFileType;
+using project::SaveFileType;
+using project::Project;
 
 Project &MainController::getProject() const {
 

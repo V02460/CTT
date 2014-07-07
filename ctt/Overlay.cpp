@@ -8,6 +8,10 @@ Overlay::Overlay(Module::sptr predecessor) :Filter(predecessor) {
 
 }
 
+Overlay::~Overlay() {
+
+}
+
 }  // namespace overlay
 }  // namespace filter
-}  // namcespace model
+}  // namespace model

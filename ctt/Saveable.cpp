@@ -4,7 +4,10 @@ namespace model {
 namespace saveable {
 
 bool Saveable::isDummy() const {
-	return isDummy;
+}
+
+Saveable::sptr getDummy() {
+
 }
 
 }  // namespace savable

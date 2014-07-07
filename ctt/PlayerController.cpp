@@ -24,7 +24,7 @@ void PlayerController::setToDefaultFPS() {
 
 }
 
-void PlayerController::setPlayer(Player player) {
+void PlayerController::setPlayer(Player::sptr player) {
 
 }
 

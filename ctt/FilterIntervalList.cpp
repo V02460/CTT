@@ -2,8 +2,8 @@
 
 namespace model {
 
-using ::model::project::Memento;
-using ::model::project::Saveable;
+using ::model::saveable::Memento;
+using ::model::saveable::Saveable;
 
 FilterIntervalList::FilterIntervalList() {
 }

@@ -1,4 +1,4 @@
-#if !defined(_MAINWINDOW_H)
+#ifndef _MAINWINDOW_H
 #define _MAINWINDOW_H
 
 #include <QScopedPointer>
@@ -16,9 +16,9 @@
 
 namespace view {
 /**
- * The MainWindow unites all interactable components which represent the whole functionallity provided by the model.
+ * The MainWindow unites all intractable components which represent the whole functionality provided by the model.
  */
-class MainWindow : public ::model::Observable , public ::model::Observer, public QMainWindow {
+class MainWindow : public QMainWindow, public::model::Observable, public ::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<MainWindow> uptr;
@@ -37,7 +37,7 @@ private:
     ViewState viewState; /**< The current state the whole GUI is in */
     QMenuBar menu; /**< The menu bar which holds all menu items */
     ProcessingWidget processingWidget; /**< The widget to represent the processing view */
-    AnalysingWidget analysingWidget; /**< The widget to represent the analysing view */
+    AnalysingWidget analysingWidget; /**< The widget to represent the analyzing view */
 };
 
 }  // namespace view

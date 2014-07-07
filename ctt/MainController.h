@@ -1,10 +1,11 @@
-#if !defined(_MAINCONTROLLER_H)
+#ifndef _MAINCONTROLLER_H
 #define _MAINCONTROLLER_H
 
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
 #include <QDir>
+#include <QObject>
 
 #include "Observer.h"
 #include "SaveFileType.h"
@@ -15,14 +16,14 @@ namespace controller {
 /**
  * The ProjectController manages requests to initialize, save or load a Project.
  */
-class MainController : public ::model::Observer {
+class MainController : public QObject, public ::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<MainController> uptr;
     typedef QSharedPointer<MainController> sptr;
     typedef QWeakPointer<MainController> wptr;
 
-    Project &getProject() const;
+    project::Project &getProject() const;
 public slots:
 
     /**
@@ -38,7 +39,7 @@ public slots:
      * @param path The path to where the Project should be saved.
      * @param fileType The type of file as which the Project should be saved.
      */
-    void saveAsClicked(QDir path, ::model::project::SaveFileType fileType);
+    void saveAsClicked(QDir path, project::SaveFileType fileType);
 
     /**
      * Initiates loading an existing Project from a specified location.
@@ -56,8 +57,8 @@ public slots:
 
 private:
     QDir currentSavePath;
-    ::model::project::SaveFileType currentSaveFileType;
-    Project::uptr project;
+    project::SaveFileType currentSaveFileType;
+    project::Project::uptr project;
 };
 
 }  // namespace controller

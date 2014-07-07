@@ -1,4 +1,4 @@
-#if !defined(_MACROBLOCKOVERLAY_H)
+#ifndef _MACROBLOCKOVERLAY_H
 #define _MACROBLOCKOVERLAY_H
 
 #include <QScopedPointer>
@@ -34,7 +34,7 @@ public:
      */
     virtual ~MacroblockOverlay();
 
-    virtual bool supportsIntervals() const;
+    virtual bool supportsIntervals() const Q_DECL_OVERRIDE{ return true; }
     virtual QString getName() const;
     virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const;
 };

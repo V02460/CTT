@@ -9,7 +9,7 @@ MixFilter::MixFilter(Module::sptr predecessor, Surface::sptr surface) : Filter(p
 
 }
 
-bool MixFilter::supportsIntervals() const {
+MixFilter::~MixFilter() {
 
 }
 

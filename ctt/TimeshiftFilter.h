@@ -1,4 +1,4 @@
-#if !defined(_TIMESHIFTFILTER_H)
+#ifndef _TIMESHIFTFILTER_H
 #define _TIMESHIFTFILTER_H
 
 #include <QScopedPointer>
@@ -29,13 +29,13 @@ public:
     explicit TimeshiftFilter(Module::sptr predecessor);
 
     /**
-     * TimeshiftFilter destructor.
+     * Destroys the TimeshiftFilter.
      */
     virtual ~TimeshiftFilter();
 
-    virtual bool supportsIntervals() const;
-    virtual QString getName() const;
-    virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const;
+    virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
+    virtual QString getName() const Q_DECL_OVERRIDE;
+    virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
 };
 
 }  // namespace filter

@@ -1,4 +1,4 @@
-#if !defined(_PROCESSINGWIDGET_H)
+#ifndef _PROCESSINGWIDGET_H
 #define _PROCESSINGWIDGET_H
 
 #include <QScopedPointer>
@@ -21,21 +21,26 @@ namespace view {
  * The ProcessingWidget basically unites the abilities to  display the video, to control the player and to set the
  * active video pair.
  */
-class ProcessingWidget : public ::model::Observer , public QWidget {
+class ProcessingWidget : public QWidget, public ::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<ProcessingWidget> uptr;
     typedef QSharedPointer<ProcessingWidget> sptr;
     typedef QWeakPointer<ProcessingWidget> wptr;
 
+    /**
+     * Creates a ProcessingWidget.
+     */
+    ProcessingWidget();
+
 public slots:
     /**
     * This method is called when one of the PlayerWidgets managed by this class is set as active.
-    * It emitts the activeVideoChanged signal to all slots connected to this signal.
+    * It emits the activeVideoChanged signal to all slots connected to this signal.
     *
     * @param playerWidget The playerWidget which was set as active.
     */
-    void activatePlayer(PlayerWidget playerWidget);
+    void activatePlayer(const PlayerWidget &playerWidget);
 
 signals:
     /**
@@ -51,8 +56,8 @@ signals:
      */
     void btnChangeViewClicked(ViewType newView);
 private:
-    ::model::SaveableList<::model::player::Player> players; /**< The list of players which can be activated */
-    QPushButton btnReady; /**< The button to switch from the processing view to the analysing view */
+    ::model::saveable::SaveableList<::model::player::Player> players; /**< The list of players which can be activated */
+    QPushButton btnReady; /**< The button to switch from the processing view to the analyzing view */
     ThumbnailListWidget thumnailWidget; /**< the list of videos in the current part of the program */
     MainControlWidget mainControlWidget; /**< The MainControlWidget which provides the player functionality */
     QList<PlayerWidget> playerWidgets; /**< The different PlayerWidgets which can be set as active */

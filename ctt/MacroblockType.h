@@ -1,4 +1,4 @@
-#if !defined(_MACROBLOCKTYPE_H)
+#ifndef _MACROBLOCKTYPE_H
 #define _MACROBLOCKTYPE_H
 
 #include <QScopedPointer>

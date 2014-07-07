@@ -1,4 +1,4 @@
-#if !defined(_OVERLAY_H)
+#ifndef _OVERLAY_H
 #define _OVERLAY_H
 
 #include <QScopedPointer>
@@ -23,14 +23,19 @@ public:
     typedef QSharedPointer<Overlay> sptr;
     typedef QWeakPointer<Overlay> wptr;
 
+protected:
+    /**
+    * Constructs a Overlay which works on predecessor.
+    *
+    * @param predecessor The Module Overlay is receiving its Frames from.
+    */
     explicit Overlay(Module::sptr predecessor);
 
     /**
-     * Overlay destructor.
-     */
+    * Overlay destructor.
+    */
     virtual ~Overlay();
 
-protected:
     ::model::filter::Filter &getMixFilter() const;
 private:
     ::model::filter::MixFilter::uptr mixFilter;

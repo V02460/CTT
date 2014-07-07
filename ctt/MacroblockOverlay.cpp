@@ -14,10 +14,6 @@ MacroblockOverlay::~MacroblockOverlay() {
 
 }
 
-bool MacroblockOverlay::supportsIntervals() const {
-
-}
-
 QString MacroblockOverlay::getName() const {
 
 }

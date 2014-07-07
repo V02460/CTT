@@ -24,4 +24,4 @@ Frame ColoringOverlay::getFrame(unsigned int frameNumber) const {
 
 }  // namespace overlay
 }  // namespace filter
-}  // namcespace model
+}  // namespace model

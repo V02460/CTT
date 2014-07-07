@@ -1,4 +1,4 @@
-#if !defined(_UINTEGERINTERVAL_H)
+#ifndef _UINTEGERINTERVAL_H
 #define _UINTEGERINTERVAL_H
 
 #include <QScopedPointer>
@@ -13,7 +13,7 @@ namespace model {
  * Represents an interval of integers, defined by a start and end point.
  *
  */
-class UIntegerInterval: public ::model::project::Saveable {
+class UIntegerInterval: public ::model::saveable::Saveable {
 public:
     typedef QScopedPointer<UIntegerInterval> uptr;
     typedef QSharedPointer<UIntegerInterval> sptr;
@@ -84,8 +84,8 @@ public:
      */
     void mergeWith(UIntegerInterval interval) const;
 
-    virtual ::model::project::Memento getMemento() const;
-    virtual void restore(::model::project::Memento memento);
+    virtual ::model::saveable::Memento getMemento() const;
+    virtual void restore(::model::saveable::Memento memento);
     static Saveable::sptr getDummy();
 
 private:

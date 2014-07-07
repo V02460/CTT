@@ -1,4 +1,4 @@
-#if !defined(_DIFFERENCEFACTORY_H)
+#ifndef _DIFFERENCEFACTORY_H
 #define _DIFFERENCEFACTORY_H
 
 #include <QScopedPointer>

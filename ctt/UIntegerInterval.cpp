@@ -2,8 +2,8 @@
 
 namespace model {
 
-using ::model::project::Memento;
-using ::model::project::Saveable;
+using ::model::saveable::Memento;
+using ::model::saveable::Saveable;
 
 UIntegerInterval::UIntegerInterval(unsigned int a, unsigned int b) {
 
@@ -41,7 +41,7 @@ Memento UIntegerInterval::getMemento() const {
 
 }
 
-void UIntegerInterval::restore(::model::project::Memento memento) {
+void UIntegerInterval::restore(::model::saveable::Memento memento) {
 
 }
 

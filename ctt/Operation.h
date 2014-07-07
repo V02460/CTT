@@ -1,4 +1,4 @@
-#if !defined(_OPERATION_H)
+#ifndef _OPERATION_H
 #define _OPERATION_H
 
 #include <QScopedPointer>

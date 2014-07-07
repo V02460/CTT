@@ -1,9 +1,10 @@
-#if !defined(_MAINCONTROLWIDGET_H)
+#ifndef _MAINCONTROLWIDGET_H
 #define _MAINCONTROLWIDGET_H
 
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QWidget>
 
 #include "Observer.h"
 #include "ExtendedTimeline.h"
@@ -17,7 +18,7 @@ namespace view {
 /**
  * The MainControlWidget holds all components used for video playback, filter/ difference insertion and changing.
  */
-class MainControlWidget : public ::model::Observer, public QWidget {
+class MainControlWidget : public QWidget, public ::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<MainControlWidget> uptr;

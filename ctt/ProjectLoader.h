@@ -1,4 +1,4 @@
-#if !defined(_PROJECTLOADER_H)
+#ifndef _PROJECTLOADER_H
 #define _PROJECTLOADER_H
 
 #include <QScopedPointer>
@@ -33,7 +33,7 @@ public:
      * @throws IOException Is thrown if there is any problem accessing or reading the given file.
      * @throws ParseException Is thrown if the content of the file can not be used to restore a project by the loader.
      */
-    static void restore(QDir path, ::controller::Project project);
+    static void restore(QDir path, ::controller::project::Project project);
 };
 
 }  // namespace project

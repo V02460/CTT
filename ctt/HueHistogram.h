@@ -1,4 +1,4 @@
-#if !defined(_HUEHISTOGRAM_H)
+#ifndef _HUEHISTOGRAM_H
 #define _HUEHISTOGRAM_H
 
 #include <QScopedPointer>
