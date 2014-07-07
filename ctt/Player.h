@@ -21,7 +21,7 @@ namespace player {
  * The player will adapt to the shortest video and ignore all parts of the other videos exceeding this length.
  *
  */
-class Player : public QObject, public::model::saveable::Saveable {
+class Player : public QObject, public ::model::saveable::Saveable {
     Q_OBJECT
 
 public:
