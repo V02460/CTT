@@ -111,6 +111,12 @@
     <Filter Include="Header Files\Model\Player">
       <UniqueIdentifier>{10a7901b-c1a8-4e9a-994b-43c11d4f69ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Exception">
+      <UniqueIdentifier>{29754dee-53d1-4b53-acd4-a18834a29c00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exception">
+      <UniqueIdentifier>{acb2cf15-9550-4ceb-88d1-c768ec97c24c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -527,6 +533,12 @@
     <ClCompile Include="Surface.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="IllegalArgumentException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="IllegalStateException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -833,6 +845,15 @@
     </ClInclude>
     <ClInclude Include="SaveFileType.h">
       <Filter>Header Files\Controller\Project</Filter>
+    </ClInclude>
+    <ClInclude Include="IllegalStateException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="IllegalArgumentException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="RuntimeException.h">
+      <Filter>Header Files\Exception</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
