@@ -1,0 +1,14 @@
+#include "QObject"
+#include <QtTest/QtTest>
+
+
+class VideoMetadataTest :
+	public QObject	
+{
+	Q_OBJECT
+
+	private slots:
+	void initTestCase();
+	void noAdditionalMetadata();
+};
+
