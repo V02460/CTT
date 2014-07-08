@@ -1,4 +1,5 @@
 #include "VideoMetadata.h"
+#include "IllegalArgumentException.h"
 
 namespace model {
 namespace video {
@@ -24,8 +25,8 @@ QString VideoMetadata::getData(QString key) {
 	} 
 	else
 	{
-		QString error = "Data with the label \"" + key + "\" is requested but isn't available!";
-		//throw Exception
+		throw new exception::IllegalArgumentException("Data with the label \"" + key 
+			+ "\" is requested but isn't available!");
 	}
 }
 
