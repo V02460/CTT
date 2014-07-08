@@ -3,47 +3,15 @@
 namespace model {
 namespace saveable {
 
-void Memento::setBool(bool value, QString name) {
+void Memento::setVariable(QString name, QVariant value) {
 
 }
 
-bool Memento::getBool(QString name) const {
+QVariant Memento::getVariable(QString name) const {
 
 }
 
-void Memento::setInt(int value, QString name) {
-
-}
-
-int Memento::getInt(QString name) const {
-
-}
-
-void Memento::setFloat(float value, QString name) {
-
-}
-
-float Memento::getFloat(QString name) const {
-
-}
-
-void Memento::setDouble(double value, QString name) {
-
-}
-
-double Memento::getDouble(QString name) const {
-
-}
-
-void Memento::setString(QString value, QString name) {
-
-}
-
-QString Memento::getString(QString name) const {
-
-}
-
-void Memento::setPointer(void* pointer, QString name) {
+void Memento::setPointer(QString name, void* pointer) {
 
 }
 
@@ -51,7 +19,7 @@ void* Memento::getPointer(QString name) const {
 
 }
 
-QMap<QString, QString> Memento::getVariableMap() const {
+QMap<QString, QVariant> Memento::getVariableMap() const {
 
 }
 
