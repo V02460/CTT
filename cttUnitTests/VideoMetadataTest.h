@@ -9,5 +9,8 @@ class VideoMetadataTest :
 
 private slots:
 	void noAdditionalMetadata();
+	void noAdditionalMetadataInvalid();
+	void withAdditionalMetadata();
+	void withAdditionalMetadataInvalid();
 };
 
