@@ -33,33 +33,6 @@
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
-    <Filter Include="Header Files\View">
-      <UniqueIdentifier>{9d091f04-c11a-413e-a9b3-f061178e1355}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Controller">
-      <UniqueIdentifier>{85e5bc5b-b215-42be-bd2e-7cf1f047ee0a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model">
-      <UniqueIdentifier>{4dedc1ce-bc59-4b6d-8c0d-8fd7f8640c77}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Filter">
-      <UniqueIdentifier>{89b90527-2e07-4a3d-86e1-84bc0a051451}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Filter\Overlay">
-      <UniqueIdentifier>{71353827-90d5-4f70-96c6-ae7e64a24645}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Frame">
-      <UniqueIdentifier>{85cc062b-59d4-4b6d-b5dc-0e456cfc5205}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Video">
-      <UniqueIdentifier>{5671bac6-9ae7-4c3a-ab77-fa7b3deafedb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Difference">
-      <UniqueIdentifier>{bcb2145a-a009-4132-aeae-de5d3bb1b16b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Controller\Operation">
-      <UniqueIdentifier>{f4928c0f-9a00-407d-9a76-8b94312709a9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Model">
       <UniqueIdentifier>{ae8f0018-8ca0-4399-8c40-16ddbdee6155}</UniqueIdentifier>
     </Filter>
@@ -90,14 +63,8 @@
     <Filter Include="Source Files\Model\Player">
       <UniqueIdentifier>{f5fcc434-536b-4117-8c8e-a508ed2b92dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Model\Frame\Histogram">
-      <UniqueIdentifier>{1ff31363-c06c-436e-b47b-7d65993e62e9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Model\Frame\Histogram">
       <UniqueIdentifier>{ff89e419-03b7-4f06-999d-703d0af24722}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Saveable">
-      <UniqueIdentifier>{25594692-751f-4db9-99fc-f8df7825e7ef}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Model\Saveable">
       <UniqueIdentifier>{d4135c21-55dd-48f2-a53c-6bdf8e161c92}</UniqueIdentifier>
@@ -105,8 +72,47 @@
     <Filter Include="Source Files\Controller\Project">
       <UniqueIdentifier>{e8764084-685c-4104-a07a-b24e7b1332bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Exception">
+      <UniqueIdentifier>{acb2cf15-9550-4ceb-88d1-c768ec97c24c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View">
+      <UniqueIdentifier>{9d091f04-c11a-413e-a9b3-f061178e1355}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controller">
+      <UniqueIdentifier>{85e5bc5b-b215-42be-bd2e-7cf1f047ee0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controller\Operation">
+      <UniqueIdentifier>{f4928c0f-9a00-407d-9a76-8b94312709a9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\Controller\Project">
       <UniqueIdentifier>{f6f13754-3d88-43d5-9ff2-bf5eb5e60448}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Exception">
+      <UniqueIdentifier>{29754dee-53d1-4b53-acd4-a18834a29c00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model">
+      <UniqueIdentifier>{4dedc1ce-bc59-4b6d-8c0d-8fd7f8640c77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Filter">
+      <UniqueIdentifier>{89b90527-2e07-4a3d-86e1-84bc0a051451}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Filter\Overlay">
+      <UniqueIdentifier>{71353827-90d5-4f70-96c6-ae7e64a24645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Frame">
+      <UniqueIdentifier>{85cc062b-59d4-4b6d-b5dc-0e456cfc5205}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Frame\Histogram">
+      <UniqueIdentifier>{1ff31363-c06c-436e-b47b-7d65993e62e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Video">
+      <UniqueIdentifier>{5671bac6-9ae7-4c3a-ab77-fa7b3deafedb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Difference">
+      <UniqueIdentifier>{bcb2145a-a009-4132-aeae-de5d3bb1b16b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Saveable">
+      <UniqueIdentifier>{25594692-751f-4db9-99fc-f8df7825e7ef}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Model\Player">
       <UniqueIdentifier>{10a7901b-c1a8-4e9a-994b-43c11d4f69ab}</UniqueIdentifier>
@@ -524,6 +530,12 @@
     <ClCompile Include="Surface.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="IllegalArgumentException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="IllegalStateException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -830,6 +842,15 @@
     </ClInclude>
     <ClInclude Include="SaveFileType.h">
       <Filter>Header Files\Controller\Project</Filter>
+    </ClInclude>
+    <ClInclude Include="IllegalStateException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="IllegalArgumentException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="RuntimeException.h">
+      <Filter>Header Files\Exception</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
