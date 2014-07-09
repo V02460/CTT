@@ -3,21 +3,23 @@
 namespace model {
 namespace saveable {
 
+using ::exception::IllegalArgumentException;
+
 void Memento::setBool(QString name, bool value) {
-	variableMap.insert(name, value ? "true" : "false"); // TODO defines?!
+	variableMap.insert(name, value ? TRUE : FALSE);
 }
 
 bool Memento::getBool(QString name) const {
 	if (variableMap.contains(name)) {
-		if (variableMap.value(name).compare("true")) {
+		if (variableMap.value(name).compare(TRUE)) {
 			return true;
-		} else if (variableMap.value(name).compare("false")) {
+		} else if (variableMap.value(name).compare(FALSE)) {
 			return false;
 		} else {
-			// TODO Exception "The variable with name [name] in this memento is not a boolean."
+			throw IllegalArgumentException("The variable with name " + name + " in this memento is not a boolean.");
 		}
 	} else {
-		// TODO Exception "There is no variable with name [name] in this memento."
+		throw IllegalArgumentException("There is no variable with name " + name + " in this memento.");
 	}
 }
 
@@ -28,9 +30,9 @@ void Memento::setInt(QString name, int value) {
 int Memento::getInt(QString name) const {
 	if (variableMap.contains(name)) {
 		return variableMap.value(name).toInt();
-		// TODO catch + Exception "The variable with name [name] in this memento is not an integer."
+		throw IllegalArgumentException("The variable with name " + name + " in this memento is not an integer.");
 	} else {
-		// TODO Exception "There is no variable with name [name] in this memento."
+		throw IllegalArgumentException("There is no variable with name " + name + " in this memento.");
 	}
 }
 
@@ -49,9 +51,9 @@ void Memento::setDouble(QString name, double value) {
 double Memento::getDouble(QString name) const {
 	if (variableMap.contains(name)) {
 		return variableMap.value(name).toDouble();
-		// TODO catch + Exception "The variable with name [name] in this memento is not a double."
+		throw IllegalArgumentException("The variable with name " + name + " in this memento is not a double.");
 	} else {
-		// TODO Exception "There is no variable with name [name] in this memento."
+		throw IllegalArgumentException("There is no variable with name " + name + " in this memento.");
 	}
 }
 
@@ -63,7 +65,7 @@ QString Memento::getString(QString name) const {
 	if (variableMap.contains(name)) {
 		return variableMap.value(name);
 	} else {
-		// TODO Exception "There is no variable with name [name] in this memento."
+		throw IllegalArgumentException("There is no variable with name " + name + " in this memento.");
 	}
 }
 
@@ -75,7 +77,7 @@ void* Memento::getPointer(QString name) const {
 	if (pointerMap.contains(name)) {
 		return pointerMap.value(name);
 	} else {
-		// TODO Exception "There is no pointer with name [name] in this memento."
+		throw IllegalArgumentException("There is no pointer with name " + name + " in this memento.");
 	}
 }
 

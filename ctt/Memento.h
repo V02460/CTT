@@ -5,6 +5,7 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 #include <QMap>
+#include "IllegalArgumentException.h"
 
 namespace model {
 namespace saveable {
@@ -149,6 +150,9 @@ public:
     QMap<QString, void*> getPointerMap() const;
 
 private:
+	const QString TRUE = "true";
+	const QString FALSE = "false";
+
     QMap<QString, QString> variableMap;
     QMap<QString, void*> pointerMap;
 };
