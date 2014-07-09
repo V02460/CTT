@@ -500,9 +500,6 @@
     <ClCompile Include="SaveableList.cpp">
       <Filter>Source Files\Model\Saveable</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_MainControlWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_ViewState.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
