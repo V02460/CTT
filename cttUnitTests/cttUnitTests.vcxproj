@@ -63,9 +63,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <ExecutablePath>Z:\Installationen\Qt\5.3\msvc2013_64_opengl\bin;$(ExecutablePath)</ExecutablePath>
-    <IncludePath>Z:\Installationen\Qt\5.3\msvc2013_64_opengl\include;$(IncludePath)</IncludePath>
-    <LibraryPath>Z:\Installationen\Qt\5.3\msvc2013_64_opengl\lib;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
