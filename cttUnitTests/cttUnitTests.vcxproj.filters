@@ -45,6 +45,9 @@
     <Filter Include="Source Files\Model\Video">
       <UniqueIdentifier>{a0382efc-1d2b-4cb8-9599-5610624af69f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Exception">
+      <UniqueIdentifier>{47802e3b-c328-498d-b89a-6bdddc4b2156}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -59,10 +62,27 @@
     <ClCompile Include="VideoMetadataTest.cpp">
       <Filter>Source Files\Model\Video</Filter>
     </ClCompile>
+    <ClCompile Include="..\ctt\VideoMetadata.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\IllegalArgumentException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\IllegalStateException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="VideoMetadataTest.h">
       <Filter>Header Files\Model\Video</Filter>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\ctt\VideoMetadata.h">
+      <Filter>Header Files\Model\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomTestingMacros.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

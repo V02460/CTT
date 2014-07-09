@@ -3,7 +3,7 @@
 
 namespace model {
 namespace video {
-
+	
 VideoMetadata::VideoMetadata(QSize size, double fps, unsigned int length, QMap<QString, QString> additionalData):
 		size(size), fps(fps), length(length), additionalData(additionalData) {
 

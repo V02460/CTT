@@ -7,8 +7,7 @@ class VideoMetadataTest :
 {
 	Q_OBJECT
 
-	private slots:
-	void initTestCase();
+private slots:
 	void noAdditionalMetadata();
 };
 
