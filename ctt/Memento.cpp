@@ -29,8 +29,7 @@ int Memento::getInt(QString name) const {
 	if (variableMap.contains(name)) {
 		return variableMap.value(name).toInt();
 		// TODO catch + Exception "The variable with name [name] in this memento is not an integer."
-	}
-	else {
+	} else {
 		// TODO Exception "There is no variable with name [name] in this memento."
 	}
 }
