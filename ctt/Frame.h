@@ -8,9 +8,10 @@
 #include <QOpenGLContext>
 
 #include "Histogram.h"
-#include "HistogramType.h"
 #include "FrameMetadata.h"
 #include "Surface.h"
+
+#include "IllegalArgumentException.h"
 
 namespace model {
 namespace frame {
@@ -54,11 +55,12 @@ public:
      *
      * @param type specifies the histogram type
      * @return Histogram a histogram of the submitted type.
+     * @throws IllegalArgumentException on unsupported type
      */
-    histogram::Histogram::sptr getHistogram(histogram::HistogramType type) const;
+    histogram::Histogram::sptr getHistogram(histogram::Histogram::HistogramType type) const;
 
 private:
-    FrameMetadata::uptr metadata; /**< Metadata containing additional information about the frame */
+    FrameMetadata metadata; /**< Metadata containing additional information about the frame */
 };
 
 }  // namespace frame
