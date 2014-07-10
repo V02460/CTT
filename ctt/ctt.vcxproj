@@ -378,6 +378,7 @@
     <ClCompile Include="IllegalStateException.cpp" />
     <ClCompile Include="InsertionWidget.cpp" />
     <ClCompile Include="MainController.cpp" />
+    <ClCompile Include="NotImplementedException.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="PlayerFunctions.cpp" />
     <ClCompile Include="Project.cpp" />
@@ -615,6 +616,7 @@
     </CustomBuild>
     <ClInclude Include="IllegalArgumentException.h" />
     <ClInclude Include="IllegalStateException.h" />
+    <ClInclude Include="NotImplementedException.h" />
     <ClInclude Include="Project.h" />
     <CustomBuild Include="SaveableList.h" />
     <ClInclude Include="RuntimeException.h" />
