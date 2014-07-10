@@ -2,13 +2,14 @@
 #define _CUSTOMTESTINGMACROS_H
 
 #define QEXPECT_EXCEPTION(expression, ExpectedExceptionType)\
-	try\
+try\
 {\
 	expression; \
 	QFAIL("Expected Exception wasn't thrown!"); \
 }\
-	catch (ExpectedExceptionType* e)\
+catch (ExpectedExceptionType* e)\
 {\
+	qDebug(e->getMsg().toLatin1());\
 }\
 
 #endif

@@ -24,19 +24,19 @@ Frame::Frame(QSharedPointer<QOpenGLContext> context, QImage image, FrameMetadata
         , metadata(metadata) {
 	if (((image.size().width() == 0) || (image.size().height()) == 0)) {
 		throw new IllegalArgumentException("Tried to create a frame from an image of size "
-			+ QString(image.size().width()) + "*" + QString(image.size().height()) 
+			+ QString::number(image.size().width()) + "*" + QString::number(image.size().height())
 			+ " but sizes of 0 are not allowed.");
 	}
 	if ((metadata.getSize().width() == 0) || (metadata.getSize().height() == 0)) {
 		throw new IllegalArgumentException("Tried to create a frame with metadata describing a frame of size "
-			+ QString(metadata.getSize().width()) + "*" + QString(metadata.getSize().height())
+			+ QString::number(metadata.getSize().width()) + "*" + QString::number(metadata.getSize().height())
 			+ " but sizes of 0 are not allowed.");
 	}
-	if (image.size() == metadata.getSize()) {
+	if (image.size() != metadata.getSize()) {
 		throw new IllegalArgumentException("Tried to create a frame from an image of size " 
-			+ QString(image.size().width()) + "*" + QString(image.size().height())
-			+ " but the submitted metadata specified a size of " + QString(metadata.getSize().width()) + "*" 
-			+ QString(metadata.getSize().height()) + ".");
+			+ QString::number(image.size().width()) + "*" + QString::number(image.size().height())
+			+ " but the submitted metadata specified a size of " + QString::number(metadata.getSize().width()) + "*"
+			+ QString::number(metadata.getSize().height()) + ".");
 	}
     glTexture.setData(image, QOpenGLTexture::DontGenerateMipMaps);
 }
@@ -46,7 +46,7 @@ Frame::Frame(QSharedPointer<QOpenGLContext> context, FrameMetadata metadata)
         , metadata(metadata) {
 	if ((metadata.getSize().width() == 0) || (metadata.getSize().height() == 0)) {
 		throw new IllegalArgumentException("Tried to create a frame with metadata describing a frame of size "
-			+ QString(metadata.getSize().width()) + "*" + QString(metadata.getSize().height())
+			+ QString::number(metadata.getSize().width()) + "*" + QString::number(metadata.getSize().height())
 			+ " but sizes of 0 are not allowed.");
 	}
 }
