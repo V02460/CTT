@@ -119,6 +119,9 @@
     <ClCompile Include="..\ctt\Surface.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_cttUnitTests.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="VideoMetadataTest.h">
@@ -126,6 +129,9 @@
     </CustomBuild>
     <CustomBuild Include="FrameTest.h">
       <Filter>Header Files\Model\Frame</Filter>
+    </CustomBuild>
+    <CustomBuild Include="cttUnitTests.qrc">
+      <Filter>Resource Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -137,8 +143,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="cttUnitTest.qrc">
+    <Image Include="Resources\Images\big_buck_bunny_01337.png">
       <Filter>Resource Files</Filter>
-    </None>
+    </Image>
   </ItemGroup>
 </Project>

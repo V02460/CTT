@@ -1,3 +1,6 @@
+#include <QApplication>
+#include <QtTest/QTest>
+
 #include "VideoMetadataTest.h"
 #include "FrameTest.h"
 

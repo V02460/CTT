@@ -22,7 +22,7 @@ void FrameTest::withoutImageInvalid()
 void FrameTest::withImageInvalid()
 {
 	//Image Loading doesn't work...
-	QImage testImage(":/BigBuckBunnyFullHD.png");
+	QImage testImage(":/cttUnitTests/BigBuckBunny.png");
 
 	if (testImage.isNull()) {
 		QFAIL("Unable to load image.");
