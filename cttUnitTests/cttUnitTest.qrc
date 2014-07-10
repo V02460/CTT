@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/cttUnitTest">
+	<file alias="BickBuckBunnyFullHD.png">Resources\Images\big_buck_bunny_01337.png</file>
+    </qresource>
+</RCC>

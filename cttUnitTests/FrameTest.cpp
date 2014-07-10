@@ -21,8 +21,12 @@ void FrameTest::withoutImageInvalid()
 
 void FrameTest::withImageInvalid()
 {
-	//TODO! bild hat Größe 0*0!
-	QImage testImage("../Resources/big_buck_bunny_01337.png");
+	//Image Loading doesn't work...
+	QImage testImage(":/BickBuckBunnyFullHD.png");
+
+	if (testImage.isNull()) {
+		QFAIL("Unable to load image.");
+	}
 
 	QSize testSize(10, 0);
 	FrameMetadata testMetadata(testSize);
