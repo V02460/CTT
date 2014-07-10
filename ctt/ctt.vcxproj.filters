@@ -506,9 +506,6 @@
     <ClCompile Include="SaveableList.cpp">
       <Filter>Source Files\Model\Saveable</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_MainControlWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_ViewState.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
@@ -538,6 +535,12 @@
     </ClCompile>
     <ClCompile Include="IllegalStateException.cpp">
       <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="HueHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="SaturationHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -696,9 +699,6 @@
     <ClInclude Include="Histogram.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
-    <ClInclude Include="HistogramType.h">
-      <Filter>Header Files\Model\Frame\Histogram</Filter>
-    </ClInclude>
     <ClInclude Include="HSLPixelDiff.h">
       <Filter>Header Files\Model\Difference</Filter>
     </ClInclude>
@@ -854,6 +854,12 @@
     </ClInclude>
     <ClInclude Include="RuntimeException.h">
       <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="HueHistogram.h">
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
+    </ClInclude>
+    <ClInclude Include="SaturationHistogram.h">
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

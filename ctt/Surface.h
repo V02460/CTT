@@ -12,6 +12,7 @@ namespace model {
 
 /**
  * Encapsulates a QOpenGLTexture and a corresponding QOpenGLContext.
+ * Requires a valid current OpenGL context.
  */
 class Surface
 {
@@ -26,24 +27,24 @@ public:
 	 * @param glContext an OpenGL context, from which the texture is accessible
 	 * @param glTexture the OpenGL texture
 	 */
-    Surface(QSharedPointer<QOpenGLContext> glContext);
+    Surface(QSharedPointer<QOpenGLContext> glContext, QSize size);
 
 	/**
 	* Gets the texture containing the image data of the frame.
 	*
 	* @return QOpenGLTexture the texture containing the image data of the frame.
 	*/
-    QSharedPointer<QOpenGLTexture> getGLTexture() const;
+    const QOpenGLTexture &getGLTexture() const;
 
 	/**
 	* Returns a QOpenGLContext in which the texture is accessible.
 	* @return QOpenGLContext a QOpenGLContext in which the texture is accessible
 	*/
-    QSharedPointer<QOpenGLContext> getContext() const;
+    QSharedPointer<QOpenGLContext> getContext();
 
 protected:
     QSharedPointer<QOpenGLContext> glContext; /**< An OpenGL context, from which the texture is accessible. */
-    QSharedPointer<QOpenGLTexture> glTexture; /**< The OpenGL texture */
+    QOpenGLTexture glTexture; /**< The OpenGL texture */
 };
 
 }  // namespace model
