@@ -27,9 +27,13 @@ public:
     *
     * @param frame the GreenHistogram will describe the distribution of the intensity of the green channel of this frame
     */
-    explicit GreenHistogram(Frame frame);
+    explicit GreenHistogram(const Frame &frame);
 
-    virtual HistogramType getType() const;
+    //virtual float getValue(unsigned int i) const Q_DECL_OVERRIDE;
+    virtual HistogramType getType() const Q_DECL_OVERRIDE;
+
+protected:
+    QSharedPointer<QOpenGLShaderProgram> createHistogramGridShaderProgram();
 };
 
 }  // namespace histogram

@@ -14,6 +14,9 @@ using ::model::frame::histogram::Histogram;
 using ::model::frame::histogram::RedHistogram;
 using ::model::frame::histogram::GreenHistogram;
 using ::model::frame::histogram::BlueHistogram;
+using ::model::frame::histogram::HueHistogram;
+using ::model::frame::histogram::SaturationHistogram;
+using ::model::frame::histogram::LuminanceHistogram;
 using ::exception::IllegalArgumentException;
 
 Frame::Frame(QSharedPointer<QOpenGLContext> context, QImage image, FrameMetadata metadata)

@@ -7,14 +7,17 @@
 #include <QOpenGLTexture>
 #include <QOpenGLContext>
 
-#include "Histogram.h"
 #include "FrameMetadata.h"
 #include "Surface.h"
+#include "Histogram.h"
 
 #include "IllegalArgumentException.h"
 
+
 namespace model {
 namespace frame {
+
+using histogram::Histogram;
 
 /**
  * Represents a frame, consisting of image data as an an OpenGL Texture and corresponding Metadata.
@@ -57,7 +60,7 @@ public:
      * @return Histogram a histogram of the submitted type.
      * @throws IllegalArgumentException on unsupported type
      */
-    histogram::Histogram::sptr getHistogram(histogram::Histogram::HistogramType type) const;
+    Histogram::sptr getHistogram(Histogram::HistogramType type) const;
 
 private:
     FrameMetadata metadata; /**< Metadata containing additional information about the frame */
