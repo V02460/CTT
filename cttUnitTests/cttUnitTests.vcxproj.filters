@@ -48,6 +48,15 @@
     <Filter Include="Source Files\Exception">
       <UniqueIdentifier>{47802e3b-c328-498d-b89a-6bdddc4b2156}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Model\Frame">
+      <UniqueIdentifier>{875fa45b-c21f-4e88-a696-f2f9f43e0b0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Frame">
+      <UniqueIdentifier>{565866e5-9c33-4039-8245-129fbb25dfa7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Frame\Histogram">
+      <UniqueIdentifier>{b55af5d5-2856-4a2f-a84f-e47207cbd03b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -71,10 +80,52 @@
     <ClCompile Include="..\ctt\IllegalStateException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FrameTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FrameTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameTest.cpp">
+      <Filter>Source Files\Model\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\FrameMetadata.cpp">
+      <Filter>Source Files\Model\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\Frame.cpp">
+      <Filter>Source Files\Model\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\BlueHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\GreenHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\Histogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\HueHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\LuminanceHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\RedHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\SaturationHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\Surface.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="VideoMetadataTest.h">
       <Filter>Header Files\Model\Video</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FrameTest.h">
+      <Filter>Header Files\Model\Frame</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

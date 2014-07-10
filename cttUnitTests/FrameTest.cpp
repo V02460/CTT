@@ -20,3 +20,8 @@ void FrameTest::withoutImageInvalid()
 	QEXPECT_EXCEPTION(Frame testframe(testContext, testMetadata), IllegalArgumentException);
 	
 }
+
+void FrameTest::withImageInvalid()
+{
+
+}
