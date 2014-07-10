@@ -5,7 +5,7 @@
 try\
 {\
 	expression; \
-	QFAIL("Expected Exception wasn't thrown!"); \
+	QFAIL("Expected " #ExpectedExceptionType " wasn't thrown!"); \
 }\
 catch (ExpectedExceptionType* e)\
 {\
