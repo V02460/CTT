@@ -50,7 +50,7 @@ void Memento::setFloat(QString name, float value) {
 float Memento::getFloat(QString name) const {
 	if (variableMap.contains(name)) {
 		bool valid;
-		int value = variableMap.value(name).toInt(&valid);
+		int value = variableMap.value(name).toFloat(&valid);
 		if (valid) {
 			return value;
 		}
