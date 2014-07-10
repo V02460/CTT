@@ -14,6 +14,7 @@ namespace project {
  * Loads a project saved as XML file by the XMLSaver.
  */
 class XMLLoader : public ProjectLoader {
+
 public:
     typedef QScopedPointer<XMLLoader> uptr;
     typedef QSharedPointer<XMLLoader> sptr;
