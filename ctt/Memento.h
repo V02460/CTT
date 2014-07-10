@@ -24,6 +24,16 @@ public:
     typedef QSharedPointer<Memento> sptr;
     typedef QWeakPointer<Memento> wptr;
 
+	/**
+	 * Creates a new, empty memento.
+	 */
+	Memento();
+
+	/**
+	 * Destroys the memento.
+	 */
+	~Memento();
+
     /**
      * Converts the given value to a string and adds it with the given name to the map of saved variables.
      * This method overwrites any variable with given name already saved.
@@ -150,8 +160,8 @@ public:
     QMap<QString, void*> getPointerMap() const;
 
 private:
-	const QString TRUE = "true";
-	const QString FALSE = "false";
+	const QString TRUE_STRING = "true";
+	const QString FALSE_STRING = "false";
 
     QMap<QString, QString> variableMap;
     QMap<QString, void*> pointerMap;

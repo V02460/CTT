@@ -5,20 +5,26 @@ namespace saveable {
 
 using ::exception::IllegalArgumentException;
 
+Memento::Memento() {
+}
+
+Memento::~Memento() {
+}
+
 void Memento::setBool(QString name, bool value) {
-	variableMap.insert(name, value ? TRUE : FALSE);
+	variableMap.insert(name, value ? TRUE_STRING : FALSE_STRING);
 }
 
 bool Memento::getBool(QString name) const {
 	if (variableMap.contains(name)) {
-		if (variableMap.value(name).compare(TRUE)) {
+		if (variableMap.value(name).compare(TRUE_STRING)) {
 			return true;
-		} else if (variableMap.value(name).compare(FALSE)) {
+		} else if (variableMap.value(name).compare(FALSE_STRING)) {
 			return false;
 		}
-		throw IllegalArgumentException(QString("The variable with name ").append(name).append(" in this memento is not a boolean."));
+		throw new IllegalArgumentException(QString("The variable with name ").append(name).append(" in this memento is not a boolean."));
 	}
-	throw IllegalArgumentException(QString("There is no variable with name ").append(name).append(" in this memento."));
+	throw new IllegalArgumentException(QString("There is no variable with name ").append(name).append(" in this memento."));
 }
 
 void Memento::setInt(QString name, int value) {
@@ -27,14 +33,14 @@ void Memento::setInt(QString name, int value) {
 
 int Memento::getInt(QString name) const {
 	if (variableMap.contains(name)) {
-		bool valid;
-		int value = variableMap.value(name).toInt(&valid);
-		if (valid) {
+		bool *valid;
+		int value = variableMap.value(name).toInt(valid);
+		if (&valid) {
 			return value;
 		}
-		throw IllegalArgumentException(QString("The variable with name ").append(name).append(" in this memento is not an integer."));
+		throw new IllegalArgumentException(QString("The variable with name ").append(name).append(" in this memento is not an integer."));
 	}
-	throw IllegalArgumentException(QString("There is no variable with name ").append(name).append(" in this memento."));
+	throw new IllegalArgumentException(QString("There is no variable with name ").append(name).append(" in this memento."));
 }
 
 void Memento::setFloat(QString name, float value) {
@@ -48,9 +54,9 @@ float Memento::getFloat(QString name) const {
 		if (valid) {
 			return value;
 		}
-		throw IllegalArgumentException(QString("The variable with name ").append(name).append(" in this memento is not a float."));
+		throw new IllegalArgumentException(QString("The variable with name ").append(name).append(" in this memento is not a float."));
 	}
-	throw IllegalArgumentException(QString("There is no variable with name ").append(name).append(" in this memento."));
+	throw new IllegalArgumentException(QString("There is no variable with name ").append(name).append(" in this memento."));
 }
 
 void Memento::setDouble(QString name, double value) {
@@ -64,9 +70,9 @@ double Memento::getDouble(QString name) const {
 		if (valid) {
 			return value;
 		}
-		throw IllegalArgumentException(QString("The variable with name ").append(name).append(" in this memento is not a double."));
+		throw new IllegalArgumentException(QString("The variable with name ").append(name).append(" in this memento is not a double."));
 	}
-	throw IllegalArgumentException(QString("There is no variable with name ").append(name).append(" in this memento."));
+	throw new IllegalArgumentException(QString("There is no variable with name ").append(name).append(" in this memento."));
 }
 
 void Memento::setString(QString name, QString value) {
@@ -77,7 +83,7 @@ QString Memento::getString(QString name) const {
 	if (variableMap.contains(name)) {
 		return variableMap.value(name);
 	}
-	throw IllegalArgumentException(QString("There is no variable with name ").append(name).append(" in this memento."));
+	throw new IllegalArgumentException(QString("There is no variable with name ").append(name).append(" in this memento."));
 }
 
 void Memento::setPointer(QString name, void* pointer) {
@@ -88,7 +94,7 @@ void* Memento::getPointer(QString name) const {
 	if (pointerMap.contains(name)) {
 		return pointerMap.value(name);
 	}
-	throw IllegalArgumentException(QString("There is no pointer with name ").append(name).append(" in this memento."));
+	throw new IllegalArgumentException(QString("There is no pointer with name ").append(name).append(" in this memento."));
 }
 
 QMap<QString, QString> Memento::getVariableMap() const {
