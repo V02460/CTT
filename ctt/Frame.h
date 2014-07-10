@@ -35,6 +35,8 @@ public:
      * @param context the OpenGL context in which the frame will be created
      * @param image image the image from which the frame will be generated
      * @param metadata metadata providing additional metadata about the frame
+	 * @throws IllegalArgumentException if the size of the submitted image doesn't fit the size specified in the 
+	 *	submitted metadata.
      */
     Frame(QSharedPointer<QOpenGLContext> context, QImage image, FrameMetadata metadata);
 

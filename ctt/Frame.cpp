@@ -22,6 +22,12 @@ using ::exception::IllegalArgumentException;
 Frame::Frame(QSharedPointer<QOpenGLContext> context, QImage image, FrameMetadata metadata)
         : Surface(context, image.size())
         , metadata(metadata) {
+	if (image.size() == metadata.getSize()) {
+		throw new IllegalArgumentException("Tried to create a frame from an image of size " 
+			+ QString(image.size().width()) + "*" + QString(image.size().height())
+			+ " but the submitted metadata specified a size of " + QString(metadata.getSize().width()) + "*" 
+			+ QString(metadata.getSize().height()) + ".");
+	}
     glTexture.setData(image, QOpenGLTexture::DontGenerateMipMaps);
 }
 
