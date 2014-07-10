@@ -22,6 +22,16 @@ using ::exception::IllegalArgumentException;
 Frame::Frame(QSharedPointer<QOpenGLContext> context, QImage image, FrameMetadata metadata)
         : Surface(context, image.size())
         , metadata(metadata) {
+	if (((image.size().width() == 0) || (image.size().height()) == 0)) {
+		throw new IllegalArgumentException("Tried to create a frame from an image of size "
+			+ QString(image.size().width()) + "*" + QString(image.size().height()) 
+			+ " but sizes of 0 are not allowed.");
+	}
+	if ((metadata.getSize().width() == 0) || (metadata.getSize().height() == 0)) {
+		throw new IllegalArgumentException("Tried to create a frame with metadata describing a frame of size "
+			+ QString(metadata.getSize().width()) + "*" + QString(metadata.getSize().height())
+			+ " but sizes of 0 are not allowed.");
+	}
 	if (image.size() == metadata.getSize()) {
 		throw new IllegalArgumentException("Tried to create a frame from an image of size " 
 			+ QString(image.size().width()) + "*" + QString(image.size().height())
@@ -34,7 +44,11 @@ Frame::Frame(QSharedPointer<QOpenGLContext> context, QImage image, FrameMetadata
 Frame::Frame(QSharedPointer<QOpenGLContext> context, FrameMetadata metadata)
         : Surface(context, metadata.getSize())
         , metadata(metadata) {
-
+	if ((metadata.getSize().width() == 0) || (metadata.getSize().height() == 0)) {
+		throw new IllegalArgumentException("Tried to create a frame with metadata describing a frame of size "
+			+ QString(metadata.getSize().width()) + "*" + QString(metadata.getSize().height())
+			+ " but sizes of 0 are not allowed.");
+	}
 }
 
 FrameMetadata Frame::getMetadata() const {
