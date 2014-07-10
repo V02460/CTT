@@ -7,6 +7,7 @@
 #include <QDir>
 
 #include "Project.h"
+#include "NotImplementedException.h"
 
 namespace controller {
 namespace project {
