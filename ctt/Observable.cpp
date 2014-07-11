@@ -1,14 +1,30 @@
 #include "Observable.h"
-#include <QObject>
 
 namespace model {
 
 void Observable::subscribe(Observer::sptr observer) {
-	connect(this, SIGNAL(changed()), observer.data(), SLOT(update()), Qt::UniqueConnection);
+	if (!observers.contains(observer)) {
+		observers.append(observer);
+	}
 }
 
 void Observable::unsubscribe(const Observer &observer) {
-	disconnect(this, SIGNAL(changed()), &observer, SLOT(update()));
+	for each (Observer::sptr subscribedObserver in observers)
+	{
+		if (subscribedObserver.data() == &observer)
+		{
+			observers.removeOne(subscribedObserver);
+			return;
+		}
+	}
+}
+
+void Observable::changed()
+{
+	for each (Observer::sptr observer in observers)
+	{
+		observer->update();
+	}
 }
 
 }  // namespace model

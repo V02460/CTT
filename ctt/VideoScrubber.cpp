@@ -77,7 +77,7 @@ void VideoScrubber::jumpToFrameNr(unsigned int frameNumber) {
 	waitingForFrame = true;
 	currentFrame = video->getFrame(frameNumber);
 	waitingForFrame = false;
-	emit changed();
+	changed();
 }
 
 Memento VideoScrubber::getMemento() const {
@@ -88,7 +88,7 @@ void VideoScrubber::restore(Memento memento) {
 }
 
 Saveable::sptr VideoScrubber::getDummy() {
-
+	return Saveable::sptr(new VideoScrubber());
 }
 
 }  // namespace player

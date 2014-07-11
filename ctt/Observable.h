@@ -14,8 +14,8 @@ namespace model {
  * the Observable changes.
  *
  */
-class Observable : public QObject {
-	Q_OBJECT
+class Observable {
+
 public:
     typedef QScopedPointer<Observable> uptr;
     typedef QSharedPointer<Observable> sptr;
@@ -37,9 +37,11 @@ public:
      */
     void unsubscribe(const Observer &observer);
 
-signals:
+protected:
+	QList<Observer::sptr> observers;
+
     /**
-     * this signal will be emitted when the state of the Observable changes.
+     * this calls the update routine on all Observers observing this Observable.
      *
      */
     void changed();

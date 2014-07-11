@@ -12,8 +12,8 @@ namespace model {
  * Observable changes.
  *
  */
-class Observer : public QObject{
-	Q_OBJECT
+class Observer {
+
 public:
     typedef QScopedPointer<Observer> uptr;
     typedef QSharedPointer<Observer> sptr;
@@ -21,7 +21,6 @@ public:
 
     virtual ~Observer();
 
-public slots:
     /**
      * This slot is meant to be used to notify the Observer of changes of the state of the Object it observes. 
      *
