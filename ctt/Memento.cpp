@@ -101,7 +101,7 @@ QMap<QString, QString> Memento::getVariableMap() const {
 	return variableMap; // TODO special stuff?
 }
 
-QMap<QString, void*> Memento::getPointerMap() const {
+QMap<QString, void*> Memento::getPointerMap() const { // TODO müssten savable pointer sein
 	return pointerMap; // TODO special stuff?
 }
 

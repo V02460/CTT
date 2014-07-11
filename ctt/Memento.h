@@ -160,8 +160,8 @@ public:
     QMap<QString, void*> getPointerMap() const;
 
 private:
-	const QString TRUE_STRING = "true";
-	const QString FALSE_STRING = "false";
+	const QString TRUE_STRING = QString("true");
+	const QString FALSE_STRING = QString("false");
 
     QMap<QString, QString> variableMap;
     QMap<QString, void*> pointerMap;
