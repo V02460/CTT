@@ -542,6 +542,18 @@
     <ClCompile Include="SaturationHistogram.cpp">
       <Filter>Source Files\Model\Frame\Histogram</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Observable.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Observable.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Observer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Observer.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -624,6 +636,9 @@
     </CustomBuild>
     <CustomBuild Include="SaveableList.h">
       <Filter>Header Files\Model\Saveable</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Observer.h">
+      <Filter>Header Files\Model</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -784,9 +799,6 @@
       <Filter>Header Files\Model\Saveable</Filter>
     </ClInclude>
     <ClInclude Include="Module.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="Observer.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="UIntegerInterval.h">

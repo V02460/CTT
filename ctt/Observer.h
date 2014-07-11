@@ -12,7 +12,8 @@ namespace model {
  * Observable changes.
  *
  */
-class Observer {
+class Observer : public QObject{
+	Q_OBJECT
 public:
     typedef QScopedPointer<Observer> uptr;
     typedef QSharedPointer<Observer> sptr;
