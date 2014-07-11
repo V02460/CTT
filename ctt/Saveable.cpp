@@ -4,6 +4,7 @@ namespace model {
 namespace saveable {
 
 bool Saveable::isDummy() const {
+	return isDummyFlag;
 }
 
 Saveable::sptr getDummy() {
