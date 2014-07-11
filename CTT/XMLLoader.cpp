@@ -19,12 +19,19 @@ static void restore(QDir path, Project project){
 		throw new ParseException(*error);
 	}
 	QDomNodeList elementList = dom.elementsByTagName(QString("element"));
-	QList<QDomNodeList> mementos;
+	QMap<int, QDomNodeList> mementos;
 	for (int i = 1; i < elementList.length(); i++) {
 		QDomNode element = elementList.at(i);
-		mementos.append(element.childNodes());
-		// TODO continue here
+		/* TODO
+		 - get ID
+		 - create class and add to map(ID, pointer)
+		 - get memento subtree and add to map(ID, memento)
+		 */
 	}
+	/* TODO
+	 - create Mementos
+	 - restore classes
+	 */
 }
 
 }  // namespace project
