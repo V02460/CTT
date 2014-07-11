@@ -4,10 +4,11 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
-#include <QXmlStreamReader>
+#include <QDomDocument>
 
 #include "ProjectLoader.h"
 #include "IOException.h"
+#include "ParseException.h"
 
 namespace controller {
 namespace project {
