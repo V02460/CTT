@@ -36,7 +36,7 @@ public:
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE{ return true; }
     virtual QString getName() const;
-	virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
+    virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const;
 };
 
 }  // namespace overlay

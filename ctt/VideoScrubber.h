@@ -55,7 +55,7 @@ public:
      * Gets the metadata of the Video this VideoScrubber is associated with.
      *
      * @return VideoMetadata the metadata of the Video this VideoScrubber is associated with
-     * @throws IllegalStateException if the the method was called on a dummy or if the scrubbers video is a dummy
+     * @throws IllegalStateException if the the method was called on a dummy
      */
     ::model::video::VideoMetadata getVideoMetadata() const;
 
