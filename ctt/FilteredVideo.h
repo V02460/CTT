@@ -65,7 +65,7 @@ public:
      */
     QList<::model::filter::Filter::sptr> getFilterList() const;
 
-    :model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
+    model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
 
     virtual ::model::saveable::Memento getMemento() const;
     virtual void restore(::model::saveable::Memento memento);
