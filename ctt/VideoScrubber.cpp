@@ -9,8 +9,11 @@ using ::model::frame::Frame;
 using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
 
-VideoScrubber::VideoScrubber(video::Video::sptr video) {
-
+VideoScrubber::VideoScrubber(video::Video::sptr video) : video(video) {
+	//TODO throw Exception if Video is invalid... is this even possible?
+	waitingForFrame = true;
+	currentFrame.reset(&video->getFrame(0));
+	waitingForFrame = false;
 }
 
 VideoScrubber::~VideoScrubber() {
@@ -18,7 +21,10 @@ VideoScrubber::~VideoScrubber() {
 }
 
 VideoScrubber::VideoScrubber(video::Video::sptr video, unsigned int frameNumber) {
-
+	//TODO throw Exception if Video is invalid... is this even possible?
+	waitingForFrame = true;
+	currentFrame = video->getFrame(frameNumber);
+	waitingForFrame = false;
 }
 
 VideoMetadata VideoScrubber::getVideoMetadata() const {
