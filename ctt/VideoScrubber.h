@@ -21,7 +21,7 @@ namespace player {
  * It makes this frame available to other objects and notifies them via Qt's signal and slot mechanism when this frame
  * is replaced.
  */
-class VideoScrubber : public QObject, public ::model::saveable::Saveable, public Observable {
+	class VideoScrubber : public Observable, public ::model::saveable::Saveable {
     Q_OBJECT
 public:
     typedef QScopedPointer<VideoScrubber> uptr;

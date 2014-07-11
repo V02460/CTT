@@ -57,6 +57,18 @@
     <Filter Include="Source Files\Model\Frame\Histogram">
       <UniqueIdentifier>{b55af5d5-2856-4a2f-a84f-e47207cbd03b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Model\Player">
+      <UniqueIdentifier>{b2e553f2-8fba-4bf8-a5d5-e39856a07c4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Player">
+      <UniqueIdentifier>{ac6d9767-8b08-47e3-af94-b04ffc856390}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Saveable">
+      <UniqueIdentifier>{44369cd5-7826-44e9-be1c-7faca0490e83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Saveable">
+      <UniqueIdentifier>{bd54ede9-1bbb-4604-8f11-7f1c6b299214}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -122,6 +134,54 @@
     <ClCompile Include="GeneratedFiles\qrc_cttUnitTests.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\ctt\VideoScrubber.cpp">
+      <Filter>Source Files\Model\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoScrubberTest.cpp">
+      <Filter>Source Files\Model\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoScrubberTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoScrubberTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\Player.cpp">
+      <Filter>Source Files\Model\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\Saveable.cpp">
+      <Filter>Source Files\Model\Saveable</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\Observer.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\Observable.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoScrubber.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoScrubber.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Player.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Player.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Observer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Observer.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Observable.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Observable.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="VideoMetadataTest.h">
@@ -133,6 +193,21 @@
     <CustomBuild Include="cttUnitTests.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="VideoScrubberTest.h">
+      <Filter>Header Files\Model\Player</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\VideoScrubber.h">
+      <Filter>Header Files\Model\Player</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\Player.h">
+      <Filter>Header Files\Model\Player</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\Observer.h">
+      <Filter>Header Files\Model</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\Observable.h">
+      <Filter>Header Files\Model</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ctt\VideoMetadata.h">
@@ -140,6 +215,9 @@
     </ClInclude>
     <ClInclude Include="CustomTestingMacros.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\Saveable.h">
+      <Filter>Header Files\Saveable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
