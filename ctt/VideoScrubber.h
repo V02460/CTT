@@ -32,7 +32,7 @@ public:
      * Creates a new VideoScrubber for the submitted video. Initially the Scrubber holds the first frame of the video.
      *
      * @param video the scrubber will use this video to get frames
-     * @throws InvalidArgumentException if the submitted video is invalid
+	 * @throws IllegalArgumentException if the submitted video is invalid
      */
     explicit VideoScrubber(::model::video::Video::sptr video);
 
@@ -46,7 +46,7 @@ public:
      *
      * @param video video the scrubber will use this video to get frames
      * @param frameNumber the scrubber will initially hold the frame with this number
-     * @throws InvalidArgumentException if the submitted video is invalid or if it doesn't have a frame with the
+     * @throws IllegalArgumentException if the submitted video is invalid or if it doesn't have a frame with the
      *     submitted number
      */
     VideoScrubber(::model::video::Video::sptr video, unsigned int frameNumber);
@@ -101,6 +101,11 @@ private:
     ::model::video::Video::sptr video; /**< The scrubber gets frames and metadata from this video */
     ::model::frame::Frame::sptr currentFrame; /**< This is the frame currently held by the scrubber */
     bool waitingForFrame; /**< This is true while Scrubber is still waiting for the frame it requested last*/
+
+	/**
+	 * Constructor for a dummy VideoScrubber.
+	 */
+	VideoScrubber();
 };
 
 }  // namespace player
