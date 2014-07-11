@@ -22,33 +22,40 @@ using ::exception::IllegalArgumentException;
 Frame::Frame(QSharedPointer<QOpenGLContext> context, QImage image, FrameMetadata metadata)
         : Surface(context, image.size())
         , metadata(metadata) {
-	if (((image.size().width() == 0) || (image.size().height()) == 0)) {
-		throw new IllegalArgumentException("Tried to create a frame from an image of size "
-			+ QString::number(image.size().width()) + "*" + QString::number(image.size().height())
-			+ " but sizes of 0 are not allowed.");
-	}
-	if ((metadata.getSize().width() == 0) || (metadata.getSize().height() == 0)) {
-		throw new IllegalArgumentException("Tried to create a frame with metadata describing a frame of size "
-			+ QString::number(metadata.getSize().width()) + "*" + QString::number(metadata.getSize().height())
-			+ " but sizes of 0 are not allowed.");
-	}
-	if (image.size() != metadata.getSize()) {
-		throw new IllegalArgumentException("Tried to create a frame from an image of size " 
-			+ QString::number(image.size().width()) + "*" + QString::number(image.size().height())
-			+ " but the submitted metadata specified a size of " + QString::number(metadata.getSize().width()) + "*"
-			+ QString::number(metadata.getSize().height()) + ".");
-	}
-    glTexture.setData(image, QOpenGLTexture::DontGenerateMipMaps);
+
+    if (image.size().isEmpty()) {
+        throw new IllegalArgumentException("Tried to create a frame from an image of size "
+                                           + QString::number(image.size().width()) + "*"
+                                           + QString::number(image.size().height())
+                                           + " but sizes of 0 are not allowed.");
+    }
+    if (metadata.getSize().isEmpty()) {
+        throw new IllegalArgumentException("Tried to create a frame with metadata describing a frame of size "
+                                           + QString::number(metadata.getSize().width()) + "*"
+                                           + QString::number(metadata.getSize().height())
+                                           + " but sizes of 0 are not allowed.");
+    }
+    if (image.size() != metadata.getSize()) {
+        throw new IllegalArgumentException("Tried to create a frame from an image of size " 
+                                           + QString::number(image.size().width()) + "*"
+                                           + QString::number(image.size().height())
+                                           + " but the submitted metadata specified a size of "
+                                           + QString::number(metadata.getSize().width()) + "*"
+                                           + QString::number(metadata.getSize().height()) + ".");
+    }
+    
+    getTexture()->setData(image, QOpenGLTexture::DontGenerateMipMaps);
 }
 
 Frame::Frame(QSharedPointer<QOpenGLContext> context, FrameMetadata metadata)
         : Surface(context, metadata.getSize())
         , metadata(metadata) {
-	if ((metadata.getSize().width() == 0) || (metadata.getSize().height() == 0)) {
-		throw new IllegalArgumentException("Tried to create a frame with metadata describing a frame of size "
-			+ QString::number(metadata.getSize().width()) + "*" + QString::number(metadata.getSize().height())
-			+ " but sizes of 0 are not allowed.");
-	}
+    if (metadata.getSize().isEmpty()) {
+        throw new IllegalArgumentException("Tried to create a frame with metadata describing a frame of size "
+                                           + QString::number(metadata.getSize().width()) + "*"
+                                           + QString::number(metadata.getSize().height())
+                                           + " but sizes of 0 are not allowed.");
+    }
 }
 
 FrameMetadata Frame::getMetadata() const {
@@ -72,6 +79,32 @@ Histogram::sptr Frame::getHistogram(Histogram::HistogramType type) const {
         return Histogram::sptr(new SaturationHistogram(*this));
     default:
         throw new IllegalArgumentException("Unsupported histogram type " + QString(type) + ".");
+    }
+}
+
+Frame::sptr Frame::applyShader(const QOpenGLShader &shader, QSize newSize) const {
+    Surface::sptr surface = Surface::applyShader(shader, newSize);
+    return Frame::sptr(new Frame(surface, metadata));
+}
+
+Frame::sptr Frame::applyShader(const QOpenGLShader &shader) const {
+    return applyShader(shader, getSize());
+}
+
+Frame::Frame(Surface::sptr surface, FrameMetadata metadata) : Surface(*surface.data()), metadata(metadata) {
+    if (metadata.getSize().isEmpty()) {
+        throw new IllegalArgumentException("Tried to create a frame with metadata describing a frame of size "
+                                           + QString::number(metadata.getSize().width()) + "*"
+                                           + QString::number(metadata.getSize().height())
+                                           + " but sizes of 0 are not allowed.");
+    }
+    if (getSize() != metadata.getSize()) {
+        throw new IllegalArgumentException("Tried to create a frame from an image of size "
+                                           + QString::number(getSize().width()) + "*"
+                                           + QString::number(getSize().height())
+                                           + " but the submitted metadata specified a size of "
+                                           + QString::number(metadata.getSize().width()) + "*"
+                                           + QString::number(metadata.getSize().height()) + ".");
     }
 }
 
