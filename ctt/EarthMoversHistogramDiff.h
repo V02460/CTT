@@ -30,7 +30,7 @@ public:
      * @param video1 the first of the two videos the EarthMoversHistogramDiff will compare 
      * @param video2 the second of the two videos the EarthMoversHistogramDiff will compare
      */
-    EarthMoversHistogramDiff(::model::frame::histogram::HistogramType type,
+    EarthMoversHistogramDiff(::model::frame::histogram::Histogram::HistogramType type,
                              ::model::video::Video::sptr video1,
                              ::model::video::Video::sptr video2);
 

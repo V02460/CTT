@@ -25,7 +25,13 @@ public:
 	 * Creates a new SaturationHistogram describing the distribution of the intensity of the saturation channel of the submitted frame.
 	 * @param frame the SaturationHistogram will describe the distribution of the intensity of the saturation channel of this frame
 	 */
-	SaturationHistogram(Frame frame);
+    explicit SaturationHistogram(const Frame &frame);
+
+    //virtual float getValue(unsigned int i) const Q_DECL_OVERRIDE;
+    virtual HistogramType getType() const Q_DECL_OVERRIDE;
+
+protected:
+    QSharedPointer<QOpenGLShaderProgram> createHistogramGridShaderProgram();
 };
 
 }  // namespace histogram

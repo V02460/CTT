@@ -27,9 +27,13 @@ public:
      *
      * @param frame the RedHistogram will describe the distribution of the intensity of the red channel of this frame
      */
-    explicit RedHistogram(Frame frame);
+    explicit RedHistogram(const Frame &frame);
 
-    virtual HistogramType getType() const;
+    //virtual float getValue(unsigned int i) const Q_DECL_OVERRIDE;
+    virtual HistogramType getType() const Q_DECL_OVERRIDE;
+
+protected:
+    QSharedPointer<QOpenGLShaderProgram> createHistogramGridShaderProgram();
 };
 
 }  // namespace histogram

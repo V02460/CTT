@@ -13,8 +13,8 @@ namespace frame {
 namespace histogram {
 
 /**
-* A Histogram describing the distribution of the intensity of the luminance channel in a frame.
-*/
+ * A Histogram describing the distribution of the intensity of the luminance channel in a frame.
+ */
 class LuminanceHistogram : public Histogram {
 public:
     typedef QScopedPointer<LuminanceHistogram> uptr;
@@ -22,15 +22,19 @@ public:
     typedef QWeakPointer<LuminanceHistogram> wptr;
 
     /**
-    * Creates a new LuminanceHistogram describing the distribution of the intensity of the luminance channel of the
-    * submitted frame.
-    *
-    * @param frame the LuminanceHistogram will describe the distribution of the intensity of the luminance channel of
-    *     this frame
-    */
-    explicit LuminanceHistogram(Frame frame);
+     * Creates a new LuminanceHistogram describing the distribution of the intensity of the luminance channel of the
+     * submitted frame.
+     *
+     * @param frame the LuminanceHistogram will describe the distribution of the intensity of the luminance channel of
+     *     this frame
+     */
+    explicit LuminanceHistogram(const Frame &frame);
 
-    virtual HistogramType getType() const;
+    //virtual float getValue(unsigned int i) const Q_DECL_OVERRIDE;
+    virtual HistogramType getType() const Q_DECL_OVERRIDE;
+
+protected:
+    QSharedPointer<QOpenGLShaderProgram> createHistogramGridShaderProgram();
 };
 
 }  // namespace histogram

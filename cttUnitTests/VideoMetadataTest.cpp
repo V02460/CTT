@@ -32,9 +32,9 @@ void VideoMetadataTest::noAdditionalMetadataInvalid()
 	QEXPECT_EXCEPTION(VideoMetadata testMetadata(testSize2, 23.9, 1337), IllegalArgumentException);
 
 	QSize testSize3(100, 100);
-	QEXPECT_EXCEPTION(VideoMetadata testMetadata(testSize2, 0, 1337), IllegalArgumentException);
+	QEXPECT_EXCEPTION(VideoMetadata testMetadata(testSize3, 0, 1337), IllegalArgumentException);
 
-	QEXPECT_EXCEPTION(VideoMetadata testMetadata(testSize2, 23.9, 0), IllegalArgumentException);
+	QEXPECT_EXCEPTION(VideoMetadata testMetadata(testSize3, 23.9, 0), IllegalArgumentException);
 
 }
 
@@ -81,9 +81,9 @@ void VideoMetadataTest::withAdditionalMetadataInvalid()
 	QEXPECT_EXCEPTION(VideoMetadata testMetadata(testSize2, 23.9, 1337, testMap), IllegalArgumentException);
 
 	QSize testSize3(100, 100);
-	QEXPECT_EXCEPTION(VideoMetadata testMetadata(testSize2, 0, 1337, testMap), IllegalArgumentException);
+	QEXPECT_EXCEPTION(VideoMetadata testMetadata(testSize3, 0, 1337, testMap), IllegalArgumentException);
 
-	QEXPECT_EXCEPTION(VideoMetadata testMetadata(testSize2, 23.9, 0, testMap), IllegalArgumentException);
+	QEXPECT_EXCEPTION(VideoMetadata testMetadata(testSize3, 23.9, 0, testMap), IllegalArgumentException);
 
 
 }
