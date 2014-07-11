@@ -381,6 +381,7 @@
     <ClCompile Include="MainController.cpp" />
     <ClCompile Include="NotImplementedException.cpp" />
     <ClCompile Include="Observer.cpp" />
+    <ClCompile Include="ParseException.cpp" />
     <ClCompile Include="PlayerFunctions.cpp" />
     <ClCompile Include="Project.cpp" />
     <ClCompile Include="Saveable.cpp" />
@@ -619,6 +620,7 @@
     <ClInclude Include="IllegalStateException.h" />
     <ClInclude Include="IOException.h" />
     <ClInclude Include="NotImplementedException.h" />
+    <ClInclude Include="ParseException.h" />
     <ClInclude Include="Project.h" />
     <CustomBuild Include="SaveableList.h" />
     <ClInclude Include="RuntimeException.h" />

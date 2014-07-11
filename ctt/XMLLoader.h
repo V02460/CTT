@@ -7,6 +7,7 @@
 #include <QXmlStreamReader>
 
 #include "ProjectLoader.h"
+#include "IOException.h"
 
 namespace controller {
 namespace project {
