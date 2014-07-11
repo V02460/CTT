@@ -19,7 +19,7 @@ QString MotionVectorOverlay::getName() const {
 
 }
 
-Frame MotionVectorOverlay::getFrame(unsigned int frameNumber) const {
+model::frame::Frame::sptr MotionVectorOverlay::getFrame(unsigned int frameNumber) const {
 
 }
 

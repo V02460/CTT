@@ -13,7 +13,7 @@ VideoMetadata FFmpegDataVideo::getMetadata() const {
 
 }
 
-Frame FFmpegDataVideo::getFrame(unsigned int frameNumber) const {
+model::frame::Frame::sptr FFmpegDataVideo::getFrame(unsigned int frameNumber) const {
 
 }
 

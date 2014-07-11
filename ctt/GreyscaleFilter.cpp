@@ -17,7 +17,7 @@ QString GreyscaleFilter::getName() const {
 
 }
 
-Frame GreyscaleFilter::getFrame(unsigned int frameNumber) const {
+model::frame::Frame::sptr GreyscaleFilter::getFrame(unsigned int frameNumber) const {
 
 }
 

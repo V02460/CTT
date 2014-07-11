@@ -18,7 +18,7 @@ QString MacropartionOverlay::getName() const {
 
 }
 
-Frame MacropartionOverlay::getFrame(unsigned int frameNumber) const {
+model::frame::Frame::sptr MacropartionOverlay::getFrame(unsigned int frameNumber) const {
 
 }
 
