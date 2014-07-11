@@ -539,6 +539,9 @@
     <ClCompile Include="NotImplementedException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
+    <ClCompile Include="IOException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -856,6 +859,9 @@
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
     <ClInclude Include="NotImplementedException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="IOException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
   </ItemGroup>

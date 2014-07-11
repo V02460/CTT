@@ -377,6 +377,7 @@
     <ClCompile Include="IllegalArgumentException.cpp" />
     <ClCompile Include="IllegalStateException.cpp" />
     <ClCompile Include="InsertionWidget.cpp" />
+    <ClCompile Include="IOException.cpp" />
     <ClCompile Include="MainController.cpp" />
     <ClCompile Include="NotImplementedException.cpp" />
     <ClCompile Include="Observer.cpp" />
@@ -616,6 +617,7 @@
     </CustomBuild>
     <ClInclude Include="IllegalArgumentException.h" />
     <ClInclude Include="IllegalStateException.h" />
+    <ClInclude Include="IOException.h" />
     <ClInclude Include="NotImplementedException.h" />
     <ClInclude Include="Project.h" />
     <CustomBuild Include="SaveableList.h" />

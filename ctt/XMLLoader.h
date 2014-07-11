@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QXmlStreamReader>
 
 #include "ProjectLoader.h"
 
