@@ -77,13 +77,11 @@ void VideoScrubber::jumpToFrameNr(unsigned int frameNumber) {
 	waitingForFrame = true;
 	currentFrame = video->getFrame(frameNumber);
 	waitingForFrame = false;
-	//TODO update!!!!! ist aber aktuell noch kein Observable!!!
+	emit changed();
 }
 
 Memento VideoScrubber::getMemento() const {
-	if (isDummy()) {
-		throw new exception::IllegalStateException("Requested Memento from dummy VideoScrubber.");
-	}
+
 }
 
 void VideoScrubber::restore(Memento memento) {
