@@ -19,8 +19,10 @@ static void restore(QDir path, Project project){
 		throw new ParseException(*error);
 	}
 	QDomNodeList elementList = dom.elementsByTagName(QString("element"));
+	QList<QDomNodeList> mementos;
 	for (int i = 1; i < elementList.length(); i++) {
 		QDomNode element = elementList.at(i);
+		mementos.append(element.childNodes());
 		// TODO continue here
 	}
 }
