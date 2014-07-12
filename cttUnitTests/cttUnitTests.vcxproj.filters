@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;cxx;c;def</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h</Extensions>
-    </Filter>
     <Filter Include="Form Files">
       <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
       <Extensions>ui</Extensions>
@@ -33,78 +25,387 @@
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Test Source Files">
+      <UniqueIdentifier>{e02a01b9-4ac7-4b81-ab3c-d6697c671d3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Source Files\Model">
+      <UniqueIdentifier>{ec38daea-5ba8-497e-9121-693795274ca0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Source Files\Model\Frame">
+      <UniqueIdentifier>{76d73892-3ca9-43fb-beb8-925b50020853}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Source Files\Model\Player">
+      <UniqueIdentifier>{e81ad444-079e-4510-95c6-e5543cf3405c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Source Files\Model\Video">
+      <UniqueIdentifier>{388da3ed-e0ae-4c7f-91f8-25d040d6dcfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Source Files\View">
+      <UniqueIdentifier>{5d8d3045-439a-4cd6-afb5-38deff25a74e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Source Files\Controller">
+      <UniqueIdentifier>{817914d2-000a-4a12-94af-9e66d02e975f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Header Files">
+      <UniqueIdentifier>{18e7f7d3-b585-4825-b0c0-4b5ef5521cea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Header Files\Model">
+      <UniqueIdentifier>{90715746-befa-4b57-8c73-b081af33ebda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Header Files\Model\Frame">
+      <UniqueIdentifier>{366928e4-a80f-4d04-811e-add01b2e33bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{e7d4024f-52a0-4f39-b684-a859fd3e3993}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View">
+      <UniqueIdentifier>{6d7ba13e-cdd1-4a7b-8ad5-0f6fa7f7c1e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controller">
+      <UniqueIdentifier>{97f58992-b26e-4848-be1c-b05092e8af20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controller\Operation">
+      <UniqueIdentifier>{d435f2fb-6cc9-446e-b747-017fc99cf738}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controller\Project">
+      <UniqueIdentifier>{afa10a36-9246-42c6-bde0-af7d75892803}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Exception">
+      <UniqueIdentifier>{7f7fa6f6-af3d-45ca-9f4f-cdba69d7e2e2}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\Model">
-      <UniqueIdentifier>{1ebbbf25-db01-47f3-8a2d-4ecc0908ca3e}</UniqueIdentifier>
+      <UniqueIdentifier>{f3f52f06-96d3-4758-97b7-56982c11cc7c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Model\Video">
-      <UniqueIdentifier>{45c8cf00-4490-400a-aa59-f5e58b61028f}</UniqueIdentifier>
+    <Filter Include="Header Files\Model\Filter">
+      <UniqueIdentifier>{2e40910c-1e84-4b90-8e30-0fa3ba1eed22}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Model">
-      <UniqueIdentifier>{6219f293-5acb-4fa6-9ea1-be80b84206c7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Video">
-      <UniqueIdentifier>{a0382efc-1d2b-4cb8-9599-5610624af69f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Exception">
-      <UniqueIdentifier>{47802e3b-c328-498d-b89a-6bdddc4b2156}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Frame">
-      <UniqueIdentifier>{875fa45b-c21f-4e88-a696-f2f9f43e0b0e}</UniqueIdentifier>
+    <Filter Include="Header Files\Model\Filter\Overlay">
+      <UniqueIdentifier>{a64e23f2-37c2-4c62-8652-8e6f57305fb0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Model\Frame">
-      <UniqueIdentifier>{565866e5-9c33-4039-8245-129fbb25dfa7}</UniqueIdentifier>
+      <UniqueIdentifier>{a4d99601-cecb-4ce7-bb72-2a07f29d1acc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Model\Frame\Histogram">
-      <UniqueIdentifier>{b55af5d5-2856-4a2f-a84f-e47207cbd03b}</UniqueIdentifier>
+    <Filter Include="Header Files\Model\Frame\Histogram">
+      <UniqueIdentifier>{98f32b52-7093-4e93-ba61-4850bfd9a52a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Model\Player">
-      <UniqueIdentifier>{b2e553f2-8fba-4bf8-a5d5-e39856a07c4f}</UniqueIdentifier>
+    <Filter Include="Header Files\Model\Video">
+      <UniqueIdentifier>{f0867723-6a53-4e0a-bd90-0431e6b6bbc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Difference">
+      <UniqueIdentifier>{d9a2492a-8c40-4197-a3e3-a53c24adc341}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Saveable">
+      <UniqueIdentifier>{78a52621-3e5d-4ce7-b2c6-20980e2e5d99}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Model\Player">
-      <UniqueIdentifier>{ac6d9767-8b08-47e3-af94-b04ffc856390}</UniqueIdentifier>
+      <UniqueIdentifier>{e5c68e12-ee99-4bee-984d-9e634b065572}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Helper">
+      <UniqueIdentifier>{6ad9179e-b5e2-429e-bd80-facee47523bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{11615a56-7cb2-4fd2-bb8d-61613a33e718}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model">
+      <UniqueIdentifier>{937097c9-6a01-4f73-a5c6-840cf8ff5f36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Filter">
+      <UniqueIdentifier>{4a67203a-cc95-433b-8c60-b67018263d30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Filter\Overlay">
+      <UniqueIdentifier>{43b97d4c-e3f1-4c2c-a0d3-1a55354651d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Video">
+      <UniqueIdentifier>{b817956c-3092-463b-9186-df13a450709d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Frame">
+      <UniqueIdentifier>{2aea587d-9cc4-47d1-9008-5cf3ea41a86f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Frame\Histogram">
+      <UniqueIdentifier>{617ffaee-a526-409c-9982-196c7de1562d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Difference">
+      <UniqueIdentifier>{d95dbe6b-a1ee-4da9-95a5-64dd587e9384}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Player">
+      <UniqueIdentifier>{74ffe9d7-8d24-4112-b349-6ddaaff21b3f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Model\Saveable">
-      <UniqueIdentifier>{44369cd5-7826-44e9-be1c-7faca0490e83}</UniqueIdentifier>
+      <UniqueIdentifier>{ebda8668-7ffd-4906-83be-8890dfcd67c6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Saveable">
-      <UniqueIdentifier>{bd54ede9-1bbb-4604-8f11-7f1c6b299214}</UniqueIdentifier>
+    <Filter Include="Source Files\View">
+      <UniqueIdentifier>{95d3ddf5-d3bb-4761-b49d-3389b6775cb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controller">
+      <UniqueIdentifier>{2e016f77-7bff-437c-b5d8-73beb3eaf44c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controller\Operation">
+      <UniqueIdentifier>{e889b249-2975-4991-bec3-8abf83712356}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controller\Project">
+      <UniqueIdentifier>{e3e29b6f-3c82-47a2-8aa9-9526bda053bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exception">
+      <UniqueIdentifier>{4b149a69-3d5b-475c-a6af-54a1b9acf7a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Helper">
+      <UniqueIdentifier>{5af45370-3eb6-4fee-ba2b-4c94cb8d1076}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Header Files\Model\Video">
+      <UniqueIdentifier>{c8000013-aec9-4f61-8126-bb9df149f4dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Header Files\Model\Player">
+      <UniqueIdentifier>{8a04a222-8ada-4b7b-92ed-94bf93ad4b04}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_VideoMetadataTest.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_VideoMetadataTest.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="VideoMetadataTest.cpp">
-      <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ctt\VideoMetadata.cpp">
-      <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ctt\IllegalArgumentException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ctt\IllegalStateException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_FrameTest.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_FrameTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_cttUnitTests.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoScrubberTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoScrubberTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
     <ClCompile Include="FrameTest.cpp">
+      <Filter>Test Source Files\Model\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoScrubberTest.cpp">
+      <Filter>Test Source Files\Model\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoMetadataTest.cpp">
+      <Filter>Test Source Files\Model\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelTests.h">
+      <Filter>Test Header Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ExtendedTimeline.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ExtendedTimeline.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FrameMetadataWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FrameMetadataWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_HistogramWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_HistogramWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_InsertionWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_InsertionWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MainControlWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MainControlWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MainWindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MainWindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_PlayerFunctions.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_PlayerFunctions.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ProcessingWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ProcessingWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ThumbnailListWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ThumbnailListWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoAnalysingWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoAnalysingWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoProcessingWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoProcessingWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ViewState.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ViewState.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ZoomFunctions.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ZoomFunctions.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DifferenceController.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DifferenceController.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilterController.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FilterController.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_OverlayController.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_OverlayController.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_PlayerController.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_PlayerController.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MainController.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MainController.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoListController.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoListController.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Player.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Player.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoScrubber.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoScrubber.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\FilterIntervalList.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\Observer.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\Surface.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\UIntegerInterval.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\Observable.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\BlurFilter.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\CoffeeFilter.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\Filter.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\FilteredVideo.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\FilterFactory.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\FilterParam.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\GreyscaleFilter.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\MixFilter.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\NoiseFilter.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\RescaleFilter.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\RGBChannelFilter.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\TimeshiftFilter.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\ColoringOverlay.cpp">
+      <Filter>Source Files\Model\Filter\Overlay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\HeatmapOverlay.cpp">
+      <Filter>Source Files\Model\Filter\Overlay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\MacroblockOverlay.cpp">
+      <Filter>Source Files\Model\Filter\Overlay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\MacropartitionOverlay.cpp">
+      <Filter>Source Files\Model\Filter\Overlay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\MotionVectorOverlay.cpp">
+      <Filter>Source Files\Model\Filter\Overlay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\Overlay.cpp">
+      <Filter>Source Files\Model\Filter\Overlay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\FFmpegDataVideo.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\FileVideo.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\Video.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\VideoMetadata.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\YUVDataVideo.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\Frame.cpp">
       <Filter>Source Files\Model\Frame</Filter>
     </ClCompile>
     <ClCompile Include="..\ctt\FrameMetadata.cpp">
-      <Filter>Source Files\Model\Frame</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ctt\Frame.cpp">
       <Filter>Source Files\Model\Frame</Filter>
     </ClCompile>
     <ClCompile Include="..\ctt\BlueHistogram.cpp">
@@ -119,93 +420,546 @@
     <ClCompile Include="..\ctt\HueHistogram.cpp">
       <Filter>Source Files\Model\Frame\Histogram</Filter>
     </ClCompile>
+    <ClCompile Include="..\ctt\SaturationHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
     <ClCompile Include="..\ctt\LuminanceHistogram.cpp">
       <Filter>Source Files\Model\Frame\Histogram</Filter>
     </ClCompile>
     <ClCompile Include="..\ctt\RedHistogram.cpp">
       <Filter>Source Files\Model\Frame\Histogram</Filter>
     </ClCompile>
-    <ClCompile Include="..\ctt\SaturationHistogram.cpp">
-      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    <ClCompile Include="..\ctt\DifferenceFactory.cpp">
+      <Filter>Source Files\Model\Difference</Filter>
     </ClCompile>
-    <ClCompile Include="..\ctt\Surface.cpp">
-      <Filter>Source Files\Model</Filter>
+    <ClCompile Include="..\ctt\EarthMoversHistogramDiff.cpp">
+      <Filter>Source Files\Model\Difference</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\qrc_cttUnitTests.cpp">
-      <Filter>Generated Files</Filter>
+    <ClCompile Include="..\ctt\FrameDiff.cpp">
+      <Filter>Source Files\Model\Difference</Filter>
     </ClCompile>
-    <ClCompile Include="..\ctt\VideoScrubber.cpp">
-      <Filter>Source Files\Model\Player</Filter>
+    <ClCompile Include="..\ctt\HSLPixelDiff.cpp">
+      <Filter>Source Files\Model\Difference</Filter>
     </ClCompile>
-    <ClCompile Include="VideoScrubberTest.cpp">
-      <Filter>Source Files\Model\Player</Filter>
+    <ClCompile Include="..\ctt\PixelDiff.cpp">
+      <Filter>Source Files\Model\Difference</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_VideoScrubberTest.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_VideoScrubberTest.cpp">
-      <Filter>Generated Files\Release</Filter>
+    <ClCompile Include="..\ctt\YUVPixelDiff.cpp">
+      <Filter>Source Files\Model\Difference</Filter>
     </ClCompile>
     <ClCompile Include="..\ctt\Player.cpp">
+      <Filter>Source Files\Model\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\VideoScrubber.cpp">
       <Filter>Source Files\Model\Player</Filter>
     </ClCompile>
     <ClCompile Include="..\ctt\Saveable.cpp">
       <Filter>Source Files\Model\Saveable</Filter>
     </ClCompile>
-    <ClCompile Include="..\ctt\Observer.cpp">
-      <Filter>Source Files\Model</Filter>
+    <ClCompile Include="..\ctt\SaveableList.cpp">
+      <Filter>Source Files\Model\Saveable</Filter>
     </ClCompile>
-    <ClCompile Include="..\ctt\Observable.cpp">
-      <Filter>Source Files\Model</Filter>
+    <ClCompile Include="..\ctt\Memento.cpp">
+      <Filter>Source Files\Model\Saveable</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_VideoScrubber.cpp">
+    <ClCompile Include="..\ctt\AbstractListView.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\AbstractTimeline.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\AnalysingWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\DifferenceListView.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\DifferenceTimeline.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\ExtendedTimeline.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\FilterListView.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\FilterTimeline.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\FrameMetadataWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\HistogramWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\InsertionWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\PlayerFunctions.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\TimelineInterval.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\MainControlWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\MainWindow.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\PlayerWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\ProcessingWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\ThumbnailListWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\VideoAnalysingWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\VideoProcessingWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\VideoWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\ViewState.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\ZoomFunctions.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\DifferenceController.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\FilterController.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\MainController.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\OverlayController.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\PlayerController.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\VideoListController.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\FilterAddedOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\FilterListOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\FilterParamChangedOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\FilterRemovedOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\FPSChangingOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\OperationList.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\VideoAddedOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\VideoListOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\VideoRemovedOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\Project.cpp">
+      <Filter>Source Files\Controller\Project</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\ProjectLoader.cpp">
+      <Filter>Source Files\Controller\Project</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\ProjectSaver.cpp">
+      <Filter>Source Files\Controller\Project</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\XMLLoader.cpp">
+      <Filter>Source Files\Controller\Project</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\XMLSaver.cpp">
+      <Filter>Source Files\Controller\Project</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\IllegalArgumentException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\IllegalStateException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\NotImplementedException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\OpenGLException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\GPUHelper.cpp">
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoMetadataTest.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_VideoScrubber.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_Player.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_Player.cpp">
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoMetadataTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="VideoMetadataTest.h">
-      <Filter>Header Files\Model\Video</Filter>
-    </CustomBuild>
-    <CustomBuild Include="FrameTest.h">
-      <Filter>Header Files\Model\Frame</Filter>
-    </CustomBuild>
     <CustomBuild Include="cttUnitTests.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="VideoScrubberTest.h">
+    <CustomBuild Include="FrameTest.h">
+      <Filter>Test Header Files\Model\Frame</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\ExtendedTimeline.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\FrameMetadataWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\HistogramWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\InsertionWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\MainControlWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\MainWindow.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\PlayerFunctions.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\ProcessingWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\ThumbnailListWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\VideoAnalysingWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\VideoProcessingWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\VideoWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\ViewState.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\ZoomFunctions.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\DifferenceController.h">
+      <Filter>Header Files\Controller</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\FilterController.h">
+      <Filter>Header Files\Controller</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\OverlayController.h">
+      <Filter>Header Files\Controller</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\PlayerController.h">
+      <Filter>Header Files\Controller</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\MainController.h">
+      <Filter>Header Files\Controller</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\VideoListController.h">
+      <Filter>Header Files\Controller</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\Observable.h">
+      <Filter>Header Files\Model</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\Observer.h">
+      <Filter>Header Files\Model</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\SaveableList.h">
+      <Filter>Header Files\Model\Saveable</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\ctt\Player.h">
       <Filter>Header Files\Model\Player</Filter>
     </CustomBuild>
     <CustomBuild Include="..\ctt\VideoScrubber.h">
       <Filter>Header Files\Model\Player</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\ctt\Player.h">
-      <Filter>Header Files\Model\Player</Filter>
+    <CustomBuild Include="VideoMetadataTest.h">
+      <Filter>Test Header Files\Model\Video</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\ctt\Observer.h">
-      <Filter>Header Files\Model</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\ctt\Observable.h">
-      <Filter>Header Files\Model</Filter>
+    <CustomBuild Include="VideoScrubberTest.h">
+      <Filter>Test Header Files\Model\Player</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ModelFrameTests.h">
+      <Filter>Test Header Files\Model\Frame</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomTestingMacros.h">
+      <Filter>Test Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\ProjectSaverFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\AbstractListView.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\AbstractTimeline.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\AnalysingWidget.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\DifferenceListView.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\DifferenceTimeline.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\FilterListView.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\FilterTimeline.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\PlayerWidget.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\TimelineInterval.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\ViewType.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\FilterAddedOperation.h">
+      <Filter>Header Files\Controller\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\FilterListOperation.h">
+      <Filter>Header Files\Controller\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\FilterParamChangedOperation.h">
+      <Filter>Header Files\Controller\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\FilterRemovedOperation.h">
+      <Filter>Header Files\Controller\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\FPSChangingOperation.h">
+      <Filter>Header Files\Controller\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\Operation.h">
+      <Filter>Header Files\Controller\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\OperationList.h">
+      <Filter>Header Files\Controller\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\VideoAddedOperation.h">
+      <Filter>Header Files\Controller\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\VideoListOperation.h">
+      <Filter>Header Files\Controller\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\VideoRemovedOperation.h">
+      <Filter>Header Files\Controller\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\Project.h">
+      <Filter>Header Files\Controller\Project</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\ProjectLoader.h">
+      <Filter>Header Files\Controller\Project</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\ProjectSaver.h">
+      <Filter>Header Files\Controller\Project</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\SaveFileType.h">
+      <Filter>Header Files\Controller\Project</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\XMLLoader.h">
+      <Filter>Header Files\Controller\Project</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\XMLSaver.h">
+      <Filter>Header Files\Controller\Project</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\IllegalArgumentException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\IllegalStateException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\NotImplementedException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\OpenGLException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\RuntimeException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\FilterIntervalList.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\Surface.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\UIntegerInterval.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\Module.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\BlurFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\CoffeeFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\Filter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\FilteredVideo.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\FilterFactory.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\FilterParam.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\GreyscaleFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\MixFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\NoiseFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\RescaleFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\RGBChannelFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\TimeshiftFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\ColoringOverlay.h">
+      <Filter>Header Files\Model\Filter\Overlay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\HeatmapOverlay.h">
+      <Filter>Header Files\Model\Filter\Overlay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\MacroblockOverlay.h">
+      <Filter>Header Files\Model\Filter\Overlay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\MacropartitionOverlay.h">
+      <Filter>Header Files\Model\Filter\Overlay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\MotionVectorOverlay.h">
+      <Filter>Header Files\Model\Filter\Overlay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\Overlay.h">
+      <Filter>Header Files\Model\Filter\Overlay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\Frame.h">
+      <Filter>Header Files\Model\Frame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\FrameMetadata.h">
+      <Filter>Header Files\Model\Frame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\BlueHistogram.h">
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\GreenHistogram.h">
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\Histogram.h">
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\HueHistogram.h">
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\SaturationHistogram.h">
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\LuminanceHistogram.h">
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\RedHistogram.h">
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\FFmpegDataVideo.h">
+      <Filter>Header Files\Model\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\FileVideo.h">
+      <Filter>Header Files\Model\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\Video.h">
+      <Filter>Header Files\Model\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\VideoFileType.h">
+      <Filter>Header Files\Model\Video</Filter>
+    </ClInclude>
     <ClInclude Include="..\ctt\VideoMetadata.h">
       <Filter>Header Files\Model\Video</Filter>
     </ClInclude>
-    <ClInclude Include="CustomTestingMacros.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\ctt\VideoSaver.h">
+      <Filter>Header Files\Model\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\YUVDataVideo.h">
+      <Filter>Header Files\Model\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\DifferenceFactory.h">
+      <Filter>Header Files\Model\Difference</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\EarthMoversHistogramDiff.h">
+      <Filter>Header Files\Model\Difference</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\FrameDiff.h">
+      <Filter>Header Files\Model\Difference</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\HSLPixelDiff.h">
+      <Filter>Header Files\Model\Difference</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\PixelDiff.h">
+      <Filter>Header Files\Model\Difference</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\YUVPixelDiff.h">
+      <Filter>Header Files\Model\Difference</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\Memento.h">
+      <Filter>Header Files\Model\Saveable</Filter>
     </ClInclude>
     <ClInclude Include="..\ctt\Saveable.h">
-      <Filter>Header Files\Saveable</Filter>
+      <Filter>Header Files\Model\Saveable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\GPUHelper.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\MathHelper.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="TestResult.h">
+      <Filter>Test Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelVideoTests.h">
+      <Filter>Test Header Files\Model\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelPlayerTests.h">
+      <Filter>Test Header Files\Model\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

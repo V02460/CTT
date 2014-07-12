@@ -1,22 +1,21 @@
 #include <QApplication>
 #include <QtTest/QTest>
 
-#include "VideoMetadataTest.h"
-#include "FrameTest.h"
-#include "VideoScrubberTest.h"
+#include "TestResult.h"
+
+#include "ModelTests.h"
 
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
 
-	VideoMetadataTest videoMetadataTest;
-	QTest::qExec(&videoMetadataTest, argc, argv);
+    TestResult r("");
 
-	FrameTest frameTest;
-	QTest::qExec(&frameTest, argc, argv);
+    r << model::test(argc, argv);
+      //<< view::test(argc, argv)
+      //<< controller::test(argc, argv);
 
-	VideoScrubberTest videoScrubberTest;
-	QTest::qExec(&videoScrubberTest, argc, argv);
+    r.print("");
 
 	return 0;
 }

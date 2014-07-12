@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _VIDEOSRUBBERTEST_H
+#define _VIDEOSRUBBERTEST_H
+
 #include <QtTest/QtTest>
 
 class VideoScrubberTest: public QObject
@@ -10,3 +12,4 @@ class VideoScrubberTest: public QObject
 
 };
 
+#endif
