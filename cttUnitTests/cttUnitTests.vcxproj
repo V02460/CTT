@@ -160,8 +160,10 @@
     <ClCompile Include="..\ctt\Saveable.cpp" />
     <ClCompile Include="..\ctt\Surface.cpp" />
     <ClCompile Include="..\ctt\UIntegerInterval.cpp" />
+    <ClCompile Include="..\ctt\Video.cpp" />
     <ClCompile Include="..\ctt\VideoMetadata.cpp" />
     <ClCompile Include="..\ctt\VideoScrubber.cpp" />
+    <ClCompile Include="BBBTestVideo.cpp" />
     <ClCompile Include="FrameTest.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_FrameTest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -310,6 +312,7 @@
     </CustomBuild>
     <ClInclude Include="..\ctt\Saveable.h" />
     <ClInclude Include="..\ctt\UIntegerInterval.h" />
+    <ClInclude Include="..\ctt\Video.h" />
     <ClInclude Include="..\ctt\VideoMetadata.h" />
     <CustomBuild Include="..\ctt\VideoScrubber.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
@@ -329,6 +332,7 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml"</Command>
     </CustomBuild>
+    <ClInclude Include="BBBTestVideo.h" />
     <ClInclude Include="CustomTestingMacros.h" />
     <CustomBuild Include="VideoScrubberTest.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
