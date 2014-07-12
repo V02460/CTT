@@ -82,13 +82,13 @@ Histogram::sptr Frame::getHistogram(Histogram::HistogramType type) const {
     }
 }
 
-Frame::sptr Frame::applyShader(const QOpenGLShader &shader, QSize newSize) const {
-    Surface::sptr surface = Surface::applyShader(shader, newSize);
+Frame::sptr Frame::applyShader(QOpenGLShaderProgram *program, QSize newSize) const {
+    Surface::sptr surface = Surface::applyShader(program, newSize);
     return Frame::sptr(new Frame(surface, metadata));
 }
 
-Frame::sptr Frame::applyShader(const QOpenGLShader &shader) const {
-    return applyShader(shader, getSize());
+Frame::sptr Frame::applyShader(QOpenGLShaderProgram *program) const {
+    return applyShader(program, getSize());
 }
 
 Frame::Frame(Surface::sptr surface, FrameMetadata metadata) : Surface(*surface.data()), metadata(metadata) {
