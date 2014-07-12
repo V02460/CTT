@@ -98,7 +98,7 @@ public:
      *     player.
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    QList<::model::player::VideoScrubber::wptr> getScrubbers() const;
+    QList<::model::player::VideoScrubber::sptr> getScrubbers() const;
 
     /**
      * Checks whether the player is currently playing.
@@ -261,12 +261,12 @@ signals:
 
 private:
     int currentFrameNumber; /**< The number of the frame that was requested last */
-    QList<::model::player::VideoScrubber> videoScrubbers; /**< The VideoScrubbers controlled by this player*/
+    QList<::model::player::VideoScrubber::sptr> videoScrubbers; /**< The VideoScrubbers controlled by this player*/
     QTimer timer; /**< The timer controlling the playback speed */
     double fps; /**< The currently set playback speed in frames per second */
     bool looping; /**< Specifies whether the player is currently in a loop */
     bool playing; /**< Specifies whether the player is currently playing */
-    UIntegerInterval *loop; /**< Specifies the interval in which the player loops. */
+    UIntegerInterval loop; /**< Specifies the interval in which the player loops. */
 };
 
 }  // namespace player

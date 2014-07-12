@@ -1,13 +1,17 @@
 #include "Player.h"
 
+#include "NotImplementedException.h"
+
 namespace model {
 namespace player {
 
 using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
-using namespace exception;
+using ::exception::NotImplementedException;
+using ::exception::IllegalArgumentException;
+using ::exception::IllegalStateException;
 
-Player::Player(double fps): fps(fps) {
+Player::Player(double fps): fps(fps), loop(0, 0) {
 	if (!(fps > 0)) {
 		throw new IllegalArgumentException("Tried to create a player with a playback speed not greater than zero.)");
 	}
@@ -100,7 +104,7 @@ double Player::getFPS() const {
 	return fps;
 }
 
-QList<VideoScrubber::wptr> Player::getScrubbers() const {
+QList<VideoScrubber::sptr> Player::getScrubbers() const {
 	//TODO implement
 }
 
@@ -122,15 +126,17 @@ void Player::addScrubber(VideoScrubber::sptr scrubber) {
 		throw new IllegalArgumentException("Tried to add a dummy VideoScrubber to a player.");
 	}
 	
+    /*
 	//TODO wie läuft das mit den Pointern?
 	videoScrubbers.append(scrubber);
 	connect(this, SIGNAL(currentFrameNrChanged()), scrubber.data(), SLOT(jumpToFrameNr()));
 
 	scrubber->jumpToFrameNr(currentFrameNumber);
+    */
 }
 
 void Player::addScrubber(VideoScrubber::sptr scrubber, unsigned int position) {
-	if (isDummy())
+    if (isDummy())
 	{
 		throw new IllegalStateException("Tried to add a VideoScrubber to a dummy player.");
 	}
@@ -144,11 +150,16 @@ void Player::addScrubber(VideoScrubber::sptr scrubber, unsigned int position) {
 			+ QString::number(position) + ", but " + QString::number(videoScrubbers.size()) 
 			+ " was the highest valid position.");
 	}
-	//TODO wie läuft das mit den Pointern?
+	
+    throw new NotImplementedException();
+
+    /*
+    //TODO wie läuft das mit den Pointern?
 	videoScrubbers.insert(position, scrubber);
 	connect(this, SIGNAL(currentFrameNrChanged()), scrubber.data(), SLOT(jumpToFrameNr()));
 
 	scrubber->jumpToFrameNr(currentFrameNumber);
+    */
 }
 
 void Player::removeScrubber(unsigned int position) {
@@ -163,7 +174,7 @@ void Player::removeScrubber(unsigned int position) {
 			+ " elements.");
 	}
 
-	disconnect(this, SIGNAL(currentFrameNrChanged()), &videoScrubbers.at(position), SLOT(jumpToFrameNr()));
+	disconnect(this, SIGNAL(currentFrameNrChanged()), videoScrubbers.at(position).data(), SLOT(jumpToFrameNr()));
 	videoScrubbers.removeAt(position);
 }
 
@@ -178,8 +189,10 @@ void Player::removeScrubber(const VideoScrubber &scrubber) {
 			"scrubber.");
 	}
 
-	disconnect(this, SIGNAL(currentFrameNrChanged()), &scrubber, SLOT(jumpToFrameNr()));
-	videoScrubbers.removeOne(scrubber);
+    throw new NotImplementedException();
+
+	/*disconnect(this, SIGNAL(currentFrameNrChanged()), &scrubber, SLOT(jumpToFrameNr()));
+	videoScrubbers.removeOne(scrubber);*/
 }
 
 bool Player::controlsScrubber(const VideoScrubber &scrubber) const {
@@ -187,7 +200,9 @@ bool Player::controlsScrubber(const VideoScrubber &scrubber) const {
 	{
 		throw new IllegalStateException("Tried to ask a dummy Player whether it controls a specific Scrubber.");
 	}
-	return videoScrubbers.contains(scrubber);
+
+    throw new NotImplementedException();
+	//return videoScrubbers.contains(scrubber);
 }
 
 unsigned int Player::scrubberCount() const {

@@ -91,5 +91,8 @@ Saveable::sptr VideoScrubber::getDummy() {
 	return Saveable::sptr(new VideoScrubber());
 }
 
+inline bool operator==(VideoScrubber &lhs, VideoScrubber &rhs) { return lhs.video == rhs.video; }
+inline bool operator!=(VideoScrubber &lhs, VideoScrubber &rhs) { return !operator==(lhs, rhs); }
+
 }  // namespace player
 }  // namespace model

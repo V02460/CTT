@@ -106,7 +106,12 @@ private:
 	 * Constructor for a dummy VideoScrubber.
 	 */
 	VideoScrubber();
+
+    friend inline bool operator==(VideoScrubber &lhs, VideoScrubber &rhs);
 };
+
+inline bool operator==(VideoScrubber &lhs, VideoScrubber &rhs);
+inline bool operator!=(VideoScrubber &lhs, VideoScrubber &rhs);
 
 }  // namespace player
 }  // namespace model
