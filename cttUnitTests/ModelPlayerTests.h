@@ -9,7 +9,7 @@ namespace model {
 namespace player {
 
 static TestResult test(int argc, char *argv[]) {
-    TestResult r("frame");
+    TestResult r("player");
 
     VideoScrubberTest videoScrubberTest;
     r << TestResult("VideoScrubberTest", QTest::qExec(&videoScrubberTest, argc, argv));
