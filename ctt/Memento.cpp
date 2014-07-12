@@ -36,9 +36,9 @@ int Memento::getInt(QString name) const {
 	if (!variableMap.contains(name)) {
 		throw new IllegalArgumentException(QString("There is no variable with name ").append(name).append(" in this memento."));
 	}
-	bool *valid;
-	int value = variableMap.value(name).toInt(valid);
-	if (!&valid) {
+	bool valid;
+	int value = variableMap.value(name).toInt(&valid);
+	if (!valid) {
 		throw new IllegalArgumentException(QString("The variable with name ").append(name).append(" in this memento is not an integer."));
 	}
 	return value;
@@ -52,9 +52,9 @@ float Memento::getFloat(QString name) const {
 	if (variableMap.contains(name)) {
 		throw new IllegalArgumentException(QString("There is no variable with name ").append(name).append(" in this memento."));
 	}
-	bool *valid;
-	int value = variableMap.value(name).toFloat(valid);
-	if (!&valid) {
+	bool valid;
+	int value = variableMap.value(name).toFloat(&valid);
+	if (!valid) {
 		throw new IllegalArgumentException(QString("The variable with name ").append(name).append(" in this memento is not a float."));
 	}
 	return value;
@@ -68,9 +68,9 @@ double Memento::getDouble(QString name) const {
 	if (variableMap.contains(name)) {
 		throw new IllegalArgumentException(QString("There is no variable with name ").append(name).append(" in this memento."));
 	}
-	bool *valid;
-	int value = variableMap.value(name).toDouble(valid);
-	if (!&valid) {
+	bool valid;
+	int value = variableMap.value(name).toDouble(&valid);
+	if (!valid) {
 		throw new IllegalArgumentException(QString("The variable with name ").append(name).append(" in this memento is not a double."));
 	}
 	return value;
@@ -92,7 +92,7 @@ void Memento::setSharedPointer(QString name, QSharedPointer<Saveable> pointer) {
 }
 
 template <class T> T *Memento::getPointer(QString name) const {
-	return getSharedPointer<T>(name).data;
+	return getSharedPointer<T>(name).data();
 }
 
 template <class T> QSharedPointer<T> Memento::getSharedPointer(QString name) const {
