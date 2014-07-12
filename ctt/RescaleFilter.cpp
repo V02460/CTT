@@ -17,7 +17,7 @@ QString RescaleFilter::getName() const {
 
 }
 
-Frame RescaleFilter::getFrame(unsigned int frameNumber) const {
+model::frame::Frame::sptr RescaleFilter::getFrame(unsigned int frameNumber) const {
 
 }
 

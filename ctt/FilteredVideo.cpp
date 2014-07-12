@@ -28,7 +28,7 @@ QList<Filter::sptr> FilteredVideo::getFilterList() const {
 
 }
 
-Frame FilteredVideo::getFrame(unsigned int) const{
+model::frame::Frame::sptr FilteredVideo::getFrame(unsigned int frameNumber) const{
 
 }
 

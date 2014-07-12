@@ -19,7 +19,7 @@ QString RGBChannelFilter::getName() const {
 
 }
 
-Frame RGBChannelFilter::getFrame(unsigned int frameNumber) const {
+model::frame::Frame::sptr RGBChannelFilter::getFrame(unsigned int frameNumber) const {
 
 }
 

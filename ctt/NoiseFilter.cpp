@@ -17,7 +17,7 @@ QString NoiseFilter::getName() const {
 
 }
 
-Frame NoiseFilter::getFrame(unsigned int frameNumber) const {
+model::frame::Frame::sptr NoiseFilter::getFrame(unsigned int frameNumber) const {
 
 }
 

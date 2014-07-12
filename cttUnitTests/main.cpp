@@ -3,6 +3,7 @@
 
 #include "VideoMetadataTest.h"
 #include "FrameTest.h"
+#include "VideoScrubberTest.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,6 +14,9 @@ int main(int argc, char *argv[])
 
 	FrameTest frameTest;
 	QTest::qExec(&frameTest, argc, argv);
+
+	VideoScrubberTest videoScrubberTest;
+	QTest::qExec(&videoScrubberTest, argc, argv);
 
 	return 0;
 }

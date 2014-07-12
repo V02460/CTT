@@ -21,7 +21,7 @@ namespace player {
  * The player will adapt to the shortest video and ignore all parts of the other videos exceeding this length.
  *
  */
-class Player : public QObject, public ::model::saveable::Saveable {
+class Player : public QObject, public ::model::saveable::Saveable, public Observable {
     Q_OBJECT
 
 public:
@@ -113,6 +113,7 @@ public:
      *
      * @param scrubber the scrubber that will be added to the list
      * @throws IllegalStateException if the the method was called on a dummy
+	 * @throws IllegalArgumentException if the submitted scrubber is a dummy
      */
     void addScrubber(::model::player::VideoScrubber::sptr scrubber);
 
@@ -122,24 +123,27 @@ public:
      * @param scrubber the scrubber that will be added to the list
      * @param position the position of the list the player will be inserted at
      * @throws IllegalStateException if the the method was called on a dummy
+	 * @throws IllegalArgumentException if the submitted scrubber is a dummy
+	 * @throws IllegalArgumentException if the submitted position is too high
      */
-    void addScrubber(::model::player::VideoScrubber::sptr scrubber, int position);
+    void addScrubber(::model::player::VideoScrubber::sptr scrubber, unsigned int position);
 
     /**
      * Removes the VideoScrubber with the submitted position from the list of VideoScrbbers controlled by the player.
      *
      * @param position the scrubber at this position will be removed.
-     * @throws InvalidArgumentException if there is no Scrubber at the submitted position
+     * @throws IllegalArgumentException if there is no Scrubber at the submitted position
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    void removeScrubber(int position);
+    void removeScrubber(unsigned int position);
 
     /**
-     * Removes the submitted VideoScrubber from the list of VideoScrubbers controlled by the player. If the submitted
-     * Scrubber isn't in the list, no changes will be made.
+     * Removes the submitted VideoScrubber from the list of VideoScrubbers controlled by the player.
      *
      * @param scrubber this scrubber will be removed
      * @throws IllegalStateException if the the method was called on a dummy
+	 * @throws IllegalArgumentException if the submitted scrubber isn't in the list of VideoScrubbers controlled by the 
+	 *		player
      */
     void removeScrubber(const ::model::player::VideoScrubber &scrubber);
 
