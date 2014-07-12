@@ -57,6 +57,12 @@
     <Filter Include="Source Files\Model\Frame\Histogram">
       <UniqueIdentifier>{b55af5d5-2856-4a2f-a84f-e47207cbd03b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Model\Saveable">
+      <UniqueIdentifier>{fb25baed-3d87-4c08-811d-218880549bf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Saveable">
+      <UniqueIdentifier>{9f9242be-cc2c-4e6a-9e0b-4cef7816ad5d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -122,6 +128,18 @@
     <ClCompile Include="GeneratedFiles\qrc_cttUnitTests.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\CTT\Memento.cpp">
+      <Filter>Source Files\Model\Saveable</Filter>
+    </ClCompile>
+    <ClCompile Include="MementoTest.cpp">
+      <Filter>Source Files\Model\Saveable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MementoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MementoTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="VideoMetadataTest.h">
@@ -133,6 +151,9 @@
     <CustomBuild Include="cttUnitTests.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="MementoTest.h">
+      <Filter>Header Files\Model\Saveable</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ctt\VideoMetadata.h">
@@ -140,6 +161,9 @@
     </ClInclude>
     <ClInclude Include="CustomTestingMacros.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CTT\Memento.h">
+      <Filter>Header Files\Model\Saveable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
