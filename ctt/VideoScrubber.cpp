@@ -91,5 +91,10 @@ Saveable::sptr VideoScrubber::getDummy() {
 	return Saveable::sptr(new VideoScrubber());
 }
 
+unsigned int VideoScrubber::getFrameCount() const
+{
+	return video->getFrameCount();
+}
+
 }  // namespace player
 }  // namespace model

@@ -59,6 +59,13 @@ public:
      */
     ::model::video::VideoMetadata getVideoMetadata() const;
 
+	/**
+	 * Returns the number of frames the video of this scrubber has.
+	 * @returns the number of frames the video of this scrubber has.
+	 * @throws IllegalStateException if the the method was called on a dummy
+	 */
+	unsigned int getFrameCount() const;
+
     /**
      * Gets the Video this VideoScrubber is associated with.
      *
