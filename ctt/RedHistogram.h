@@ -22,10 +22,9 @@ public:
     typedef QWeakPointer<RedHistogram> wptr;
 
     /**
-     * Creates a new RedHistogram describing the distribution of the intensity of the red channel of the submitted
-     * frame.
+     * Creates a new RedHistogram from a Frame containing the distribution of its red channel.
      *
-     * @param frame the RedHistogram will describe the distribution of the intensity of the red channel of this frame
+     * @param frame Image source for the histogram calculation
      */
     explicit RedHistogram(const Frame &frame);
 
@@ -33,7 +32,7 @@ public:
     virtual HistogramType getType() const Q_DECL_OVERRIDE;
 
 protected:
-    QSharedPointer<QOpenGLShaderProgram> createHistogramGridShaderProgram();
+    virtual QSharedPointer<QOpenGLShader> getHistogramGridFS() Q_DECL_OVERRIDE;
 };
 
 }  // namespace histogram

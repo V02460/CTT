@@ -22,11 +22,9 @@ public:
     typedef QWeakPointer<LuminanceHistogram> wptr;
 
     /**
-     * Creates a new LuminanceHistogram describing the distribution of the intensity of the luminance channel of the
-     * submitted frame.
+     * Creates a new LuminanceHistogram from a Frame containing the distribution of its luminance channel.
      *
-     * @param frame the LuminanceHistogram will describe the distribution of the intensity of the luminance channel of
-     *     this frame
+     * @param frame Image source for the histogram calculation
      */
     explicit LuminanceHistogram(const Frame &frame);
 
@@ -34,7 +32,7 @@ public:
     virtual HistogramType getType() const Q_DECL_OVERRIDE;
 
 protected:
-    QSharedPointer<QOpenGLShaderProgram> createHistogramGridShaderProgram();
+    virtual QSharedPointer<QOpenGLShader> getHistogramGridFS() Q_DECL_OVERRIDE;
 };
 
 }  // namespace histogram

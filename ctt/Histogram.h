@@ -10,6 +10,8 @@
 #include <QOpenGLShaderProgram>
 #include <QOpenGLFramebufferObject>
 
+#include "Surface.h"
+
 //#include "Frame.h"
 namespace model {
 namespace frame {
@@ -24,7 +26,7 @@ namespace histogram {
 /**
  * A Histogram with 256 values describing the intensity distribution of a channel in a frame.
  */
-class Histogram : protected QOpenGLFunctions {
+class Histogram {
 public:
     typedef QScopedPointer<Histogram> uptr;
     typedef QSharedPointer<Histogram> sptr;
@@ -43,13 +45,9 @@ public:
     };
 
     /**
-     * Creates a new Histogram from a given frame.
-     * Results are calculated asynchronously on the GPU
-     * When requested immediately the thread blocks until they have been calculated.
-     *
-     * @param frame Frame from which to calculate the Histogram for
+     * Creates a new Histogram.
      */
-    explicit Histogram(const Frame &frame);
+    Histogram();
 
     /**
      * Destroys the Histogram.
@@ -73,21 +71,31 @@ public:
     virtual HistogramType getType() const = 0;
 
 protected:
-    virtual QSharedPointer<QOpenGLShaderProgram> createHistogramGridShaderProgram() = 0;
+    static const unsigned int histogramSize = 256;
 
-    const unsigned int histogramSize = 256;
+    /**
+    * Initializes the histogram.
+    *
+    * @param frame Frame to calculate the histogram for
+    */
+    void init(const Frame &frame);
+
+    /**
+     * Provides the fragment shader used for creating the histogram grid.
+     *
+     * @return QSharedPointer<QOpenGLShader> histogram grid fragment shader
+     */
+    virtual QSharedPointer<QOpenGLShader> getHistogramGridFS() = 0;
 
 private:
-    QSharedPointer<QOpenGLShaderProgram> createCompactionShaderProgram();
-
     /**
     * Converts every 16x16 block of the texture to a local normalized histogram.
     * Requires a valid OpenGL context.
     *
-    * @param image Image that will be used for the histogram grid calculation
-    * @return QSharedPointer<QOpenGLTexture> the generated histogram grid
+    * @param imageData Image data that will be used for the histogram grid calculation
+    * @return Surface::sptr the generated histogram grid
     */
-    QSharedPointer<QOpenGLFramebufferObject> makeHistogramGrid(const QOpenGLTexture &inTexture);
+    Surface::sptr makeHistogramGrid(const Surface &imageData);
 
     /**
     * Calculates a given part of the histogram grid.
@@ -98,10 +106,10 @@ private:
     * @param area Area of the texture which should be calculated
     * @param validOffset Defines an area from the top left corner of every 16x16 block in which valid data is contained
     */
-    void calculateGridPart(const QOpenGLTexture &image,
-                           QOpenGLFramebufferObject *target,
-                           QRect area,
-                           QSize validOffset);
+    //void calculateGridPart(const QOpenGLTexture &image,
+    //                      QOpenGLFramebufferObject *target,
+    //                       QRectF area,
+    //                       QSize validOffset);
 
     /**
     * Extracts values for a single histogram from the grid of local histograms.
@@ -109,19 +117,7 @@ private:
     * @param histogramGrid Grid of local histograms
     * @return the histogram values
     */
-    void requestValuesFromHistogramGrid(QOpenGLFramebufferObject *histogramGrid);
-
-    /**
-    * Collapses square groups of four histograms to a new histogram.
-    *
-    * @param histogramGridId Texture handle of the source grid
-    * @param sourceGridSize Dimension of the source grid texture. Must be multiple of 16.
-    * @param target The target that will hold the compacted grid
-    * @return bool true if a compaction has taken place
-    */
-    bool compactHistogramGrid(GLuint histogramGridId, QSize sourceGridSize, QOpenGLFramebufferObject *target);
-
-    void compactHistogramGridPartial();
+    void requestValuesFromHistogramGrid(const Surface &histogramGrid) const;
 };
 
 }  // namespace histogram
