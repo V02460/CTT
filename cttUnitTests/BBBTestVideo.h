@@ -7,8 +7,8 @@ class BBBTestVideo :
 	public model::video::Video
 {
 public:
-	//frames not higher than 100
-	BBBTestVideo(unsigned int frames, QOpenGLContext context);
+	//frames not higher than 50
+	BBBTestVideo(unsigned int frames);
 
 	model::video::VideoMetadata getMetadata() const;
 
@@ -17,6 +17,12 @@ public:
 	unsigned int getFrameCount() const;
 
 	bool uses(const model::Module &module) const;
+
+	model::saveable::Memento getMemento() const;
+
+	void restore(model::saveable::Memento memento);
+
+	QList<Module*> getUsesList() const;
 
 	~BBBTestVideo();
 

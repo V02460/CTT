@@ -88,7 +88,7 @@ void VideoScrubber::restore(Memento memento) {
 }
 
 Saveable::sptr VideoScrubber::getDummy() {
-	return Saveable::sptr(new VideoScrubber());
+	return VideoScrubber::sptr(new VideoScrubber());
 }
 
 unsigned int VideoScrubber::getFrameCount() const

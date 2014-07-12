@@ -3,7 +3,7 @@
 
 
 
-BBBTestVideo::BBBTestVideo(unsigned int frameCount, QOpenGLContext context) : metadata(QSize(640, 360), 24, frameCount)
+BBBTestVideo::BBBTestVideo(unsigned int frameCount) : metadata(QSize(640, 360), 24, frameCount)
 {
 	surface.create();
 	testContext = QSharedPointer<QOpenGLContext>(new QOpenGLContext());
@@ -35,8 +35,7 @@ BBBTestVideo::BBBTestVideo(unsigned int frameCount, QOpenGLContext context) : me
 
 		QSize testSize(640, 360);
 		model::frame::FrameMetadata frameMetadata(testSize);
-		model::frame::Frame::sptr testFrame(new model::frame::Frame(testContext, testImage, frameMetadata));
-		frames.append(testFrame);
+		//frames.append(model::frame::Frame::sptr(new model::frame::Frame(testContext, testImage, frameMetadata)));
 	}
 }
 
@@ -63,5 +62,20 @@ unsigned int BBBTestVideo::getFrameCount() const
 bool BBBTestVideo::uses(const model::Module &module) const
 {
 	return (this == &module);
+}
+
+model::saveable::Memento BBBTestVideo::getMemento() const
+{
+
+}
+
+void BBBTestVideo::restore(model::saveable::Memento memento)
+{
+
+}
+
+QList<model::Module*> BBBTestVideo::getUsesList() const
+{
+	return (QList<model::Module*>());
 }
 

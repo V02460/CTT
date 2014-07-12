@@ -185,6 +185,9 @@
     <ClCompile Include="..\ctt\Video.cpp">
       <Filter>Source Files\Model\Video</Filter>
     </ClCompile>
+    <ClCompile Include="..\ctt\Memento.cpp">
+      <Filter>Source Files\Model\Saveable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="VideoMetadataTest.h">
@@ -230,6 +233,9 @@
     </ClInclude>
     <ClInclude Include="..\ctt\Video.h">
       <Filter>Header Files\Model\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\Memento.h">
+      <Filter>Header Files\Saveable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

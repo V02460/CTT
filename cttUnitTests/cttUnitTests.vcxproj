@@ -152,6 +152,7 @@
     <ClCompile Include="..\ctt\IllegalArgumentException.cpp" />
     <ClCompile Include="..\ctt\IllegalStateException.cpp" />
     <ClCompile Include="..\ctt\LuminanceHistogram.cpp" />
+    <ClCompile Include="..\ctt\Memento.cpp" />
     <ClCompile Include="..\ctt\Observable.cpp" />
     <ClCompile Include="..\ctt\Observer.cpp" />
     <ClCompile Include="..\ctt\Player.cpp" />
@@ -310,6 +311,7 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
     </CustomBuild>
+    <ClInclude Include="..\ctt\Memento.h" />
     <ClInclude Include="..\ctt\Saveable.h" />
     <ClInclude Include="..\ctt\UIntegerInterval.h" />
     <ClInclude Include="..\ctt\Video.h" />
