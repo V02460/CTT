@@ -5,6 +5,8 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 #include <QMap>
+#include "IllegalArgumentException.h"
+#include "Saveable.h"
 
 namespace model {
 namespace saveable {
@@ -13,7 +15,7 @@ namespace saveable {
  * A memento capsules a set of variables and pointers used to save and restore the state of savable objects.
  * It is only possible to save variables as strings, but casting them to different types is hidden behind the methods of
  * this class.
- * Furthermore pointers will be saved as void pointer. Those two restrictions are the reason savable classes need to know
+ * Furthermore pointers will be saved as Saveable pointer. Those two restrictions are the reason savable classes need to know
  * what variable- / pointer-types they use and use the correct method / cast to the correct pointer type.
  */
 class Memento {
@@ -23,14 +25,24 @@ public:
     typedef QSharedPointer<Memento> sptr;
     typedef QWeakPointer<Memento> wptr;
 
+	/**
+	 * Creates a new, empty memento.
+	 */
+	Memento();
+
+	/**
+	 * Destroys the memento.
+	 */
+	~Memento();
+
     /**
      * Converts the given value to a string and adds it with the given name to the map of saved variables.
      * This method overwrites any variable with given name already saved.
      *
-     * @param value The value of the variable to be saved in this memento.
      * @param name The name of the variable to be saved in this memento.
+	 * @param value The value of the variable to be saved in this memento.
      */
-    void setBool(bool value, QString name);
+    void setBool(QString name, bool value);
 
     /**
      * Converts the variable with the given name, converts it to a boolean and returns it.
@@ -46,10 +58,10 @@ public:
     * Converts the given value to a string and adds it with the given name to the map of saved variables.
     * This method overwrites any variable with given name already saved.
     *
-    * @param value The value of the variable to be saved in this memento.
     * @param name The name of the variable to be saved in this memento.
+	* @param value The value of the variable to be saved in this memento.
     */
-    void setInt(int value, QString name);
+    void setInt(QString name, int value);
 
     /**
      * Converts the variable with the given name, converts it to an integer and returns it.
@@ -65,10 +77,10 @@ public:
      * Converts the given value to a string and adds it with the given name to the map of saved variables.
      * This method overwrites any variable with given name already saved.
      *
-     * @param value The value of the variable to be saved in this memento.
      * @param name The name of the variable to be saved in this memento.
+	 * @param value The value of the variable to be saved in this memento.
      */
-    void setFloat(float value, QString name);
+    void setFloat(QString name, float value);
 
     /**
      * Converts the variable with the given name, converts it to a float and returns it.
@@ -84,10 +96,10 @@ public:
      * Converts the given value to a string and adds it with the given name to the map of saved variables.
      * This method overwrites any variable with given name already saved.
      *
-     * @param value The value of the variable to be saved in this memento.
      * @param name The name of the variable to be saved in this memento.
+	 * @param value The value of the variable to be saved in this memento.
      */
-    void setDouble(double value, QString name);
+    void setDouble(QString name, double value);
 
     /**
      * Converts the variable with the given name, converts it to a double and returns it.
@@ -103,10 +115,10 @@ public:
      * Adds the given string and with the given name to the map of saved variables.
      * This method overwrites any variable with given name already saved.
      *
-     * @param value The value of the variable to be saved in this memento.
      * @param name The name of the variable to be saved in this memento.
+	 * @param value The value of the variable to be saved in this memento.
      */
-    void setString(QString value, QString name);
+    void setString(QString name, QString value);
 
     /**
      * Returns the string with the given name.
@@ -118,12 +130,12 @@ public:
     QString getString(QString name) const;
 
     /**
-     * Saves the given pointer as void pointer with the given name.
+     * Saves the given shared pointer as void pointer with the given name.
      *
-     * @param pointer The pointer to be saved in this memento.
-     * @param name The name of the pointer to be saved in this memento.
+     * @param name The name of the shared pointer to be saved in this memento.
+	 * @param pointer The shared pointer to be saved in this memento.
      */
-    void setPointer(void *pointer, QString name);
+	void setSharedPointer(QString name, QSharedPointer<Saveable>);
 
     /**
      * Returns the pointer with the given name.
@@ -132,7 +144,16 @@ public:
      * @return The pointer with given name.
      * @throws InvalidArgumentException Is thrown if there is no pointer with given name.
      */
-    void *getPointer(QString name) const;
+    template <class T> T *getPointer(QString name) const;
+
+	/**
+	 * Returns the shared pointer with given name.
+	 *
+	 * @param name The name of the requested shared pointer.
+     * @return The shared pointer with given name.
+     * @throws InvalidArgumentException Is thrown if there is no pointer with given name. 
+	 */
+	template <class T> QSharedPointer<T> getSharedPointer(QString name) const;
 
     /**
      * Returns the map of all variables.
@@ -146,11 +167,14 @@ public:
      *
      * @return The map of all pointers.
      */
-    QMap<QString, void*> getPointerMap() const;
+	QMap<QString, QSharedPointer<Saveable>> getPointerMap() const;
 
 private:
-    QMap<QString, QString> variableMap;
-    QMap<QString, void*> pointerMap;
+	const QString TRUE_STRING = QString("true");
+	const QString FALSE_STRING = QString("false");
+
+    QMap<QString, QString> variableMap; 
+	QMap<QString, QSharedPointer<Saveable>> pointerMap;
 };
 
 }  // namespace saveable

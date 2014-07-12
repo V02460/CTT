@@ -13,4 +13,3 @@ private slots:
 	void withAdditionalMetadata();
 	void withAdditionalMetadataInvalid();
 };
-
