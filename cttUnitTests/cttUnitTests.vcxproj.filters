@@ -157,6 +157,12 @@
     <Filter Include="Test Header Files\Model\Player">
       <UniqueIdentifier>{8a04a222-8ada-4b7b-92ed-94bf93ad4b04}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Test Source Files\Model\Saveable">
+      <UniqueIdentifier>{0553e118-e35f-4bfe-8e10-33be0e282e2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Header Files\Model\Saveable">
+      <UniqueIdentifier>{f25ddc9d-1bf1-46d4-b04e-00a54566656e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_FrameTest.cpp">
@@ -615,6 +621,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_VideoMetadataTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MementoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MementoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="MementoTest.cpp">
+      <Filter>Test Source Files\Model\Saveable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -703,6 +718,9 @@
     </CustomBuild>
     <CustomBuild Include="VideoScrubberTest.h">
       <Filter>Test Header Files\Model\Player</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MementoTest.h">
+      <Filter>Test Header Files\Model\Saveable</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -960,6 +978,9 @@
     </ClInclude>
     <ClInclude Include="ModelPlayerTests.h">
       <Filter>Test Header Files\Model\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelSaveableTests.h">
+      <Filter>Test Header Files\Model\Saveable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

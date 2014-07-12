@@ -21,6 +21,12 @@ void FrameTest::withoutImageInvalid()
 
 void FrameTest::withImageInvalid()
 {
+	QImage testImage(":/cttUnitTests/BigBuckBunny.png");
+
+	if (testImage.isNull()) {
+		QFAIL("Unable to load image.");
+	}
+
 	QSize testSize(10, 0);
 	FrameMetadata testMetadata(testSize);
 	QEXPECT_EXCEPTION(Frame testframe(testContext, testImage, testMetadata), IllegalArgumentException);

@@ -31,6 +31,11 @@ const T &SaveableList<T>::get(unsigned int index) const {
 }
 
 template <class T>
+const unsigned int SaveableList<T>::getSize() const {
+
+}
+
+template <class T>
 Memento SaveableList<T>::getMemento() const {
 
 }

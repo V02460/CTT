@@ -1,5 +1,5 @@
-#ifndef _MODELFRAMESTETS_H
-#define _MODELFRAMESTETS_H
+#ifndef _MODELFRAMETESTS_H
+#define _MODELFRAMETESTS_H
 
 #include "TestResult.h"
 

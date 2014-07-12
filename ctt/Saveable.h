@@ -6,7 +6,13 @@
 #include <QWeakPointer>
 
 #include "Observer.h"
-#include "Memento.h"
+
+//#include "Memento.h"
+namespace model {
+namespace saveable {
+    class Memento;
+}}
+
 
 namespace model {
 namespace saveable {

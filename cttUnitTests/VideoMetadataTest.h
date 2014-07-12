@@ -3,12 +3,11 @@
 
 
 class VideoMetadataTest : public QObject {
-    Q_OBJECT
+	Q_OBJECT
 
 private slots:
-    void noAdditionalMetadata();
-    void noAdditionalMetadataInvalid();
-    void withAdditionalMetadata();
-    void withAdditionalMetadataInvalid();
+	void noAdditionalMetadata();
+	void noAdditionalMetadataInvalid();
+	void withAdditionalMetadata();
+	void withAdditionalMetadataInvalid();
 };
-
