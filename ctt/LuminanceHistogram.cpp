@@ -1,45 +1,41 @@
 #include "LuminanceHistogram.h"
 
+#include "OpenGLException.h"
+
 namespace model {
 namespace frame {
 namespace histogram {
 
-typedef QSharedPointer<QOpenGLShaderProgram> QOpenGLShaderProgram_sptr;
+using ::exception::OpenGLException;
 
-LuminanceHistogram::LuminanceHistogram(const Frame &frame) : Histogram(frame) {
+LuminanceHistogram::LuminanceHistogram(const Frame &frame) {
+    init(frame);
 }
 
 Histogram::HistogramType LuminanceHistogram::getType() const {
-    return HistogramType::Blue;
+    return HistogramType::Luminance;
 }
 
-QOpenGLShaderProgram_sptr LuminanceHistogram::createHistogramGridShaderProgram() {
-    auto program = QOpenGLShaderProgram_sptr(new QOpenGLShaderProgram());
+QSharedPointer<QOpenGLShader> LuminanceHistogram::getHistogramGridFS()
+{
+    QSharedPointer<QOpenGLShader> shader(new QOpenGLShader(QOpenGLShader::Fragment));
 
-    program->addShaderFromSourceCode(QOpenGLShader::Vertex, R"(
-        attribute vec2 pos;
-        varying vec2 oPos;
-        varying vec2 texcrd;
-
-        void main() {
-            oPos = pos;
-
-            gl_Position = vec4(pos, 0.0, 0.0);
-        }
-    )");
-
-    program->addShaderFromSourceCode(QOpenGLShader::Fragment, R"(
-        varying vec2 texcrd;
-        uniform sampler2D image;
+    const char source[] = R"(
+        uniform vec2 sourceSize;
+        uniform vec2 targetSize;
+        uniform sampler2D sourceImage;
 
         void main() {
-            gl_Color = texelFetch(image, texcrd, 0);
+            //texelFetch(image, texcrd, 0);
+            gl_FragColor = vec4(gl_FragCoord.xy / targetSize.xy, 0.0, 0.0);
         }
-    )");
+    )";
 
-    QOpenGLShader pixelShader(QOpenGLShader::Vertex);
+    if (!shader->compileSourceCode(source)) {
+        throw new OpenGLException("Fragment shader compilation failed. Log message: " + shader->log());
+    }
 
-    return program;
+    return shader;
 }
 
 }  // namespace histogram

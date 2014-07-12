@@ -22,18 +22,17 @@ public:
     typedef QWeakPointer<GreenHistogram> wptr;
 
     /**
-    * Creates a new GreenHistogram describing the distribution of the intensity of the green channel of the submitted
-    * frame.
-    *
-    * @param frame the GreenHistogram will describe the distribution of the intensity of the green channel of this frame
-    */
+     * Creates a new GreenHistogram from a Frame containing the distribution of its green channel.
+     *
+     * @param frame Image source for the histogram calculation
+     */
     explicit GreenHistogram(const Frame &frame);
 
     //virtual float getValue(unsigned int i) const Q_DECL_OVERRIDE;
     virtual HistogramType getType() const Q_DECL_OVERRIDE;
 
 protected:
-    QSharedPointer<QOpenGLShaderProgram> createHistogramGridShaderProgram();
+    virtual QSharedPointer<QOpenGLShader> getHistogramGridFS() Q_DECL_OVERRIDE;
 };
 
 }  // namespace histogram
