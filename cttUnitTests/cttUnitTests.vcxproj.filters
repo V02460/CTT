@@ -163,6 +163,12 @@
     <Filter Include="Test Header Files\Model\Saveable">
       <UniqueIdentifier>{f25ddc9d-1bf1-46d4-b04e-00a54566656e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Test Source Files\Model\Frame\Histogram">
+      <UniqueIdentifier>{25f2f4d1-a224-4eb0-8cdb-c41efe7a4418}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Header Files\Model\Frame\Histogram">
+      <UniqueIdentifier>{e5dcd502-d095-4e06-b476-e9e8c2b6ffdb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_FrameTest.cpp">
@@ -630,6 +636,15 @@
     <ClCompile Include="MementoTest.cpp">
       <Filter>Test Source Files\Model\Saveable</Filter>
     </ClCompile>
+    <ClCompile Include="HistogramTest.cpp">
+      <Filter>Test Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_HistogramTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_HistogramTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -721,6 +736,9 @@
     </CustomBuild>
     <CustomBuild Include="MementoTest.h">
       <Filter>Test Header Files\Model\Saveable</Filter>
+    </CustomBuild>
+    <CustomBuild Include="HistogramTest.h">
+      <Filter>Test Header Files\Model\Frame\Histogram</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -981,6 +999,9 @@
     </ClInclude>
     <ClInclude Include="ModelSaveableTests.h">
       <Filter>Test Header Files\Model\Saveable</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelFrameHistogramTests.h">
+      <Filter>Test Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

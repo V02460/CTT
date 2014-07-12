@@ -40,6 +40,16 @@ public:
     Frame(QSharedPointer<QOpenGLContext> context, QImage image, FrameMetadata metadata);
 
     /**
+    * Creates a new Frame from image data in a specific OpenGL context.
+    * Automatically creates a Metadata object containing the size of the image
+    *
+    * @param context the OpenGL context in which the frame will be created
+    * @param image image the image from which the frame will be generated
+    * @throws IllegalArgumentException if the size of the submitted image zero or negative area
+    */
+    Frame(QSharedPointer<QOpenGLContext> context, QImage image);
+
+    /**
      * Creates a new empty Frame with corresponding metadata in a specific OpenGL context.
      *
      * @param context the OpenGL context in which the frame will be created

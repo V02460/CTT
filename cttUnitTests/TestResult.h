@@ -30,13 +30,13 @@ public:
         //QTextStream out(stdout);
         
         if (isTest) {
-            qDebug() << append << (failure ? "FAIL" : "OK") << ":" << name;
+            qDebug() << append + (failure ? "FAIL" : "OK") + " : " + name;
         } else {
-            qDebug() << append << (failure ? "FAIL" : "OK") << "(" << success << "/" << (success + failure) << ")"
-                     << name;
+            qDebug() << append + (failure ? "FAIL (" + QString::number(success) + "/"
+                + QString::number(success + failure) + ")" : "OK") + " " + name;
 
             foreach(TestResult child, children) {
-                child.print(append + "\t");
+                child.print(append + "|   ");
             }
         }
     }
