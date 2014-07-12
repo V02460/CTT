@@ -6,6 +6,7 @@
 #include <QWeakPointer>
 #include <QMap>
 #include "IllegalArgumentException.h"
+#include "Saveable.h"
 
 namespace model {
 namespace saveable {
@@ -14,7 +15,7 @@ namespace saveable {
  * A memento capsules a set of variables and pointers used to save and restore the state of savable objects.
  * It is only possible to save variables as strings, but casting them to different types is hidden behind the methods of
  * this class.
- * Furthermore pointers will be saved as void pointer. Those two restrictions are the reason savable classes need to know
+ * Furthermore pointers will be saved as Saveable pointer. Those two restrictions are the reason savable classes need to know
  * what variable- / pointer-types they use and use the correct method / cast to the correct pointer type.
  */
 class Memento {
@@ -129,12 +130,12 @@ public:
     QString getString(QString name) const;
 
     /**
-     * Saves the given pointer as void pointer with the given name.
+     * Saves the given shared pointer as void pointer with the given name.
      *
-     * @param name The name of the pointer to be saved in this memento.
-	 * @param pointer The pointer to be saved in this memento.
+     * @param name The name of the shared pointer to be saved in this memento.
+	 * @param pointer The shared pointer to be saved in this memento.
      */
-    void setPointer(QString name, void *pointer);
+	void setSharedPointer(QString name, QSharedPointer<Saveable>);
 
     /**
      * Returns the pointer with the given name.
@@ -143,7 +144,16 @@ public:
      * @return The pointer with given name.
      * @throws InvalidArgumentException Is thrown if there is no pointer with given name.
      */
-    void *getPointer(QString name) const;
+    template <class T> T *getPointer(QString name) const;
+
+	/**
+	 * Returns the shared pointer with given name.
+	 *
+	 * @param name The name of the requested shared pointer.
+     * @return The shared pointer with given name.
+     * @throws InvalidArgumentException Is thrown if there is no pointer with given name. 
+	 */
+	template <class T> QSharedPointer<T> getSharedPointer(QString name) const;
 
     /**
      * Returns the map of all variables.
@@ -157,14 +167,14 @@ public:
      *
      * @return The map of all pointers.
      */
-    QMap<QString, void*> getPointerMap() const;
+	QMap<QString, QSharedPointer<Saveable>> getPointerMap() const;
 
 private:
 	const QString TRUE_STRING = QString("true");
 	const QString FALSE_STRING = QString("false");
 
-    QMap<QString, QString> variableMap;
-    QMap<QString, void*> pointerMap;
+    QMap<QString, QString> variableMap; 
+	QMap<QString, QSharedPointer<Saveable>> pointerMap;
 };
 
 }  // namespace saveable
