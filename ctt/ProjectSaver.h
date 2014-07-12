@@ -8,6 +8,7 @@
 
 #include "Saveable.h"
 #include "Project.h"
+#include "NotImplementedException.h"
 
 namespace controller {
 namespace project {
@@ -30,6 +31,7 @@ public:
      * @param path The path to save to.
      * @param project The project to be saved.
      * @throws IOException Is thrown if for any reason the file cant be written.
+	 * @throws NotImplementedException Is thrown by this interface and any class not overwriting it.
      */
     static void save(QDir path, const ::controller::project::Project &project);
 
