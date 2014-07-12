@@ -6,6 +6,7 @@ namespace project {
 using ::controller::project::Project;
 using ::exception::IOException;
 using ::exception::ParseException;
+using ::model::saveable::Saveable;
 
 static void restore(QDir path, Project project){
 	QFile file(path.absolutePath());
@@ -18,20 +19,13 @@ static void restore(QDir path, Project project){
 		file.close();
 		throw new ParseException(*error);
 	}
-	QDomNodeList elementList = dom.elementsByTagName(QString("element"));
-	QMap<int, QDomNodeList> mementos;
-	for (int i = 1; i < elementList.length(); i++) {
-		QDomNode element = elementList.at(i);
-		/* TODO
-		 - get ID
-		 - create class and add to map(ID, pointer)
-		 - get memento subtree and add to map(ID, memento)
-		 */
+	for (QDomNode n = dom.documentElement().firstChild(); !n.isNull(); n = n.nextSibling()) {
+		if (!n.isElement) {
+			throw new ParseException(QString("Wrong document format. Make sure <elements> only contains <element> tags."));
+		}
+		QDomElement e = n.toElement();
+		// TODO saver if (e.tagName().compare())
 	}
-	/* TODO
-	 - create Mementos
-	 - restore classes
-	 */
 }
 
 }  // namespace project

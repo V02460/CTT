@@ -9,6 +9,7 @@
 #include "ProjectLoader.h"
 #include "IOException.h"
 #include "ParseException.h"
+#include "Saveable.h"
 
 namespace controller {
 namespace project {
