@@ -170,6 +170,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_Player.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="..\ctt\UIntegerInterval.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="VideoMetadataTest.h">
@@ -206,6 +209,9 @@
     </ClInclude>
     <ClInclude Include="..\ctt\Saveable.h">
       <Filter>Header Files\Saveable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ctt\UIntegerInterval.h">
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

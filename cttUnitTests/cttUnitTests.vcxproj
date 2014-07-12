@@ -159,6 +159,7 @@
     <ClCompile Include="..\ctt\SaturationHistogram.cpp" />
     <ClCompile Include="..\ctt\Saveable.cpp" />
     <ClCompile Include="..\ctt\Surface.cpp" />
+    <ClCompile Include="..\ctt\UIntegerInterval.cpp" />
     <ClCompile Include="..\ctt\VideoMetadata.cpp" />
     <ClCompile Include="..\ctt\VideoScrubber.cpp" />
     <ClCompile Include="FrameTest.cpp" />
@@ -308,6 +309,7 @@
       </Command>
     </CustomBuild>
     <ClInclude Include="..\ctt\Saveable.h" />
+    <ClInclude Include="..\ctt\UIntegerInterval.h" />
     <ClInclude Include="..\ctt\VideoMetadata.h" />
     <CustomBuild Include="..\ctt\VideoScrubber.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
