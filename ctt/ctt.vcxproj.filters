@@ -120,6 +120,9 @@
     <Filter Include="Header Files\Helper">
       <UniqueIdentifier>{e30c80ac-f317-4573-a9a5-e7d2291aa5c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Helper">
+      <UniqueIdentifier>{2fb5fbe9-2fe3-41b7-9c6b-76f6dcfb625c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -550,6 +553,9 @@
     </ClCompile>
     <ClCompile Include="NotImplementedException.cpp">
       <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="GPUHelper.cpp">
+      <Filter>Source Files\Helper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

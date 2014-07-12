@@ -368,6 +368,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="GPUHelper.cpp" />
     <ClCompile Include="GreenHistogram.cpp" />
     <ClCompile Include="GreyscaleFilter.cpp" />
     <ClCompile Include="HeatmapOverlay.cpp" />
