@@ -6,6 +6,8 @@
 #include <QWeakPointer>
 
 #include "ProjectSaver.h"
+#include "IOException.h"
+#include "Saveable.h"
 
 namespace controller {
 namespace project {

@@ -11,7 +11,7 @@ using ::model::saveable::Saveable;
 static void restore(QDir path, Project project){
 	QFile file(path.absolutePath());
 	if (!file.open(QIODevice::ReadOnly)) {
-		throw new IOException(QString("File could not be opened."));
+		throw new IOException(QString("File ").append(path.absolutePath()).append(" could not be opened."));
 	}
 	QDomDocument dom;
 	QString *error;
