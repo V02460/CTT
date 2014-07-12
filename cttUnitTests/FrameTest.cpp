@@ -21,7 +21,6 @@ void FrameTest::withoutImageInvalid()
 
 void FrameTest::withImageInvalid()
 {
-	//Image Loading doesn't work...
 	QImage testImage(":/cttUnitTests/BigBuckBunny.png");
 
 	if (testImage.isNull()) {
@@ -35,6 +34,13 @@ void FrameTest::withImageInvalid()
 	QSize testSize2(0, 10);
 	FrameMetadata testMetadata2(testSize2);
 	QEXPECT_EXCEPTION(Frame testframe(testContext, testImage, testMetadata2), IllegalArgumentException);
+
+	QSize testSize3(10, 10);
+	FrameMetadata testMetadata3(testSize3);
+	QEXPECT_EXCEPTION(Frame testframe(testContext, testImage, testMetadata3), IllegalArgumentException);
+
+	QImage testImage2(0, 0, QImage::Format_RGB888);
+	QEXPECT_EXCEPTION(Frame testframe(testContext, testImage2, testMetadata3), IllegalArgumentException);
 }
 
 void FrameTest::initTestCase()
