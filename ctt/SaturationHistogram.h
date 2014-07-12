@@ -21,11 +21,18 @@ public:
 	typedef QSharedPointer<SaturationHistogram> sptr;
 	typedef QWeakPointer<SaturationHistogram> wptr;
 
-	/**
-	 * Creates a new SaturationHistogram describing the distribution of the intensity of the saturation channel of the submitted frame.
-	 * @param frame the SaturationHistogram will describe the distribution of the intensity of the saturation channel of this frame
-	 */
-	SaturationHistogram(Frame frame);
+    /**
+     * Creates a new SaturationHistogram from a Frame containing the distribution of its saturation channel.
+     *
+     * @param frame Image source for the histogram calculation
+     */
+    explicit SaturationHistogram(const Frame &frame);
+
+    //virtual float getValue(unsigned int i) const Q_DECL_OVERRIDE;
+    virtual HistogramType getType() const Q_DECL_OVERRIDE;
+
+protected:
+    virtual QSharedPointer<QOpenGLShader> getHistogramGridFS() Q_DECL_OVERRIDE;
 };
 
 }  // namespace histogram

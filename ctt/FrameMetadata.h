@@ -11,12 +11,14 @@
 #include "MacroblockType.h"
 #include "MacroblockPartition.h"
 
+#include "IllegalStateException.h"
+
 namespace model {
 namespace frame {
 
 /**
- * Holds metdadate information to be used in a Frame.
- * These include the size of the frame, motionvectors,  macroblock types and marcroblock partitions.
+ * Holds metadata information to be used in a Frame.
+ * These include the size of the frame, motion vectors,  macroblock types and macroblock partitions.
 */
 class FrameMetadata {
 public:
@@ -37,7 +39,7 @@ public:
      * @param size Size of the frame in pixel
      * @param macroblockTypes Type identifier for every macroblock in the frame
      * @param macroblockPartitions Macroblock partition information for every macroblock in the frame
-     * @param macroblockMotionvectors Motionvectors for every macroblock in the frame
+     * @param macroblockMotionvectors Motion vectors for every macroblock in the frame
      */
     FrameMetadata(QSize size,
                   QVector<QVector<MacroblockType>> macroblockTypes,
@@ -55,6 +57,7 @@ public:
      * Get an array of the stored type identifiers for every macroblock.
      *
      * @return QVector<QVector<MacroblockType>> [y][x]-Array of macroblock type ids
+     * @throws IllegalStateException if no macroblock type information was stored
      */
     QVector<QVector<MacroblockType>> getMbType() const;
 
@@ -62,13 +65,15 @@ public:
      * Get an array of the stored macroblock partition information.
      *
      * @return QVector<QVector<int>> [y][x]-Array of macroblock partition information.
+     * @throws IllegalStateException if no macroblock partition information was stored
      */
     QVector<QVector<MacroblockPartition>> getMbPartitions() const;
 
     /**
-     * Get an array of the stored motionvectors.
+     * Get an array of the stored motion vectors.
      *
      * @return QVector<QVector<QVector2D>> [y][x]-Array of macroblock motionvectors.
+     * @throws IllegalStateException if no motion vector information was stored
      */
     QVector<QVector<QVector2D>> getMbMotionvectors() const;
 
@@ -87,9 +92,9 @@ public:
     bool hasMbPartions() const;
 
     /**
-     * Checks if motionvector information is stored.
+     * Checks if motion vector information is stored.
      *
-     * @return bool True if motionvector information is stored.
+     * @return bool True if motion vector information is stored.
      */
     bool hasMbMotionvectors() const;
 private:
@@ -97,6 +102,10 @@ private:
     const QVector<QVector<MacroblockType>> mbTypes;
     const QVector<QVector<MacroblockPartition>> mbPartions;
     const QVector<QVector<QVector2D>> mbMotionvectors;
+
+    const bool hasMbTypeFlag;
+    const bool hasMbPartitionsFlag;
+    const bool hasMbMotionvectorsFlag;
 };
 
 }  // namespace frame

@@ -30,7 +30,10 @@ public:
      * @param length the length in frames of the Video described by this object
      * @param additionalData custom data describing the Video described by this object, entry labels are mapped to
      *     values
-     */
+	 * @throws IllegalArgumentException if height and width of the submitted size aren't greater than 0
+	 * @throws IllegalArgumentException if fps isn't greater than 0
+	 * @throws IllegalArgumentException if length isn't greater than 0
+	 */
     VideoMetadata(QSize size, double fps, unsigned int length, QMap<QString, QString> additionalData);
 
     /**
@@ -39,6 +42,9 @@ public:
      * @param size the resolution of the Video described by this object
      * @param fps the default playback speed of the Video described by this object
      * @param length the length in frames of the Video described by this object
+	 * @throws IllegalArgumentException if height and width of the submitted size aren't greater than 0
+	 * @throws IllegalArgumentException if fps isn't greater than 0
+	 * @throws IllegalArgumentException if length isn't greater than 0
      */
     VideoMetadata(QSize size, double fps, unsigned int length);
 
@@ -55,6 +61,7 @@ public:
      *
      * @param key the metadata with this label will be returned.
      * @return QString the metadata with the submitted label.
+	 * @throws IllegalArgumentException if no metadata with the submitted label is available
      */
     QString getData(QString key);
 
@@ -83,6 +90,7 @@ private:
     QSize size; /**< The resolution of the Video described by this object. */
     double fps; /**< The default playback speed of the Video described by this object. */
     unsigned int length; /**< The length in frames of the Video described by this object. */
+	QMap<QString, QString> additionalData; /**< custom data describing the Video described by this object*/
 };
 
 }  // namespace video

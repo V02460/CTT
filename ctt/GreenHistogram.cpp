@@ -1,15 +1,41 @@
 #include "GreenHistogram.h"
 
+#include "OpenGLException.h"
+
 namespace model {
 namespace frame {
 namespace histogram {
 
-GreenHistogram::GreenHistogram(Frame frame) {
+using ::exception::OpenGLException;
 
+GreenHistogram::GreenHistogram(const Frame &frame) {
+    init(frame);
 }
 
-HistogramType GreenHistogram::getType() const {
+Histogram::HistogramType GreenHistogram::getType() const {
+    return HistogramType::Green;
+}
 
+QSharedPointer<QOpenGLShader> GreenHistogram::getHistogramGridFS()
+{
+    QSharedPointer<QOpenGLShader> shader(new QOpenGLShader(QOpenGLShader::Fragment));
+
+    const char source[] = R"(
+        uniform vec2 sourceSize;
+        uniform vec2 targetSize;
+        uniform sampler2D sourceImage;
+
+        void main() {
+            //texelFetch(image, texcrd, 0);
+            gl_FragColor = vec4(gl_FragCoord.xy / targetSize.xy, 0.0, 0.0);
+        }
+    )";
+
+    if (!shader->compileSourceCode(source)) {
+        throw new OpenGLException("Fragment shader compilation failed. Log message: " + shader->log());
+    }
+
+    return shader;
 }
 
 }  // namespace histogram

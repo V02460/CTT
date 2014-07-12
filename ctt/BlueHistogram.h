@@ -13,8 +13,9 @@ namespace frame {
 namespace histogram {
 
 /**
-* A Histogram describing the distribution of the intensity of the blue channel in a frame.
-*/
+ * A Histogram describing the distribution of the intensity of the blue channel in a frame.
+ * Requires an active context.
+ */
 class BlueHistogram : public Histogram {
 public:
     typedef QScopedPointer<BlueHistogram> uptr;
@@ -22,14 +23,17 @@ public:
     typedef QWeakPointer<BlueHistogram> wptr;
 
     /**
-    * Creates a new BlueHistogram describing the distribution of the intensity of the blue channel of the submitted
-    * frame.
-    *
-    * @param frame the BlueHistogram will describe the distribution of the intensity of the blue channel of this frame
-    */
-    explicit BlueHistogram(Frame frame);
+     * Creates a new BlueHistogram from a Frame containing the distribution of its blue channel.
+     *
+     * @param frame Image source for the histogram calculation
+     */
+    explicit BlueHistogram(const Frame &frame);
 
-    virtual HistogramType getType() const;
+    //virtual float getValue(unsigned int i) const Q_DECL_OVERRIDE;
+    virtual HistogramType getType() const Q_DECL_OVERRIDE;
+
+protected:
+    virtual QSharedPointer<QOpenGLShader> getHistogramGridFS() Q_DECL_OVERRIDE;
 };
 
 }  // namespace histogram
