@@ -44,4 +44,4 @@ private:
 
 }  // namespace exception
 
-#endif
+#endif  //_ILLEGALSTATEEXCEPTION_H

@@ -48,6 +48,21 @@
     <Filter Include="Source Files\Exception">
       <UniqueIdentifier>{47802e3b-c328-498d-b89a-6bdddc4b2156}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Model\Frame">
+      <UniqueIdentifier>{875fa45b-c21f-4e88-a696-f2f9f43e0b0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Frame">
+      <UniqueIdentifier>{565866e5-9c33-4039-8245-129fbb25dfa7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Frame\Histogram">
+      <UniqueIdentifier>{b55af5d5-2856-4a2f-a84f-e47207cbd03b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Saveable">
+      <UniqueIdentifier>{fb25baed-3d87-4c08-811d-218880549bf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Saveable">
+      <UniqueIdentifier>{9f9242be-cc2c-4e6a-9e0b-4cef7816ad5d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -71,10 +86,73 @@
     <ClCompile Include="..\ctt\IllegalStateException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FrameTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FrameTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameTest.cpp">
+      <Filter>Source Files\Model\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\FrameMetadata.cpp">
+      <Filter>Source Files\Model\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\Frame.cpp">
+      <Filter>Source Files\Model\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\BlueHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\GreenHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\Histogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\HueHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\LuminanceHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\RedHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\SaturationHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ctt\Surface.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_cttUnitTests.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CTT\Memento.cpp">
+      <Filter>Source Files\Model\Saveable</Filter>
+    </ClCompile>
+    <ClCompile Include="MementoTest.cpp">
+      <Filter>Source Files\Model\Saveable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MementoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MementoTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="VideoMetadataTest.h">
       <Filter>Header Files\Model\Video</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FrameTest.h">
+      <Filter>Header Files\Model\Frame</Filter>
+    </CustomBuild>
+    <CustomBuild Include="cttUnitTests.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MementoTest.h">
+      <Filter>Header Files\Model\Saveable</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -84,5 +162,13 @@
     <ClInclude Include="CustomTestingMacros.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\CTT\Memento.h">
+      <Filter>Header Files\Model\Saveable</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Images\big_buck_bunny_01337.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

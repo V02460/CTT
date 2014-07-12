@@ -368,12 +368,14 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="GPUHelper.cpp" />
     <ClCompile Include="GreenHistogram.cpp" />
     <ClCompile Include="GreyscaleFilter.cpp" />
     <ClCompile Include="HeatmapOverlay.cpp" />
     <ClCompile Include="Histogram.cpp" />
     <ClCompile Include="HistogramWidget.cpp" />
     <ClCompile Include="HSLPixelDiff.cpp" />
+    <ClCompile Include="HueHistogram.cpp" />
     <ClCompile Include="IllegalArgumentException.cpp" />
     <ClCompile Include="IllegalStateException.cpp" />
     <ClCompile Include="InsertionWidget.cpp" />
@@ -382,8 +384,10 @@
     <ClCompile Include="NotImplementedException.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="ParseException.cpp" />
+    <ClCompile Include="OpenGLException.cpp" />
     <ClCompile Include="PlayerFunctions.cpp" />
     <ClCompile Include="Project.cpp" />
+    <ClCompile Include="SaturationHistogram.cpp" />
     <ClCompile Include="Saveable.cpp" />
     <ClCompile Include="SaveableList.cpp" />
     <ClCompile Include="Surface.cpp" />
@@ -574,6 +578,7 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml"</Command>
     </CustomBuild>
     <ClInclude Include="GeneratedFiles\ui_ctt.h" />
+    <ClInclude Include="GPUHelper.h" />
     <ClInclude Include="GreenHistogram.h" />
     <ClInclude Include="GreyscaleFilter.h" />
     <ClInclude Include="HeatmapOverlay.h" />
@@ -616,14 +621,18 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml"</Command>
     </CustomBuild>
+    <ClInclude Include="HueHistogram.h" />
     <ClInclude Include="IllegalArgumentException.h" />
     <ClInclude Include="IllegalStateException.h" />
+    <ClInclude Include="MathHelper.h" />
+    <ClInclude Include="OpenGLException.h" />
     <ClInclude Include="IOException.h" />
     <ClInclude Include="NotImplementedException.h" />
     <ClInclude Include="ParseException.h" />
     <ClInclude Include="Project.h" />
     <CustomBuild Include="SaveableList.h" />
     <ClInclude Include="RuntimeException.h" />
+    <ClInclude Include="SaturationHistogram.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="UIntegerInterval.h" />
     <ClInclude Include="LuminanceHistogram.h" />

@@ -117,6 +117,12 @@
     <Filter Include="Header Files\Model\Player">
       <UniqueIdentifier>{10a7901b-c1a8-4e9a-994b-43c11d4f69ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Helper">
+      <UniqueIdentifier>{e30c80ac-f317-4573-a9a5-e7d2291aa5c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Helper">
+      <UniqueIdentifier>{2fb5fbe9-2fe3-41b7-9c6b-76f6dcfb625c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -536,8 +542,20 @@
     <ClCompile Include="IllegalStateException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
+    <ClCompile Include="HueHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="SaturationHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGLException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
     <ClCompile Include="NotImplementedException.cpp">
       <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="GPUHelper.cpp">
+      <Filter>Source Files\Helper</Filter>
     </ClCompile>
     <ClCompile Include="IOException.cpp">
       <Filter>Source Files\Exception</Filter>
@@ -859,6 +877,21 @@
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
     <ClInclude Include="RuntimeException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="HueHistogram.h">
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
+    </ClInclude>
+    <ClInclude Include="SaturationHistogram.h">
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
+    </ClInclude>
+    <ClInclude Include="MathHelper.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="GPUHelper.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
     <ClInclude Include="NotImplementedException.h">

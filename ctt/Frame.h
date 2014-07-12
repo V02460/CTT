@@ -7,13 +7,16 @@
 #include <QOpenGLTexture>
 #include <QOpenGLContext>
 
-#include "Histogram.h"
-#include "HistogramType.h"
 #include "FrameMetadata.h"
 #include "Surface.h"
+#include "Histogram.h"
+
+#include "IllegalArgumentException.h"
 
 namespace model {
 namespace frame {
+
+using histogram::Histogram;
 
 /**
  * Represents a frame, consisting of image data as an an OpenGL Texture and corresponding Metadata.
@@ -31,6 +34,8 @@ public:
      * @param context the OpenGL context in which the frame will be created
      * @param image image the image from which the frame will be generated
      * @param metadata metadata providing additional metadata about the frame
+	 * @throws IllegalArgumentException if the size of the submitted image doesn't fit the size specified in the 
+	 *	submitted metadata.
      */
     Frame(QSharedPointer<QOpenGLContext> context, QImage image, FrameMetadata metadata);
 
@@ -50,15 +55,44 @@ public:
     FrameMetadata getMetadata() const;
 
     /**
-     * creates a histogram of the submitted type from the frame and returns it.
+     * Creates a histogram of the submitted type from the frame and returns it.
      *
      * @param type specifies the histogram type
      * @return Histogram a histogram of the submitted type.
+     * @throws IllegalArgumentException on unsupported type
      */
-    histogram::Histogram::sptr getHistogram(histogram::HistogramType type) const;
+    Histogram::sptr getHistogram(Histogram::HistogramType type) const;
+
+    /**
+     * Applies a shader program to the stored texture and returns a new Frame with the changed content.
+     *
+     * @param program The shader program to apply
+     * @param newSize The size of the returned texture
+     * @return Frame::sptr The new Frame with changed content
+    */
+    Frame::sptr applyShader(QOpenGLShaderProgram *program, QSize newSize) const;
+    
+    /**
+     * Applies a shader program to the stored texture and returns a new Frame with the changed content.
+     * The size of the new Surface equals to the size of this Surface.
+     *
+     * @param program The shader program to apply
+     * @return Frame::sptr The new Surface with changed content
+     */
+    Frame::sptr applyShader(QOpenGLShaderProgram *program) const;
+
+protected:
+    /**
+     * Creates a Frame from a Surface by incorporating it. Cripples surface.
+     *
+     * @param surface The Surface Frame takes its attributes from.
+     */
+    Frame(Surface::sptr surface, FrameMetadata metadata);
 
 private:
-    FrameMetadata::uptr metadata; /**< Metadata containing additional information about the frame */
+    Q_DISABLE_COPY(Frame)
+
+    FrameMetadata metadata; /**< Metadata containing additional information about the frame */
 };
 
 }  // namespace frame
