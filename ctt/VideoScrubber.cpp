@@ -47,7 +47,7 @@ VideoMetadata VideoScrubber::getVideoMetadata() const {
 
 Video::sptr VideoScrubber::getVideo() const {
 	if (isDummy()) {
-		throw new exception::IllegalStateException("Requested Vide from dummy VideoScrubber.");
+		throw new exception::IllegalStateException("Requested Video from dummy VideoScrubber.");
 	}
 
 	return video;

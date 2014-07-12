@@ -46,6 +46,8 @@ public:
     /**
      * Starts playback with the currently set playback speed. Does nothing if the player is already playing. When the
      * end of one of the videos is reached, the playback will automatically be paused.
+	 * If the player has already reached the end of one of its videos and play is called, the player will start its 
+	 * Videos from the beginning.
      *
      * @throws IllegalStateException if the the method was called on a dummy
      */
@@ -98,7 +100,7 @@ public:
      *     player.
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    QList<::model::player::VideoScrubber::wptr> getScrubbers() const;
+    QList<::model::player::VideoScrubber::sptr> getScrubbers() const;
 
     /**
      * Checks whether the player is currently playing.
@@ -184,7 +186,7 @@ public:
 
     /**
      * Gets the length in frames per second of the shortest Video the scrubbers of this player use to get their frames
-     * from.
+     * from. Returns 0 if the player has no scrubbers.
      *
      * @return int the length in frames per second of the shortest Video the scrubbers of this player use to get their
      *     frames from
@@ -260,13 +262,20 @@ signals:
     void currentFrameNrChanged(unsigned int currentFrameNr);
 
 private:
+	/**
+	* Creates a dummy Player.
+	*/
+	Player();
+
     int currentFrameNumber; /**< The number of the frame that was requested last */
-    QList<::model::player::VideoScrubber> videoScrubbers; /**< The VideoScrubbers controlled by this player*/
+    QList<::model::player::VideoScrubber::sptr> videoScrubbers; /**< The VideoScrubbers controlled by this player*/
     QTimer timer; /**< The timer controlling the playback speed */
     double fps; /**< The currently set playback speed in frames per second */
     bool looping; /**< Specifies whether the player is currently in a loop */
     bool playing; /**< Specifies whether the player is currently playing */
-    UIntegerInterval *loop; /**< Specifies the interval in which the player loops. */
+    UIntegerInterval loop; /**< Specifies the interval in which the player loops. */
+
+
 };
 
 }  // namespace player
