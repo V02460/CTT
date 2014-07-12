@@ -16,7 +16,6 @@ namespace frame {
     class Frame;
 }}
 
-
 namespace model {
 namespace frame {
 namespace histogram {
