@@ -207,7 +207,8 @@ public:
      * will jump to the first frame in the loop interval.
      *
      * @param interval the interval in which the player will loop
-     * @throws InvalidArgumentException if the bounds of the interval aren't in the bounds of the videos.
+	 * @throws IllegalArgumentException if the submitted interval is a dummy.
+     * @throws IllegalArgumentException if the bounds of the interval aren't in the bounds of the videos.
      * @throws IllegalStateException if the the method was called on a dummy
      */
     void setLoop(UIntegerInterval interval);
