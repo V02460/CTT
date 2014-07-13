@@ -274,11 +274,6 @@ private:
     bool looping; /**< Specifies whether the player is currently in a loop */
     bool playing; /**< Specifies whether the player is currently playing */
     UIntegerInterval loop; /**< Specifies the interval in which the player loops. */
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 0348629c33113cd6b75b3bef9450fad1d50e9b45
 };
 
 }  // namespace player

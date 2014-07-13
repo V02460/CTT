@@ -553,6 +553,9 @@
     <ClCompile Include="GeneratedFiles\qrc_ctt.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="MockDisplayHelper.cpp">
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -883,6 +886,9 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_ctt.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MockDisplayHelper.h">
+      <Filter>Header Files\Helper</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

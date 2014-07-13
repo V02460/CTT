@@ -389,6 +389,7 @@
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Memento.cpp" />
     <ClCompile Include="MixFilter.cpp" />
+    <ClCompile Include="MockDisplayHelper.cpp" />
     <ClCompile Include="MotionVectorOverlay.cpp" />
     <ClCompile Include="NoiseFilter.cpp" />
     <ClCompile Include="NotImplementedException.cpp" />
@@ -580,6 +581,7 @@
     <ClInclude Include="GPUHelper.h" />
     <ClInclude Include="GreenHistogram.h" />
     <ClInclude Include="GreyscaleFilter.h" />
+    <ClInclude Include="MockDisplayHelper.h" />
     <ClInclude Include="HeatmapOverlay.h" />
     <ClInclude Include="Histogram.h" />
     <CustomBuild Include="HistogramWidget.h">
