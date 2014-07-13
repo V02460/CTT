@@ -47,6 +47,7 @@ public:
      *
      * @param target Surface that is rendered into
      * @param program Shader program to call
+     * @throws OpenGLException when framebuffer object or shader program could not be bound
      */
     void runShader(::model::Surface *target, QOpenGLShaderProgram *program);
 

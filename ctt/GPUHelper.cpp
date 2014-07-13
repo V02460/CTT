@@ -18,18 +18,18 @@ QOpenGLShader_sptr GPUHelper::getDefaultFlatVS() {
     QOpenGLShader_sptr shader(new QOpenGLShader(QOpenGLShader::Vertex));
 
     bool success = shader->compileSourceCode(R"(
-        attribute vec2 _pos;
+        attribute vec2 pos;
         varying vec2 texcrd;
 
         void main() {
-            texcrd = (_pos + 1.f) * 0.5f;
+            texcrd = (pos + 1.f) * 0.5f;
 
-            gl_Position = vec4(_pos, 0.0, 0.0);
+            gl_Position = vec4(pos, 0.f, 0.f);
         }
     )");
 
     if (!success) {
-        throw new OpenGLException("Unable to compile Vertex Shader.");
+        throw new OpenGLException("Unable to compile Vertex Shader: " + shader->log());
     }
 
     return shader;
@@ -39,27 +39,62 @@ void GPUHelper::runShader(Surface *target, QOpenGLShaderProgram *program) {
 
     QOpenGLFramebufferObject *fbo = target->getFramebufferObject();
 
-    // vertex coordinates for a screen filling quad
-    GLfloat vertices[] = {
-        -1.f, 1.f,
-        1.f, 1.f,
-        -1.f, -1.f,
-        1.f, -1.f};
+    if (!fbo->isValid()) {
+        throw new OpenGLException("Framebuffer object is not valid.");
+    }
 
     // set state
-    fbo->bind();
-    glEnableVertexAttribArray(0);
-    program->bind();
+    if (!fbo->bind()) {
+        throw new OpenGLException("Could not bind framebuffer object.");
+    }
+    
+    if (!program->bind()) {
+        throw new OpenGLException("Could not bind shader program.");
+    }
 
+    // vertex coordinates for a screen filling quad
+    static const QVector2D vertices[] = {{-0.f,  0.f},
+                                         { 1.f,  1.f},
+                                         {-1.f, -1.f},
+                                         { 1.f, -1.f}};
+    
+    // draw with different rotation
+    /*static const QVector2D vertices[] = {{-1.f, 1.f},
+                                         {-1.f, -1.f},
+                                         { 1.f, 1.f},
+                                         { 1.f, -1.f}};*/
+
+    /*static const GLfloat vertices[] = {-1.f,  1.f,
+                                        1.f,  1.f,
+                                       -1.f, -1.f,
+                                        1.f, -1.f};*/
+
+    int vertexLocation = program->attributeLocation("pos");
+    if (vertexLocation == -1) {
+        throw new OpenGLException("Vertex shader has no \"_pos\" attribute to assign vertex positions to.");
+    }
+    qDebug() << "attribute location of \"_pos\": " + QString::number(vertexLocation);
+
+    program->enableAttributeArray(vertexLocation);
+
+    //program->setAttributeArray(vertexLocation, vertices);
+    program->setAttributeArray(vertexLocation, vertices);
     // index, size, type, normalized, stride, pointer
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, &vertices);
+    //glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, &vertices);
+
+    qDebug() << program->log();
+    qDebug() << "Number of linked shaders in program: " + QString::number(program->shaders().size());
 
     // draw
+    glClearColor(0.f, 0.8f, 0.f, 1.f);
+    glClear(GL_COLOR_BUFFER_BIT);
+
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
     // cleanup state
+    program->disableAttributeArray(vertexLocation);
     program->release();
-    glDisableVertexAttribArray(0);
+
     fbo->release();
 }
 

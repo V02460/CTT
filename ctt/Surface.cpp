@@ -10,7 +10,7 @@ using ::exception::IllegalStateException;
 
 typedef QSharedPointer<QOpenGLContext> QOpenGLContext_sptr;
 
-Surface::Surface(QOpenGLContext_sptr context, QSize size) : context(context), size(size) {
+Surface::Surface(QOpenGLContext_sptr context, QSize size) : context(context), size(size), framebuffer(nullptr) {
 }
 
 QSize Surface::getSize() const {
@@ -46,9 +46,10 @@ QOpenGLContextGroup *Surface::shareGroup() const {
 QOpenGLFramebufferObject *Surface::getFramebufferObject() {
     if (!framebuffer) {
         framebuffer.reset(new QOpenGLFramebufferObject(size));
+
+        // don't store two textures
+        texture.reset();
     }
-    // don't store two textures
-    texture.reset();
 
     return framebuffer.data();
 }

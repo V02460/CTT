@@ -30,13 +30,13 @@ Histogram::Histogram() {
 }
 
 void Histogram::init(const Frame &frame) {
-    Surface::sptr histogramGrid = makeHistogramGrid(frame);
-    requestValuesFromHistogramGrid(*histogramGrid.data());
+    //Surface::sptr histogramGrid = makeHistogramGrid(frame);
+    //requestValuesFromHistogramGrid(*histogramGrid.data());
 }
 
 float Histogram::getValue(unsigned int i) const {
     if (i >= histogramSize) {
-        throw new IllegalArgumentException("Out of bounds index " + QString::number(i));
+        throw new IllegalArgumentException("Out of bounds index " + QString::number(i) + ".");
     }
 
     throw new NotImplementedException();
@@ -51,11 +51,14 @@ Surface::sptr Histogram::makeHistogramGrid(const Surface &imageData) {
     //QSize sizeDelta = targetSize - sourceSize;
 
     QOpenGLShaderProgram program;
-    if (!program.addShader(GPUHelper::getDefaultFlatVS().data())) {
+
+    QSharedPointer<QOpenGLShader> vertexShader = GPUHelper::getDefaultFlatVS();
+    if (!program.addShader(vertexShader.data())) {
         throw new OpenGLException("Adding of vertex shader failed. Log message: " + program.log());
     }
 
-    if (!program.addShader(getHistogramGridFS().data())) {
+    QSharedPointer<QOpenGLShader> fragmentShader = getHistogramGridFS();
+    if (!program.addShader(fragmentShader.data())) {
         throw new OpenGLException("Adding of fragment shader failed. Log message: " + program.log());
     }
     
@@ -63,9 +66,9 @@ Surface::sptr Histogram::makeHistogramGrid(const Surface &imageData) {
         throw new OpenGLException("Linking of shader program failed. Log message: " + program.log());
     }
 
-    program.setUniformValue("sourceSize", sourceSize);
-    program.setUniformValue("targetSize", targetSize);
-    program.setUniformValue("sourceImage", imageData.getTextureHandle());
+    //program.setUniformValue("sourceSize", sourceSize);
+    //program.setUniformValue("targetSize", targetSize);
+    //program.setUniformValue("sourceImage", imageData.getTextureHandle());
 
     return imageData.applyShader(&program, targetSize);
 }

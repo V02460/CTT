@@ -64,7 +64,7 @@ public:
      */
     virtual HistogramType getType() const = 0;
 
-protected:
+//protected:
     static const unsigned int histogramSize = 256;
 
     /**
@@ -86,7 +86,7 @@ protected:
      */
     virtual QSharedPointer<QOpenGLShader> getHistogramGridFS() = 0;
 
-private:
+//private:
     /**
     * Converts every 16x16 block of the texture to a local normalized histogram.
     * Requires a valid OpenGL context.
