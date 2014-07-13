@@ -39,7 +39,7 @@ public:
      *
      * @return the List of all FilteredVideos the Project uses in the first view.
      */
-    ::model::saveable::SaveableList<::model::filter::FilteredVideo> getVideoList1() const;
+	::model::saveable::SaveableList<::model::filter::FilteredVideo> getVideoList1() const;
 
     /**
 	* Returns the List of all FilteredVideos the Project uses in the second view, i.e. the analyzing view.

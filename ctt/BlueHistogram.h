@@ -23,18 +23,17 @@ public:
     typedef QWeakPointer<BlueHistogram> wptr;
 
     /**
-    * Creates a new BlueHistogram describing the distribution of the intensity of the blue channel of the submitted
-    * frame.
-    *
-    * @param frame the BlueHistogram will describe the distribution of the intensity of the blue channel of this frame
-    */
+     * Creates a new BlueHistogram from a Frame containing the distribution of its blue channel.
+     *
+     * @param frame Image source for the histogram calculation
+     */
     explicit BlueHistogram(const Frame &frame);
 
     //virtual float getValue(unsigned int i) const Q_DECL_OVERRIDE;
     virtual HistogramType getType() const Q_DECL_OVERRIDE;
 
 protected:
-    QSharedPointer<QOpenGLShaderProgram> createHistogramGridShaderProgram();
+    virtual QSharedPointer<QOpenGLShader> getHistogramGridFS() Q_DECL_OVERRIDE;
 };
 
 }  // namespace histogram

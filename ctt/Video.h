@@ -55,7 +55,7 @@ public:
      * @return Frame the scaled Frame
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual ::model::frame::Frame getScaledFrame(unsigned int frameNumber, QSize size) const;
+    virtual ::model::frame::Frame::sptr getScaledFrame(unsigned int frameNumber, QSize size) const;
 
     /**
      * Returns the QOpenGLContext in which the Video creates its frames.
@@ -64,7 +64,7 @@ public:
      */
     QSharedPointer<QOpenGLContext> getContext() const;
 
-    virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const = 0;
+    virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const = 0;
 };
 
 }  // namespace video

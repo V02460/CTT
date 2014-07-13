@@ -1,7 +1,7 @@
 #include "QObject"
 #include <QtTest/QtTest>
 
-#include "../ctt/Memento.h""
+#include "../ctt/Memento.h"
 #include "CustomTestingMacros.h"
 
 class MementoTest : public QObject {

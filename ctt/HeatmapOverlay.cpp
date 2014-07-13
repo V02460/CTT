@@ -19,7 +19,7 @@ QString HeatmapOverlay::getName() const {
 
 }
 
-Frame HeatmapOverlay::getFrame(unsigned int frameNumber) const {
+model::frame::Frame::sptr HeatmapOverlay::getFrame(unsigned int frameNumber) const {
 
 }
 

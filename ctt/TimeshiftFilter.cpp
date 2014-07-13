@@ -17,7 +17,7 @@ QString TimeshiftFilter::getName() const {
 
 }
 
-Frame TimeshiftFilter::getFrame(unsigned int frameNumber) const {
+model::frame::Frame::sptr TimeshiftFilter::getFrame(unsigned int frameNumber) const {
 
 }
 

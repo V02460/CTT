@@ -18,7 +18,7 @@ QString MacroblockOverlay::getName() const {
 
 }
 
-Frame MacroblockOverlay::getFrame(unsigned int frameNumber) const {
+model::frame::Frame::sptr MacroblockOverlay::getFrame(unsigned int frameNumber) const {
 
 }
 

@@ -1,7 +1,7 @@
 #include "MementoTest.h"
 
-using namespace model::saveable;
-using namespace exception;
+using model::saveable::Memento;
+using exception::IllegalArgumentException;
 
 void MementoTest::setAndGet() {
 	Memento memento;

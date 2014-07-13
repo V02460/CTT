@@ -17,7 +17,7 @@ VideoMetadata YUVDataVideo::getMetadata() const {
 
 }
 
-Frame YUVDataVideo::getFrame(unsigned int frameNumber) const {
+model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const {
 
 }
 

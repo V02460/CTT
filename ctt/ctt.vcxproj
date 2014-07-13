@@ -32,7 +32,7 @@
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -152,7 +152,9 @@
     <ClCompile Include="BlurFilter.cpp" />
     <ClCompile Include="CoffeeFilter.cpp" />
     <ClCompile Include="ColoringOverlay.cpp" />
-    <ClCompile Include="ctt.cpp" />
+    <ClCompile Include="ctt.cpp">
+      <DeploymentContent>true</DeploymentContent>
+    </ClCompile>
     <ClCompile Include="DifferenceController.cpp" />
     <ClCompile Include="DifferenceFactory.cpp" />
     <ClCompile Include="DifferenceListView.cpp" />
@@ -368,6 +370,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="GPUHelper.cpp" />
     <ClCompile Include="GreenHistogram.cpp" />
     <ClCompile Include="GreyscaleFilter.cpp" />
     <ClCompile Include="HeatmapOverlay.cpp" />
@@ -378,42 +381,44 @@
     <ClCompile Include="IllegalArgumentException.cpp" />
     <ClCompile Include="IllegalStateException.cpp" />
     <ClCompile Include="InsertionWidget.cpp" />
-    <ClCompile Include="MainController.cpp" />
-    <ClCompile Include="Observer.cpp" />
-    <ClCompile Include="PlayerFunctions.cpp" />
-    <ClCompile Include="Project.cpp" />
-    <ClCompile Include="SaturationHistogram.cpp" />
-    <ClCompile Include="Saveable.cpp" />
-    <ClCompile Include="SaveableList.cpp" />
-    <ClCompile Include="Surface.cpp" />
-    <ClCompile Include="TimelineInterval.cpp" />
-    <ClCompile Include="UIntegerInterval.cpp" />
     <ClCompile Include="LuminanceHistogram.cpp" />
     <ClCompile Include="MacroblockOverlay.cpp" />
     <ClCompile Include="MacropartitionOverlay.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainController.cpp" />
     <ClCompile Include="MainControlWidget.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Memento.cpp" />
     <ClCompile Include="MixFilter.cpp" />
+    <ClCompile Include="MockDisplayHelper.cpp" />
     <ClCompile Include="MotionVectorOverlay.cpp" />
     <ClCompile Include="NoiseFilter.cpp" />
+    <ClCompile Include="NotImplementedException.cpp" />
     <ClCompile Include="Observable.cpp" />
+    <ClCompile Include="Observer.cpp" />
+    <ClCompile Include="OpenGLException.cpp" />
     <ClCompile Include="OperationList.cpp" />
     <ClCompile Include="Overlay.cpp" />
     <ClCompile Include="OverlayController.cpp" />
     <ClCompile Include="PixelDiff.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerController.cpp" />
+    <ClCompile Include="PlayerFunctions.cpp" />
     <ClCompile Include="PlayerWidget.cpp" />
     <ClCompile Include="ProcessingWidget.cpp" />
+    <ClCompile Include="Project.cpp" />
     <ClCompile Include="ProjectLoader.cpp" />
     <ClCompile Include="ProjectSaver.cpp" />
     <ClCompile Include="RedHistogram.cpp" />
     <ClCompile Include="RescaleFilter.cpp" />
     <ClCompile Include="RGBChannelFilter.cpp" />
+    <ClCompile Include="SaturationHistogram.cpp" />
+    <ClCompile Include="Saveable.cpp" />
+    <ClCompile Include="SaveableList.cpp" />
+    <ClCompile Include="Surface.cpp" />
     <ClCompile Include="ThumbnailListWidget.cpp" />
+    <ClCompile Include="TimelineInterval.cpp" />
     <ClCompile Include="TimeshiftFilter.cpp" />
+    <ClCompile Include="UIntegerInterval.cpp" />
     <ClCompile Include="Video.cpp" />
     <ClCompile Include="VideoAddedOperation.cpp" />
     <ClCompile Include="VideoAnalysingWidget.cpp" />
@@ -573,8 +578,10 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml"</Command>
     </CustomBuild>
     <ClInclude Include="GeneratedFiles\ui_ctt.h" />
+    <ClInclude Include="GPUHelper.h" />
     <ClInclude Include="GreenHistogram.h" />
     <ClInclude Include="GreyscaleFilter.h" />
+    <ClInclude Include="MockDisplayHelper.h" />
     <ClInclude Include="HeatmapOverlay.h" />
     <ClInclude Include="Histogram.h" />
     <CustomBuild Include="HistogramWidget.h">
@@ -617,6 +624,9 @@
     <ClInclude Include="HueHistogram.h" />
     <ClInclude Include="IllegalArgumentException.h" />
     <ClInclude Include="IllegalStateException.h" />
+    <ClInclude Include="MathHelper.h" />
+    <ClInclude Include="NotImplementedException.h" />
+    <ClInclude Include="OpenGLException.h" />
     <ClInclude Include="Project.h" />
     <CustomBuild Include="SaveableList.h" />
     <ClInclude Include="RuntimeException.h" />
@@ -693,7 +703,32 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
     </CustomBuild>
-    <ClInclude Include="Observer.h" />
+    <CustomBuild Include="Observer.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </Command>
+    </CustomBuild>
     <ClInclude Include="Operation.h" />
     <ClInclude Include="OperationList.h" />
     <ClInclude Include="Overlay.h" />
@@ -994,12 +1029,15 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Images\big_buck_bunny_01337.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_Win32="qtbase" Qt5Version_x0020_x64="qt5 + openGL" MocOptions="" />
+      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_Win32="qtbase" Qt5Version_x0020_x64="msvc2013_64_opengl" MocOptions="" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

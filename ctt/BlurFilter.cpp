@@ -9,7 +9,7 @@ QString BlurFilter::getName() const {
 
 }
 
-Frame BlurFilter::getFrame(unsigned int frameNumber) const {
+model::frame::Frame::sptr BlurFilter::getFrame(unsigned int frameNumber) const {
 
 }
 

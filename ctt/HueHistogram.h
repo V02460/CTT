@@ -22,8 +22,9 @@ public:
     typedef QWeakPointer<HueHistogram> wptr;
 
     /**
-     * Creates a new HueHistogram describing the distribution of the intensity of the hue channel of the submitted frame.
-     * @param frame the HueHistogram will describe the distribution of the intensity of the hue channel of this frame
+     * Creates a new HueHistogram from a Frame containing the distribution of its hue channel.
+     *
+     * @param frame Image source for the histogram calculation
      */
     explicit HueHistogram(const Frame &frame);
 
@@ -31,7 +32,7 @@ public:
     virtual HistogramType getType() const Q_DECL_OVERRIDE;
 
 protected:
-    QSharedPointer<QOpenGLShaderProgram> createHistogramGridShaderProgram();
+    virtual QSharedPointer<QOpenGLShader> getHistogramGridFS() Q_DECL_OVERRIDE;
 };
 
 }  // namespace histogram

@@ -8,11 +8,12 @@
 namespace model {
 
 /**
- * An Observer can be subscribed to an Observable to be notified via a signal to the update() slot when the state of the
+ * An Observer can be subscribed to an Observable to be notified via a update() method when the state of the
  * Observable changes.
  *
  */
 class Observer {
+
 public:
     typedef QScopedPointer<Observer> uptr;
     typedef QSharedPointer<Observer> sptr;
@@ -20,9 +21,8 @@ public:
 
     virtual ~Observer();
 
-public slots:
     /**
-     * This slot is meant to be used to notify the Observer of changes of the state of the Object it observes. 
+     * This method is meant to be used to notify the Observer of changes of the state of the Object it observes. 
      *
      */
     virtual void update();
