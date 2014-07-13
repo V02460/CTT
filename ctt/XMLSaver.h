@@ -9,12 +9,13 @@
 #include "ProjectSaver.h"
 #include "IOException.h"
 #include "Saveable.h"
+#include "Memento.h"
 
 namespace controller {
 namespace project {
 
 /**
- * Saves a project in xml format to a file. The XMLLoader can be used to load the project from this file again.
+ * Saves a project in XML format to a file. The XMLLoader can be used to load the project from this file again.
  */
 class XMLSaver : public ProjectSaver {
 
@@ -32,11 +33,15 @@ public:
 
 private:
 	QXmlStreamWriter *out;
-	QMap<Saveable::sptr, int> pointerIdMap;
+	QList<Saveable::sptr> pointerList;
+	int elementID;
 
 	void initDocument(QDir path);
 	void mapBasePointer(Project project);
 	void writeBaseElements();
+	void writeMemento(model::saveable::Memento memento);
+	void writeElements();
+	void endDocument();
 };
 
 }  // namespace project
