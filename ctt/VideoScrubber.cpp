@@ -96,5 +96,8 @@ unsigned int VideoScrubber::getFrameCount() const
 	return video->getFrameCount();
 }
 
+inline bool operator==(VideoScrubber &lhs, VideoScrubber &rhs) { return lhs.video == rhs.video; }
+inline bool operator!=(VideoScrubber &lhs, VideoScrubber &rhs) { return !operator==(lhs, rhs); }
+
 }  // namespace player
 }  // namespace model

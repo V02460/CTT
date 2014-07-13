@@ -47,6 +47,20 @@ Frame::Frame(QSharedPointer<QOpenGLContext> context, QImage image, FrameMetadata
     getTexture()->setData(image, QOpenGLTexture::DontGenerateMipMaps);
 }
 
+Frame::Frame(QSharedPointer<QOpenGLContext> context, QImage image)
+    : Surface(context, image.size())
+    , metadata(FrameMetadata(image.size())) {
+
+    if (image.size().isEmpty()) {
+        throw new IllegalArgumentException("Tried to create a frame from an image of size "
+                                           + QString::number(image.size().width()) + "*"
+                                           + QString::number(image.size().height())
+                                           + " but sizes of 0 are not allowed.");
+    }
+
+    getTexture()->setData(image, QOpenGLTexture::DontGenerateMipMaps);
+}
+
 Frame::Frame(QSharedPointer<QOpenGLContext> context, FrameMetadata metadata)
         : Surface(context, metadata.getSize())
         , metadata(metadata) {

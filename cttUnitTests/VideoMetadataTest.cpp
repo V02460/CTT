@@ -1,7 +1,8 @@
 #include "VideoMetadataTest.h"
-#include "../ctt/VideoMetadata.h"
-#include "../ctt/IllegalArgumentException.h"
+
 #include "CustomTestingMacros.h"
+#include "VideoMetadata.h"
+#include "IllegalArgumentException.h"
 
 using namespace model::video;
 using namespace exception;

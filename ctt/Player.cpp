@@ -1,11 +1,15 @@
 #include "Player.h"
 
+#include "NotImplementedException.h"
+
 namespace model {
 namespace player {
 
 using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
-using namespace exception;
+using ::exception::NotImplementedException;
+using ::exception::IllegalArgumentException;
+using ::exception::IllegalStateException;
 
 Player::Player(double fps): fps(fps), loop(0,1), currentFrameNumber(0), looping(false), playing(false) {
 	if (!(fps > 0)) {
@@ -127,7 +131,7 @@ void Player::addScrubber(VideoScrubber::sptr scrubber) {
 	{
 		throw new IllegalArgumentException("Tried to add a dummy VideoScrubber to a player.");
 	}
-
+	
 	videoScrubbers.append(scrubber);
 	connect(this, SIGNAL(currentFrameNrChanged()), scrubber.data(), SLOT(jumpToFrameNr()));
 
@@ -241,7 +245,7 @@ unsigned int Player::getVideoLength() const {
 	{
 		throw new IllegalStateException("Tried to ask a dummy Player for the length of the shortest video of his "
 			"scrubber.");
-	}
+}
 
 	if (scrubberCount() == 0)
 	{
@@ -254,7 +258,7 @@ unsigned int Player::getVideoLength() const {
 		if (scrubber->getFrameCount() < shortest)
 		{
 			shortest = scrubber->getFrameCount();
-		}
+}
 	}
 	return shortest;
 }
@@ -263,7 +267,7 @@ unsigned int Player::getCurrentFrameNumber() const {
 	if (isDummy())
 	{
 		throw new IllegalStateException("Tried to get the current Frame number from a dummy Player.");
-	}
+}
 	return currentFrameNumber;
 }
 
@@ -271,7 +275,7 @@ void Player::setLoop(UIntegerInterval interval) {
 	if (isDummy())
 	{
 		throw new IllegalStateException("Tried to set a loop on a dummy Player.");
-	}
+}
 	loop = interval;
 	looping = true;
 }
@@ -280,7 +284,7 @@ UIntegerInterval Player::getLoop() const {
 	if (isDummy())
 	{
 		throw new IllegalStateException("Tried to get a loop from a dummy Player.");
-	}
+}
 	return loop;
 }
 
@@ -288,7 +292,7 @@ bool Player::isLooping() const {
 	if (isDummy())
 	{
 		throw new IllegalStateException("Tried to ask a dummy Player whether it's looping.");
-	}
+}
 	return looping;
 }
 

@@ -1,9 +1,11 @@
 #include "FrameTest.h"
-#include "../ctt/Frame.h"
+
+#include <QOffscreenSurface>
+#include <QDebug>
+
+#include "Frame.h"
 #include "CustomTestingMacros.h"
-#include "../ctt/IllegalArgumentException.h"
-#include "QOffscreenSurface"
-#include "QDebug"
+#include "IllegalArgumentException.h"
 
 using namespace model::frame;
 using namespace exception;
@@ -21,6 +23,12 @@ void FrameTest::withoutImageInvalid()
 
 void FrameTest::withImageInvalid()
 {
+	QImage testImage(":/cttUnitTests/BigBuckBunny.png");
+
+	if (testImage.isNull()) {
+		QFAIL("Unable to load image.");
+	}
+
 	QSize testSize(10, 0);
 	FrameMetadata testMetadata(testSize);
 	QEXPECT_EXCEPTION(Frame testframe(testContext, testImage, testMetadata), IllegalArgumentException);
@@ -57,7 +65,7 @@ void FrameTest::withoutImage()
 	FrameMetadata testMetadata(testSize);
 	Frame testframe(testContext, testMetadata);
 
-	//QVERIFY2(testframe.getContext() == testContext, "The created frame didn't save the OGL Context correctly.");
+	QVERIFY2(testframe.shareGroup() == testContext->shareGroup(), "The created frame didn't save the OGL Context correctly.");
 
 	//TODO write the testImage to the texture of the frame and check whether it worked, test metadata
 }
@@ -68,7 +76,7 @@ void FrameTest::withImage()
 	FrameMetadata testMetadata(testSize);
 	Frame testframe(testContext, testImage, testMetadata);
 
-	//QVERIFY2(testframe.getContext() == testContext, "The created frame didn't save the OGL Context correctly.");
+	QVERIFY2(testframe.shareGroup() == testContext->shareGroup(), "The created frame didn't save the OGL Context correctly.");
 
 	//TODO test the texture, write the to the texture of the frame and check whether it worked, test metadata
 }
