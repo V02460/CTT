@@ -32,8 +32,8 @@ public:
         if (isTest) {
             qDebug() << append + (failure ? "FAIL" : "OK") + " : " + name;
         } else {
-            qDebug() << append + (failure ? "FAIL (" + QString::number(success) + "/"
-                + QString::number(success + failure) + ")" : "OK") + " " + name;
+            qDebug() << append + (failure ? "FAIL" : "OK") + " (" + QString::number(success) + "/"
+                + QString::number(success + failure) + ") " + name;
 
             foreach(TestResult child, children) {
                 child.print(append + "|   ");

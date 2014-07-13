@@ -130,9 +130,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_ctt.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\qrc_ctt.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_VideoScrubber.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -261,12 +258,6 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_InsertionWidget.cpp">
       <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="ctt.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FilterIntervalList.cpp">
       <Filter>Source Files\Model</Filter>
@@ -556,6 +547,12 @@
     <ClCompile Include="GPUHelper.cpp">
       <Filter>Source Files\Helper</Filter>
     </ClCompile>
+    <ClCompile Include="ctt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_ctt.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -644,9 +641,6 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GeneratedFiles\ui_ctt.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="AnalysingWidget.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
@@ -886,6 +880,9 @@
     </ClInclude>
     <ClInclude Include="NotImplementedException.h">
       <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ctt.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

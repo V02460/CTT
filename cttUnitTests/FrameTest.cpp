@@ -1,9 +1,11 @@
 #include "FrameTest.h"
-#include "../ctt/Frame.h"
+
+#include <QOffscreenSurface>
+#include <QDebug>
+
+#include "Frame.h"
 #include "CustomTestingMacros.h"
-#include "../ctt/IllegalArgumentException.h"
-#include "QOffscreenSurface"
-#include "QDebug"
+#include "IllegalArgumentException.h"
 
 using namespace model::frame;
 using namespace exception;

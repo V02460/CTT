@@ -1,6 +1,6 @@
 #include "HistogramTest.h"
 
-#include "../ctt/Frame.h"
+#include "Frame.h"
 
 namespace model {
 namespace frame {
