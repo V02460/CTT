@@ -20,6 +20,7 @@ static const QString TYPE = QString("type");
 static const QString VARIABLE = QString("variable");
 static const QString NAME = QString("name");
 static const QString VALUE = QString("value");
+static const QString POINTER = QString("pointer");
 
 static const QString LIST = QString("SavableList");
 static const QString FILE_VIDEO = QString("FileVideo");
@@ -74,7 +75,7 @@ void XMLSaver::initDocument(QDir path) {
 	out->writeStartElement(ELEMENTS);
 }
 
-void XMLSaver::mapBasePointer(Project project) {
+void XMLSaver::mapBasePointer(Project project) { // TODO Savable::sptr != QSharedPointer<Saveable> ?
 	pointerList.append(project.getBaseVideoList());
 	pointerList.append(project.getVideoList1());
 	pointerList.append(project.getVideoList2);
@@ -105,26 +106,34 @@ void XMLSaver::writeMemento(Memento memento) {
 	}
 	QMap<QString, QSharedPointer<Saveable>> pointerMap = memento.getPointerMap();
 	for (int i = 0; i < pointerMap.size(); i++) {
-		/* TODO
-		 - pointer mit vorhandenen pointern vergleichen
-		 - eventuell neu in liste aufnehmen
-		 - empty element schreiben
-		 - attribut name schreiben
-		 - attribut id schreiben
-		 */
+		out->writeEmptyElement(POINTER);
+		out->writeAttribute(NAME, pointerMap.keys()[i]);
+		QSharedPointer<Saveable> pointer = pointerMap.values()[i];
+		bool newPointer = true;
+		for (int i = 0; i < pointerList.length(); i++) {
+			if (pointer == pointerList[i]) { // TODO funktioniert vlt nicht
+				out->writeAttribute(ID, QString::number(i));
+				newPointer = false;
+			}
+		}
+		if (newPointer) {
+			out->writeAttribute(ID, QString::number(pointerList.length()));
+			pointerList.append(pointer);
+		}
 	}
 }
 
-void XMLSaver::writeBaseElements() {
+void XMLSaver::writeElements() {
 	for (; elementID < pointerList.length(); elementID++) {
 		out->writeStartElement(ELEMENT);
+		QSharedPointer<Saveable> element = pointerList[elementID];
 		/* TODO
 		 - klasse rausfinden (switch case ?)
 		 - attribut class schreiben
-		 - attribut id schreiben
-		 - memento schreiben
-		 - end element schreiebn
 		 */
+		out->writeAttribute(ID, QString::number(elementID));
+		writeMemento(element->getMemento());
+		out->writeEndElement();
 	}
 }
 
