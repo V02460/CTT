@@ -45,6 +45,13 @@ public:
      */
     const T &get(unsigned int index) const;
 
+	/**
+	 *	Get the size of the whole list.
+	 *
+	 *	@return Returns the current number of elements in this list
+	 */
+	const unsigned int getSize() const;
+
     virtual Memento getMemento() const Q_DECL_OVERRIDE;
     virtual void restore(Memento memento) Q_DECL_OVERRIDE;
     static Saveable::sptr getDummy();

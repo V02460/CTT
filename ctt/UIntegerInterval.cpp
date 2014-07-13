@@ -62,8 +62,8 @@ void UIntegerInterval::mergeWith(const UIntegerInterval &interval) {
 
 Memento UIntegerInterval::getMemento() const {
 	Memento m;
-	m.setInt(getStart(), "intervalStart");
-	m.setInt(getEnd(), "intervalEnd");
+    m.setInt("intervalStart", getStart());
+    m.setInt("intervalEnd", getEnd());
 	return m;
 }
 

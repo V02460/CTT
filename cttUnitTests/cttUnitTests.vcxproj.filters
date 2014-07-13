@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;cxx;c;def</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h</Extensions>
-    </Filter>
     <Filter Include="Form Files">
       <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
       <Extensions>ui</Extensions>
@@ -33,41 +25,74 @@
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{18e7f7d3-b585-4825-b0c0-4b5ef5521cea}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\Model">
-      <UniqueIdentifier>{1ebbbf25-db01-47f3-8a2d-4ecc0908ca3e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Video">
-      <UniqueIdentifier>{45c8cf00-4490-400a-aa59-f5e58b61028f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model">
-      <UniqueIdentifier>{6219f293-5acb-4fa6-9ea1-be80b84206c7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Video">
-      <UniqueIdentifier>{a0382efc-1d2b-4cb8-9599-5610624af69f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Exception">
-      <UniqueIdentifier>{47802e3b-c328-498d-b89a-6bdddc4b2156}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Frame">
-      <UniqueIdentifier>{875fa45b-c21f-4e88-a696-f2f9f43e0b0e}</UniqueIdentifier>
+      <UniqueIdentifier>{90715746-befa-4b57-8c73-b081af33ebda}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Model\Frame">
-      <UniqueIdentifier>{565866e5-9c33-4039-8245-129fbb25dfa7}</UniqueIdentifier>
+      <UniqueIdentifier>{366928e4-a80f-4d04-811e-add01b2e33bb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Model\Frame\Histogram">
-      <UniqueIdentifier>{b55af5d5-2856-4a2f-a84f-e47207cbd03b}</UniqueIdentifier>
+    <Filter Include="Header Files\Model\Frame\Histogram">
+      <UniqueIdentifier>{e5dcd502-d095-4e06-b476-e9e8c2b6ffdb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Model\Player">
-      <UniqueIdentifier>{b2e553f2-8fba-4bf8-a5d5-e39856a07c4f}</UniqueIdentifier>
+    <Filter Include="Header Files\Model\Video">
+      <UniqueIdentifier>{c8000013-aec9-4f61-8126-bb9df149f4dd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Model\Player">
-      <UniqueIdentifier>{ac6d9767-8b08-47e3-af94-b04ffc856390}</UniqueIdentifier>
+      <UniqueIdentifier>{8a04a222-8ada-4b7b-92ed-94bf93ad4b04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Saveable">
+      <UniqueIdentifier>{f25ddc9d-1bf1-46d4-b04e-00a54566656e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{e02a01b9-4ac7-4b81-ab3c-d6697c671d3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model">
+      <UniqueIdentifier>{ec38daea-5ba8-497e-9121-693795274ca0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Frame">
+      <UniqueIdentifier>{76d73892-3ca9-43fb-beb8-925b50020853}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Frame\Histogram">
+      <UniqueIdentifier>{25f2f4d1-a224-4eb0-8cdb-c41efe7a4418}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Player">
+      <UniqueIdentifier>{e81ad444-079e-4510-95c6-e5543cf3405c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Video">
+      <UniqueIdentifier>{388da3ed-e0ae-4c7f-91f8-25d040d6dcfa}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Model\Saveable">
-      <UniqueIdentifier>{44369cd5-7826-44e9-be1c-7faca0490e83}</UniqueIdentifier>
+      <UniqueIdentifier>{0553e118-e35f-4bfe-8e10-33be0e282e2c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Saveable">
-      <UniqueIdentifier>{bd54ede9-1bbb-4604-8f11-7f1c6b299214}</UniqueIdentifier>
+    <Filter Include="Source Files\View">
+      <UniqueIdentifier>{5d8d3045-439a-4cd6-afb5-38deff25a74e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controller">
+      <UniqueIdentifier>{817914d2-000a-4a12-94af-9e66d02e975f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestStructure">
+      <UniqueIdentifier>{a69a1403-5bdb-4368-87a5-838ca826a815}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestStructure\Model">
+      <UniqueIdentifier>{059a7b9f-413c-42ca-b82b-b901dc6cfda8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestStructure\Model\Frame">
+      <UniqueIdentifier>{0ca7c3d9-f269-475e-ac5a-aac134f05001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestStructure\Model\Player">
+      <UniqueIdentifier>{93d7968f-d3fd-497a-8c76-748adeba7636}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestStructure\Model\Saveable">
+      <UniqueIdentifier>{93ec5dcd-bbc6-481e-acf9-7391c4a50f45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestStructure\Model\Video">
+      <UniqueIdentifier>{090115b4-ea45-4fa7-aabc-d2184b99939c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestStructure\Model\Frame\Histogram">
+      <UniqueIdentifier>{c2b21392-1ddd-4d95-9b3c-a5ac6f910508}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\SpecialTestingClasses">
       <UniqueIdentifier>{d138eec3-3f83-4966-931a-99f03fd4c6b3}</UniqueIdentifier>
@@ -77,74 +102,14 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_VideoMetadataTest.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_VideoMetadataTest.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="VideoMetadataTest.cpp">
-      <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ctt\VideoMetadata.cpp">
-      <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ctt\IllegalArgumentException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ctt\IllegalStateException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_FrameTest.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_FrameTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="FrameTest.cpp">
-      <Filter>Source Files\Model\Frame</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ctt\FrameMetadata.cpp">
-      <Filter>Source Files\Model\Frame</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ctt\Frame.cpp">
-      <Filter>Source Files\Model\Frame</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ctt\BlueHistogram.cpp">
-      <Filter>Source Files\Model\Frame\Histogram</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ctt\GreenHistogram.cpp">
-      <Filter>Source Files\Model\Frame\Histogram</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ctt\Histogram.cpp">
-      <Filter>Source Files\Model\Frame\Histogram</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ctt\HueHistogram.cpp">
-      <Filter>Source Files\Model\Frame\Histogram</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ctt\LuminanceHistogram.cpp">
-      <Filter>Source Files\Model\Frame\Histogram</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ctt\RedHistogram.cpp">
-      <Filter>Source Files\Model\Frame\Histogram</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ctt\SaturationHistogram.cpp">
-      <Filter>Source Files\Model\Frame\Histogram</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ctt\Surface.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\qrc_cttUnitTests.cpp">
       <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ctt\VideoScrubber.cpp">
-      <Filter>Source Files\Model\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="VideoScrubberTest.cpp">
-      <Filter>Source Files\Model\Player</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_VideoScrubberTest.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -152,29 +117,44 @@
     <ClCompile Include="GeneratedFiles\Release\moc_VideoScrubberTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="..\ctt\Player.cpp">
+    <ClCompile Include="FrameTest.cpp">
+      <Filter>Source Files\Model\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoScrubberTest.cpp">
       <Filter>Source Files\Model\Player</Filter>
     </ClCompile>
-    <ClCompile Include="..\ctt\Saveable.cpp">
+    <ClCompile Include="VideoMetadataTest.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoMetadataTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoMetadataTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MementoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MementoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="MementoTest.cpp">
       <Filter>Source Files\Model\Saveable</Filter>
     </ClCompile>
-    <ClCompile Include="..\ctt\Observer.cpp">
-      <Filter>Source Files\Model</Filter>
+    <ClCompile Include="HistogramTest.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
     </ClCompile>
-    <ClCompile Include="..\ctt\Observable.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_VideoScrubber.cpp">
+    <ClCompile Include="GeneratedFiles\Debug\moc_HistogramTest.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_VideoScrubber.cpp">
+    <ClCompile Include="GeneratedFiles\Release\moc_HistogramTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_Player.cpp">
-      <Filter>Generated Files\Debug</Filter>
+    <ClCompile Include="..\ctt\main.cpp">
+      <Filter>TestStructure</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_Player.cpp">
-      <Filter>Generated Files\Release</Filter>
+    <ClCompile Include="ModelTests.h">
+      <Filter>TestStructure\Model</Filter>
     </ClCompile>
     <ClCompile Include="..\ctt\UIntegerInterval.cpp">
       <Filter>Source Files\Model</Filter>
@@ -190,40 +170,46 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="VideoMetadataTest.h">
-      <Filter>Header Files\Model\Video</Filter>
+    <CustomBuild Include="cttUnitTests.qrc">
+      <Filter>Resource Files</Filter>
     </CustomBuild>
     <CustomBuild Include="FrameTest.h">
       <Filter>Header Files\Model\Frame</Filter>
     </CustomBuild>
-    <CustomBuild Include="cttUnitTests.qrc">
-      <Filter>Resource Files</Filter>
+    <CustomBuild Include="VideoMetadataTest.h">
+      <Filter>Header Files\Model\Video</Filter>
     </CustomBuild>
     <CustomBuild Include="VideoScrubberTest.h">
       <Filter>Header Files\Model\Player</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\ctt\VideoScrubber.h">
-      <Filter>Header Files\Model\Player</Filter>
+    <CustomBuild Include="MementoTest.h">
+      <Filter>Header Files\Model\Saveable</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\ctt\Player.h">
-      <Filter>Header Files\Model\Player</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\ctt\Observer.h">
-      <Filter>Header Files\Model</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\ctt\Observable.h">
-      <Filter>Header Files\Model</Filter>
+    <CustomBuild Include="HistogramTest.h">
+      <Filter>Header Files\Model\Frame\Histogram</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\ctt\VideoMetadata.h">
-      <Filter>Header Files\Model\Video</Filter>
-    </ClInclude>
     <ClInclude Include="CustomTestingMacros.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ctt\Saveable.h">
-      <Filter>Header Files\Saveable</Filter>
+    <ClInclude Include="TestResult.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelFrameTests.h">
+      <Filter>TestStructure\Model\Frame</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelFrameHistogramTests.h">
+      <Filter>TestStructure\Model\Frame\Histogram</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelPlayerTests.h">
+      <Filter>TestStructure\Model\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelSaveableTests.h">
+      <Filter>TestStructure\Model\Saveable</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelVideoTests.h">
+      <Filter>TestStructure\Model\Video</Filter>
     </ClInclude>
     <ClInclude Include="..\ctt\UIntegerInterval.h">
       <Filter>Header Files\Model</Filter>

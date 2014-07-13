@@ -6,6 +6,7 @@
 #include <QWeakPointer>
 
 #include "Saveable.h"
+#include "Memento.h"
 
 namespace model {
 

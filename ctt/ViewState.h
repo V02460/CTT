@@ -9,6 +9,7 @@
 #include "ViewType.h"
 #include "Observable.h"
 #include "Saveable.h"
+#include "Memento.h"
 
 namespace view {
 

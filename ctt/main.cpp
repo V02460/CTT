@@ -1,10 +1,18 @@
-#include "ctt.h"
-#include <QtWidgets/QApplication>
+#include <QApplication>
+
+#include "TestResult.h"
+
+#include "ModelTests.h"
+//#include "ViewTests.h"
+//#include "ControllerTests.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    ctt w;
-    w.show();
-    return a.exec();
+    
+    TestResult r("");
+
+    r << model::test(argc, argv);
+
+    r.print("");
 }

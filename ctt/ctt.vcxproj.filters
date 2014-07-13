@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;cxx;c;def</Extensions>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h</Extensions>
@@ -32,48 +28,6 @@
       <UniqueIdentifier>{7878ddce-aea4-468c-950e-ddeed3866cf7}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
-    </Filter>
-    <Filter Include="Source Files\Model">
-      <UniqueIdentifier>{ae8f0018-8ca0-4399-8c40-16ddbdee6155}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\View">
-      <UniqueIdentifier>{cc7463d1-268a-4167-bebf-956a8c16321d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Controller">
-      <UniqueIdentifier>{3aa2e328-54b6-4585-b500-7cda4d53ce6c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Filter">
-      <UniqueIdentifier>{9a8e7b44-5f6e-4388-a155-7642e9e8ab28}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Filter\Overlay">
-      <UniqueIdentifier>{4d506dc0-8a80-4735-8f68-077d3db8e353}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Controller\Operation">
-      <UniqueIdentifier>{d6d5a3a5-a5f4-4c48-b400-c10c443f3380}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Video">
-      <UniqueIdentifier>{4dc3edb2-f50e-4c53-a1c5-53df7076c495}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Frame">
-      <UniqueIdentifier>{8c379891-5885-44fa-8a62-6f51c568b9ed}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Difference">
-      <UniqueIdentifier>{35e2b08d-a5ce-47ee-8273-417940faa362}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Player">
-      <UniqueIdentifier>{f5fcc434-536b-4117-8c8e-a508ed2b92dc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Frame\Histogram">
-      <UniqueIdentifier>{ff89e419-03b7-4f06-999d-703d0af24722}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Saveable">
-      <UniqueIdentifier>{d4135c21-55dd-48f2-a53c-6bdf8e161c92}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Controller\Project">
-      <UniqueIdentifier>{e8764084-685c-4104-a07a-b24e7b1332bc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Exception">
-      <UniqueIdentifier>{acb2cf15-9550-4ceb-88d1-c768ec97c24c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\View">
       <UniqueIdentifier>{9d091f04-c11a-413e-a9b3-f061178e1355}</UniqueIdentifier>
@@ -120,220 +74,61 @@
     <Filter Include="Header Files\Helper">
       <UniqueIdentifier>{e30c80ac-f317-4573-a9a5-e7d2291aa5c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{b325e54f-f733-49b3-ad91-c274e0b4cbdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model">
+      <UniqueIdentifier>{b9601544-15bf-418c-9c83-a83d291cce55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Filter">
+      <UniqueIdentifier>{13e86172-4e28-4d97-a832-859d2bc71cf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Filter\Overlay">
+      <UniqueIdentifier>{783f4a54-b179-4b0e-ad36-0ba22f78bdb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Video">
+      <UniqueIdentifier>{7513aaa9-53c9-4880-bc1c-f7bdb8b70506}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Frame">
+      <UniqueIdentifier>{711a8404-e73d-48b9-bc73-b90429a9082d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Frame\Histogram">
+      <UniqueIdentifier>{32606dd2-16a8-4db4-99f7-2aa2b07baed2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Difference">
+      <UniqueIdentifier>{84b81ffa-e24c-4faa-aa26-64e5c5c0c38a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Player">
+      <UniqueIdentifier>{1c309d08-12a1-4983-ad28-7d45bb964152}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Saveable">
+      <UniqueIdentifier>{02c38345-7c03-4c83-b40f-c54e226045a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View">
+      <UniqueIdentifier>{4f96fda8-424d-4b34-8d9f-db741760b4b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controller">
+      <UniqueIdentifier>{d9b61f45-d7a5-4035-96f9-867cab205a00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controller\Operation">
+      <UniqueIdentifier>{32defd68-34b8-4d13-93c0-eb3b6be88427}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controller\Project">
+      <UniqueIdentifier>{aaf07077-65d8-4854-b73a-028a0c375b92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exception">
+      <UniqueIdentifier>{43f41436-2483-41db-b79d-a3ef731d4d18}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\Helper">
-      <UniqueIdentifier>{2fb5fbe9-2fe3-41b7-9c6b-76f6dcfb625c}</UniqueIdentifier>
+      <UniqueIdentifier>{c1d742ec-7c5f-4d6e-a9ea-e4ac4a31af82}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ctt.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_ctt.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_ctt.cpp">
       <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\qrc_ctt.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BlueHistogram.cpp">
-      <Filter>Source Files\Model\Frame\Histogram</Filter>
-    </ClCompile>
-    <ClCompile Include="BlurFilter.cpp">
-      <Filter>Source Files\Model\Filter</Filter>
-    </ClCompile>
-    <ClCompile Include="CoffeeFilter.cpp">
-      <Filter>Source Files\Model\Filter</Filter>
-    </ClCompile>
-    <ClCompile Include="ColoringOverlay.cpp">
-      <Filter>Source Files\Model\Filter\Overlay</Filter>
-    </ClCompile>
-    <ClCompile Include="DifferenceController.cpp">
-      <Filter>Source Files\Controller</Filter>
-    </ClCompile>
-    <ClCompile Include="DifferenceFactory.cpp">
-      <Filter>Source Files\Model\Difference</Filter>
-    </ClCompile>
-    <ClCompile Include="EarthMoversHistogramDiff.cpp">
-      <Filter>Source Files\Model\Difference</Filter>
-    </ClCompile>
-    <ClCompile Include="ExtendedTimeline.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="FFmpegDataVideo.cpp">
-      <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
-    <ClCompile Include="Filter.cpp">
-      <Filter>Source Files\Model\Filter</Filter>
-    </ClCompile>
-    <ClCompile Include="FilterAddedOperation.cpp">
-      <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
-    <ClCompile Include="FilterController.cpp">
-      <Filter>Source Files\Controller</Filter>
-    </ClCompile>
-    <ClCompile Include="FilterFactory.cpp">
-      <Filter>Source Files\Model\Filter</Filter>
-    </ClCompile>
-    <ClCompile Include="FilterListOperation.cpp">
-      <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
-    <ClCompile Include="FilterListView.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="Frame.cpp">
-      <Filter>Source Files\Model\Frame</Filter>
-    </ClCompile>
-    <ClCompile Include="FrameDiff.cpp">
-      <Filter>Source Files\Model\Difference</Filter>
-    </ClCompile>
-    <ClCompile Include="FrameMetadata.cpp">
-      <Filter>Source Files\Model\Frame</Filter>
-    </ClCompile>
-    <ClCompile Include="FilterParam.cpp">
-      <Filter>Source Files\Model\Filter</Filter>
-    </ClCompile>
-    <ClCompile Include="FilterParamChangedOperation.cpp">
-      <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
-    <ClCompile Include="FilterRemovedOperation.cpp">
-      <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
-    <ClCompile Include="FPSChangingOperation.cpp">
-      <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
-    <ClCompile Include="FrameMetadataWidget.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="GreenHistogram.cpp">
-      <Filter>Source Files\Model\Frame\Histogram</Filter>
-    </ClCompile>
-    <ClCompile Include="GreyscaleFilter.cpp">
-      <Filter>Source Files\Model\Filter</Filter>
-    </ClCompile>
-    <ClCompile Include="HeatmapOverlay.cpp">
-      <Filter>Source Files\Model\Filter\Overlay</Filter>
-    </ClCompile>
-    <ClCompile Include="Histogram.cpp">
-      <Filter>Source Files\Model\Frame\Histogram</Filter>
-    </ClCompile>
-    <ClCompile Include="HSLPixelDiff.cpp">
-      <Filter>Source Files\Model\Difference</Filter>
-    </ClCompile>
-    <ClCompile Include="InsertionWidget.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="LuminanceHistogram.cpp">
-      <Filter>Source Files\Model\Frame\Histogram</Filter>
-    </ClCompile>
-    <ClCompile Include="MacroblockOverlay.cpp">
-      <Filter>Source Files\Model\Filter\Overlay</Filter>
-    </ClCompile>
-    <ClCompile Include="MacropartitionOverlay.cpp">
-      <Filter>Source Files\Model\Filter\Overlay</Filter>
-    </ClCompile>
-    <ClCompile Include="MotionVectorOverlay.cpp">
-      <Filter>Source Files\Model\Filter\Overlay</Filter>
-    </ClCompile>
-    <ClCompile Include="MainControlWidget.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="OverlayController.cpp">
-      <Filter>Source Files\Controller</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerController.cpp">
-      <Filter>Source Files\Controller</Filter>
-    </ClCompile>
-    <ClCompile Include="ProcessingWidget.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerWidget.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="Overlay.cpp">
-      <Filter>Source Files\Model\Filter\Overlay</Filter>
-    </ClCompile>
-    <ClCompile Include="PixelDiff.cpp">
-      <Filter>Source Files\Model\Difference</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files\Model\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="MainWindow.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="Memento.cpp">
-      <Filter>Source Files\Model\Saveable</Filter>
-    </ClCompile>
-    <ClCompile Include="MixFilter.cpp">
-      <Filter>Source Files\Model\Filter</Filter>
-    </ClCompile>
-    <ClCompile Include="NoiseFilter.cpp">
-      <Filter>Source Files\Model\Filter</Filter>
-    </ClCompile>
-    <ClCompile Include="ZoomFunctions.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="VideoRemovedOperation.cpp">
-      <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
-    <ClCompile Include="VideoListOperation.cpp">
-      <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
-    <ClCompile Include="VideoAddedOperation.cpp">
-      <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
-    <ClCompile Include="VideoMetadata.cpp">
-      <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
-    <ClCompile Include="RGBChannelFilter.cpp">
-      <Filter>Source Files\Model\Filter</Filter>
-    </ClCompile>
-    <ClCompile Include="RescaleFilter.cpp">
-      <Filter>Source Files\Model\Filter</Filter>
-    </ClCompile>
-    <ClCompile Include="TimeshiftFilter.cpp">
-      <Filter>Source Files\Model\Filter</Filter>
-    </ClCompile>
-    <ClCompile Include="VideoWidget.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="RedHistogram.cpp">
-      <Filter>Source Files\Model\Frame\Histogram</Filter>
-    </ClCompile>
-    <ClCompile Include="VideoAnalysingWidget.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="VideoProcessingWidget.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="Video.cpp">
-      <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
-    <ClCompile Include="VideoScrubber.cpp">
-      <Filter>Source Files\Model\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="YUVDataVideo.cpp">
-      <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
-    <ClCompile Include="ViewState.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="OperationList.cpp">
-      <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
-    <ClCompile Include="ThumbnailListWidget.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="VideoListController.cpp">
-      <Filter>Source Files\Controller</Filter>
-    </ClCompile>
-    <ClCompile Include="YUVPixelDiff.cpp">
-      <Filter>Source Files\Model\Difference</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_VideoScrubber.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -346,15 +141,6 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_Player.cpp">
       <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Observable.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="UIntegerInterval.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="FilterIntervalList.cpp">
-      <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_FilterController.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -461,8 +247,161 @@
     <ClCompile Include="GeneratedFiles\Release\moc_VideoWidget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ViewState.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ProcessingWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FrameMetadataWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_InsertionWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterIntervalList.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Surface.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="UIntegerInterval.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Observable.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="BlurFilter.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="CoffeeFilter.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="Filter.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
     <ClCompile Include="FilteredVideo.cpp">
       <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterFactory.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterParam.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="GreyscaleFilter.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="MixFilter.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="NoiseFilter.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="RescaleFilter.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="RGBChannelFilter.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeshiftFilter.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="ColoringOverlay.cpp">
+      <Filter>Source Files\Model\Filter\Overlay</Filter>
+    </ClCompile>
+    <ClCompile Include="HeatmapOverlay.cpp">
+      <Filter>Source Files\Model\Filter\Overlay</Filter>
+    </ClCompile>
+    <ClCompile Include="MacroblockOverlay.cpp">
+      <Filter>Source Files\Model\Filter\Overlay</Filter>
+    </ClCompile>
+    <ClCompile Include="MacropartitionOverlay.cpp">
+      <Filter>Source Files\Model\Filter\Overlay</Filter>
+    </ClCompile>
+    <ClCompile Include="MotionVectorOverlay.cpp">
+      <Filter>Source Files\Model\Filter\Overlay</Filter>
+    </ClCompile>
+    <ClCompile Include="Overlay.cpp">
+      <Filter>Source Files\Model\Filter\Overlay</Filter>
+    </ClCompile>
+    <ClCompile Include="FFmpegDataVideo.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="FileVideo.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="Video.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoMetadata.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="YUVDataVideo.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="Frame.cpp">
+      <Filter>Source Files\Model\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameMetadata.cpp">
+      <Filter>Source Files\Model\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="BlueHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="GreenHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="Histogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="HueHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="SaturationHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="LuminanceHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="RedHistogram.cpp">
+      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="DifferenceFactory.cpp">
+      <Filter>Source Files\Model\Difference</Filter>
+    </ClCompile>
+    <ClCompile Include="EarthMoversHistogramDiff.cpp">
+      <Filter>Source Files\Model\Difference</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameDiff.cpp">
+      <Filter>Source Files\Model\Difference</Filter>
+    </ClCompile>
+    <ClCompile Include="HSLPixelDiff.cpp">
+      <Filter>Source Files\Model\Difference</Filter>
+    </ClCompile>
+    <ClCompile Include="PixelDiff.cpp">
+      <Filter>Source Files\Model\Difference</Filter>
+    </ClCompile>
+    <ClCompile Include="YUVPixelDiff.cpp">
+      <Filter>Source Files\Model\Difference</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Model\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoScrubber.cpp">
+      <Filter>Source Files\Model\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Saveable.cpp">
+      <Filter>Source Files\Model\Saveable</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveableList.cpp">
+      <Filter>Source Files\Model\Saveable</Filter>
+    </ClCompile>
+    <ClCompile Include="Memento.cpp">
+      <Filter>Source Files\Model\Saveable</Filter>
     </ClCompile>
     <ClCompile Include="AbstractListView.cpp">
       <Filter>Source Files\View</Filter>
@@ -479,10 +418,22 @@
     <ClCompile Include="DifferenceTimeline.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
+    <ClCompile Include="ExtendedTimeline.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterListView.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
     <ClCompile Include="FilterTimeline.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
+    <ClCompile Include="FrameMetadataWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
     <ClCompile Include="HistogramWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="InsertionWidget.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
     <ClCompile Include="PlayerFunctions.cpp">
@@ -490,6 +441,81 @@
     </ClCompile>
     <ClCompile Include="TimelineInterval.cpp">
       <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="MainControlWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindow.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="ProcessingWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="ThumbnailListWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoAnalysingWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoProcessingWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewState.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoomFunctions.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="DifferenceController.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterController.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="MainController.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="OverlayController.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerController.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoListController.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterAddedOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterListOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterParamChangedOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterRemovedOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="FPSChangingOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="OperationList.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoAddedOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoListOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoRemovedOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
     <ClCompile Include="Project.cpp">
       <Filter>Source Files\Controller\Project</Filter>
@@ -506,56 +532,26 @@
     <ClCompile Include="XMLSaver.cpp">
       <Filter>Source Files\Controller\Project</Filter>
     </ClCompile>
-    <ClCompile Include="Saveable.cpp">
-      <Filter>Source Files\Model\Saveable</Filter>
-    </ClCompile>
-    <ClCompile Include="SaveableList.cpp">
-      <Filter>Source Files\Model\Saveable</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_ViewState.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_ProcessingWidget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_FrameMetadataWidget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_InsertionWidget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="MainController.cpp">
-      <Filter>Source Files\Controller</Filter>
-    </ClCompile>
-    <ClCompile Include="FileVideo.cpp">
-      <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
-    <ClCompile Include="Observer.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="Surface.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="IllegalArgumentException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
     <ClCompile Include="IllegalStateException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
-    <ClCompile Include="HueHistogram.cpp">
-      <Filter>Source Files\Model\Frame\Histogram</Filter>
-    </ClCompile>
-    <ClCompile Include="SaturationHistogram.cpp">
-      <Filter>Source Files\Model\Frame\Histogram</Filter>
+    <ClCompile Include="NotImplementedException.cpp">
+      <Filter>Source Files\Exception</Filter>
     </ClCompile>
     <ClCompile Include="OpenGLException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
-    <ClCompile Include="NotImplementedException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
     <ClCompile Include="GPUHelper.cpp">
       <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="ctt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_ctt.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -645,9 +641,6 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GeneratedFiles\ui_ctt.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="AnalysingWidget.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
@@ -887,6 +880,9 @@
     </ClInclude>
     <ClInclude Include="NotImplementedException.h">
       <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ctt.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
