@@ -1,6 +1,8 @@
 #include "VideoScrubber.h"
 #include "IllegalArgumentException.h"
 
+#define VIDEOSTRINGID "video"
+
 namespace model {
 namespace player {
 
@@ -86,12 +88,12 @@ Memento VideoScrubber::getMemento() const {
 	}
 
 	Memento memento;
-	memento.setSharedPointer("video", video);
+	memento.setSharedPointer(VIDEOSTRINGID, video);
 	return memento;
 }
 
 void VideoScrubber::restore(Memento memento) {
-	video = memento.getSharedPointer<Video>("video");
+	video = memento.getSharedPointer<Video>(VIDEOSTRINGID);
 
 	isDummyFlag = false;
 
