@@ -44,6 +44,22 @@ int Memento::getInt(QString name) const {
 	return value;
 }
 
+void Memento::setUInt(QString name, unsigned int value) {
+	variableMap.insert(name, QString::number(value));
+}
+
+unsigned int Memento::getUInt(QString name) const {
+	if (!variableMap.contains(name)) {
+		throw new IllegalArgumentException(QString("There is no variable with name ").append(name).append(" in this memento."));
+	}
+	bool valid;
+	unsigned int value = variableMap.value(name).toUInt(&valid);
+	if (!valid) {
+		throw new IllegalArgumentException(QString("The variable with name ").append(name).append(" in this memento is not an unsigned integer."));
+	}
+	return value;
+}
+
 void Memento::setFloat(QString name, float value) {
 	variableMap.insert(name, QString::number(value));
 }
