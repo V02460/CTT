@@ -1,5 +1,5 @@
-#ifndef _ILLEGALARGUMENTEXCEPTION_H
-#define _ILLEGALARGUMENTEXCEPTION_H
+#ifndef _ACCESSTODUMMYEXCEPTION_H
+#define _ACCESSTODUMMYEXCEPTION_H
 
 #include <QString>
 
@@ -7,39 +7,35 @@
 
 namespace exception {
 
-/**
- * Thrown to indicate that a method has been passed an illegal or inappropriate argument.
- */
-class IllegalArgumentException : public RuntimeException {
+class AccessToDummyException :  public RuntimeException {
 public:
     /**
     * Creates a new IllegalArgumentException.
     */
-    IllegalArgumentException();
+    AccessToDummyException();
 
     /**
     * Creates a new IllegalArgumentException with an error message.
     *
     * @param msg descriptive error message
     */
-    IllegalArgumentException(QString msg);
+    AccessToDummyException(QString msg);
 
     /**
     * Destroys the IllegalArgumentException.
     */
-    ~IllegalArgumentException();
+    ~AccessToDummyException();
 
-    virtual QString getName() const Q_DECL_OVERRIDE { return "IllegalArgumentException"; }
+    virtual QString getName() const Q_DECL_OVERRIDE { return "AccessToDummyException"; }
     virtual QString getMsg() const Q_DECL_OVERRIDE;
     virtual const char *what() const Q_DECL_OVERRIDE;
 
     virtual void raise() const Q_DECL_OVERRIDE;
-    virtual IllegalArgumentException *clone() const Q_DECL_OVERRIDE;
+    virtual AccessToDummyException *clone() const Q_DECL_OVERRIDE;
 private:
     const QString msg;
     const QByteArray asciiMsg;
 };
-
 }  // namespace exception
 
-#endif
+#endif  //_ACCESSTODUMMYEXCEPTION_H
