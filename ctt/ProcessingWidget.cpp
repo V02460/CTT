@@ -1,4 +1,5 @@
 #include "ProcessingWidget.h"
+#include "MathHelper.h"
 
 namespace view {
 
@@ -6,12 +7,19 @@ ProcessingWidget::ProcessingWidget(controller::project::Project *project, QWidge
 	this->setParent(parent);
 	this->players = project->getPlayerList1();
 	playerWidgets = new QList<PlayerWidget>();
+	this->init(project);
 	thumbnailWidget = new ThumbnailListWidget(project->getVideoList1(), 1);
 	this->setupUi();
 }
 
 void ProcessingWidget::init(controller::project::Project *project) {
-	
+	unsigned int baseVideoListSize = project->getBaseVideoList()->getSize();
+	unsigned int filteredVideoListSize = project->getVideoList1()->getSize();
+
+	for (unsigned int i = 0; i < baseVideoListSize; i++) {
+		project->getBaseVideoList->get(i);
+
+	}
 }
 
 void ProcessingWidget::setupUi() {
@@ -69,7 +77,6 @@ void ProcessingWidget::setupUi() {
 	scrollAreaVerticalLayout->setSpacing(0);
 	scrollAreaVerticalLayout->setObjectName(QStringLiteral("scrollAreaVerticalLayout"));
 	scrollAreaVerticalLayout->setContentsMargins(0, 0, 0, 0);
-	thumbnailWidget = new ThumbnailListWidget(scrollAreaThumbnailList);
 	thumbnailWidget->setObjectName(QStringLiteral("tumbnailListWidget"));
 
 	scrollAreaVerticalLayout->addWidget(thumbnailWidget);
