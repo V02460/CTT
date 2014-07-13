@@ -156,17 +156,8 @@
     <ClCompile Include="ModelTests.h">
       <Filter>TestStructure\Model</Filter>
     </ClCompile>
-    <ClCompile Include="..\ctt\UIntegerInterval.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="BBBTestVideo.cpp">
       <Filter>Source Files\SpecialTestingClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ctt\Video.cpp">
-      <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ctt\Memento.cpp">
-      <Filter>Source Files\Model\Saveable</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -211,17 +202,8 @@
     <ClInclude Include="ModelVideoTests.h">
       <Filter>TestStructure\Model\Video</Filter>
     </ClInclude>
-    <ClInclude Include="..\ctt\UIntegerInterval.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
     <ClInclude Include="BBBTestVideo.h">
       <Filter>Header Files\SpecialTestingClasses</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ctt\Video.h">
-      <Filter>Header Files\Model\Video</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ctt\Memento.h">
-      <Filter>Header Files\Saveable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
