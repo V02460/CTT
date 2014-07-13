@@ -170,9 +170,6 @@ public:
 	QMap<QString, QSharedPointer<Saveable>> getPointerMap() const;
 
 private:
-	const QString TRUE_STRING = QString("true");
-	const QString FALSE_STRING = QString("false");
-
     QMap<QString, QString> variableMap; 
 	QMap<QString, QSharedPointer<Saveable>> pointerMap;
 };

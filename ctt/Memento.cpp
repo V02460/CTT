@@ -12,6 +12,9 @@ Memento::Memento() {
 Memento::~Memento() {
 }
 
+static const QString TRUE_STRING = QString("true");
+static const QString FALSE_STRING = QString("false");
+
 void Memento::setBool(QString name, bool value) {
 	variableMap.insert(name, value ? TRUE_STRING : FALSE_STRING);
 }
