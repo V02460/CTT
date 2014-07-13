@@ -81,10 +81,23 @@ void VideoScrubber::jumpToFrameNr(unsigned int frameNumber) {
 }
 
 Memento VideoScrubber::getMemento() const {
+	if (isDummy()) {
+		throw new exception::IllegalStateException("Requested a memento from a dummy VideoScrubber.");
+	}
 
+	Memento memento;
+	memento.setSharedPointer("video", video);
+	return memento;
 }
 
 void VideoScrubber::restore(Memento memento) {
+	video = memento.getSharedPointer<Video>("video");
+
+	isDummyFlag = false;
+
+	waitingForFrame = true;
+	currentFrame = video->getFrame(0);
+	waitingForFrame = false;
 }
 
 Saveable::sptr VideoScrubber::getDummy() {
