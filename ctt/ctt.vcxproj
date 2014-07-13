@@ -32,7 +32,7 @@
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -152,7 +152,9 @@
     <ClCompile Include="BlurFilter.cpp" />
     <ClCompile Include="CoffeeFilter.cpp" />
     <ClCompile Include="ColoringOverlay.cpp" />
-    <ClCompile Include="ctt.cpp" />
+    <ClCompile Include="ctt.cpp">
+      <DeploymentContent>true</DeploymentContent>
+    </ClCompile>
     <ClCompile Include="DifferenceController.cpp" />
     <ClCompile Include="DifferenceFactory.cpp" />
     <ClCompile Include="DifferenceListView.cpp" />
@@ -382,7 +384,6 @@
     <ClCompile Include="LuminanceHistogram.cpp" />
     <ClCompile Include="MacroblockOverlay.cpp" />
     <ClCompile Include="MacropartitionOverlay.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="MainController.cpp" />
     <ClCompile Include="MainControlWidget.cpp" />
     <ClCompile Include="MainWindow.cpp" />
