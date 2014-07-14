@@ -24,6 +24,12 @@ public:
     typedef QSharedPointer<XMLLoader> sptr;
     typedef QWeakPointer<XMLLoader> wptr;
 
+	/**
+	 * Creates a new XMLLoader.
+	 */
+	XMLLoader();
+
+	virtual void restore(QDir path, ::controller::project::Project project);
 };
 
 }  // namespace project
