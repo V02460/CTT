@@ -14,36 +14,42 @@ using ::model::difference::FrameDiff;
 using ::view::ViewState;
 using ::exception::NotImplementedException;
 
-Project::Project() : player2(24.0) {
-    throw new NotImplementedException();
+Project::Project() {
+	baseVideoList = *new QSharedPointer<SaveableList<FileVideo>>(new SaveableList<FileVideo>());
+	videoList1 = *new QSharedPointer<SaveableList<FilteredVideo>>(new SaveableList<FilteredVideo>());
+	videoList2 = *new QSharedPointer<SaveableList<FilteredVideo>>(new SaveableList<FilteredVideo>());
+	playerList1 = *new QSharedPointer<SaveableList<Player>>(new SaveableList<Player>());
+	player2 = *new QSharedPointer<Player>(new Player(24.0));
+	diffList = *new QSharedPointer<SaveableList<FrameDiff>>(new SaveableList<FrameDiff>());
+	view = ViewState::getInstance();
 }
 
 SaveableList<FileVideo>::sptr Project::getBaseVideoList() const {
-    throw new NotImplementedException();
+	return baseVideoList;
 }
 
 SaveableList<FilteredVideo>::sptr Project::getVideoList1() const {
-    throw new NotImplementedException();
+	return videoList1;
 }
 
-SaveableList<Video>::sptr Project::getVideoList2() const {
-    throw new NotImplementedException();
+SaveableList<FilteredVideo>::sptr Project::getVideoList2() const {
+	return videoList2;
 }
 
 SaveableList<Player>::sptr Project::getPlayerList1() const {
-    throw new NotImplementedException();
+	return playerList1;
 }
 
 Player::sptr Project::getPlayer2() const {
-    throw new NotImplementedException();
+	return player2;
 }
 
 SaveableList<FrameDiff>::sptr Project::getDiffList() const {
-    throw new NotImplementedException();
+	return diffList;
 }
 
 ViewState::sptr Project::getView() const {
-    throw new NotImplementedException();
+	return view;
 }
 
 }  // namespace project
