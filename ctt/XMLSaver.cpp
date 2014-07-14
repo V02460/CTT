@@ -77,7 +77,7 @@ void XMLSaver::initDocument(QDir path) {
 	out->writeStartElement(ELEMENTS);
 }
 
-void XMLSaver::mapBasePointer(Project project) { // TODO Savable::sptr != QSharedPointer<Saveable> ?
+void XMLSaver::mapBasePointer(Project project) {
 	pointerList.append(project.getBaseVideoList());
 	pointerList.append(project.getVideoList1());
 	pointerList.append(project.getVideoList2());
@@ -106,11 +106,11 @@ void XMLSaver::writeMemento(Memento memento) {
 		out->writeAttribute(NAME, variableMap.keys()[i]);
 		out->writeAttribute(VALUE, variableMap.values()[i]);
 	}
-	QMap<QString, QSharedPointer<Saveable>> pointerMap = memento.getPointerMap();
+	QMap<QString, Saveable::sptr> pointerMap = memento.getPointerMap();
 	for (int i = 0; i < pointerMap.size(); i++) {
 		out->writeEmptyElement(POINTER);
 		out->writeAttribute(NAME, pointerMap.keys()[i]);
-		QSharedPointer<Saveable> pointer = pointerMap.values()[i];
+		Saveable::sptr pointer = pointerMap.values()[i];
 		bool newPointer = true;
 		for (int i = 0; i < pointerList.length(); i++) {
 			if (pointer == pointerList[i]) { // TODO funktioniert vlt nicht
@@ -128,7 +128,7 @@ void XMLSaver::writeMemento(Memento memento) {
 void XMLSaver::writeElements() {
 	for (; elementID < pointerList.length(); elementID++) {
 		out->writeStartElement(ELEMENT);
-		QSharedPointer<Saveable> element = pointerList[elementID];
+		Saveable::sptr element = pointerList[elementID];
 		/* TODO
 		 - klasse rausfinden (switch case ?)
 		 - attribut class schreiben
