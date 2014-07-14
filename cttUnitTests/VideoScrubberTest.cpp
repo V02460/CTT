@@ -2,7 +2,7 @@
 #include "..\ctt\VideoScrubber.h"
 #include "..\ctt\IllegalStateException.h"
 #include "CustomTestingMacros.h"
-#include "BBBTestVideo.h"
+//#include "BBBTestVideo.h"
 
 void VideoScrubberTest::testDummy()
 {
@@ -13,7 +13,7 @@ void VideoScrubberTest::testDummy()
 
 void VideoScrubberTest::invalidConstruction()
 {
-	BBBTestVideo testVideo(10);
+	//BBBTestVideo testVideo(10);
 }
 
 void VideoScrubberTest::methods()

@@ -207,7 +207,8 @@ public:
      * will jump to the first frame in the loop interval.
      *
      * @param interval the interval in which the player will loop
-     * @throws InvalidArgumentException if the bounds of the interval aren't in the bounds of the videos.
+	 * @throws IllegalArgumentException if the submitted interval is a dummy.
+     * @throws IllegalArgumentException if the bounds of the interval aren't in the bounds of the videos.
      * @throws IllegalStateException if the the method was called on a dummy
      */
     void setLoop(UIntegerInterval interval);
@@ -262,12 +263,13 @@ signals:
     void currentFrameNrChanged(unsigned int currentFrameNr);
 
 private:
+	Q_DISABLE_COPY(Player)
 	/**
 	* Creates a dummy Player.
 	*/
 	Player();
 
-    int currentFrameNumber; /**< The number of the frame that was requested last */
+    unsigned int currentFrameNumber; /**< The number of the frame that was requested last */
     QList<::model::player::VideoScrubber::sptr> videoScrubbers; /**< The VideoScrubbers controlled by this player*/
     QTimer timer; /**< The timer controlling the playback speed */
     double fps; /**< The currently set playback speed in frames per second */

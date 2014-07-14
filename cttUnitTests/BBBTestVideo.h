@@ -1,8 +1,10 @@
 #pragma once
-#include "C:\Users\Jonas\Source\Repos\CTT\ctt\Video.h"
-#include "..\ctt\VideoMetadata.h"
-#include "..\ctt\Frame.h"
-#include "QOffscreenSurface"
+
+#include "Video.h"
+#include "VideoMetadata.h"
+#include "Frame.h"
+#include <QOffscreenSurface>
+
 class BBBTestVideo :
 	public model::video::Video
 {
