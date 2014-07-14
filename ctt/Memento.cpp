@@ -23,9 +23,9 @@ bool Memento::getBool(QString name) const {
 	if (!variableMap.contains(name)) {
 		throw new IllegalArgumentException(QString("There is no variable with name ").append(name).append(" in this memento."));
 	}
-	if (variableMap.value(name).compare(TRUE_STRING)) {
+	if (variableMap.value(name) == TRUE_STRING) {
 		return true;
-	} else if (variableMap.value(name).compare(FALSE_STRING)) {
+	} else if (variableMap.value(name) == FALSE_STRING) {
 		return false;
 	}
 	throw new IllegalArgumentException(QString("The variable with name ").append(name).append(" in this memento is not a boolean."));
@@ -52,11 +52,11 @@ void Memento::setFloat(QString name, float value) {
 }
 
 float Memento::getFloat(QString name) const {
-	if (variableMap.contains(name)) {
+	if (!variableMap.contains(name)) {
 		throw new IllegalArgumentException(QString("There is no variable with name ").append(name).append(" in this memento."));
 	}
 	bool valid;
-	int value = variableMap.value(name).toFloat(&valid);
+	float value = variableMap.value(name).toFloat(&valid);
 	if (!valid) {
 		throw new IllegalArgumentException(QString("The variable with name ").append(name).append(" in this memento is not a float."));
 	}
@@ -68,11 +68,11 @@ void Memento::setDouble(QString name, double value) {
 }
 
 double Memento::getDouble(QString name) const {
-	if (variableMap.contains(name)) {
+	if (!variableMap.contains(name)) {
 		throw new IllegalArgumentException(QString("There is no variable with name ").append(name).append(" in this memento."));
 	}
 	bool valid;
-	int value = variableMap.value(name).toDouble(&valid);
+	double value = variableMap.value(name).toDouble(&valid);
 	if (!valid) {
 		throw new IllegalArgumentException(QString("The variable with name ").append(name).append(" in this memento is not a double."));
 	}
