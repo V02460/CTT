@@ -33,7 +33,7 @@ public:
 
 private:
 	QXmlStreamWriter *out;
-	QList<Saveable::sptr> pointerList;
+	QList<::model::saveable::Saveable::sptr> pointerList;
 	int elementID;
 
 	void initDocument(QDir path);

@@ -39,18 +39,14 @@ public:
      *
      * @return the List of all FilteredVideos the Project uses in the first view.
      */
-<<<<<<< HEAD
 	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr getVideoList1() const;
-=======
-	::model::saveable::SaveableList<::model::filter::FilteredVideo> getVideoList1() const;
->>>>>>> master
 
     /**
 	 * Returns the List of all FilteredVideos the Project uses in the second view, i.e. the analyzing view.
      *
      * @return the List of all FilteredVideos the Project uses in the second view
      */
-	::model::saveable::SaveableList<::model::video::Video>::sptr getVideoList2() const;
+	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr getVideoList2() const;
 
     /**
      * Returns the player list from the first view (the editing view) of the project.

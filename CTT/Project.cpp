@@ -20,7 +20,7 @@ SaveableList<FileVideo>::sptr Project::getBaseVideoList() const {
 SaveableList<FilteredVideo>::sptr Project::getVideoList1() const {
 }
 
-SaveableList<Video>::sptr Project::getVideoList2() const {
+SaveableList<FilteredVideo>::sptr Project::getVideoList2() const {
 }
 
 SaveableList<Player>::sptr Project::getPlayerList1() const {
