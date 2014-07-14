@@ -1013,6 +1013,12 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shader\Model\Filter\1DBlur.fs" />
+    <None Include="Resources\Shader\Model\Filter\Mix.fs" />
+    <None Include="Resources\Shader\Model\Filter\Noise.fs" />
+    <None Include="Resources\Shader\Model\Filter\RGBChannel.fs" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

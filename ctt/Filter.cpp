@@ -16,7 +16,6 @@ Filter::Filter(Module::sptr predecessor) : predecessor(predecessor), parameters(
 }
 
 Filter::~Filter() {
-
 }
 
 QList<FilterParam> Filter::getParams() const {
@@ -30,6 +29,13 @@ QList<FilterParam> Filter::getParams() const {
 void Filter::setParam(FilterParam parameter) {
     if (isDummy()) {
         throw new AccessToDummyException();
+    }
+
+    QVariant oldValue = parameters.value(parameter.getName(), parameter).getValue();
+    QVariant newValue = parameter.getValue();
+
+    if (!newValue.canConvert(oldValue.type())) {
+        throw new IllegalArgumentException("Variable type of FilterParam does not match stored type.");
     }
 
     parameters.insert(parameter.getName(), parameter);
@@ -75,7 +81,34 @@ unsigned int Filter::getFrameCount() const {
         throw new AccessToDummyException();
     }
 
-    predecessor->getFrameCount();
+    return predecessor->getFrameCount();
+}
+
+template <class T>
+void Filter::newParameter(QString name, T initValue) {
+    if (isDummy()) {
+        throw new AccessToDummyException();
+    }
+
+    parameters.insert(name, FilterParam(name, initValue));
+}
+
+template <class T>
+T Filter::getParamValue(QString key, T defaultValue) const {
+    if (isDummy()) {
+        throw new AccessToDummyException();
+    }
+
+    FilterParam param = parameters.value(paramShiftStr, FilterParam(paramShiftStr, defaultValue));
+    return param.getValue().value<T>();
+}
+
+Module *Filter::getPredecessor() const {
+    if (isDummy()) {
+        throw new AccessToDummyException();
+    }
+
+    return predecessor.data();
 }
 
 }  // namespace filter

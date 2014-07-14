@@ -59,7 +59,9 @@ public:
      * Sets the submitted parameter.
      *
      * @param parameter this parameter will be set
-     * @throws AccessToDummyException if the Filter doesn't have a parameter with the name or type of the submitted parameter
+     * @throws IllegalArgumentException if the Filter doesn't have a parameter with the name or type of the submitted
+     *         parameter
+     * @throws AccessToDummyException if the the method was called on a dummy
      */
     void setParam(FilterParam parameter);
 
@@ -67,8 +69,8 @@ public:
      * Tells the Filter to use the frames of the submitted Module as source material for its own frames.
      *
      * @param predecessor the Filter will use the frames of this module as source material for its own frames
-     * @throws AccessToDummyException if the the method was called on a dummy
      * @throws IllegalArgumentException if predecessor is null
+     * @throws AccessToDummyException if the the method was called on a dummy
      */
     void setPreviousModule(::model::Module::sptr predecessor);
 
@@ -106,12 +108,21 @@ public:
 
     virtual unsigned int getFrameCount() const Q_DECL_OVERRIDE;
 
+protected:
+    template <class T>
+    void newParameter(QString name, T initValue);
+
+    template <class T>
+    T getParamValue(QString key, T defaultVar = T()) const;
+
+    Module *getPredecessor() const;
+
 private:
     Q_DISABLE_COPY(Filter)
 
-    QMap<QString, FilterParam> parameters; /**< Parameters modifying the filters behavior */
     ::model::FilterIntervalList intervals; /**< The Intervals in which the Filter is active */
-    ::model::Module::sptr predecessor; /**< The Filter gets the frames it modifies from this module */
+    QMap<QString, FilterParam> parameters; /**< Parameters modifying the filters behavior */
+    Module::sptr predecessor; /**< The Filter gets the frames it modifies from this module */
 };
 
 }  // namespace filter
