@@ -5,6 +5,8 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 #include <QObject>
+#include <QDir>
+#include <QSize>
 
 #include "ViewType.h"
 #include "Observable.h"
@@ -58,6 +60,8 @@ public:
 	 */
 	const QDir getLastSelectedFolder();
 
+	const ViewType getCurrentViewType();
+
 public slots:
     /**
      * Changes the internal viewType and notifies all Observers about the state change.
@@ -65,11 +69,13 @@ public slots:
     void changeView(ViewType newView);
 
 private:
-    ViewType currentView;
-	QSize mainWindowSize;
-	QDir lastSelectedFolder;
+    ViewType *currentView;
+	QSize *currentMainWindowSize;
+	QDir *lastSelectedFolder;
 
 	ViewState(); /**< Creates a new ViewState object with default parameters*/
+
+	static ViewState::sptr instance;
 };
 
 }  // namespace view
