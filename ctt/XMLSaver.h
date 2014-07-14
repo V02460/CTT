@@ -7,7 +7,6 @@
 #include <QXmlStreamWriter>
 
 #include "ProjectSaver.h"
-#include "IOException.h"
 #include "Saveable.h"
 #include "Memento.h"
 

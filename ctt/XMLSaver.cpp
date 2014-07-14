@@ -1,5 +1,7 @@
 #include "XMLSaver.h"
 
+#include "IOException.h"
+
 namespace controller {
 namespace project {
 

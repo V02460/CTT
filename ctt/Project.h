@@ -77,13 +77,13 @@ public:
 	::view::ViewState::sptr getView() const;
 
 private:
-    ::model::saveable::SaveableList<::model::video::FileVideo> baseVideoList;
-    ::model::saveable::SaveableList<::model::filter::FilteredVideo> videoList1;
-    ::model::saveable::SaveableList<::model::filter::FilteredVideo> videoList2;
-    ::model::saveable::SaveableList<::model::player::Player> playerList1;
-    ::model::player::Player player2;
-    ::model::saveable::SaveableList<::model::difference::FrameDiff> diffList;
-    ::view::ViewState view;
+    ::model::saveable::SaveableList<::model::video::FileVideo>::sptr baseVideoList;
+	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList1;
+	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList2;
+	::model::saveable::SaveableList<::model::player::Player>::sptr playerList1;
+	::model::player::Player::sptr player2;
+	::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr diffList;
+	::view::ViewState::sptr view;
 };
 
 }  // namespace project
