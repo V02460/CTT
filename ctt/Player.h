@@ -94,11 +94,11 @@ public:
     /**
      * Gets a list of all the VideoScrubbers currently subscribed to this player.
      *
-     * @return QList<::model::player::VideoScrubber::wptr> a list of all the VideoScrubebrs currently subscribed to this
+     * @return QList<::model::player::VideoScrubber::sptr> a list of all the VideoScrubebrs currently subscribed to this
      *     player.
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    QList<::model::player::VideoScrubber::wptr> getScrubbers() const;
+    QList<::model::player::VideoScrubber::sptr> getScrubbers() const;
 
     /**
      * Checks whether the player is currently playing.

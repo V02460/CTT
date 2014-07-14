@@ -38,7 +38,7 @@ double Player::getFPS() const {
 
 }
 
-QList<VideoScrubber::wptr> Player::getScrubbers() const {
+QList<VideoScrubber::sptr> Player::getScrubbers() const {
 
 }
 
