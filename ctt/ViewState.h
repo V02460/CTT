@@ -27,6 +27,37 @@ public:
     virtual void restore(::model::saveable::Memento memento);
     static ::model::saveable::Saveable::sptr getDummy();
 
+
+	static ViewState::sptr getInstance();
+	/**
+	 *	Opens a dialog to configure the ctt's GUI.
+	 */
+	void openConfigurationDialog();
+	/**
+	 *	Sets the new main window size.
+	 *
+	 *	@param newSize The new size of the main window.
+	 */
+	void setMainWindowSize(QSize newSize);
+	/**
+	 *	Sets the new selected folder which is needed for the file chooser dialogs.
+	 *
+	 *	@param newDir The last selected folder.
+	 */
+	void setLastSelectedFolder(QDir newDir);
+	/**
+	 *	Returns the current main window size.
+	 *
+	 *	@return The current mainwindow size.
+	 */
+	const QSize getMainWindowSize();
+	/**
+	 *	Returns the last selected folder.
+	 *
+	 *	@return the last selected folder.
+	 */
+	const QDir getLastSelectedFolder();
+
 public slots:
     /**
      * Changes the internal viewType and notifies all Observers about the state change.
@@ -35,6 +66,10 @@ public slots:
 
 private:
     ViewType currentView;
+	QSize mainWindowSize;
+	QDir lastSelectedFolder;
+
+	ViewState(); /**< Creates a new ViewState object with default parameters*/
 };
 
 }  // namespace view
