@@ -1,10 +1,11 @@
 #include "ctt.h"
 #include <QtWidgets/QApplication>
+#include "MainWindow.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    ctt w;
-    w.show();
+	::view::MainWindow *mw = new ::view::MainWindow();
+    mw->show();
     return a.exec();
 }
