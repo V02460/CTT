@@ -1,5 +1,7 @@
 #include "Player.h"
 
+#include "IllegalArgumentException.h"
+#include "IllegalStateException.h"
 #include "NotImplementedException.h"
 
 #define CURRENTFRAMENUMBERSTRINGID "currentFrameNumber"
@@ -18,6 +20,7 @@ using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
 using ::exception::IllegalArgumentException;
 using ::exception::IllegalStateException;
+using ::exception::NotImplementedException;
 
 Player::Player(double fps): fps(fps), loop(0, 0), currentFrameNumber(0), looping(false), playing(false) {
 	if (!(fps > 0)) {
@@ -146,7 +149,7 @@ void Player::addScrubber(VideoScrubber::sptr scrubber) {
 	{
 		currentFrameNumber = scrubber->getFrameCount();
 		emit currentFrameNrChanged(getCurrentFrameNumber());
-	}
+}
 	else
 	{
 		scrubber->jumpToFrameNr(getCurrentFrameNumber());
@@ -162,7 +165,7 @@ void Player::addScrubber(VideoScrubber::sptr scrubber, unsigned int position) {
 	{
 		throw new IllegalArgumentException("Tried to add a dummy VideoScrubber to a player.");
 	}
-	if (position > videoScrubbers.size())
+	if (position > static_cast<unsigned int>(videoScrubbers.size()))
 	{
 		throw new IllegalArgumentException("Tried to insert a Scrubber into a Player at position " 
 			+ QString::number(position) + ", but " + QString::number(videoScrubbers.size()) 
@@ -176,7 +179,7 @@ void Player::addScrubber(VideoScrubber::sptr scrubber, unsigned int position) {
 	{
 		currentFrameNumber = scrubber->getFrameCount();
 		emit currentFrameNrChanged(getCurrentFrameNumber());
-	}
+}
 	else
 	{
 		scrubber->jumpToFrameNr(getCurrentFrameNumber());
@@ -188,7 +191,7 @@ void Player::removeScrubber(unsigned int position) {
 	{
 		throw new IllegalStateException("Tried to add a VideoScrubber to a dummy player.");
 	}
-	if (position >= videoScrubbers.size())
+    if (position >= static_cast<unsigned int>(videoScrubbers.size()))
 	{
 		throw new IllegalArgumentException("Tried to remove a Scrubber from a Player at position "
 			+ QString::number(position) + ", but it contained only " + QString::number(videoScrubbers.size())
@@ -268,7 +271,7 @@ unsigned int Player::getVideoLength() const {
 	{
 		throw new IllegalStateException("Tried to ask a dummy Player for the length of the shortest video of his "
 			"scrubber.");
-	}
+}
 
 	if (scrubberCount() == 0)
 	{
@@ -281,7 +284,7 @@ unsigned int Player::getVideoLength() const {
 		if (scrubber->getFrameCount() < shortest)
 		{
 			shortest = scrubber->getFrameCount();
-		}
+}
 	}
 	return shortest;
 }
@@ -290,7 +293,7 @@ unsigned int Player::getCurrentFrameNumber() const {
 	if (isDummy())
 	{
 		throw new IllegalStateException("Tried to get the current Frame number from a dummy Player.");
-	}
+}
 	return currentFrameNumber;
 }
 
@@ -298,7 +301,7 @@ void Player::setLoop(UIntegerInterval interval) {
 	if (isDummy())
 	{
 		throw new IllegalStateException("Tried to set a loop on a dummy Player.");
-	}
+}
 
 	if (interval.isDummy())
 	{
@@ -332,7 +335,7 @@ bool Player::isLooping() const {
 	if (isDummy())
 	{
 		throw new IllegalStateException("Tried to ask a dummy Player whether it's looping.");
-	}
+}
 	return looping;
 }
 
@@ -368,7 +371,7 @@ Memento Player::getMemento() const {
 	return memento;
 }
 
-void Player::restore(Memento memento) {	
+void Player::restore(Memento memento) {
 	//do this properly again
 // 	isDummyFlag = false;
 // 
@@ -409,14 +412,14 @@ void Player::nextFrame() {
 	}
 	else
 	{
-		if (hasNextFrame())
-		{
+	if (hasNextFrame())
+	{
 			jumpToFrameNr(getCurrentFrameNumber() + 1);
-		}
-		else
-		{
-			pause();
-		}
+	}
+	else
+	{
+		pause();
+	}
 	}
 
 }
@@ -433,8 +436,8 @@ void Player::previousFrame() {
 	}
 	else
 	{
-		if (hasPreviousFrame())
-		{
+	if (hasPreviousFrame())
+	{
 			jumpToFrameNr(loop.getEnd() - 1);
 		}
 	}

@@ -156,6 +156,9 @@
     <ClCompile Include="ModelTests.h">
       <Filter>TestStructure\Model</Filter>
     </ClCompile>
+    <ClCompile Include="BBBTestVideo.cpp">
+      <Filter>Source Files\SpecialTestingClasses</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -198,6 +201,9 @@
     </ClInclude>
     <ClInclude Include="ModelVideoTests.h">
       <Filter>TestStructure\Model\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="BBBTestVideo.h">
+      <Filter>Header Files\SpecialTestingClasses</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

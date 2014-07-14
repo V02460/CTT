@@ -24,7 +24,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -81,6 +81,8 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -99,7 +101,8 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <BrowseInformation>true</BrowseInformation>
-      <AdditionalOptions>/wd4716 %(AdditionalOptions)</AdditionalOptions>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -389,6 +392,7 @@
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Memento.cpp" />
     <ClCompile Include="MixFilter.cpp" />
+    <ClCompile Include="MockDisplayHelper.cpp" />
     <ClCompile Include="MotionVectorOverlay.cpp" />
     <ClCompile Include="NoiseFilter.cpp" />
     <ClCompile Include="NotImplementedException.cpp" />
@@ -580,6 +584,7 @@
     <ClInclude Include="GPUHelper.h" />
     <ClInclude Include="GreenHistogram.h" />
     <ClInclude Include="GreyscaleFilter.h" />
+    <ClInclude Include="MockDisplayHelper.h" />
     <ClInclude Include="HeatmapOverlay.h" />
     <ClInclude Include="Histogram.h" />
     <CustomBuild Include="HistogramWidget.h">
@@ -1027,12 +1032,15 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Images\big_buck_bunny_01337.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_Win32="qtbase" Qt5Version_x0020_x64="msvc2013_64_opengl" MocOptions="" />
+      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_Win32="msvc2013_opengl" Qt5Version_x0020_x64="msvc2013_64_opengl" MocOptions="" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

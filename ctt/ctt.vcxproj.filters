@@ -122,6 +122,9 @@
     <Filter Include="Source Files\Helper">
       <UniqueIdentifier>{c1d742ec-7c5f-4d6e-a9ea-e4ac4a31af82}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Images">
+      <UniqueIdentifier>{e20e1833-b2fa-4e66-a0de-24671f52c9dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_ctt.cpp">
@@ -553,6 +556,9 @@
     <ClCompile Include="GeneratedFiles\qrc_ctt.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="MockDisplayHelper.cpp">
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -884,5 +890,13 @@
     <ClInclude Include="GeneratedFiles\ui_ctt.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="MockDisplayHelper.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Images\big_buck_bunny_01337.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
   </ItemGroup>
 </Project>
