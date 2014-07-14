@@ -1,12 +1,16 @@
 #include "BlueHistogram.h"
 
+#include "QFile"
+
 #include "OpenGLException.h"
+#include "FileNotFoundException.h"
 
 namespace model {
 namespace frame {
 namespace histogram {
 
 using ::exception::OpenGLException;
+using ::exception::FileNotFoundException;
 
 BlueHistogram::BlueHistogram(const Frame &frame) {
     init(frame);
@@ -20,18 +24,12 @@ QSharedPointer<QOpenGLShader> BlueHistogram::getHistogramGridFS()
 {
     QSharedPointer<QOpenGLShader> shader(new QOpenGLShader(QOpenGLShader::Fragment));
 
-    const char source[] = R"(
-        uniform vec2 sourceSize;
-        uniform vec2 targetSize;
-        uniform sampler2D sourceImage;
-        varying vec2 texcrd;
+    QFile sourceFile(":/Shader/Histogram/redHistogramGrid.fs");
+    if (!sourceFile.exists()) {
+        throw new FileNotFoundException("\"" + sourceFile.fileName() + "\" does not exist.");
+    }
 
-        void main() {
-            //texelFetch(image, texcrd, 0);
-            //gl_FragColor = vec4(gl_FragCoord.xy / targetSize.xy, 0.0, 1.0);
-            gl_FragColor = vec4(1.f, 0.f, 0.f, 1.f);
-        }
-    )";
+    QString source = sourceFile.readAll();
 
     if (!shader->compileSourceCode(source)) {
         throw new OpenGLException("Fragment shader compilation failed. Log message: " + shader->log());

@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/ctt">
-        <file alias="BigBuckBunny.png">Resources/Images/big_buck_bunny_01337.png</file>
+        <file alias="Images/BigBuckBunny.png">Resources/Images/big_buck_bunny_01337.png</file>
+        <file>Shader/Histogram/redHistogramGrid.fs</file>
     </qresource>
 </RCC>

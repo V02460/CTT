@@ -43,8 +43,6 @@ int main(int argc, char *argv[])
         BlueHistogram histogram(frame);
 
         Surface::sptr grid = histogram.makeHistogramGrid(frame);
-    
-        glFlush();
 
         MockDisplayHelper::showImage(grid->getFramebufferObject()->toImage());
     }

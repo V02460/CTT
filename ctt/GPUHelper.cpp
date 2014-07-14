@@ -24,7 +24,7 @@ QOpenGLShader_sptr GPUHelper::getDefaultFlatVS() {
         void main() {
             texcrd = (pos + 1.f) * 0.5f;
 
-            gl_Position = vec4(pos, 0.f, 0.f);
+            gl_Position = vec4(_pos, 0.f, 0.f);
         }
     )");
 

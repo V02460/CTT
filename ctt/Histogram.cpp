@@ -66,9 +66,9 @@ Surface::sptr Histogram::makeHistogramGrid(const Surface &imageData) {
         throw new OpenGLException("Linking of shader program failed. Log message: " + program.log());
     }
 
-    //program.setUniformValue("sourceSize", sourceSize);
-    //program.setUniformValue("targetSize", targetSize);
-    //program.setUniformValue("sourceImage", imageData.getTextureHandle());
+    program.setUniformValue("sourceSize", sourceSize);
+    program.setUniformValue("targetSize", targetSize);
+    program.setUniformValue("sourceImage", imageData.getTextureHandle());
 
     return imageData.applyShader(&program, targetSize);
 }
