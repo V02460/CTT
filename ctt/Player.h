@@ -263,6 +263,7 @@ signals:
     void currentFrameNrChanged(unsigned int currentFrameNr);
 
 private:
+	Q_DISABLE_COPY(Player)
 	/**
 	* Creates a dummy Player.
 	*/
