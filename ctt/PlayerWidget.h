@@ -7,6 +7,7 @@
 #include <QWidget>
 
 #include "VideoProcessingWidget.h"
+#include "Player.h"
 
 namespace view {
 
@@ -22,8 +23,10 @@ public:
 
     /**
      * Creates a PlayerWidget.
+	 *
+	 * @param player The player from which this player widget should be created.
      */
-    PlayerWidget();
+    PlayerWidget(model::player::Player player);
 
 public slots:
     /**
@@ -42,9 +45,12 @@ signals:
 
 private:
     Q_DISABLE_COPY(PlayerWidget);
+	void setupUi();
 
-    VideoProcessingWidget inputVideo; /**< The original video on which the filters are applied */
-    VideoProcessingWidget filteredVideo;/**< The original video plus the applied filters */
+	QHBoxLayout *horizontalLayout;
+
+    VideoProcessingWidget *inputVideoProcessingWidget; /**< The original video on which the filters are applied */
+    VideoProcessingWidget *outputVideoProcessingWidget;/**< The original video plus the applied filters */
 };
 
 }  // namespace view
