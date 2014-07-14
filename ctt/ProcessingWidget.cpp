@@ -7,25 +7,19 @@ ProcessingWidget::ProcessingWidget(controller::project::Project *project, QWidge
 	this->setParent(parent);
 	this->players = project->getPlayerList1();
 	playerWidgets = new QList<PlayerWidget>();
-	this->init(project);
-	thumbnailWidget = new ThumbnailListWidget(project->getVideoList1(), 1);
-	this->setupUi();
+	thumbnailWidget = new ThumbnailListWidget(players, this);
+	update();
+	setupUi();
 }
 
-void ProcessingWidget::init(controller::project::Project *project) {
-	unsigned int baseVideoListSize = project->getBaseVideoList()->getSize();
-	unsigned int filteredVideoListSize = project->getVideoList1()->getSize();
+void ProcessingWidget::update() {
 
-	for (unsigned int i = 0; i < baseVideoListSize; i++) {
-		project->getBaseVideoList->get(i);
-
-	}
 }
 
 void ProcessingWidget::setupUi() {
 	if (this->objectName().isEmpty())
 		this->setObjectName(QStringLiteral("ProcessingWidget"));
-	this->resize(800, 600);
+	//this->resize(800, 600);
 	mainVerticalLayout = new QVBoxLayout(this);
 	mainVerticalLayout->setSpacing(5);
 	mainVerticalLayout->setObjectName(QStringLiteral("mainVerticalLayout"));

@@ -52,6 +52,8 @@ public:
      */
 	ProcessingWidget(controller::project::Project *project, QWidget *parent = 0);
 
+	void update();
+
 public slots:
     /**
     * This method is called when one of the PlayerWidgets managed by this class is set as active.

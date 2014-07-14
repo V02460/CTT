@@ -44,7 +44,7 @@
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
-        <verstretch>1</verstretch>
+        <verstretch>2</verstretch>
        </sizepolicy>
       </property>
       <layout class="QHBoxLayout" name="upperHorizontalLayout" stretch="0">
@@ -250,7 +250,7 @@
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
-        <verstretch>20</verstretch>
+        <verstretch>1</verstretch>
        </sizepolicy>
       </property>
       <property name="frameShape">
@@ -351,14 +351,28 @@
             <number>0</number>
            </property>
            <item>
+            <widget class="QScrollArea" name="scrollArea_2">
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="extendedTimeline">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>543</width>
+                <height>167</height>
+               </rect>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item>
             <widget class="Line" name="line_2">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
             </widget>
-           </item>
-           <item>
-            <widget class="ExtendedTimeline" name="extendedTimeline" native="true"/>
            </item>
           </layout>
          </widget>
@@ -381,12 +395,6 @@
    <class>PlayerWidget</class>
    <extends>QWidget</extends>
    <header>PlayerWidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>ExtendedTimeline</class>
-   <extends>QWidget</extends>
-   <header>ExtendedTimeline.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
