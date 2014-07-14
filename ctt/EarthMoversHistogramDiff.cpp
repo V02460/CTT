@@ -5,6 +5,8 @@ namespace difference {
 
 using ::model::frame::histogram::Histogram;
 using ::model::video::Video;
+using ::model::saveable::Memento;
+using ::model::saveable::Saveable;
 
 EarthMoversHistogramDiff::EarthMoversHistogramDiff(Histogram::HistogramType type,
                                                    Video::sptr video1,
@@ -18,6 +20,18 @@ EarthMoversHistogramDiff::~EarthMoversHistogramDiff() {
 }
 
 double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
+
+}
+
+Memento EarthMoversHistogramDiff::getMemento() const {
+
+}
+
+void EarthMoversHistogramDiff::restore(::model::saveable::Memento memento) {
+
+}
+
+Saveable::sptr EarthMoversHistogramDiff::getDummy() {
 
 }
 

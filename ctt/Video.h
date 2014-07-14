@@ -37,7 +37,7 @@ public:
     virtual VideoMetadata getMetadata() const = 0;
 
     /**
-     * Saves the Video to the submitted path in the filesystem
+     * Saves the Video to the submitted path in the file system
      *
      * @param path the path to where the video will be saved
      * @param fileType the file type in which the video will be saved
