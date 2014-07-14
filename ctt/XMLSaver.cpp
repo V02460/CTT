@@ -78,7 +78,7 @@ void XMLSaver::initDocument(QDir path) {
 void XMLSaver::mapBasePointer(Project project) { // TODO Savable::sptr != QSharedPointer<Saveable> ?
 	pointerList.append(project.getBaseVideoList());
 	pointerList.append(project.getVideoList1());
-	pointerList.append(project.getVideoList2);
+	pointerList.append(project.getVideoList2());
 	pointerList.append(project.getPlayerList1());
 	pointerList.append(project.getPlayer2());
 	pointerList.append(project.getDiffList());

@@ -26,7 +26,7 @@ SaveableList<FilteredVideo>::sptr Project::getVideoList1() const {
     throw new NotImplementedException();
 }
 
-SaveableList<Video>::sptr Project::getVideoList2() const {
+SaveableList<FilteredVideo>::sptr Project::getVideoList2() const {
     throw new NotImplementedException();
 }
 
