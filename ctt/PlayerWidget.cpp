@@ -4,7 +4,7 @@
 namespace view {
 
 PlayerWidget::PlayerWidget(model::player::Player player) {
-	QList<model::player::VideoScrubber::wptr> scrubbers = player.getScrubbers();
+	QList<model::player::VideoScrubber::sptr> scrubbers = player.getScrubbers();
 
 	if (scrubbers.size() == 2) {
 		inputVideoProcessingWidget = new VideoProcessingWidget(scrubbers.value(0), false);
