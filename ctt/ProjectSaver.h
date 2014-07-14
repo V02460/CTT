@@ -6,7 +6,6 @@
 #include <QWeakPointer>
 #include <QDir>
 
-#include "Saveable.h"
 #include "Project.h"
 
 namespace controller {
@@ -32,7 +31,6 @@ public:
      * @throws IOException Is thrown if for any reason the file cant be written.
      */
     virtual void save(QDir path, const ::controller::project::Project &project) = 0;
-
 };
 
 }  // namespace project
