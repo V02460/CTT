@@ -27,6 +27,7 @@ public:
     * Returns the path to the video file this Video loads its frames from.
     *
     * @return QDir the path to the video file this Video loads its frames from
+	* @throws IllegalStateException if the method is called on a dummy
     */
     QDir getPath() const;
 
