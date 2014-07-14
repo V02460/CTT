@@ -29,7 +29,7 @@ public:
      * @throws InvalidArgumentException if the submitted frame number is too high.
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual model::frame::Frame getFrame(unsigned int frameNumber) const = 0;
+    virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const = 0;
 
     /**
      * Gets a list of all Modules this Module uses directly or indirectly to create its frames, including this module
@@ -39,7 +39,7 @@ public:
      *     including this module itself
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual QList<Module> getUsesList() const = 0;
+    virtual QList<Module*> getUsesList() const = 0;
 
     /**
      * Gets the number of frames the module can return.

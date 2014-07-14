@@ -19,7 +19,7 @@ QString CoffeeFilter::getName() const {
 
 }
 
-Frame CoffeeFilter::getFrame(unsigned int frameNumber) const {
+model::frame::Frame::sptr CoffeeFilter::getFrame(unsigned int frameNumber) const {
 
 }
 

@@ -36,7 +36,7 @@ public:
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
 
     virtual QString getName() const Q_DECL_OVERRIDE;
-    virtual ::model::frame::Frame getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
+    virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
 
     virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
     virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;

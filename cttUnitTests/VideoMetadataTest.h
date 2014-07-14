@@ -1,10 +1,8 @@
-#include "QObject"
+#include <QObject>
 #include <QtTest/QtTest>
 
 
-class VideoMetadataTest :
-	public QObject	
-{
+class VideoMetadataTest : public QObject {
 	Q_OBJECT
 
 private slots:

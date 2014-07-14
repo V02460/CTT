@@ -18,7 +18,6 @@ namespace frame {
     class Frame;
 }}
 
-
 namespace model {
 namespace frame {
 namespace histogram {
@@ -45,11 +44,6 @@ public:
     };
 
     /**
-     * Creates a new Histogram.
-     */
-    Histogram();
-
-    /**
      * Destroys the Histogram.
      */
     virtual ~Histogram() = 0 {};
@@ -72,6 +66,11 @@ public:
 
 protected:
     static const unsigned int histogramSize = 256;
+
+    /**
+    * Creates a new Histogram.
+    */
+    Histogram();
 
     /**
     * Initializes the histogram.

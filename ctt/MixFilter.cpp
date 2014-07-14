@@ -17,7 +17,7 @@ QString MixFilter::getName() const {
 
 }
 
-Frame MixFilter::getFrame(unsigned int frameNumber) const {
+model::frame::Frame::sptr MixFilter::getFrame(unsigned int frameNumber) const {
 
 }
 

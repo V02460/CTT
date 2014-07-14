@@ -18,7 +18,7 @@ QString ColoringOverlay::getName() const {
 
 }
 
-Frame ColoringOverlay::getFrame(unsigned int frameNumber) const {
+model::frame::Frame::sptr ColoringOverlay::getFrame(unsigned int frameNumber) const {
 
 }
 

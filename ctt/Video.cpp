@@ -9,7 +9,7 @@ void Video::save(QDir path, VideoFileType fileType) const {
 
 }
 
-Frame Video::getScaledFrame(unsigned int frameNumber, QSize size) const {
+::model::frame::Frame::sptr Video::getScaledFrame(unsigned int frameNumber, QSize size) const {
 
 }
 
