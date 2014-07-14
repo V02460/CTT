@@ -21,7 +21,7 @@ namespace player {
  * It makes this frame available to other objects and notifies them via Qt's signal and slot mechanism when this frame
  * is replaced.
  */
-class VideoScrubber : public QObject, public ::model::saveable::Saveable, public Observable {
+class VideoScrubber : public QObject, public Observable, public ::model::saveable::Saveable {
     Q_OBJECT
 public:
     typedef QScopedPointer<VideoScrubber> uptr;
@@ -32,7 +32,7 @@ public:
      * Creates a new VideoScrubber for the submitted video. Initially the Scrubber holds the first frame of the video.
      *
      * @param video the scrubber will use this video to get frames
-     * @throws InvalidArgumentException if the submitted video is invalid
+	 * @throws IllegalArgumentException if the submitted video is invalid
      */
     explicit VideoScrubber(::model::video::Video::sptr video);
 
@@ -46,7 +46,7 @@ public:
      *
      * @param video video the scrubber will use this video to get frames
      * @param frameNumber the scrubber will initially hold the frame with this number
-     * @throws InvalidArgumentException if the submitted video is invalid or if it doesn't have a frame with the
+     * @throws IllegalArgumentException if the submitted video is invalid or if it doesn't have a frame with the
      *     submitted number
      */
     VideoScrubber(::model::video::Video::sptr video, unsigned int frameNumber);
@@ -58,6 +58,13 @@ public:
      * @throws IllegalStateException if the the method was called on a dummy
      */
     ::model::video::VideoMetadata getVideoMetadata() const;
+
+	/**
+	 * Returns the number of frames the video of this scrubber has.
+	 * @returns the number of frames the video of this scrubber has.
+	 * @throws IllegalStateException if the the method was called on a dummy
+	 */
+	unsigned int getFrameCount() const;
 
     /**
      * Gets the Video this VideoScrubber is associated with.
@@ -98,10 +105,22 @@ public slots:
      */
     void jumpToFrameNr(unsigned int frameNumber);
 private:
+	Q_DISABLE_COPY(VideoScrubber)
+
     ::model::video::Video::sptr video; /**< The scrubber gets frames and metadata from this video */
     ::model::frame::Frame::sptr currentFrame; /**< This is the frame currently held by the scrubber */
     bool waitingForFrame; /**< This is true while Scrubber is still waiting for the frame it requested last*/
+
+	/**
+	 * Constructor for a dummy VideoScrubber.
+	 */
+	VideoScrubber();
+
+    friend inline bool operator==(VideoScrubber &lhs, VideoScrubber &rhs);
 };
+
+inline bool operator==(VideoScrubber &lhs, VideoScrubber &rhs);
+inline bool operator!=(VideoScrubber &lhs, VideoScrubber &rhs);
 
 }  // namespace player
 }  // namespace model

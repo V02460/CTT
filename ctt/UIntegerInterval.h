@@ -6,6 +6,7 @@
 #include <QWeakPointer>
 
 #include "Saveable.h"
+#include "Memento.h"
 
 namespace model {
 
@@ -72,7 +73,7 @@ public:
      * @param interval it will be checked whether merging is possible with this interval
      * @return bool true only if the union of the intervals is an interval
      */
-    bool canMergeWith(UIntegerInterval interval) const;
+    bool canMergeWith(const UIntegerInterval &interval) const;
 
     /**
      * Makes this interval a union of itself and the submitted interval. This only works if the union is an interval
@@ -82,7 +83,7 @@ public:
      * @throws IllegalArgumentException if the the interception between this interval and the submitted interval is
      *     empty
      */
-    void mergeWith(UIntegerInterval interval) const;
+    void mergeWith(const UIntegerInterval &interval);
 
     virtual ::model::saveable::Memento getMemento() const;
     virtual void restore(::model::saveable::Memento memento);

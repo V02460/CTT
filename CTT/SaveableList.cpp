@@ -7,42 +7,51 @@
 #include "Overlay.h"
 #include "Video.h"
 
+#include "NotImplementedException.h"
+
 namespace model {
 namespace saveable {
 
+using ::exception::NotImplementedException;
+
 template <class T>
 SaveableList<T>::SaveableList() {
-
+    throw new NotImplementedException();
 }
 
 template <class T>
 void SaveableList<T>::insert(unsigned int index, typename T::sptr element) {
-
+    throw new NotImplementedException();
 }
 
 template <class T>
 typename T::sptr SaveableList<T>::remove(unsigned int index) {
-
+    throw new NotImplementedException();
 }
 
 template <class T>
 const T &SaveableList<T>::get(unsigned int index) const {
+    throw new NotImplementedException();
+}
 
+template <class T>
+const unsigned int SaveableList<T>::getSize() const {
+    throw new NotImplementedException();
 }
 
 template <class T>
 Memento SaveableList<T>::getMemento() const {
-
+    throw new NotImplementedException();
 }
 
 template <class T>
 void SaveableList<T>::restore(Memento memento) {
-
+    throw new NotImplementedException();
 }
 
 template <class T>
 Saveable::sptr SaveableList<T>::getDummy() {
-
+    throw new NotImplementedException();
 }
 
 // A list of all objects which might be used with the SaveableList

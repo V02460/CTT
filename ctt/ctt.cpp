@@ -1,12 +1,14 @@
 #include "ctt.h"
 
-ctt::ctt(QWidget *parent)
-    : QMainWindow(parent)
-{
+#include "MockDisplayHelper.h"
+
+using helper::MockDisplayHelper;
+
+ctt::ctt(QWidget *parent) : QMainWindow(parent) {
     ui.setupUi(this);
+    MockDisplayHelper::setMainWindow(this);
 }
 
-ctt::~ctt()
-{
+ctt::~ctt() {
 
 }

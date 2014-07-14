@@ -6,7 +6,13 @@
 #include <QWeakPointer>
 
 #include "Observer.h"
-#include "Memento.h"
+
+//#include "Memento.h"
+namespace model {
+namespace saveable {
+    class Memento;
+}}
+
 
 namespace model {
 namespace saveable {
@@ -38,6 +44,7 @@ public:
      * Sets the internal state of the object to the state saved in a submitted Memento.
      *
      * @param memento this state will be restored
+	 * @throws IllegalArgumentException if the memento doesn't contain the data the object requires to restore itself
      */
 	virtual void restore(Memento memento) = 0;
 

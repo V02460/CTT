@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/cttApp">
+        <file alias="SmallBuckBunny.png">Resources/Images/SmallBuckBunny.png</file>
+    </qresource>
+</RCC>
