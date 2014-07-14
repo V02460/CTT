@@ -99,13 +99,14 @@ Memento VideoScrubber::getMemento() const {
 }
 
 void VideoScrubber::restore(Memento memento) {
-	video = memento.getSharedPointer<Video>(VIDEOSTRINGID);
+	//TODO ykrjgh warum tut das nicht???
+	//video = memento.getSharedPointer<Video>(VIDEOSTRINGID);
 
-	isDummyFlag = false;
-
-	waitingForFrame = true;
-	currentFrame = video->getFrame(0);
-	waitingForFrame = false;
+// 	waitingForFrame = true;
+// 	currentFrame = video->getFrame(0);
+// 	waitingForFrame = false;
+// 
+// 	isDummyFlag = false;
 }
 
 Saveable::sptr VideoScrubber::getDummy() {
