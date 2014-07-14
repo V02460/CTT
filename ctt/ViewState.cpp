@@ -11,9 +11,9 @@ using ::exception::NotImplementedException;
 ViewState::sptr ViewState::instance = *new QSharedPointer<ViewState>();
 
 ViewState::ViewState() {
-	*currentView = ViewType::PROCESSING_VIEW;
+	currentView = ViewType::PROCESSING_VIEW;
 	currentMainWindowSize = new QSize(800, 600);
-	*lastSelectedFolder = QDir::current();
+	lastSelectedFolder = new QDir(*new QString("C:\\"));
 }
 
 Memento ViewState::getMemento() const {
@@ -57,7 +57,7 @@ const QDir ViewState::getLastSelectedFolder() {
 }
 
 const ViewType ViewState::getCurrentViewType() {
-	return *currentView;
+	return currentView;
 }
 
 }  // namespace view

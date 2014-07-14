@@ -2,6 +2,10 @@
 
 namespace view {
 
+MainControlWidget::MainControlWidget(QWidget *parent) {
+	this->setParent(parent);
+}
+
 void MainControlWidget::btnInsertClicked(bool active) {
 
 }

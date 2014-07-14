@@ -70,7 +70,7 @@ public slots:
     void changeView(ViewType newView);
 
 private:
-    ViewType *currentView;
+    ViewType currentView;
 	QSize *currentMainWindowSize;
 	QDir *lastSelectedFolder;
 

@@ -8,6 +8,8 @@ ProcessingWidget::ProcessingWidget(controller::project::Project *project, QWidge
 	this->players = project->getPlayerList1();
 	playerWidgets = new QList<PlayerWidget>();
 	thumbnailWidget = new ThumbnailListWidget(players, this);
+	//TODO Setze richtigen Player ein
+	displayedPlayerWidget = new PlayerWidget(new model::player::Player(25), this);
 	update();
 	setupUi();
 }
@@ -28,7 +30,7 @@ void ProcessingWidget::setupUi() {
 	verticalSplitter->setObjectName(QStringLiteral("verticalSplitter"));
 	verticalSplitter->setFrameShape(QFrame::NoFrame);
 	verticalSplitter->setOrientation(Qt::Vertical);
-	verticalSplitter->setHandleWidth(1);
+	verticalSplitter->setHandleWidth(5);
 	upperWidget = new QWidget(verticalSplitter);
 	upperWidget->setObjectName(QStringLiteral("upperWidget"));
 	QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -48,7 +50,7 @@ void ProcessingWidget::setupUi() {
 	upperHorizontalSplitter->setSizePolicy(sizePolicy1);
 	upperHorizontalSplitter->setFrameShape(QFrame::NoFrame);
 	upperHorizontalSplitter->setOrientation(Qt::Horizontal);
-	upperHorizontalSplitter->setHandleWidth(2);
+	upperHorizontalSplitter->setHandleWidth(5);
 	upperHorizontalSplitter->setChildrenCollapsible(false);
 	videoAddWidget = new QWidget(upperHorizontalSplitter);
 	videoAddWidget->setObjectName(QStringLiteral("videoAddWidget"));
@@ -66,9 +68,9 @@ void ProcessingWidget::setupUi() {
 	scrollArea->setWidgetResizable(true);
 	scrollAreaThumbnailList = new QWidget();
 	scrollAreaThumbnailList->setObjectName(QStringLiteral("scrollAreaThumbnailList"));
-	scrollAreaThumbnailList->setGeometry(QRect(0, 0, 148, 397));
+	//scrollAreaThumbnailList->setGeometry(QRect(0, 0, 148, 397));
 	scrollAreaVerticalLayout = new QVBoxLayout(scrollAreaThumbnailList);
-	scrollAreaVerticalLayout->setSpacing(0);
+	scrollAreaVerticalLayout->setSpacing(5);
 	scrollAreaVerticalLayout->setObjectName(QStringLiteral("scrollAreaVerticalLayout"));
 	scrollAreaVerticalLayout->setContentsMargins(0, 0, 0, 0);
 	thumbnailWidget->setObjectName(QStringLiteral("tumbnailListWidget"));
@@ -119,7 +121,6 @@ void ProcessingWidget::setupUi() {
 	displayHorizontalLayout = new QHBoxLayout(displayFrame);
 	displayHorizontalLayout->setObjectName(QStringLiteral("displayHorizontalLayout"));
 	displayHorizontalLayout->setContentsMargins(0, 0, 0, 0);
-	displayedPlayerWidget = new PlayerWidget(displayFrame);
 	displayedPlayerWidget->setObjectName(QStringLiteral("displayedPlayerWidget"));
 
 	displayHorizontalLayout->addWidget(displayedPlayerWidget);

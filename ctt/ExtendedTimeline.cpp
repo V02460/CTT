@@ -2,6 +2,9 @@
 
 namespace view {
 
+ExtendedTimeline::ExtendedTimeline(QWidget *parent) {
+	this->setParent(parent);
+}
 void ExtendedTimeline::sldStateChanged() {
 
 }

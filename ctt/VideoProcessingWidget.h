@@ -40,6 +40,8 @@ public:
 	*/
 	VideoProcessingWidget(::model::player::VideoScrubber::sptr scrubber, bool showSaveButton, QWidget *parent = 0);
 
+	VideoProcessingWidget(bool showSaveButton, QWidget *parent = 0);
+
 public slots:
     /**
      * This method is called when the user changes the state of the checkbox.
@@ -88,7 +90,8 @@ private:
     
     QPushButton *btnSaveVideo; /** The button which starts the video saving process */
 	model::player::VideoScrubber::sptr scrubber;
-    VideoWidget *videoWidget; /** The video widget which actually displays the video */
+	//TODO Zurueck zu VideoWidget aendern
+    QWidget *videoWidget; /** The video widget which actually displays the video */
 };
 
 }  // namespace view

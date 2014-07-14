@@ -3,21 +3,24 @@
 
 namespace view {
 
-PlayerWidget::PlayerWidget(model::player::Player player) {
-	QList<model::player::VideoScrubber::sptr> scrubbers = player.getScrubbers();
+PlayerWidget::PlayerWidget(model::player::Player *player, QWidget *parent) {
+	this->setParent(parent);
+	QList<model::player::VideoScrubber::sptr> scrubbers = player->getScrubbers();
 
 	if (scrubbers.size() == 2) {
-		inputVideoProcessingWidget = new VideoProcessingWidget(scrubbers.value(0), false);
-		outputVideoProcessingWidget = new VideoProcessingWidget(scrubbers.value(1), true);
+		inputVideoProcessingWidget = new VideoProcessingWidget(scrubbers.value(0), false, this);
+		outputVideoProcessingWidget = new VideoProcessingWidget(scrubbers.value(1), true, this);
 	} else {
 		//TODO Fehlerbehandlung
+		inputVideoProcessingWidget = new VideoProcessingWidget(false, this);
+		outputVideoProcessingWidget = new VideoProcessingWidget(true, this);
 	}
 
 	setupUi();
 }
 
 void PlayerWidget::getActivationSignal() {
-	emit playerActivated(*this);
+	//emit playerActivated(*this);
 }
 
 void PlayerWidget::setupUi() {

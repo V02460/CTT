@@ -26,7 +26,7 @@ public:
 	 *
 	 * @param player The player from which this player widget should be created.
      */
-    PlayerWidget(model::player::Player player);
+    PlayerWidget(model::player::Player *player, QWidget *parent = 0);
 
 public slots:
     /**

@@ -6,7 +6,7 @@
 
 namespace view {
 
-	VideoProcessingWidget::VideoProcessingWidget(model::player::VideoScrubber::sptr scrubber, bool showSaveButton, QWidget *parent) {
+VideoProcessingWidget::VideoProcessingWidget(model::player::VideoScrubber::sptr scrubber, bool showSaveButton, QWidget *parent) {
 	this->setParent(parent);
 	videoWidget = new VideoWidget(scrubber);
 	this->showSaveButton = showSaveButton;
@@ -14,11 +14,18 @@ namespace view {
 	setupUi();
 }
 
+VideoProcessingWidget::VideoProcessingWidget(bool showSaveButton, QWidget *parent) {
+	this->setParent(parent);
+	videoWidget = new QWidget();
+	this->showSaveButton = showSaveButton;
+	setupUi();
+}
+
 void VideoProcessingWidget::checkboxUseForAnalysisStateChanged(int state) {
 	if (state == Qt::CheckState::Checked) {
-		emit videoForAnalysingAdded(scrubber->getVideo);
+		//TODO emit videoForAnalysingAdded(scrubber->getVideo());
 	} else if (state == Qt::CheckState::Unchecked) {
-		emit videoForAnalysingRemoved(scrubber->getVideo);
+		//TODO emit videoForAnalysingRemoved(*scrubber->getVideo().data());
 	}
 }
 
@@ -34,7 +41,7 @@ void VideoProcessingWidget::btnSaveVideoClicked() {
 		try {
 			model::video::VideoFileType requestedFileType = model::video::VideoSaver::convertStringToVideoFileType(
 				file->completeSuffix());
-			emit saveVideo(scrubber->getVideo(), file, requestedFileType);
+			//TODO emit saveVideo(scrubber->getVideo(), file, requestedFileType);
 		} catch (exception::IllegalArgumentException e) {
 			//TODO Reaktion auf falschen Dateityp
 		}
@@ -73,11 +80,15 @@ void VideoProcessingWidget::setupUi() {
 
 	horizontalLayout->addWidget(checkboxUseForAnalysis);
 
+	connect(checkboxUseForAnalysis, SIGNAL(stateChanged(int)), this, SLOT(checkboxUseForAnalysisStateChanged(int)));
+
 	if (showSaveButton) {
 		btnSaveVideo = new QPushButton(controlsWidget);
 		btnSaveVideo->setObjectName(QStringLiteral("btnSaveVideo"));
 
 		horizontalLayout->addWidget(btnSaveVideo);
+
+		connect(btnSaveVideo, SIGNAL(clicked(bool)), this, SLOT(btnSaveVideoClicked()));
 	}
 
 
@@ -85,9 +96,6 @@ void VideoProcessingWidget::setupUi() {
 
 
 	retranslateUi();
-
-	connect(checkboxUseForAnalysis, SIGNAL(stateChanged(int)), this, SLOT(checkboxUseForAnalysisStateChanged(int)));
-	connect(btnSaveVideo, SIGNAL(clicked(bool)), this, SLOT(btnSaveVideoClicked()));
 }
 
 void VideoProcessingWidget::retranslateUi() {

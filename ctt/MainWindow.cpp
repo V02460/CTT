@@ -3,18 +3,23 @@
 namespace view {
 
 MainWindow::MainWindow(::controller::project::Project *project, ViewState::sptr currentState) {
-	processingWidget = new ProcessingWidget(project);
-	analysingWidget = new AnalysingWidget();
+	processingWidget = new ProcessingWidget(project, this);
+	analysingWidget = new AnalysingWidget(this);
 
 	viewState = currentState;
+	setupUi();
 }
 
 MainWindow::MainWindow() {
+	processingWidget = new ProcessingWidget(new ::controller::project::Project(), this);
+	analysingWidget = new AnalysingWidget(this);
 
+	viewState = ViewState::getInstance();
+	setupUi();
 }
 
 void MainWindow::update() {
-	if (viewState->getCurrentViewType == ViewType::PROCESSING_VIEW) {
+	if (viewState->getCurrentViewType() == ViewType::PROCESSING_VIEW) {
 		this->setCentralWidget(processingWidget);
 	}
 	else {

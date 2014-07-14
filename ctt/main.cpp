@@ -1,4 +1,3 @@
-#include "ctt.h"
 #include <QtWidgets/QApplication>
 #include "MainWindow.h"
 

@@ -127,12 +127,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GeneratedFiles\Debug\moc_ctt.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_ctt.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_VideoScrubber.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -550,20 +544,17 @@
     <ClCompile Include="GPUHelper.cpp">
       <Filter>Source Files\Helper</Filter>
     </ClCompile>
-    <ClCompile Include="ctt.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\qrc_ctt.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="MockDisplayHelper.cpp">
       <Filter>Source Files\Helper</Filter>
     </ClCompile>
+    <ClCompile Include="VideoSaver.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="ctt.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="ctt.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
@@ -665,6 +656,9 @@
     </CustomBuild>
     <CustomBuild Include="AnalysingWidget.ui">
       <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Observer.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -929,10 +923,8 @@
     <ClInclude Include="GeneratedFiles\ui_AnalysingWidget.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Resources\Images\big_buck_bunny_01337.png">
-      <Filter>Resource Files\Images</Filter>
-    </Image>
+    <ClInclude Include="MockDisplayHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

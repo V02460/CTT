@@ -25,6 +25,8 @@ public:
     typedef QSharedPointer<ExtendedTimeline> sptr;
     typedef QWeakPointer<ExtendedTimeline> wptr;
 
+	ExtendedTimeline(QWidget *parent = 0);
+
 public slots:
     /**
      * Adjusts the timeline to the frame the progress slider is pointing at and signals the change of the current frame
@@ -53,8 +55,8 @@ public slots:
     void changeViewState();
 
 private:
-    QSlider sliderProgress; /**< This is the slider to navigate the video */
-    ViewState viewState; /**< This is the current state of the whole GUI */
+    QSlider *sliderProgress; /**< This is the slider to navigate the video */
+    ViewState *viewState; /**< This is the current state of the whole GUI */
     
     /**
      * This is the currently shown timeline. It's either a FilterTimeline or a DifferenceTimeline.

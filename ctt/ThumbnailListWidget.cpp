@@ -6,7 +6,7 @@ namespace view {
 
 ThumbnailListWidget::ThumbnailListWidget(::model::saveable::SaveableList<::model::player::Player>::sptr players,
 	QWidget *parent) {
-	this->parent = parent;
+	this->setParent(parent);
 	this->players = players;
 	thumbnailList = new QList<QPushButton>();
 
@@ -20,13 +20,15 @@ void ThumbnailListWidget::setupUi() {
 	verticalLayout = new QVBoxLayout(this);
 	verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
 	verticalLayout->setContentsMargins(2, 2, 2, 2);
+	verticalLayout->setSpacing(5);
 	for (int i = 0; i < players->getSize(); i++) {
 		QPushButton *thumbnailButton = new QPushButton(this);
-
+		//thumbnailList->append(*thumbnailButton);
 		verticalLayout->addWidget(thumbnailButton);
 	}
 	btnAddVideo = new QPushButton(this);
 	btnAddVideo->setObjectName(QStringLiteral("btnAddVideo"));
+	btnAddVideo->setText("ADD_VIDEO");
 
 	verticalLayout->addWidget(btnAddVideo);
 
@@ -52,21 +54,21 @@ void ThumbnailListWidget::btnAddVideoClicked() {
 }
 
 void ThumbnailListWidget::resizeButtons() {
-	QSize *buttonSize = new QSize(this->width, (9 * this->width) / 16);
-	for (int i = 0; i < thumbnailList->size(); i++) {
+	QSize *buttonSize = new QSize(this->width(), (9 * this->width()) / 16);
+	/*for (int i = 0; i < thumbnailList->size(); i++) {
 		QPushButton *tmp = &thumbnailList->value(i);
 		tmp->setFixedSize(*buttonSize);
 		tmp->setIconSize(*buttonSize);
 
 		if (players->getSize() >= 2) {
 			QImage scaledImage = players->get(i).getScrubbers().value(1)->getVideo()
-				->getScaledFrame(17, *buttonSize).getFramebufferObject()->toImage();
+				->getScaledFrame(17, *buttonSize)->getFramebufferObject()->toImage();
 			QIcon *icon = new QIcon(QPixmap::fromImage(scaledImage));
 			tmp->setIcon(*icon);
 		}
-	}
-	btnAddVideo->setFixedSize(*buttonSize);
-	btnAddVideo->setIconSize(*buttonSize);
+	}*/
+	//btnAddVideo->setFixedSize(*buttonSize);
+	//btnAddVideo->setIconSize(*buttonSize);
 
 	//TODO btnAddvideo set icon !!!
 }
