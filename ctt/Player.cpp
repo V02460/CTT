@@ -1,5 +1,7 @@
 #include "Player.h"
 
+#include "IllegalArgumentException.h"
+#include "IllegalStateException.h"
 #include "NotImplementedException.h"
 
 namespace model {
@@ -10,6 +12,7 @@ using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
 using ::exception::IllegalArgumentException;
 using ::exception::IllegalStateException;
+using ::exception::NotImplementedException;
 
 Player::Player(double fps): fps(fps), loop(0,1), currentFrameNumber(0), looping(false), playing(false) {
 	if (!(fps > 0)) {
@@ -306,10 +309,12 @@ void Player::stopLooping() {
 
 Memento Player::getMemento() const {
 	//TODO wenn saveable zeug fertig ist
+    throw new NotImplementedException();
 }
 
 void Player::restore(Memento memento) {
 	//TODO wenn saveable zeug fertig ist
+    throw new NotImplementedException();
 }
 
 Saveable::sptr Player::getDummy() {
