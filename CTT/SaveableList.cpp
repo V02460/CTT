@@ -16,7 +16,8 @@ using ::exception::NotImplementedException;
 
 template <class T>
 SaveableList<T>::SaveableList() {
-    throw new NotImplementedException();
+	list = *new QList<T::sptr>();
+	firstElement = 0;
 }
 
 template <class T>
@@ -35,8 +36,8 @@ const T &SaveableList<T>::get(unsigned int index) const {
 }
 
 template <class T>
-const unsigned int SaveableList<T>::getSize() const {
-    throw new NotImplementedException();
+const int SaveableList<T>::getSize() const {
+	return list.size();
 }
 
 template <class T>
