@@ -1,7 +1,10 @@
 #include "BBBTestVideo.h"
-#include "..\ctt\Module.h"
 
+#include "Module.h"
 
+#include "NotImplementedException.h"
+
+using exception::NotImplementedException;
 
 BBBTestVideo::BBBTestVideo(unsigned int frameCount) : metadata(QSize(640, 360), 24, frameCount)
 {
@@ -11,7 +14,7 @@ BBBTestVideo::BBBTestVideo(unsigned int frameCount) : metadata(QSize(640, 360), 
 
 	QImage testImage;
 
-	for (int i = 1; i <= frameCount; i++)
+	for (unsigned int i = 1; i <= frameCount; i++)
 	{
 		QString numberString;
 		numberString.setNum(i);
@@ -66,12 +69,12 @@ bool BBBTestVideo::uses(const model::Module &module) const
 
 model::saveable::Memento BBBTestVideo::getMemento() const
 {
-
+    throw new NotImplementedException();
 }
 
 void BBBTestVideo::restore(model::saveable::Memento memento)
 {
-
+    throw new NotImplementedException();
 }
 
 QList<model::Module*> BBBTestVideo::getUsesList() const

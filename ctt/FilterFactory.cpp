@@ -1,19 +1,22 @@
 #include "FilterFactory.h"
-#include "Filter.h"
+
+#include "NotImplementedException.h"
 
 namespace model {
 namespace filter {
 
-QList<QString> FilterFactory::getAllFilterNotOverlayIDs() {
+using ::exception::NotImplementedException;
 
+QList<QString> FilterFactory::getAllFilterNotOverlayIDs() {
+    throw new NotImplementedException();
 }
 
 QList<QString> FilterFactory::getAllFilterIDs() {
-
+    throw new NotImplementedException();
 }
 
 Filter::sptr createFilter(QString id) {
-
+    throw new NotImplementedException();
 }
 
 }  // namespace filter

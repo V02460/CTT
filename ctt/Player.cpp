@@ -1,5 +1,7 @@
 #include "Player.h"
 
+#include "IllegalArgumentException.h"
+#include "IllegalStateException.h"
 #include "NotImplementedException.h"
 
 namespace model {
@@ -10,6 +12,7 @@ using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
 using ::exception::IllegalArgumentException;
 using ::exception::IllegalStateException;
+using ::exception::NotImplementedException;
 
 Player::Player(double fps): fps(fps), loop(0,1), currentFrameNumber(0), looping(false), playing(false) {
 	if (!(fps > 0)) {
@@ -147,7 +150,7 @@ void Player::addScrubber(VideoScrubber::sptr scrubber, unsigned int position) {
 	{
 		throw new IllegalArgumentException("Tried to add a dummy VideoScrubber to a player.");
 	}
-	if (position > videoScrubbers.size())
+	if (position > static_cast<unsigned int>(videoScrubbers.size()))
 	{
 		throw new IllegalArgumentException("Tried to insert a Scrubber into a Player at position " 
 			+ QString::number(position) + ", but " + QString::number(videoScrubbers.size()) 
@@ -165,7 +168,7 @@ void Player::removeScrubber(unsigned int position) {
 	{
 		throw new IllegalStateException("Tried to add a VideoScrubber to a dummy player.");
 	}
-	if (position >= videoScrubbers.size())
+    if (position >= static_cast<unsigned int>(videoScrubbers.size()))
 	{
 		throw new IllegalArgumentException("Tried to remove a Scrubber from a Player at position "
 			+ QString::number(position) + ", but it contained only " + QString::number(videoScrubbers.size())
@@ -306,10 +309,12 @@ void Player::stopLooping() {
 
 Memento Player::getMemento() const {
 	//TODO wenn saveable zeug fertig ist
+    throw new NotImplementedException();
 }
 
 void Player::restore(Memento memento) {
 	//TODO wenn saveable zeug fertig ist
+    throw new NotImplementedException();
 }
 
 Saveable::sptr Player::getDummy() {
