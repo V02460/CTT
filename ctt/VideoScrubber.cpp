@@ -4,6 +4,8 @@
 #include "IllegalStateException.h"
 #include "NotImplementedException.h"
 
+#define VIDEOSTRINGID "video"
+
 namespace model {
 namespace player {
 
@@ -87,11 +89,24 @@ void VideoScrubber::jumpToFrameNr(unsigned int frameNumber) {
 }
 
 Memento VideoScrubber::getMemento() const {
-    throw new NotImplementedException();
+	if (isDummy()) {
+		throw new exception::IllegalStateException("Requested a memento from a dummy VideoScrubber.");
+	}
+
+	Memento memento;
+	memento.setSharedPointer(VIDEOSTRINGID, video);
+	return memento;
 }
 
 void VideoScrubber::restore(Memento memento) {
-    throw new NotImplementedException();
+	//TODO ykrjgh warum tut das nicht???
+	//video = memento.getSharedPointer<Video>(VIDEOSTRINGID);
+
+// 	waitingForFrame = true;
+// 	currentFrame = video->getFrame(0);
+// 	waitingForFrame = false;
+// 
+// 	isDummyFlag = false;
 }
 
 Saveable::sptr VideoScrubber::getDummy() {

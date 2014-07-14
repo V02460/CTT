@@ -23,7 +23,7 @@ public:
     typedef QWeakPointer<Project> wptr;
 
     /**
-	 * Creates a new project and all savable objects needed from the start of the program.
+	* Creates a new project and all savable objects needed from the start of the program.
      */
     Project();
 
@@ -42,7 +42,7 @@ public:
 	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr getVideoList1() const;
 
     /**
-	 * Returns the List of all FilteredVideos the Project uses in the second view, i.e. the analyzing view.
+	* Returns the List of all FilteredVideos the Project uses in the second view, i.e. the analyzing view.
      *
      * @return the List of all FilteredVideos the Project uses in the second view
      */
@@ -56,7 +56,7 @@ public:
 	::model::saveable::SaveableList<::model::player::Player>::sptr getPlayerList1() const;
 
     /**
-	 * Returns the player from the second view (the analyzing view) of the project.
+	* Returns the player from the second view (the analyzing view) of the project.
      *
      * @return the player from the second view of the project.
      */
