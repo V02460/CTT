@@ -14,7 +14,7 @@ using ::model::difference::FrameDiff;
 using ::view::ViewState;
 using ::exception::NotImplementedException;
 
-Project::Project() : player2(24.0) {
+Project::Project() : player2(new Player(24.0)) {
     throw new NotImplementedException();
 }
 
