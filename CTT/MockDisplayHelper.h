@@ -4,13 +4,14 @@
 #include <QImage>
 #include <QLabel>
 
-#include "ctt.h"
+#include "MainWindow.h"
+
 
 namespace helper {
 
 class MockDisplayHelper {
 public:
-    static void setMainWindow(ctt *mainWindow);
+    static void setMainWindow(::view::MainWindow *mainWindow);
 
     static void showImage(QImage image);
 
