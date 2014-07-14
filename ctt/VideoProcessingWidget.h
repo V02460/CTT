@@ -4,9 +4,16 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
-#include <QWidget>
-#include <QCheckBox>
-#include <QPushButton>
+#include <QtCore/QVariant>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 #include "Video.h"
 #include "VideoFileType.h"
@@ -25,6 +32,14 @@ public:
     typedef QSharedPointer<VideoProcessingWidget> sptr;
     typedef QWeakPointer<VideoProcessingWidget> wptr;
 
+	/**
+	* Creates a VideoProcessingWidget.
+	*
+	* @param scrubber The VideoScrubber to register at and which provided the video frames.
+	* @param showSaveButton Determines whether the save button is displayed or not.
+	*/
+	VideoProcessingWidget(::model::player::VideoScrubber::sptr scrubber, bool showSaveButton, QWidget *parent = 0);
+
 public slots:
     /**
      * This method is called when the user changes the state of the checkbox.
@@ -33,7 +48,7 @@ public slots:
      *
      * @param state The current state of the checkbox.
      */
-    void checkboxUseForAnalysisValueChanged(int state);
+    void checkboxUseForAnalysisStateChanged(int state);
     /**
      * This method is called when the user clicks the save button.
      * It opens a file chooser dialog where the user can specify the save directory, the save name and the file type of
@@ -55,16 +70,24 @@ signals:
     /**
      * This signal is emitted after the user has clicked the Save-button and chose a save directory.
      */
-    void saveVideo(::model::video::Video::sptr video, QDir path, ::model::video::VideoFileType fileType);
+    void saveVideo(::model::video::Video::sptr video, QFileInfo *path, ::model::video::VideoFileType fileType);
 private:
+	void setupUi();
+	void retranslateUi();
+
     bool showSaveButton; /**< Indicates whether the saveButton is shown or not */
+
+	QVBoxLayout *verticalLayout;
+	QWidget *controlsWidget;
+	QHBoxLayout *horizontalLayout;
 
     /**
      * The checkbox where the user can decide to use the video for analysing or not.
      */
-    QCheckBox checkboxUseForAnalysis;
+    QCheckBox *checkboxUseForAnalysis;
     
-    QPushButton btnSaveVideo; /** The button which starts the video saving process */
+    QPushButton *btnSaveVideo; /** The button which starts the video saving process */
+	model::player::VideoScrubber::sptr scrubber;
     VideoWidget *videoWidget; /** The video widget which actually displays the video */
 };
 
