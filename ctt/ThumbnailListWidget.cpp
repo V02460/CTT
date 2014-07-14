@@ -1,5 +1,6 @@
 #include "ThumbnailListWidget.h"
-#include "VideoScrubber.h"
+#include <QFileDialog>
+#include "ViewState.h"
 
 namespace view {
 
@@ -29,6 +30,8 @@ void ThumbnailListWidget::setupUi() {
 
 	verticalLayout->addWidget(btnAddVideo);
 
+	connect(btnAddVideo, SIGNAL(clicked(bool)), this, SLOT(btnAddVideoClicked()));
+
 	resizeButtons();
 	retranslateUi();
 
@@ -36,6 +39,16 @@ void ThumbnailListWidget::setupUi() {
 
 void ThumbnailListWidget::update() {
 	setupUi();
+}
+
+void ThumbnailListWidget::btnAddVideoClicked() {
+	QString fileName = QFileDialog::getOpenFileName(this, QApplication::translate("thumbnailListWidget", "OPEN_VIDEO_DIALOG", 0),
+		ViewState::getInstance()->getLastSelectedFolder().absolutePath());
+	QFileInfo *file = new QFileInfo(fileName);
+	if (file) {
+		ViewState::getInstance()->setLastSelectedFolder(file->dir());
+		emit videoAdded(*file);
+	}
 }
 
 void ThumbnailListWidget::resizeButtons() {
