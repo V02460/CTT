@@ -363,7 +363,7 @@ Memento Player::getMemento() const {
 	memento.setUInt(LOOPENDSTRINGID, loop.getEnd());
 
 	memento.setUInt(NUMBEROFSCRUBBERSSTRINGID, videoScrubbers.size());
-	for (unsigned int i = 0; i < videoScrubbers.size(); i++)
+	for (unsigned int i = 0; i < static_cast<unsigned int>(videoScrubbers.size()); i++)
 	{
 		memento.setSharedPointer(SCRUBBERSSTRINGID + QString::number(i), videoScrubbers[i]);
 	}
