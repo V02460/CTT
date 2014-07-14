@@ -30,6 +30,28 @@ public:
      */
     static void writeToFile(Video video, QDir path, VideoFileType type);
 
+	/**
+	 *	Converts a given VideoFileType to a QString representing the suffix of the file.
+	 *
+	 *	@param fileType The VideoFileType to be converted.
+	 *
+	 *	@return The suffix for a file.
+	 *
+	 *	@throws IllegalArgumentException if this file type doesn't exist.
+	 */
+	static QString convertVideoFileTypeToString(VideoFileType fileType);
+
+	/**
+	*	Converts a given QString representing the file's suffix to the corresponding VideoFileType.
+	*
+	*	@param suffix The suffix to be converted.
+	*
+	*	@return The VideoFileType belonging to the given suffix.
+	*
+	*	@throws IllegalArgumentException if the file type for this suffix isn't supported.
+	*/
+	static VideoFileType convertStringToVideoFileType(QString suffix);
+
 private:
     VideoSaver();
 };
