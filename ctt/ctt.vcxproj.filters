@@ -122,6 +122,15 @@
     <Filter Include="Source Files\Helper">
       <UniqueIdentifier>{c1d742ec-7c5f-4d6e-a9ea-e4ac4a31af82}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ShaderFiles">
+      <UniqueIdentifier>{7742dc01-535e-4f80-be77-4cb8a7f04a6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShaderFiles\Filter">
+      <UniqueIdentifier>{d85444e6-b95a-416d-94eb-e89e4fb82d18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShaderFiles\Histogram">
+      <UniqueIdentifier>{dc75189b-eb86-4df2-a3d2-d1e64c2f7533}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_ctt.cpp">
@@ -890,5 +899,22 @@
     <ClInclude Include="MockDisplayHelper.h">
       <Filter>Header Files\Helper</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shader\Filter\RGBChannel.fs">
+      <Filter>ShaderFiles\Filter</Filter>
+    </None>
+    <None Include="Shader\Filter\1DBlur.fs">
+      <Filter>ShaderFiles\Filter</Filter>
+    </None>
+    <None Include="Shader\Filter\Mix.fs">
+      <Filter>ShaderFiles\Filter</Filter>
+    </None>
+    <None Include="Shader\Filter\Noise.fs">
+      <Filter>ShaderFiles\Filter</Filter>
+    </None>
+    <None Include="Shader\Histogram\redHistogramGrid.fs">
+      <Filter>ShaderFiles\Histogram</Filter>
+    </None>
   </ItemGroup>
 </Project>
