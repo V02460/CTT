@@ -5,6 +5,7 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 #include <QDomDocument>
+#include <QXmlStreamReader>
 
 #include "ProjectLoader.h"
 #include "IOException.h"
@@ -30,6 +31,13 @@ public:
 	XMLLoader();
 
 	virtual void restore(QDir path, ::controller::project::Project project);
+
+private:
+	QXmlStreamReader *xml;
+
+	void openFile(QDir path);
+	void createMaps(Project project);
+	void restore();
 };
 
 }  // namespace project
