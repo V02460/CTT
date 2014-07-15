@@ -30,6 +30,36 @@ public:
 
 	virtual void save(QDir path, const ::controller::project::Project &project);
 
+	static const QString DO_NOT_CHANGE;
+
+	static const QString ELEMENTS;
+	static const QString ELEMENT;
+	static const QString CLASS;
+	static const QString ID;
+	static const QString TYPE;
+	static const QString VARIABLE;
+	static const QString NAME;
+	static const QString VALUE;
+	static const QString POINTER;
+
+	static const QString LIST;
+	static const QString FILE_VIDEO;
+	static const QString FILTERED_VIDEO;
+	static const QString PLAYER;
+	static const QString DIFF;
+	static const QString VIEW;
+
+	static const int BASE_VIDEO_LIST_ID = 0;
+	static const int VIDEO_LIST_1_ID = 1;
+	static const int VIDEO_LIST_2_ID = 2;
+	static const int PLAYER_LIST_1_ID = 3;
+	static const int PLAYER_2_ID = 4;
+	static const int DIFF_LIST_ID = 5;
+	static const int VIEW_ID = 6;
+
+	static const QList<QString> BASE_ELEMENT_NAMES;
+	static const QList<QString> BASE_ELEMENT_TYPE_STRINGS;
+
 private:
 	QXmlStreamWriter *out;
 	QList<::model::saveable::Saveable::sptr> pointerList;

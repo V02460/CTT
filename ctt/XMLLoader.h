@@ -11,6 +11,7 @@
 #include "IOException.h"
 #include "ParseException.h"
 #include "Saveable.h"
+#include "XMLSaver.h"
 
 namespace controller {
 namespace project {
