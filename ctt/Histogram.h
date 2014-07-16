@@ -55,7 +55,9 @@ public:
      * @return float the value for the entry with the number i
      * @throws InvalidArgumentException if i > 255
      */
-    virtual float getValue(unsigned int i) const;
+    //virtual float getValue(unsigned int i) const;
+
+    Surface::sptr getHistogramImage() const;
 
     /**
      * Gets the type of the histogram, specifying the type of variable the histogram describes the distribution of. 
@@ -64,7 +66,7 @@ public:
      */
     virtual HistogramType getType() const = 0;
 
-//protected:
+protected:
     static const unsigned int histogramSize = 256;
 
     /**
@@ -77,16 +79,16 @@ public:
     *
     * @param frame Frame to calculate the histogram for
     */
-    void init(const Frame &frame);
+    void init(const Surface &frame);
 
     /**
-     * Provides the fragment shader used for creating the histogram grid.
+     * Provides the path to the fragment shader used for creating the histogram grid.
      *
-     * @return QSharedPointer<QOpenGLShader> histogram grid fragment shader
+     * @return QString fragment shader path
      */
-    virtual QSharedPointer<QOpenGLShader> getHistogramGridFS() = 0;
+    virtual QString getGridFSFilePath() const = 0;
 
-//private:
+private:
     /**
     * Converts every 16x16 block of the texture to a local normalized histogram.
     * Requires a valid OpenGL context.
@@ -94,21 +96,7 @@ public:
     * @param imageData Image data that will be used for the histogram grid calculation
     * @return Surface::sptr the generated histogram grid
     */
-    Surface::sptr makeHistogramGrid(const Surface &imageData);
-
-    /**
-    * Calculates a given part of the histogram grid.
-    * For all 16x16 cells an area in which valid data is contained must be given.
-    *
-    * @param image Original image data
-    * @param target The image that is rendered into
-    * @param area Area of the texture which should be calculated
-    * @param validOffset Defines an area from the top left corner of every 16x16 block in which valid data is contained
-    */
-    //void calculateGridPart(const QOpenGLTexture &image,
-    //                      QOpenGLFramebufferObject *target,
-    //                       QRectF area,
-    //                       QSize validOffset);
+    Surface::sptr makeHistogramGrid(const Surface &imageData) const;
 
     /**
     * Extracts values for a single histogram from the grid of local histograms.
@@ -116,7 +104,11 @@ public:
     * @param histogramGrid Grid of local histograms
     * @return the histogram values
     */
-    void requestValuesFromHistogramGrid(const Surface &histogramGrid) const;
+    Surface::sptr requestValuesFromHistogramGrid(const Surface &imageData) const;
+
+    Surface::sptr renderHistogram(const Surface &histogramData) const;
+
+    Surface::sptr histogramImage;
 };
 
 }  // namespace histogram

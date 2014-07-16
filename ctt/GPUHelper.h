@@ -9,8 +9,6 @@
 
 #include "Surface.h"
 
-#include "OpenGLException.h"
-
 namespace helper {
 
 typedef QSharedPointer<QOpenGLFramebufferObject> QOpenGLFramebufferObject_sptr;
@@ -24,53 +22,76 @@ public:
     typedef QWeakPointer<GPUHelper> wptr;
 
     /**
+     * Creates a new GPUHelper which will apply the given filter to a texture when run.
+     *
+     * @param fragmentShaderFile File containing the fragment shader source for the executed shader program
+     * @param context The context in which to operate and the target texture will be generated in
+     */
+    GPUHelper::GPUHelper(QString fragmentShaderFile, QSharedPointer<QOpenGLContext> context);
+
+    /**
+     * Creates a new GPUHelper which will perform a compaction on a texture using the given size function when run.
+     * Compaction means the repeated collapse of a source texture to a smaller size until it reaches a target size.
+     * The run method returns when it generates a texture with dimensions smaller or equal to targetSize
+     *
+     * @param fragmentShaderFile File containing the fragment shader source for the executed shader program
+     * @param context The context in which to operate and the target texture will be generated in
+     * @param getNewSize Function that is called to determine the target size of the next iteration
+     *        It must converge to a value equal or smaller than the target size given to 'run' when called recursive
+     */
+    GPUHelper::GPUHelper(QString fragmentShaderFile, QSharedPointer<QOpenGLContext> context, QSize(&getNewSize)(QSize));
+
+    /**
      * Destroys the GPUHelper.
      */
     ~GPUHelper() {}
 
     /**
-     * Returns an instance of GPUHelper.
-     *
-     * @return GPUHelper::sptr instance of GPUHelper
+     * Set the shader uniform variable of the given name to the given value.
+     * 
+     * @throws OpenGLException when name does not exist in shader
      */
-    static GPUHelper::sptr instance();
+    void setValue(QString name, const ::model::Surface &texture);
+    void setValue(QString name, GLint value);
+    void setValue(QString name, QSize value);
+    void setValue(QString name, GLfloat value);
+    void setValue(QString name, QVector2D value);
+    void setValue(QString name, QVector3D value);
+    void setValue(QString name, QVector4D value);
 
     /**
-     * Returns a default vertex shader which can be used in conjunction with applyShader().
+     * Executes the set up operations by executing the shader.
      *
-     * @return QSharedPointer<QOpenGLShader> default shader
+     * @param sourceTexture texture which is bound to the _sourceTexture shader uniform
+     * @param targetSize APPLY: the size of the returned texture
+     *                   COMPACT: the size to which the texture must at least be shrunken
      */
-    static QOpenGLShader_sptr getDefaultFlatVS();
-
-    /**
-     * Runs a shader program and stores its result in target.
-     *
-     * @param target Surface that is rendered into
-     * @param program Shader program to call
-     * @throws OpenGLException when framebuffer object or shader program could not be bound
-     */
-    void runShader(::model::Surface *target, QOpenGLShaderProgram *program);
-
-    /**
-    * Repeatedly collapses sourceTexture to a smaller size until it reaches a target size.
-    *
-    * @param sourceTexture Texture handle of the source grid
-    * @param compationProgram Shader program which is applied at every iteration
-    * @param getNewSize Function that is called to determine the target size of the next iteration
-    *        It must converge to a value equal or smaller than targetSize when called recursive
-    * @param targetSize This method returns when it generates a texture with dimensions smaller or equal to targetSize
-    * @param context The context in which the target texture will be created
-    * @return QSharedPointer<QOpenGLFramebufferObject> The target that will hold the compacted grid
-    */
-    ::model::Surface::sptr compactTexture(const ::model::Surface &sourceTexture,
-                                 QOpenGLShaderProgram *compactionProgram,
-                                 QSize(&getNewSize)(QSize),
-                                 QSize targetSize);
+    ::model::Surface::sptr run(const ::model::Surface &sourceTexture, QSize targetSize);
 
 private:
-    GPUHelper();
+    enum OperationMode {
+        APPLY,
+        COMPACT
+    };
 
-    static GPUHelper::sptr helperInstance;
+    void initShaderProgram(QString fragmentShaderFile);
+
+    ::model::Surface::sptr applyShader(const ::model::Surface &sourceTexture, QSize targetSize);
+
+    ::model::Surface::sptr compactTexture(const ::model::Surface &sourceTexture, QSize targetSize);
+
+    /**
+    * Returns a default vertex shader which can be used in conjunction with applyShader().
+    *
+    * @return QSharedPointer<QOpenGLShader> default shader
+    */
+    static QOpenGLShader_sptr getDefaultFlatVS();
+
+    QOpenGLShaderProgram program;
+    QList<GLuint> textures;
+    QSharedPointer<QOpenGLContext> context;
+    OperationMode mode;
+    QSize (&getNewSize)(QSize);
 };
 
 }  // namespace helper

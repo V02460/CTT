@@ -36,7 +36,7 @@ void main() {
 
 	 		bool isInSource = (lookupPos.x < _sourceSize.x && lookupPos.y < _sourceSize.y);
 			
-	 		bucketCount += int(bucketNr == int(255.f * color.r)) * int(isInSource);
+	 		bucketCount += int(bucketNr == int(255.f * color.b)) * int(isInSource);
 	 		totalPixelsProcessed += int(isInSource);
 		}
 	}

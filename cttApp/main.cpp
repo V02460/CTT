@@ -10,11 +10,13 @@
 #include "BlueHistogram.h"
 #include "Surface.h"
 #include "RuntimeException.h"
+#include "GPUHelper.h"
 
 using ::helper::MockDisplayHelper;
 using ::model::frame::Frame;
 using ::model::frame::histogram::BlueHistogram;
 using ::model::Surface;
+using ::helper::GPUHelper;
 using ::exception::RuntimeException;
 
 int main(int argc, char *argv[])
@@ -39,18 +41,18 @@ int main(int argc, char *argv[])
             return 1;
         }
 
-        Frame frame(testContext, image);
-        BlueHistogram histogram(frame);
+        Frame::sptr frame(new Frame(testContext, image));
+        BlueHistogram histogram(*frame.data());
 
-        Surface::sptr grid = histogram.makeHistogramGrid(frame);
-
-        MockDisplayHelper::showImage(grid->getFramebufferObject()->toImage());
+        Surface::sptr histogramImage = histogram.getHistogramImage();
+        MockDisplayHelper::showImage(histogramImage->getFramebufferObject()->toImage());
     }
     catch (RuntimeException *e) {
-        QMessageBox msgBox;
-        msgBox.setWindowTitle(e->getName());
-        msgBox.setText(e->getMsg());
-        msgBox.exec();
+//         QMessageBox msgBox;
+//         msgBox.setWindowTitle(e->getName());
+//         msgBox.setText(e->getMsg());
+//         msgBox.exec();
+        qDebug() << e->getName() << e->getMsg();
     }
 
     return a.exec();

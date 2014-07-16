@@ -39,6 +39,10 @@ GLuint Surface::getTextureHandle() const {
     return handle;
 }
 
+QSharedPointer<QOpenGLContext> Surface::getContext() const {
+    return context;
+}
+
 QOpenGLContextGroup *Surface::shareGroup() const {
     return context->shareGroup();
 }
@@ -52,18 +56,6 @@ QOpenGLFramebufferObject *Surface::getFramebufferObject() {
     }
 
     return framebuffer.data();
-}
-
-Surface::sptr Surface::applyShader(QOpenGLShaderProgram *program, QSize newSize) const {
-    Surface::sptr target(new Surface(context, newSize));
-
-    GPUHelper::instance()->runShader(target.data(), program);
-        
-    return target;
-}
-
-Surface::sptr Surface::applyShader(QOpenGLShaderProgram *program) const {
-    return applyShader(program, getSize());
 }
 
 Surface::Surface(const Surface &surface)
