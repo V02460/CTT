@@ -8,15 +8,24 @@ namespace video {
 using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
 
-FileVideo::FileVideo(QDir path) : path(path) {
-    throw new NotImplementedException();
+
+FileVideo::FileVideo(QString path, QSharedPointer<QOpenGLContext> context) 
+		: pathToVideoFile(path)
+		, context(context)
+		, videoFile(path)
+{
+	if (!videoFile.exists())
+	{
+		//TODO use the File not found exception jeshgni
+		//throw new FileNotFoundException();
+	}
 }
 
 QDir FileVideo::getPath() const {
 	if (isDummy()) {
 		throw new IllegalStateException("Tried to request the path of a dummy FileVideo.");
 	}
-	return path;
+	return pathToVideoFile;
 }
 
 }  // namespace video

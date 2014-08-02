@@ -33,7 +33,7 @@ bool VideoMetadata::hasData(QString key) const {
 	return additionalData.contains(key);
 }
 
-QString VideoMetadata::getData(QString key) {
+QString VideoMetadata::getData(QString key) const {
 	if (hasData(key))
 	{
 		return additionalData.value(key);
@@ -45,15 +45,15 @@ QString VideoMetadata::getData(QString key) {
 	}
 }
 
-QSize VideoMetadata::getSize() {
+QSize VideoMetadata::getSize()  const{
 	return size;
 }
 
-double VideoMetadata::getFPS() {
+double VideoMetadata::getFPS()  const{
 	return fps;
 }
 
-unsigned int VideoMetadata::getLength() {
+unsigned int VideoMetadata::getLength()  const{
 	return length;
 }
 

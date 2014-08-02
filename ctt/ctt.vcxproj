@@ -584,6 +584,7 @@
     <ClInclude Include="GPUHelper.h" />
     <ClInclude Include="GreenHistogram.h" />
     <ClInclude Include="GreyscaleFilter.h" />
+    <ClInclude Include="YUVType.h" />
     <ClInclude Include="MockDisplayHelper.h" />
     <ClInclude Include="HeatmapOverlay.h" />
     <ClInclude Include="Histogram.h" />
