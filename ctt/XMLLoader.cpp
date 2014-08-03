@@ -9,6 +9,7 @@ namespace project {
 using ::exception::IOException;
 using ::exception::ParseException;
 using ::controller::project::XMLSaver;
+using ::controller::project::Project;
 
 XMLLoader::XMLLoader() {
 }
@@ -60,7 +61,7 @@ void XMLLoader::createMaps(Project project) {
 	}
 }
 
-void restore() {
+void XMLLoader::restore() {
 	// TODO actually restore everything
 }
 

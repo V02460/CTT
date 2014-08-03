@@ -49,13 +49,13 @@ public:
 	static const QString DIFF;
 	static const QString VIEW;
 
-	static const int BASE_VIDEO_LIST_ID = 0;
-	static const int VIDEO_LIST_1_ID = 1;
-	static const int VIDEO_LIST_2_ID = 2;
-	static const int PLAYER_LIST_1_ID = 3;
-	static const int PLAYER_2_ID = 4;
-	static const int DIFF_LIST_ID = 5;
-	static const int VIEW_ID = 6;
+	static const int BASE_VIDEO_LIST_ID;
+	static const int VIDEO_LIST_1_ID;
+	static const int VIDEO_LIST_2_ID;
+	static const int PLAYER_LIST_1_ID;
+	static const int PLAYER_2_ID;
+	static const int DIFF_LIST_ID;
+	static const int VIEW_ID;
 
 	static const QList<QString> BASE_ELEMENT_NAMES;
 	static const QList<QString> BASE_ELEMENT_TYPE_STRINGS;
