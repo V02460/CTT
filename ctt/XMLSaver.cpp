@@ -8,6 +8,7 @@ namespace project {
 using ::exception::IOException;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
+using ::model::saveable::SaveableList;
 
 XMLSaver::XMLSaver() {
 }
@@ -24,12 +25,7 @@ const QString XMLSaver::NAME = "name";
 const QString XMLSaver::VALUE = "value";
 const QString XMLSaver::POINTER = "pointer";
 
-const QString XMLSaver::LIST = "SavableList";
-const QString XMLSaver::FILE_VIDEO = "FileVideo";
-const QString XMLSaver::FILTERED_VIDEO = "FilteredVideo";
-const QString XMLSaver::PLAYER = "Player";
-const QString XMLSaver::DIFF = "FrameDiff";
-const QString XMLSaver::VIEW = "View";
+const QString XMLSaver::SPLITTER = ":";
 
 const int XMLSaver::BASE_VIDEO_LIST_ID = 0;
 const int XMLSaver::VIDEO_LIST_1_ID = 1;
@@ -49,13 +45,13 @@ const QList<QString> XMLSaver::BASE_ELEMENT_NAMES = QList<QString>()
 	<< "view";
 
 const QList<QString> XMLSaver::BASE_ELEMENT_TYPE_STRINGS = QList<QString>()
-	<< LIST + ":" + FILE_VIDEO
-	<< LIST + ":" + FILTERED_VIDEO
-	<< LIST + ":" + FILTERED_VIDEO
-	<< LIST + ":" + PLAYER
-	<< PLAYER
-	<< LIST + ":" + DIFF
-	<< VIEW;
+	<< Saveable::LIST + SPLITTER + Saveable::FILE_VIDEO
+	<< Saveable::LIST + SPLITTER + Saveable::FILTERED_VIDEO
+	<< Saveable::LIST + SPLITTER + Saveable::FILTERED_VIDEO
+	<< Saveable::LIST + SPLITTER + Saveable::PLAYER
+	<< Saveable::PLAYER
+	<< Saveable::LIST + SPLITTER + Saveable::DIFF
+	<< Saveable::VIEW;
 
 void XMLSaver::save(QDir path, const Project &project) {
 	initDocument(path);
@@ -129,10 +125,17 @@ void XMLSaver::writeElements() {
 	for (; elementID < pointerList.length(); elementID++) {
 		out->writeStartElement(ELEMENT);
 		Saveable::sptr element = pointerList[elementID];
-		/* TODO
-		 - klasse rausfinden (switch case ?)
-		 - attribut class schreiben
-		 */
+		/*Saveable::SaveableType type = element->getType();
+		if (type = Saveable::SaveableType::List) {
+			 TODO
+			 - T rausfinden
+			 - attribut class schreiben
+			 
+			out->writeAttribute(CLASS, Saveable::SAVEABLE_TYPE_STRINGS[type] + SPLITTER
+                                       + Saveable::SAVEABLE_TYPE_STRINGS[]);
+		} else {
+			out->writeAttribute(CLASS, Saveable::SAVEABLE_TYPE_STRINGS[type]);
+		}*/
 		out->writeAttribute(ID, QString::number(elementID));
 		writeMemento(element->getMemento());
 		out->writeEndElement();

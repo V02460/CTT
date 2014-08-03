@@ -63,6 +63,47 @@ public:
 	 */
 	bool isDummy() const;
 
+	/**
+	 * Labels for the different saveables.
+	 *
+	 * This enum must be similar in quantity and order to the SAVEABLE_TYPE_STRINGS list. 
+	 */
+	enum SaveableType {
+		FileVideo,
+		FilteredVideo,
+		Player,
+		Diff,
+		View,
+		List
+	};
+
+	/** A string representation for the FileVideo class. */
+	static const QString FILE_VIDEO;
+	/** A string representation for the FilteredVideo class. */
+	static const QString FILTERED_VIDEO;
+	/** A string representation for the Player class. */
+	static const QString PLAYER;
+	/** A string representation for the FrameDiff class. */
+	static const QString DIFF;
+	/** A string representation for the ViewState class. */
+	static const QString VIEW;
+	/** A string representation for the SaveableList class. */
+	static const QString LIST;
+
+	/**
+	 * A list of string representations for saveable classes.
+	 *
+	 * This list must be similar in quantity and order to the SavableType enum. 
+	 */
+	static const QList<QString> SAVEABLE_TYPE_STRINGS;
+
+	/*
+	 * Gets the type of the savable object.
+	 *
+	 * @return The type of the histogram
+	 */
+	//virtual SaveableType getType() const = 0;
+
 protected:
 	bool isDummyFlag = false;
 };

@@ -30,34 +30,61 @@ public:
 
 	virtual void save(QDir path, const ::controller::project::Project &project);
 
+	/** String to tell not to change the XML File. */
 	static const QString DO_NOT_CHANGE;
 
+	/** Name of the elements tag. */
 	static const QString ELEMENTS;
+	/** Name of the element tag. */
 	static const QString ELEMENT;
-	static const QString CLASS;
-	static const QString ID;
-	static const QString TYPE;
+	/** Name of the variable tag. */
 	static const QString VARIABLE;
-	static const QString NAME;
-	static const QString VALUE;
+	/** Name of the pointer tag. */
 	static const QString POINTER;
+	/** Name of the class attribute. */
+	static const QString CLASS;
+	/** Name of the id attribute. */
+	static const QString ID;
+	/** Name of the type attribute. */
+	static const QString TYPE;
+	/** Name of the name attribute. */
+	static const QString NAME;
+	/** Name of the value attribute. */
+	static const QString VALUE;
 
-	static const QString LIST;
-	static const QString FILE_VIDEO;
-	static const QString FILTERED_VIDEO;
-	static const QString PLAYER;
-	static const QString DIFF;
-	static const QString VIEW;
+	/** Splitter used for class attributes of SavableList. */
+	static const QString SPLITTER;
 
+	/* The number of ids must be simular to the number of elements in
+	 * the BASE_ELEMENT_NAMES and BASE_ELEMENT_TYPE_STRINGS lists and the id
+	 * must represent the position in those lists.
+	 */
+	/** id given to the base video list. */
 	static const int BASE_VIDEO_LIST_ID;
+	/** id given to the video list in the 1. view. */
 	static const int VIDEO_LIST_1_ID;
+	/** id given to the video list in the 2. view. */
 	static const int VIDEO_LIST_2_ID;
+	/** id given to the player list in the 1. view. */
 	static const int PLAYER_LIST_1_ID;
+	/** id given to the player in the 2. view. */
 	static const int PLAYER_2_ID;
+	/** id given to the frame diff list. */
 	static const int DIFF_LIST_ID;
+	/** id given to the view state. */
 	static const int VIEW_ID;
 
+	/**
+	 * A list of base element names.
+	 *
+	 * The order of this list must be determined by the static id's in this class.
+	 */
 	static const QList<QString> BASE_ELEMENT_NAMES;
+	/**
+	 * A list of base element type strings.
+	 *
+	 * The order of this list must be determined by the static id's in this class.
+	 */
 	static const QList<QString> BASE_ELEMENT_TYPE_STRINGS;
 
 private:
