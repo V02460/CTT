@@ -10,6 +10,7 @@
 #include "ProjectLoader.h"
 #include "IOException.h"
 #include "ParseException.h"
+#include "NotImplementedException.h"
 #include "Saveable.h"
 #include "XMLSaver.h"
 
@@ -36,8 +37,11 @@ public:
 private:
 	QXmlStreamReader *xml;
 
+	QMap<int, ::model::saveable::Saveable::sptr> pointerMap;
+
 	void openFile(QDir path);
 	void createMaps(Project project);
+	void mapPointer(int key, ::model::saveable::Saveable::sptr value);
 	void restore();
 };
 

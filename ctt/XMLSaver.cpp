@@ -6,6 +6,7 @@ namespace controller {
 namespace project {
 
 using ::exception::IOException;
+using ::exception::IllegalArgumentException;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::model::saveable::SaveableList;
@@ -27,14 +28,6 @@ const QString XMLSaver::POINTER = "pointer";
 
 const QString XMLSaver::SPLITTER = ":";
 
-const int XMLSaver::BASE_VIDEO_LIST_ID = 0;
-const int XMLSaver::VIDEO_LIST_1_ID = 1;
-const int XMLSaver::VIDEO_LIST_2_ID = 2;
-const int XMLSaver::PLAYER_LIST_1_ID = 3;
-const int XMLSaver::PLAYER_2_ID = 4;
-const int XMLSaver::DIFF_LIST_ID = 5;
-const int XMLSaver::VIEW_ID = 6;
-
 const QList<QString> XMLSaver::BASE_ELEMENT_NAMES = QList<QString>()
 	<< "baseVideoList"
 	<< "videoList1"
@@ -44,7 +37,7 @@ const QList<QString> XMLSaver::BASE_ELEMENT_NAMES = QList<QString>()
 	<< "diffList"
 	<< "view";
 
-const QList<QString> XMLSaver::BASE_ELEMENT_TYPE_STRINGS = QList<QString>()
+const QList<QString> XMLSaver::BASE_ELEMENT_CLASS_STRINGS = QList<QString>()
 	<< Saveable::LIST + SPLITTER + Saveable::FILE_VIDEO
 	<< Saveable::LIST + SPLITTER + Saveable::FILTERED_VIDEO
 	<< Saveable::LIST + SPLITTER + Saveable::FILTERED_VIDEO
@@ -59,6 +52,15 @@ void XMLSaver::save(QDir path, const Project &project) {
 	writeBaseElements();
 	writeElements();
 	endDocument();
+}
+
+XMLSaver::BaseSaveableType XMLSaver::stringToBaseSaveableType(QString string) {
+	for (int i = 0; i < XMLSaver::BASE_ELEMENT_NAMES.length; i++) {
+		if (string == XMLSaver::BASE_ELEMENT_NAMES[i]) {
+			return static_cast<BaseSaveableType>(i);
+		}
+	}
+	throw new IllegalArgumentException(string + " is not a base saveable type.");
 }
 
 void XMLSaver::initDocument(QDir path) {
@@ -87,7 +89,7 @@ void XMLSaver::writeBaseElements() {
 	int length = pointerList.length();
 	for (elementID = 0; elementID < length; elementID++) {
 		out->writeStartElement(ELEMENT);
-		out->writeAttribute(CLASS, BASE_ELEMENT_TYPE_STRINGS[elementID]);
+		out->writeAttribute(CLASS, BASE_ELEMENT_CLASS_STRINGS[elementID]);
 		out->writeAttribute(ID, QString::number(elementID));
 		out->writeAttribute(TYPE, BASE_ELEMENT_NAMES[elementID]);
 		writeMemento(pointerList.at(elementID).data()->getMemento());

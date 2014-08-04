@@ -55,37 +55,45 @@ public:
 	/** Splitter used for class attributes of SavableList. */
 	static const QString SPLITTER;
 
-	/* The number of ids must be simular to the number of elements in
-	 * the BASE_ELEMENT_NAMES and BASE_ELEMENT_TYPE_STRINGS lists and the id
-	 * must represent the position in those lists.
+	/**
+	 * Labels for the different base elements to save.
+	 *
+	 * This enum must be similar in quantity and order to the BASE_ELEMENT_NAMES and
+	 * BASE_ELEMENT_TYPE_STRINGS lists and the stringToBaseSaveableType function.
 	 */
-	/** id given to the base video list. */
-	static const int BASE_VIDEO_LIST_ID;
-	/** id given to the video list in the 1. view. */
-	static const int VIDEO_LIST_1_ID;
-	/** id given to the video list in the 2. view. */
-	static const int VIDEO_LIST_2_ID;
-	/** id given to the player list in the 1. view. */
-	static const int PLAYER_LIST_1_ID;
-	/** id given to the player in the 2. view. */
-	static const int PLAYER_2_ID;
-	/** id given to the frame diff list. */
-	static const int DIFF_LIST_ID;
-	/** id given to the view state. */
-	static const int VIEW_ID;
+	enum BaseSaveableType {
+		BaseVideoList,
+		VideoList1,
+		VideoList2,
+		PlayerList1,
+		Player2,
+		DiffList,
+		View
+	};
 
 	/**
 	 * A list of base element names.
 	 *
-	 * The order of this list must be determined by the static id's in this class.
+	 * This list must be similar in quantity and order to the BaseSaveableType enum.
 	 */
 	static const QList<QString> BASE_ELEMENT_NAMES;
+
 	/**
-	 * A list of base element type strings.
+	 * A list of base element class strings.
 	 *
-	 * The order of this list must be determined by the static id's in this class.
+	 * This list must be similar in quantity and order to the BaseSaveableType enum.
 	 */
-	static const QList<QString> BASE_ELEMENT_TYPE_STRINGS;
+	static const QList<QString> BASE_ELEMENT_CLASS_STRINGS;
+
+	/**
+	 * Returns the BaseSavableType to the given string.
+	 *
+	 * This function must be similar in quantity and order to the BaseSaveableType enum.
+	 *
+	 * @param string The string to be made to a BaseSavableType.
+	 * @return The BaseSavableType to the given string.
+	 */
+	static BaseSaveableType stringToBaseSaveableType(QString string);
 
 private:
 	QXmlStreamWriter *out;

@@ -8,8 +8,10 @@ namespace project {
 
 using ::exception::IOException;
 using ::exception::ParseException;
+using ::exception::NotImplementedException;
 using ::controller::project::XMLSaver;
 using ::controller::project::Project;
+using ::model::saveable::Saveable;
 
 XMLLoader::XMLLoader() {
 }
@@ -41,24 +43,47 @@ void XMLLoader::createMaps(Project project) {
 		}
 		QXmlStreamAttributes attributes = xml->attributes();
 		if (!attributes.hasAttribute(XMLSaver::CLASS)) {
-			throw new ParseException("Attribute <" + XMLSaver::CLASS + "> expected.");
+			throw new ParseException("Attribute " + XMLSaver::CLASS + " expected.");
 		}
 		if (!attributes.hasAttribute(XMLSaver::ID)) {
-			throw new ParseException("Attribute <" + XMLSaver::ID + "> expected.");
+			throw new ParseException("Attribute " + XMLSaver::ID + " expected.");
 		}
 		QString classString = attributes.value(XMLSaver::CLASS).toString();
 		bool valid = false;
 		int id = attributes.value(XMLSaver::ID).toInt(&valid);
 		if (!valid) {
-			throw new ParseException(attributes.value(XMLSaver::ID).toString() + "is not a valid ID. IDs must be integer.");
+			throw new ParseException(attributes.value(XMLSaver::ID).toString()
+				                     + "is not a valid ID. IDs must be integer.");
 		}
 		if (attributes.hasAttribute(XMLSaver::TYPE)) {
-			// TODO map base Element to ID
+			XMLSaver::BaseSaveableType type =
+				XMLSaver::stringToBaseSaveableType(attributes.value(XMLSaver::TYPE).toString());
+			switch (type) {
+			case XMLSaver::BaseSaveableType::BaseVideoList:
+				mapPointer(id, project.getBaseVideoList()); break;
+			case XMLSaver::BaseSaveableType::VideoList1:
+				mapPointer(id, project.getVideoList1()); break;
+			case XMLSaver::BaseSaveableType::VideoList2:
+				mapPointer(id, project.getVideoList2()); break;
+			case XMLSaver::BaseSaveableType::PlayerList1:
+				mapPointer(id, project.getPlayerList1()); break;
+			case XMLSaver::BaseSaveableType::Player2:
+				mapPointer(id, project.getPlayer2()); break;
+			case XMLSaver::BaseSaveableType::DiffList:
+				mapPointer(id, project.getDiffList()); break;
+			case XMLSaver::BaseSaveableType::View:
+				mapPointer(id, project.getView()); break;
+			default: throw new NotImplementedException("Unknown base savable type.");
+			}
 		} else {
 			// TODO map Dummy to ID
 		}
 		// TODO map Memento to ID
 	}
+}
+
+void XMLLoader::mapPointer(int key, Saveable::sptr value) {
+
 }
 
 void XMLLoader::restore() {
