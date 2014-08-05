@@ -43,7 +43,7 @@ public:
      *
      * @return T Returns the element at the index
      */
-    const T &get(unsigned int index) const;
+    const typename T::sptr get(unsigned int index) const;
 
 	/**
 	 *	Get the size of the whole list.
@@ -57,7 +57,7 @@ public:
     static Saveable::sptr getDummy();
 
 private: 
-    T *firstElement;
+    // T *firstElement;
     QList<typename T::sptr> list;
 };
 

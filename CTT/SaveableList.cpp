@@ -15,43 +15,57 @@ namespace saveable {
 using ::exception::NotImplementedException;
 
 template <class T>
-SaveableList<T>::SaveableList() {
-    throw new NotImplementedException();
-}
+SaveableList<T>::SaveableList() {}
 
 template <class T>
 void SaveableList<T>::insert(unsigned int index, typename T::sptr element) {
-    throw new NotImplementedException();
+	list.insert(index, element);
 }
 
 template <class T>
 typename T::sptr SaveableList<T>::remove(unsigned int index) {
-    throw new NotImplementedException();
+	T::sptr element = get(index);
+	list.removeAt(index);
+	return element;
 }
 
 template <class T>
-const T &SaveableList<T>::get(unsigned int index) const {
-    throw new NotImplementedException();
+const typename T::sptr SaveableList<T>::get(unsigned int index) const {
+	return list[index];
 }
 
 template <class T>
 const unsigned int SaveableList<T>::getSize() const {
-    throw new NotImplementedException();
+	return list.size();
 }
 
 template <class T>
 Memento SaveableList<T>::getMemento() const {
-    throw new NotImplementedException();
+	Memento memento = Memento();
+	int size = getSize();
+	memento.setInt("size", size);
+	for (int i = 0; i < size; i++) {
+		memento.setSharedPointer("element" + i, get(i));
+	}
+	return memento;
 }
 
 template <class T>
 void SaveableList<T>::restore(Memento memento) {
-    throw new NotImplementedException();
+	int size = memento.getInt("size");
+	for (int i = 0; i < size; i++) {
+		// TODO casting list.append(memento.getSharedPointer("element" + i));
+		throw new NotImplementedException();
+	}
+	isDummyFlag = false;
 }
 
 template <class T>
 Saveable::sptr SaveableList<T>::getDummy() {
-    throw new NotImplementedException();
+	SaveableList<T> dummy = SaveableList<T>();
+	dummy.isDummyFlag = true;
+	// TODO return SaveableList<T>>(dummy);
+	throw new NotImplementedException();
 }
 
 // A list of all objects which might be used with the SaveableList
