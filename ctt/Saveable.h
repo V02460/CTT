@@ -112,3 +112,42 @@ protected:
 }  // namespace model
 
 #endif  //_Saveable_H
+
+
+/* tree of saveable classes:
+
+ 0		Saveable
+ 1		|> FilterIntervalList
+ 2		|> FrameDiff
+ 3		|  |> EarthMoversHistogramDiff
+ 4		|  |> PixelDiff
+ 5		|     |> HSLPixelDiff
+ 6		|     |> YUVPixelDiff
+ 7		|> Module
+ 8		|  |> Filter
+ 9		|  |  |> BlurFilter
+10		|  |  |> CoffeeFilter
+11		|  |  |> GreyscaleFilter
+12		|  |  |> MixFilter
+13		|  |  |> NoiseFilter
+14		|  |  |> Overlay
+15		|  |  |  |> ColoringOverlay
+16		|  |  |  |  |> HeatmapOverlay
+17		|  |  |  |  |> MacroblockOverlay
+18		|  |  |  |> MakropartitionOverlay
+19		|  |  |  |> MotionVektorOverlay
+20		|  |  |> RescaleFilter
+21		|  |  |> RGBChannelFilter
+22		|  |  |> TimeshiftFilter
+23		|  |> Video
+24		|     |> FileVideo
+25		|     |  |> FFmpegDataVideo
+26		|     |  |> YUVDataVideo
+27		|     |> FilteredVideo
+28		|> Player
+29		|> SavableList
+30		|> UIntegerInterval
+31		|> VideoScrubber
+32		|> ViewState
+
+*/

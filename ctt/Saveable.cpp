@@ -11,7 +11,7 @@ const QString Saveable::FILE_VIDEO = "FileVideo";
 const QString Saveable::FILTERED_VIDEO = "FilteredVideo";
 const QString Saveable::PLAYER = "Player";
 const QString Saveable::DIFF = "FrameDiff";
-const QString Saveable::VIEW = "View";
+const QString Saveable::VIEW = "ViewState";
 const QString Saveable::LIST = "SavableList";
 
 const QList<QString> Saveable::SAVEABLE_TYPE_STRINGS = QList<QString>()
