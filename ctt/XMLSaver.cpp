@@ -55,7 +55,7 @@ void XMLSaver::save(QDir path, const Project &project) {
 }
 
 XMLSaver::BaseSaveableType XMLSaver::stringToBaseSaveableType(QString string) {
-	for (int i = 0; i < XMLSaver::BASE_ELEMENT_NAMES.length; i++) {
+	for (int i = 0; i < XMLSaver::BASE_ELEMENT_NAMES.length(); i++) {
 		if (string == XMLSaver::BASE_ELEMENT_NAMES[i]) {
 			return static_cast<BaseSaveableType>(i);
 		}

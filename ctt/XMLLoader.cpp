@@ -58,6 +58,10 @@ void XMLLoader::createMaps(Project project) {
 		if (attributes.hasAttribute(XMLSaver::TYPE)) {
 			XMLSaver::BaseSaveableType type =
 				XMLSaver::stringToBaseSaveableType(attributes.value(XMLSaver::TYPE).toString());
+			if (classString != XMLSaver::BASE_ELEMENT_CLASS_STRINGS[type]) {
+				throw new ParseException("Class of " + XMLSaver::BASE_ELEMENT_NAMES[type] + " must be "
+					                     + XMLSaver::BASE_ELEMENT_CLASS_STRINGS[type]);
+			}
 			switch (type) {
 			case XMLSaver::BaseSaveableType::BaseVideoList:
 				mapPointer(id, project.getBaseVideoList()); break;
@@ -83,7 +87,10 @@ void XMLLoader::createMaps(Project project) {
 }
 
 void XMLLoader::mapPointer(int key, Saveable::sptr value) {
-
+	if (pointerMap.contains(key)) {
+		throw new ParseException("Multiple elements with key " + QString::number(key) + " exist.");
+	}
+	pointerMap.insert(key, value);
 }
 
 void XMLLoader::restore() {
