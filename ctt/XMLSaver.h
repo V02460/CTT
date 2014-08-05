@@ -47,6 +47,8 @@ public:
 	static const QString ID;
 	/** Name of the type attribute. */
 	static const QString TYPE;
+	/** Name of the template attribute */
+	static const QString TEMPLATE_TYPE;
 	/** Name of the name attribute. */
 	static const QString NAME;
 	/** Name of the value attribute. */
