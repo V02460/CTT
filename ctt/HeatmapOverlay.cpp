@@ -9,6 +9,7 @@ namespace overlay {
 using ::model::difference::PixelDiff;
 using ::model::frame::Frame;
 using ::exception::NotImplementedException;
+using ::model::saveable::Saveable;
 
 HeatmapOverlay::HeatmapOverlay(Module::sptr predecessor, PixelDiff::sptr difference) : ColoringOverlay(predecessor) {
     throw new NotImplementedException();
@@ -24,6 +25,10 @@ QString HeatmapOverlay::getName() const {
 
 model::frame::Frame::sptr HeatmapOverlay::getFrame(unsigned int frameNumber) const {
     throw new NotImplementedException();
+}
+
+Saveable::SaveableType HeatmapOverlay::getType() const {
+	return Saveable::SaveableType::heatmapOverlay;
 }
 
 }  // namespace overlay

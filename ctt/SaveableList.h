@@ -54,7 +54,8 @@ public:
 
     virtual Memento getMemento() const Q_DECL_OVERRIDE;
     virtual void restore(Memento memento) Q_DECL_OVERRIDE;
-    static Saveable::sptr getDummy();
+	static Saveable::sptr getDummy();
+	virtual ::model::saveable::Saveable::SaveableType getType() const Q_DECL_OVERRIDE;
 
 private: 
     // T *firstElement;

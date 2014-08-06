@@ -64,8 +64,13 @@ template <class T>
 Saveable::sptr SaveableList<T>::getDummy() {
 	SaveableList<T> dummy = SaveableList<T>();
 	dummy.isDummyFlag = true;
-	// TODO return SaveableList<T>>(dummy);
+	// TODO return SaveableList<T>(dummy);
 	throw new NotImplementedException();
+}
+
+template <class T>
+Saveable::SaveableType SaveableList<T>::getType() const {
+	return Saveable::SaveableType::saveableList;
 }
 
 // A list of all objects which might be used with the SaveableList

@@ -845,9 +845,6 @@
     <ClInclude Include="Surface.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="ProjectSaverFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ProjectLoader.h">
       <Filter>Header Files\Controller\Project</Filter>
     </ClInclude>

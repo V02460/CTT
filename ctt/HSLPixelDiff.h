@@ -38,6 +38,8 @@ public:
 
     virtual Surface getPixelDiff(unsigned int frameNr) const;
     virtual double getDiff(unsigned int frameNr) const;
+
+	virtual ::model::saveable::Saveable::SaveableType getType() const;
 };
 
 }  // namespace difference
