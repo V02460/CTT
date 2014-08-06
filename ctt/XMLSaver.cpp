@@ -79,15 +79,16 @@ void XMLSaver::writeBaseElements() {
 	int length = pointerList.length();
 	for (elementID = 0; elementID < length; elementID++) {
 		out->writeStartElement(ELEMENT);
-		/* Saveable::SaveableType type = pointerList.at(elementID).data()->getType();
-		out->writeAttribute(CLASS, type);
-		if (type == Saveable::SaveableType::List) {
-			out->writeAttribute(TEMPLATE_TYPE,
-				static_cast<SaveableList>(pointerList.at(elementID)).getTemplateType());
-		} */
+		Saveable::sptr element = pointerList[elementID];
+		Saveable::SaveableType type = element->getType();
+		out->writeAttribute(CLASS, Saveable::SAVEABLE_TYPE_STRINGS[type]);
+		if (type == Saveable::SaveableType::saveableList) {
+			SaveableList<Saveable>::sptr list = element.staticCast<SaveableList<Saveable>>();
+			out->writeAttribute(TEMPLATE_TYPE, Saveable::SAVEABLE_TYPE_STRINGS[list->getTemplateType()]);
+		}
 		out->writeAttribute(ID, QString::number(elementID));
 		out->writeAttribute(TYPE, BASE_ELEMENT_NAMES[elementID]);
-		writeMemento(pointerList.at(elementID).data()->getMemento());
+		writeMemento(element->getMemento());
 		out->writeEndElement();
 	}
 }
@@ -122,11 +123,12 @@ void XMLSaver::writeElements() {
 	for (; elementID < pointerList.length(); elementID++) {
 		out->writeStartElement(ELEMENT);
 		Saveable::sptr element = pointerList[elementID];
-		/* Saveable::SaveableType type = element->getType();
+		Saveable::SaveableType type = element->getType();
 		out->writeAttribute(CLASS, Saveable::SAVEABLE_TYPE_STRINGS[type]);
-		if (type = Saveable::SaveableType::List) {
-			out->writeAttribute(TEMPLATE_TYPE, static_cast<SaveableList>(element).getTemplateType());
-		} */
+		if (type = Saveable::SaveableType::saveableList) {
+			SaveableList<Saveable>::sptr list = element.staticCast<SaveableList<Saveable>>();
+			out->writeAttribute(TEMPLATE_TYPE, Saveable::SAVEABLE_TYPE_STRINGS[list->getTemplateType()]);
+		}
 		out->writeAttribute(ID, QString::number(elementID));
 		writeMemento(element->getMemento());
 		out->writeEndElement();

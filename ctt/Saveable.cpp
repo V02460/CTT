@@ -82,7 +82,7 @@ bool Saveable::isDummy() const {
 	return isDummyFlag;
 }
 
-Saveable::sptr getDummy() {
+Saveable::sptr Saveable::getDummy() {
     throw new NotImplementedException();
 }
 
