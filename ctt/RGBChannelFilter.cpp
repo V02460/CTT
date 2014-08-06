@@ -38,5 +38,9 @@ Saveable::sptr RGBChannelFilter::getDummy() {
     throw new NotImplementedException();
 }
 
+Saveable::SaveableType RGBChannelFilter::getType() const {
+	return Saveable::SaveableType::rGBChannelFilter;
+}
+
 }  // namespace filter
 }  // namespace model

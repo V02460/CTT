@@ -8,6 +8,7 @@ namespace overlay {
 
 using ::model::frame::Frame;
 using ::exception::NotImplementedException;
+using ::model::saveable::Saveable;
 
 MacropartionOverlay::MacropartionOverlay(Module::sptr predecessor) : Overlay(predecessor) {
     throw new NotImplementedException();
@@ -23,6 +24,10 @@ QString MacropartionOverlay::getName() const {
 
 model::frame::Frame::sptr MacropartionOverlay::getFrame(unsigned int frameNumber) const {
     throw new NotImplementedException();
+}
+
+Saveable::SaveableType MacropartionOverlay::getType() const {
+	return Saveable::SaveableType::makropartitionOverlay;
 }
 
 }  // namespace overlay

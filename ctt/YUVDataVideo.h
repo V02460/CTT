@@ -46,6 +46,8 @@ public:
 
     virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
 
+	virtual ::model::saveable::Saveable::SaveableType getType() const;
+
 private:
     /**
     * Creates a dummy YUVDataVideo.

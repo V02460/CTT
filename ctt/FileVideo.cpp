@@ -6,6 +6,7 @@ namespace model {
 namespace video {
 
 using ::exception::NotImplementedException;
+using ::model::saveable::Saveable;
 
 FileVideo::FileVideo(QDir path) : path(path) {
     throw new NotImplementedException();
@@ -13,6 +14,10 @@ FileVideo::FileVideo(QDir path) : path(path) {
 
 QDir FileVideo::getPath() const {
     throw new NotImplementedException();
+}
+
+Saveable::sptr FileVideo::getDummy() {
+	throw new NotImplementedException();
 }
 
 }  // namespace video

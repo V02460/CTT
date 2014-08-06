@@ -47,4 +47,9 @@ Saveable::sptr FilterIntervalList::getDummy() {
     throw new NotImplementedException();
 }
 
+Saveable::SaveableType FilterIntervalList::getType() const {
+	return Saveable::SaveableType::filterIntervalList;
+}
+
+
 }  // namespace model

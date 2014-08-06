@@ -30,6 +30,8 @@ public:
     */
     QDir getPath() const;
 
+	static Saveable::sptr getDummy();
+
 protected:
     QDir path; /**< the path to the video file this Video loads its frames from. */
     VideoMetadata::uptr metadata; /**< metadata valid for the whole video. */

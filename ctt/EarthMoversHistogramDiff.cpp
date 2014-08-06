@@ -8,6 +8,7 @@ namespace difference {
 using ::model::frame::histogram::Histogram;
 using ::model::video::Video;
 using ::exception::NotImplementedException;
+using ::model::saveable::Saveable;
 
 EarthMoversHistogramDiff::EarthMoversHistogramDiff(Histogram::HistogramType type,
                                                    Video::sptr video1,
@@ -22,6 +23,10 @@ EarthMoversHistogramDiff::~EarthMoversHistogramDiff() {
 
 double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
     throw new NotImplementedException();
+}
+
+Saveable::SaveableType EarthMoversHistogramDiff::getType() const {
+	return Saveable::SaveableType::earthMoversHistogramDiff;
 }
 
 }  // namespace difference

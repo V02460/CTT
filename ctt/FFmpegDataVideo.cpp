@@ -7,6 +7,7 @@ namespace video {
 
 using ::model::frame::Frame;
 using ::exception::NotImplementedException;
+using ::model::saveable::Saveable;
 
 FFmpegDataVideo::FFmpegDataVideo(QDir path, QSharedPointer<QOpenGLContext> context) : FileVideo(path) {
     throw new NotImplementedException();
@@ -18,6 +19,10 @@ VideoMetadata FFmpegDataVideo::getMetadata() const {
 
 model::frame::Frame::sptr FFmpegDataVideo::getFrame(unsigned int frameNumber) const {
     throw new NotImplementedException();
+}
+
+Saveable::SaveableType FFmpegDataVideo::getType() const {
+	return Saveable::SaveableType::fFmpegDataVideo;
 }
 
 }  // namespace video
