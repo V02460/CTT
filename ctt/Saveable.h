@@ -184,7 +184,7 @@ public:
 	 * @param string The string representation of the type to return.
 	 * @return The type represented by the given string.
 	 */
-	static const SaveableType getType(QString string);
+	static const SaveableType stringToSaveableType(QString string);
 
 	/**
 	 * Returns the type of the savable object.

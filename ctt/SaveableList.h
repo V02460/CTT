@@ -13,6 +13,8 @@ namespace saveable {
 
 /**
  * Subscribable list for storing objects and communicating with signals and slots.
+ *
+ * Note that a saveable List may not contain another saveable list!
  */
 template <typename T>
 class SaveableList : public Saveable, public Observable {

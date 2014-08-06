@@ -86,7 +86,7 @@ Saveable::sptr Saveable::getDummy() {
     throw new NotImplementedException();
 }
 
-const Saveable::SaveableType Saveable::getType(QString string) {
+const Saveable::SaveableType Saveable::stringToSaveableType(QString string) {
 	for (int i = 0; i < SAVEABLE_TYPE_STRINGS.length(); i++) {
 		if (string == SAVEABLE_TYPE_STRINGS[i]) {
 			return static_cast<SaveableType>(i);
