@@ -12,6 +12,7 @@ using ::exception::NotImplementedException;
 using ::controller::project::XMLSaver;
 using ::controller::project::Project;
 using ::model::saveable::Saveable;
+using ::model::saveable::Memento;
 
 using ::model::FilterIntervalList;
 using ::model::difference::EarthMoversHistogramDiff;
@@ -192,36 +193,62 @@ void XMLLoader::createMaps(Project project) {
 			}
 			pointerMap.insert(id, dummy);
 		}
-		// TODO map Memento to ID
+		Memento memento = Memento();
+		QMap<QString, int> idMap = QMap<QString, int>();
+		while (xml->readNext() != QXmlStreamReader::StartDocument) {
+			if (xml->qualifiedName() == XMLSaver::VARIABLE) {
+				QXmlStreamAttributes variableAttributes = xml->attributes();
+				if (!variableAttributes.hasAttribute(XMLSaver::NAME)) {
+					throw new ParseException("Attribute " + XMLSaver::NAME + " expected.");
+				}
+				if (!variableAttributes.hasAttribute(XMLSaver::VALUE)) {
+					throw new ParseException("Attribute " + XMLSaver::VALUE + " expected.");
+				}
+				memento.setString(variableAttributes.value(XMLSaver::NAME).toString(),
+					              variableAttributes.value(XMLSaver::NAME).toString());
+			} else if (xml->qualifiedName() == XMLSaver::POINTER) {
+				QXmlStreamAttributes pointerAttributes = xml->attributes();
+				if (!pointerAttributes.hasAttribute(XMLSaver::NAME)) {
+					throw new ParseException("Attribute " + XMLSaver::NAME + " expected.");
+				}
+				if (!pointerAttributes.hasAttribute(XMLSaver::ID)) {
+					throw new ParseException("Attribute " + XMLSaver::ID + " expected.");
+				}
+				bool valid;
+				int pointerId = pointerAttributes.value(XMLSaver::ID).toInt(&valid);
+				if (!valid) {
+					throw new ParseException(pointerAttributes.value(XMLSaver::ID).toString()
+						                     + "is not a valid ID. IDs must be integer.");
+				}
+				idMap.insert(pointerAttributes.value(XMLSaver::NAME).toString(),
+					         pointerId);
+			} else {
+				throw new ParseException("Tag <" + XMLSaver::VARIABLE + "> or <" + XMLSaver::POINTER
+					                     + "or endtag </" + XMLSaver::ELEMENT + "> expected.");
+			}
+		}
+		mementoMap.insert(id, memento);
+		mementoIdMap.insert(id, idMap);
 	}
 }
 
 void XMLLoader::restore() {
-	// TODO actually restore everything
+	for (int i = 0; i < pointerMap.size(); i++) {
+		Saveable::sptr element = pointerMap[i];
+		Memento memento = mementoMap[i];
+		QMap<QString, int> mementoPointerMap = mementoIdMap[i];
+		QList<QString> pointerMapKeys = mementoPointerMap.keys();
+		for (int j = 0; j < pointerMapKeys.length(); j++) {
+			QString key = pointerMapKeys[j];
+			int id = mementoPointerMap.value(key);
+			if (!pointerMap.contains(id)) {
+				throw new ParseException("No id " + QString::number(id) + " found.");
+			}
+			memento.setSharedPointer(key, pointerMap.value(id));
+		}
+		element->restore(memento);
+	}
 }
 
 }  // namespace project
 }  // namespace controller
-
-
-/* TO USE
-
-QXmlStreamReader
-	bool					atEnd()
-	QXmlStreamAttributes	attributes()
-	QString					errorString()
-	bool					hasError()
-	bool					isComment()
-	bool					isEndElement() / isEndDocument()
-	bool					isStartElement() / isStartDocument()
-	bool					isWhitespace()
-	QStringRef				name() / qualifiedName()
-	QString					readElementText()
-	TokenType / bool		readNext() / readNextStartElement()
-	void					skipCurrentElement()
-
-QXmlStreamAttributes
-	bool					hasAttribute(QString qualifiedName)
-	QStringRef				value(QString qualifiedName)
-
- */

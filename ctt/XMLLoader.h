@@ -57,6 +57,8 @@ private:
 	QXmlStreamReader *xml;
 
 	QMap<int, ::model::saveable::Saveable::sptr> pointerMap;
+	QMap<int, ::model::saveable::Memento> mementoMap;
+	QMap<int, QMap<QString, int>> mementoIdMap;
 
 	void openFile(QDir path);
 	void createMaps(Project project);
