@@ -122,6 +122,15 @@
     <Filter Include="Source Files\Helper">
       <UniqueIdentifier>{c1d742ec-7c5f-4d6e-a9ea-e4ac4a31af82}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ShaderFiles">
+      <UniqueIdentifier>{7742dc01-535e-4f80-be77-4cb8a7f04a6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShaderFiles\Filter">
+      <UniqueIdentifier>{d85444e6-b95a-416d-94eb-e89e4fb82d18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShaderFiles\Histogram">
+      <UniqueIdentifier>{dc75189b-eb86-4df2-a3d2-d1e64c2f7533}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Resource Files\Images">
       <UniqueIdentifier>{e20e1833-b2fa-4e66-a0de-24671f52c9dc}</UniqueIdentifier>
     </Filter>
@@ -565,6 +574,12 @@
     <ClCompile Include="ParseException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
+    <ClCompile Include="FileNotFoundException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="IOException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -899,6 +914,50 @@
     <ClInclude Include="MockDisplayHelper.h">
       <Filter>Header Files\Helper</Filter>
     </ClInclude>
+    <ClInclude Include="FileNotFoundException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="IOException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shader\Filter\RGBChannel.fs">
+      <Filter>ShaderFiles\Filter</Filter>
+    </None>
+    <None Include="Shader\Filter\1DBlur.fs">
+      <Filter>ShaderFiles\Filter</Filter>
+    </None>
+    <None Include="Shader\Filter\Mix.fs">
+      <Filter>ShaderFiles\Filter</Filter>
+    </None>
+    <None Include="Shader\Filter\Noise.fs">
+      <Filter>ShaderFiles\Filter</Filter>
+    </None>
+    <None Include="Shader\Histogram\redHistogramGrid.fs">
+      <Filter>ShaderFiles\Histogram</Filter>
+    </None>
+    <None Include="Shader\Histogram\displayHistogram.fs">
+      <Filter>ShaderFiles\Histogram</Filter>
+    </None>
+    <None Include="Shader\Histogram\greenHistogramGrid.fs">
+      <Filter>ShaderFiles\Histogram</Filter>
+    </None>
+    <None Include="Shader\Histogram\hueHistogramGrid.fs">
+      <Filter>ShaderFiles\Histogram</Filter>
+    </None>
+    <None Include="Shader\Histogram\luminanceHistogramGrid.fs">
+      <Filter>ShaderFiles\Histogram</Filter>
+    </None>
+    <None Include="Shader\Histogram\saturationHistogramGrid.fs">
+      <Filter>ShaderFiles\Histogram</Filter>
+    </None>
+    <None Include="Shader\Histogram\blueHistogramGrid.fs">
+      <Filter>ShaderFiles\Histogram</Filter>
+    </None>
+    <None Include="Shader\Histogram\histogramCompaction.fs">
+      <Filter>ShaderFiles\Histogram</Filter>
+    </None>
     <ClInclude Include="IOException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
