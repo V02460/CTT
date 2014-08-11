@@ -82,8 +82,9 @@ template <class T>
 void SaveableList<T>::restore(Memento memento) {
 	int size = memento.getInt("size");
 	for (int i = 0; i < size; i++) {
-		// TODO try after merge
-		// list.append(memento.getSharedPointer<T>("element" + QString::number(i)));
+		// TODO how to cast to T? every method seperate :/
+		// list.append(memento.getSharedPointer("element" + QString::number(i)));
+		throw new NotImplementedException();
 	}
 	isDummyFlag = false;
 }

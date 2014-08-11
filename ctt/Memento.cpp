@@ -110,23 +110,6 @@ void Memento::setSharedPointer(QString name, QSharedPointer<Saveable> pointer) {
 	pointerMap.insert(name, pointer);
 }
 
-template <class T>
-T *Memento::getPointer(QString name) const {
-	return getSharedPointer<T>(name).data();
-}
-
-template <class T>
-QSharedPointer<T> Memento::getSharedPointer(QString name) const {
-	if (!pointerMap.contains(name)) {
-		throw new IllegalArgumentException("There is no pointer with name " + name + " in this memento.");
-	}
-	QSharedPointer<T> pointer = pointerMap.value(name).dynamicCast();
-	if (!pointer) {
-		throw new IllegalArgumentException("The pointer is not of requested type.");
-	}
-	return pointer;
-}
-
 QMap<QString, QString> Memento::getVariableMap() const {
 	return variableMap;
 }
@@ -135,43 +118,20 @@ QMap<QString, Saveable::sptr> Memento::getPointerMap() const {
 	return pointerMap;
 }
 
-// A list of all objects which might be used with the Memento
-// This is necessary because *.cpp files are compiled separate, so it's unknown for the compiler for which types to
-// generate code.
-/* TODO
-template class Memento<model::saveable::Saveable>;
-template class Memento<model::FilterIntervalList>;
-template class Memento<model::difference::FrameDiff>;
-template class Memento<model::difference::EarthMoversHistogramDiff>;
-template class Memento<model::difference::PixelDiff>;
-template class Memento<model::difference::HSLPixelDiff>;
-template class Memento<model::difference::YUVPixelDiff>;
-template class Memento<model::Module>;
-template class Memento<model::filter::Filter>;
-template class Memento<model::filter::BlurFilter>;
-template class Memento<model::filter::CoffeeFilter>;
-template class Memento<model::filter::GreyscaleFilter>;
-template class Memento<model::filter::MixFilter>;
-template class Memento<model::filter::NoiseFilter>;
-template class Memento<model::filter::overlay::Overlay>;
-template class Memento<model::filter::overlay::ColoringOverlay>;
-template class Memento<model::filter::overlay::HeatmapOverlay>;
-template class Memento<model::filter::overlay::MacroblockOverlay>;
-template class Memento<model::filter::overlay::MacropartionOverlay>;
-template class Memento<model::filter::overlay::MotionVectorOverlay>;
-template class Memento<model::filter::RescaleFilter>;
-template class Memento<model::filter::RGBChannelFilter>;
-template class Memento<model::filter::TimeshiftFilter>;
-template class Memento<model::video::Video>;
-template class Memento<model::video::FileVideo>;
-template class Memento<model::video::FFmpegDataVideo>;
-template class Memento<model::video::YUVDataVideo>;
-template class Memento<model::filter::FilteredVideo>;
-template class Memento<model::player::Player>;
-template class Memento<model::UIntegerInterval>;
-template class Memento<model::player::VideoScrubber>;
-template class Memento<view::ViewState>;
-*/
+QSharedPointer<Saveable> Memento::getSharedPointer(QString name) const {
+	if (!pointerMap.contains(name)) {
+		throw new IllegalArgumentException("There is no pointer with name " + name + " in this memento.");
+	}
+	QSharedPointer<Saveable> pointer = pointerMap.value(name);
+	if (!pointer) {
+		throw new IllegalArgumentException("The pointer is not of requested type.");
+	}
+	return pointer;
+}
+
+Saveable* Memento::getPointer(QString name) const {
+	return getSharedPointer(name).data();
+}
 
 }  // namespace project
 }  // namespace model

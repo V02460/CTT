@@ -270,6 +270,10 @@ private:
 	*/
 	Player();
 
+	const static QString fpsStringId; /**< The Id the scrubber uses to save its fps in a memento */
+	const static QString scrubbersStringId; /**< The Id the scrubber uses to save its scrubbers in a memento */
+	const static QString numberOfScrubbersStringId; /**< The Id the scrubber uses to save its number of scrubbers in a memento */
+
     unsigned int currentFrameNumber; /**< The number of the frame that was requested last */
     QList<::model::player::VideoScrubber::sptr> videoScrubbers; /**< The VideoScrubbers controlled by this player*/
     QTimer timer; /**< The timer controlling the playback speed */

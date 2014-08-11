@@ -16,7 +16,8 @@ static TestResult test(int argc, char *argv[]) {
     r << frame::test(argc, argv)
       << saveable::test(argc, argv)
       << player::test(argc, argv)
-      << video::test(argc, argv);
+      << video::test(argc, argv)
+	  ;
 
     return r;
 }

@@ -845,6 +845,9 @@
     <ClInclude Include="Surface.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
+    <ClInclude Include="ProjectSaverFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="ProjectLoader.h">
       <Filter>Header Files\Controller\Project</Filter>
     </ClInclude>
@@ -895,6 +898,9 @@
     </ClInclude>
     <ClInclude Include="MockDisplayHelper.h">
       <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="YUVType.h">
+      <Filter>Header Files\Model\Video</Filter>
     </ClInclude>
     <ClInclude Include="IOException.h">
       <Filter>Header Files\Exception</Filter>
