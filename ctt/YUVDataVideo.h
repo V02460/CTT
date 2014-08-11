@@ -13,6 +13,7 @@
 #include "YUVType.h"
 
 using model::video::YUVType;
+using model::saveable::Memento;
 
 namespace model {
 namespace video {
@@ -47,15 +48,21 @@ public:
      */
     ~YUVDataVideo();
 
-	virtual QList<Module*> getUsesList();
+	static ::model::saveable::Saveable::sptr YUVDataVideo::getDummy();
 
-	virtual unsigned int getFrameCount();
+	virtual QList<const Module*> getUsesList() const;
 
-	virtual bool uses(const model::Module &module);
+	virtual unsigned int getFrameCount() const;
+
+	virtual bool uses(const model::Module &module) const;
 
     virtual VideoMetadata getMetadata() const;
 
     virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
+
+	virtual Memento getMemento() const;
+
+	virtual void restore(Memento memento);
 
 private:
     /**

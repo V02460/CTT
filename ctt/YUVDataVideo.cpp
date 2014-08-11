@@ -8,6 +8,7 @@ namespace video {
 using ::model::frame::Frame;
 using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
+using ::exception::IllegalArgumentException;
 //using ::exception::IOException;
 
 YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, QSize resolution, double framerate, YUVType type, QSharedPointer<QOpenGLContext> context)
@@ -15,7 +16,6 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, 
 	, pathToMetadataFile(pathToMetadataFile)
 	, metadataFile(pathToMetadataFile)
 	, metadataFileStream(&metadataFile)
-	//TODO rjdhgdd initialize length here already?
 	, metadata(resolution, framerate, 1)
 	, pixelsPerFrame(resolution.height() * resolution.width())
 {
@@ -31,15 +31,26 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, 
 		chromaSize = pixelsPerFrame;
 		break;
 	case YUV422:
+		if ((pixelsPerFrame % 2) != 0) {
+			throw new IllegalArgumentException("A video with an uneven number of pixels per frame mustn't be in the YUV422 format.");
+		}
 		chromaSize = pixelsPerFrame / 2;
 		break;
 	case YUV420:
+		if ((pixelsPerFrame % 2) != 0) {
+			throw new IllegalArgumentException("A video with number of pixels per frame which isn't a multiple of 4 mustn't be in the YUV420 format.");
+		}
 		chromaSize = pixelsPerFrame / 4;
 		break;
 	}
 
 	bytesPerFrame = pixelsPerFrame + (2 * chromaSize);
 
+	if ((videoFile.size() % bytesPerFrame) != 0)
+	{
+		throw new IllegalArgumentException("The size of the submitted video file (" + QString::number(videoFile.size()) 
+			+ " bytes) isn't a multiple of the calculated frame size (" + QString::number(bytesPerFrame) + " bytes).");
+	}
 	unsigned int length = videoFile.size() / bytesPerFrame;
 
 	metadata = VideoMetadata(resolution, framerate, length);
@@ -47,8 +58,18 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, 
 	load(0);
 }
 
-YUVDataVideo::~YUVDataVideo() {
+YUVDataVideo::YUVDataVideo()
+	: pathToMetadataFile("")
+	, metadataFile("")
+	, metadataFileStream("")
+	, metadata(QSize(1,1), 1, 1)
+	, pixelsPerFrame(1)
+{
 	isDummyFlag = true;
+}
+
+YUVDataVideo::~YUVDataVideo() {
+
 }
 
 VideoMetadata YUVDataVideo::getMetadata() const {
@@ -61,29 +82,32 @@ VideoMetadata YUVDataVideo::getMetadata() const {
 
 model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const {
 	throw new NotImplementedException();
-// 	if (!hasFrameInBuffer(frameNumber)) {
-// 		load(frameNumber);
-// 	}
 
-	//QImage image();
+	if (!hasFrameInBuffer(frameNumber)) {
+		load(frameNumber);
+	}
 
-	//TODO fjdifrj imageFormat?
-	//image.loadFromData(videoBuffer.mid(1, 1), QImage::Format_RGB888);
+	QImage image;
+
+	QByteArray rawFrame = videoBuffer.mid((frameNumber - firstFrameInMemory) * bytesPerFrame, bytesPerFrame);
+	//TODO fjdifrj imageFormat? mal kucken wies mit dem Indexed8 geht AAAAAAAHHHHH SHIT!
+	image.loadFromData(rawFrame, "bmp");
+
 }
 
-QList<Module*> YUVDataVideo::getUsesList()
+QList<const Module*> YUVDataVideo::getUsesList() const
 {
 	if (isDummy()) {
 		throw new IllegalStateException("Tried to request a list of used modules from a dummy YUVDataVideo.");
 	}
 
-	QList<Module*> uses;
+	QList<const Module*> uses;
 	uses.append(this);
 
 	return uses;
 }
 
-unsigned int YUVDataVideo::getFrameCount()
+unsigned int YUVDataVideo::getFrameCount() const
 {
 	if (isDummy()) {
 		throw new IllegalStateException("Tried to request the frame count from a dummy YUVDataVideo.");
@@ -92,10 +116,10 @@ unsigned int YUVDataVideo::getFrameCount()
 	return metadata.getLength();
 }
 
-bool YUVDataVideo::uses(const model::Module &module)
+bool YUVDataVideo::uses(const model::Module &module) const
 {
 	if (isDummy()) {
-		throw new IllegalStateException("Tried to ask a dummy YUVDataVideo whether it used a specific moduke.");
+		throw new IllegalStateException("Tried to ask a dummy YUVDataVideo whether it used a specific module.");
 	}
 
 	return (this == &module);
@@ -123,6 +147,21 @@ bool YUVDataVideo::hasFrameInBuffer(unsigned int frameNr) const
 {
 	return ((frameNr >= firstFrameInMemory) & (frameNr < (firstFrameInMemory + numberOfFramesInMemory))) 
 		& (frameNr < metadata.getLength());
+}
+
+Memento YUVDataVideo::getMemento() const
+{
+	throw new NotImplementedException();
+}
+
+void YUVDataVideo::restore(Memento memento)
+{
+	throw new NotImplementedException();
+}
+
+::model::saveable::Saveable::sptr YUVDataVideo::getDummy()
+{
+	return YUVDataVideo::sptr(new YUVDataVideo());
 }
 
 }  // namespace video

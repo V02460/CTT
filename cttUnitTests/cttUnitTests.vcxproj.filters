@@ -94,12 +94,6 @@
     <Filter Include="TestStructure\Model\Frame\Histogram">
       <UniqueIdentifier>{c2b21392-1ddd-4d95-9b3c-a5ac6f910508}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\SpecialTestingClasses">
-      <UniqueIdentifier>{d138eec3-3f83-4966-931a-99f03fd4c6b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\SpecialTestingClasses">
-      <UniqueIdentifier>{7114c9b9-bc06-4a93-9142-a622896826e2}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_FrameTest.cpp">
@@ -156,9 +150,6 @@
     <ClCompile Include="ModelTests.h">
       <Filter>TestStructure\Model</Filter>
     </ClCompile>
-    <ClCompile Include="BBBTestVideo.cpp">
-      <Filter>Source Files\SpecialTestingClasses</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -201,9 +192,6 @@
     </ClInclude>
     <ClInclude Include="ModelVideoTests.h">
       <Filter>TestStructure\Model\Video</Filter>
-    </ClInclude>
-    <ClInclude Include="BBBTestVideo.h">
-      <Filter>Header Files\SpecialTestingClasses</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

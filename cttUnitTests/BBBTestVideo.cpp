@@ -77,7 +77,7 @@ void BBBTestVideo::restore(model::saveable::Memento memento)
     throw new NotImplementedException();
 }
 
-QList<model::Module*> BBBTestVideo::getUsesList() const
+QList<const Module*> BBBTestVideo::getUsesList() const
 {
 	return (QList<model::Module*>());
 }

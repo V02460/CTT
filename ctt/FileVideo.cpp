@@ -21,6 +21,11 @@ FileVideo::FileVideo(QString path, QSharedPointer<QOpenGLContext> context)
 	}
 }
 
+FileVideo::FileVideo()
+{
+
+}
+
 QDir FileVideo::getPath() const {
 	if (isDummy()) {
 		throw new IllegalStateException("Tried to request the path of a dummy FileVideo.");

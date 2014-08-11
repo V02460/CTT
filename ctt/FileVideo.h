@@ -42,8 +42,6 @@ protected:
     QString pathToVideoFile; /**< the path to the video file this Video loads its frames from. */
     VideoMetadata::uptr metadata; /**< metadata valid for the whole video. */
     QSharedPointer<QOpenGLContext> context; /**< The QOpenGLContext in which the Video creates its frames.*/
-
-private:
 	FileVideo();
 };
 
