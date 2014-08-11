@@ -59,13 +59,9 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, 
 }
 
 YUVDataVideo::YUVDataVideo()
-	: pathToMetadataFile("")
-	, metadataFile("")
-	, metadataFileStream("")
-	, metadata(QSize(1,1), 1, 1)
-	, pixelsPerFrame(1)
+	:metadata(QSize(1, 1), 1, 1)
 {
-	isDummyFlag = true;
+	isDummyFlag = true;	
 }
 
 YUVDataVideo::~YUVDataVideo() {
@@ -161,7 +157,7 @@ void YUVDataVideo::restore(Memento memento)
 
 ::model::saveable::Saveable::sptr YUVDataVideo::getDummy()
 {
-	return YUVDataVideo::sptr(new YUVDataVideo());
+	return YUVDataVideo::sptr(new YUVDataVideo);
 }
 
 }  // namespace video

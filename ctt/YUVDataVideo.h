@@ -24,6 +24,8 @@ namespace video {
  */
 class YUVDataVideo : public FileVideo {
 public:
+	Q_DISABLE_COPY(YUVDataVideo)
+
     typedef QScopedPointer<YUVDataVideo> uptr;
     typedef QSharedPointer<YUVDataVideo> sptr;
     typedef QWeakPointer<YUVDataVideo> wptr;
