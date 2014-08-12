@@ -108,7 +108,7 @@ private:
 	*/
 	bool hasFrameInBuffer(unsigned int frameNr) const;
 
-	static const unsigned int numberOfFramesInMemory = 10; /**< The size of the buffer in frames*/
+	static const unsigned int numberOfFramesInMemory = 30; /**< The size of the buffer in frames*/
 
 	mutable QByteArray videoBuffer; /**< The buffer for the video data*/
 	mutable QByteArray metadataBuffer; /**< The buffer for the metadata*/

@@ -1,6 +1,8 @@
 #include "YUVDataVideo.h"
 
 #include "NotImplementedException.h"
+#include <QVector>
+#include "MacroblockType.h"
 
 namespace model {
 namespace video {
@@ -9,6 +11,7 @@ using ::model::frame::Frame;
 using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
 using ::exception::IllegalArgumentException;
+using ::model::frame::MacroblockType;
 //using ::exception::IOException;
 
 
@@ -65,9 +68,20 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, 
 		//throw new FileNotFoundException();
 	}
 
+	if (((resolution.height() % 16) != 0) || ((resolution.width() % 16) != 0))
+	{
+		throw new IllegalArgumentException("The video of the submitted resolution " + QString::number(resolution.width()) + "x" 
+			+ QString::number(resolution.height()) + "can't be divided into 16x16 pixel macroblocks, that means the metadata file containing macroblockmetadata can't make sense");
+	}
+
+	if (((pixelsPerFrame / 256) * metadata.getLength()) != metadataFile.size())
+	{
+		throw new IllegalArgumentException("The metadata file at the submitted location doesn't contain information about the number of macroblocks in the videofile (assuming 16x16p macroblocks and 1 byte of metadata per macroblock).");
+	}
+
 	hasMetadataFile = true;
 
-	load(0);	//now with metadatafile stuff
+	loadMetadata(0);
 }
 
 YUVDataVideo::YUVDataVideo()
@@ -101,6 +115,68 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 	QByteArray rawFrame = videoBuffer.mid((frameNumber - firstFrameInMemory) * bytesPerFrame, bytesPerFrame);
 	//TODO fjdifrj imageFormat? mal kucken wies mit dem Indexed8 geht AAAAAAAHHHHH SHIT!
 	image.loadFromData(rawFrame, "bmp");
+
+
+	if (hasMetadataFile)
+	{
+		QByteArray rawMetadata = metadataBuffer.mid((frameNumber - firstFrameInMemory) * (pixelsPerFrame / 256), (pixelsPerFrame / 256));
+		QVector<QVector<MacroblockType>> macroblockTypes(metadata.getSize().height() / 16);
+
+		for (QVector<QVector<MacroblockType>>::iterator i = macroblockTypes.begin(); i != macroblockTypes.end(); i++)
+		{
+			i->resize(metadata.getSize().width() / 16);
+		}
+		//TODO WICHTIG sicherstellen dass das hier in der richtigen reihenfolge läuft, und nicht irgendwie gespiegelt zu den bildaten oder sowas, und das ganze testen natürlich, damit kein out of bounds zeug oder so läuft
+		for (int i = 0; i < (pixelsPerFrame / 256); i++)
+		{
+			switch (rawMetadata[i])
+			{
+			case 0:
+				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_SKIP;
+				break;
+			case 1:
+				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_16X16;
+				break;
+			case 2:
+				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_16X8;
+				break;
+			case 3:
+				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_8X16;
+				break;
+			case 4:
+				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_8X8;
+				break;
+			case 5:
+				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_8X4;
+				break;
+			case 6:
+				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_4X8;
+				break;
+			case 7:
+				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_4X4;
+				break;
+			case 8:
+				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_8X8_OR_BELOW;
+				break;
+			case 9:
+				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTRA_4X4;
+				break;
+			case 10:
+				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTRA_16X16;
+				break;
+			case 13:
+				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTRA_8X8;
+				break;
+			case 14:
+				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTRA_PCM;
+				break;
+			default: 
+				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::UNKNOWN;
+			}
+		}
+
+
+	}
 
 }
 
@@ -154,11 +230,13 @@ bool YUVDataVideo::hasFrameInBuffer(unsigned int frameNr) const
 
 Memento YUVDataVideo::getMemento() const
 {
+	//TODO eskjfe
 	throw new NotImplementedException();
 }
 
 void YUVDataVideo::restore(Memento memento)
 {
+	//TODO kehflakf
 	throw new NotImplementedException();
 }
 
@@ -194,12 +272,13 @@ void YUVDataVideo::loadMetadata(unsigned int startFrame) const
 		//TODO jgsgiruhs use IOException here
 		//throw new IOException();
 	}
-	if (!metadataFile.seek(bytesPerFrame * startFrame)) {
+	if (!metadataFile.seek((pixelsPerFrame / 256) * startFrame)) {
 		//TODO jgsgiruhs use IOException here
 		//throw new IOException();
 	}
 
-	metadataBuffer = metadataFile.read(numberOfFramesInMemory * bytesPerFrame);
+	//TODO eufufe ordentliche größe statt bytesperframe
+	metadataBuffer = metadataFile.read(numberOfFramesInMemory * (pixelsPerFrame / 256));
 
 	metadataFile.close();
 }
