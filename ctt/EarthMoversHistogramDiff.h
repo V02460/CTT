@@ -39,6 +39,9 @@ public:
     virtual double getDiff(unsigned int frameNr) const;
 
 	virtual ::model::saveable::Saveable::SaveableType getType() const;
+
+private:
+	model::frame::Histogram::HistogramType type;
 };
 
 }  // namespace difference

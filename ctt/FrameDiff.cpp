@@ -9,16 +9,14 @@ using ::model::video::Video;
 using ::exception::NotImplementedException;
 using ::model::saveable::Saveable;
 
-FrameDiff::FrameDiff(Video::sptr video1, Video::sptr video2) {
-    throw new NotImplementedException();
-}
+FrameDiff::FrameDiff(Video::sptr video1, Video::sptr video2) : video1(video1), video2(video2) {}
 
-FrameDiff::~FrameDiff() {
-    throw new NotImplementedException();
-}
+FrameDiff::~FrameDiff() {}
 
 unsigned int FrameDiff::getFrameCount() const {
-    throw new NotImplementedException();
+	unsigned int count1 = video1->getFrameCount();
+	unsigned int count2 = video2->getFrameCount();
+	return std::min(count1, count2);
 }
 
 }  // namespace difference

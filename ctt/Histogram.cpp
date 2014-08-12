@@ -35,7 +35,7 @@ void Histogram::init(const Frame &frame) {
 }
 
 float Histogram::getValue(unsigned int i) const {
-    if (i >= histogramSize) {
+    if (i >= SIZE) {
         throw new IllegalArgumentException("Out of bounds index " + QString::number(i));
     }
 
