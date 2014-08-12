@@ -29,7 +29,10 @@ class Histogram {
 public:
     typedef QScopedPointer<Histogram> uptr;
     typedef QSharedPointer<Histogram> sptr;
-    typedef QWeakPointer<Histogram> wptr;
+	typedef QWeakPointer<Histogram> wptr;
+
+	/** The size of a histogram. */
+	static const unsigned int SIZE = 256;
 
     /**
      * Labels for the channels histograms describe the intensity distribution of.
@@ -65,7 +68,6 @@ public:
     virtual HistogramType getType() const = 0;
 
 protected:
-    static const unsigned int histogramSize = 256;
 
     /**
     * Creates a new Histogram.
