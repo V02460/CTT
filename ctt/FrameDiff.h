@@ -13,7 +13,6 @@ namespace difference {
 
 /**
  * A FrameDiff compares corresponding frames from two specific videos and calculates one-dimensional distances between them.
- *
  */
 class FrameDiff : public ::model::saveable::Saveable {
 public:
@@ -54,8 +53,8 @@ protected:
     */
     virtual ~FrameDiff();
 
-    ::model::video::Video::uptr video1; /**< The first of the two Videos which this FrameDiff compares. */
-    ::model::video::Video::uptr video2; /**< The second of the two Videos which this FrameDiff compares. */
+    ::model::video::Video::sptr video1; /**< The first of the two Videos which this FrameDiff compares. */
+    ::model::video::Video::sptr video2; /**< The second of the two Videos which this FrameDiff compares. */
 
 private:
     FrameDiff();
