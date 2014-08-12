@@ -150,6 +150,15 @@
     <ClCompile Include="ModelTests.h">
       <Filter>TestStructure\Model</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerTest.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_PlayerTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_PlayerTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -169,6 +178,9 @@
     </CustomBuild>
     <CustomBuild Include="HistogramTest.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
+    </CustomBuild>
+    <CustomBuild Include="PlayerTest.h">
+      <Filter>Generated Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

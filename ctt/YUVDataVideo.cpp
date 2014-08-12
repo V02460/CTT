@@ -11,19 +11,13 @@ using ::exception::IllegalStateException;
 using ::exception::IllegalArgumentException;
 //using ::exception::IOException;
 
-YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, QSize resolution, double framerate, YUVType type, QSharedPointer<QOpenGLContext> context)
+
+YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QSize resolution, double framerate, YUVType type, QSharedPointer<QOpenGLContext> context)
 	: FileVideo(pathToVideoFile, context)
-	, pathToMetadataFile(pathToMetadataFile)
-	, metadataFile(pathToMetadataFile)
-	, metadataFileStream(&metadataFile)
 	, metadata(resolution, framerate, 1)
 	, pixelsPerFrame(resolution.height() * resolution.width())
 {
-	if (!metadataFile.exists())
-	{
-		//TODO use the File not found exception jeshgni
-		//throw new FileNotFoundException();
-	}
+	hasMetadataFile = false;
 
 	switch (type)
 	{
@@ -48,7 +42,7 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, 
 
 	if ((videoFile.size() % bytesPerFrame) != 0)
 	{
-		throw new IllegalArgumentException("The size of the submitted video file (" + QString::number(videoFile.size()) 
+		throw new IllegalArgumentException("The size of the submitted video file (" + QString::number(videoFile.size())
 			+ " bytes) isn't a multiple of the calculated frame size (" + QString::number(bytesPerFrame) + " bytes).");
 	}
 	unsigned int length = videoFile.size() / bytesPerFrame;
@@ -58,11 +52,30 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, 
 	load(0);
 }
 
+YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, QSize resolution, double framerate, YUVType type, QSharedPointer<QOpenGLContext> context)
+	: YUVDataVideo(pathToVideoFile, resolution, framerate, type, context)
+
+{
+	this->pathToMetadataFile = pathToMetadataFile;
+	metadataFile.setFileName(pathToMetadataFile);
+
+	if (!metadataFile.exists())
+	{
+		//TODO use the File not found exception jeshgni
+		//throw new FileNotFoundException();
+	}
+
+	hasMetadataFile = true;
+
+	load(0);	//now with metadatafile stuff
+}
+
 YUVDataVideo::YUVDataVideo()
 	:metadata(QSize(1, 1), 1, 1)
 {
 	isDummyFlag = true;	
 }
+
 
 YUVDataVideo::~YUVDataVideo() {
 
@@ -123,18 +136,12 @@ bool YUVDataVideo::uses(const model::Module &module) const
 
 void YUVDataVideo::load(unsigned int startFrame) const
 {
-	if (!videoFile.open(QIODevice::ReadOnly)) {
-		//TODO jgsgiruhs use IOException here
-		//throw new IOException();
-	}
-	if (!videoFile.seek(bytesPerFrame * startFrame)) {
-		//TODO jgsgiruhs use IOException here
-		//throw new IOException();
-	}
+	loadVideodata(pixelsPerFrame);
 
-	videoBuffer = videoFile.read(numberOfFramesInMemory * bytesPerFrame);
-
-	videoFile.close();
+	if (hasMetadataFile)
+	{
+		loadMetadata(startFrame);
+	}
 
 	firstFrameInMemory = startFrame;
 }
@@ -158,6 +165,43 @@ void YUVDataVideo::restore(Memento memento)
 ::model::saveable::Saveable::sptr YUVDataVideo::getDummy()
 {
 	return YUVDataVideo::sptr(new YUVDataVideo);
+}
+
+void YUVDataVideo::loadVideodata(unsigned int startFrame) const
+{
+
+	if (!videoFile.open(QIODevice::ReadOnly)) {
+		//TODO jgsgiruhs use IOException here
+		//throw new IOException();
+	}
+	if (!videoFile.seek(bytesPerFrame * startFrame)) {
+		//TODO jgsgiruhs use IOException here
+		//throw new IOException();
+	}
+
+	videoBuffer = videoFile.read(numberOfFramesInMemory * bytesPerFrame);
+
+	videoFile.close();
+}
+
+void YUVDataVideo::loadMetadata(unsigned int startFrame) const
+{
+	if (!hasMetadataFile)
+	{
+		throw new IllegalStateException("Tried to load metadata without having a metadata file.");
+	}
+	if (!metadataFile.open(QIODevice::ReadOnly)) {
+		//TODO jgsgiruhs use IOException here
+		//throw new IOException();
+	}
+	if (!metadataFile.seek(bytesPerFrame * startFrame)) {
+		//TODO jgsgiruhs use IOException here
+		//throw new IOException();
+	}
+
+	metadataBuffer = metadataFile.read(numberOfFramesInMemory * bytesPerFrame);
+
+	metadataFile.close();
 }
 
 }  // namespace video

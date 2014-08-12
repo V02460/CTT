@@ -268,7 +268,7 @@ unsigned int Player::getVideoLength() const {
 	{
 		throw new IllegalStateException("Tried to ask a dummy Player for the length of the shortest video of his "
 			"scrubber.");
-}
+	}
 
 	if (scrubberCount() == 0)
 	{
