@@ -20,6 +20,7 @@ FileVideo::FileVideo(QString path, QSharedPointer<QOpenGLContext> context)
 		//throw new FileNotFoundException();
 	}
 }
+using ::model::saveable::Saveable;
 
 FileVideo::FileVideo()
 {

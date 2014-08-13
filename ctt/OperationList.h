@@ -20,6 +20,16 @@ public:
     typedef QSharedPointer<OperationList> sptr;
     typedef QWeakPointer<OperationList> wptr;
 
+	/**
+	 * Creates a new empty operation list.
+	 */
+	OperationList();
+
+	/**
+	 * Destroys the operation list.
+	 */
+	~OperationList();
+
     /**
      * Manages doing the given Operation.
      *
@@ -38,9 +48,9 @@ public:
     void redoOperation();
 
     /**
-     * Sets the last state of the Project which has been saved.
+     * Marks the current state as being saved last.
      */
-    void setLastSavedState();
+    void markLastSavedState();
 
     /**
      * Determines whether there are actual changes since the last saved state.
@@ -57,7 +67,9 @@ public:
      */
     bool canRedo() const;
 private:
-    Operation::uptr currentOperation;
+    QList<Operation::sptr> operations;
+	QList<Operation::sptr>::iterator currentOperation;
+	QList<Operation::sptr>::iterator lastSavedOperation;
 };
 
 }  // namespace operation

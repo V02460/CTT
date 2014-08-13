@@ -29,10 +29,15 @@ class Histogram {
 public:
     typedef QScopedPointer<Histogram> uptr;
     typedef QSharedPointer<Histogram> sptr;
-    typedef QWeakPointer<Histogram> wptr;
+	typedef QWeakPointer<Histogram> wptr;
+
+	/** The size of a histogram. */
+	static const unsigned int SIZE = 256;
 
     /**
      * Labels for the channels histograms describe the intensity distribution of.
+	 *
+	 * This enum must be parallel to the HISTOGRAM_TYPE_STRINGS list.
      */
     enum HistogramType {
         Red,
@@ -42,6 +47,26 @@ public:
         Hue,
         Saturation
     };
+
+	/** String representation of the red histogram type. */
+	static const QString RED;
+	/** String representation of the green histogram type. */
+	static const QString GREEN;
+	/** String representation of the blue histogram type. */
+	static const QString BLUE;
+	/** String representation of the luminance histogram type. */
+	static const QString LUMINANCE;
+	/** String representation of the hue histogram type. */
+	static const QString HUE;
+	/** String representation of the saturation histogram type. */
+	static const QString SATURATION;
+
+	/**
+	 * A list if String representations of Histogram Types.
+	 *
+	 * This list must be parallel to the HistogramType enum.
+	 */
+	static const QList<QString> HISTOGRAM_TYPE_STRINGS;
 
     /**
      * Destroys the Histogram.
@@ -66,8 +91,15 @@ public:
      */
     virtual HistogramType getType() const = 0;
 
+	/**
+	 * Returns the histogram type represented by the string.
+	 *
+	 * @param string The string representation of the type to return.
+	 * @return The histogram type represented by the string.
+	 */
+	static const HistogramType stringToType(QString string);
+
 protected:
-    static const unsigned int histogramSize = 256;
 
     /**
     * Creates a new Histogram.
