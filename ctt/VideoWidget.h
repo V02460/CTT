@@ -31,6 +31,9 @@ public:
      */
     VideoWidget(QWindow *parent, ::model::player::VideoScrubber::sptr scrubber);
 
+	//TODO Testkonstruktor entfernen
+	VideoWidget(::model::frame::Frame *renderedFrame);
+
     /**
      * Returns the VideoScrubber at which the VideoWidget is registered and where the VideoWidget receives its frames
      * from.
@@ -40,6 +43,8 @@ public:
     const ::model::player::VideoScrubber &getScrubber() const;
 
 	virtual void resizeEvent(QResizeEvent *ev) Q_DECL_OVERRIDE;
+
+	virtual void exposeEvent(QExposeEvent *ev) Q_DECL_OVERRIDE;
 
 	virtual void update() Q_DECL_OVERRIDE;
 
@@ -55,8 +60,12 @@ private:
 	QSharedPointer<QOpenGLContext> m_context;
 	QSharedPointer<QOpenGLShaderProgram> m_program;
 
-	bool isM_contextObsolete;
+	bool isM_contextObsolete; /**< Indicates if the context is not needed anymore because of a frame or size change */
 	QRect viewportCoordinates;
+
+	//TODO Testattribute rausnehmen
+	bool isInSingelFrameTest;
+	model::frame::Frame *testFrame;
 };
 
 }  // namespace view
