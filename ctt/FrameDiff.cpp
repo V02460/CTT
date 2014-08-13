@@ -16,9 +16,7 @@ FrameDiff::FrameDiff() {}
 FrameDiff::~FrameDiff() {}
 
 unsigned int FrameDiff::getFrameCount() const {
-	unsigned int count1 = video1->getFrameCount();
-	unsigned int count2 = video2->getFrameCount();
-	return std::min(count1, count2);
+	return std::min(video1->getFrameCount(), video2->getFrameCount());
 }
 
 }  // namespace difference
