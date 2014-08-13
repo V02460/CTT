@@ -57,5 +57,10 @@ unsigned int VideoMetadata::getLength()  const{
 	return length;
 }
 
+QMap<QString, QString> VideoMetadata::getAdditionalMetadata() const
+{
+	return additionalData;
+}
+
 }  // namespace video
 }  // namespace model

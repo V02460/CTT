@@ -25,5 +25,13 @@ QSharedPointer<QOpenGLContext> Video::getContext() const {
 	return context;
 }
 
+QSize Video::getResolution()
+{
+	if (isDummy()) {
+		throw new IllegalStateException("Tried to request the resolution of a dummy video.");
+	}
+	return getMetadata().getSize();
+}
+
 }  // namespace video
 }  // namespace model

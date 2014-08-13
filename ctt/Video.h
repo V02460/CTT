@@ -67,6 +67,8 @@ public:
 
     virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const = 0;
 
+	virtual QSize getResolution();
+
 protected:
 	QSharedPointer<QOpenGLContext> context;
 };

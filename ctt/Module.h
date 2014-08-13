@@ -57,6 +57,12 @@ public:
      * @throws IllegalStateException if the the method was called on a dummy
      */
     virtual bool uses(const model::Module &module) const = 0;
+
+	/**
+	 * Returns the size of the frames this module provides.    
+	 * @return the size of the frames this module provides
+	 */
+	virtual QSize getResolution() = 0;
 };
 
 }  // namespace model

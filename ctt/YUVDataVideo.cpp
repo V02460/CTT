@@ -106,6 +106,11 @@ VideoMetadata YUVDataVideo::getMetadata() const {
 model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const {
 	throw new NotImplementedException();
 
+	if (isDummy())
+	{
+		throw new NotImplementedException("Tried to request a frame from a dummy YUVDataVideo");
+	}
+
 	if (!hasFrameInBuffer(frameNumber)) {
 		load(frameNumber);
 	}
@@ -127,7 +132,7 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 			i->resize(metadata.getSize().width() / 16);
 		}
 		//TODO WICHTIG sicherstellen dass das hier in der richtigen reihenfolge läuft, und nicht irgendwie gespiegelt zu den bildaten oder sowas, und das ganze testen natürlich, damit kein out of bounds zeug oder so läuft
-		for (int i = 0; i < (pixelsPerFrame / 256); i++)
+		for (unsigned int i = 0; i < (pixelsPerFrame / 256); i++)
 		{
 			switch (rawMetadata[i])
 			{
