@@ -9,7 +9,6 @@ class VideoScrubberTest: public QObject
 
 	private slots:
 	void testDummy();
-	void invalidConstruction();
 	void methods();
 
 };

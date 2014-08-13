@@ -162,8 +162,14 @@
     <ClCompile Include="ModelTests.h">
       <Filter>TestStructure\Model</Filter>
     </ClCompile>
-    <ClCompile Include="BBBTestVideo.cpp">
-      <Filter>Source Files\SpecialTestingClasses</Filter>
+    <ClCompile Include="PlayerTest.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_PlayerTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_PlayerTest.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="VideoWidgetTest.cpp">
       <Filter>Source Files\View</Filter>
@@ -187,6 +193,9 @@
     </CustomBuild>
     <CustomBuild Include="HistogramTest.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
+    </CustomBuild>
+    <CustomBuild Include="PlayerTest.h">
+      <Filter>Generated Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

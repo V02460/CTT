@@ -970,6 +970,9 @@
     <ClInclude Include="ParseException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
+    <ClInclude Include="YUVType.h">
+      <Filter>Header Files\Model\Video</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Images\big_buck_bunny_01337.png">

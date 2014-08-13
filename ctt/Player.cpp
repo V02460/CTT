@@ -4,14 +4,6 @@
 #include "IllegalStateException.h"
 #include "NotImplementedException.h"
 
-#define CURRENTFRAMENUMBERSTRINGID "currentFrameNumber"
-#define FPSSTRINGID "fps"
-#define LOOPINGSTRINGID "looping"
-#define LOOPSTARTSTRINGID "loopStart"
-#define LOOPENDSTRINGID "loopEnd"
-#define SCRUBBERSSTRINGID "scrubbers"
-#define NUMBEROFSCRUBBERSSTRINGID "numberOfScrubbers"
-
 namespace model {
 namespace player {
 
@@ -21,6 +13,11 @@ using ::exception::NotImplementedException;
 using ::exception::IllegalArgumentException;
 using ::exception::IllegalStateException;
 using ::exception::NotImplementedException;
+
+const QString Player::fpsStringId("fps");
+const QString Player::scrubbersStringId("scrubbers");
+const QString Player::numberOfScrubbersStringId("numberOfScrubbers");
+
 
 Player::Player(double fps): fps(fps), loop(0, 0), currentFrameNumber(0), looping(false), playing(false) {
 	if (!(fps > 0)) {
@@ -271,7 +268,7 @@ unsigned int Player::getVideoLength() const {
 	{
 		throw new IllegalStateException("Tried to ask a dummy Player for the length of the shortest video of his "
 			"scrubber.");
-}
+	}
 
 	if (scrubberCount() == 0)
 	{
@@ -354,18 +351,12 @@ Memento Player::getMemento() const {
 	}
 	Memento memento;
 
-	memento.setDouble(FPSSTRINGID, fps);
+	memento.setDouble(fpsStringId, fps);
 
-	//?
-	memento.setUInt(CURRENTFRAMENUMBERSTRINGID, currentFrameNumber);
-	memento.setBool(LOOPINGSTRINGID, looping);
-	memento.setUInt(LOOPSTARTSTRINGID, loop.getStart());
-	memento.setUInt(LOOPENDSTRINGID, loop.getEnd());
-
-	memento.setUInt(NUMBEROFSCRUBBERSSTRINGID, videoScrubbers.size());
+	memento.setUInt(numberOfScrubbersStringId, videoScrubbers.size());
 	for (unsigned int i = 0; i < static_cast<unsigned int>(videoScrubbers.size()); i++)
 	{
-		memento.setSharedPointer(SCRUBBERSSTRINGID + QString::number(i), videoScrubbers[i]);
+		memento.setSharedPointer(scrubbersStringId + QString::number(i), videoScrubbers[i]);
 	}
 
 	return memento;

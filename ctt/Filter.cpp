@@ -9,6 +9,7 @@ using ::model::frame::Frame;
 using ::model::Module;
 using ::model::saveable::Memento;
 using ::exception::NotImplementedException;
+using ::exception::IllegalStateException;
 
 Filter::Filter(Module::sptr predecessor) {
     throw new NotImplementedException();
@@ -40,6 +41,16 @@ void Filter::deactivate(UIntegerInterval interval) {
 
 unsigned int Filter::getFrameCount() const {
     throw new NotImplementedException();
+}
+
+QSize Filter::getResolution() const
+{
+	if (isDummy())
+	{
+		throw new IllegalStateException("Tried to request the resolution of a dummy Filter.");
+	}
+
+	return previous->getResolution();
 }
 
 }  // namespace filter

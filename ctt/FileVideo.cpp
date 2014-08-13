@@ -6,17 +6,34 @@ namespace model {
 namespace video {
 
 using ::exception::NotImplementedException;
-using ::model::saveable::Saveable;
+using ::exception::IllegalStateException;
 
-FileVideo::FileVideo(QDir path) : path(path) {
-    throw new NotImplementedException();
+
+FileVideo::FileVideo(QString path, QSharedPointer<QOpenGLContext> context) 
+		: pathToVideoFile(path)
+		, context(context)
+		, videoFile(path)
+{
+	if (!videoFile.exists())
+	{
+		//TODO use the File not found exception jeshgni
+		//throw new FileNotFoundException();
+	}
+}
+
+FileVideo::FileVideo()
+{
+
 }
 
 QDir FileVideo::getPath() const {
-    throw new NotImplementedException();
+	if (isDummy()) {
+		throw new IllegalStateException("Tried to request the path of a dummy FileVideo.");
+	}
+	return pathToVideoFile;
 }
 
-Saveable::sptr FileVideo::getDummy() {
+saveable::Saveable::sptr FileVideo::getDummy() {
 	throw new NotImplementedException();
 }
 

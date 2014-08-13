@@ -110,20 +110,7 @@ void Memento::setSharedPointer(QString name, QSharedPointer<Saveable> pointer) {
 	pointerMap.insert(name, pointer);
 }
 
-template <class T> T *Memento::getPointer(QString name) const {
-	return getSharedPointer<T>(name).data();
-}
 
-template <class T> QSharedPointer<T> Memento::getSharedPointer(QString name) const {
-	if (!pointerMap.contains(name)) {
-		throw new IllegalArgumentException("There is no pointer with name " + name + " in this memento.");
-	}
-	QSharedPointer<T> pointer = pointerMap.value(name).dynamicCast();
-	if (!pointer) {
-		throw new IllegalArgumentException("The pointer is not of requested type.");
-	}
-	return pointer;
-}
 
 QMap<QString, QString> Memento::getVariableMap() const {
 	return variableMap;

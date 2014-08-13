@@ -63,28 +63,34 @@ public:
      * @return QString the metadata with the submitted label.
 	 * @throws IllegalArgumentException if no metadata with the submitted label is available
      */
-    QString getData(QString key);
+    QString getData(QString key) const;
 
     /**
      * Returns the size (i.e. resolution) of the Video described by this object.
      *
      * @return QSize the size (i.e. resolution) of the Video described by this object
      */
-    QSize getSize();
+	QSize getSize()  const;
 
     /**
      * Returns the default playback speed in frames per second of the Video described by this object.
      *
      * @return double the default playback speed in frames per second of the Video described by this object
      */
-    double getFPS();
+	double getFPS()  const;
 
     /**
      * Returns the length in frames of the Video described by this object.
      *
      * @return unsigned int the length in frames of the Video described by this object
      */
-    unsigned int getLength();
+	unsigned int getLength()  const;
+
+	/**
+	 * Returns a map of additional metadata.
+	 * @return a map of additional metadata
+	 */
+	QMap<QString, QString> getAdditionalMetadata() const;
 
 private:
     QSize size; /**< The resolution of the Video described by this object. */
