@@ -10,6 +10,7 @@ using ::model::video::Video;
 using ::exception::NotImplementedException;
 using ::model::saveable::Saveable;
 using ::model::frame::Histogram;
+using ::model::saveable::Memento;
 
 EarthMoversHistogramDiff::EarthMoversHistogramDiff(Histogram::HistogramType type,
                                                    Video::sptr video1,
@@ -17,6 +18,10 @@ EarthMoversHistogramDiff::EarthMoversHistogramDiff(Histogram::HistogramType type
         : FrameDiff(video1, video2), type(type) {}
 
 EarthMoversHistogramDiff::~EarthMoversHistogramDiff() {}
+
+const QString EarthMoversHistogramDiff::VIDEO1 = "video1";
+const QString EarthMoversHistogramDiff::VIDEO2 = "video2";
+const QString EarthMoversHistogramDiff::TYPE = "type";
 
 double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
 	if (frameNr > getFrameCount()) {
@@ -35,6 +40,30 @@ double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
 	}
 	// TODO scale
 	return sum;
+}
+
+EarthMoversHistogramDiff::EarthMoversHistogramDiff() {}
+
+Memento EarthMoversHistogramDiff::getMemento() const {
+	Memento memento;
+	memento.setSharedPointer(VIDEO1, video1);
+	memento.setSharedPointer(VIDEO2, video2);
+	memento.setString(TYPE, Histogram::HISTOGRAM_TYPE_STRINGS[type]);
+	return memento;
+}
+
+void EarthMoversHistogramDiff::restore(Memento memento) {
+	video1 = memento.getSharedPointer(VIDEO1).dynamicCast<Video>();
+	video2 = memento.getSharedPointer(VIDEO2).dynamicCast<Video>();
+	type = Histogram::stringToType(memento.getString(TYPE));
+	isDummyFlag = false;
+}
+
+Saveable::sptr EarthMoversHistogramDiff::getDummy() {
+	EarthMoversHistogramDiff *dummy = new EarthMoversHistogramDiff();
+	dummy->isDummyFlag = true;
+	EarthMoversHistogramDiff::sptr dummyPointer = QSharedPointer<EarthMoversHistogramDiff>(dummy);
+	return dummyPointer;
 }
 
 Saveable::SaveableType EarthMoversHistogramDiff::getType() const {

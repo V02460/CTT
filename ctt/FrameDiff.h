@@ -53,11 +53,12 @@ protected:
     */
     virtual ~FrameDiff();
 
-    ::model::video::Video::sptr video1; /**< The first of the two Videos which this FrameDiff compares. */
-    ::model::video::Video::sptr video2; /**< The second of the two Videos which this FrameDiff compares. */
+	/** The first of the two Videos which this FrameDiff compares. */
+    ::model::video::Video::sptr video1;
+	/** The second of the two Videos which this FrameDiff compares. */
+    ::model::video::Video::sptr video2;
 
-private:
-    FrameDiff();
+	FrameDiff();
 };
 
 }  // namespace difference

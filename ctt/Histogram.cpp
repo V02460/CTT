@@ -29,6 +29,37 @@ static QSize getCompactedSize(QSize currentSize);
 Histogram::Histogram() {
 }
 
+const QString Histogram::RED = "red";
+const QString Histogram::GREEN = "green";
+const QString Histogram::BLUE = "blue";
+const QString Histogram::LUMINANCE = "luminance";
+const QString Histogram::HUE = "hue";
+const QString Histogram::SATURATION = "saturation";
+
+const QList<QString> Histogram::HISTOGRAM_TYPE_STRINGS = QList<QString>()
+<< RED
+<< GREEN
+<< BLUE
+<< LUMINANCE
+<< HUE
+<< SATURATION;
+
+const Histogram::HistogramType Histogram::stringToType(QString string) {
+	for (int i = 0; i < HISTOGRAM_TYPE_STRINGS.length(); i++) {
+		if (string == HISTOGRAM_TYPE_STRINGS[i]) {
+			return static_cast<HistogramType>(i);
+		}
+	}
+	throw new IllegalArgumentException(string + " is not a histogram type.");
+}
+
+/**
+* A list if String representations of Histogram Types.
+*
+* This list must be parallel to the HistogramType enum.
+*/
+static const QList<QString> HISTOGRAM_TYPE_STRINGS;
+
 void Histogram::init(const Frame &frame) {
     Surface::sptr histogramGrid = makeHistogramGrid(frame);
     requestValuesFromHistogramGrid(*histogramGrid.data());
