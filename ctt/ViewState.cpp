@@ -28,4 +28,16 @@ Saveable::SaveableType ViewState::getType() const {
 	return Saveable::SaveableType::viewState;
 }
 
+QSharedPointer<ViewState> ViewState::getInstance() {
+	throw new NotImplementedException();
+}
+
+QSharedPointer<VideoDisplayPolicy> ViewState::getCurrentVideoDisplayPolicy() {
+	throw new NotImplementedException();
+}
+
+void ViewState::changeVideoDisplayPolicy() {
+	throw new NotImplementedException();
+}
+
 }  // namespace view

@@ -10,7 +10,7 @@ QRect NoScalePolicy::getViewportSize(QSize windowSize, QSize videoSize) {
 		viewportSize.setWidth(videoSize.height());
 	}
 
-	if (windowSize.height > videoSize.height) {
+	if (windowSize.height() > videoSize.height()) {
 		viewportSize.setY((windowSize.height() - videoSize.height()) / 2);
 		viewportSize.setHeight(videoSize.height());
 	}
