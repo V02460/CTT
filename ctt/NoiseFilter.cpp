@@ -7,6 +7,7 @@ namespace filter {
 
 using ::model::frame::Frame;
 using ::exception::NotImplementedException;
+using ::model::saveable::Saveable;
 
 NoiseFilter::NoiseFilter(Module::sptr predecessor) : Filter(predecessor) {
     throw new NotImplementedException();
@@ -22,6 +23,10 @@ QString NoiseFilter::getName() const {
 
 model::frame::Frame::sptr NoiseFilter::getFrame(unsigned int frameNumber) const {
     throw new NotImplementedException();
+}
+
+Saveable::SaveableType NoiseFilter::getType() const {
+	return Saveable::SaveableType::noiseFilter;
 }
 
 }  // namespace filter

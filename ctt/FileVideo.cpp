@@ -33,5 +33,9 @@ QDir FileVideo::getPath() const {
 	return pathToVideoFile;
 }
 
+saveable::Saveable::sptr FileVideo::getDummy() {
+	throw new NotImplementedException();
+}
+
 }  // namespace video
 }  // namespace model

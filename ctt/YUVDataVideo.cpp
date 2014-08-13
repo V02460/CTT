@@ -80,7 +80,7 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, 
 	if (((pixelsPerFrame / 256) * metadata.getLength()) != metadataFile.size())
 	{
 		throw new IllegalArgumentException("The metadata file at the submitted location doesn't contain information about the number of macroblocks in the videofile (assuming 16x16p macroblocks and 1 byte of metadata per macroblock).");
-	}
+}
 
 	hasMetadataFile = true;
 
@@ -107,12 +107,12 @@ VideoMetadata YUVDataVideo::getMetadata() const {
 }
 
 model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const {
-	throw new NotImplementedException();
+    throw new NotImplementedException();
 
 	if (isDummy())
 	{
 		throw new NotImplementedException("Tried to request a frame from a dummy YUVDataVideo");
-	}
+}
 
 	if (!hasFrameInBuffer(frameNumber)) {
 		load(frameNumber);
@@ -239,13 +239,17 @@ bool YUVDataVideo::hasFrameInBuffer(unsigned int frameNr) const
 Memento YUVDataVideo::getMemento() const
 {
 	//TODO eskjfe
-	throw new NotImplementedException();
+    throw new NotImplementedException();
 }
 
 void YUVDataVideo::restore(Memento memento)
 {
 	//TODO kehflakf
-	throw new NotImplementedException();
+    throw new NotImplementedException();
+}
+
+saveable::Saveable::SaveableType YUVDataVideo::getType() const {
+	return Saveable::SaveableType::yUVDataVideo;
 }
 
 ::model::saveable::Saveable::sptr YUVDataVideo::getDummy()

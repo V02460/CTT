@@ -14,7 +14,7 @@ using ::model::difference::FrameDiff;
 using ::view::ViewState;
 using ::exception::NotImplementedException;
 
-Project::Project() : player2(24.0) {
+Project::Project() : player2(new Player(24.0)) {
     throw new NotImplementedException();
 }
 
@@ -26,7 +26,7 @@ SaveableList<FilteredVideo>::sptr Project::getVideoList1() const {
     throw new NotImplementedException();
 }
 
-SaveableList<Video>::sptr Project::getVideoList2() const {
+SaveableList<FilteredVideo>::sptr Project::getVideoList2() const {
     throw new NotImplementedException();
 }
 

@@ -29,6 +29,8 @@ public:
     */
     QDir getPath() const;
 
+	static Saveable::sptr getDummy();
+
 protected:
 	/**
 	 * Creates a File video initialized with the submitted path and context.

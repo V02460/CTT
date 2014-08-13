@@ -50,19 +50,19 @@ public:
 
 	/**
 	* Creates a new YUVDataVideo representing the YUV 4:4:4, YUV 4:2:2 or YUV 4:2:0 video at the submitted location in the file
-	* system.
-	*
+    * system.
+    *
 	* @param pathToVideoFile the path to the video file which will be loaded
 	* @param resolution the resolution of the video
 	* @param framerate the framerate of the video in fps
 	* @param type specifies the YUV type of the video, i.e. 444, 422 or 420
-	* @param context the context in which the video creates its frames
+    * @param context the context in which the video creates its frames
 	* @throws FileNotFoundException if the files at the submitted locations can't be found.
 	* @throws IllegalArgumentException if the file at the submitted locations isn't a valid YUV 4:4:4, YUV 4:2:2 or
 	*     YUV 4:2:0 video file
 	* @throws IllegalArgumentException if resolution has a size or width of 0
 	* @throws IllegalArgumentException if framerate isn't greater than zero
-	*/
+    */
 	YUVDataVideo(QString pathToVideoFile, QSize resolution, double framerate, YUVType type, QSharedPointer<QOpenGLContext> context);
 
     /**
@@ -85,6 +85,8 @@ public:
 	virtual Memento getMemento() const;
 
 	virtual void restore(Memento memento);
+
+	virtual ::model::saveable::Saveable::SaveableType getType() const;
 
 private:
     /**

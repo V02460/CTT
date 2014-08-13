@@ -64,6 +64,7 @@ public:
     virtual ::model::saveable::Memento getMemento() const;
     virtual void restore(::model::saveable::Memento memento);
     static Saveable::sptr getDummy();
+	virtual ::model::saveable::Saveable::SaveableType getType() const;
 
 private:
     QList<UIntegerInterval> intervals; /**< The list of active Intervals*/

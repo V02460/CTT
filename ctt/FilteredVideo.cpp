@@ -11,6 +11,7 @@ using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
+using ::model::saveable::Saveable;
 
 FilteredVideo::FilteredVideo(Video::sptr baseVideo) : baseVideo(baseVideo) {
 
@@ -25,7 +26,7 @@ void FilteredVideo::addFilter(Filter::sptr filter, unsigned int pos) {
 	if (isDummy())
 	{
 		throw new IllegalStateException("Tried to add a filter to a dummy FilteredVideo.");
-	}
+}
 
 	if (pos > (unsigned int) filters.count())
 	{
@@ -54,7 +55,7 @@ Filter::sptr FilteredVideo::removeFilter(unsigned int pos) {
 	if (isDummy())
 	{
 		throw new IllegalStateException("Tried to remove a filter from a dummy FilteredVideo.");
-	}
+}
 
 	if (pos >= (unsigned int) filters.count())
 	{
@@ -82,8 +83,8 @@ unsigned int FilteredVideo::getFilterCount() const {
     if (isDummy())
     {
 		throw new IllegalStateException("Tried to request the filter count of a dummy FilteredVideo.");
-    }
-	
+}
+
 	return filters.count();
 }
 
@@ -91,7 +92,7 @@ QList<Filter::sptr> FilteredVideo::getFilterList() const {
 	if (isDummy())
 	{
 		throw new IllegalStateException("Tried to request the filters of a dummy FilteredVideo.");
-	}
+}
 
 	return filters;
 }
@@ -184,6 +185,10 @@ model::video::VideoMetadata FilteredVideo::getMetadata() const
 
 		return result;
 	}
+}
+
+Saveable::SaveableType FilteredVideo::getType() const {
+	return Saveable::SaveableType::filteredVideo;
 }
 
 }  // namespace filter

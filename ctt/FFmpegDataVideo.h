@@ -39,6 +39,8 @@ public:
     VideoMetadata getMetadata() const;
 
     virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
+
+	virtual ::model::saveable::Saveable::SaveableType getType() const;
 };
 
 }  // namespace video
