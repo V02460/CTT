@@ -107,7 +107,17 @@ QString Memento::getString(QString name) const {
 }
 
 void Memento::setSharedPointer(QString name, QSharedPointer<Saveable> pointer) {
+	// TODO remove
+	if (!pointer) {
+		throw new IllegalArgumentException("Weird!");
+	}
+	
 	pointerMap.insert(name, pointer);
+
+	// TODO remove
+	if (!pointerMap.value(name)) {
+		throw new IllegalArgumentException("Dammit!");
+	}
 }
 
 QMap<QString, QString> Memento::getVariableMap() const {
@@ -123,9 +133,6 @@ QSharedPointer<Saveable> Memento::getSharedPointer(QString name) const {
 		throw new IllegalArgumentException("There is no pointer with name " + name + " in this memento.");
 	}
 	QSharedPointer<Saveable> pointer = pointerMap.value(name);
-	if (!pointer) {
-		throw new IllegalArgumentException("The pointer is not of requested type.");
-	}
 	return pointer;
 }
 
