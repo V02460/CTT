@@ -204,8 +204,11 @@
     <ClCompile Include="MementoTest.cpp" />
     <ClCompile Include="VideoMetadataTest.cpp" />
     <ClCompile Include="VideoScrubberTest.cpp" />
+    <ClCompile Include="VideoWidgetTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ViewTests.h" />
+    <ClInclude Include="VideoWidgetTest.h" />
     <CustomBuild Include="HistogramTest.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing HistogramTest.h...</Message>
