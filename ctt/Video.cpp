@@ -1,6 +1,7 @@
 #include "Video.h"
 
 #include "NotImplementedException.h"
+#include "YUVType.h"
 
 namespace model {
 namespace video {
@@ -10,8 +11,63 @@ using ::exception::IllegalStateException;
 
 using ::model::frame::Frame;
 
-void Video::save(QDir path, VideoFileType fileType) const {
+void Video::save(QString path, YUVType type) const
+{
     throw new NotImplementedException();
+
+	if (isDummy()) {
+		throw new IllegalStateException("Tried to save a dummy video.");
+	}
+
+	QFile videoFile(path);
+	
+	if (videoFile.exists())
+	{
+		videoFile.remove();
+	}
+
+	if (!videoFile.open(QIODevice::WriteOnly)) {
+		//TODO jgsgiruhs use IOException here
+		//throw new IOException();
+	}
+
+	QDataStream stream(&videoFile);
+
+	int bytesPerFrame = 0;
+
+	switch (type)
+	{
+	case YUV444:
+		bytesPerFrame = 3 * getResolution().width() * getResolution().height();
+		break;
+	case YUV422:
+		if ((getResolution().width() % 2) != 0) {
+			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV422 format.");
+		}
+		bytesPerFrame = 2 * getResolution().width() * getResolution().height();
+		break;
+	case YUV420:
+		if ((getResolution().width() % 2) != 0) {
+			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
+		}
+		if ((getResolution().height() % 2) != 0) {
+			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
+		}
+		bytesPerFrame = (3 * getResolution().width() * getResolution().height()) / 2;
+		break;
+	}
+
+	for (unsigned int i; i < getFrameCount(); i++)
+	{
+		//TODO szeg get the data and write it
+	}
+
+	if (!videoFile.flush())
+	{
+		//TODO deakusd IOException
+	}
+	
+	videoFile.close();
 }
 
 ::model::frame::Frame::sptr Video::getScaledFrame(unsigned int frameNumber, QSize size) const {
@@ -25,7 +81,7 @@ QSharedPointer<QOpenGLContext> Video::getContext() const {
 	return context;
 }
 
-QSize Video::getResolution()
+QSize Video::getResolution() const
 {
 	if (isDummy()) {
 		throw new IllegalStateException("Tried to request the resolution of a dummy video.");

@@ -107,7 +107,7 @@ public:
 
     virtual unsigned int getFrameCount() const Q_DECL_OVERRIDE;
 
-	virtual QSize getResolution() Q_DECL_OVERRIDE;
+	virtual QSize getResolution() const Q_DECL_OVERRIDE;
 
 private:
     Q_DISABLE_COPY(Filter)

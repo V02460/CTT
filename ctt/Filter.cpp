@@ -43,7 +43,7 @@ unsigned int Filter::getFrameCount() const {
     throw new NotImplementedException();
 }
 
-QSize Filter::getResolution()
+QSize Filter::getResolution() const
 {
 	if (isDummy())
 	{

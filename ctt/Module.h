@@ -62,7 +62,7 @@ public:
 	 * Returns the size of the frames this module provides.    
 	 * @return the size of the frames this module provides
 	 */
-	virtual QSize getResolution() = 0;
+	virtual QSize getResolution() const = 0;
 };
 
 }  // namespace model

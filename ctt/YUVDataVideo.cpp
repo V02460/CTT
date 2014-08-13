@@ -28,14 +28,17 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QSize resolution, double fra
 		chromaSize = pixelsPerFrame;
 		break;
 	case YUV422:
-		if ((pixelsPerFrame % 2) != 0) {
-			throw new IllegalArgumentException("A video with an uneven number of pixels per frame mustn't be in the YUV422 format.");
+		if ((resolution.width() % 2) != 0) {
+			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV422 format.");
 		}
 		chromaSize = pixelsPerFrame / 2;
 		break;
 	case YUV420:
-		if ((pixelsPerFrame % 2) != 0) {
-			throw new IllegalArgumentException("A video with number of pixels per frame which isn't a multiple of 4 mustn't be in the YUV420 format.");
+		if ((resolution.width() % 2) != 0) {
+			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
+		}
+		if ((resolution.height() % 2) != 0) {
+			throw new IllegalArgumentException("A video with an uneven number of pixels vertically mustn't be in the YUV420 format.");
 		}
 		chromaSize = pixelsPerFrame / 4;
 		break;

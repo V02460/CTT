@@ -160,7 +160,7 @@ bool FilteredVideo::uses(const model::Module &module) const
 {
 	if (isDummy())
 	{
-		throw new IllegalStateException("Tried to ask a dummy FilteredVideo whether it used a specific moduule.");
+		throw new IllegalStateException("Tried to ask a dummy FilteredVideo whether it used a specific module.");
 	}
 
 	return getUsesList().contains(&module);
