@@ -220,9 +220,6 @@
     <ClInclude Include="ModelVideoTests.h">
       <Filter>TestStructure\Model\Video</Filter>
     </ClInclude>
-    <ClInclude Include="BBBTestVideo.h">
-      <Filter>Header Files\SpecialTestingClasses</Filter>
-    </ClInclude>
     <ClInclude Include="VideoWidgetTest.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>

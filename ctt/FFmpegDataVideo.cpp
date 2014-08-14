@@ -8,6 +8,7 @@ extern "C"
 #include "dev\include\libavformat\avformat.h"
 }
 
+#pragma comment(lib, "dev\\lib\\avformat.lib")
 #pragma comment(lib, "dev\\lib\\avcodec.lib")
 
 namespace model {
