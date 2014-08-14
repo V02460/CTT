@@ -36,11 +36,24 @@ public:
      */
 	FFmpegDataVideo(QString path, QSharedPointer<QOpenGLContext> context);
 
+	~FFmpegDataVideo();
+
     VideoMetadata getMetadata() const;
 
     virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
 
 	virtual ::model::saveable::Saveable::SaveableType getType() const;
+
+private:
+	//Information about the videoFile
+	AVFormatContext *videoFormatContext;
+	//Context of the codec used by the first video stream (the one that will be used)
+	AVCodecContext *codecContext;
+	//number of the first video stream (the one that will be used)
+	int videoStreamNr;
+	//the codec used to decode the video
+	AVCodec *vCodec;
+
 };
 
 }  // namespace video
