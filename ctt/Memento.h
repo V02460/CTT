@@ -34,9 +34,7 @@ public:
 	 * @return The pointer with given name.
 	 * @throws InvalidArgumentException Is thrown if there is no pointer with given name.
 	 */
-	template<class T> T* getPointer(QString name) const {
-		return getSharedPointer<T>(name).data();
-	}
+	Saveable* getPointer(QString name) const;
 
 	/**
 	 * Returns the shared pointer with given name.
@@ -45,16 +43,7 @@ public:
 	 * @return The shared pointer with given name.
 	 * @throws InvalidArgumentException Is thrown if there is no pointer with given name.
 	 */
-	template<class T> QSharedPointer<T> getSharedPointer(QString name) const {
-		if (!pointerMap.contains(name)) {
-			throw new IllegalArgumentException(QString("There is no pointer with name ").append(name).append(" in this memento."));
-		}
-		QSharedPointer<T> pointer = dynamic_cast<T>(pointerMap.value(name));
-		if (!pointer) {
-			throw new IllegalArgumentException(QString("The pointer is not of requested type."));
-		}
-		return pointer;
-	}
+	QSharedPointer<Saveable> getSharedPointer(QString name) const;
 
 	/**
 	 * Creates a new, empty memento.

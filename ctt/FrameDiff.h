@@ -13,7 +13,6 @@ namespace difference {
 
 /**
  * A FrameDiff compares corresponding frames from two specific videos and calculates one-dimensional distances between them.
- *
  */
 class FrameDiff : public ::model::saveable::Saveable {
 public:
@@ -22,9 +21,9 @@ public:
     typedef QWeakPointer<FrameDiff> wptr;
 
     /**
-     * Calculates and returns a one dimensional difference between the frames with the submitted number of the two
-     * videos this FrameDiff compares. A low value means the frames were similar, a high value indicates a huge
-     * difference.
+     * Calculates and returns a value between 0 and 1 to indicate the difference between the frames with the
+	 * submitted number of the two videos this FrameDiff compares. A low value means the frames were similar,
+	 * a value close to 1 indicates a huge difference.
      *
      * @param frameNr the frames with this number will be compared
      * @return double the calculated distance between the two frames
@@ -54,11 +53,12 @@ protected:
     */
     virtual ~FrameDiff();
 
-    ::model::video::Video::uptr video1; /**< The first of the two Videos which this FrameDiff compares. */
-    ::model::video::Video::uptr video2; /**< The second of the two Videos which this FrameDiff compares. */
+	/** The first of the two Videos which this FrameDiff compares. */
+    ::model::video::Video::sptr video1;
+	/** The second of the two Videos which this FrameDiff compares. */
+    ::model::video::Video::sptr video2;
 
-private:
-    FrameDiff();
+	FrameDiff();
 };
 
 }  // namespace difference

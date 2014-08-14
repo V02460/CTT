@@ -8,6 +8,7 @@ namespace model {
 namespace video {
 
 using ::model::frame::Frame;
+using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
 using ::exception::IllegalArgumentException;
@@ -48,7 +49,7 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QSize resolution, double fra
 
 	if ((videoFile.size() % bytesPerFrame) != 0)
 	{
-		throw new IllegalArgumentException("The size of the submitted video file (" + QString::number(videoFile.size())
+		throw new IllegalArgumentException("The size of the submitted video file (" + QString::number(videoFile.size()) 
 			+ " bytes) isn't a multiple of the calculated frame size (" + QString::number(bytesPerFrame) + " bytes).");
 	}
 	unsigned int length = videoFile.size() / bytesPerFrame;
@@ -93,7 +94,6 @@ YUVDataVideo::YUVDataVideo()
 	isDummyFlag = true;	
 }
 
-
 YUVDataVideo::~YUVDataVideo() {
 
 }
@@ -107,7 +107,7 @@ VideoMetadata YUVDataVideo::getMetadata() const {
 }
 
 model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const {
-    throw new NotImplementedException();
+	throw new NotImplementedException();
 
 	if (isDummy())
 	{
@@ -227,6 +227,10 @@ void YUVDataVideo::load(unsigned int startFrame) const
 		loadMetadata(startFrame);
 	}
 
+	videoBuffer = videoFile.read(numberOfFramesInMemory * bytesPerFrame);
+
+	videoFile.close();
+
 	firstFrameInMemory = startFrame;
 }
 
@@ -239,13 +243,13 @@ bool YUVDataVideo::hasFrameInBuffer(unsigned int frameNr) const
 Memento YUVDataVideo::getMemento() const
 {
 	//TODO eskjfe
-    throw new NotImplementedException();
+	throw new NotImplementedException();
 }
 
 void YUVDataVideo::restore(Memento memento)
 {
 	//TODO kehflakf
-    throw new NotImplementedException();
+	throw new NotImplementedException();
 }
 
 saveable::Saveable::SaveableType YUVDataVideo::getType() const {
