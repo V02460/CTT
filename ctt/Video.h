@@ -11,6 +11,7 @@
 
 #include "Module.h"
 #include "Frame.h"
+#include "Observable.h"
 #include "Memento.h"
 #include "VideoMetadata.h"
 #include "VideoFileType.h"
@@ -22,7 +23,7 @@ namespace video {
  * Represents a video with all it's frames and metadata.
  *
  */
-class Video : public ::model::Module {
+class Video : public ::model::Module, public ::model::Observable {
 public:
     typedef QScopedPointer<Video> uptr;
     typedef QSharedPointer<Video> sptr;
