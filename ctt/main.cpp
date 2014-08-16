@@ -12,8 +12,8 @@ int main(int argc, char *argv[])
     
     TestResult r("");
 
-    r << model::test(argc, argv);
-	//view::test(argc, argv, &a);
+    //r << model::test(argc, argv);
+	r << view::test(argc, argv, &a);
 
     r.print("");
 }

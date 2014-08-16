@@ -2,6 +2,7 @@
 #define _VIEWTESTS_H
 
 #include "VideoWidgetTest.h"
+#include "ListedPushButtonTest.h"
 #include "Frame.h"
 #include <QApplication>
 
@@ -9,20 +10,11 @@ namespace view {
 static TestResult test(int argc, char *argv[], QApplication *a) {
 	TestResult r("view");
 
-	/*VideoWidgetTest mainWindow = VideoWidgetTest();
-	mainWindow.show();*/
-	QImage testImage = QImage(":/cttUnitTests/BigBuckBunny.png");
-	QOffscreenSurface surface;
-	surface.create();
-	QSharedPointer<QOpenGLContext> testContext = QSharedPointer<QOpenGLContext>(new QOpenGLContext());
-	testContext->create();
-	testContext->makeCurrent(&surface);
-	testImage.load(":/cttUnitTests/BigBuckBunny.png");
+	/*VideoWidgetTest videoWidgetTest = VideoWidgetTest();
+	videoWidgetTest.show();*/
 
-	model::frame::Frame testFrame(testContext, testImage);
-
-	VideoWidget testVideoWidget = VideoWidget(&testFrame);
-	testVideoWidget.show();
+	ListedPushButtonTest listedPushButtonTest = ListedPushButtonTest();
+	listedPushButtonTest.show();
 	a->exec();
 
 	return r;

@@ -168,6 +168,15 @@
     <ClCompile Include="VideoWidgetTest.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
+    <ClCompile Include="ListedPushButtonTest.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ListedPushButtonTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ListedPushButtonTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -187,6 +196,9 @@
     </CustomBuild>
     <CustomBuild Include="HistogramTest.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ListedPushButtonTest.h">
+      <Filter>Header Files\View</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
