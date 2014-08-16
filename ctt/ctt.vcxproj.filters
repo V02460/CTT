@@ -134,6 +134,11 @@
     <Filter Include="Resource Files\Images">
       <UniqueIdentifier>{e20e1833-b2fa-4e66-a0de-24671f52c9dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lokalisierungs Dateien">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_ctt.cpp">
@@ -583,6 +588,15 @@
     <ClCompile Include="NoScalePolicy.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
+    <ClCompile Include="ListedPushButton.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ListedPushButton.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ListedPushButton.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -670,6 +684,9 @@
       <Filter>Header Files\Model</Filter>
     </CustomBuild>
     <CustomBuild Include="NoScalePolicy.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ListedPushButton.h">
       <Filter>Header Files\View</Filter>
     </CustomBuild>
   </ItemGroup>
@@ -970,6 +987,9 @@
     <ClInclude Include="ParseException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
+    <None Include="ctt_en.ts">
+      <Filter>Lokalisierungs Dateien</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Images\big_buck_bunny_01337.png">
