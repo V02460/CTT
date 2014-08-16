@@ -2,8 +2,9 @@
 #define _LISTEDPUSHBUTTON
 
 #include <QPushButton>
-#include <Video.h>
-#include <Observer.h>
+#include "Video.h"
+#include "Observer.h"
+#include "Frame.h"
 
 namespace view {
 	/**
@@ -11,6 +12,7 @@ namespace view {
 	 *	and whose signals can be later on identified by the id given to the button.
 	 */
 class ListedPushButton : public QPushButton , public model::Observer {
+	Q_OBJECT
 public:
 	typedef QScopedPointer<ListedPushButton> uptr;
 	typedef QSharedPointer<ListedPushButton> sptr;
@@ -33,7 +35,10 @@ public:
 	ListedPushButton(int id, QWidget *parent = 0);
 
 	virtual void update() Q_DECL_OVERRIDE;
-public slots:
+signals:
+	void toggled(bool checked, int id);
+	void clicked(bool checked, int id);
+private slots:
 	/**
 	*	Wraps the default toggled signal of QPushButton to the custom toggled signal of this class.
 	*
@@ -46,15 +51,13 @@ public slots:
 	*	@param checked If the button is checkable this determines whether the button was checked or unchecked
 	*/
 	void buttonClicked(bool checked);
-signals:
-	void toggled(bool checked, int id);
-	void clicked(bool checked, int id);
 private:
 	void init(int id);
 	void setThumbnail();
 
 	int id; /**< The id which represents the buttons index in the list */
 	model::video::Video::sptr video; /**< The video from which this button generates its thumbnail */
+	model::frame::Frame::sptr testFrame;
 };
 
 } // namespace view

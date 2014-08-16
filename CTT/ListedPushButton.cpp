@@ -1,13 +1,26 @@
 #include "ListedPushButton.h"
 
+#include <QApplication>
+
 namespace view {
 	ListedPushButton::ListedPushButton(int id, model::video::Video::sptr video, QWidget *parent) : QPushButton(parent) {
 		init(id);
 		
 		this->video = video;
-		video->subscribe(ListedPushButton::sptr(this));
+		if (video.data() != 0) {
+			video->subscribe(ListedPushButton::sptr(this));
 
-		setThumbnail();
+			setThumbnail();
+		} else {
+			setText(tr("NO_VIDEO_SPECIFIED") + " ID: " + QString::number(id));
+		}
+
+		QSizePolicy sizePolicy = QSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+		sizePolicy.setHeightForWidth(true);
+		sizePolicy.setWidthForHeight(true);
+		setSizePolicy(sizePolicy);
+		setMinimumSize(QSize(160, 90));
+		setCheckable(true);
 	}
 
 	ListedPushButton::ListedPushButton(int id, QWidget *parent) : QPushButton(parent) {
@@ -15,8 +28,8 @@ namespace view {
 	}
 
 	void ListedPushButton::init(int id) {
-		connect(this, SIGNAL(toggled(bool)), this, SLOT(buttonToggled(bool)));
-		connect(this, SIGNAL(clicked(bool)), this, SLOT(buttonClicked(bool)));
+		QObject::connect(this, SIGNAL(toggled(bool)), this, SLOT(buttonToggled(bool)));
+		QObject::connect(this, SIGNAL(clicked(bool)), this, SLOT(buttonClicked(bool)));
 
 		this->id = id;
 	}
@@ -28,8 +41,6 @@ namespace view {
 	void ListedPushButton::setThumbnail() {
 		setIcon(QIcon(QPixmap::fromImage(video->getFrame(12)->getFramebufferObject()->toImage())));
 		setIconSize(size());
-		setFlat(true);
-		setCheckable(true);
 	}
 
 	void ListedPushButton::buttonClicked(bool checked) {
