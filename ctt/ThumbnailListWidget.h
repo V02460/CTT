@@ -4,7 +4,7 @@
 #include <QScopedPointer>
 #include <QWeakPointer>
 #include <QLayout>
-#include <QScrollArea>
+#include <QWidget>
 #include <QPushButton>
 #include <QList>
 #include <QDir>
@@ -19,7 +19,7 @@ namespace view {
  * The TumbnailListWidget displays a set of videos by its thumbnails and provides the interactable components to set
  * one or more videos active, to add videos to and to remove videos from the program.
  */
-class ThumbnailListWidget : public QScrollArea, public::model::Observer {
+class ThumbnailListWidget : public QWidget, public::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<ThumbnailListWidget> uptr;
@@ -49,7 +49,7 @@ signals:
      *
      * @param path The file path that leads to the video file.
      */
-    void videoAdded(QDir path);
+    void videoAdded(QString path);
 
     /**
      * This signal is emitted when an existing video is removed from the program.
@@ -57,6 +57,10 @@ signals:
      * @param index The index in the filteredVideos list of the video which should be removed.
      */
     void videoRemoved(int index);
+
+	void buttonActivated(int id);
+	void buttonReplaced(int oldActiveId, int newActiveId);
+	void buttonDeactivated(int id);
 private:
     QList<ListedPushButton::sptr> thumbnailList; /**< The list of buttons with the thumbnails of the specific videos as icons */
     QPushButton *btnAddVideo; /**< The button to add a new video */

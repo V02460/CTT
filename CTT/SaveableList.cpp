@@ -37,27 +37,29 @@ namespace saveable {
 using ::exception::NotImplementedException;
 
 template <class T>
-SaveableList<T>::SaveableList() {}
+SaveableList<T>::SaveableList() {
+	list = QList<typename T::sptr>();
+}
 
 template <class T>
-void SaveableList<T>::insert(unsigned int index, typename T::sptr element) {
+void SaveableList<T>::insert(int index, typename T::sptr element) {
 	list.insert(index, element);
 }
 
 template <class T>
-typename T::sptr SaveableList<T>::remove(unsigned int index) {
+typename T::sptr SaveableList<T>::remove(int index) {
 	T::sptr element = get(index);
 	list.removeAt(index);
 	return element;
 }
 
 template <class T>
-const typename T::sptr SaveableList<T>::get(unsigned int index) const {
+const typename T::sptr SaveableList<T>::get(int index) const {
 	return list[index];
 }
 
 template <class T>
-const unsigned int SaveableList<T>::getSize() const {
+const int SaveableList<T>::getSize() const {
 	return list.size();
 }
 
