@@ -177,6 +177,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_ListedPushButtonTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="ThumbnailListWidgetTest.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ThumbnailListWidgetTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ThumbnailListWidgetTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -198,6 +207,9 @@
       <Filter>Header Files\Model\Frame\Histogram</Filter>
     </CustomBuild>
     <CustomBuild Include="ListedPushButtonTest.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ThumbnailListWidgetTest.h">
       <Filter>Header Files\View</Filter>
     </CustomBuild>
   </ItemGroup>
