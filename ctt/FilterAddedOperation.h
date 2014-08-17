@@ -38,6 +38,11 @@ public:
      * Manages requests to undo adding a Filter to the FilterList.
      **/
     void undoOperation();
+
+private:
+	::model::filter::Filter::sptr filter;
+	::model::filter::FilteredVideo::sptr filteredVideo;
+	::model::saveable::Memento memento;
 };
 
 }  // namespace operation
