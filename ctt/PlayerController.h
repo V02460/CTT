@@ -59,6 +59,13 @@ public slots:
      */
     void setToDefaultFPS();
 
+	/**
+	 *	Is notified when the player is requested to set its FPS to a specific value.
+	 *
+	 *	@param fps The FPS value the player's fps should be set to.
+	 */
+	void setFPS(int fps);
+
     /**
      * Is notified when a new player is requested and initiates setting it.
      *
