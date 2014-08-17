@@ -5,7 +5,7 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 
-#include "FilterListOperation.h"
+#include "Operation.h"
 #include "Filter.h"
 #include "FilteredVideo.h"
 
@@ -15,7 +15,7 @@ namespace operation {
 /**
  * The FilterAddedOperation is providing the functionality for doing and undoing adding a filter.
  */
-class FilterAddedOperation : public FilterListOperation {
+class FilterAddedOperation : public Operation {
 public:
     typedef QScopedPointer<FilterAddedOperation> uptr;
     typedef QSharedPointer<FilterAddedOperation> sptr;

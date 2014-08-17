@@ -496,9 +496,6 @@
     <ClCompile Include="FilterAddedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
-    <ClCompile Include="FilterListOperation.cpp">
-      <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
     <ClCompile Include="FilterParamChangedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
@@ -685,9 +682,6 @@
     </ClInclude>
     <ClInclude Include="FilterFactory.h">
       <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterListOperation.h">
-      <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
     <ClInclude Include="FilterParam.h">
       <Filter>Header Files\Model\Filter</Filter>
