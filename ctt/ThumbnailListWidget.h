@@ -13,13 +13,14 @@
 #include "Video.h"
 #include "SaveableList.h"
 #include "ListedPushButton.h"
+#include "VideoListController.h"
 
 namespace view {
 /**
  * The TumbnailListWidget displays a set of videos by its thumbnails and provides the interactable components to set
  * one or more videos active, to add videos to and to remove videos from the program.
  */
-class ThumbnailListWidget : public QWidget, public::model::Observer {
+class ThumbnailListWidget : public QWidget, public::model::Observer, public ::model::Observable {
     Q_OBJECT
 public:
     typedef QScopedPointer<ThumbnailListWidget> uptr;
@@ -40,6 +41,10 @@ public:
                         int selectableCount, bool isHorizontal = false, QWidget *parent = 0);
 
 	virtual void update() Q_DECL_OVERRIDE;
+
+	void subscribe(::controller::VideoListController::sptr observer);
+
+	void unsubscribe(const ::controller::VideoListController &observer);
 public slots:
 	void btnAddVideoClicked(bool checked);
 	void listedButtonToggled(bool checked, int id);

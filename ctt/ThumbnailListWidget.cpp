@@ -98,4 +98,14 @@ void ThumbnailListWidget::btnAddVideoClicked(bool checked) {
 	emit videoAdded(videoPath);
 }
 
+void ThumbnailListWidget::subscribe(::controller::VideoListController::sptr observer) {
+	QObject::connect(this, SIGNAL(videoAdded(QString)), observer.data(), SLOT(addVideo(QString)));
+	QObject::connect(this, SIGNAL(videoRemoved(int)), observer.data(), SLOT(removeVideo(int)));
+}
+
+void ThumbnailListWidget::unsubscribe(const ::controller::VideoListController &observer) {
+	QObject::disconnect(this, SIGNAL(videoAdded(QString)), &observer, SLOT(addVideo(QString)));
+	QObject::disconnect(this, SIGNAL(videoRemoved(int)), &observer, SLOT(removeVideo(int)));
+}
+
 }  // namespace view
