@@ -56,5 +56,12 @@ bool OperationList::canRedo() const {
 	return currentOperation != operations.constEnd();
 }
 
+OperationList OperationList::getInstance() {
+	if (instance.isNull()) {
+		instance = QSharedPointer<OperationList>(new OperationList());
+	}
+	return *instance.data();
+}
+
 }  // namespace operation
 }  // namespace controller

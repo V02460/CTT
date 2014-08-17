@@ -173,6 +173,7 @@
     <ClCompile Include="FilterFactory.cpp" />
     <ClCompile Include="FilterIntervalList.cpp" />
     <ClCompile Include="FilterListView.cpp" />
+    <ClCompile Include="FilterMovedOperation.cpp" />
     <ClCompile Include="FilterParam.cpp" />
     <ClCompile Include="FilterParamChangedOperation.cpp" />
     <ClCompile Include="FilterRemovedOperation.cpp" />
@@ -554,6 +555,7 @@
     <ClInclude Include="FilterFactory.h" />
     <ClInclude Include="FilterIntervalList.h" />
     <ClInclude Include="FilterListView.h" />
+    <ClInclude Include="FilterMovedOperation.h" />
     <ClInclude Include="FilterParam.h" />
     <ClInclude Include="FilterParamChangedOperation.h" />
     <ClInclude Include="FilterRemovedOperation.h" />
