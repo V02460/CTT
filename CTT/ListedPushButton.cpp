@@ -17,9 +17,8 @@ namespace view {
 
 		QSizePolicy sizePolicy = QSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 		sizePolicy.setHeightForWidth(true);
-		sizePolicy.setWidthForHeight(true);
 		setSizePolicy(sizePolicy);
-		setMinimumSize(QSize(160, 90));
+		setMinimumSize(QSize(80, 45));
 		setCheckable(true);
 	}
 
@@ -49,6 +48,10 @@ namespace view {
 
 	void ListedPushButton::buttonToggled(bool checked) {
 		emit toggled(checked, id);
+	}
+
+	int ListedPushButton::heightForWidth(int w) const {
+		return w * ((float)16 / 9);
 	}
 
 } // namespace view

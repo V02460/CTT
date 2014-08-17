@@ -35,6 +35,8 @@ public:
 	ListedPushButton(int id, QWidget *parent = 0);
 
 	virtual void update() Q_DECL_OVERRIDE;
+
+	virtual int heightForWidth(int w) const Q_DECL_OVERRIDE;
 signals:
 	void toggled(bool checked, int id);
 	void clicked(bool checked, int id);
