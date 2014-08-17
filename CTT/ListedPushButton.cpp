@@ -51,7 +51,7 @@ namespace view {
 	}
 
 	int ListedPushButton::heightForWidth(int w) const {
-		return w * ((float)16 / 9);
+		return w * ((float)9 / 16);
 	}
 
 } // namespace view

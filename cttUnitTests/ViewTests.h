@@ -3,6 +3,7 @@
 
 #include "VideoWidgetTest.h"
 #include "ListedPushButtonTest.h"
+#include "ThumbnailListWidgetTest.h"
 #include "Frame.h"
 #include <QApplication>
 
@@ -13,8 +14,11 @@ static TestResult test(int argc, char *argv[], QApplication *a) {
 	/*VideoWidgetTest videoWidgetTest = VideoWidgetTest();
 	videoWidgetTest.show();*/
 
-	ListedPushButtonTest listedPushButtonTest = ListedPushButtonTest();
-	listedPushButtonTest.show();
+	/*ListedPushButtonTest listedPushButtonTest = ListedPushButtonTest();
+	listedPushButtonTest.show();*/
+
+	ThumbnailListWidgetTest thumbnailListWidgetTest = ThumbnailListWidgetTest();
+	thumbnailListWidgetTest.show();
 	a->exec();
 
 	return r;

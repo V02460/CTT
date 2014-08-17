@@ -11,8 +11,8 @@ ListedPushButtonTest::ListedPushButtonTest(QWidget *parent) : QWidget(parent) {
 void ListedPushButtonTest::setupUi() {
 	lpbOne = new view::ListedPushButton(0, model::video::Video::sptr(), this);
 	lpbTwo = new view::ListedPushButton(1, model::video::Video::sptr(), this);
-	lpbOne->setCheckable(true);
-	lpbTwo->setCheckable(true);
+	//lpbOne->setCheckable(true);
+	//lpbTwo->setCheckable(true);
 
 	QGridLayout *testLayout = new QGridLayout(this);
 	testLayout->addWidget(lpbOne, 0, 0);
