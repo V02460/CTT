@@ -13,6 +13,7 @@
 #include "FilterParamChangedOperation.h"
 #include "FilterRemovedOperation.h"
 #include "FilterMovedOperation.h"
+#include "OperationList.h"
 
 namespace controller {
 
@@ -72,6 +73,7 @@ public:
 
 private:
     ::model::filter::FilteredVideo::sptr video;
+	::controller::operation::OperationList list;
 };
 
 }  // namespace controller
