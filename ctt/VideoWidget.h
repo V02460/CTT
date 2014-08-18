@@ -14,7 +14,7 @@ namespace view {
 
 /**
  * The VideoWidget is responsible for showing a concrete video frame.
- * Therefore it registers itself at a VideoScrubber and diplays the frame provided by it.
+ * Therefore it registers itself at a VideoScrubber and displays the frame provided by it.
  */
 	class VideoWidget : public QWindow, public QOpenGLFunctions, ::model::Observer {
     Q_OBJECT
@@ -32,7 +32,7 @@ public:
 	VideoWidget(::model::player::VideoScrubber::sptr scrubber, QWindow *parent = 0);
 
 	//TODO Testkonstruktor entfernen
-	VideoWidget(::model::frame::Frame *renderedFrame);
+	VideoWidget(::model::frame::Frame::sptr renderedFrame);
 
     /**
      * Returns the VideoScrubber at which the VideoWidget is registered and where the VideoWidget receives its frames
@@ -55,17 +55,20 @@ private:
 
 	void adjustViewportCoordinates();
 
+    void getVertexPosition(GLfloat *vertices) const;
+
     ::model::player::VideoScrubber::sptr scrubber; /**< The scrubber at which the VideoWidget is registered */
 
-	QSharedPointer<QOpenGLContext> m_context;
-	QSharedPointer<QOpenGLShaderProgram> m_program;
+	QSharedPointer<QOpenGLContext> context;
+    QSharedPointer<QOpenGLShaderProgram> program;
 
-	bool isM_contextObsolete; /**< Indicates if the context is not needed anymore because of a frame or size change */
 	QRect viewportCoordinates;
+
+    bool isInitialized;
 
 	//TODO Testattribute rausnehmen
 	bool isInSingelFrameTest;
-	model::frame::Frame *testFrame;
+	model::frame::Frame::sptr testFrame;
 };
 
 }  // namespace view

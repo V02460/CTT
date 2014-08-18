@@ -3,37 +3,36 @@
 #include "NotImplementedException.h"
 #include "ViewState.h"
 
+#include "OpenGLException.h"
+
 namespace view {
 
 using ::model::player::VideoScrubber;
 using ::model::Observer;
 using ::exception::NotImplementedException;
+using ::exception::OpenGLException;
 
-VideoWidget::VideoWidget(VideoScrubber::sptr scrubber, QWindow *parent) :QWindow(parent) {
+VideoWidget::VideoWidget(VideoScrubber::sptr scrubber, QWindow *parent)
+        :QWindow(parent)
+        ,context(0)
+        ,isInitialized(false) {
+
 	this->scrubber = scrubber;
 	this->scrubber->subscribe(QSharedPointer<Observer>(this));
-	isM_contextObsolete = true;
 
 	setSurfaceType(QWindow::OpenGLSurface);
 
-	adjustViewportCoordinates();
+    glViewport(0, 0, width(), height());
 
 	isInSingelFrameTest = false;
-
-	initialize();
 }
 
-VideoWidget::VideoWidget(model::frame::Frame *testFrame) {
-	isM_contextObsolete = true;
+VideoWidget::VideoWidget(model::frame::Frame::sptr testFrame) : context(0), isInitialized(false) {
 	this->testFrame = testFrame;
 
 	setSurfaceType(QWindow::OpenGLSurface);
 
 	isInSingelFrameTest = true;
-
-	//glViewport(0, 0, 400, 600);
-
-	initialize();
 }
 
 const VideoScrubber &VideoWidget::getScrubber() const {
@@ -43,85 +42,151 @@ const VideoScrubber &VideoWidget::getScrubber() const {
 void VideoWidget::resizeEvent(QResizeEvent *ev) {
 	Q_UNUSED(ev);
 
-	//adjustViewportCoordinates();
-
-	if (isExposed()) {
-		render();
-	}
+	render();
 }
 
 void VideoWidget::exposeEvent(QExposeEvent *ev) {
-	Q_UNUSED(ev)
+	Q_UNUSED(ev);
 
-	if (isExposed()) {
-		render();
-	}
+    if (isExposed()) {
+        render();
+    }
 }
 
 void VideoWidget::adjustViewportCoordinates() {
 	QSize windowSize = QSize(width(), height());
-	viewportCoordinates = ViewState::getInstance()->getCurrentVideoDisplayPolicy()->getViewportSize
-		(windowSize, scrubber->getVideoMetadata().getSize());
+	viewportCoordinates = ViewState::getInstance()->getCurrentVideoDisplayPolicy()->getViewportSize(windowSize, scrubber->getVideoMetadata().getSize());
 
 	glViewport(viewportCoordinates.x(), viewportCoordinates.y(), viewportCoordinates.width(), viewportCoordinates.height());
 }
 
 void VideoWidget::update() {
-	isM_contextObsolete = true;
-
 	render();
 }
 
 void VideoWidget::initialize() {
-	//m_program = QSharedPointer<QOpenGLShaderProgram>(new QOpenGLShaderProgram(this));
-	//m_program->link();
+    program.reset(new QOpenGLShaderProgram());
+
+    if(!program->addShaderFromSourceCode(QOpenGLShader::Vertex, 
+                                        "//precision highp float;\n"
+                                        "attribute vec2 aPos;\n"
+                                        "attribute vec2 aTexcrd;\n"
+                                        "varying vec2 pos;\n"
+                                        "varying vec2 texcrd;\n"
+                                        "void main() {\n"
+                                        "   pos = aPos;\n"
+                                        "   texcrd = aTexcrd;\n"
+                                        "   gl_Position = vec4(aPos, 0.0, 1.0);\n"
+                                        "}\n")) {
+        throw new OpenGLException("Adding of vertex shader failed. Log message: " + program->log());
+    }
+
+    if(!program->addShaderFromSourceCode(QOpenGLShader::Fragment,
+                                        "//precision highp float;\n"
+                                        "uniform sampler2D tex;\n"
+                                        "varying vec2 texcrd;\n"
+                                        "varying vec2 pos;\n"
+                                        "void main() {\n"
+                                        "   vec4 outColor = texture2D(tex, texcrd);\n"
+                                        "   gl_FragColor = outColor;\n"
+                                        "}\n")) {
+        throw new OpenGLException("Adding of fragment shader failed. Log message: " + program->log());
+    }
+
+    if (!program->link()) {
+        throw new OpenGLException("Linking of shader program failed. Log message: " + program->log());
+    }
+
+    isInitialized = true;
+}
+
+void VideoWidget::getVertexPosition(GLfloat *vertices) const {
+    //TODO: Use DisplayPolicy
+
+    QSize frameSize = testFrame.data()->getSize();
+
+    // Fill screen while keeping aspect ratio
+    float viewportAspect = (float)width() / height();
+    float frameAspect = (float)frameSize.width() / frameSize.height();
+
+    float yRatio = 1.f;
+    float xRatio = 1.f;
+
+    // Decide if size of frame is bound by x axis and set the ratio
+    if (frameAspect > viewportAspect) {
+        yRatio = viewportAspect / frameAspect;
+    } else {
+        xRatio = frameAspect / viewportAspect;
+    }
+
+    vertices[0] = vertices[4] = -xRatio;
+    vertices[1] = vertices[3] = yRatio;
+    vertices[2] = vertices[6] = xRatio;
+    vertices[5] = vertices[7] = -yRatio;
 }
 
 void VideoWidget::render() {
 	bool needsInitialize = false;
 
-	//TODO Frage: Muss bei jedem Frame ein neuer kontext erstellt werden?
-	if (!m_context) {
-		m_context = QSharedPointer<QOpenGLContext>(new QOpenGLContext(this));
-		m_context->setFormat(requestedFormat());
-		//TODO Für den Fall der Anpssung des Bildes auf die Komponentengröße muss hier die skalierte Textur benutzt werden
+	if (!context) {
+		context = QSharedPointer<QOpenGLContext>(new QOpenGLContext(this));
+		context->setFormat(requestedFormat());
+
 		//TODO Testverzweigung rausnehmen
-		if (!isInSingelFrameTest) {
-			m_context->setShareContext(scrubber->getCurrentFrame()->getContext().data());
+		if (isInSingelFrameTest) {
+            context->setShareContext(testFrame->getContext().data());
+            //testFrame->getContext()->setShareContext(m_context.data());
 		} else {
-			m_context->setShareContext(testFrame->getContext().data());
-			//testFrame->getContext()->setShareContext(m_context.data());
+            //TODO: handle different contexts
+            context->setShareContext(scrubber->getCurrentFrame()->getContext().data());
 		}
-		m_context->create();
+
+        if (!context->create()) {
+            throw new OpenGLException("OpenGL context creation failed.");
+        }
 
 		needsInitialize = true;
 	}
 
-	m_context->makeCurrent(this);
+	context->makeCurrent(this);
 
 	if (needsInitialize) {
 		initializeOpenGLFunctions();
 		initialize();
 	}
 
-	//TODO Testverzweigung rausnehmen
-	if (!isInSingelFrameTest) {
-		adjustViewportCoordinates();
-	}
-	else {
-		glViewport(0, 0, width(), height());
-	}
+    glViewport(0, 0, width(), height());
 
-	//glClearColor((float)0.0, 0.0, 0.0, 1.0);
-	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
-	//m_program->bind();
+    GLfloat vertices[8];
+    getVertexPosition(vertices);
+
+    GLfloat texcrd[8] = {
+        0.f, 1.f,
+        1.f, 1.f,
+        0.f, 0.f,
+        1.f, 0.f};
+
+    program->enableAttributeArray("aPos");
+    program->enableAttributeArray("aTexcrd");
+    program->setAttributeArray("aPos", vertices, 2);
+    program->setAttributeArray("aTexcrd", texcrd, 2);
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, testFrame->getTextureHandle());
+    program->setUniformValue("tex", static_cast<GLuint>(0));
+
+    program->bind();
 	
-
-	//TODO Nicht sicher ob das notwendig ist
-	//glClear(GL_COLOR_BUFFER_BIT);
+    glClearColor(1.f, 0.f, 0.f, 1.f);
+    glClear(GL_COLOR_BUFFER_BIT);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+	context->swapBuffers(this);
 
-	m_context->swapBuffers(this);
+    program->release();
+
+    program->disableAttributeArray("aPos");
+    program->disableAttributeArray("aTexcrd");
 }
+
 }  // namespace view
