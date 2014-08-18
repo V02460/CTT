@@ -6,11 +6,13 @@ extern "C"
 #include "dev\include\libavcodec\avcodec.h"
 #include "dev\include\libavformat\avformat.h"
 #include "dev\include\libswscale\swscale.h"
+#include "dev\include\libavutil\frame.h"
 }
 
 #pragma comment(lib, "dev\\lib\\avformat.lib")
 #pragma comment(lib, "dev\\lib\\avcodec.lib")
 #pragma comment(lib, "dev\\lib\\swscale.lib")
+#pragma comment(lib, "dev\\lib\\avutil.lib")
 
 #include <QScopedPointer>
 #include <QSharedPointer>
