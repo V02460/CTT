@@ -1,6 +1,17 @@
 #ifndef _FFMPEGDATAVIDEO_H
 #define _FFMPEGDATAVIDEO_H
 
+extern "C"
+{
+#include "dev\include\libavcodec\avcodec.h"
+#include "dev\include\libavformat\avformat.h"
+#include "dev\include\libswscale\swscale.h"
+}
+
+#pragma comment(lib, "dev\\lib\\avformat.lib")
+#pragma comment(lib, "dev\\lib\\avcodec.lib")
+#pragma comment(lib, "dev\\lib\\swscale.lib")
+
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>

@@ -2,16 +2,6 @@
 
 #include "NotImplementedException.h"
 
-extern "C"
-{
-#include "dev\include\libavcodec\avcodec.h"
-#include "dev\include\libavformat\avformat.h"
-#include "dev\include\libswscale\swscale.h"
-}
-
-#pragma comment(lib, "dev\\lib\\avformat.lib")
-#pragma comment(lib, "dev\\lib\\avcodec.lib")
-#pragma comment(lib, "dev\\lib\\swscale.lib")
 
 namespace model {
 namespace video {
@@ -38,7 +28,7 @@ FFmpegDataVideo::FFmpegDataVideo(QString path, QSharedPointer<QOpenGLContext> co
 		//TODO sjkrwgf ffmpegException no stream information found
 	}
 
-	for (int i = 0; i < videoFormatContext->nb_streams; i++)
+	for (unsigned int i = 0; i < videoFormatContext->nb_streams; i++)
 	{
 		if (videoFormatContext->streams[i]->codec->codec_type == AVMEDIA_TYPE_VIDEO) {
 			videoStreamNr = i;
@@ -77,7 +67,8 @@ VideoMetadata FFmpegDataVideo::getMetadata() const {
 		throw new IllegalStateException("Tried to request metadata from a dummy ffmpeg video");
 	}
 
-// 	VideoMetadata metadata(QSize(codecContext->width, codecContext->height), 1 / codecContext->time_base, ? );
+	//Testen, das ist extrem geraten bisher!!!!
+	VideoMetadata metadata(QSize(codecContext->width, codecContext->height), 1 / av_q2d(codecContext->time_base), videoFormatContext->duration);
 // 	return metadata;
 }
 
@@ -90,10 +81,10 @@ model::frame::Frame::sptr FFmpegDataVideo::getFrame(unsigned int frameNumber) co
 	}
 
 	AVFrame *frame;
-	frame = avcodec_alloc_frame();
+	frame = av_frame_alloc();
 
 	AVFrame *rgbFrame;
-	rgbFrame = avcodec_alloc_frame();
+	rgbFrame = av_frame_alloc();
 
 	uint8_t *buffer;
 	int bufferSize;
@@ -106,7 +97,7 @@ model::frame::Frame::sptr FFmpegDataVideo::getFrame(unsigned int frameNumber) co
 	AVPacket packet;
 	int decodingSuccessfull;
 
-	//TODO keine ahnung ob das tut... und was es tut...
+	//TODO keine ahnung ob das tut... und was es tut... ACHTUNG, anscheinend müssen da noch irgendwelche internen buffer geflusht werden damit das tut! man wird selbst irgendwie buffern müssen denk ich
 	if (avformat_seek_file(videoFormatContext, videoStreamNr, frameNumber, frameNumber, frameNumber, AVSEEK_FLAG_FRAME) < 0)
 	{
 		//TODO ehfga exception couldn't go to the requested frame?
