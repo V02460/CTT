@@ -7,6 +7,8 @@
 #include <QWidget>
 
 #include "VideoProcessingWidget.h"
+#include "Player.h"
+#include "VideoListController.h"
 
 namespace view {
 
@@ -23,28 +25,15 @@ public:
     /**
      * Creates a PlayerWidget.
      */
-    PlayerWidget();
-
-public slots:
-    /**
-     * Receives the activation signal form a button in the ThumbnailListWidget and notifies the ProcessingWidget
-     * about the activation by emitting the playerActivated signal.
-     */
-    void getActivationSignal();
-
-signals:
-    /**
-     * This signal is emitted as soon as this PlayerWidget gets activated.
-     *
-     * @param playerWidget The concrete playerWidget which was activated.
-     */
-    void playerActivated(const PlayerWidget &playerWidget);
+    PlayerWidget(model::player::Player::sptr player, ::controller::VideoListController::sptr controller,
+		QWidget *parent = 0);
 
 private:
     Q_DISABLE_COPY(PlayerWidget);
+	void setupUi();
 
-    VideoProcessingWidget inputVideo; /**< The original video on which the filters are applied */
-    VideoProcessingWidget filteredVideo;/**< The original video plus the applied filters */
+    VideoProcessingWidget *inputVideo; /**< The original video on which the filters are applied */
+    VideoProcessingWidget *filteredVideo;/**< The original video plus the applied filters */
 };
 
 }  // namespace view
