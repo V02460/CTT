@@ -150,6 +150,7 @@
   <ItemGroup>
     <ClCompile Include="AbstractListView.cpp" />
     <ClCompile Include="AbstractTimeline.cpp" />
+    <ClCompile Include="AccessToDummyException.cpp" />
     <ClCompile Include="AnalysingWidget.cpp" />
     <ClCompile Include="BlueHistogram.cpp" />
     <ClCompile Include="BlurFilter.cpp" />
@@ -506,6 +507,7 @@
   <ItemGroup>
     <ClInclude Include="AbstractListView.h" />
     <ClInclude Include="AbstractTimeline.h" />
+    <ClInclude Include="AccessToDummyException.h" />
     <ClInclude Include="AnalysingWidget.h" />
     <ClInclude Include="BlueHistogram.h" />
     <ClInclude Include="BlurFilter.h" />

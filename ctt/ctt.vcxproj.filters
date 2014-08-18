@@ -139,6 +139,18 @@
       <Extensions>ts</Extensions>
       <ParseFiles>false</ParseFiles>
     </Filter>
+    <Filter Include="Resource Files\Shader">
+      <UniqueIdentifier>{b8013e16-6f05-4cab-b7f7-b51b7909aa0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shader\Model">
+      <UniqueIdentifier>{4a5d4748-a183-4daf-b030-ed9b30a8d75b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shader\Model\Frame">
+      <UniqueIdentifier>{2e410760-1186-444b-aefb-a3012ee86a48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shader\Model\Frame\Histogram">
+      <UniqueIdentifier>{a84b8dbc-dcbd-4824-91d8-3fcdc5cb3da6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_ctt.cpp">
@@ -612,6 +624,9 @@
     <ClCompile Include="VideoSaver.cpp">
       <Filter>Source Files\Model\Video</Filter>
     </ClCompile>
+    <ClCompile Include="AccessToDummyException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -1016,5 +1031,22 @@
     <Image Include="Resources\Images\big_buck_bunny_01337.png">
       <Filter>Resource Files\Images</Filter>
     </Image>
+    <ClInclude Include="AccessToDummyException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shader\Model\Filter\Noise.fs">
+      <Filter>Resource Files\Shader\Model\Frame\Histogram</Filter>
+    </None>
+    <None Include="Resources\Shader\Model\Filter\RGBChannel.fs">
+      <Filter>Resource Files\Shader\Model\Frame\Histogram</Filter>
+    </None>
+    <None Include="Resources\Shader\Model\Filter\1DBlur.fs">
+      <Filter>Resource Files\Shader\Model\Frame\Histogram</Filter>
+    </None>
+    <None Include="Resources\Shader\Model\Filter\Mix.fs">
+      <Filter>Resource Files\Shader\Model\Frame\Histogram</Filter>
+    </None>
   </ItemGroup>
 </Project>

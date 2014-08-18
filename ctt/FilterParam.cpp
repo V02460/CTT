@@ -5,18 +5,16 @@
 namespace model {
 namespace filter {
 
-using ::exception::NotImplementedException;
+FilterParam::FilterParam(QString name, QVariant value) {
 
-FilterParam::FilterParam(QString name, any value) {
-    throw new NotImplementedException();
 }
 
-any FilterParam::getValue() const {
-    throw new NotImplementedException();
+QVariant FilterParam::getValue() const {
+
 }
 
 QString FilterParam::getName() const {
-    throw new NotImplementedException();
+
 }
 
 }  // namespace filter
