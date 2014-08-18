@@ -23,7 +23,7 @@ namespace video {
  * Represents a video with all it's frames and metadata.
  *
  */
-class Video : public ::model::Module, public ::model::Observable {
+class Video : public ::model::Module {
 public:
     typedef QScopedPointer<Video> uptr;
     typedef QSharedPointer<Video> sptr;

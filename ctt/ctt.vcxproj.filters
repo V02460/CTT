@@ -597,6 +597,21 @@
     <ClCompile Include="GeneratedFiles\Release\moc_ListedPushButton.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilterInsertionWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FilterInsertionWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterInsertionWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterListViewElement.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoSaver.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
     <ClCompile Include="AccessToDummyException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
@@ -690,6 +705,9 @@
       <Filter>Header Files\View</Filter>
     </CustomBuild>
     <CustomBuild Include="ListedPushButton.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilterInsertionWidget.h">
       <Filter>Header Files\View</Filter>
     </CustomBuild>
   </ItemGroup>
@@ -946,6 +964,9 @@
     <ClInclude Include="VideoDisplayPolicy.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
+    <ClInclude Include="FilterListViewElement.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\Filter\RGBChannel.fs">
@@ -1004,5 +1025,19 @@
     <ClInclude Include="AccessToDummyException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shader\Model\Filter\Noise.fs">
+      <Filter>Resource Files\Shader\Model\Frame\Histogram</Filter>
+    </None>
+    <None Include="Resources\Shader\Model\Filter\RGBChannel.fs">
+      <Filter>Resource Files\Shader\Model\Frame\Histogram</Filter>
+    </None>
+    <None Include="Resources\Shader\Model\Filter\1DBlur.fs">
+      <Filter>Resource Files\Shader\Model\Frame\Histogram</Filter>
+    </None>
+    <None Include="Resources\Shader\Model\Filter\Mix.fs">
+      <Filter>Resource Files\Shader\Model\Frame\Histogram</Filter>
+    </None>
   </ItemGroup>
 </Project>

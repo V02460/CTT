@@ -1,6 +1,7 @@
 #include "Filter.h"
 
 #include "IllegalArgumentException.h"
+#include "AccessToDummyException.h"
 
 namespace model {
 namespace filter {
@@ -35,7 +36,7 @@ void Filter::setParam(FilterParam parameter) {
 
     if (!newValue.canConvert(oldValue.type())) {
         throw new IllegalArgumentException("Variable type of FilterParam does not match stored type.");
-}
+    }
 
     parameters.insert(parameter.getName(), parameter);
 }
@@ -43,7 +44,7 @@ void Filter::setParam(FilterParam parameter) {
 void Filter::setPreviousModule(Module::sptr predecessor) {
     if (isDummy()) {
         throw new AccessToDummyException();
-}
+    }
     if (predecessor.isNull()) {
         throw new IllegalArgumentException("Predecessor must not be null.");
     }

@@ -5,6 +5,7 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 #include <QWidget>
+#include <QStackedLayout>
 
 #include "Observer.h"
 #include "ExtendedTimeline.h"
@@ -12,6 +13,9 @@
 #include "InsertionWidget.h"
 #include "ZoomFunctions.h"
 #include "PlayerFunctions.h"
+
+#include "FilterController.h"
+#include "DifferenceController.h"
 
 namespace view {
 
@@ -25,6 +29,14 @@ public:
     typedef QSharedPointer<MainControlWidget> sptr;
     typedef QWeakPointer<MainControlWidget> wptr;
 
+	MainControlWidget(::model::player::Player::sptr player, ::controller::FilterController::sptr filterController,
+		QWidget *parent = 0);
+
+	MainControlWidget(::model::player::Player::sptr player, ::controller::DifferenceController::sptr filterController,
+		QWidget *parent = 0);
+
+	void setPlayer(::model::player::Player::sptr player);
+
 public slots:
     /**
      * Hides the ExtendedTimeline widget and shows the insertion widget, as long as the button is active.
@@ -34,20 +46,17 @@ public slots:
      */
     void btnInsertClicked(bool active);
 
-    /**
-     * Adjusts the MainControlWidget to the state of the whole GUI.
-     * Which means that the listView is changed to a list view of another type (Filter to Difference or vice versa).
-     */
-    void changeViewState();
-
 private:
-    QPushButton btnInsert; /**< The toggle button that indicates whether insertion mode is active or not */
-    ViewState viewState; /**< The current state of the whole GUI */
-    ExtendedTimeline timeline; /**< The ExtendedTimeline showing the currently relevant information */
-    InsertionWidget insertionWidget; /**< The InsertionWidget to insert filters or differences */
-    ZoomFunctions zoomBar; /**< The zoom funtionality */
-    PlayerFunctions playerFunctions; /** The funtionality to control the video player */
-    AbstractListView listView; /** The list view to show the current active differences or filters (depends on the viewState) */
+	void setupUi(ViewType viewType);
+
+    QPushButton *btnInsert; /**< The toggle button that indicates whether insertion mode is active or not */
+    ExtendedTimeline *timeline; /**< The ExtendedTimeline showing the currently relevant information */
+    InsertionWidget *insertionWidget; /**< The InsertionWidget to insert filters or differences */
+    ZoomFunctions *zoomBar; /**< The zoom funtionality */
+    PlayerFunctions *playerFunctions; /** The funtionality to control the video player */
+    AbstractListView *listView; /** The list view to show the current active differences or filters (depends on the viewState) */
+
+	QStackedLayout *rightWidgetLayout;
 };
 
 }  // namespace view

@@ -1,6 +1,7 @@
 #include "PlayerFunctions.h"
 
 #include <QHBoxLayout>
+#include "PlayerController.h"
 
 namespace view {
 
@@ -9,6 +10,8 @@ PlayerFunctions::PlayerFunctions(::model::player::Player::sptr player, QWidget *
 	sliderCurrentFrame->setMinimum(0);
 	sliderCurrentFrame->setOrientation(Qt::Horizontal);
 	sliderCurrentFrame->setTickPosition(QSlider::TicksBelow);
+
+	subscribe(controller::PlayerController::sptr(new controller::PlayerController()));
 
 	setPlayer(player);
 
@@ -80,6 +83,8 @@ void PlayerFunctions::setPlayer(::model::player::Player::sptr player) {
 	sliderCurrentFrame->setMaximum(static_cast<int>(player->getVideoLength()));
 	sliderCurrentFrame->setValue(static_cast<int>(player->getCurrentFrameNumber()));
 	sliderCurrentFrame->setTickInterval(static_cast<int>(player->getVideoLength()) / 10);
+
+	update();
 }
 
 QSlider* PlayerFunctions::getFrameSlider() {
