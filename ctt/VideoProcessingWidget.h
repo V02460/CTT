@@ -11,6 +11,7 @@
 #include "Video.h"
 #include "VideoFileType.h"
 #include "VideoWidget.h"
+#include "VideoListController.h"
 
 namespace view {
 
@@ -25,6 +26,13 @@ public:
     typedef QSharedPointer<VideoProcessingWidget> sptr;
     typedef QWeakPointer<VideoProcessingWidget> wptr;
 
+	VideoProcessingWidget(::model::player::VideoScrubber::sptr scrubber,
+		::controller::VideoListController::sptr controller, bool showSaveButton = false, QWidget *parent = 0);
+
+	void subscribe(::controller::VideoListController::sptr observer);
+
+	void unsubscribe(const ::controller::VideoListController &observer);
+	
 public slots:
     /**
      * This method is called when the user changes the state of the checkbox.
@@ -51,20 +59,17 @@ signals:
      * This signal is emitted when the checkbox is unchecked.
      */
     void videoForAnalysingRemoved(const ::model::video::Video &video);
-
-    /**
-     * This signal is emitted after the user has clicked the Save-button and chose a save directory.
-     */
-    void saveVideo(::model::video::Video::sptr video, QDir path, ::model::video::VideoFileType fileType);
 private:
+	void setupUi();
+
     bool showSaveButton; /**< Indicates whether the saveButton is shown or not */
 
     /**
      * The checkbox where the user can decide to use the video for analysing or not.
      */
-    QCheckBox checkboxUseForAnalysis;
+    QCheckBox *checkboxUseForAnalysis;
     
-    QPushButton btnSaveVideo; /** The button which starts the video saving process */
+    QPushButton *btnSaveVideo; /** The button which starts the video saving process */
     VideoWidget *videoWidget; /** The video widget which actually displays the video */
 };
 
