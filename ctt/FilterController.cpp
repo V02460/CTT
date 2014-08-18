@@ -13,12 +13,13 @@ using ::controller::operation::FilterRemovedOperation;
 using ::controller::operation::FilterMovedOperation;
 using ::controller::operation::OperationList;
 using ::controller::operation::Operation;
+using ::controller::operation::FilterAddedOperation;
+using ::model::filter::FilterFactory;
 
 FilterController::FilterController(FilteredVideo::sptr video) : video(video), list(OperationList::getInstance()) {}
 
 void FilterController::insertFilter(QString id) {
-	// TOO not implemented
-	throw new NotImplementedException();
+	list.doOperation(QSharedPointer<Operation>(new FilterAddedOperation(FilterFactory::createFilter(id), video)));
 }
 
 void FilterController::moveFilter(int oldPos, int newPos) {
@@ -31,6 +32,10 @@ void FilterController::changeFilterParam(const Filter::sptr filter, FilterParam:
 
 void FilterController::removeFilter(int pos) {
 	list.doOperation(QSharedPointer<Operation>(new FilterRemovedOperation(pos, video)));
+}
+
+void FilterController::setVideo(FilteredVideo::sptr newVideo) {
+	video = newVideo;
 }
 
 }  // namespace controller

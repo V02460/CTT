@@ -563,7 +563,7 @@
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
     <ClCompile Include="FilterMovedOperation.cpp">
-      <Filter>Generated Files</Filter>
+      <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

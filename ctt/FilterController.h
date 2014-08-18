@@ -14,6 +14,8 @@
 #include "FilterRemovedOperation.h"
 #include "FilterMovedOperation.h"
 #include "OperationList.h"
+#include "FilterAddedOperation.h"
+#include "FilterFactory.h"
 
 namespace controller {
 
@@ -70,6 +72,13 @@ public:
      * @param pos The position of the filter which is to be removed.
      */
     void removeFilter(int pos);
+
+	/**
+	 * Sets the filtered video to be controlle by this controller.
+	 *
+	 * @param newVideo The video to be set.
+	 */
+	void setVideo(::model::filter::FilteredVideo::sptr newVideo);
 
 private:
     ::model::filter::FilteredVideo::sptr video;
