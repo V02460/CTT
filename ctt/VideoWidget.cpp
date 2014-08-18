@@ -9,7 +9,7 @@ using ::model::player::VideoScrubber;
 using ::model::Observer;
 using ::exception::NotImplementedException;
 
-VideoWidget::VideoWidget(QWindow *parent, VideoScrubber::sptr scrubber):QWindow(parent) {
+VideoWidget::VideoWidget(VideoScrubber::sptr scrubber, QWindow *parent) :QWindow(parent) {
 	this->scrubber = scrubber;
 	this->scrubber->subscribe(QSharedPointer<Observer>(this));
 	isM_contextObsolete = true;
@@ -81,7 +81,7 @@ void VideoWidget::render() {
 	bool needsInitialize = false;
 
 	//TODO Frage: Muss bei jedem Frame ein neuer kontext erstellt werden?
-	if (isM_contextObsolete || !m_context) {
+	if (!m_context) {
 		m_context = QSharedPointer<QOpenGLContext>(new QOpenGLContext(this));
 		m_context->setFormat(requestedFormat());
 		//TODO Für den Fall der Anpssung des Bildes auf die Komponentengröße muss hier die skalierte Textur benutzt werden

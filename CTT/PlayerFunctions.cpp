@@ -95,7 +95,7 @@ void PlayerFunctions::btnPlayPauseClicked(bool checked) {
 void PlayerFunctions::update() {
 	setPlayButton(!player->isPlaying());
 
-	sliderCurrentFrame->setValue(static_cast<int>(player->getCurrentFrameNumber));
+	sliderCurrentFrame->setValue(static_cast<int>(player->getCurrentFrameNumber()));
 
 	spinboxFPS->setValue(player->getFPS());
 }

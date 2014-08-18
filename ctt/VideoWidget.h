@@ -29,7 +29,7 @@ public:
 	 * @param parent The parent component if this VideoWidget
      * @param scrubber The VideoScrubber to register at and which provided the video frames.
      */
-    VideoWidget(QWindow *parent, ::model::player::VideoScrubber::sptr scrubber);
+	VideoWidget(::model::player::VideoScrubber::sptr scrubber, QWindow *parent = 0);
 
 	//TODO Testkonstruktor entfernen
 	VideoWidget(::model::frame::Frame *renderedFrame);

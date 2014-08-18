@@ -11,6 +11,7 @@
 #include "ViewState.h"
 #include "Observer.h"
 #include "FilterController.h"
+#include "ListedPushButton.h"
 
 namespace view {
 
@@ -47,8 +48,8 @@ private slots:
 private:
 	void setupUi();
 
-    QList<ListedPushButton> insertionButtons; /**< The list of buttons to insert filters or differences */
-    ViewState viewState; /**< The current state of the whole GUI */
+    QList<ListedPushButton::sptr> insertionButtons; /**< The list of buttons to insert filters or differences */
+    ViewState *viewState; /**< The current state of the whole GUI */
 };
 
 }  // namespace view
