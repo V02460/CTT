@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
         Surface::sptr histogramImage = histogram.getHistogramImage();
         //MockDisplayHelper::showImage(histogramImage->getFramebufferObject()->toImage());
 
-		videoWidget = new view::VideoWidget(frame.data());
+		videoWidget = new view::VideoWidget(frame);
 		videoWidget->show();
     }
     catch (RuntimeException *e) {
