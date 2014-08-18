@@ -129,10 +129,6 @@ QSharedPointer<Saveable> Memento::getSharedPointer(QString name) const {
 	return pointer;
 }
 
-QMap<QString, QString> Memento::getVariableMap() const {
-	return variableMap;
-}
-
 Saveable* Memento::getPointer(QString name) const {
 	return getSharedPointer(name).data();
 }
