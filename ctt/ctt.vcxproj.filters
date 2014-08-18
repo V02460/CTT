@@ -955,6 +955,9 @@
     <None Include="Shader\Histogram\histogramCompaction.fs">
       <Filter>ShaderFiles\Histogram</Filter>
     </None>
+    <None Include="Greyscale.fs">
+      <Filter>ShaderFiles\Filter</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Images\big_buck_bunny_01337.png">
@@ -963,19 +966,5 @@
     <ClInclude Include="AccessToDummyException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Shader\Model\Filter\Noise.fs">
-      <Filter>Resource Files\Shader\Model\Frame\Histogram</Filter>
-    </None>
-    <None Include="Resources\Shader\Model\Filter\RGBChannel.fs">
-      <Filter>Resource Files\Shader\Model\Frame\Histogram</Filter>
-    </None>
-    <None Include="Resources\Shader\Model\Filter\1DBlur.fs">
-      <Filter>Resource Files\Shader\Model\Frame\Histogram</Filter>
-    </None>
-    <None Include="Resources\Shader\Model\Filter\Mix.fs">
-      <Filter>Resource Files\Shader\Model\Frame\Histogram</Filter>
-    </None>
   </ItemGroup>
 </Project>
