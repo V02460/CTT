@@ -5,6 +5,7 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 #include <QWidget>
+#include <QStackedLayout>
 
 #include "Observer.h"
 #include "ExtendedTimeline.h"

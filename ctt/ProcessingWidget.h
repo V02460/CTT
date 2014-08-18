@@ -9,6 +9,7 @@
 #include "Observer.h"
 #include "PlayerWidget.h"
 #include "Video.h"
+#include "FilteredVideo.h"
 #include "ViewType.h"
 #include "Player.h"
 #include "ThumbnailListWidget.h"
@@ -31,7 +32,8 @@ public:
     /**
      * Creates a ProcessingWidget.
      */
-    ProcessingWidget();
+	ProcessingWidget(::model::saveable::SaveableList<::model::player::Player> players,
+		::model::saveable::SaveableList<::model::filter::FilteredVideo> filteredVideos,);
 
 public slots:
     /**
@@ -42,13 +44,11 @@ public slots:
     */
     void activatePlayer(const PlayerWidget &playerWidget);
 
+	void videoActivated(bool checked, int id);
+
+	void btnChangeViewClicked(bool active);
+
 signals:
-    /**
-     * This signal is emitted when the user changes the active video.
-     *
-     * @param video The video which is set as active.
-     */
-    void activeVideoChanged(const ::model::video::Video &video);
     /**
      * This signal is emitted when the current view state should be changed.
      *
@@ -56,11 +56,14 @@ signals:
      */
     void btnChangeViewClicked(ViewType newView);
 private:
+	void setupUi();
+
     ::model::saveable::SaveableList<::model::player::Player> players; /**< The list of players which can be activated */
-    QPushButton btnReady; /**< The button to switch from the processing view to the analyzing view */
-    ThumbnailListWidget thumnailWidget; /**< the list of videos in the current part of the program */
-    MainControlWidget mainControlWidget; /**< The MainControlWidget which provides the player functionality */
-    QList<PlayerWidget> playerWidgets; /**< The different PlayerWidgets which can be set as active */
+    QPushButton *btnReady; /**< The button to switch from the processing view to the analyzing view */
+    ThumbnailListWidget *thumnailWidget; /**< the list of videos in the current part of the program */
+    MainControlWidget *mainControlWidget; /**< The MainControlWidget which provides the player functionality */
+    QList<PlayerWidget> *playerWidgets; /**< The different PlayerWidgets which can be set as active */
+	QStackedLayout *playerWidgetsLayout;
 };
 
 }  // namespace view

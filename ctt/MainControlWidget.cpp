@@ -2,7 +2,6 @@
 
 #include <QLayout>
 #include <QFrame>
-#include <QStackedLayout>
 #include <QScrollArea>
 #include <QSplitter>
 #include "FilterInsertionWidget.h"
