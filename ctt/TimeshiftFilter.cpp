@@ -17,7 +17,7 @@ model::frame::Frame::sptr TimeshiftFilter::getFrame(unsigned int frameNumber) co
     return getPredecessor()->getFrame(frameNumber + shift);
 }
 
-Saveable::SaveableType TimeshiftFilter::getType() const {
+model::saveable::Saveable::SaveableType TimeshiftFilter::getType() const {
 	return Saveable::SaveableType::timeshiftFilter;
 }
 
