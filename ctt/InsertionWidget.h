@@ -7,10 +7,12 @@
 #include <QWidget>
 #include <QList>
 #include <QPushButton>
+#include <QGridLayout>
 
 #include "ViewState.h"
 #include "Observer.h"
 #include "FilterController.h"
+#include "OverlayController.h"
 #include "ListedPushButton.h"
 
 namespace view {
@@ -28,28 +30,24 @@ public:
 
 	InsertionWidget(QWidget *parent = 0);
 
-	void subscribe(::controller::FilterController controller);
+	virtual void resizeEvent(QResizeEvent *ev) Q_DECL_OVERRIDE;
 
-	void unsubscribe(::controller::FilterController controller);
-
-public slots:
-    /**
-     * Adjusts the InsertionWidget according to the current state of tht whole view.
-     * Which means that it creates a button for every filter or difference registered at the corresponding factory (see
-     * FilterFactory and DifferenceFactory).
-     * So in the processing view only the buttons to add filter are shown while in the analysing view its the buttons to
-     * add differences to be shown.
-     */
-    void changeViewState();
+signals:
+	void inserted(QString id);
 
 private slots:
-	void listedButtonClicked(bool checked, int id);
+	virtual void listedButtonClicked(bool checked, int id);
 
+protected:
+	QSize preferredButtonSize;
+	QList<ListedPushButton::sptr> insertionButtons; /**< The list of buttons to insert filters or differences */
 private:
 	void setupUi();
+	void rearrangeContents();
+	void removeContents();
 
-    QList<ListedPushButton::sptr> insertionButtons; /**< The list of buttons to insert filters or differences */
-    ViewState *viewState; /**< The current state of the whole GUI */
+	QList<QSpacerItem*> spacers;
+	QGridLayout *layout;
 };
 
 }  // namespace view
