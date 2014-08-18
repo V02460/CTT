@@ -73,6 +73,7 @@ void PlayerFunctions::setPlayButton(bool isPlayButton) {
 
 void PlayerFunctions::setPlayer(::model::player::Player::sptr player) {
 	this->player = player;
+	emit playerChanged(player);
 
 	player->subscribe(PlayerFunctions::sptr(this));
 
