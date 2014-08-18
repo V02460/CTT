@@ -35,7 +35,8 @@ double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
 	d[0] = 0;
 	int sum = 0;
 	for (int i = 0; i < Histogram::SIZE; i++) {
-		d[i + 1] = a->getValue(i) - b->getValue(i) + d[i];
+		// TODO replace getValue
+		//d[i + 1] = a->getValue(i) - b->getValue(i) + d[i];
 		sum += std::abs(d[i + 1]);
 	}
 	// TODO scale

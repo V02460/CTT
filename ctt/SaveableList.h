@@ -31,28 +31,28 @@ public:
     /**
      * Add the element at the given index into the list.
      */
-    void insert(unsigned int index, typename T::sptr element);
+    void insert(int index, typename T::sptr element);
 
     /**
      * Remove the list element at the given index.
      *
      * @return T Returns the removed element
      */
-    typename T::sptr remove(unsigned int index);
+    typename T::sptr remove(int index);
 
     /**
      * Get the list element at the given index.
      *
      * @return T Returns the element at the index
      */
-    const typename T::sptr get(unsigned int index) const;
+    const typename T::sptr get(int index) const;
 
 	/**
 	 *	Get the size of the whole list.
 	 *
 	 *	@return Returns the current number of elements in this list
 	 */
-	const unsigned int getSize() const;
+	const int getSize() const;
 
 	/**
 	 * Returns the type of the template.

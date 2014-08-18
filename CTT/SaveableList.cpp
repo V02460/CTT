@@ -44,13 +44,13 @@ template <class T> const QString SaveableList<T>::TEMPLATE = "template";
 template <class T> const QString SaveableList<T>::ELEMENT = "element";
 
 template <class T>
-void SaveableList<T>::insert(unsigned int index, typename T::sptr element) {
+void SaveableList<T>::insert(int index, typename T::sptr element) {
 	list.insert(index, element);
 	changed();
 }
 
 template <class T>
-typename T::sptr SaveableList<T>::remove(unsigned int index) {
+typename T::sptr SaveableList<T>::remove(int index) {
 	T::sptr element = get(index);
 	list.removeAt(index);
 	changed();
@@ -58,12 +58,12 @@ typename T::sptr SaveableList<T>::remove(unsigned int index) {
 }
 
 template <class T>
-const typename T::sptr SaveableList<T>::get(unsigned int index) const {
+const typename T::sptr SaveableList<T>::get(int index) const {
 	return list[index];
 }
 
 template <class T>
-const unsigned int SaveableList<T>::getSize() const {
+const int SaveableList<T>::getSize() const {
 	return list.size();
 }
 
