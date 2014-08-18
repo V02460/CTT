@@ -37,7 +37,7 @@ double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
 		d[i + 1] = a->getValue(i) - b->getValue(i) + d[i];
 		sum += std::abs(d[i + 1]);
 	}
-	return sum / (Histogram::SIZE);
+	return sum / (Histogram::SIZE - 1);
 }
 
 EarthMoversHistogramDiff::EarthMoversHistogramDiff() {}
