@@ -33,7 +33,6 @@ public:
 	static QSharedPointer<ViewState> getInstance();
 	QSharedPointer<VideoDisplayPolicy> getCurrentVideoDisplayPolicy();
 
-
 public slots:
     /**
      * Changes the internal viewType and notifies all Observers about the state change.
@@ -44,6 +43,7 @@ public slots:
 
 signals:
 	void videoDisplayPolicyChanged();
+	void viewTypeChanged();
 
 private:
 	ViewState();
