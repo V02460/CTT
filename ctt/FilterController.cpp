@@ -1,13 +1,10 @@
 #include "FilterController.h"
 
-#include "NotImplementedException.h"
-
 namespace controller {
 
 using ::model::filter::Filter;
 using ::model::filter::FilterParam;
 using ::model::filter::FilteredVideo;
-using ::exception::NotImplementedException;
 using ::controller::operation::FilterParamChangedOperation;
 using ::controller::operation::FilterRemovedOperation;
 using ::controller::operation::FilterMovedOperation;
