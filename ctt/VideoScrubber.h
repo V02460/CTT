@@ -21,7 +21,7 @@ namespace player {
  * It makes this frame available to other objects and notifies them via Qt's signal and slot mechanism when this frame
  * is replaced.
  */
-	class VideoScrubber : public QObject, public Observable, public ::model::saveable::Saveable {
+class VideoScrubber : public QObject, public Observable, public ::model::saveable::Saveable {
     Q_OBJECT
 public:
     typedef QScopedPointer<VideoScrubber> uptr;
@@ -58,6 +58,13 @@ public:
      * @throws IllegalStateException if the the method was called on a dummy
      */
     ::model::video::VideoMetadata getVideoMetadata() const;
+
+	/**
+	 * Returns the number of frames the video of this scrubber has.
+	 * @returns the number of frames the video of this scrubber has.
+	 * @throws IllegalStateException if the the method was called on a dummy
+	 */
+	unsigned int getFrameCount() const;
 
     /**
      * Gets the Video this VideoScrubber is associated with.
@@ -98,6 +105,8 @@ public slots:
      */
     void jumpToFrameNr(unsigned int frameNumber);
 private:
+	Q_DISABLE_COPY(VideoScrubber)
+
     ::model::video::Video::sptr video; /**< The scrubber gets frames and metadata from this video */
     ::model::frame::Frame::sptr currentFrame; /**< This is the frame currently held by the scrubber */
     bool waitingForFrame; /**< This is true while Scrubber is still waiting for the frame it requested last*/

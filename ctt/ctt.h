@@ -5,12 +5,12 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 #include <QtWidgets/QMainWindow>
+
+#include <QLabel>
 #include "ui_ctt.h"
 
-class ctt : public QMainWindow
-{
+class ctt : public QMainWindow {
     Q_OBJECT
-
 public:
     typedef QScopedPointer<ctt> uptr;
     typedef QSharedPointer<ctt> sptr;
@@ -18,6 +18,10 @@ public:
 
     ctt(QWidget *parent = 0);
     ~ctt();
+
+    QLabel *getLabel() {
+        return this->ui.label;
+    }
 
 private:
     Ui::cttClass ui;

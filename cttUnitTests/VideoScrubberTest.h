@@ -8,7 +8,9 @@ class VideoScrubberTest: public QObject
 	Q_OBJECT
 
 	private slots:
-	//TODO add Tests as soon as Videos and Mementos are ready!
+	void testDummy();
+	void invalidConstruction();
+	void methods();
 
 };
 

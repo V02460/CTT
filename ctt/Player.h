@@ -46,6 +46,8 @@ public:
     /**
      * Starts playback with the currently set playback speed. Does nothing if the player is already playing. When the
      * end of one of the videos is reached, the playback will automatically be paused.
+	 * If the player has already reached the end of one of its videos and play is called, the player will start its 
+	 * Videos from the beginning.
      *
      * @throws IllegalStateException if the the method was called on a dummy
      */
@@ -184,7 +186,7 @@ public:
 
     /**
      * Gets the length in frames per second of the shortest Video the scrubbers of this player use to get their frames
-     * from.
+     * from. Returns 0 if the player has no scrubbers.
      *
      * @return int the length in frames per second of the shortest Video the scrubbers of this player use to get their
      *     frames from
@@ -205,7 +207,8 @@ public:
      * will jump to the first frame in the loop interval.
      *
      * @param interval the interval in which the player will loop
-     * @throws InvalidArgumentException if the bounds of the interval aren't in the bounds of the videos.
+	 * @throws IllegalArgumentException if the submitted interval is a dummy.
+     * @throws IllegalArgumentException if the bounds of the interval aren't in the bounds of the videos.
      * @throws IllegalStateException if the the method was called on a dummy
      */
     void setLoop(UIntegerInterval interval);
@@ -260,7 +263,13 @@ signals:
     void currentFrameNrChanged(unsigned int currentFrameNr);
 
 private:
-    int currentFrameNumber; /**< The number of the frame that was requested last */
+	Q_DISABLE_COPY(Player)
+	/**
+	* Creates a dummy Player.
+	*/
+	Player();
+
+    unsigned int currentFrameNumber; /**< The number of the frame that was requested last */
     QList<::model::player::VideoScrubber::sptr> videoScrubbers; /**< The VideoScrubbers controlled by this player*/
     QTimer timer; /**< The timer controlling the playback speed */
     double fps; /**< The currently set playback speed in frames per second */

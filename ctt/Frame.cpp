@@ -44,7 +44,8 @@ Frame::Frame(QSharedPointer<QOpenGLContext> context, QImage image, FrameMetadata
                                            + QString::number(metadata.getSize().height()) + ".");
     }
     
-    getTexture()->setData(image, QOpenGLTexture::DontGenerateMipMaps);
+    getTexture()->setData(image.mirrored(), QOpenGLTexture::DontGenerateMipMaps);
+    getTexture()->setMinMagFilters(QOpenGLTexture::NearestMipMapNearest, QOpenGLTexture::NearestMipMapNearest);
 }
 
 Frame::Frame(QSharedPointer<QOpenGLContext> context, QImage image)
@@ -58,7 +59,8 @@ Frame::Frame(QSharedPointer<QOpenGLContext> context, QImage image)
                                            + " but sizes of 0 are not allowed.");
     }
 
-    getTexture()->setData(image, QOpenGLTexture::DontGenerateMipMaps);
+    getTexture()->setData(image.mirrored(), QOpenGLTexture::DontGenerateMipMaps);
+    getTexture()->setMinMagFilters(QOpenGLTexture::Nearest, QOpenGLTexture::Nearest);
 }
 
 Frame::Frame(QSharedPointer<QOpenGLContext> context, FrameMetadata metadata)
@@ -94,15 +96,6 @@ Histogram::sptr Frame::getHistogram(Histogram::HistogramType type) const {
     default:
         throw new IllegalArgumentException("Unsupported histogram type " + QString(type) + ".");
     }
-}
-
-Frame::sptr Frame::applyShader(QOpenGLShaderProgram *program, QSize newSize) const {
-    Surface::sptr surface = Surface::applyShader(program, newSize);
-    return Frame::sptr(new Frame(surface, metadata));
-}
-
-Frame::sptr Frame::applyShader(QOpenGLShaderProgram *program) const {
-    return applyShader(program, getSize());
 }
 
 Frame::Frame(Surface::sptr surface, FrameMetadata metadata) : Surface(*surface.data()), metadata(metadata) {

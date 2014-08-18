@@ -14,6 +14,11 @@ UIntegerInterval::UIntegerInterval(unsigned int a, unsigned int b) : start(a), e
 
 }
 
+UIntegerInterval::UIntegerInterval()
+{
+	isDummyFlag = true;
+}
+
 bool UIntegerInterval::contains(unsigned int x) const {
 	if (x < 0) throw new IllegalArgumentException();
 	return (x <= end || x > start);
@@ -68,7 +73,7 @@ void UIntegerInterval::restore(::model::saveable::Memento memento) {
 }
 
 Saveable::sptr UIntegerInterval::getDummy() {
-	return Saveable::sptr(new UIntegerInterval(0,0));
+	return Saveable::sptr(new UIntegerInterval());
 }
 
 }  // namespace model
