@@ -10,6 +10,8 @@
 
 #include "ViewState.h"
 #include "Observer.h"
+#include "FilterController.h"
+#include "ListedPushButton.h"
 
 namespace view {
 
@@ -24,6 +26,12 @@ public:
     typedef QSharedPointer<InsertionWidget> sptr;
     typedef QWeakPointer<InsertionWidget> wptr;
 
+	InsertionWidget(QWidget *parent = 0);
+
+	void subscribe(::controller::FilterController controller);
+
+	void unsubscribe(::controller::FilterController controller);
+
 public slots:
     /**
      * Adjusts the InsertionWidget according to the current state of tht whole view.
@@ -34,9 +42,14 @@ public slots:
      */
     void changeViewState();
 
+private slots:
+	void listedButtonClicked(bool checked, int id);
+
 private:
-    QList<QPushButton> insertionButtons; /**< The list of buttons to insert filters or differences */
-    ViewState viewState; /**< The current state of the whole GUI */
+	void setupUi();
+
+    QList<ListedPushButton::sptr> insertionButtons; /**< The list of buttons to insert filters or differences */
+    ViewState *viewState; /**< The current state of the whole GUI */
 };
 
 }  // namespace view

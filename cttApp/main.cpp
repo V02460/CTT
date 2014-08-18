@@ -11,6 +11,7 @@
 #include "Surface.h"
 #include "RuntimeException.h"
 #include "GPUHelper.h"
+#include "VideoWidget.h"
 
 using ::helper::MockDisplayHelper;
 using ::model::frame::Frame;
@@ -23,9 +24,10 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     ctt mainWindow;
+	view::VideoWidget *videoWidget;
 
     try {
-        mainWindow.show();
+        //mainWindow.show();
 
         QOffscreenSurface surface;
         surface.create();
@@ -45,7 +47,10 @@ int main(int argc, char *argv[])
         BlueHistogram histogram(*frame.data());
 
         Surface::sptr histogramImage = histogram.getHistogramImage();
-        MockDisplayHelper::showImage(histogramImage->getFramebufferObject()->toImage());
+        //MockDisplayHelper::showImage(histogramImage->getFramebufferObject()->toImage());
+
+		videoWidget = new view::VideoWidget(frame);
+		videoWidget->show();
     }
     catch (RuntimeException *e) {
 //         QMessageBox msgBox;

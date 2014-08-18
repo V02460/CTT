@@ -10,6 +10,7 @@ using ::model::frame::Frame;
 using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
+using ::model::saveable::Saveable;
 
 FilteredVideo::FilteredVideo(Video::sptr baseVideo) {
     throw new NotImplementedException();
@@ -45,6 +46,10 @@ void FilteredVideo::restore(Memento memento) {
 
 Saveable::sptr FilteredVideo::getDummy() {
     throw new NotImplementedException();
+}
+
+Saveable::SaveableType FilteredVideo::getType() const {
+	return Saveable::SaveableType::filteredVideo;
 }
 
 }  // namespace filter

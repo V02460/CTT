@@ -37,6 +37,8 @@ public:
     virtual ~EarthMoversHistogramDiff();
 
     virtual double getDiff(unsigned int frameNr) const;
+
+	virtual ::model::saveable::Saveable::SaveableType getType() const;
 };
 
 }  // namespace difference

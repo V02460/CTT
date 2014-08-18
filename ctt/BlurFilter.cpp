@@ -7,6 +7,7 @@ namespace filter {
 
 using ::model::frame::Frame;
 using ::helper::GPUHelper;
+using ::model::saveable::Saveable;
 
 BlurFilter::BlurFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamRadiusStr, 5.f);
@@ -33,6 +34,10 @@ model::frame::Frame::sptr BlurFilter::getFrame(unsigned int frameNumber) const {
     targetSurface = gpuHelper.run(*targetSurface.data());
 
     return Frame::sptr(new Frame(targetSurface, frame->getMetadata()));
+}
+
+Saveable::SaveableType BlurFilter::getType() const {
+	return Saveable::SaveableType::blurFilter;
 }
 
 const QString BlurFilter::kParamRadiusStr = "filter_blur_param_radius";

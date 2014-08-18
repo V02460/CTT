@@ -134,6 +134,11 @@
     <Filter Include="Resource Files\Images">
       <UniqueIdentifier>{e20e1833-b2fa-4e66-a0de-24671f52c9dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lokalisierungs Dateien">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_ctt.cpp">
@@ -568,11 +573,29 @@
     <ClCompile Include="MockDisplayHelper.cpp">
       <Filter>Source Files\Helper</Filter>
     </ClCompile>
+    <ClCompile Include="IOException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="ParseException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
     <ClCompile Include="FileNotFoundException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
     <ClCompile Include="IOException.cpp">
       <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="NoScalePolicy.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="ListedPushButton.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ListedPushButton.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ListedPushButton.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="AccessToDummyException.cpp">
       <Filter>Source Files\Exception</Filter>
@@ -662,6 +685,12 @@
     </CustomBuild>
     <CustomBuild Include="Observer.h">
       <Filter>Header Files\Model</Filter>
+    </CustomBuild>
+    <CustomBuild Include="NoScalePolicy.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ListedPushButton.h">
+      <Filter>Header Files\View</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -857,9 +886,6 @@
     <ClInclude Include="Surface.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="ProjectSaverFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ProjectLoader.h">
       <Filter>Header Files\Controller\Project</Filter>
     </ClInclude>
@@ -917,6 +943,9 @@
     <ClInclude Include="IOException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
+    <ClInclude Include="VideoDisplayPolicy.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\Filter\RGBChannel.fs">
@@ -954,6 +983,15 @@
     </None>
     <None Include="Shader\Histogram\histogramCompaction.fs">
       <Filter>ShaderFiles\Histogram</Filter>
+    </None>
+    <ClInclude Include="IOException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="ParseException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <None Include="ctt_en.ts">
+      <Filter>Lokalisierungs Dateien</Filter>
     </None>
     <None Include="Greyscale.fs">
       <Filter>ShaderFiles\Filter</Filter>
