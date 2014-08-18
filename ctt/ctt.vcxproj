@@ -453,6 +453,7 @@
     <ClCompile Include="VideoMetadata.cpp" />
     <ClCompile Include="VideoProcessingWidget.cpp" />
     <ClCompile Include="VideoRemovedOperation.cpp" />
+    <ClCompile Include="VideoSaver.cpp" />
     <ClCompile Include="VideoScrubber.cpp" />
     <ClCompile Include="VideoWidget.cpp" />
     <ClCompile Include="ViewState.cpp" />

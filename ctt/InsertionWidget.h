@@ -35,9 +35,6 @@ public:
 signals:
 	void inserted(QString id);
 
-private slots:
-	virtual void listedButtonClicked(bool checked, int id);
-
 protected:
 	QSize preferredButtonSize;
 	QList<ListedPushButton::sptr> insertionButtons; /**< The list of buttons to insert filters or differences */

@@ -5,7 +5,7 @@
 namespace view {
 
 PlayerWidget::PlayerWidget(model::player::Player::sptr player, ::controller::VideoListController::sptr controller,
-	QWidget *parent = 0) : QWidget(parent) {
+	QWidget *parent) : QWidget(parent) {
 	QList<model::player::VideoScrubber::sptr> scrubbers = player->getScrubbers();
 
 	if (scrubbers.size() == 2) {

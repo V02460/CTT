@@ -41,7 +41,8 @@ void InsertionWidget::rearrangeContents() {
 		columnCount++;
 	}
 
-	for (int i = 0, int j = columnCount; i < maxColumnCount; i++) {
+	int j = columnCount;
+	for (int i = 0; i < maxColumnCount; i++) {
 		if (j == maxColumnCount) {
 			j = 0;
 			rowCount++;

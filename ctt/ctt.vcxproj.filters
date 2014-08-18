@@ -609,6 +609,9 @@
     <ClCompile Include="FilterListViewElement.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
+    <ClCompile Include="VideoSaver.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">

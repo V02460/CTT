@@ -23,4 +23,16 @@ namespace view{
 
 		}
 	}
+
+	QString FilterListViewElement::getFilterName() {
+		return "";
+	}
+
+	void FilterListViewElement::update() {
+
+	}
+
+	void FilterListViewElement::changed() {
+
+	}
 }
