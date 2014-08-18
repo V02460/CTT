@@ -226,6 +226,10 @@ Surface::sptr GPUHelper::run(const Surface &sourceTexture, QSize targetSize) {
     }
 }
 
+Surface::sptr GPUHelper::run(const Surface &sourceTexture) {
+    return run(sourceTexture, sourceTexture.getSize());
+}
+
 Surface::sptr GPUHelper::applyShader(const Surface &sourceTexture, QSize targetSize) {
     if (context->shareGroup() != QOpenGLContext::currentContext()->shareGroup()) {
         throw new OpenGLException("Cannot access resources in the currently bound context.");
