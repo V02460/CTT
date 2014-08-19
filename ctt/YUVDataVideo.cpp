@@ -122,9 +122,11 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 
 	QImage image;
 
-	QByteArray rawFrame = videoBuffer.mid((frameNumber - firstFrameInMemory) * bytesPerFrame, bytesPerFrame);
-	//TODO fjdifrj imageFormat? mal kucken wies mit dem Indexed8 geht AAAAAAAHHHHH SHIT!
-	image.loadFromData(rawFrame, "bmp");
+// 	QByteArray rawFrame = videoBuffer.mid((frameNumber - firstFrameInMemory) * bytesPerFrame, bytesPerFrame);
+// 	rawFrame.prepend(("P6\n" + QString::number(width here) + " " + QString::number(height here) + "\n255\n").toUtf8());
+// 	image.loadFromData(rawFrame, "PPM");
+
+	//TODO sizergfijsw currently acts as if the data was rgb ppm, apply shader for conversion
 
 
 	if (hasMetadataFile)
@@ -184,23 +186,10 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::UNKNOWN;
 			}
 		}
-
-
 	}
 
 }
 
-QList<const Module*> YUVDataVideo::getUsesList() const
-{
-	if (isDummy()) {
-		throw new IllegalStateException("Tried to request a list of used modules from a dummy YUVDataVideo.");
-	}
-
-	QList<const Module*> uses;
-	uses.append(this);
-
-	return uses;
-}
 
 unsigned int YUVDataVideo::getFrameCount() const
 {
@@ -211,14 +200,6 @@ unsigned int YUVDataVideo::getFrameCount() const
 	return metadata.getLength();
 }
 
-bool YUVDataVideo::uses(const model::Module &module) const
-{
-	if (isDummy()) {
-		throw new IllegalStateException("Tried to ask a dummy YUVDataVideo whether it used a specific module.");
-	}
-
-	return (this == &module);
-}
 
 void YUVDataVideo::load(unsigned int startFrame) const
 {

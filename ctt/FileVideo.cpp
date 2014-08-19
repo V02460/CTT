@@ -35,8 +35,25 @@ QDir FileVideo::getPath() const {
 	return pathToVideoFile;
 }
 
-saveable::Saveable::sptr FileVideo::getDummy() {
-	throw new NotImplementedException();
+QList<const Module*> FileVideo::getUsesList() const
+{
+	if (isDummy()) {
+		throw new IllegalStateException("Tried to request a list of used modules from a dummy YUVDataVideo.");
+	}
+
+	QList<const Module*> uses;
+	uses.append(this);
+
+	return uses;
+}
+
+bool FileVideo::uses(const model::Module &module) const
+{
+	if (isDummy()) {
+		throw new IllegalStateException("Tried to ask a dummy YUVDataVideo whether it used a specific module.");
+	}
+
+	return (this == &module);
 }
 
 }  // namespace video

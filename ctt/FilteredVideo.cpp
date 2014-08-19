@@ -26,7 +26,18 @@ void FilteredVideo::addFilter(Filter::sptr filter, unsigned int pos) {
 	if (isDummy())
 	{
 		throw new IllegalStateException("Tried to add a filter to a dummy FilteredVideo.");
-}
+	}
+
+
+	QList<const Module*> usesList(getUsesList());
+
+	foreach(const Module* module, usesList)
+	{
+		if (filter->uses(*module))
+		{
+			throw new IllegalArgumentException("Tried to add a filter to a FilteredVideo that is already used by the filtered video.");
+		}
+	}
 
 	if (pos > (unsigned int) filters.count())
 	{
@@ -55,7 +66,7 @@ Filter::sptr FilteredVideo::removeFilter(unsigned int pos) {
 	if (isDummy())
 	{
 		throw new IllegalStateException("Tried to remove a filter from a dummy FilteredVideo.");
-}
+	}
 
 	if (pos >= (unsigned int) filters.count())
 	{
@@ -83,7 +94,7 @@ unsigned int FilteredVideo::getFilterCount() const {
     if (isDummy())
     {
 		throw new IllegalStateException("Tried to request the filter count of a dummy FilteredVideo.");
-}
+	}
 
 	return filters.count();
 }
@@ -92,7 +103,7 @@ QList<Filter::sptr> FilteredVideo::getFilterList() const {
 	if (isDummy())
 	{
 		throw new IllegalStateException("Tried to request the filters of a dummy FilteredVideo.");
-}
+	}
 
 	return filters;
 }

@@ -72,11 +72,7 @@ public:
 
 	static ::model::saveable::Saveable::sptr YUVDataVideo::getDummy();
 
-	virtual QList<const Module*> getUsesList() const;
-
 	virtual unsigned int getFrameCount() const;
-
-	virtual bool uses(const model::Module &module) const;
 
     virtual VideoMetadata getMetadata() const;
 
