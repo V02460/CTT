@@ -22,7 +22,7 @@ void VideoListController::addVideo(Video::sptr video) {
 	videoList->insert(videoList->getSize(), video);
 }
 
-void VideoListController::removeVideo(int index) {
+void VideoListController::removeVideo(int index) {	
 	videoList->remove(index);
 }
 
