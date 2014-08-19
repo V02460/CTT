@@ -39,7 +39,19 @@ void ProcessingWidget::setupUi() {
 	QWidget *upperRightWidget = new QWidget(verticalSplitter);
 	setLayout(playerWidgetsLayout);
 
-	verticalSplitter->addWidget(thumbnailWidget);
+	QWidget *upperLeftWidget = new QWidget(verticalSplitter);
+	QVBoxLayout *upperLeftLayout = new QVBoxLayout(upperLeftWidget);
+
+	btnReady = new QPushButton(upperLeftWidget);
+	btnReady->setText(tr("READY"));
+	QObject::connect(btnReady, SIGNAL(clicked(bool)), this, SLOT(btnChangeViewClicked(bool)));
+
+	upperLeftLayout->addWidget(thumbnailWidget);
+	upperLeftLayout->addWidget(btnReady);
+
+	upperLeftWidget->setLayout(upperLeftLayout);
+
+	verticalSplitter->addWidget(upperLeftWidget);
 	verticalSplitter->addWidget(upperRightWidget);
 
 	QHBoxLayout *upperLayout = new QHBoxLayout(upperWidget);
@@ -57,6 +69,7 @@ void ProcessingWidget::setupUi() {
 void ProcessingWidget::videoActivated(int id) {
 	playerWidgetsLayout->setCurrentIndex(id);
 	mainControlWidget->setPlayer(players->get(id));
+	emit videoChanged(players->get(id)->getScrubbers().at(1)->getVideo());
 }
 
 void ProcessingWidget::videoReplaced(int oldId, int newId) {
