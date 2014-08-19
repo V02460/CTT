@@ -5,15 +5,13 @@
 
 namespace view {
 
-PlayerFunctions::PlayerFunctions(::model::player::Player::sptr player, QWidget *parent) : QWidget(parent) {
+PlayerFunctions::PlayerFunctions( QWidget *parent) : QWidget(parent) {
 	sliderCurrentFrame = new QSlider();
 	sliderCurrentFrame->setMinimum(0);
 	sliderCurrentFrame->setOrientation(Qt::Horizontal);
 	sliderCurrentFrame->setTickPosition(QSlider::TicksBelow);
 
 	subscribe(controller::PlayerController::sptr(new controller::PlayerController()));
-
-	setPlayer(player);
 
 	setupUi();
 }
@@ -47,7 +45,7 @@ void PlayerFunctions::setupUi() {
 	spinboxFPS = new QSpinBox(this);
 	spinboxFPS->setSuffix(" FPS");
 	spinboxFPS->setMinimum(0);
-	spinboxFPS->setValue(player->getFPS());
+	spinboxFPS->setValue(0);
 	layout->addWidget(spinboxFPS);
 
 	btnDefaultFPS = new QPushButton(this);
@@ -85,6 +83,14 @@ void PlayerFunctions::setPlayer(::model::player::Player::sptr player) {
 	sliderCurrentFrame->setTickInterval(static_cast<int>(player->getVideoLength()) / 10);
 
 	update();
+}
+
+void PlayerFunctions::removePlayer() {
+	
+}
+
+void PlayerFunctions::setEnabledAll(bool isEnabled) {
+
 }
 
 QSlider* PlayerFunctions::getFrameSlider() {

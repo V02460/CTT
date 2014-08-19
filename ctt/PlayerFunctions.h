@@ -25,11 +25,14 @@ public:
     typedef QSharedPointer<PlayerFunctions> sptr;
     typedef QWeakPointer<PlayerFunctions> wptr;
 
-	PlayerFunctions(::model::player::Player::sptr player, QWidget *parent = 0);
+	PlayerFunctions(QWidget *parent = 0);
 
 	QSlider* getFrameSlider();
 
 	void setPlayer(::model::player::Player::sptr player);
+	void removePlayer();
+
+	void setEnabledAll(bool isEnabled);
     /**
      * Connects the signals from the intractable components to the corresponding slots in a PlayerController.
      *

@@ -8,19 +8,17 @@
 
 namespace view {
 
-MainControlWidget::MainControlWidget(::model::player::Player::sptr player, ::controller::FilterController::sptr filterController,
+MainControlWidget::MainControlWidget(::controller::FilterController::sptr filterController,
 	QWidget *parent) : QWidget(parent){
 	insertionWidget = new FilterInsertionWidget(filterController, this);
-	playerFunctions = new PlayerFunctions(player, this);
+	playerFunctions = new PlayerFunctions(this);
 
 	setupUi(ViewType::PROCESSING_VIEW);
 }
 
-MainControlWidget::MainControlWidget(::model::player::Player::sptr player, ::controller::DifferenceController::sptr filterController,
+MainControlWidget::MainControlWidget(::controller::DifferenceController::sptr filterController,
 	QWidget *parent) : QWidget(parent){
 	setupUi(ViewType::ANALYSING_VIEW);
-
-	setPlayer(player);
 }
 
 void MainControlWidget::setupUi(ViewType viewType) {
@@ -95,6 +93,10 @@ void MainControlWidget::btnInsertClicked(bool active) {
 
 void MainControlWidget::setPlayer(::model::player::Player::sptr player) {
 	playerFunctions->setPlayer(player);
+}
+
+void MainControlWidget::removePlayer() {
+
 }
 
 }  // namespace view

@@ -72,6 +72,9 @@ public slots:
      * @param player The player which is to be set.
      */
     void setPlayer(::model::player::Player::sptr player);
+
+private:
+	::model::player::Player::sptr player;
 };
 
 }  // namespace controller

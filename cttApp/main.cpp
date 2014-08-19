@@ -14,6 +14,8 @@
 #include "VideoWidget.h"
 #include "ThumbnailListWidgetTest.h"
 #include "ListedPushButtonTest.h"
+#include "ProcessingWidget.h"
+#include "Project.h"
 
 using ::helper::MockDisplayHelper;
 using ::model::frame::Frame;
@@ -29,6 +31,7 @@ int main(int argc, char *argv[])
 	view::VideoWidget *videoWidget;
 	ThumbnailListWidgetTest *thumbnailListWidgetTest;
 	ListedPushButtonTest *listedPushButtonTest;
+	view::ProcessingWidget *processingWidget;
 
     try {
         //mainWindow.show();
@@ -47,7 +50,7 @@ int main(int argc, char *argv[])
             return 1;
         }
 
-        Frame::sptr frame(new Frame(testContext, image));
+        /*Frame::sptr frame(new Frame(testContext, image));
         BlueHistogram histogram(*frame.data());
 
         Surface::sptr histogramImage = histogram.getHistogramImage();
@@ -60,7 +63,13 @@ int main(int argc, char *argv[])
 		listedPushButtonTest->show();
 
 		thumbnailListWidgetTest = new ThumbnailListWidgetTest();
-		thumbnailListWidgetTest->show();
+		thumbnailListWidgetTest->show();*/
+
+		controller::project::Project testProject = controller::project::Project();
+		controller::VideoListController::sptr analysingVideosController = 
+			controller::VideoListController::sptr(new controller::VideoListController(testProject.getVideoList2()));
+		processingWidget = new view::ProcessingWidget(testProject.getPlayerList1(), testProject.getVideoList1(),
+			testProject.getBaseVideoList(), analysingVideosController);
     }
     catch (RuntimeException *e) {
 //         QMessageBox msgBox;

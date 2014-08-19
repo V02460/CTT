@@ -29,13 +29,12 @@ public:
     typedef QSharedPointer<MainControlWidget> sptr;
     typedef QWeakPointer<MainControlWidget> wptr;
 
-	MainControlWidget(::model::player::Player::sptr player, ::controller::FilterController::sptr filterController,
-		QWidget *parent = 0);
+	MainControlWidget(::controller::FilterController::sptr filterController, QWidget *parent = 0);
 
-	MainControlWidget(::model::player::Player::sptr player, ::controller::DifferenceController::sptr filterController,
-		QWidget *parent = 0);
+	MainControlWidget(::controller::DifferenceController::sptr filterController, QWidget *parent = 0);
 
 	void setPlayer(::model::player::Player::sptr player);
+	void removePlayer();
 
 public slots:
     /**

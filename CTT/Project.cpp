@@ -15,31 +15,35 @@ using ::view::ViewState;
 using ::exception::NotImplementedException;
 
 Project::Project() : player2(new Player(24.0)) {
-    throw new NotImplementedException();
+	baseVideoList = SaveableList<FileVideo>::sptr(new SaveableList<FileVideo>());
+	videoList1 = SaveableList<FilteredVideo>::sptr(new SaveableList<FilteredVideo>());
+	videoList2 = SaveableList<Video>::sptr(new SaveableList<Video>());
+	playerList1 = SaveableList<Player>::sptr(new SaveableList<Player>());
+	diffList = SaveableList<FrameDiff>::sptr(new SaveableList<FrameDiff>());
 }
 
 SaveableList<FileVideo>::sptr Project::getBaseVideoList() const {
-    throw new NotImplementedException();
+	return baseVideoList;
 }
 
 SaveableList<FilteredVideo>::sptr Project::getVideoList1() const {
-    throw new NotImplementedException();
+	return videoList1;
 }
 
-SaveableList<FilteredVideo>::sptr Project::getVideoList2() const {
-    throw new NotImplementedException();
+SaveableList<Video>::sptr Project::getVideoList2() const {
+	return videoList2;
 }
 
 SaveableList<Player>::sptr Project::getPlayerList1() const {
-    throw new NotImplementedException();
+	return playerList1;
 }
 
 Player::sptr Project::getPlayer2() const {
-    throw new NotImplementedException();
+	return player2;
 }
 
 SaveableList<FrameDiff>::sptr Project::getDiffList() const {
-    throw new NotImplementedException();
+	return diffList;
 }
 
 ViewState::sptr Project::getView() const {
