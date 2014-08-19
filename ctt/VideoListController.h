@@ -9,6 +9,7 @@
 #include "Observer.h"
 #include "Video.h"
 #include "SaveableList.h"
+#include "FileVideo.h"
 
 namespace controller {
 
@@ -62,6 +63,9 @@ public slots:
     * @param video The video which is to be removed.
     **/
     void removeVideo(const ::model::video::Video &video);
+
+private:
+	::model::saveable::SaveableList<::model::video::Video>::sptr videoList;
 };
 
 }  // namespace controller
