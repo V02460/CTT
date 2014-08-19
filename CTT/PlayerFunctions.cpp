@@ -85,6 +85,14 @@ void PlayerFunctions::setPlayer(::model::player::Player::sptr player) {
 	update();
 }
 
+void PlayerFunctions::removePlayer() {
+	
+}
+
+void PlayerFuntions::setEnabledAll(bool isEnabled) {
+
+}
+
 QSlider* PlayerFunctions::getFrameSlider() {
 	return sliderCurrentFrame;
 }

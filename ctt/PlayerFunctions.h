@@ -30,6 +30,9 @@ public:
 	QSlider* getFrameSlider();
 
 	void setPlayer(::model::player::Player::sptr player);
+	void removePlayer();
+
+	void setEnabledAll(bool isEnabled);
     /**
      * Connects the signals from the intractable components to the corresponding slots in a PlayerController.
      *
