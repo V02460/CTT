@@ -27,8 +27,8 @@ void VideoListController::removeVideo(int index) {
 }
 
 void VideoListController::removeVideo(const Video &video) {
-	for (int i = 0; i < videoList->getSize; i++) {
-		if (video == videoList[i]) {
+	for (int i = 0; i < videoList->getSize(); i++) {
+		if (&video == videoList->get(i).data()) {
 			removeVideo(i);
 			return;
 		}
