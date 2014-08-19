@@ -178,7 +178,7 @@ void VideoWidget::render() {
 
     program->bind();
 	
-    glClearColor(1.f, 0.f, 0.f, 1.f);
+    glClearColor(0.f, 0.f, 0.f, 0.f);
     glClear(GL_COLOR_BUFFER_BIT);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	context->swapBuffers(this);
