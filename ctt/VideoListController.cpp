@@ -15,11 +15,11 @@ VideoListController::VideoListController(SaveableList<Video>::sptr videoList): v
 void VideoListController::addVideo(QString path) {
 	// ACHTUNG!
 	Video::sptr video;
-	videoList->insert(videoList->getSize++, video);
+	videoList->insert(videoList->getSize(), video);
 }
 
 void VideoListController::addVideo(Video::sptr video) {
-	videoList->insert(videoList->getSize, video);
+	videoList->insert(videoList->getSize(), video);
 }
 
 void VideoListController::removeVideo(int index) {
