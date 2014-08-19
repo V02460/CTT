@@ -34,9 +34,12 @@ public:
     virtual ~NoiseFilter();
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
-    virtual QString getName() const;
+    virtual QString getName() const Q_DECL_OVERRIDE {return "filter_noise";}
 	virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
 	virtual ::model::saveable::Saveable::SaveableType getType() const;
+
+private:
+    static const QString kParamIntensityStr;
 };
 
 }  // namespace filter

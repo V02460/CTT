@@ -1101,8 +1101,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ctt_en.ts" />
-    <None Include="Greyscale.fs" />
     <None Include="Shader\Filter\1DBlur.fs" />
+    <None Include="Shader\Filter\Greyscale.fs" />
     <None Include="Shader\Filter\Mix.fs" />
     <None Include="Shader\Filter\Noise.fs" />
     <None Include="Shader\Filter\RGBChannel.fs" />

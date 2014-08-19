@@ -1014,7 +1014,7 @@
     <None Include="ctt_en.ts">
       <Filter>Lokalisierungs Dateien</Filter>
     </None>
-    <None Include="Greyscale.fs">
+    <None Include="Shader\Filter\Greyscale.fs">
       <Filter>ShaderFiles\Filter</Filter>
     </None>
   </ItemGroup>
@@ -1025,19 +1025,5 @@
     <ClInclude Include="AccessToDummyException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Shader\Model\Filter\Noise.fs">
-      <Filter>Resource Files\Shader\Model\Frame\Histogram</Filter>
-    </None>
-    <None Include="Resources\Shader\Model\Filter\RGBChannel.fs">
-      <Filter>Resource Files\Shader\Model\Frame\Histogram</Filter>
-    </None>
-    <None Include="Resources\Shader\Model\Filter\1DBlur.fs">
-      <Filter>Resource Files\Shader\Model\Frame\Histogram</Filter>
-    </None>
-    <None Include="Resources\Shader\Model\Filter\Mix.fs">
-      <Filter>Resource Files\Shader\Model\Frame\Histogram</Filter>
-    </None>
   </ItemGroup>
 </Project>

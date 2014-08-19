@@ -1,33 +1,38 @@
 #include "NoiseFilter.h"
 
-#include "NotImplementedException.h"
+#include "GPUHelper.h"
 
 namespace model {
 namespace filter {
 
 using ::model::frame::Frame;
-using ::exception::NotImplementedException;
+using ::helper::GPUHelper;
 using ::model::saveable::Saveable;
 
 NoiseFilter::NoiseFilter(Module::sptr predecessor) : Filter(predecessor) {
-    throw new NotImplementedException();
+    newParameter(kParamIntensityStr, 0.5f);
 }
 
 NoiseFilter::~NoiseFilter() {
-    throw new NotImplementedException();
-}
-
-QString NoiseFilter::getName() const {
-    throw new NotImplementedException();
 }
 
 model::frame::Frame::sptr NoiseFilter::getFrame(unsigned int frameNumber) const {
-    throw new NotImplementedException();
+    Frame::sptr frame = getPredecessor()->getFrame(frameNumber);
+
+    GPUHelper gpuHelper(":/Shader/Filter/Noise.fs", frame->getContext());
+
+    gpuHelper.setValue("intensity", getParamValue<float>(kParamIntensityStr));
+
+    Surface::sptr targetSurface = gpuHelper.run(*frame.data());
+
+    return Frame::sptr(new Frame(targetSurface, frame->getMetadata()));
 }
 
 Saveable::SaveableType NoiseFilter::getType() const {
 	return Saveable::SaveableType::noiseFilter;
 }
+
+const QString NoiseFilter::kParamIntensityStr = "filter_noise_param_intensity";
 
 }  // namespace filter
 }  // namespace model
