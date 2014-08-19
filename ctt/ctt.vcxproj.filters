@@ -979,6 +979,9 @@
     <ClInclude Include="FilterListViewElement.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
+    <ClInclude Include="ExtendedVideoListController.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\Filter\RGBChannel.fs">
@@ -1034,19 +1037,5 @@
     <ClInclude Include="AccessToDummyException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Shader\Model\Filter\Noise.fs">
-      <Filter>Resource Files\Shader\Model\Frame\Histogram</Filter>
-    </None>
-    <None Include="Resources\Shader\Model\Filter\RGBChannel.fs">
-      <Filter>Resource Files\Shader\Model\Frame\Histogram</Filter>
-    </None>
-    <None Include="Resources\Shader\Model\Filter\1DBlur.fs">
-      <Filter>Resource Files\Shader\Model\Frame\Histogram</Filter>
-    </None>
-    <None Include="Resources\Shader\Model\Filter\Mix.fs">
-      <Filter>Resource Files\Shader\Model\Frame\Histogram</Filter>
-    </None>
   </ItemGroup>
 </Project>
