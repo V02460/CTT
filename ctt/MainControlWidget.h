@@ -34,6 +34,7 @@ public:
 	MainControlWidget(::controller::DifferenceController::sptr filterController, QWidget *parent = 0);
 
 	void setPlayer(::model::player::Player::sptr player);
+	void removePlayer();
 
 public slots:
     /**

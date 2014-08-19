@@ -95,4 +95,8 @@ void MainControlWidget::setPlayer(::model::player::Player::sptr player) {
 	playerFunctions->setPlayer(player);
 }
 
+void MainControlWidget::removePlayer() {
+
+}
+
 }  // namespace view

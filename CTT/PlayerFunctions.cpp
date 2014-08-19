@@ -89,7 +89,7 @@ void PlayerFunctions::removePlayer() {
 	
 }
 
-void PlayerFuntions::setEnabledAll(bool isEnabled) {
+void PlayerFunctions::setEnabledAll(bool isEnabled) {
 
 }
 
