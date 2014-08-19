@@ -1,12 +1,14 @@
 #include "FileVideo.h"
 
 #include "NotImplementedException.h"
+#include "FileNotFoundException.h"
 
 namespace model {
 namespace video {
 
 using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
+using ::exception::FileNotFoundException;
 
 
 FileVideo::FileVideo(QString path, QSharedPointer<QOpenGLContext> context) 
@@ -16,8 +18,7 @@ FileVideo::FileVideo(QString path, QSharedPointer<QOpenGLContext> context)
 {
 	if (!videoFile.exists())
 	{
-		//TODO use the File not found exception jeshgni
-		//throw new FileNotFoundException();
+		throw new FileNotFoundException("The video file at \"" + path + "\" doesn't exist");
 	}
 }
 using ::model::saveable::Saveable;

@@ -583,6 +583,9 @@
     <ClCompile Include="NoScalePolicy.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
+    <ClCompile Include="FFmpegException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -928,6 +931,12 @@
     </ClInclude>
     <ClInclude Include="VideoDisplayPolicy.h">
       <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="YUVType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FFmpegException.h">
+      <Filter>Header Files\Exception</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

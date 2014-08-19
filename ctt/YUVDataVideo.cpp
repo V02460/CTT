@@ -3,6 +3,8 @@
 #include "NotImplementedException.h"
 #include <QVector>
 #include "MacroblockType.h"
+#include "FileNotFoundException.h"
+#include "IOException.h"
 
 namespace model {
 namespace video {
@@ -13,7 +15,8 @@ using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
 using ::exception::IllegalArgumentException;
 using ::model::frame::MacroblockType;
-//using ::exception::IOException;
+using ::exception::IOException;
+using ::exception::FileNotFoundException;
 
 
 YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QSize resolution, double framerate, YUVType type, QSharedPointer<QOpenGLContext> context)
@@ -68,8 +71,7 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, 
 
 	if (!metadataFile.exists())
 	{
-		//TODO use the File not found exception jeshgni
-		//throw new FileNotFoundException();
+		throw new FileNotFoundException("The metadata file at \"" + pathToMetadataFile + "\" doesn't exist.");
 	}
 
 	if (((resolution.height() % 16) != 0) || ((resolution.width() % 16) != 0))
@@ -80,8 +82,8 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, 
 
 	if (((pixelsPerFrame / 256) * metadata.getLength()) != metadataFile.size())
 	{
-		throw new IllegalArgumentException("The metadata file at the submitted location doesn't contain information about the number of macroblocks in the videofile (assuming 16x16p macroblocks and 1 byte of metadata per macroblock).");
-}
+		throw new IllegalArgumentException("The metadata file at the submitted location doesn't contain information about the exact number of macroblocks in the videofile (assuming 16x16p macroblocks and 1 byte of metadata per macroblock).");
+	}
 
 	hasMetadataFile = true;
 
@@ -265,12 +267,10 @@ void YUVDataVideo::loadVideodata(unsigned int startFrame) const
 {
 
 	if (!videoFile.open(QIODevice::ReadOnly)) {
-		//TODO jgsgiruhs use IOException here
-		//throw new IOException();
+		throw new IOException("Couldn't open the video file at \"" + pathToVideoFile + "\".");
 	}
 	if (!videoFile.seek(bytesPerFrame * startFrame)) {
-		//TODO jgsgiruhs use IOException here
-		//throw new IOException();
+		throw new IOException("Couldn't seek to " + QString::number(bytesPerFrame * startFrame) + " in the video file at \"" + pathToVideoFile + "\".");
 	}
 
 	videoBuffer = videoFile.read(numberOfFramesInMemory * bytesPerFrame);
@@ -285,15 +285,12 @@ void YUVDataVideo::loadMetadata(unsigned int startFrame) const
 		throw new IllegalStateException("Tried to load metadata without having a metadata file.");
 	}
 	if (!metadataFile.open(QIODevice::ReadOnly)) {
-		//TODO jgsgiruhs use IOException here
-		//throw new IOException();
+		throw new IOException("Couldn't open the metadata file at \"" + pathToMetadataFile + "\".");
 	}
 	if (!metadataFile.seek((pixelsPerFrame / 256) * startFrame)) {
-		//TODO jgsgiruhs use IOException here
-		//throw new IOException();
+		throw new IOException("Couldn't seek to " + QString::number((pixelsPerFrame / 256) * startFrame) + " in the metadata file at \"" + pathToVideoFile + "\".");
 	}
 
-	//TODO eufufe ordentliche größe statt bytesperframe
 	metadataBuffer = metadataFile.read(numberOfFramesInMemory * (pixelsPerFrame / 256));
 
 	metadataFile.close();
