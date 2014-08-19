@@ -33,7 +33,7 @@ public:
      * Creates a ProcessingWidget.
      */
 	ProcessingWidget(::model::saveable::SaveableList<::model::player::Player> players,
-		::model::saveable::SaveableList<::model::filter::FilteredVideo> filteredVideos,);
+		::model::saveable::SaveableList<::model::filter::FilteredVideo> filteredVideos);
 
 public slots:
     /**
