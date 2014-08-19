@@ -22,7 +22,7 @@ using ::exception::IllegalArgumentException;
 using ::exception::IllegalStateException;
 using ::exception::NotImplementedException;
 
-Player::Player(double fps): fps(fps), loop(0, 0), currentFrameNumber(0), looping(false), playing(false) {
+Player::Player(double fps): fps(fps), defaultFPS(fps), loop(0, 0), currentFrameNumber(0), looping(false), playing(false) {
 	if (!(fps > 0)) {
 		throw new IllegalArgumentException("Tried to create a player with a playback speed not greater than zero.)");
 	}
@@ -98,6 +98,10 @@ void Player::jumpToFrameNr(unsigned int frameNr) {
 
 	changed();
 	emit currentFrameNrChanged(getCurrentFrameNumber());
+}
+
+double Player::getDefaultFPS() {
+	return defaultFPS;
 }
 
 void Player::setFPS(double fps){
