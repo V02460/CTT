@@ -59,6 +59,7 @@ private:
 	void setupUi();
 
     ::model::saveable::SaveableList<::model::player::Player>::sptr players; /**< The list of players which can be activated */
+	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos;
 	::controller::VideoListController::sptr analysingVideosController;
     QPushButton *btnReady; /**< The button to switch from the processing view to the analyzing view */
     ThumbnailListWidget *thumbnailWidget; /**< the list of videos in the current part of the program */

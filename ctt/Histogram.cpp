@@ -70,6 +70,14 @@ Surface::sptr Histogram::renderHistogram(const Surface &histogramData) const {
     return histogramDisplayer.run(histogramData, QSize(256, 128));
 }
 
+const Histogram::HistogramType Histogram::stringToType(QString string) {
+	//TODO implement
+	return HistogramType::Red;
+}
+
+//TODO implement
+const QList<QString> Histogram::HISTOGRAM_TYPE_STRINGS = QList<QString>();
+
 /**
  * Returns the texture dimensions for the compaction logic.
  * 4x 16x16 blocks must be compacted to one.

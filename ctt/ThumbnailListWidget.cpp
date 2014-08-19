@@ -2,12 +2,13 @@
 
 #include <QFileDialog>
 
+
 namespace view {
 
 using ::model::saveable::SaveableList;
-using ::model::video::Video;
+using ::model::filter::FilteredVideo;
 
-ThumbnailListWidget::ThumbnailListWidget(SaveableList<Video>::sptr filteredVideos, int selectableCount, bool isHorizontal, QWidget *parent) : QWidget(parent){
+ThumbnailListWidget::ThumbnailListWidget(SaveableList<FilteredVideo>::sptr filteredVideos, int selectableCount, bool isHorizontal, QWidget *parent) : QWidget(parent){
 	thumbnailList = QList<ListedPushButton::sptr>();
 	activatedButtons = QList<int>();
 
@@ -16,10 +17,10 @@ ThumbnailListWidget::ThumbnailListWidget(SaveableList<Video>::sptr filteredVideo
 		filteredVideos->subscribe(ThumbnailListWidget::sptr(this));
 	} else {
 		qDebug() << "Error in ThumbnailListWidget! The filteredVideo list was null! Using list with 5 empty elements instead";
-		this->filteredVideos = SaveableList<Video>::sptr(new SaveableList<Video>());
+		this->filteredVideos = SaveableList<FilteredVideo>::sptr(new SaveableList<FilteredVideo>());
 
 		for (int i = 0; i < 5; i++) {
-			this->filteredVideos->insert(i, Video::sptr());
+			this->filteredVideos->insert(i, FilteredVideo::sptr());
 		}
 	}
 

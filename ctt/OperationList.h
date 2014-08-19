@@ -60,7 +60,7 @@ public:
 	/**
 	 * Returns the one instance this class can have.
 	 */
-	static OperationList getInstance();
+	static OperationList::sptr getInstance();
 
 private:
 	OperationList();

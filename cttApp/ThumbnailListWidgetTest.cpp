@@ -3,8 +3,8 @@
 #include <QScrollArea>
 
 ThumbnailListWidgetTest::ThumbnailListWidgetTest(QWidget *parent) : QWidget(parent) {
-	horizontal = new view::ThumbnailListWidget(model::saveable::SaveableList<model::video::Video>::sptr(), 4, true, this);
-	vertical = new view::ThumbnailListWidget(model::saveable::SaveableList<model::video::Video>::sptr(), 4, false, this);
+	horizontal = new view::ThumbnailListWidget(model::saveable::SaveableList<model::filter::FilteredVideo>::sptr(), 4, true, this);
+	vertical = new view::ThumbnailListWidget(model::saveable::SaveableList<model::filter::FilteredVideo>::sptr(), 4, false, this);
 
 	QObject::connect(horizontal, SIGNAL(buttonActivated(int)), this, SLOT(horizontalActivated(int)));
 	QObject::connect(vertical, SIGNAL(buttonActivated(int)), this, SLOT(verticalActivated(int)));

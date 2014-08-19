@@ -27,7 +27,7 @@ using ::exception::RuntimeException;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    ctt mainWindow;
+    //ctt mainWindow;
 	view::VideoWidget *videoWidget;
 	ThumbnailListWidgetTest *thumbnailListWidgetTest;
 	ListedPushButtonTest *listedPushButtonTest;
@@ -50,11 +50,11 @@ int main(int argc, char *argv[])
             return 1;
         }
 
-        /*Frame::sptr frame(new Frame(testContext, image));
+        Frame::sptr frame(new Frame(testContext, image));
         BlueHistogram histogram(*frame.data());
 
-        Surface::sptr histogramImage = histogram.getHistogramImage();
-        MockDisplayHelper::showImage(histogramImage->getFramebufferObject()->toImage());
+        /*Surface::sptr histogramImage = histogram.getHistogramImage();
+        MockDisplayHelper::showImage(histogramImage->getFramebufferObject()->toImage());*/
 
 		videoWidget = new view::VideoWidget(frame);
 		videoWidget->show();
@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
 		listedPushButtonTest->show();
 
 		thumbnailListWidgetTest = new ThumbnailListWidgetTest();
-		thumbnailListWidgetTest->show();*/
+		thumbnailListWidgetTest->show();
 
 		controller::project::Project testProject = controller::project::Project();
 		controller::VideoListController::sptr analysingVideosController = 

@@ -10,7 +10,7 @@
 #include <QDir>
 
 #include "Observer.h"
-#include "Video.h"
+#include "FilteredVideo.h"
 #include "SaveableList.h"
 #include "ListedPushButton.h"
 #include "VideoListController.h"
@@ -37,7 +37,7 @@ public:
 	 * @param isHorizontal Defines whether to use a QHBoxLayout (on true) or a QVBoxLayout (on false).
 	 * @param parent The parent widget.
      */
-    ThumbnailListWidget(::model::saveable::SaveableList<::model::video::Video>::sptr filteredVideos,
+    ThumbnailListWidget(::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos,
                         int selectableCount, bool isHorizontal = false, QWidget *parent = 0);
 
 	virtual void update() Q_DECL_OVERRIDE;
@@ -77,7 +77,7 @@ private:
     /**
      * The list of filteredVideo which is needed for the thumbnail generation.
      */
-    ::model::saveable::SaveableList<::model::video::Video>::sptr filteredVideos;
+    ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos;
 
 	void setupUi();
 };

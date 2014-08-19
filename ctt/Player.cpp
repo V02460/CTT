@@ -14,6 +14,14 @@ using ::exception::IllegalArgumentException;
 using ::exception::IllegalStateException;
 using ::exception::NotImplementedException;
 
+#define CURRENTFRAMENUMBERSTRINGID "currentFrameNumber"
+#define FPSSTRINGID "fps"
+#define LOOPINGSTRINGID "looping"
+#define LOOPSTARTSTRINGID "loopStart"
+#define LOOPENDSTRINGID "loopEnd"
+#define SCRUBBERSSTRINGID "scrubbers"
+#define NUMBEROFSCRUBBERSSTRINGID "numberOfScrubbers"
+
 Player::Player(double fps): fps(fps), defaultFPS(fps), loop(0, 0), currentFrameNumber(0), looping(false), playing(false) {
 	if (!(fps > 0)) {
 		throw new IllegalArgumentException("Tried to create a player with a playback speed not greater than zero.)");

@@ -612,6 +612,9 @@
     <ClCompile Include="AccessToDummyException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
+    <ClCompile Include="FilterMovedOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -741,9 +744,6 @@
     </ClInclude>
     <ClInclude Include="FilterFactory.h">
       <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterListOperation.h">
-      <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
     <ClInclude Include="FilterParam.h">
       <Filter>Header Files\Model\Filter</Filter>
@@ -970,6 +970,9 @@
     <ClInclude Include="FilterListViewElement.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
+    <ClInclude Include="FilterMovedOperation.h">
+      <Filter>Header Files\Controller\Operation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\Filter\RGBChannel.fs">
@@ -1020,9 +1023,6 @@
     <None Include="Shader\Filter\Greyscale.fs">
       <Filter>ShaderFiles\Filter</Filter>
     </None>
-    <ClInclude Include="FilterMovedOperation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Images\big_buck_bunny_01337.png">

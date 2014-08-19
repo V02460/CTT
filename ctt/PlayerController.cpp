@@ -34,4 +34,8 @@ namespace controller {
 		this->player = player;
 	}
 
+	void PlayerController::setFPS(int fps) {
+		//TODO implement
+	}
+
 }  // namespace controller

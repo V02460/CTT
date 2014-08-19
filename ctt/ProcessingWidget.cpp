@@ -8,8 +8,14 @@ namespace view {
 ProcessingWidget::ProcessingWidget(::model::saveable::SaveableList<::model::player::Player>::sptr players,
 	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos,
 	::model::saveable::SaveableList<::model::video::FileVideo>::sptr baseVideos, 
-	::controller::VideoListController::sptr analysingVideosController, QWidget *parent = 0) : QWidget(parent) {
+	::controller::VideoListController::sptr analysingVideosController, QWidget *parent) : QWidget(parent) {
 	this->analysingVideosController = analysingVideosController;
+
+	this->players = players;
+	players->subscribe(ProcessingWidget::sptr(this));
+
+	this->filteredVideos = filteredVideos;
+
 	playerWidgets = new QList<PlayerWidget::sptr>();
 	playerWidgetsLayout = new QStackedLayout(this);
 
@@ -19,7 +25,7 @@ ProcessingWidget::ProcessingWidget(::model::saveable::SaveableList<::model::play
 	QObject::connect(thumbnailWidget, SIGNAL(buttonDeactivated(int)), this, SLOT(videoDeactivated(int)));
 	QObject::connect(thumbnailWidget, SIGNAL(buttonReplaced(int, int)), this, SLOT(videoReplaced(int, int)));
 
-	controller::FilterController::sptr filterController = controller::FilterController::sptr(new controller::FilterController());
+	controller::FilterController::sptr filterController = controller::FilterController::sptr(new controller::FilterController(filteredVideos->get(0)));
 	mainControlWidget = new MainControlWidget(filterController, this);
 	QObject::connect(this, SIGNAL(videoChanged(model::filter::FilteredVideo::sptr)),
 		filterController.data(), SLOT(setVideo(model::filter::FilteredVideo::sptr)));
@@ -69,7 +75,7 @@ void ProcessingWidget::setupUi() {
 void ProcessingWidget::videoActivated(int id) {
 	playerWidgetsLayout->setCurrentIndex(id);
 	mainControlWidget->setPlayer(players->get(id));
-	emit videoChanged(players->get(id)->getScrubbers().at(1)->getVideo());
+	emit videoChanged(filteredVideos->get(id));
 }
 
 void ProcessingWidget::videoReplaced(int oldId, int newId) {

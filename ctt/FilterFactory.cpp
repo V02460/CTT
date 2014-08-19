@@ -15,7 +15,7 @@ QList<QString> FilterFactory::getAllFilterIDs() {
     throw new NotImplementedException();
 }
 
-Filter::sptr createFilter(QString id) {
+Filter::sptr FilterFactory::createFilter(QString id) {
     throw new NotImplementedException();
 }
 

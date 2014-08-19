@@ -82,7 +82,7 @@ public:
 
 private:
     ::model::filter::FilteredVideo::sptr video;
-	::controller::operation::OperationList list;
+	::controller::operation::OperationList::sptr list;
 };
 
 }  // namespace controller
