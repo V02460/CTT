@@ -4,7 +4,6 @@
 #include "IllegalStateException.h"
 #include "NotImplementedException.h"
 
-#define VIDEOSTRINGID "video"
 
 namespace model {
 namespace player {
@@ -17,6 +16,8 @@ using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
 using ::exception::IllegalArgumentException;
 using ::exception::IllegalStateException;
+
+const QString VideoScrubber::videoStringId("video");
 
 VideoScrubber::VideoScrubber(video::Video::sptr video): video(video) {
 	if (video->isDummy()) {
@@ -94,14 +95,14 @@ Memento VideoScrubber::getMemento() const {
 	}
 
 	Memento memento;
-	memento.setSharedPointer(VIDEOSTRINGID, video);
+	memento.setSharedPointer(videoStringId, video);
 	return memento;
 }
 
 void VideoScrubber::restore(Memento memento) {
-	//TODO ykrjgh warum tut das nicht???
-	//video = memento.getSharedPointer<Video>(VIDEOSTRINGID);
-
+	throw new NotImplementedException();
+// 	video = memento.getSharedPointer<Video>(videoStringId);
+// 
 // 	waitingForFrame = true;
 // 	currentFrame = video->getFrame(0);
 // 	waitingForFrame = false;

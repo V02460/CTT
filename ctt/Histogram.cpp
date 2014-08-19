@@ -54,15 +54,15 @@ Surface::sptr Histogram::makeHistogramGrid(const Surface &imageData) const {
 
     // scale output texture dimensions to the next bigger multiple of 16
     QSize targetSize = ceilTo(imageData.getSize(), 16);
-    
+
     return gpuHelper.run(imageData, targetSize);
-}
+    }
 
 Surface::sptr Histogram::requestValuesFromHistogramGrid(const Surface &histogramGrid) const {
     GPUHelper gpuHelper(":/Shader/Histogram/histogramCompaction.fs", histogramGrid.getContext(), getCompactedSize);
-
+    
     return gpuHelper.run(histogramGrid, QSize(16, 16));
-}
+    }
 
 Surface::sptr Histogram::renderHistogram(const Surface &histogramData) const {
     GPUHelper histogramDisplayer(":/Shader/Histogram/displayHistogram.fs", histogramData.getContext());

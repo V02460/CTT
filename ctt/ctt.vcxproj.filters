@@ -510,9 +510,6 @@
     <ClCompile Include="FilterAddedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
-    <ClCompile Include="FilterListOperation.cpp">
-      <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
     <ClCompile Include="FilterParamChangedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
@@ -904,6 +901,9 @@
     <ClInclude Include="Surface.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
+    <ClInclude Include="ProjectSaverFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="ProjectLoader.h">
       <Filter>Header Files\Controller\Project</Filter>
     </ClInclude>
@@ -957,6 +957,9 @@
     </ClInclude>
     <ClInclude Include="FileNotFoundException.h">
       <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="YUVType.h">
+      <Filter>Header Files\Model\Video</Filter>
     </ClInclude>
     <ClInclude Include="IOException.h">
       <Filter>Header Files\Exception</Filter>
@@ -1017,6 +1020,9 @@
     <None Include="Shader\Filter\Greyscale.fs">
       <Filter>ShaderFiles\Filter</Filter>
     </None>
+    <ClInclude Include="FilterMovedOperation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Images\big_buck_bunny_01337.png">

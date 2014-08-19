@@ -175,9 +175,9 @@
     <ClCompile Include="FilterFactory.cpp" />
     <ClCompile Include="FilterInsertionWidget.cpp" />
     <ClCompile Include="FilterIntervalList.cpp" />
-    <ClCompile Include="FilterListOperation.cpp" />
     <ClCompile Include="FilterListView.cpp" />
     <ClCompile Include="FilterListViewElement.cpp" />
+    <ClCompile Include="FilterMovedOperation.cpp" />
     <ClCompile Include="FilterParam.cpp" />
     <ClCompile Include="FilterParamChangedOperation.cpp" />
     <ClCompile Include="FilterRemovedOperation.cpp" />
@@ -597,9 +597,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml"</Command>
     </CustomBuild>
     <ClInclude Include="FilterIntervalList.h" />
-    <ClInclude Include="FilterListOperation.h" />
     <ClInclude Include="FilterListView.h" />
     <ClInclude Include="FilterListViewElement.h" />
+    <ClInclude Include="FilterMovedOperation.h" />
     <ClInclude Include="FilterParam.h" />
     <ClInclude Include="FilterParamChangedOperation.h" />
     <ClInclude Include="FilterRemovedOperation.h" />
@@ -630,6 +630,7 @@
     <ClInclude Include="GPUHelper.h" />
     <ClInclude Include="GreenHistogram.h" />
     <ClInclude Include="GreyscaleFilter.h" />
+    <ClInclude Include="YUVType.h" />
     <ClInclude Include="IOException.h" />
     <CustomBuild Include="ListedPushButton.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
@@ -914,6 +915,7 @@
     </CustomBuild>
     <ClInclude Include="ProjectLoader.h" />
     <ClInclude Include="ProjectSaver.h" />
+    <ClInclude Include="ProjectSaverFactory.h" />
     <ClInclude Include="RedHistogram.h" />
     <ClInclude Include="RescaleFilter.h" />
     <ClInclude Include="RGBChannelFilter.h" />

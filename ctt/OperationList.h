@@ -38,9 +38,9 @@ public:
     void redoOperation();
 
     /**
-     * Sets the last state of the Project which has been saved.
+     * Marks the current state as being saved last.
      */
-    void setLastSavedState();
+    void markLastSavedState();
 
     /**
      * Determines whether there are actual changes since the last saved state.
@@ -56,8 +56,20 @@ public:
      * Determines whether an Operation has been undone previously, making it possible to execute redoOperation.
      */
     bool canRedo() const;
+
+	/**
+	 * Returns the one instance this class can have.
+	 */
+	static OperationList getInstance();
+
 private:
-    Operation::uptr currentOperation;
+	OperationList();
+
+	static OperationList::sptr instance;
+
+    QList<Operation::sptr> operations;
+	QList<Operation::sptr>::iterator currentOperation;
+	QList<Operation::sptr>::iterator lastSavedOperation;
 };
 
 }  // namespace operation

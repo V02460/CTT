@@ -23,8 +23,8 @@ class HistogramTest : public QObject {
     Q_OBJECT
 
 private slots:
-    void initTestCase();
-    void histogramTypes();
+//     void initTestCase();
+//     void histogramTypes();
     // TODO: test get value
 
 private:

@@ -6,6 +6,7 @@ namespace model {
 namespace video {
 
 using ::exception::NotImplementedException;
+using ::exception::IllegalStateException;
 
 using ::model::frame::Frame;
 
@@ -18,7 +19,10 @@ void Video::save(QDir path, VideoFileType fileType) const {
 }
 
 QSharedPointer<QOpenGLContext> Video::getContext() const {
-    throw new NotImplementedException();
+	if (isDummy()) {
+		throw new IllegalStateException("Tried to request the context of a dummy video.");
+	}
+	return context;
 }
 
 }  // namespace video

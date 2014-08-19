@@ -4,14 +4,6 @@
 #include "IllegalStateException.h"
 #include "NotImplementedException.h"
 
-#define CURRENTFRAMENUMBERSTRINGID "currentFrameNumber"
-#define FPSSTRINGID "fps"
-#define LOOPINGSTRINGID "looping"
-#define LOOPSTARTSTRINGID "loopStart"
-#define LOOPENDSTRINGID "loopEnd"
-#define SCRUBBERSSTRINGID "scrubbers"
-#define NUMBEROFSCRUBBERSSTRINGID "numberOfScrubbers"
-
 namespace model {
 namespace player {
 

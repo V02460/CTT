@@ -62,10 +62,14 @@ public:
      * Returns the QOpenGLContext in which the Video creates its frames.
      *
      * @return QOpenGLContext the QOpenGLContext in which the Video creates its frames
+	 * @throws IllegalStateException if the the method is called on a dummy
      */
     QSharedPointer<QOpenGLContext> getContext() const;
 
     virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const = 0;
+
+protected:
+	QSharedPointer<QOpenGLContext> context;
 };
 
 }  // namespace video

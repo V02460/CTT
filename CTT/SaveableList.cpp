@@ -41,15 +41,21 @@ SaveableList<T>::SaveableList() {
 	list = QList<typename T::sptr>();
 }
 
+template <class T> const QString SaveableList<T>::SIZE = "size";
+template <class T> const QString SaveableList<T>::TEMPLATE = "template";
+template <class T> const QString SaveableList<T>::ELEMENT = "element";
+
 template <class T>
 void SaveableList<T>::insert(int index, typename T::sptr element) {
 	list.insert(index, element);
+	changed();
 }
 
 template <class T>
 typename T::sptr SaveableList<T>::remove(int index) {
 	T::sptr element = get(index);
 	list.removeAt(index);
+	changed();
 	return element;
 }
 
@@ -68,23 +74,24 @@ const ::model::saveable::Saveable::SaveableType SaveableList<T>::getTemplateType
 	return T::getDummy()->getType();
 }
 
-
 template <class T>
 Memento SaveableList<T>::getMemento() const {
 	Memento memento = Memento();
 	int size = getSize();
-	memento.setInt("size", size);
+	memento.setInt(SIZE, size);
+	memento.setString(TEMPLATE, Saveable::SAVEABLE_TYPE_STRINGS[T::getDummy()->getType()]);
 	for (int i = 0; i < size; i++) {
-		memento.setSharedPointer("element" + i, get(i));
+		memento.setSharedPointer(ELEMENT + i, get(i));
 	}
 	return memento;
 }
 
 template <class T>
 void SaveableList<T>::restore(Memento memento) {
-	int size = memento.getInt("size");
+	int size = memento.getInt(SIZE);
 	for (int i = 0; i < size; i++) {
-		// TODO casting list.append(memento.getSharedPointer("element" + i));
+		// TODO how to cast to T? every method seperate :/
+		// list.append(memento.getSharedPointer(ELEMENT + i));
 		throw new NotImplementedException();
 	}
 	isDummyFlag = false;
@@ -92,10 +99,10 @@ void SaveableList<T>::restore(Memento memento) {
 
 template <class T>
 Saveable::sptr SaveableList<T>::getDummy() {
-	SaveableList<T> dummy = SaveableList<T>();
-	dummy.isDummyFlag = true;
-	// TODO return SaveableList<T>(dummy);
-	throw new NotImplementedException();
+	SaveableList<T> *dummy = new SaveableList<T>(); 
+	dummy->isDummyFlag = true;
+	SaveableList<T>::sptr dummyPointer = QSharedPointer<SaveableList<T>>(dummy);
+	return dummyPointer;
 }
 
 template <class T>
