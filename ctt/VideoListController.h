@@ -64,7 +64,7 @@ public slots:
     **/
     void removeVideo(const ::model::video::Video &video);
 
-private:
+protected:
 	::model::saveable::SaveableList<::model::video::Video>::sptr videoList;
 };
 

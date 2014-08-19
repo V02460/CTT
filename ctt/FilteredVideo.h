@@ -67,6 +67,8 @@ public:
 
     model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
 
+	virtual ::model::video::VideoMetadata getMetadata() const Q_DECL_OVERRIDE;
+
     virtual ::model::saveable::Memento getMemento() const;
     virtual void restore(::model::saveable::Memento memento);
 	static Saveable::sptr getDummy();
