@@ -103,27 +103,6 @@
     <Filter Include="Source Files\Controller">
       <UniqueIdentifier>{817914d2-000a-4a12-94af-9e66d02e975f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TestStructure">
-      <UniqueIdentifier>{a69a1403-5bdb-4368-87a5-838ca826a815}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="TestStructure\Model">
-      <UniqueIdentifier>{059a7b9f-413c-42ca-b82b-b901dc6cfda8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="TestStructure\Model\Frame">
-      <UniqueIdentifier>{0ca7c3d9-f269-475e-ac5a-aac134f05001}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="TestStructure\Model\Player">
-      <UniqueIdentifier>{93d7968f-d3fd-497a-8c76-748adeba7636}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="TestStructure\Model\Saveable">
-      <UniqueIdentifier>{93ec5dcd-bbc6-481e-acf9-7391c4a50f45}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="TestStructure\Model\Video">
-      <UniqueIdentifier>{090115b4-ea45-4fa7-aabc-d2184b99939c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="TestStructure\Model\Frame\Histogram">
-      <UniqueIdentifier>{c2b21392-1ddd-4d95-9b3c-a5ac6f910508}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\SpecialTestingClasses">
       <UniqueIdentifier>{d138eec3-3f83-4966-931a-99f03fd4c6b3}</UniqueIdentifier>
     </Filter>
@@ -192,6 +171,9 @@
     <ClCompile Include="BBBTestVideo.cpp">
       <Filter>Source Files\SpecialTestingClasses</Filter>
     </ClCompile>
+    <ClCompile Include="..\ctt\main.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -240,9 +222,6 @@
     </ClInclude>
     <ClInclude Include="ModelVideoTests.h">
       <Filter>Test Structure\Model\Video</Filter>
-    </ClInclude>
-    <ClInclude Include="BBBTestVideo.h">
-      <Filter>Header Files\SpecialTestingClasses</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
