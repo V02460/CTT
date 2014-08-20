@@ -144,6 +144,7 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 	QByteArray vChannel;
 
 	QImage yImage(reinterpret_cast<const uchar*>(yChannel.constData()), getMetadata().getSize().width(), getMetadata().getSize().height(), QImage::Format_Indexed8);
+
 	QScopedPointer<QImage> uImage;
 	QScopedPointer<QImage> vImage;
 
@@ -176,6 +177,8 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 	uImage->setColorTable(colorTable);
 	vImage->setColorTable(colorTable);
 
+	//yImage.save("C:/Users/Jonas/Downloads/testpic.bmp", "BMP");
+
 	Frame yFrame(context, yImage);
 	Frame uFrame(context, *uImage);
 	Frame vFrame(context, *vImage);
@@ -190,8 +193,8 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 		myHelper.reset(new GPUHelper(":/Shader/Conversion/YUV422toRGBsdtv.fs", context));
 		break;
 	case YUV420:
-		break;
 		myHelper.reset(new GPUHelper(":/Shader/Conversion/YUV420toRGBsdtv.fs", context));
+		break;
 	default:
 		throw new IllegalStateException("YUV type not supported.");
 		break;
@@ -289,7 +292,7 @@ unsigned int YUVDataVideo::getFrameCount() const
 
 void YUVDataVideo::load(unsigned int startFrame) const
 {
-	loadVideodata(pixelsPerFrame);
+	loadVideodata(startFrame);
 
 	if (hasMetadataFile)
 	{

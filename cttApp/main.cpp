@@ -13,6 +13,7 @@
 #include "RuntimeException.h"
 #include "GPUHelper.h"
 #include "..\CTT\YUVType.h"
+#include <stdlib.h>
 
 using ::helper::MockDisplayHelper;
 using ::model::frame::Frame;
@@ -48,9 +49,11 @@ int main(int argc, char *argv[])
 // 
 //         Surface::sptr histogramImage = histogram.getHistogramImage();
 
-		model::video::YUVDataVideo testVideo("C:/Users/Jonas/Source/Repos/CTT/x64/Debug/testresources/Videos/YUV420CIF/waterfall_cif_420_352x288_260frames.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext);
+		model::video::YUVDataVideo testVideo("C:/Users/Jonas/Source/Repos/CTT/x64/Debug/testresources/Videos/YUV420CIF/stefan_cif.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext);
 
-        MockDisplayHelper::showImage(testVideo.getFrame(10)->getFramebufferObject()->toImage());
+
+		MockDisplayHelper::showImage(testVideo.getFrame(50)->getFramebufferObject()->toImage());
+		       
     }
     catch (RuntimeException *e) {
 //         QMessageBox msgBox;
