@@ -1,16 +1,17 @@
 #include "YUVDataVideo.h"
 
 #include "NotImplementedException.h"
-#include <QVector>
 #include "MacroblockType.h"
 #include "FileNotFoundException.h"
 #include "IOException.h"
 #include "FrameMetadata.h"
+#include "GPUHelper.h"
 
 namespace model {
 namespace video {
 
 using ::model::frame::Frame;
+using ::helper::GPUHelper;
 using ::model::frame::FrameMetadata;
 using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
@@ -20,6 +21,7 @@ using ::model::frame::MacroblockType;
 using ::exception::IOException;
 using ::exception::FileNotFoundException;
 
+QVector<QRgb> YUVDataVideo::colorTable;
 
 YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QSize resolution, double framerate, YUVType type, QSharedPointer<QOpenGLContext> context)
 	: FileVideo(pathToVideoFile, context)
@@ -49,6 +51,8 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QSize resolution, double fra
 		}
 		chromaSize = pixelsPerFrame / 4;
 		break;
+	default:
+		throw new IllegalArgumentException("Submitted YUV type not supported.");
 	}
 
 	bytesPerFrame = pixelsPerFrame + (2 * chromaSize);
@@ -63,6 +67,17 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QSize resolution, double fra
 	metadata = VideoMetadata(resolution, framerate, length);
 
 	load(0);
+
+	if (YUVDataVideo::colorTable.isEmpty())
+	{
+		YUVDataVideo::colorTable.resize(256);
+		QColor color;
+		for (int i = 0; i < 256; i++)
+		{
+			color.setRgb(i, i, i);
+			YUVDataVideo::colorTable[i] = color.rgb();
+		}
+	}
 }
 
 YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, QSize resolution, double framerate, YUVType type, QSharedPointer<QOpenGLContext> context)
@@ -113,8 +128,6 @@ VideoMetadata YUVDataVideo::getMetadata() const {
 
 model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const 
 {
-	throw new NotImplementedException();
-
 	if (isDummy())
 	{
 		throw new NotImplementedException("Tried to request a frame from a dummy YUVDataVideo");
@@ -130,41 +143,66 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 	QByteArray uChannel;
 	QByteArray vChannel;
 
-	QImage yImage(reinterpret_cast<const uchar*>(yChannel.constData()), getMetadata().getSize().width(), getMetadata().getSize().height, QImage::Format_Indexed8);
+	QImage yImage(reinterpret_cast<const uchar*>(yChannel.constData()), getMetadata().getSize().width(), getMetadata().getSize().height(), QImage::Format_Indexed8);
 	QScopedPointer<QImage> uImage;
 	QScopedPointer<QImage> vImage;
 
-	if (type == YUV444)
+	switch (type)
 	{
+	case YUV444:
 		uChannel.append(rawFrame.mid(pixelsPerFrame, pixelsPerFrame));
 		vChannel.append(rawFrame.mid(2 * pixelsPerFrame, pixelsPerFrame));
-
 		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel.constData()), getMetadata().getSize().width(), getMetadata().getSize().height(), QImage::Format_Indexed8));
 		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel.constData()), getMetadata().getSize().width(), getMetadata().getSize().height(), QImage::Format_Indexed8));
-	}
-	else if (type == YUV422)
-	{
+		break;
+	case YUV422:
 		uChannel.append(rawFrame.mid(pixelsPerFrame, pixelsPerFrame / 2));
 		vChannel.append(rawFrame.mid(pixelsPerFrame + (pixelsPerFrame / 2), pixelsPerFrame / 2));
-
 		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel.constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height(), QImage::Format_Indexed8));
 		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel.constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height(), QImage::Format_Indexed8));
-	}
-	else
-	{
+		break;
+	case YUV420:
 		uChannel.append(rawFrame.mid(pixelsPerFrame, pixelsPerFrame / 4));
 		vChannel.append(rawFrame.mid(pixelsPerFrame + (pixelsPerFrame / 4), pixelsPerFrame / 4));
-
 		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel.constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height() / 2, QImage::Format_Indexed8));
-		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel.constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height() / 2, QImage::Format_Indexed8)); 
+		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel.constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height() / 2, QImage::Format_Indexed8));
+		break;
+	default:
+		throw new IllegalStateException("YUV type not supported.");
+		break;
 	}
 
-	//TODO hgezefw the colortable for the images
+	yImage.setColorTable(colorTable);
+	uImage->setColorTable(colorTable);
+	vImage->setColorTable(colorTable);
 
+	Frame yFrame(context, yImage);
 	Frame uFrame(context, *uImage);
 	Frame vFrame(context, *vImage);
-	//TODO sizergfijsw shader for rgb conversion
 
+	GPUHelper::uptr myHelper;
+	switch (type)
+	{
+	case YUV444:
+		myHelper.reset(new GPUHelper(":/Shader/Conversion/YUV444toRGBsdtv.fs", context));
+		break;
+	case YUV422:
+		myHelper.reset(new GPUHelper(":/Shader/Conversion/YUV422toRGBsdtv.fs", context));
+		break;
+	case YUV420:
+		break;
+		myHelper.reset(new GPUHelper(":/Shader/Conversion/YUV420toRGBsdtv.fs", context));
+	default:
+		throw new IllegalStateException("YUV type not supported.");
+		break;
+	}
+
+	myHelper->setValue("uChannel", uFrame);
+	myHelper->setValue("vChannel", vFrame);
+
+	Surface::sptr resultSurface = myHelper->run(yFrame, getMetadata().getSize());
+
+	Frame::sptr result;
 
 	if (hasMetadataFile)
 	{
@@ -226,9 +264,16 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 				macroblockTypes[x][y] = MacroblockType::UNKNOWN;
 			}
 		}
-		FrameMetadata metadata(getMetadata().getSize(), macroblockTypes);
+		FrameMetadata resultMetadata(getMetadata().getSize(), macroblockTypes);
+		result.reset(new Frame(resultSurface, resultMetadata));
+	}
+	else
+	{
+		FrameMetadata resultMetadata(getMetadata().getSize());
+		result.reset(new Frame(resultSurface, resultMetadata));
 	}
 
+	return result;
 }
 
 

@@ -5,6 +5,8 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 #include <QFile>
+#include <QVector>
+#include <qcolor.h>
 
 #include "Video.h"
 #include "Frame.h"
@@ -121,6 +123,8 @@ private:
 
 	bool hasMetadataFile; /**< Whether the video has a metadata file*/
 	QString pathToMetadataFile; /**< The metadata file of the YUV video */
+
+	static QVector<QRgb> colorTable;
 
 };
 
