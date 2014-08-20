@@ -5,11 +5,13 @@
 #include "MacroblockType.h"
 #include "FileNotFoundException.h"
 #include "IOException.h"
+#include "FrameMetadata.h"
 
 namespace model {
 namespace video {
 
 using ::model::frame::Frame;
+using ::model::frame::FrameMetadata;
 using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
@@ -23,6 +25,7 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QSize resolution, double fra
 	: FileVideo(pathToVideoFile, context)
 	, metadata(resolution, framerate, 1)
 	, pixelsPerFrame(resolution.height() * resolution.width())
+	, type(type)
 {
 	hasMetadataFile = false;
 
@@ -108,25 +111,59 @@ VideoMetadata YUVDataVideo::getMetadata() const {
 	return metadata;
 }
 
-model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const {
+model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const 
+{
 	throw new NotImplementedException();
 
 	if (isDummy())
 	{
 		throw new NotImplementedException("Tried to request a frame from a dummy YUVDataVideo");
-}
+	}
 
 	if (!hasFrameInBuffer(frameNumber)) {
 		load(frameNumber);
 	}
 
-	QImage image;
+	QByteArray rawFrame = videoBuffer.mid((frameNumber - firstFrameInMemory) * bytesPerFrame, bytesPerFrame);
 
-// 	QByteArray rawFrame = videoBuffer.mid((frameNumber - firstFrameInMemory) * bytesPerFrame, bytesPerFrame);
-// 	rawFrame.prepend(("P6\n" + QString::number(width here) + " " + QString::number(height here) + "\n255\n").toUtf8());
-// 	image.loadFromData(rawFrame, "PPM");
+	QByteArray yChannel = rawFrame.mid(0, pixelsPerFrame);
+	QByteArray uChannel;
+	QByteArray vChannel;
 
-	//TODO sizergfijsw currently acts as if the data was rgb ppm, apply shader for conversion
+	QImage yImage(reinterpret_cast<const uchar*>(yChannel.constData()), getMetadata().getSize().width(), getMetadata().getSize().height, QImage::Format_Indexed8);
+	QScopedPointer<QImage> uImage;
+	QScopedPointer<QImage> vImage;
+
+	if (type == YUV444)
+	{
+		uChannel.append(rawFrame.mid(pixelsPerFrame, pixelsPerFrame));
+		vChannel.append(rawFrame.mid(2 * pixelsPerFrame, pixelsPerFrame));
+
+		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel.constData()), getMetadata().getSize().width(), getMetadata().getSize().height(), QImage::Format_Indexed8));
+		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel.constData()), getMetadata().getSize().width(), getMetadata().getSize().height(), QImage::Format_Indexed8));
+	}
+	else if (type == YUV422)
+	{
+		uChannel.append(rawFrame.mid(pixelsPerFrame, pixelsPerFrame / 2));
+		vChannel.append(rawFrame.mid(pixelsPerFrame + (pixelsPerFrame / 2), pixelsPerFrame / 2));
+
+		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel.constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height(), QImage::Format_Indexed8));
+		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel.constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height(), QImage::Format_Indexed8));
+	}
+	else
+	{
+		uChannel.append(rawFrame.mid(pixelsPerFrame, pixelsPerFrame / 4));
+		vChannel.append(rawFrame.mid(pixelsPerFrame + (pixelsPerFrame / 4), pixelsPerFrame / 4));
+
+		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel.constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height() / 2, QImage::Format_Indexed8));
+		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel.constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height() / 2, QImage::Format_Indexed8)); 
+	}
+
+	//TODO hgezefw the colortable for the images
+
+	Frame uFrame(context, *uImage);
+	Frame vFrame(context, *vImage);
+	//TODO sizergfijsw shader for rgb conversion
 
 
 	if (hasMetadataFile)
@@ -141,51 +178,55 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 		//TODO WICHTIG sicherstellen dass das hier in der richtigen reihenfolge läuft, und nicht irgendwie gespiegelt zu den bildaten oder sowas, und das ganze testen natürlich, damit kein out of bounds zeug oder so läuft
 		for (unsigned int i = 0; i < (pixelsPerFrame / 256); i++)
 		{
+			int x = i / (metadata.getSize().width() / 16);
+			int y = i % (metadata.getSize().width() / 16);
+
 			switch (rawMetadata[i])
 			{
 			case 0:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_SKIP;
+				macroblockTypes[x][y] = MacroblockType::INTER_SKIP;
 				break;
 			case 1:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_16X16;
+				macroblockTypes[x][y] = MacroblockType::INTER_16X16;
 				break;
 			case 2:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_16X8;
+				macroblockTypes[x][y] = MacroblockType::INTER_16X8;
 				break;
 			case 3:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_8X16;
+				macroblockTypes[x][y] = MacroblockType::INTER_8X16;
 				break;
 			case 4:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_8X8;
+				macroblockTypes[x][y] = MacroblockType::INTER_8X8;
 				break;
 			case 5:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_8X4;
+				macroblockTypes[x][y] = MacroblockType::INTER_8X4;
 				break;
 			case 6:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_4X8;
+				macroblockTypes[x][y] = MacroblockType::INTER_4X8;
 				break;
 			case 7:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_4X4;
+				macroblockTypes[x][y] = MacroblockType::INTER_4X4;
 				break;
 			case 8:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_8X8_OR_BELOW;
+				macroblockTypes[x][y] = MacroblockType::INTER_8X8_OR_BELOW;
 				break;
 			case 9:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTRA_4X4;
+				macroblockTypes[x][y] = MacroblockType::INTRA_4X4;
 				break;
 			case 10:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTRA_16X16;
+				macroblockTypes[x][y] = MacroblockType::INTRA_16X16;
 				break;
 			case 13:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTRA_8X8;
+				macroblockTypes[x][y] = MacroblockType::INTRA_8X8;
 				break;
 			case 14:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTRA_PCM;
+				macroblockTypes[x][y] = MacroblockType::INTRA_PCM;
 				break;
 			default: 
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::UNKNOWN;
+				macroblockTypes[x][y] = MacroblockType::UNKNOWN;
 			}
 		}
+		FrameMetadata metadata(getMetadata().getSize(), macroblockTypes);
 	}
 
 }

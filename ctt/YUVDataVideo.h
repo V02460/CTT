@@ -117,6 +117,7 @@ private:
 	unsigned int bytesPerFrame; /**< The number of bytes for each frame*/
 	mutable QFile metadataFile; /**< The file the video reads its metadata from*/
 	VideoMetadata metadata; /**< The metadata of the YUV video */
+	YUVType type; /**< The YUv type of the YUV video */
 
 	bool hasMetadataFile; /**< Whether the video has a metadata file*/
 	QString pathToMetadataFile; /**< The metadata file of the YUV video */
