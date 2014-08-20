@@ -6,11 +6,13 @@
 #include <QMessageBox>
 
 #include "MockDisplayHelper.h"
+#include "YUVDataVideo.h"
 #include "Frame.h"
 #include "BlueHistogram.h"
 #include "Surface.h"
 #include "RuntimeException.h"
 #include "GPUHelper.h"
+#include "..\CTT\YUVType.h"
 
 using ::helper::MockDisplayHelper;
 using ::model::frame::Frame;
@@ -36,16 +38,19 @@ int main(int argc, char *argv[])
             return 1;
         }
 
-        QImage image(":/cttApp/SmallBuckBunny.png");
-        if (image.isNull()) {
-            return 1;
-        }
+//         QImage image(":/cttApp/SmallBuckBunny.png");
+//         if (image.isNull()) {
+//             return 1;
+//         }
+// 
+//         Frame::sptr frame(new Frame(testContext, image));
+//         BlueHistogram histogram(*frame.data());
+// 
+//         Surface::sptr histogramImage = histogram.getHistogramImage();
 
-        Frame::sptr frame(new Frame(testContext, image));
-        BlueHistogram histogram(*frame.data());
+		model::video::YUVDataVideo testVideo("C:/Users/Jonas/Source/Repos/CTT/x64/Debug/testresources/Videos/YUV420CIF/waterfall_cif_420_352x288_260frames.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext);
 
-        Surface::sptr histogramImage = histogram.getHistogramImage();
-        MockDisplayHelper::showImage(histogramImage->getFramebufferObject()->toImage());
+        MockDisplayHelper::showImage(testVideo.getFrame(10)->getFramebufferObject()->toImage());
     }
     catch (RuntimeException *e) {
 //         QMessageBox msgBox;

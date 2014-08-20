@@ -296,10 +296,6 @@ void YUVDataVideo::load(unsigned int startFrame) const
 		loadMetadata(startFrame);
 	}
 
-	videoBuffer = videoFile.read(numberOfFramesInMemory * bytesPerFrame);
-
-	videoFile.close();
-
 	firstFrameInMemory = startFrame;
 }
 
