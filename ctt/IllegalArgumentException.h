@@ -1,7 +1,6 @@
 #ifndef _ILLEGALARGUMENTEXCEPTION_H
 #define _ILLEGALARGUMENTEXCEPTION_H
 
-#include <QException>
 #include <QString>
 
 #include "RuntimeException.h"
@@ -34,7 +33,7 @@ public:
     virtual QString getMsg() const Q_DECL_OVERRIDE;
     virtual const char *what() const Q_DECL_OVERRIDE;
 
-    virtual void IllegalArgumentException::raise() const Q_DECL_OVERRIDE;
+    virtual void raise() const Q_DECL_OVERRIDE;
     virtual IllegalArgumentException *clone() const Q_DECL_OVERRIDE;
 private:
     const QString msg;

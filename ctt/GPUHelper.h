@@ -68,6 +68,14 @@ public:
      */
     ::model::Surface::sptr run(const ::model::Surface &sourceTexture, QSize targetSize);
 
+    /**
+    * Executes the set up operations by executing the shader.
+    * The target texture dimensions matches those of the source texture.
+    *
+    * @param sourceTexture texture which is bound to the _sourceTexture shader uniform
+    */
+    ::model::Surface::sptr run(const ::model::Surface &sourceTexture);
+
 private:
     enum OperationMode {
         APPLY,

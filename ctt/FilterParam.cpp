@@ -7,11 +7,11 @@ namespace filter {
 
 using ::exception::NotImplementedException;
 
-FilterParam::FilterParam(QString name, any value) {
+FilterParam::FilterParam(QString name, QVariant value) {
     throw new NotImplementedException();
 }
 
-any FilterParam::getValue() const {
+QVariant FilterParam::getValue() const {
     throw new NotImplementedException();
 }
 

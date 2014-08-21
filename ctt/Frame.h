@@ -73,12 +73,14 @@ public:
      */
     Histogram::sptr getHistogram(Histogram::HistogramType type) const;
 
-	/**
-	* Creates a Frame from a Surface by incorporating it. Cripples surface.
-	*
-	* @param surface The Surface Frame takes its attributes from.
-	*/
-	Frame(Surface::sptr surface, FrameMetadata metadata);
+//TODO: this is a dangerous constructor when used without care
+//protected:
+    /**
+     * Creates a Frame from a Surface by incorporating it. Cripples surface.
+     *
+     * @param surface The Surface Frame takes its attributes from.
+     */
+    Frame(Surface::sptr surface, FrameMetadata metadata);
 
 private:
     Q_DISABLE_COPY(Frame)
