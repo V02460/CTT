@@ -496,9 +496,6 @@
     <ClCompile Include="FilterAddedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
-    <ClCompile Include="FilterListOperation.cpp">
-      <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
     <ClCompile Include="FilterParamChangedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
@@ -564,6 +561,9 @@
     </ClCompile>
     <ClCompile Include="ParseException.cpp">
       <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterMovedOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -685,9 +685,6 @@
     </ClInclude>
     <ClInclude Include="FilterFactory.h">
       <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterListOperation.h">
-      <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
     <ClInclude Include="FilterParam.h">
       <Filter>Header Files\Model\Filter</Filter>
@@ -907,6 +904,9 @@
     </ClInclude>
     <ClInclude Include="ParseException.h">
       <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterMovedOperation.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
