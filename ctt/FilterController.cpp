@@ -13,7 +13,7 @@ using ::controller::operation::Operation;
 using ::controller::operation::FilterAddedOperation;
 using ::model::filter::FilterFactory;
 
-FilterController::FilterController(FilteredVideo::sptr video) : video(video), list(OperationList::getInstance()) {}
+FilterController::FilterController(FilteredVideo::sptr video) : video(video), list(*OperationList::getInstance()) {}
 
 void FilterController::insertFilter(QString id) {
 	list.doOperation(QSharedPointer<Operation>(new FilterAddedOperation(FilterFactory::createFilter(id), video)));
