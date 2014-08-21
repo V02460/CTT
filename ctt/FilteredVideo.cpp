@@ -70,7 +70,7 @@ Filter::sptr FilteredVideo::removeFilter(unsigned int pos) {
 
 	if (pos >= (unsigned int) filters.count())
 	{
-		throw new IllegalArgumentException("Can not remove a Filter into a FilteredVideo with " + QString::number(filters.count())
+		throw new IllegalArgumentException("Can not remove a Filter from a FilteredVideo with " + QString::number(filters.count())
 			+ " Filters from position " + QString::number(pos) + ".");
 	}
 

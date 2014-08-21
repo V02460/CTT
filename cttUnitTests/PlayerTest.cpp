@@ -164,3 +164,9 @@ void PlayerTest::initTestCase()
 	testContext->create();
 	QVERIFY2(testContext->makeCurrent(&surface), "Couldn't initialize OGL Context.");
 }
+
+void PlayerTest::testDummy()
+{
+	model::saveable::Saveable::sptr dummy = Player::getDummy();
+	QVERIFY(dummy->isDummy());
+}

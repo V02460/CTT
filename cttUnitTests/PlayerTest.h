@@ -14,6 +14,7 @@ class PlayerTest :
 
 	private slots:
 	void initTestCase();
+	void testDummy();
 	void emptyPlayer();
 	void playingAndLooping();
 	void scrubberOperations();
