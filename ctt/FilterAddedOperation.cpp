@@ -6,16 +6,16 @@ namespace operation {
 using ::model::filter::Filter;
 using ::model::filter::FilteredVideo;
 
-FilterAddedOperation::FilterAddedOperation(Filter::sptr filter, FilteredVideo::sptr filteredVideo) {
-
-}
+FilterAddedOperation::FilterAddedOperation(Filter::sptr filter, FilteredVideo::sptr filteredVideo)
+	: filter(filter), filteredVideo(filteredVideo), memento(filteredVideo->getMemento()) {}
 
 void FilterAddedOperation::doOperation() {
-
+	// TODO off by one check
+	filteredVideo->addFilter(filter, filteredVideo->getFilterCount());
 }
 
 void FilterAddedOperation::undoOperation() {
-
+	filteredVideo->restore(memento);
 }
 
 }  // namespace operation

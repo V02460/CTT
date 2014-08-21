@@ -11,8 +11,6 @@ using ::exception::IllegalStateException;
 
 OperationList::OperationList() : currentOperation(operations.begin()) {}
 
-OperationList::~OperationList() {}
-
 void OperationList::doOperation(Operation::sptr operation) {
 	/* TODO
 	 * off by one?
@@ -55,6 +53,15 @@ bool OperationList::canUndo() const {
 bool OperationList::canRedo() const {
 	return currentOperation != operations.constEnd();
 }
+
+OperationList *OperationList::getInstance() {
+	if (instance.isNull()) {
+		instance.reset(new OperationList());
+	}
+	return instance.data();
+}
+
+OperationList::uptr OperationList::instance;
 
 }  // namespace operation
 }  // namespace controller
