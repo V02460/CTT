@@ -19,7 +19,7 @@ void VideoScrubberTest::testDummy()
 
 void VideoScrubberTest::methods()
 {
-	model::video::YUVDataVideo *testVideo = new model::video::YUVDataVideo("C:/Users/Jonas/Source/Repos/CTT/x64/Debug/testresources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
+	model::video::YUVDataVideo *testVideo = new model::video::YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
 	YUVDataVideo::sptr videoPointer(testVideo);
 	VideoScrubber testScrubber(videoPointer);
 

@@ -20,7 +20,7 @@ void YUVDataVideoTest::dummyTest()
 void YUVDataVideoTest::test444()
 {
 	//TODO relative Path zefgtiq
-	YUVDataVideo testVideo("C:/Users/Jonas/Source/Repos/CTT/x64/Debug/testresources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
+	YUVDataVideo testVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
 	QCOMPARE(testVideo.getFrameCount(), (unsigned int) 15);
 
 	VideoMetadata metadata = testVideo.getMetadata();
@@ -53,7 +53,7 @@ void YUVDataVideoTest::init()
 void YUVDataVideoTest::test422()
 {
 	//TODO relative Path zefgtiq
-	YUVDataVideo testVideo("C:/Users/Jonas/Source/Repos/CTT/x64/Debug/testresources/Videos/YUV422/squirrel-720x576-422P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV422, testContext);
+	YUVDataVideo testVideo("resources/Videos/YUV422/squirrel-720x576-422P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV422, testContext);
 	QCOMPARE(testVideo.getFrameCount(), (unsigned int)15);
 
 	VideoMetadata metadata = testVideo.getMetadata();
@@ -78,7 +78,7 @@ void YUVDataVideoTest::test422()
 void YUVDataVideoTest::test420()
 {
 	//TODO relative Path zefgtiq
-	YUVDataVideo testVideo("C:/Users/Jonas/Source/Repos/CTT/x64/Debug/testresources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext);
+	YUVDataVideo testVideo("resources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext);
 	QCOMPARE(testVideo.getFrameCount(), (unsigned int)260);
 
 	VideoMetadata metadata = testVideo.getMetadata();
@@ -104,11 +104,11 @@ void YUVDataVideoTest::invalidConstruction()
 {
 	
 	QEXPECT_EXCEPTION(YUVDataVideo atest("thisfiledoesntexist", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext), FileNotFoundException);
-	QEXPECT_EXCEPTION(YUVDataVideo testVideo("C:/Users/Jonas/Source/Repos/CTT/x64/Debug/testresources/Videos/YUV422/squirrel-720x576-422P.yuv", QSize(719, 576), 24, model::video::YUVType::YUV422, testContext), IllegalArgumentException);
-	QEXPECT_EXCEPTION(YUVDataVideo testVideo("C:/Users/Jonas/Source/Repos/CTT/x64/Debug/testresources/Videos/YUV422/squirrel-720x576-422P.yuv", QSize(719, 576), 24, model::video::YUVType::YUV420, testContext), IllegalArgumentException);
-	QEXPECT_EXCEPTION(YUVDataVideo testVideo("C:/Users/Jonas/Source/Repos/CTT/x64/Debug/testresources/Videos/YUV422/squirrel-720x576-422P.yuv", QSize(720, 575), 24, model::video::YUVType::YUV420, testContext), IllegalArgumentException);
-	QEXPECT_EXCEPTION(YUVDataVideo testVideo("C:/Users/Jonas/Source/Repos/CTT/x64/Debug/testresources/Videos/YUV422/squirrel-720x576-422P.yuv", QSize(920, 886), 24, model::video::YUVType::YUV444, testContext), IllegalArgumentException);
-	QEXPECT_EXCEPTION(YUVDataVideo testVideo("C:/Users/Jonas/Source/Repos/CTT/x64/Debug/testresources/Videos/YUV422/squirrel-720x576-422P.yuv", "thismetadatafiledoesntexist",QSize(720, 576), 24, model::video::YUVType::YUV422, testContext), FileNotFoundException);
+	QEXPECT_EXCEPTION(YUVDataVideo testVideo("resources/Videos/YUV422/squirrel-720x576-422P.yuv", QSize(719, 576), 24, model::video::YUVType::YUV422, testContext), IllegalArgumentException);
+	QEXPECT_EXCEPTION(YUVDataVideo testVideo("resources/Videos/YUV422/squirrel-720x576-422P.yuv", QSize(719, 576), 24, model::video::YUVType::YUV420, testContext), IllegalArgumentException);
+	QEXPECT_EXCEPTION(YUVDataVideo testVideo("resources/Videos/YUV422/squirrel-720x576-422P.yuv", QSize(720, 575), 24, model::video::YUVType::YUV420, testContext), IllegalArgumentException);
+	QEXPECT_EXCEPTION(YUVDataVideo testVideo("resources/Videos/YUV422/squirrel-720x576-422P.yuv", QSize(920, 886), 24, model::video::YUVType::YUV444, testContext), IllegalArgumentException);
+	QEXPECT_EXCEPTION(YUVDataVideo testVideo("resources/Videos/YUV422/squirrel-720x576-422P.yuv", "thismetadatafiledoesntexist",QSize(720, 576), 24, model::video::YUVType::YUV422, testContext), FileNotFoundException);
 
 	//TODO kugtexxxiiia metadatafiles of wrong sizes, resolutions that cant be divided into 16*16 pixel blocks
 }

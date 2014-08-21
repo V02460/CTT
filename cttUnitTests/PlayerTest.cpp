@@ -34,7 +34,7 @@ void PlayerTest::emptyPlayer()
 
 void PlayerTest::playingAndLooping()
 {
-	model::video::YUVDataVideo *testVideo = new model::video::YUVDataVideo("C:/Users/Jonas/Source/Repos/CTT/x64/Debug/testresources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
+	model::video::YUVDataVideo *testVideo = new model::video::YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
 	YUVDataVideo::sptr videoPointer(testVideo);
 	VideoScrubber::sptr testScrubber(new VideoScrubber(videoPointer));
 
@@ -112,11 +112,11 @@ void PlayerTest::playingAndLooping()
 
 void PlayerTest::scrubberOperations()
 {
-	model::video::YUVDataVideo *testVideo = new model::video::YUVDataVideo("C:/Users/Jonas/Source/Repos/CTT/x64/Debug/testresources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
+	model::video::YUVDataVideo *testVideo = new model::video::YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
 	YUVDataVideo::sptr videoPointer(testVideo);
 	VideoScrubber::sptr testScrubber(new VideoScrubber(videoPointer));
 
-	model::video::YUVDataVideo *testVideo2 = new model::video::YUVDataVideo("C:/Users/Jonas/Source/Repos/CTT/x64/Debug/testresources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext);
+	model::video::YUVDataVideo *testVideo2 = new model::video::YUVDataVideo("resources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext);
 	YUVDataVideo::sptr videoPointer2(testVideo2);
 	VideoScrubber::sptr testScrubber2(new VideoScrubber(videoPointer2));
 
