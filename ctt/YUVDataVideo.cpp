@@ -305,10 +305,6 @@ void YUVDataVideo::load(unsigned int startFrame) const
 		throw new IllegalArgumentException("Tried to load a frame which isn't in the file.");
 	}
 
-	if ((getFrameCount() - startFrame) < numberOfFramesInMemory)
-	{
-		startFrame = getFrameCount() - numberOfFramesInMemory;
-	}
 
 	loadVideodata(startFrame);
 	if (hasMetadataFile)
@@ -355,6 +351,13 @@ void YUVDataVideo::loadVideodata(unsigned int startFrame) const
 		throw new IOException("Couldn't seek to " + QString::number(bytesPerFrame * startFrame) + " in the video file at \"" + pathToVideoFile + "\".");
 	}
 
+	unsigned int framesToLoad = numberOfFramesInMemory;
+
+	if (getFrameCount() < (startFrame + numberOfFramesInMemory))
+	{
+		framesToLoad = getFrameCount() - startFrame;
+	}
+
 	videoBuffer = videoFile.read(numberOfFramesInMemory * bytesPerFrame);
 
 	videoFile.close();
@@ -373,7 +376,14 @@ void YUVDataVideo::loadMetadata(unsigned int startFrame) const
 		throw new IOException("Couldn't seek to " + QString::number((pixelsPerFrame / 256) * startFrame) + " in the metadata file at \"" + pathToVideoFile + "\".");
 	}
 
-	metadataBuffer = metadataFile.read(numberOfFramesInMemory * (pixelsPerFrame / 256));
+	unsigned int framesToLoad = numberOfFramesInMemory;
+
+	if (getFrameCount() < (startFrame + numberOfFramesInMemory))
+	{
+		framesToLoad = getFrameCount() - startFrame;
+	}
+
+	metadataBuffer = metadataFile.read(framesToLoad * (pixelsPerFrame / 256));
 
 	metadataFile.close();
 }

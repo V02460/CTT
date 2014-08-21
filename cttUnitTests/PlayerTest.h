@@ -13,9 +13,14 @@ class PlayerTest :
 	Q_OBJECT
 
 	private slots:
+	void initTestCase();
 	void emptyPlayer();
 	void playingAndLooping();
 	void scrubberOperations();
+
+private:
+	QOffscreenSurface surface;
+	QSharedPointer<QOpenGLContext> testContext;
 
 };
 

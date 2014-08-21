@@ -37,6 +37,9 @@ void VideoScrubberTest::methods()
 
 	QEXPECT_EXCEPTION(testScrubber.jumpToFrameNr(testScrubber.getFrameCount()), IllegalArgumentException);
 	
+	VideoScrubber testScrubber2(videoPointer, 10);
+
+	QEXPECT_EXCEPTION(VideoScrubber testScrubber3(videoPointer, 20), IllegalArgumentException);
 }
 
 void VideoScrubberTest::initTestCase()

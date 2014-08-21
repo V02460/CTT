@@ -401,7 +401,7 @@ void Player::nextFrame() {
 		throw new IllegalStateException("Tried to set a dummy Player to its next frame.");
 	}
 
-	if (currentFrameNumber == loop.getEnd())
+	if ((currentFrameNumber == loop.getEnd()) && isLooping())
 	{
 		jumpToFrameNr(loop.getStart());
 	}
@@ -425,15 +425,15 @@ void Player::previousFrame() {
 		throw new IllegalStateException("Tried to set a dummy Player to its previous frame.");
 	}
 
-	if (currentFrameNumber == loop.getStart())
+	if ((currentFrameNumber == loop.getStart()) && isLooping())
 	{
 		jumpToFrameNr(loop.getEnd());
 	}
 	else
 	{
-	if (hasPreviousFrame())
-	{
-			jumpToFrameNr(loop.getEnd() - 1);
+		if (hasPreviousFrame())
+		{
+			jumpToFrameNr(getCurrentFrameNumber() - 1);
 		}
 	}
 }
