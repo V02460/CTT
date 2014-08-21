@@ -140,7 +140,7 @@ void Player::addScrubber(VideoScrubber::sptr scrubber) {
 	}
 	
 	videoScrubbers.append(scrubber);
-	connect(this, SIGNAL(currentFrameNrChanged()), scrubber.data(), SLOT(jumpToFrameNr()));
+	connect(this, SIGNAL(currentFrameNrChanged(unsigned int)), scrubber.data(), SLOT(jumpToFrameNr(unsigned int)));
 
 	if (scrubber->getFrameCount() < getCurrentFrameNumber())
 	{
@@ -170,7 +170,7 @@ void Player::addScrubber(VideoScrubber::sptr scrubber, unsigned int position) {
 	}
 
 	videoScrubbers.insert(position, scrubber);
-	connect(this, SIGNAL(currentFrameNrChanged()), scrubber.data(), SLOT(jumpToFrameNr()));
+	connect(this, SIGNAL(currentFrameNrChanged(unsigned int)), scrubber.data(), SLOT(jumpToFrameNr(unsigned int)));
 
 	if (scrubber->getFrameCount() < getCurrentFrameNumber())
 	{
@@ -195,7 +195,7 @@ void Player::removeScrubber(unsigned int position) {
 			+ " elements.");
 	}
 
-	disconnect(this, SIGNAL(currentFrameNrChanged()), videoScrubbers.at(position).data(), SLOT(jumpToFrameNr()));
+	disconnect(this, SIGNAL(currentFrameNrChanged(unsigned int)), videoScrubbers.at(position).data(), SLOT(jumpToFrameNr(unsigned int)));
 	videoScrubbers.removeAt(position);
 }
 
@@ -210,7 +210,7 @@ void Player::removeScrubber(const VideoScrubber &scrubber) {
 			"scrubber.");
 	}
 
-	disconnect(this, SIGNAL(currentFrameNrChanged()), &scrubber, SLOT(jumpToFrameNr()));
+	disconnect(this, SIGNAL(currentFrameNrChanged(unsigned int)), &scrubber, SLOT(jumpToFrameNr(unsigned int)));
 	
 	for each (VideoScrubber::sptr controledScrubber in videoScrubbers)
 	{
