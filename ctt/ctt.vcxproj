@@ -154,6 +154,7 @@
   <ItemGroup>
     <ClCompile Include="AbstractListView.cpp" />
     <ClCompile Include="AbstractTimeline.cpp" />
+    <ClCompile Include="AccessToDummyException.cpp" />
     <ClCompile Include="AnalysingWidget.cpp" />
     <ClCompile Include="BlueHistogram.cpp" />
     <ClCompile Include="BlurFilter.cpp" />
@@ -490,6 +491,7 @@
   <ItemGroup>
     <ClInclude Include="AbstractListView.h" />
     <ClInclude Include="AbstractTimeline.h" />
+    <ClInclude Include="AccessToDummyException.h" />
     <ClInclude Include="AnalysingWidget.h" />
     <ClInclude Include="BlueHistogram.h" />
     <ClInclude Include="BlurFilter.h" />
@@ -1047,6 +1049,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Greyscale.fs" />
     <None Include="Shader\Filter\1DBlur.fs" />
     <None Include="Shader\Filter\Mix.fs" />
     <None Include="Shader\Filter\Noise.fs" />

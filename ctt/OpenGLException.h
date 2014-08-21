@@ -1,7 +1,6 @@
 #ifndef _OPENGLEXCEPTION_H
 #define _OPENGLEXCEPTION_H
 
-#include <QException>
 #include <QString>
 
 #include "RuntimeException.h"
@@ -30,11 +29,11 @@ public:
     */
     ~OpenGLException();
 
-    virtual QString getName() const Q_DECL_OVERRIDE{return "OpenGLException";}
+    virtual QString getName() const Q_DECL_OVERRIDE { return "OpenGLException"; }
     virtual QString getMsg() const Q_DECL_OVERRIDE;
     const char *what() const Q_DECL_OVERRIDE;
 
-    virtual void OpenGLException::raise() const Q_DECL_OVERRIDE;
+    virtual void raise() const Q_DECL_OVERRIDE;
     virtual OpenGLException *clone() const Q_DECL_OVERRIDE;
 
 private:

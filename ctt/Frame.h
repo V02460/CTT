@@ -73,7 +73,8 @@ public:
      */
     Histogram::sptr getHistogram(Histogram::HistogramType type) const;
 
-protected:
+//TODO: this is a dangerous constructor when used without care
+//protected:
     /**
      * Creates a Frame from a Surface by incorporating it. Cripples surface.
      *
