@@ -401,6 +401,7 @@
     <ClCompile Include="Memento.cpp" />
     <ClCompile Include="MixFilter.cpp" />
     <ClCompile Include="MockDisplayHelper.cpp" />
+    <ClCompile Include="Module.cpp" />
     <ClCompile Include="MotionVectorOverlay.cpp" />
     <ClCompile Include="NoiseFilter.cpp" />
     <ClCompile Include="NoScalePolicy.cpp" />

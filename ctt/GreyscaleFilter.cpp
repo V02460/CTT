@@ -8,6 +8,7 @@ namespace filter {
 using ::model::frame::Frame;
 using ::helper::GPUHelper;
 using ::model::saveable::Saveable;
+using ::model::saveable::Memento;
 
 GreyscaleFilter::GreyscaleFilter(Module::sptr predecessor) : Filter(predecessor) {
 }
@@ -27,6 +28,18 @@ Frame::sptr GreyscaleFilter::getFrame(unsigned int frameNumber) const {
 
 Saveable::SaveableType GreyscaleFilter::getType() const {
 	return Saveable::SaveableType::greyscaleFilter;
+}
+
+Memento GreyscaleFilter::getMemento() const {
+    return Filter::getMemento();
+}
+
+void GreyscaleFilter::restore(Memento memento) {
+    Filter::restore(memento);
+}
+
+QList<const Module*> GreyscaleFilter::getUsesList() const {
+    return QList<const Module*>() << this;
 }
 
 }  // namespace filter

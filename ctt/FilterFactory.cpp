@@ -47,21 +47,21 @@ QList<QString> FilterFactory::getAllOverlayIDs() {
 }
 
 Filter::sptr FilterFactory::createFilter(QString id, Module::sptr predecessor) {
-    if (id == "filter_blur") { return BlurFilter::sptr(new BlurFilter(predecessor)); }
-    if (id == "filter_coffee") { return CoffeeFilter::sptr(new CoffeeFilter(predecessor)); }
+    //if (id == "filter_blur") { return BlurFilter::sptr(new BlurFilter(predecessor)); }
+    //if (id == "filter_coffee") { return CoffeeFilter::sptr(new CoffeeFilter(predecessor)); }
     if (id == "filter_greyscale") { return GreyscaleFilter::sptr(new GreyscaleFilter(predecessor)); }
     //if (id == "filter_mix") { return MixFilter::sptr(new MixFilter(predecessor)); }
-    if (id == "filter_noise") { return NoiseFilter::sptr(new NoiseFilter(predecessor)); }
-    if (id == "filter_rescale") { return RescaleFilter::sptr(new RescaleFilter(predecessor)); }
-    if (id == "filter_rgbchannel") { return RGBChannelFilter::sptr(new RGBChannelFilter(predecessor)); }
-    if (id == "filter_timeshift") { return TimeshiftFilter::sptr(new TimeshiftFilter(predecessor)); }
+    //if (id == "filter_noise") { return NoiseFilter::sptr(new NoiseFilter(predecessor)); }
+    //if (id == "filter_rescale") { return RescaleFilter::sptr(new RescaleFilter(predecessor)); }
+    //if (id == "filter_rgbchannel") { return RGBChannelFilter::sptr(new RGBChannelFilter(predecessor)); }
+    //if (id == "filter_timeshift") { return TimeshiftFilter::sptr(new TimeshiftFilter(predecessor)); }
 
     if (id == "overlay_heatmap") {
         // return HeatmapOverlay::sptr(new HeatmapOverlay(predecessor));
         throw new NotImplementedException();
     }
-    if (id == "overlay_macroblock") { return MacroblockOverlay::sptr(new MacroblockOverlay(predecessor)); }
-    if (id == "overlay_motionvector") { return MotionVectorOverlay::sptr(new MotionVectorOverlay(predecessor)); }
+    //if (id == "overlay_macroblock") { return MacroblockOverlay::sptr(new MacroblockOverlay(predecessor)); }
+    //if (id == "overlay_motionvector") { return MotionVectorOverlay::sptr(new MotionVectorOverlay(predecessor)); }
 
     throw new IllegalArgumentException("There is no filter with this id to create.");
 }
