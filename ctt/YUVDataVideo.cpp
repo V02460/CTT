@@ -133,6 +133,12 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 		throw new NotImplementedException("Tried to request a frame from a dummy YUVDataVideo");
 	}
 
+	if (frameNumber >= getFrameCount())
+	{
+		throw new IllegalArgumentException("Tried to request frame " + QString::number(frameNumber) 
+			+ " from a YUVDataVideo with only " + QString::number(getFrameCount()) + " frames.");
+	}
+
 	if (!hasFrameInBuffer(frameNumber)) {
 		load(frameNumber);
 	}
@@ -294,13 +300,21 @@ unsigned int YUVDataVideo::getFrameCount() const
 
 void YUVDataVideo::load(unsigned int startFrame) const
 {
-	loadVideodata(startFrame);
+	if (startFrame >= getFrameCount())
+	{
+		throw new IllegalArgumentException("Tried to load a frame which isn't in the file.");
+	}
 
+	if ((getFrameCount() - startFrame) < numberOfFramesInMemory)
+	{
+		startFrame = getFrameCount() - numberOfFramesInMemory;
+	}
+
+	loadVideodata(startFrame);
 	if (hasMetadataFile)
 	{
 		loadMetadata(startFrame);
 	}
-
 	firstFrameInMemory = startFrame;
 }
 
