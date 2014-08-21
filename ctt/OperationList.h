@@ -20,16 +20,6 @@ public:
     typedef QSharedPointer<OperationList> sptr;
     typedef QWeakPointer<OperationList> wptr;
 
-	/**
-	 * Creates a new empty operation list.
-	 */
-	OperationList();
-
-	/**
-	 * Destroys the operation list.
-	 */
-	~OperationList();
-
     /**
      * Manages doing the given Operation.
      *
@@ -66,7 +56,17 @@ public:
      * Determines whether an Operation has been undone previously, making it possible to execute redoOperation.
      */
     bool canRedo() const;
+
+	/**
+	 * Returns the one instance this class can have.
+	 */
+	static OperationList *getInstance();
+
 private:
+	OperationList();
+
+	static OperationList::uptr instance;
+
     QList<Operation::sptr> operations;
 	QList<Operation::sptr>::iterator currentOperation;
 	QList<Operation::sptr>::iterator lastSavedOperation;

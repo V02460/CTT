@@ -5,7 +5,7 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 
-#include "FilterListOperation.h"
+#include "Operation.h"
 #include "FilteredVideo.h"
 
 namespace controller {
@@ -14,7 +14,7 @@ namespace operation {
 /**
 * The FilterRemovedOperation is providing functionality for doing and undoing removing a Filter from the FilterList.
 **/
-class FilterRemovedOperation : public FilterListOperation {
+class FilterRemovedOperation : public Operation {
 public:
     typedef QScopedPointer<FilterRemovedOperation> uptr;
     typedef QSharedPointer<FilterRemovedOperation> sptr;
@@ -38,6 +38,11 @@ public:
      * Manages requests to undo removing a Filter from a FilterList.
      */
     void undoOperation();
+
+private:
+	int index;
+	::model::filter::FilteredVideo::sptr filteredVideo;
+	model::saveable::Memento memento;
 };
 
 }  // namespace operation
