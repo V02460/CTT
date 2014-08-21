@@ -13,9 +13,4 @@
         <file>Shader/Conversion/YUV422toRGBsdtv.fs</file>
         <file>Shader/Conversion/YUV444toRGBsdtv.fs</file>
     </qresource>
-    <qresource prefix="/Shader/Conversion">
-        <file>Shader/Conversion/YUV420toRGBsdtv.fs</file>
-        <file>Shader/Conversion/YUV422toRGBsdtv.fs</file>
-        <file>Shader/Conversion/YUV444toRGBsdtv.fs</file>
-    </qresource>
 </RCC>

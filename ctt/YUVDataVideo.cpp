@@ -140,8 +140,8 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 	QByteArray rawFrame = videoBuffer.mid((frameNumber - firstFrameInMemory) * bytesPerFrame, bytesPerFrame);
 
 	QByteArray yChannel = rawFrame.mid(0, pixelsPerFrame);
-	QByteArray uChannel;
-	QByteArray vChannel;
+	QScopedPointer<QByteArray> uChannel;
+	QScopedPointer<QByteArray> vChannel;
 
 	QImage yImage(reinterpret_cast<const uchar*>(yChannel.constData()), getMetadata().getSize().width(), getMetadata().getSize().height(), QImage::Format_Indexed8);
 
@@ -151,22 +151,22 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 	switch (type)
 	{
 	case YUV444:
-		uChannel.append(rawFrame.mid(pixelsPerFrame, pixelsPerFrame));
-		vChannel.append(rawFrame.mid(2 * pixelsPerFrame, pixelsPerFrame));
-		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel.constData()), getMetadata().getSize().width(), getMetadata().getSize().height(), QImage::Format_Indexed8));
-		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel.constData()), getMetadata().getSize().width(), getMetadata().getSize().height(), QImage::Format_Indexed8));
+		uChannel.reset(new QByteArray(rawFrame.mid(pixelsPerFrame, pixelsPerFrame)));
+		vChannel.reset(new QByteArray(rawFrame.mid(2 * pixelsPerFrame, pixelsPerFrame)));
+		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel->constData()), getMetadata().getSize().width(), getMetadata().getSize().height(), QImage::Format_Indexed8));
+		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel->constData()), getMetadata().getSize().width(), getMetadata().getSize().height(), QImage::Format_Indexed8));
 		break;
 	case YUV422:
-		uChannel.append(rawFrame.mid(pixelsPerFrame, pixelsPerFrame / 2));
-		vChannel.append(rawFrame.mid(pixelsPerFrame + (pixelsPerFrame / 2), pixelsPerFrame / 2));
-		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel.constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height(), QImage::Format_Indexed8));
-		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel.constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height(), QImage::Format_Indexed8));
+		uChannel.reset(new QByteArray(rawFrame.mid(pixelsPerFrame, pixelsPerFrame / 2)));
+		vChannel.reset(new QByteArray(rawFrame.mid(pixelsPerFrame + (pixelsPerFrame / 2), pixelsPerFrame / 2)));
+		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel->constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height(), QImage::Format_Indexed8));
+		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel->constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height(), QImage::Format_Indexed8));
 		break;
 	case YUV420:
-		uChannel.append(rawFrame.mid(pixelsPerFrame, pixelsPerFrame / 4));
-		vChannel.append(rawFrame.mid(pixelsPerFrame + (pixelsPerFrame / 4), pixelsPerFrame / 4));
-		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel.constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height() / 2, QImage::Format_Indexed8));
-		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel.constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height() / 2, QImage::Format_Indexed8));
+		uChannel.reset(new QByteArray(rawFrame.mid(pixelsPerFrame, pixelsPerFrame / 4)));
+		vChannel.reset(new QByteArray(rawFrame.mid(pixelsPerFrame + (pixelsPerFrame / 4), pixelsPerFrame / 4)));
+		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel->constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height() / 2, QImage::Format_Indexed8));
+		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel->constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height() / 2, QImage::Format_Indexed8));
 		break;
 	default:
 		throw new IllegalStateException("YUV type not supported.");
@@ -177,7 +177,9 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 	uImage->setColorTable(colorTable);
 	vImage->setColorTable(colorTable);
 
-	//yImage.save("C:/Users/Jonas/Downloads/testpic.bmp", "BMP");
+	yImage.save("C:/Users/Jonas/Downloads/ytestpic.bmp", "BMP");
+	uImage->save("C:/Users/Jonas/Downloads/utestpic.bmp", "BMP");
+	vImage->save("C:/Users/Jonas/Downloads/vtestpic.bmp", "BMP");
 
 	Frame yFrame(context, yImage);
 	Frame uFrame(context, *uImage);

@@ -14,5 +14,8 @@ void main() {
 	vec4 chrominanceU = texelFetch(uChannel, ivec2(pos.x / 2, pos.y), 0);
 	vec4 chrominanceV = texelFetch(vChannel, ivec2(pos.x / 2, pos.y), 0);
 
-	gl_FragColor = vec4(luminance.r + 1.13983f * chrominanceV.r, luminance.r - 0.39465f * chrominanceU.r - 0.58060f * chrominanceV.r, luminance.r + 2.203211f * chrominanceU.r, 1.0f);
+	gl_FragColor = vec4(luminance.r + 1.13983f * (chrominanceV.r - 0.5f), 
+					luminance.r - 0.39465f * (chrominanceU.r - 0.5f) - 0.58060f * (chrominanceV.r - 0.5f),
+					luminance.r + 2.203211f * (chrominanceU.r - 0.5f), 
+					1.0f);
 }

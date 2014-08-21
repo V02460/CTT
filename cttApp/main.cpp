@@ -49,10 +49,9 @@ int main(int argc, char *argv[])
 // 
 //         Surface::sptr histogramImage = histogram.getHistogramImage();
 
-		model::video::YUVDataVideo testVideo("C:/Users/Jonas/Source/Repos/CTT/x64/Debug/testresources/Videos/YUV420CIF/stefan_cif.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext);
+		model::video::YUVDataVideo testVideo("C:/Users/Jonas/Source/Repos/CTT/x64/Debug/testresources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
 
-
-		MockDisplayHelper::showImage(testVideo.getFrame(50)->getFramebufferObject()->toImage());
+		MockDisplayHelper::showImage(testVideo.getFrame(10)->getFramebufferObject()->toImage());
 		       
     }
     catch (RuntimeException *e) {
