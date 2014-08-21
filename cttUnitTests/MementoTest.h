@@ -14,8 +14,10 @@ private:
 	const QString DOUBLE_STRING = QString("Double");
 	const QString FLOAT_STRING = QString("Float");
 	const QString INT_STRING = QString("Int");
+	const QString U_INT_STRING = QString("UInt");
 	const QString STRING_STRING = QString("String");
 	const QString POINTER_STRING = QString("Pointer");
+	const QString POINTER_STRING_2 = QString("Pointer2");
 
 private slots:
 	void setAndGet();
