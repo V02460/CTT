@@ -1,7 +1,6 @@
 #ifndef _NOTIMPLEMENTEDEXCEPTION_H
 #define _NOTIMPLEMENTEDEXCEPTION_H
 
-#include <QException>
 #include <QString>
 
 #include "RuntimeException.h"
@@ -34,7 +33,7 @@ public:
     virtual QString getMsg() const Q_DECL_OVERRIDE;
     const char *what() const Q_DECL_OVERRIDE;
 
-    virtual void NotImplementedException::raise() const Q_DECL_OVERRIDE;
+    virtual void raise() const Q_DECL_OVERRIDE;
     virtual NotImplementedException *clone() const Q_DECL_OVERRIDE;
 
 private:

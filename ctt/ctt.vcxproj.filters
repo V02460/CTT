@@ -580,6 +580,9 @@
     <ClCompile Include="IOException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
+    <ClCompile Include="AccessToDummyException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
     <ClCompile Include="NoScalePolicy.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
@@ -982,10 +985,16 @@
     <ClInclude Include="YUVType.h">
       <Filter>Header Files\Model\Video</Filter>
     </ClInclude>
+    <None Include="Greyscale.fs">
+      <Filter>ShaderFiles\Filter</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Images\big_buck_bunny_01337.png">
       <Filter>Resource Files\Images</Filter>
     </Image>
+    <ClInclude Include="AccessToDummyException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

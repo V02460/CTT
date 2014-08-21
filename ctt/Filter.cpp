@@ -1,6 +1,6 @@
 #include "Filter.h"
 
-#include "NotImplementedException.h"
+#include "IllegalArgumentException.h"
 
 namespace model {
 namespace filter {
@@ -8,39 +8,88 @@ namespace filter {
 using ::model::frame::Frame;
 using ::model::Module;
 using ::model::saveable::Memento;
-using ::exception::NotImplementedException;
+using ::exception::AccessToDummyException;
+using ::exception::IllegalArgumentException;
 using ::exception::IllegalStateException;
 
-Filter::Filter(Module::sptr predecessor) {
-    throw new NotImplementedException();
+Filter::Filter(Module::sptr predecessor) : predecessor(predecessor), parameters(), intervals() {
 }
 
 Filter::~Filter() {
-    throw new NotImplementedException();
 }
 
 QList<FilterParam> Filter::getParams() const {
-    throw new NotImplementedException();
+    if (isDummy()) {
+        throw new AccessToDummyException();
+}
+
+    return parameters.values();
 }
 
 void Filter::setParam(FilterParam parameter) {
-    throw new NotImplementedException();
+    if (isDummy()) {
+        throw new AccessToDummyException();
 }
 
-void Filter::setPreviousModule(Module::sptr previous) {
-    throw new NotImplementedException();
+    QVariant oldValue = parameters.value(parameter.getName(), parameter).getValue();
+    QVariant newValue = parameter.getValue();
+
+    if (!newValue.canConvert(oldValue.type())) {
+        throw new IllegalArgumentException("Variable type of FilterParam does not match stored type.");
+}
+
+    parameters.insert(parameter.getName(), parameter);
+}
+
+void Filter::setPreviousModule(Module::sptr predecessor) {
+    if (isDummy()) {
+        throw new AccessToDummyException();
+}
+    if (predecessor.isNull()) {
+        throw new IllegalArgumentException("Predecessor must not be null.");
+    }
+
+    this->predecessor = predecessor;
 }
 
 void Filter::activate(UIntegerInterval interval) {
-    throw new NotImplementedException();
+    if (isDummy()) {
+        throw new AccessToDummyException();
+    }
+
+    intervals.activate(interval);
 }
 
 void Filter::deactivate(UIntegerInterval interval) {
-    throw new NotImplementedException();
+    if (isDummy()) {
+        throw new AccessToDummyException();
+    }
+
+    intervals.deactivate(interval);
+}
+
+QList<UIntegerInterval> Filter::getListOfActiveIntervals() {
+    if (isDummy()) {
+        throw new AccessToDummyException();
+    }
+
+    return intervals.getIntervalList();
 }
 
 unsigned int Filter::getFrameCount() const {
-    throw new NotImplementedException();
+    if (isDummy()) {
+        throw new AccessToDummyException();
+    }
+
+    return predecessor->getFrameCount();
+}
+
+Module *Filter::getPredecessor() const {
+    if (isDummy()) {
+        throw new AccessToDummyException();
+    }
+
+    return predecessor.data();
 }
 
 QSize Filter::getResolution() const
@@ -50,7 +99,7 @@ QSize Filter::getResolution() const
 		throw new IllegalStateException("Tried to request the resolution of a dummy Filter.");
 	}
 
-	return previous->getResolution();
+	return predecessor->getResolution();
 }
 
 }  // namespace filter
