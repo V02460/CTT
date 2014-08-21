@@ -149,7 +149,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\ctt\main.cpp" />
     <ClCompile Include="FilteredVideoTest.cpp" />
     <ClCompile Include="FilterTest.cpp" />
     <ClCompile Include="FrameTest.cpp" />
