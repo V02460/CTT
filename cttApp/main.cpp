@@ -6,11 +6,14 @@
 #include <QMessageBox>
 
 #include "MockDisplayHelper.h"
+#include "YUVDataVideo.h"
 #include "Frame.h"
 #include "BlueHistogram.h"
 #include "Surface.h"
 #include "RuntimeException.h"
 #include "GPUHelper.h"
+#include "..\CTT\YUVType.h"
+#include <stdlib.h>
 
 using ::helper::MockDisplayHelper;
 using ::model::frame::Frame;
@@ -36,16 +39,22 @@ int main(int argc, char *argv[])
             return 1;
         }
 
-        QImage image(":/cttApp/SmallBuckBunny.png");
-        if (image.isNull()) {
-            return 1;
-        }
+//         QImage image(":/cttApp/SmallBuckBunny.png");
+//         if (image.isNull()) {
+//             return 1;
+//         }
+// 
+//         Frame::sptr frame(new Frame(testContext, image));
+//         BlueHistogram histogram(*frame.data());
+// 
+//         Surface::sptr histogramImage = histogram.getHistogramImage();
 
-        Frame::sptr frame(new Frame(testContext, image));
-        BlueHistogram histogram(*frame.data());
+		model::video::YUVDataVideo testVideo("Resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
 
-        Surface::sptr histogramImage = histogram.getHistogramImage();
-        MockDisplayHelper::showImage(histogramImage->getFramebufferObject()->toImage());
+		//C:/Users/Jonas/Source/Repos/CTT/x64/Debug/testresources
+
+		MockDisplayHelper::showImage(testVideo.getFrame(10)->getFramebufferObject()->toImage());
+		       
     }
     catch (RuntimeException *e) {
 //         QMessageBox msgBox;

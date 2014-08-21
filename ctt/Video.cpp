@@ -2,12 +2,14 @@
 
 #include "NotImplementedException.h"
 #include "YUVType.h"
+#include "IOException.h"
 
 namespace model {
 namespace video {
 
 using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
+using ::exception::IOException;
 
 using ::model::frame::Frame;
 
@@ -27,8 +29,7 @@ void Video::save(QString path, YUVType type) const
 	}
 
 	if (!videoFile.open(QIODevice::WriteOnly)) {
-		//TODO jgsgiruhs use IOException here
-		//throw new IOException();
+		throw new IOException("Can't open the file at \"" + path + "\".");
 	}
 
 	QDataStream stream(&videoFile);
@@ -64,7 +65,7 @@ void Video::save(QString path, YUVType type) const
 
 	if (!videoFile.flush())
 	{
-		//TODO deakusd IOException
+		throw new IOException("Can't flush the file at \"" + path + "\".");
 	}
 	
 	videoFile.close();

@@ -9,6 +9,9 @@
         <file>Shader/Histogram/hueHistogramGrid.fs</file>
         <file>Shader/Histogram/luminanceHistogramGrid.fs</file>
         <file>Shader/Histogram/saturationHistogramGrid.fs</file>
+        <file>Shader/Conversion/YUV420toRGBsdtv.fs</file>
+        <file>Shader/Conversion/YUV422toRGBsdtv.fs</file>
+        <file>Shader/Conversion/YUV444toRGBsdtv.fs</file>
         <file>Shader/Filter/Greyscale.fs</file>
         <file>Shader/Filter/1DBlur.fs</file>
     </qresource>

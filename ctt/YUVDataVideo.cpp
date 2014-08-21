@@ -1,25 +1,33 @@
 #include "YUVDataVideo.h"
 
 #include "NotImplementedException.h"
-#include <QVector>
 #include "MacroblockType.h"
+#include "FileNotFoundException.h"
+#include "IOException.h"
+#include "FrameMetadata.h"
+#include "GPUHelper.h"
 
 namespace model {
 namespace video {
 
 using ::model::frame::Frame;
+using ::helper::GPUHelper;
+using ::model::frame::FrameMetadata;
 using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
 using ::exception::IllegalArgumentException;
 using ::model::frame::MacroblockType;
-//using ::exception::IOException;
+using ::exception::IOException;
+using ::exception::FileNotFoundException;
 
+QVector<QRgb> YUVDataVideo::colorTable;
 
 YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QSize resolution, double framerate, YUVType type, QSharedPointer<QOpenGLContext> context)
 	: FileVideo(pathToVideoFile, context)
 	, metadata(resolution, framerate, 1)
 	, pixelsPerFrame(resolution.height() * resolution.width())
+	, type(type)
 {
 	hasMetadataFile = false;
 
@@ -43,6 +51,8 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QSize resolution, double fra
 		}
 		chromaSize = pixelsPerFrame / 4;
 		break;
+	default:
+		throw new IllegalArgumentException("Submitted YUV type not supported.");
 	}
 
 	bytesPerFrame = pixelsPerFrame + (2 * chromaSize);
@@ -57,6 +67,17 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QSize resolution, double fra
 	metadata = VideoMetadata(resolution, framerate, length);
 
 	load(0);
+
+	if (YUVDataVideo::colorTable.isEmpty())
+	{
+		YUVDataVideo::colorTable.resize(256);
+		QColor color;
+		for (int i = 0; i < 256; i++)
+		{
+			color.setRgb(i, i, i);
+			YUVDataVideo::colorTable[i] = color.rgb();
+		}
+	}
 }
 
 YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, QSize resolution, double framerate, YUVType type, QSharedPointer<QOpenGLContext> context)
@@ -68,8 +89,7 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, 
 
 	if (!metadataFile.exists())
 	{
-		//TODO use the File not found exception jeshgni
-		//throw new FileNotFoundException();
+		throw new FileNotFoundException("The metadata file at \"" + pathToMetadataFile + "\" doesn't exist.");
 	}
 
 	if (((resolution.height() % 16) != 0) || ((resolution.width() % 16) != 0))
@@ -80,8 +100,8 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, 
 
 	if (((pixelsPerFrame / 256) * metadata.getLength()) != metadataFile.size())
 	{
-		throw new IllegalArgumentException("The metadata file at the submitted location doesn't contain information about the number of macroblocks in the videofile (assuming 16x16p macroblocks and 1 byte of metadata per macroblock).");
-}
+		throw new IllegalArgumentException("The metadata file at the submitted location doesn't contain information about the exact number of macroblocks in the videofile (assuming 16x16p macroblocks and 1 byte of metadata per macroblock).");
+	}
 
 	hasMetadataFile = true;
 
@@ -106,24 +126,94 @@ VideoMetadata YUVDataVideo::getMetadata() const {
 	return metadata;
 }
 
-model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const {
-	throw new NotImplementedException();
-
+model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const 
+{
 	if (isDummy())
 	{
 		throw new NotImplementedException("Tried to request a frame from a dummy YUVDataVideo");
-}
+	}
+
+	if (frameNumber >= getFrameCount())
+	{
+		throw new IllegalArgumentException("Tried to request frame " + QString::number(frameNumber) 
+			+ " from a YUVDataVideo with only " + QString::number(getFrameCount()) + " frames.");
+	}
 
 	if (!hasFrameInBuffer(frameNumber)) {
 		load(frameNumber);
 	}
 
-	QImage image;
-
 	QByteArray rawFrame = videoBuffer.mid((frameNumber - firstFrameInMemory) * bytesPerFrame, bytesPerFrame);
-	//TODO fjdifrj imageFormat? mal kucken wies mit dem Indexed8 geht AAAAAAAHHHHH SHIT!
-	image.loadFromData(rawFrame, "bmp");
 
+	QByteArray yChannel = rawFrame.mid(0, pixelsPerFrame);
+	QScopedPointer<QByteArray> uChannel;
+	QScopedPointer<QByteArray> vChannel;
+
+	QImage yImage(reinterpret_cast<const uchar*>(yChannel.constData()), getMetadata().getSize().width(), getMetadata().getSize().height(), QImage::Format_Indexed8);
+
+	QScopedPointer<QImage> uImage;
+	QScopedPointer<QImage> vImage;
+
+	switch (type)
+	{
+	case YUV444:
+		uChannel.reset(new QByteArray(rawFrame.mid(pixelsPerFrame, pixelsPerFrame)));
+		vChannel.reset(new QByteArray(rawFrame.mid(2 * pixelsPerFrame, pixelsPerFrame)));
+		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel->constData()), getMetadata().getSize().width(), getMetadata().getSize().height(), QImage::Format_Indexed8));
+		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel->constData()), getMetadata().getSize().width(), getMetadata().getSize().height(), QImage::Format_Indexed8));
+		break;
+	case YUV422:
+		uChannel.reset(new QByteArray(rawFrame.mid(pixelsPerFrame, pixelsPerFrame / 2)));
+		vChannel.reset(new QByteArray(rawFrame.mid(pixelsPerFrame + (pixelsPerFrame / 2), pixelsPerFrame / 2)));
+		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel->constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height(), QImage::Format_Indexed8));
+		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel->constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height(), QImage::Format_Indexed8));
+		break;
+	case YUV420:
+		uChannel.reset(new QByteArray(rawFrame.mid(pixelsPerFrame, pixelsPerFrame / 4)));
+		vChannel.reset(new QByteArray(rawFrame.mid(pixelsPerFrame + (pixelsPerFrame / 4), pixelsPerFrame / 4)));
+		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel->constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height() / 2, QImage::Format_Indexed8));
+		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel->constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height() / 2, QImage::Format_Indexed8));
+		break;
+	default:
+		throw new IllegalStateException("YUV type not supported.");
+		break;
+	}
+
+	yImage.setColorTable(colorTable);
+	uImage->setColorTable(colorTable);
+	vImage->setColorTable(colorTable);
+
+	yImage.save("C:/Users/Jonas/Downloads/ytestpic.bmp", "BMP");
+	uImage->save("C:/Users/Jonas/Downloads/utestpic.bmp", "BMP");
+	vImage->save("C:/Users/Jonas/Downloads/vtestpic.bmp", "BMP");
+
+	Frame yFrame(context, yImage);
+	Frame uFrame(context, *uImage);
+	Frame vFrame(context, *vImage);
+
+	GPUHelper::uptr myHelper;
+	switch (type)
+	{
+	case YUV444:
+		myHelper.reset(new GPUHelper(":/Shader/Conversion/YUV444toRGBsdtv.fs", context));
+		break;
+	case YUV422:
+		myHelper.reset(new GPUHelper(":/Shader/Conversion/YUV422toRGBsdtv.fs", context));
+		break;
+	case YUV420:
+		myHelper.reset(new GPUHelper(":/Shader/Conversion/YUV420toRGBsdtv.fs", context));
+		break;
+	default:
+		throw new IllegalStateException("YUV type not supported.");
+		break;
+	}
+
+	myHelper->setValue("uChannel", uFrame);
+	myHelper->setValue("vChannel", vFrame);
+
+	Surface::sptr resultSurface = myHelper->run(yFrame, getMetadata().getSize());
+
+	Frame::sptr result;
 
 	if (hasMetadataFile)
 	{
@@ -137,68 +227,66 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 		//TODO WICHTIG sicherstellen dass das hier in der richtigen reihenfolge läuft, und nicht irgendwie gespiegelt zu den bildaten oder sowas, und das ganze testen natürlich, damit kein out of bounds zeug oder so läuft
 		for (unsigned int i = 0; i < (pixelsPerFrame / 256); i++)
 		{
+			int x = i / (metadata.getSize().width() / 16);
+			int y = i % (metadata.getSize().width() / 16);
+
 			switch (rawMetadata[i])
 			{
 			case 0:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_SKIP;
+				macroblockTypes[x][y] = MacroblockType::INTER_SKIP;
 				break;
 			case 1:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_16X16;
+				macroblockTypes[x][y] = MacroblockType::INTER_16X16;
 				break;
 			case 2:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_16X8;
+				macroblockTypes[x][y] = MacroblockType::INTER_16X8;
 				break;
 			case 3:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_8X16;
+				macroblockTypes[x][y] = MacroblockType::INTER_8X16;
 				break;
 			case 4:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_8X8;
+				macroblockTypes[x][y] = MacroblockType::INTER_8X8;
 				break;
 			case 5:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_8X4;
+				macroblockTypes[x][y] = MacroblockType::INTER_8X4;
 				break;
 			case 6:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_4X8;
+				macroblockTypes[x][y] = MacroblockType::INTER_4X8;
 				break;
 			case 7:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_4X4;
+				macroblockTypes[x][y] = MacroblockType::INTER_4X4;
 				break;
 			case 8:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTER_8X8_OR_BELOW;
+				macroblockTypes[x][y] = MacroblockType::INTER_8X8_OR_BELOW;
 				break;
 			case 9:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTRA_4X4;
+				macroblockTypes[x][y] = MacroblockType::INTRA_4X4;
 				break;
 			case 10:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTRA_16X16;
+				macroblockTypes[x][y] = MacroblockType::INTRA_16X16;
 				break;
 			case 13:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTRA_8X8;
+				macroblockTypes[x][y] = MacroblockType::INTRA_8X8;
 				break;
 			case 14:
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::INTRA_PCM;
+				macroblockTypes[x][y] = MacroblockType::INTRA_PCM;
 				break;
 			default: 
-				macroblockTypes[i / (metadata.getSize().width() / 16)][i % (metadata.getSize().width() / 16)] = MacroblockType::UNKNOWN;
+				macroblockTypes[x][y] = MacroblockType::UNKNOWN;
 			}
 		}
-
-
+		FrameMetadata resultMetadata(getMetadata().getSize(), macroblockTypes);
+		result.reset(new Frame(resultSurface, resultMetadata));
+	}
+	else
+	{
+		FrameMetadata resultMetadata(getMetadata().getSize());
+		result.reset(new Frame(resultSurface, resultMetadata));
 	}
 
+	return result;
 }
 
-QList<const Module*> YUVDataVideo::getUsesList() const
-{
-	if (isDummy()) {
-		throw new IllegalStateException("Tried to request a list of used modules from a dummy YUVDataVideo.");
-	}
-
-	QList<const Module*> uses;
-	uses.append(this);
-
-	return uses;
-}
 
 unsigned int YUVDataVideo::getFrameCount() const
 {
@@ -209,28 +297,20 @@ unsigned int YUVDataVideo::getFrameCount() const
 	return metadata.getLength();
 }
 
-bool YUVDataVideo::uses(const model::Module &module) const
-{
-	if (isDummy()) {
-		throw new IllegalStateException("Tried to ask a dummy YUVDataVideo whether it used a specific module.");
-	}
-
-	return (this == &module);
-}
 
 void YUVDataVideo::load(unsigned int startFrame) const
 {
-	loadVideodata(pixelsPerFrame);
+	if (startFrame >= getFrameCount())
+	{
+		throw new IllegalArgumentException("Tried to load a frame which isn't in the file.");
+	}
 
+
+	loadVideodata(startFrame);
 	if (hasMetadataFile)
 	{
 		loadMetadata(startFrame);
 	}
-
-	videoBuffer = videoFile.read(numberOfFramesInMemory * bytesPerFrame);
-
-	videoFile.close();
-
 	firstFrameInMemory = startFrame;
 }
 
@@ -265,12 +345,17 @@ void YUVDataVideo::loadVideodata(unsigned int startFrame) const
 {
 
 	if (!videoFile.open(QIODevice::ReadOnly)) {
-		//TODO jgsgiruhs use IOException here
-		//throw new IOException();
+		throw new IOException("Couldn't open the video file at \"" + pathToVideoFile + "\".");
 	}
 	if (!videoFile.seek(bytesPerFrame * startFrame)) {
-		//TODO jgsgiruhs use IOException here
-		//throw new IOException();
+		throw new IOException("Couldn't seek to " + QString::number(bytesPerFrame * startFrame) + " in the video file at \"" + pathToVideoFile + "\".");
+	}
+
+	unsigned int framesToLoad = numberOfFramesInMemory;
+
+	if (getFrameCount() < (startFrame + numberOfFramesInMemory))
+	{
+		framesToLoad = getFrameCount() - startFrame;
 	}
 
 	videoBuffer = videoFile.read(numberOfFramesInMemory * bytesPerFrame);
@@ -285,16 +370,20 @@ void YUVDataVideo::loadMetadata(unsigned int startFrame) const
 		throw new IllegalStateException("Tried to load metadata without having a metadata file.");
 	}
 	if (!metadataFile.open(QIODevice::ReadOnly)) {
-		//TODO jgsgiruhs use IOException here
-		//throw new IOException();
+		throw new IOException("Couldn't open the metadata file at \"" + pathToMetadataFile + "\".");
 	}
 	if (!metadataFile.seek((pixelsPerFrame / 256) * startFrame)) {
-		//TODO jgsgiruhs use IOException here
-		//throw new IOException();
+		throw new IOException("Couldn't seek to " + QString::number((pixelsPerFrame / 256) * startFrame) + " in the metadata file at \"" + pathToVideoFile + "\".");
 	}
 
-	//TODO eufufe ordentliche größe statt bytesperframe
-	metadataBuffer = metadataFile.read(numberOfFramesInMemory * (pixelsPerFrame / 256));
+	unsigned int framesToLoad = numberOfFramesInMemory;
+
+	if (getFrameCount() < (startFrame + numberOfFramesInMemory))
+	{
+		framesToLoad = getFrameCount() - startFrame;
+	}
+
+	metadataBuffer = metadataFile.read(framesToLoad * (pixelsPerFrame / 256));
 
 	metadataFile.close();
 }

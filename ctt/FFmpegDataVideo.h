@@ -37,10 +37,8 @@ public:
      *
      * @param path the path to the video file which will be loaded
      * @param context the context in which the video creates its frames
-	 * @throws FileNotFoundException if the file at the submitted location can't be found.
      * @throws IOException if the file at the submitted location can't be accessed.
-     * @throws IllegalArgumentException if the file at the submitted location isn't a valid mpeg-2, mpeg-4 part 2 or
-     *     mpeg-4 part 10 video file
+     * @throws FFmpegException if ffmpeg isn't able to use the file as a video file it can open and decode
      */
 	FFmpegDataVideo(QString path, QSharedPointer<QOpenGLContext> context);
 

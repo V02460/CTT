@@ -5,6 +5,8 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 #include <QFile>
+#include <QVector>
+#include <qcolor.h>
 
 #include "Video.h"
 #include "Frame.h"
@@ -72,11 +74,7 @@ public:
 
 	static ::model::saveable::Saveable::sptr YUVDataVideo::getDummy();
 
-	virtual QList<const Module*> getUsesList() const;
-
 	virtual unsigned int getFrameCount() const;
-
-	virtual bool uses(const model::Module &module) const;
 
     virtual VideoMetadata getMetadata() const;
 
@@ -121,9 +119,12 @@ private:
 	unsigned int bytesPerFrame; /**< The number of bytes for each frame*/
 	mutable QFile metadataFile; /**< The file the video reads its metadata from*/
 	VideoMetadata metadata; /**< The metadata of the YUV video */
+	YUVType type; /**< The YUv type of the YUV video */
 
 	bool hasMetadataFile; /**< Whether the video has a metadata file*/
 	QString pathToMetadataFile; /**< The metadata file of the YUV video */
+
+	static QVector<QRgb> colorTable;
 
 };
 

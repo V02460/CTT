@@ -69,6 +69,7 @@ public:
 
     /**
      * Jumps to the submitted frame number and updates the scrubbers accordingly.
+	 * Doesn't do anything if the loading if the previous frame isn't complete yet.
      *
      * @param frameNumber The player will jump to this frame number
      * @throws InvalidArgumentException if one of the scrubbers of the player don't have a frame with that number.

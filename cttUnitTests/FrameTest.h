@@ -15,7 +15,6 @@ private slots:
 	void withoutImage();
 	void withImageInvalid();
 	void withImage();
-	//TODO cleanup test cases, bytearray constructor testcases when interface is ready
 
 private:
 	QSharedPointer<QOpenGLContext> testContext;
