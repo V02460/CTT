@@ -929,6 +929,9 @@
     <ClInclude Include="VideoDisplayPolicy.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
+    <ClInclude Include="YUVType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\Filter\RGBChannel.fs">
