@@ -4,6 +4,7 @@
 #include "../ctt/Memento.h"
 #include "CustomTestingMacros.h"
 #include "SaveableList.h"
+#include "UIntegerInterval.h"
 
 class MementoTest : public QObject {
 	Q_OBJECT

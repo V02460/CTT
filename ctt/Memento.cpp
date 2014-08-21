@@ -107,17 +107,7 @@ QString Memento::getString(QString name) const {
 }
 
 void Memento::setSharedPointer(QString name, QSharedPointer<Saveable> pointer) {
-	// TODO remove
-	if (!pointer) {
-		throw new IllegalArgumentException("Weird!");
-	}
-	
 	pointerMap.insert(name, pointer);
-
-	// TODO remove
-	if (!pointerMap.value(name)) {
-		throw new IllegalArgumentException("Dammit!");
-	}
 }
 
 QMap<QString, QString> Memento::getVariableMap() const {

@@ -8,6 +8,7 @@ using exception::IllegalArgumentException;
 using model::saveable::SaveableList;
 using model::saveable::Saveable;
 using exception::RuntimeException;
+using model::UIntegerInterval;
 
 void MementoTest::setAndGet() {
 	Memento memento;
@@ -64,20 +65,12 @@ void MementoTest::wrongType() {
 }
 
 void MementoTest::castingPointer() {
-	// TODO weird stuff
-	try {
-		Memento memento;
-		SaveableList<Saveable> list = SaveableList<Saveable>();
-		SaveableList<Saveable>::sptr inPointer;
-		memento.setSharedPointer(POINTER_STRING, inPointer);
-		SaveableList<Saveable>::sptr outListPointer = memento.getSharedPointer(POINTER_STRING).dynamicCast<SaveableList<Saveable>>();
-		Saveable::sptr outBasicPointer1 = memento.getSharedPointer(POINTER_STRING);
-		Saveable::sptr outBasicPointer2 = outListPointer.dynamicCast<Saveable>();
-		QCOMPARE(outBasicPointer1, outBasicPointer2);
-	} catch (RuntimeException *e) {
-		QMessageBox msgBox;
-		msgBox.setWindowTitle(e->getName());
-		msgBox.setText(e->getMsg());
-		msgBox.exec();
-	}
+	Memento memento;
+	SaveableList<Saveable>::sptr inPointer = QSharedPointer<SaveableList<Saveable>>(new SaveableList<Saveable>());
+	memento.setSharedPointer(POINTER_STRING, inPointer);
+	SaveableList<Saveable>::sptr outListPointer = memento.getSharedPointer(POINTER_STRING).dynamicCast<SaveableList<Saveable>>();
+	Saveable::sptr outBasicPointer1 = memento.getSharedPointer(POINTER_STRING);
+	Saveable::sptr outBasicPointer2 = outListPointer.dynamicCast<Saveable>();
+	QCOMPARE(outBasicPointer1, outBasicPointer2);
+	outListPointer->insert(0, QSharedPointer<Saveable>(UIntegerInterval::getDummy()));
 }
