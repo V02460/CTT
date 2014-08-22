@@ -27,31 +27,31 @@ Project::Project() : baseVideoList(new SaveableList<FileVideo>()),
 }
 
 SaveableList<FileVideo>::sptr Project::getBaseVideoList() const {
-    throw new NotImplementedException();
+	return baseVideoList;
 }
 
 SaveableList<FilteredVideo>::sptr Project::getVideoList1() const {
-    throw new NotImplementedException();
+	return videoList1;
 }
 
 SaveableList<FilteredVideo>::sptr Project::getVideoList2() const {
-    throw new NotImplementedException();
+	return videoList2;
 }
 
 SaveableList<Player>::sptr Project::getPlayerList1() const {
-    throw new NotImplementedException();
+	return playerList1;
 }
 
 Player::sptr Project::getPlayer2() const {
-    throw new NotImplementedException();
+	return player2;
 }
 
 SaveableList<FrameDiff>::sptr Project::getDiffList() const {
-    throw new NotImplementedException();
+	return diffList;
 }
 
 ViewState::sptr Project::getView() const {
-    throw new NotImplementedException();
+	return view;
 }
 
 Project *Project::getInstance() {
