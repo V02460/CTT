@@ -165,6 +165,7 @@
     <ClCompile Include="DifferenceTimeline.cpp" />
     <ClCompile Include="EarthMoversHistogramDiff.cpp" />
     <ClCompile Include="ExtendedTimeline.cpp" />
+    <ClCompile Include="ExtendedVideoListController.cpp" />
     <ClCompile Include="FFmpegDataVideo.cpp" />
     <ClCompile Include="FileNotFoundException.cpp" />
     <ClCompile Include="FileVideo.cpp" />
