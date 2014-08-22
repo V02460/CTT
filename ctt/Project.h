@@ -1,6 +1,8 @@
 #ifndef _PROJECT_H
 #define _PROJECT_H
 
+#include <QOffscreenSurface>
+
 #include "SaveableList.h"
 #include "Video.h"
 #include "FileVideo.h"
@@ -77,12 +79,14 @@ public:
 	static Project *getInstance();
 
 	/**
-	 * Activates and returnes the OpenGLContext of this Programm.
+	 * Activates and returns the OpenGLContext of this program.
 	 */
 	QOpenGLContext *getActiveContext() const;
 
 private:
-	Project();
+    Q_DISABLE_COPY(Project)
+
+    Project();
 
 	static Project::uptr instance;
 
@@ -94,6 +98,7 @@ private:
 	::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr diffList;
 	::view::ViewState::sptr view;
 	QScopedPointer<QOpenGLContext> context;
+    mutable QOffscreenSurface offscreenSurface;
 };
 
 }  // namespace project
