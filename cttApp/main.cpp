@@ -23,6 +23,10 @@ using ::model::frame::histogram::BlueHistogram;
 using ::model::Surface;
 using ::helper::GPUHelper;
 using ::exception::RuntimeException;
+using ::controller::project::Project;
+using ::controller::VideoListController;
+using ::model::video::Video;
+using ::model::saveable::SaveableList;
 
 int main(int argc, char *argv[])
 {
@@ -65,11 +69,12 @@ int main(int argc, char *argv[])
 		thumbnailListWidgetTest = new ThumbnailListWidgetTest();
 		thumbnailListWidgetTest->show();
 
-		controller::project::Project testProject = controller::project::Project();
-		controller::VideoListController::sptr analysingVideosController = 
-			controller::VideoListController::sptr(new controller::VideoListController(testProject.getVideoList2()));
-		processingWidget = new view::ProcessingWidget(testProject.getPlayerList1(), testProject.getVideoList1(),
-			testProject.getBaseVideoList(), analysingVideosController);
+		Project *testProject = Project::getInstance();
+		VideoListController::sptr analysingVideosController =
+			VideoListController::sptr(new VideoListController(testProject->getVideoList2().dynamicCast<SaveableList<Video>>()));
+		processingWidget = new view::ProcessingWidget(testProject->getPlayerList1(), testProject->getVideoList1(),
+			testProject->getBaseVideoList(), analysingVideosController);
+		processingWidget->show();
     }
     catch (RuntimeException *e) {
 //         QMessageBox msgBox;
