@@ -44,6 +44,12 @@ public:
     static Saveable::sptr getDummy();
 
 	virtual ::model::saveable::Saveable::SaveableType getType() const;
+
+protected:
+    /**
+     * Creates a dummy PixelDiff.
+     */
+    HSLPixelDiff();
 };
 
 }  // namespace difference
