@@ -38,9 +38,9 @@ signals:
 protected:
 	QSize preferredButtonSize;
 	QList<ListedPushButton::sptr> insertionButtons; /**< The list of buttons to insert filters or differences */
+	void rearrangeContents();
 private:
 	void setupUi();
-	void rearrangeContents();
 	void removeContents();
 
 	QList<QSpacerItem*> spacers;
