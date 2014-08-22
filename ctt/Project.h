@@ -41,7 +41,7 @@ public:
      *
      * @return the List of all FilteredVideos the Project uses in the second view
      */
-	::model::saveable::SaveableList<::model::video::Video>::sptr getVideoList2() const;
+	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr getVideoList2() const;
 
     /**
      * Returns the player list from the first view (the editing view) of the project.
@@ -83,7 +83,7 @@ private:
 
     ::model::saveable::SaveableList<::model::video::FileVideo>::sptr baseVideoList;
 	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList1;
-	::model::saveable::SaveableList<::model::video::Video>::sptr videoList2;
+	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList2;
 	::model::saveable::SaveableList<::model::player::Player>::sptr playerList1;
 	::model::player::Player::sptr player2;
 	::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr diffList;

@@ -21,7 +21,7 @@ Project::Project() :
 	playerList1(new SaveableList<Player>()),
 	player2(new Player(24)),
 	diffList(new SaveableList<FrameDiff>()),
-	view(new ViewState()) {}
+	view(ViewState::getInstance()) {}
 
 SaveableList<FileVideo>::sptr Project::getBaseVideoList() const {
 	return baseVideoList;
@@ -31,7 +31,7 @@ SaveableList<FilteredVideo>::sptr Project::getVideoList1() const {
 	return videoList1;
 }
 
-SaveableList<Video>::sptr Project::getVideoList2() const {
+SaveableList<FilteredVideo>::sptr Project::getVideoList2() const {
 	return videoList2;
 }
 
