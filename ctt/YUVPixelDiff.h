@@ -39,7 +39,8 @@ public:
     static Saveable::sptr getDummy();
 
 	virtual ::model::saveable::Saveable::SaveableType getType() const;
-private:
+
+protected:
     /**
      * Creates a dummy YUVPixelDiff.
      */

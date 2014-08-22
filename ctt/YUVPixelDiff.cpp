@@ -30,6 +30,8 @@ Surface::sptr YUVPixelDiff::getPixelDiff(unsigned int frameNr) const {
 double YUVPixelDiff::getDiff(unsigned int frameNr) const {
     throw new NotImplementedException();
 
+    Surface::sptr pixelDiff = getPixelDiff(frameNr);
+
     GPUHelper gpuHelper(":/Shader/compactAverage.fs", video1->getContext());
 }
 
