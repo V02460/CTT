@@ -34,6 +34,10 @@ public:
     virtual Surface getPixelDiff(unsigned int frameNr) const;
     virtual double getDiff(unsigned int frameNr) const;
 
+    virtual ::model::saveable::Memento getMemento() const;
+    virtual void restore(::model::saveable::Memento memento);
+    static Saveable::sptr getDummy();
+
 	virtual ::model::saveable::Saveable::SaveableType getType() const;
 };
 

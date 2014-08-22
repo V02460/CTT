@@ -13,7 +13,7 @@ FilterInsertionWidget::FilterInsertionWidget(::controller::FilterController::spt
 }
 
 void FilterInsertionWidget::generateButtons() {
-	QList<QString> filterIds = model::filter::FilterFactory::getAllFilterNotOverlayIDs();
+	QList<QString> filterIds = model::filter::FilterFactory::getAllNonOverlayFilterIDs();
 
 	for (int i = 0; i < filterIds.size(); i++) {
 		ListedPushButton::sptr button = ListedPushButton::sptr(new ListedPushButton(i, this));
@@ -27,7 +27,7 @@ void FilterInsertionWidget::generateButtons() {
 }
 
 void FilterInsertionWidget::listedButtonClicked(bool checked, int id) {
-	QString filterId = model::filter::FilterFactory::getAllFilterNotOverlayIDs().at(id);
+	QString filterId = model::filter::FilterFactory::getAllNonOverlayFilterIDs().at(id);
 
 	emit inserted(filterId);
 }

@@ -29,6 +29,7 @@ public:
      * @return Frame the frame with the submitted number
      * @throws InvalidArgumentException if the submitted frame number is too high.
      * @throws IllegalStateException if the the method was called on a dummy
+	 * @throws FFmpegException if ffmpeg is used to get the frame and something goes wrong
      */
     virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const = 0;
 
@@ -58,6 +59,12 @@ public:
      * @throws IllegalStateException if the the method was called on a dummy
      */
     virtual bool uses(const model::Module &module) const = 0;
+
+	/**
+	 * Returns the size of the frames this module provides.    
+	 * @return the size of the frames this module provides
+	 */
+	virtual QSize getResolution() const = 0;
 };
 
 }  // namespace model

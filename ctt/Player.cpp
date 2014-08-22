@@ -147,7 +147,7 @@ void Player::addScrubber(VideoScrubber::sptr scrubber) {
 	}
 	
 	videoScrubbers.append(scrubber);
-	connect(this, SIGNAL(currentFrameNrChanged()), scrubber.data(), SLOT(jumpToFrameNr()));
+	connect(this, SIGNAL(currentFrameNrChanged(unsigned int)), scrubber.data(), SLOT(jumpToFrameNr(unsigned int)));
 
 	if (scrubber->getFrameCount() < getCurrentFrameNumber())
 	{
@@ -177,7 +177,7 @@ void Player::addScrubber(VideoScrubber::sptr scrubber, unsigned int position) {
 	}
 
 	videoScrubbers.insert(position, scrubber);
-	connect(this, SIGNAL(currentFrameNrChanged()), scrubber.data(), SLOT(jumpToFrameNr()));
+	connect(this, SIGNAL(currentFrameNrChanged(unsigned int)), scrubber.data(), SLOT(jumpToFrameNr(unsigned int)));
 
 	if (scrubber->getFrameCount() < getCurrentFrameNumber())
 	{
@@ -202,7 +202,7 @@ void Player::removeScrubber(unsigned int position) {
 			+ " elements.");
 	}
 
-	disconnect(this, SIGNAL(currentFrameNrChanged()), videoScrubbers.at(position).data(), SLOT(jumpToFrameNr()));
+	disconnect(this, SIGNAL(currentFrameNrChanged(unsigned int)), videoScrubbers.at(position).data(), SLOT(jumpToFrameNr(unsigned int)));
 	videoScrubbers.removeAt(position);
 }
 
@@ -217,7 +217,7 @@ void Player::removeScrubber(const VideoScrubber &scrubber) {
 			"scrubber.");
 	}
 
-	disconnect(this, SIGNAL(currentFrameNrChanged()), &scrubber, SLOT(jumpToFrameNr()));
+	disconnect(this, SIGNAL(currentFrameNrChanged(unsigned int)), &scrubber, SLOT(jumpToFrameNr(unsigned int)));
 	
 	for each (VideoScrubber::sptr controledScrubber in videoScrubbers)
 	{
@@ -275,7 +275,7 @@ unsigned int Player::getVideoLength() const {
 	{
 		throw new IllegalStateException("Tried to ask a dummy Player for the length of the shortest video of his "
 			"scrubber.");
-}
+	}
 
 	if (scrubberCount() == 0)
 	{
@@ -414,7 +414,7 @@ void Player::nextFrame() {
 		throw new IllegalStateException("Tried to set a dummy Player to its next frame.");
 	}
 
-	if (currentFrameNumber == loop.getEnd())
+	if ((currentFrameNumber == loop.getEnd()) && isLooping())
 	{
 		jumpToFrameNr(loop.getStart());
 	}
@@ -438,15 +438,15 @@ void Player::previousFrame() {
 		throw new IllegalStateException("Tried to set a dummy Player to its previous frame.");
 	}
 
-	if (currentFrameNumber == loop.getStart())
+	if ((currentFrameNumber == loop.getStart()) && isLooping())
 	{
 		jumpToFrameNr(loop.getEnd());
 	}
 	else
 	{
-	if (hasPreviousFrame())
-	{
-			jumpToFrameNr(loop.getEnd() - 1);
+		if (hasPreviousFrame())
+		{
+			jumpToFrameNr(getCurrentFrameNumber() - 1);
 		}
 	}
 }

@@ -1,12 +1,15 @@
 #include "FileVideo.h"
 
 #include "NotImplementedException.h"
+#include "FileNotFoundException.h"
 
 namespace model {
 namespace video {
 
+using ::model::Module;
 using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
+using ::exception::FileNotFoundException;
 
 
 FileVideo::FileVideo(QString path, QSharedPointer<QOpenGLContext> context) 
@@ -16,8 +19,7 @@ FileVideo::FileVideo(QString path, QSharedPointer<QOpenGLContext> context)
 {
 	if (!videoFile.exists())
 	{
-		//TODO use the File not found exception jeshgni
-		//throw new FileNotFoundException();
+		throw new FileNotFoundException("The video file at \"" + path + "\" doesn't exist");
 	}
 }
 using ::model::saveable::Saveable;
@@ -27,15 +29,40 @@ FileVideo::FileVideo()
 
 }
 
-QDir FileVideo::getPath() const {
+QString FileVideo::getPath() const
+{
 	if (isDummy()) {
 		throw new IllegalStateException("Tried to request the path of a dummy FileVideo.");
 	}
 	return pathToVideoFile;
 }
 
-Saveable::sptr FileVideo::getDummy() {
-	throw new NotImplementedException();
+QList<const Module*> FileVideo::getUsesList() const {
+	if (isDummy()) {
+		throw new IllegalStateException("Tried to request a list of used modules from a dummy FileVideo.");
+	}
+
+	QList<const Module*> uses;
+	uses.append(this);
+
+	return uses;
+}
+
+bool FileVideo::uses(const Module &module) const {
+	if (isDummy()) {
+		throw new IllegalStateException("Tried to ask a dummy FileVideo whether it used a specific module.");
+	}
+
+	return (this == &module);
+}
+
+QSharedPointer<QOpenGLContext> FileVideo::getContext() const
+{
+	if (isDummy()) {
+		throw new IllegalStateException("Tried to request the context from a dummy FileVideo.");
+	}
+
+	return context;
 }
 
 }  // namespace video

@@ -6,6 +6,7 @@
 #include <QMessageBox>
 
 #include "MockDisplayHelper.h"
+#include "YUVDataVideo.h"
 #include "Frame.h"
 #include "BlueHistogram.h"
 #include "Surface.h"

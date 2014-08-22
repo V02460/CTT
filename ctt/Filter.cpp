@@ -11,6 +11,7 @@ using ::model::Module;
 using ::model::saveable::Memento;
 using ::exception::AccessToDummyException;
 using ::exception::IllegalArgumentException;
+using ::exception::IllegalStateException;
 
 Filter::Filter(Module::sptr predecessor) : predecessor(predecessor), parameters(), intervals() {
 }
@@ -21,7 +22,7 @@ Filter::~Filter() {
 QList<FilterParam> Filter::getParams() const {
     if (isDummy()) {
         throw new AccessToDummyException();
-    }
+}
 
     return parameters.values();
 }
@@ -29,7 +30,7 @@ QList<FilterParam> Filter::getParams() const {
 void Filter::setParam(FilterParam parameter) {
     if (isDummy()) {
         throw new AccessToDummyException();
-    }
+}
 
     QVariant oldValue = parameters.value(parameter.getName(), parameter).getValue();
     QVariant newValue = parameter.getValue();
@@ -90,6 +91,26 @@ Module *Filter::getPredecessor() const {
     }
 
     return predecessor.data();
+}
+
+QSize Filter::getResolution() const
+{
+	if (isDummy())
+	{
+		throw new IllegalStateException("Tried to request the resolution of a dummy Filter.");
+	}
+
+	return predecessor->getResolution();
+}
+
+Memento Filter::getMemento() const {
+    Memento memento;
+    memento.setSharedPointer("predecessor", predecessor);
+    return memento;
+}
+
+void Filter::restore(Memento memento) {
+    predecessor = memento.getSharedPointer("predecessor").dynamicCast<Module>();
 }
 
 }  // namespace filter

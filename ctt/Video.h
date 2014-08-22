@@ -15,6 +15,7 @@
 #include "Memento.h"
 #include "VideoMetadata.h"
 #include "VideoFileType.h"
+#include "YUVType.h"
 
 namespace model {
 namespace video {
@@ -38,14 +39,14 @@ public:
     virtual VideoMetadata getMetadata() const = 0;
 
     /**
-     * Saves the Video to the submitted path in the filesystem
+     * Saves the Video to the submitted path in the filesystem as YUV
      *
      * @param path the path to where the video will be saved
-     * @param fileType the file type in which the video will be saved
+     * @param type the YUV type in which the video will be saved
      * @throws IOException if it's not possible to save the video to the submitted path
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    void save(QDir path, VideoFileType fileType) const;
+    void save(QString path, YUVType type) const;
 
     /**
      * Gets the frame with the submitted number scaled to the submitted resolution.
@@ -64,12 +65,12 @@ public:
      * @return QOpenGLContext the QOpenGLContext in which the Video creates its frames
 	 * @throws IllegalStateException if the the method is called on a dummy
      */
-    QSharedPointer<QOpenGLContext> getContext() const;
+    virtual QSharedPointer<QOpenGLContext> getContext() const = 0;
 
     virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const = 0;
 
-protected:
-	QSharedPointer<QOpenGLContext> context;
+	virtual QSize getResolution() const;
+
 };
 
 }  // namespace video

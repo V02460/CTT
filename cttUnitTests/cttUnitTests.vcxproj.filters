@@ -97,28 +97,25 @@
     <Filter Include="Source Files\Model\Filter">
       <UniqueIdentifier>{87a606a2-ff44-40b4-9c9e-6f38d8eaccc1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\View">
-      <UniqueIdentifier>{5d8d3045-439a-4cd6-afb5-38deff25a74e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Controller">
       <UniqueIdentifier>{817914d2-000a-4a12-94af-9e66d02e975f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SpecialTestingClasses">
+      <UniqueIdentifier>{d138eec3-3f83-4966-931a-99f03fd4c6b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SpecialTestingClasses">
+      <UniqueIdentifier>{7114c9b9-bc06-4a93-9142-a622896826e2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_FrameTest.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_FrameTest.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\qrc_cttUnitTests.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_VideoScrubberTest.cpp">
       <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_VideoScrubberTest.cpp">
-      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="FrameTest.cpp">
       <Filter>Source Files\Model\Frame</Filter>
@@ -135,13 +132,7 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_VideoMetadataTest.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_VideoMetadataTest.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_MementoTest.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_MementoTest.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="MementoTest.cpp">
@@ -153,23 +144,50 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_HistogramTest.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_HistogramTest.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="FilterTest.cpp">
       <Filter>Source Files\Model\Filter</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_PlayerTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="YUVDataVideoTest.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_YUVDataVideoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTest.cpp">
+      <Filter>Source Files\Model\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FileVideoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilterTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Test Structure</Filter>
     </ClCompile>
-    <ClCompile Include="..\ctt\main.cpp">
+    <ClCompile Include="FileVideoTest.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoTest.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="BBBTestVideo.cpp">
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoTest.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilteredVideoTest.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="ListedPushButtonTest.cpp">
-      <Filter>Generated Files\Debug</Filter>
+    <ClCompile Include="GeneratedFiles\Release\moc_FilteredVideoTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="FilteredVideoTest.cpp">
+      <Filter>Source Files\Model\Video</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -191,8 +209,26 @@
     <CustomBuild Include="HistogramTest.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
     </CustomBuild>
-    <CustomBuild Include="FilterTest.h">
+    <CustomBuild Include="YUVDataVideoTest.h">
+      <Filter>Header Files\Model\Video</Filter>
+    </CustomBuild>
+    <CustomBuild Include="PlayerTest.h">
+      <Filter>Header Files\Model\Player</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilteredVideoTest.h">
       <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FileVideoTest.h">
+      <Filter>Header Files\Model\Video</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilterTest.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="VideoTest.h">
+      <Filter>Header Files\Model\Video</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilteredVideoTest.h">
+      <Filter>Header Files\Model\Video</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -201,9 +237,6 @@
     </ClInclude>
     <ClInclude Include="TestResult.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ModelFilterTests.h">
-      <Filter>Test Structure\Model\Filter</Filter>
     </ClInclude>
     <ClInclude Include="ModelFrameTests.h">
       <Filter>Test Structure\Model\Frame</Filter>

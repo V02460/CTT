@@ -16,6 +16,7 @@
 #include "OperationList.h"
 #include "FilterAddedOperation.h"
 #include "FilterFactory.h"
+#include "Module.h"
 
 namespace controller {
 

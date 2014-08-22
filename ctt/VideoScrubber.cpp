@@ -83,10 +83,13 @@ void VideoScrubber::jumpToFrameNr(unsigned int frameNumber) {
 		throw new IllegalStateException("Requested a frame jump from dummy VideoScrubber.");
 	}
 
-	waitingForFrame = true;
-	currentFrame = video->getFrame(frameNumber);
-	waitingForFrame = false;
-	changed();
+	if (!isWaitingForFrame())
+	{
+		waitingForFrame = true;
+		currentFrame = video->getFrame(frameNumber);
+		waitingForFrame = false;
+		changed();
+	}
 }
 
 Memento VideoScrubber::getMemento() const {

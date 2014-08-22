@@ -510,6 +510,9 @@
     <ClCompile Include="FilterAddedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
+    <ClCompile Include="FilterListOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
     <ClCompile Include="FilterParamChangedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
@@ -570,10 +573,10 @@
     <ClCompile Include="MockDisplayHelper.cpp">
       <Filter>Source Files\Helper</Filter>
     </ClCompile>
-    <ClCompile Include="IOException.cpp">
+    <ClCompile Include="AccessToDummyException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
-    <ClCompile Include="ParseException.cpp">
+    <ClCompile Include="FFmpegException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
     <ClCompile Include="FileNotFoundException.cpp">
@@ -744,6 +747,9 @@
     </ClInclude>
     <ClInclude Include="FilterFactory.h">
       <Filter>Header Files\Model\Filter</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterListOperation.h">
+      <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
     <ClInclude Include="FilterParam.h">
       <Filter>Header Files\Model\Filter</Filter>
@@ -952,81 +958,8 @@
     <ClInclude Include="MockDisplayHelper.h">
       <Filter>Header Files\Helper</Filter>
     </ClInclude>
-    <ClInclude Include="FileNotFoundException.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="YUVType.h">
-      <Filter>Header Files\Model\Video</Filter>
-    </ClInclude>
-    <ClInclude Include="IOException.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="VideoDisplayPolicy.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterListViewElement.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
     <ClInclude Include="FilterMovedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Shader\Filter\RGBChannel.fs">
-      <Filter>ShaderFiles\Filter</Filter>
-    </None>
-    <None Include="Shader\Filter\1DBlur.fs">
-      <Filter>ShaderFiles\Filter</Filter>
-    </None>
-    <None Include="Shader\Filter\Mix.fs">
-      <Filter>ShaderFiles\Filter</Filter>
-    </None>
-    <None Include="Shader\Filter\Noise.fs">
-      <Filter>ShaderFiles\Filter</Filter>
-    </None>
-    <None Include="Shader\Histogram\redHistogramGrid.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <None Include="Shader\Histogram\displayHistogram.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <None Include="Shader\Histogram\greenHistogramGrid.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <None Include="Shader\Histogram\hueHistogramGrid.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <None Include="Shader\Histogram\luminanceHistogramGrid.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <None Include="Shader\Histogram\saturationHistogramGrid.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <None Include="Shader\Histogram\blueHistogramGrid.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <None Include="Shader\Histogram\histogramCompaction.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <ClInclude Include="IOException.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="ParseException.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
-    <None Include="ctt_en.ts">
-      <Filter>Lokalisierungs Dateien</Filter>
-    </None>
-    <None Include="Shader\Filter\Greyscale.fs">
-      <Filter>ShaderFiles\Filter</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Resources\Images\big_buck_bunny_01337.png">
-      <Filter>Resource Files\Images</Filter>
-    </Image>
-    <ClInclude Include="AccessToDummyException.h">
-      <Filter>Header Files\Exception</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

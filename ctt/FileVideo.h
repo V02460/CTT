@@ -27,9 +27,13 @@ public:
     * @return QDir the path to the video file this Video loads its frames from
 	* @throws IllegalStateException if the method is called on a dummy
     */
-    QDir getPath() const;
+    QString getPath() const;
 
-	static Saveable::sptr getDummy();
+	virtual QList<const Module*> getUsesList() const;
+
+	virtual bool uses(const model::Module &module) const;
+
+	virtual QSharedPointer<QOpenGLContext> getContext() const ;
 
 protected:
 	/**

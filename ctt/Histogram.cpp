@@ -28,9 +28,38 @@ typedef QSharedPointer<QOpenGLFramebufferObject> QOpenGLFramebufferObject_sptr;
 static QSize getCompactedSize(QSize currentSize);
 
 Histogram::Histogram() {
-
 }
 
+const QString Histogram::RED = "red";
+const QString Histogram::GREEN = "green";
+const QString Histogram::BLUE = "blue";
+const QString Histogram::LUMINANCE = "luminance";
+const QString Histogram::HUE = "hue";
+const QString Histogram::SATURATION = "saturation";
+
+const QList<QString> Histogram::HISTOGRAM_TYPE_STRINGS = QList<QString>()
+<< RED
+<< GREEN
+<< BLUE
+<< LUMINANCE
+<< HUE
+<< SATURATION;
+
+const Histogram::HistogramType Histogram::stringToType(QString string) {
+	for (int i = 0; i < HISTOGRAM_TYPE_STRINGS.length(); i++) {
+		if (string == HISTOGRAM_TYPE_STRINGS[i]) {
+			return static_cast<HistogramType>(i);
+		}
+	}
+	throw new IllegalArgumentException(string + " is not a histogram type.");
+}
+
+/**
+* A list if String representations of Histogram Types.
+*
+* This list must be parallel to the HistogramType enum.
+*/
+static const QList<QString> HISTOGRAM_TYPE_STRINGS;
 void Histogram::init(const Surface &frame) {
     Surface::sptr histogramGrid = makeHistogramGrid(frame);
     Surface::sptr histogramData = requestValuesFromHistogramGrid(*histogramGrid.data());
@@ -54,29 +83,21 @@ Surface::sptr Histogram::makeHistogramGrid(const Surface &imageData) const {
 
     // scale output texture dimensions to the next bigger multiple of 16
     QSize targetSize = ceilTo(imageData.getSize(), 16);
-
+    
     return gpuHelper.run(imageData, targetSize);
-    }
+}
 
 Surface::sptr Histogram::requestValuesFromHistogramGrid(const Surface &histogramGrid) const {
     GPUHelper gpuHelper(":/Shader/Histogram/histogramCompaction.fs", histogramGrid.getContext(), getCompactedSize);
-    
+
     return gpuHelper.run(histogramGrid, QSize(16, 16));
-    }
+}
 
 Surface::sptr Histogram::renderHistogram(const Surface &histogramData) const {
     GPUHelper histogramDisplayer(":/Shader/Histogram/displayHistogram.fs", histogramData.getContext());
 
     return histogramDisplayer.run(histogramData, QSize(256, 128));
 }
-
-const Histogram::HistogramType Histogram::stringToType(QString string) {
-	//TODO implement
-	return HistogramType::Red;
-}
-
-//TODO implement
-const QList<QString> Histogram::HISTOGRAM_TYPE_STRINGS = QList<QString>();
 
 /**
  * Returns the texture dimensions for the compaction logic.

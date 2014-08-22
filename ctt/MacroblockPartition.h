@@ -7,6 +7,8 @@
 namespace model {
 namespace frame {
 
+//THIS ENUM IS PROBABLY UNNECESSARY AND SHOULD BE DELETED
+
 /**
 * Partitioning of a macroblock
 */

@@ -110,6 +110,11 @@ public:
 
     virtual unsigned int getFrameCount() const Q_DECL_OVERRIDE;
 
+    virtual QSize getResolution() const Q_DECL_OVERRIDE;
+
+    ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
+    void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
+
 protected:
     template <class T>
     void newParameter(QString name, T initValue) {

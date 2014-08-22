@@ -1,15 +1,11 @@
 #include "EarthMoversHistogramDiff.h"
 
-#include "NotImplementedException.h"
-
 namespace model {
 namespace difference {
 
 using ::model::frame::histogram::Histogram;
 using ::model::video::Video;
-using ::exception::NotImplementedException;
 using ::model::saveable::Saveable;
-using ::model::frame::Histogram;
 using ::model::saveable::Memento;
 
 EarthMoversHistogramDiff::EarthMoversHistogramDiff(Histogram::HistogramType type,
@@ -38,10 +34,10 @@ double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
 		//d[i + 1] = a->getValue(i) - b->getValue(i) + d[i];
 		sum += std::abs(d[i + 1]);
 	}
+
 	return sum / (Histogram::SIZE - 1);
 }
 
-EarthMoversHistogramDiff::EarthMoversHistogramDiff() {}
 
 Memento EarthMoversHistogramDiff::getMemento() const {
 	Memento memento;
@@ -67,6 +63,9 @@ Saveable::sptr EarthMoversHistogramDiff::getDummy() {
 
 Saveable::SaveableType EarthMoversHistogramDiff::getType() const {
 	return Saveable::SaveableType::earthMoversHistogramDiff;
+}
+
+EarthMoversHistogramDiff::EarthMoversHistogramDiff() {
 }
 
 }  // namespace difference
