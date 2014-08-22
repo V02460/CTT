@@ -128,10 +128,10 @@ model::frame::Frame::sptr FFmpegDataVideo::getFrame(unsigned int frameNumber) co
 		throw new FFmpegException("FFmpeg couldn't decode the frame with the number " + QString::number(frameNumber) + " in the video stream .");
 	}
 
-	if (decodingSuccessfull == 0)
-	{
-		throw new FFmpegException("FFmpeg couldn't decode the frame with the number " + QString::number(frameNumber) + " in the video stream .");
-	}
+// 	if (decodingSuccessfull == 0)
+// 	{
+// 		throw new FFmpegException("FFmpeg couldn't decode the frame with the number " + QString::number(frameNumber) + " in the video stream .");
+// 	}
 
 	//TODO jdwfi the following sws stuff is for conversion to rgb ppm format, this could of course be done on the gpu to be faster, but I don't know yet what the original data looks like
 	SwsContext *swsContext =
@@ -162,9 +162,7 @@ model::frame::Frame::sptr FFmpegDataVideo::getFrame(unsigned int frameNumber) co
 
 	QImage rgbImage(rgbFrame->data[0], codecContext->width, codecContext->height, QImage::Format_RGB888);
 
-	//TODO zaueuf get all the fancy metadata, motion vectors and stuff
-	Frame resultFrame(context, rgbImage);
-	Frame::sptr result(&resultFrame);
+	Frame::sptr result(new Frame(context, rgbImage));
 
 	av_free_packet(&packet);
 	av_free(buffer);

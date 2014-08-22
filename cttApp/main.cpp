@@ -50,9 +50,9 @@ int main(int argc, char *argv[])
 // 
 //         Surface::sptr histogramImage = histogram.getHistogramImage();
 
-		model::video::YUVDataVideo testVideo("Resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
+		//model::video::YUVDataVideo testVideo("Resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
 
-		//model::video::FFmpegDataVideo testVideo("Resources/Videos/mp4/mp4test.mp4", testContext);
+		model::video::FFmpegDataVideo testVideo("Resources/Videos/mp4/mp4test.mp4", testContext);
 
 		MockDisplayHelper::showImage(testVideo.getFrame(10)->getFramebufferObject()->toImage());
 		       
