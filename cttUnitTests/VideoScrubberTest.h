@@ -4,18 +4,15 @@
 #include <QtTest/QtTest>
 #include "QOffscreenSurface"
 
-class VideoScrubberTest : public QObject {
+class VideoScrubberTest : public QObject 
+{
 	Q_OBJECT
 
-public:
-    VideoScrubberTest();
 
 private slots:
 	void initTestCase();
 	void testDummy();
 	void methods();
-
-	//TODO ObserverObservableStuff when ready kiuzfzrdhrdufjf
 
 private:
 	QOffscreenSurface surface;

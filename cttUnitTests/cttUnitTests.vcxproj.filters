@@ -204,6 +204,24 @@
     <ClCompile Include="GeneratedFiles\Release\moc_FilteredVideoTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="FileVideoTest.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FileVideoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FileVideoTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoTest.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -235,6 +253,12 @@
     </CustomBuild>
     <CustomBuild Include="FilteredVideoTest.h">
       <Filter>Header Files\Model\Video</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FileVideoTest.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="VideoTest.h">
+      <Filter>Generated Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

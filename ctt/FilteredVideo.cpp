@@ -207,5 +207,15 @@ Video::sptr FilteredVideo::getBaseVideo() const {
 	return baseVideo;
 }
 
+QSharedPointer<QOpenGLContext> FilteredVideo::getContext() const
+{
+	if (isDummy())
+	{
+		throw new IllegalStateException("Tried to request the context from a dummy FilteredVideo.");
+	}
+
+	return baseVideo->getContext();
+}
+
 }  // namespace filter
 }  // namespace model
