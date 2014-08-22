@@ -6,6 +6,7 @@
 namespace model {
 namespace video {
 
+using ::model::Module;
 using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
 using ::exception::FileNotFoundException;
@@ -36,8 +37,7 @@ QString FileVideo::getPath() const
 	return pathToVideoFile;
 }
 
-QList<const Module*> FileVideo::getUsesList() const
-{
+QList<const Module*> FileVideo::getUsesList() const {
 	if (isDummy()) {
 		throw new IllegalStateException("Tried to request a list of used modules from a dummy FileVideo.");
 	}
@@ -48,8 +48,7 @@ QList<const Module*> FileVideo::getUsesList() const
 	return uses;
 }
 
-bool FileVideo::uses(const model::Module &module) const
-{
+bool FileVideo::uses(const Module &module) const {
 	if (isDummy()) {
 		throw new IllegalStateException("Tried to ask a dummy FileVideo whether it used a specific module.");
 	}

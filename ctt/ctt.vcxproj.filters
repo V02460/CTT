@@ -122,18 +122,6 @@
     <Filter Include="Source Files\Helper">
       <UniqueIdentifier>{c1d742ec-7c5f-4d6e-a9ea-e4ac4a31af82}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ShaderFiles">
-      <UniqueIdentifier>{7742dc01-535e-4f80-be77-4cb8a7f04a6a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ShaderFiles\Filter">
-      <UniqueIdentifier>{d85444e6-b95a-416d-94eb-e89e4fb82d18}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ShaderFiles\Histogram">
-      <UniqueIdentifier>{dc75189b-eb86-4df2-a3d2-d1e64c2f7533}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Images">
-      <UniqueIdentifier>{e20e1833-b2fa-4e66-a0de-24671f52c9dc}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_ctt.cpp">
@@ -505,6 +493,9 @@
     <ClCompile Include="FilterAddedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
+    <ClCompile Include="FilterListOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
     <ClCompile Include="FilterParamChangedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
@@ -565,10 +556,10 @@
     <ClCompile Include="MockDisplayHelper.cpp">
       <Filter>Source Files\Helper</Filter>
     </ClCompile>
-    <ClCompile Include="IOException.cpp">
+    <ClCompile Include="AccessToDummyException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
-    <ClCompile Include="ParseException.cpp">
+    <ClCompile Include="FFmpegException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
     <ClCompile Include="FileNotFoundException.cpp">
@@ -577,20 +568,11 @@
     <ClCompile Include="IOException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
-    <ClCompile Include="AccessToDummyException.cpp">
+    <ClCompile Include="ParseException.cpp">
       <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="NoScalePolicy.cpp">
-      <Filter>Source Files\View</Filter>
     </ClCompile>
     <ClCompile Include="FilterMovedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
-    <ClCompile Include="FFmpegException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="Module.cpp">
-      <Filter>Source Files\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -678,9 +660,6 @@
     <CustomBuild Include="Observer.h">
       <Filter>Header Files\Model</Filter>
     </CustomBuild>
-    <CustomBuild Include="NoScalePolicy.h">
-      <Filter>Header Files\View</Filter>
-    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnalysingWidget.h">
@@ -715,6 +694,9 @@
     </ClInclude>
     <ClInclude Include="FilterFactory.h">
       <Filter>Header Files\Model\Filter</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterListOperation.h">
+      <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
     <ClInclude Include="FilterParam.h">
       <Filter>Header Files\Model\Filter</Filter>
@@ -926,81 +908,8 @@
     <ClInclude Include="MockDisplayHelper.h">
       <Filter>Header Files\Helper</Filter>
     </ClInclude>
-    <ClInclude Include="FileNotFoundException.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="IOException.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="VideoDisplayPolicy.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="FFmpegException.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Shader\Filter\RGBChannel.fs">
-      <Filter>ShaderFiles\Filter</Filter>
-    </None>
-    <None Include="Shader\Filter\1DBlur.fs">
-      <Filter>ShaderFiles\Filter</Filter>
-    </None>
-    <None Include="Shader\Filter\Mix.fs">
-      <Filter>ShaderFiles\Filter</Filter>
-    </None>
-    <None Include="Shader\Filter\Noise.fs">
-      <Filter>ShaderFiles\Filter</Filter>
-    </None>
-    <None Include="Shader\Histogram\redHistogramGrid.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <None Include="Shader\Histogram\displayHistogram.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <None Include="Shader\Histogram\greenHistogramGrid.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <None Include="Shader\Histogram\hueHistogramGrid.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <None Include="Shader\Histogram\luminanceHistogramGrid.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <None Include="Shader\Histogram\saturationHistogramGrid.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <None Include="Shader\Histogram\blueHistogramGrid.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <None Include="Shader\Histogram\histogramCompaction.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <ClInclude Include="YUVType.h">
-      <Filter>Header Files\Model\Video</Filter>
-    </ClInclude>
-    <ClInclude Include="IOException.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="ParseException.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
     <ClInclude Include="FilterMovedOperation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="YUVType.h">
-      <Filter>Header Files\Model\Video</Filter>
-    </ClInclude>
-    <None Include="Greyscale.fs">
-      <Filter>ShaderFiles\Filter</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Resources\Images\big_buck_bunny_01337.png">
-      <Filter>Resource Files\Images</Filter>
-    </Image>
-    <ClInclude Include="AccessToDummyException.h">
-      <Filter>Header Files\Exception</Filter>
+      <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -171,9 +171,6 @@
     <ClCompile Include="FilterTest.cpp">
       <Filter>Source Files\Model\Filter</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_PlayerTest.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -222,6 +219,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_VideoTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilterTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FilterTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Test Structure</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -260,6 +266,9 @@
     <CustomBuild Include="VideoTest.h">
       <Filter>Generated Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="FilteredVideoTest.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CustomTestingMacros.h">
@@ -267,9 +276,6 @@
     </ClInclude>
     <ClInclude Include="TestResult.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ModelFilterTests.h">
-      <Filter>Test Structure\Model\Filter</Filter>
     </ClInclude>
     <ClInclude Include="ModelFrameTests.h">
       <Filter>Test Structure\Model\Frame</Filter>

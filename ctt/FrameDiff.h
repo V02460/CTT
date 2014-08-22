@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+
 #include "Saveable.h"
 #include "Video.h"
 #include "Memento.h"
@@ -49,6 +50,11 @@ protected:
     FrameDiff(::model::video::Video::sptr video1, ::model::video::Video::sptr video2);
 
     /**
+    * Constructs a dummy FrameDiff.
+    */
+    FrameDiff::FrameDiff();
+
+    /**
     * FrameDiff Destructor
     */
     virtual ~FrameDiff();
@@ -58,7 +64,8 @@ protected:
 	/** The second of the two Videos which this FrameDiff compares. */
     ::model::video::Video::sptr video2;
 
-	FrameDiff();
+private:
+    Q_DISABLE_COPY(FrameDiff)
 };
 
 }  // namespace difference
