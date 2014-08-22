@@ -38,9 +38,19 @@ public:
 
     virtual double getDiff(unsigned int frameNr) const;
 
-    virtual ::model::saveable::Memento getMemento() const;
-    virtual void restore(::model::saveable::Memento memento);
-    static Saveable::sptr getDummy();
+	virtual model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
+	virtual void restore(model::saveable::Memento memento) Q_DECL_OVERRIDE;
+	static Saveable::sptr getDummy();
+	virtual ::model::saveable::Saveable::SaveableType getType() const Q_DECL_OVERRIDE;
+
+private:
+	static const QString VIDEO1;
+	static const QString VIDEO2;
+	static const QString TYPE;
+
+    EarthMoversHistogramDiff();
+
+	model::frame::Histogram::HistogramType type;
 };
 
 }  // namespace difference

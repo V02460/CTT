@@ -92,7 +92,9 @@ public:
 
     ::model::saveable::Memento VideoScrubber::getMemento() const;
     void VideoScrubber::restore(::model::saveable::Memento memento);
-    static ::model::saveable::Saveable::sptr VideoScrubber::getDummy();
+	static ::model::saveable::Saveable::sptr VideoScrubber::getDummy();
+	virtual ::model::saveable::Saveable::SaveableType getType() const;
+
 
 public slots:
     /**
@@ -106,6 +108,8 @@ public slots:
     void jumpToFrameNr(unsigned int frameNumber);
 private:
 	Q_DISABLE_COPY(VideoScrubber)
+
+	const static QString videoStringId; /**< The Id the scrubber uses to save its video in a memento */
 
     ::model::video::Video::sptr video; /**< The scrubber gets frames and metadata from this video */
     ::model::frame::Frame::sptr currentFrame; /**< This is the frame currently held by the scrubber */

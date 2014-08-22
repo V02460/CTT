@@ -15,7 +15,6 @@ private slots:
 	void withoutImage();
 	void withImageInvalid();
 	void withImage();
-	//TODO and cleanup test cases
 
 private:
 	QSharedPointer<QOpenGLContext> testContext;

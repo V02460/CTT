@@ -1,5 +1,18 @@
 <RCC>
-    <qresource prefix="/ctt">
-        <file alias="BigBuckBunny.png">Resources/Images/big_buck_bunny_01337.png</file>
+    <qresource prefix="/">
+        <file alias="Images/BigBuckBunny.png">Resources/Images/big_buck_bunny_01337.png</file>
+        <file>Shader/Histogram/redHistogramGrid.fs</file>
+        <file>Shader/Histogram/blueHistogramGrid.fs</file>
+        <file>Shader/Histogram/histogramCompaction.fs</file>
+        <file>Shader/Histogram/displayHistogram.fs</file>
+        <file>Shader/Histogram/greenHistogramGrid.fs</file>
+        <file>Shader/Histogram/hueHistogramGrid.fs</file>
+        <file>Shader/Histogram/luminanceHistogramGrid.fs</file>
+        <file>Shader/Histogram/saturationHistogramGrid.fs</file>
+        <file>Shader/Conversion/YUV420toRGBsdtv.fs</file>
+        <file>Shader/Conversion/YUV422toRGBsdtv.fs</file>
+        <file>Shader/Conversion/YUV444toRGBsdtv.fs</file>
+        <file>Shader/Filter/Greyscale.fs</file>
+        <file>Shader/Filter/1DBlur.fs</file>
     </qresource>
 </RCC>

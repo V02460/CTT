@@ -34,7 +34,7 @@ FrameDiff::sptr DifferenceFactory::createFrameDiff(QString id, Video::sptr video
     // TODO: change check to use shared group
     if (video1->getContext() != video2->getContext()) {
         throw new IllegalArgumentException("OpenGL contexts of the two videos don't match.");
-    }
+}
 
     if (id == "framediff_earthmover_red") {
         return EarthMoversHistogramDiff::sptr(new EarthMoversHistogramDiff(Histogram::Red, video1, video2));

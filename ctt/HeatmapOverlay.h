@@ -17,7 +17,7 @@ namespace overlay {
 /**
  * Provides a new version of the predecessors frame where any PixelDiff was mixed graphically into it.
  */
-class HeatmapOverlay : public ::model::filter::overlay::ColoringOverlay {
+class HeatmapOverlay : public ColoringOverlay {
 public:
     typedef QScopedPointer<HeatmapOverlay> uptr;
     typedef QSharedPointer<HeatmapOverlay> sptr;
@@ -39,7 +39,9 @@ public:
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE{ return true; }
     virtual QString getName() const;
-    virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
+	virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
+	virtual ::model::saveable::Saveable::SaveableType getType() const;
+
 private:
     ::model::difference::PixelDiff::uptr data;
 };

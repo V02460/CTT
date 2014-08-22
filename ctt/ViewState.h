@@ -7,6 +7,7 @@
 #include <QObject>
 
 #include "ViewType.h"
+#include "VideoDisplayPolicy.h"
 #include "Observable.h"
 #include "Saveable.h"
 #include "Memento.h"
@@ -26,7 +27,12 @@ public:
 
     virtual ::model::saveable::Memento getMemento() const;
     virtual void restore(::model::saveable::Memento memento);
-    static ::model::saveable::Saveable::sptr getDummy();
+	static ::model::saveable::Saveable::sptr getDummy();
+	virtual ::model::saveable::Saveable::SaveableType getType() const;
+
+	static QSharedPointer<ViewState> getInstance();
+	QSharedPointer<VideoDisplayPolicy> getCurrentVideoDisplayPolicy();
+
 
 public slots:
     /**
@@ -34,8 +40,17 @@ public slots:
      */
     void changeView(ViewType newView);
 
+	void changeVideoDisplayPolicy();
+
+signals:
+	void videoDisplayPolicyChanged();
+
 private:
+	ViewState();
+
+	QSharedPointer<ViewState> instance;
     ViewType currentView;
+	QSharedPointer<VideoDisplayPolicy> currentVideoDisplayPolicy;
 };
 
 }  // namespace view

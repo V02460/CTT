@@ -5,16 +5,15 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 #include <QString>
+#include <QVariant>
 
 #include "FilterParam.h"
-
-typedef int any; // TODO: Get a class
 
 namespace model {
 namespace filter {
 
 /**
- * Represents a parameter influencing a Filters behaviour.
+ * Represents a parameter influencing a Filters behavior.
  */
 class FilterParam {
 public:
@@ -28,14 +27,14 @@ public:
      * @param name the name of the parameter
      * @param value value of the parameter
      */
-    FilterParam(QString name, any value);
+    FilterParam(QString name, QVariant value);
 
     /**
      * Returns the value of the parameter.
      *
      * @return any the value of the parameter
      */
-    any getValue() const;
+    QVariant getValue() const;
 
     /**
      * Returns the name of the parameter.

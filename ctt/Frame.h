@@ -73,25 +73,8 @@ public:
      */
     Histogram::sptr getHistogram(Histogram::HistogramType type) const;
 
-    /**
-     * Applies a shader program to the stored texture and returns a new Frame with the changed content.
-     *
-     * @param program The shader program to apply
-     * @param newSize The size of the returned texture
-     * @return Frame::sptr The new Frame with changed content
-    */
-    Frame::sptr applyShader(QOpenGLShaderProgram *program, QSize newSize) const;
-    
-    /**
-     * Applies a shader program to the stored texture and returns a new Frame with the changed content.
-     * The size of the new Surface equals to the size of this Surface.
-     *
-     * @param program The shader program to apply
-     * @return Frame::sptr The new Surface with changed content
-     */
-    Frame::sptr applyShader(QOpenGLShaderProgram *program) const;
-
-protected:
+//TODO: this is a dangerous constructor when used without care
+//protected:
     /**
      * Creates a Frame from a Surface by incorporating it. Cripples surface.
      *

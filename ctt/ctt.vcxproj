@@ -63,9 +63,10 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <LibraryPath>../ffmpeg/lib;$(LibraryPath)</LibraryPath>
     <SourcePath>$(SourcePath)</SourcePath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <IncludePath>../ffmpeg/include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
@@ -147,6 +148,7 @@
   <ItemGroup>
     <ClCompile Include="AbstractListView.cpp" />
     <ClCompile Include="AbstractTimeline.cpp" />
+    <ClCompile Include="AccessToDummyException.cpp" />
     <ClCompile Include="AnalysingWidget.cpp" />
     <ClCompile Include="BlueHistogram.cpp" />
     <ClCompile Include="BlurFilter.cpp" />
@@ -162,6 +164,8 @@
     <ClCompile Include="EarthMoversHistogramDiff.cpp" />
     <ClCompile Include="ExtendedTimeline.cpp" />
     <ClCompile Include="FFmpegDataVideo.cpp" />
+    <ClCompile Include="FFmpegException.cpp" />
+    <ClCompile Include="FileNotFoundException.cpp" />
     <ClCompile Include="FileVideo.cpp" />
     <ClCompile Include="Filter.cpp" />
     <ClCompile Include="FilterAddedOperation.cpp" />
@@ -171,6 +175,7 @@
     <ClCompile Include="FilterIntervalList.cpp" />
     <ClCompile Include="FilterListOperation.cpp" />
     <ClCompile Include="FilterListView.cpp" />
+    <ClCompile Include="FilterMovedOperation.cpp" />
     <ClCompile Include="FilterParam.cpp" />
     <ClCompile Include="FilterParamChangedOperation.cpp" />
     <ClCompile Include="FilterRemovedOperation.cpp" />
@@ -381,6 +386,7 @@
     <ClCompile Include="IllegalArgumentException.cpp" />
     <ClCompile Include="IllegalStateException.cpp" />
     <ClCompile Include="InsertionWidget.cpp" />
+    <ClCompile Include="IOException.cpp" />
     <ClCompile Include="LuminanceHistogram.cpp" />
     <ClCompile Include="MacroblockOverlay.cpp" />
     <ClCompile Include="MacropartitionOverlay.cpp" />
@@ -399,6 +405,7 @@
     <ClCompile Include="OperationList.cpp" />
     <ClCompile Include="Overlay.cpp" />
     <ClCompile Include="OverlayController.cpp" />
+    <ClCompile Include="ParseException.cpp" />
     <ClCompile Include="PixelDiff.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerController.cpp" />
@@ -551,6 +558,7 @@
     <ClInclude Include="FilterIntervalList.h" />
     <ClInclude Include="FilterListOperation.h" />
     <ClInclude Include="FilterListView.h" />
+    <ClInclude Include="FilterMovedOperation.h" />
     <ClInclude Include="FilterParam.h" />
     <ClInclude Include="FilterParamChangedOperation.h" />
     <ClInclude Include="FilterRemovedOperation.h" />

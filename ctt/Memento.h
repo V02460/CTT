@@ -8,6 +8,8 @@
 #include "IllegalArgumentException.h"
 #include "Saveable.h"
 
+using ::exception::IllegalArgumentException;
+
 namespace model {
 namespace saveable {
 
@@ -24,6 +26,24 @@ public:
     typedef QScopedPointer<Memento> uptr;
     typedef QSharedPointer<Memento> sptr;
     typedef QWeakPointer<Memento> wptr;
+
+	/**
+	 * Returns the pointer with the given name.
+	 *
+	 * @param name The name of the requested pointer.
+	 * @return The pointer with given name.
+	 * @throws InvalidArgumentException Is thrown if there is no pointer with given name.
+	 */
+	Saveable* getPointer(QString name) const;
+
+	/**
+	 * Returns the shared pointer with given name.
+	 *
+	 * @param name The name of the requested shared pointer.
+	 * @return The shared pointer with given name.
+	 * @throws InvalidArgumentException Is thrown if there is no pointer with given name.
+	 */
+	QSharedPointer<Saveable> getSharedPointer(QString name) const;
 
 	/**
 	 * Creates a new, empty memento.
@@ -72,6 +92,25 @@ public:
      *     name can not be cast to an integer.
      */
     int getInt(QString name) const;
+
+	/**
+	* Converts the given value to a string and adds it with the given name to the map of saved variables.
+	* This method overwrites any variable with given name already saved.
+	*
+	* @param name The name of the variable to be saved in this memento.
+	* @param value The value of the variable to be saved in this memento.
+	*/
+	void setUInt(QString name, unsigned int value);
+
+	/**
+	* Converts the variable with the given name, converts it to an unsigned integer and returns it.
+	*
+	* @param name The name of the requested integer.
+	* @return The unsigned integer with given name.
+	* @throws IllegalArgumentException Is thrown if there is no variable with given name or the variable with given
+	*     name can not be cast to an integer.
+	*/
+	unsigned int getUInt(QString name) const;
 
     /**
      * Converts the given value to a string and adds it with the given name to the map of saved variables.
@@ -138,24 +177,6 @@ public:
 	void setSharedPointer(QString name, QSharedPointer<Saveable>);
 
     /**
-     * Returns the pointer with the given name.
-     *
-     * @param name The name of the requested pointer.
-     * @return The pointer with given name.
-     * @throws InvalidArgumentException Is thrown if there is no pointer with given name.
-     */
-    template <class T> T *getPointer(QString name) const;
-
-	/**
-	 * Returns the shared pointer with given name.
-	 *
-	 * @param name The name of the requested shared pointer.
-     * @return The shared pointer with given name.
-     * @throws InvalidArgumentException Is thrown if there is no pointer with given name. 
-	 */
-	template <class T> QSharedPointer<T> getSharedPointer(QString name) const;
-
-    /**
      * Returns the map of all variables.
      * 
      * @return The map of all variables.
@@ -170,9 +191,6 @@ public:
 	QMap<QString, QSharedPointer<Saveable>> getPointerMap() const;
 
 private:
-	const QString TRUE_STRING = QString("true");
-	const QString FALSE_STRING = QString("false");
-
     QMap<QString, QString> variableMap; 
 	QMap<QString, QSharedPointer<Saveable>> pointerMap;
 };

@@ -32,28 +32,28 @@ public:
      *
      * @return SaveableList<FileVideo> the list of all base videos the project uses.
      */
-    ::model::saveable::SaveableList<::model::video::FileVideo> getBaseVideoList() const;
+	::model::saveable::SaveableList<::model::video::FileVideo>::sptr getBaseVideoList() const;
 
     /**
      * Returns the List of all FilteredVideos the Project uses in the first view, i.e. the editing view.
      *
      * @return the List of all FilteredVideos the Project uses in the first view.
      */
-	::model::saveable::SaveableList<::model::filter::FilteredVideo> getVideoList1() const;
+	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr getVideoList1() const;
 
     /**
 	* Returns the List of all FilteredVideos the Project uses in the second view, i.e. the analyzing view.
      *
      * @return the List of all FilteredVideos the Project uses in the second view
      */
-    ::model::saveable::SaveableList<::model::video::Video> getVideoList2() const;
+	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr getVideoList2() const;
 
     /**
      * Returns the player list from the first view (the editing view) of the project.
      *
      * @return the player list from the first view of the project.
      */
-    ::model::saveable::SaveableList<::model::player::Player> getPlayerList1() const;
+	::model::saveable::SaveableList<::model::player::Player>::sptr getPlayerList1() const;
 
     /**
 	* Returns the player from the second view (the analyzing view) of the project.
@@ -67,23 +67,23 @@ public:
      *
      * @return the list of all the FrameDiffs the project uses.
      */
-    ::model::saveable::SaveableList<::model::difference::FrameDiff> getDiffList() const;
+	::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr getDiffList() const;
 
     /**
      * Returns the current view of the project.
      *
      * @return the current view of the project.
      */
-    ::view::ViewState getView() const;
+	::view::ViewState::sptr getView() const;
 
 private:
-    ::model::saveable::SaveableList<::model::video::FileVideo> baseVideoList;
-    ::model::saveable::SaveableList<::model::filter::FilteredVideo> videoList1;
-    ::model::saveable::SaveableList<::model::filter::FilteredVideo> videoList2;
-    ::model::saveable::SaveableList<::model::player::Player> playerList1;
-    ::model::player::Player player2;
-    ::model::saveable::SaveableList<::model::difference::FrameDiff> diffList;
-    ::view::ViewState view;
+    ::model::saveable::SaveableList<::model::video::FileVideo>::sptr baseVideoList;
+	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList1;
+	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList2;
+	::model::saveable::SaveableList<::model::player::Player>::sptr playerList1;
+	::model::player::Player::sptr player2;
+	::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr diffList;
+	::view::ViewState::sptr view;
 };
 
 }  // namespace project

@@ -33,7 +33,7 @@ public:
     virtual HistogramType getType() const Q_DECL_OVERRIDE;
 
 protected:
-    virtual QSharedPointer<QOpenGLShader> getHistogramGridFS() Q_DECL_OVERRIDE;
+    virtual QString getGridFSFilePath() const Q_DECL_OVERRIDE;
 };
 
 }  // namespace histogram

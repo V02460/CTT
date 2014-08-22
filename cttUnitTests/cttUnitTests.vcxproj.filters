@@ -94,11 +94,11 @@
     <Filter Include="TestStructure\Model\Frame\Histogram">
       <UniqueIdentifier>{c2b21392-1ddd-4d95-9b3c-a5ac6f910508}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\SpecialTestingClasses">
-      <UniqueIdentifier>{d138eec3-3f83-4966-931a-99f03fd4c6b3}</UniqueIdentifier>
+    <Filter Include="Header Files\Model\Filter">
+      <UniqueIdentifier>{ca38449b-392d-484f-822b-85f89ea3ff4b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\SpecialTestingClasses">
-      <UniqueIdentifier>{7114c9b9-bc06-4a93-9142-a622896826e2}</UniqueIdentifier>
+    <Filter Include="Source Files\Model\Filter">
+      <UniqueIdentifier>{a2b80668-6176-41a6-ba94-2b3596c80b6a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -156,17 +156,41 @@
     <ClCompile Include="ModelTests.h">
       <Filter>TestStructure\Model</Filter>
     </ClCompile>
-    <ClCompile Include="..\ctt\UIntegerInterval.cpp">
-      <Filter>Source Files\Model</Filter>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilterTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="BBBTestVideo.cpp">
-      <Filter>Source Files\SpecialTestingClasses</Filter>
+    <ClCompile Include="GeneratedFiles\Release\moc_FilterTest.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="..\ctt\Video.cpp">
+    <ClCompile Include="FilterTest.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_PlayerTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_PlayerTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTest.cpp">
+      <Filter>Source Files\Model\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_YUVDataVideoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_YUVDataVideoTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="YUVDataVideoTest.cpp">
       <Filter>Source Files\Model\Video</Filter>
     </ClCompile>
-    <ClCompile Include="..\ctt\Memento.cpp">
-      <Filter>Source Files\Model\Saveable</Filter>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilteredVideoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FilteredVideoTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="FilteredVideoTest.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -187,6 +211,18 @@
     </CustomBuild>
     <CustomBuild Include="HistogramTest.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilterTest.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="PlayerTest.h">
+      <Filter>Header Files\Model\Player</Filter>
+    </CustomBuild>
+    <CustomBuild Include="YUVDataVideoTest.h">
+      <Filter>Header Files\Model\Video</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilteredVideoTest.h">
+      <Filter>Header Files\Model\Filter</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -210,18 +246,6 @@
     </ClInclude>
     <ClInclude Include="ModelVideoTests.h">
       <Filter>TestStructure\Model\Video</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ctt\UIntegerInterval.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="BBBTestVideo.h">
-      <Filter>Header Files\SpecialTestingClasses</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ctt\Video.h">
-      <Filter>Header Files\Model\Video</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ctt\Memento.h">
-      <Filter>Header Files\Saveable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

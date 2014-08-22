@@ -18,7 +18,7 @@ namespace overlay {
  * A ColoringOverlay modifies the frame of the predecessor in a similar way the Overlay does,
  * but it turns every frame to a greyscale frame before mixing it with the graphical representable information.
  */
-class ColoringOverlay : public ::model::filter::overlay::Overlay {
+class ColoringOverlay : public Overlay {
 public:
     typedef QScopedPointer<ColoringOverlay> uptr;
     typedef QSharedPointer<ColoringOverlay> sptr;

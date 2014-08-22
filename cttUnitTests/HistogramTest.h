@@ -8,12 +8,12 @@
 #include <QOpenGLContext>
 #include <QImage>
 
-#include "../ctt/RedHistogram.h"
-#include "../ctt/GreenHistogram.h"
-#include "../ctt/BlueHistogram.h"
-#include "../ctt/HueHistogram.h"
-#include "../ctt/SaturationHistogram.h"
-#include "../ctt/LuminanceHistogram.h"
+#include "RedHistogram.h"
+#include "GreenHistogram.h"
+#include "BlueHistogram.h"
+#include "HueHistogram.h"
+#include "SaturationHistogram.h"
+#include "LuminanceHistogram.h"
 
 namespace model {
 namespace frame {
@@ -23,8 +23,8 @@ class HistogramTest : public QObject {
     Q_OBJECT
 
 private slots:
-    void initTestCase();
-    void histogramTypes();
+//     void initTestCase();
+//     void histogramTypes();
     // TODO: test get value
 
 private:

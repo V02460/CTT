@@ -13,8 +13,10 @@ namespace saveable {
 
 /**
  * Subscribable list for storing objects and communicating with signals and slots.
+ *
+ * Note that a saveable List may not contain another saveable list!
  */
-template <class T>
+template <typename T>
 class SaveableList : public Saveable, public Observable {
 public:
     typedef QScopedPointer<SaveableList> uptr;
@@ -29,36 +31,48 @@ public:
     /**
      * Add the element at the given index into the list.
      */
-    void insert(unsigned int index, typename T::sptr element);
+    void insert(int index, typename T::sptr element);
 
     /**
      * Remove the list element at the given index.
      *
      * @return T Returns the removed element
      */
-    typename T::sptr remove(unsigned int index);
+    typename T::sptr remove(int index);
 
     /**
      * Get the list element at the given index.
      *
      * @return T Returns the element at the index
      */
-    const T &get(unsigned int index) const;
+    const typename T::sptr get(int index) const;
 
 	/**
 	 *	Get the size of the whole list.
 	 *
 	 *	@return Returns the current number of elements in this list
 	 */
-	const unsigned int getSize() const;
+	const int getSize() const;
+
+	/**
+	 * Returns the type of the template.
+	 *
+	 * @return The type of the template.
+	 */
+	const ::model::saveable::Saveable::SaveableType getTemplateType();
 
     virtual Memento getMemento() const Q_DECL_OVERRIDE;
     virtual void restore(Memento memento) Q_DECL_OVERRIDE;
-    static Saveable::sptr getDummy();
+	static Saveable::sptr getDummy();
+	virtual ::model::saveable::Saveable::SaveableType getType() const Q_DECL_OVERRIDE;
 
 private: 
-    T *firstElement;
+    // T *firstElement;
     QList<typename T::sptr> list;
+
+	static const QString SIZE;
+	static const QString TEMPLATE;
+	static const QString ELEMENT;
 };
 
 }  // namespace saveable

@@ -69,6 +69,7 @@ public:
 
     /**
      * Jumps to the submitted frame number and updates the scrubbers accordingly.
+	 * Doesn't do anything if the loading if the previous frame isn't complete yet.
      *
      * @param frameNumber The player will jump to this frame number
      * @throws InvalidArgumentException if one of the scrubbers of the player don't have a frame with that number.
@@ -207,7 +208,8 @@ public:
      * will jump to the first frame in the loop interval.
      *
      * @param interval the interval in which the player will loop
-     * @throws InvalidArgumentException if the bounds of the interval aren't in the bounds of the videos.
+	 * @throws IllegalArgumentException if the submitted interval is a dummy.
+     * @throws IllegalArgumentException if the bounds of the interval aren't in the bounds of the videos.
      * @throws IllegalStateException if the the method was called on a dummy
      */
     void setLoop(UIntegerInterval interval);
@@ -237,7 +239,8 @@ public:
 
     virtual ::model::saveable::Memento getMemento() const;
     virtual void restore(::model::saveable::Memento memento);
-    static ::model::saveable::Saveable::sptr getDummy();
+	static ::model::saveable::Saveable::sptr getDummy();
+	virtual ::model::saveable::Saveable::SaveableType getType() const;
 
 public slots:
     /**
@@ -262,12 +265,17 @@ signals:
     void currentFrameNrChanged(unsigned int currentFrameNr);
 
 private:
+	Q_DISABLE_COPY(Player)
 	/**
 	* Creates a dummy Player.
 	*/
 	Player();
 
-    int currentFrameNumber; /**< The number of the frame that was requested last */
+	const static QString fpsStringId; /**< The Id the scrubber uses to save its fps in a memento */
+	const static QString scrubbersStringId; /**< The Id the scrubber uses to save its scrubbers in a memento */
+	const static QString numberOfScrubbersStringId; /**< The Id the scrubber uses to save its number of scrubbers in a memento */
+
+    unsigned int currentFrameNumber; /**< The number of the frame that was requested last */
     QList<::model::player::VideoScrubber::sptr> videoScrubbers; /**< The VideoScrubbers controlled by this player*/
     QTimer timer; /**< The timer controlling the playback speed */
     double fps; /**< The currently set playback speed in frames per second */

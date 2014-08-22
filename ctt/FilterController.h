@@ -10,6 +10,13 @@
 #include "Filter.h"
 #include "FilterParam.h"
 #include "FilteredVideo.h"
+#include "FilterParamChangedOperation.h"
+#include "FilterRemovedOperation.h"
+#include "FilterMovedOperation.h"
+#include "OperationList.h"
+#include "FilterAddedOperation.h"
+#include "FilterFactory.h"
+#include "Module.h"
 
 namespace controller {
 
@@ -57,7 +64,7 @@ public:
      * @param filter The Filter of which a parameter is to be changed.
      * @param param The parameter which is to be changed.
      */
-    void changeFilterParam(const ::model::filter::Filter &filter, ::model::filter::FilterParam param);
+    void changeFilterParam(const ::model::filter::Filter::sptr filter, ::model::filter::FilterParam::sptr param);
 
     /**
      * Initiates removing a filter from a video's list of filters.
@@ -67,8 +74,16 @@ public:
      */
     void removeFilter(int pos);
 
+	/**
+	 * Sets the filtered video to be controlle by this controller.
+	 *
+	 * @param newVideo The video to be set.
+	 */
+	void setVideo(::model::filter::FilteredVideo::sptr newVideo);
+
 private:
-    ::model::filter::FilteredVideo::sptr currentVideo;
+    ::model::filter::FilteredVideo::sptr video;
+	::controller::operation::OperationList list;
 };
 
 }  // namespace controller

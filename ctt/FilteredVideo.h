@@ -65,11 +65,24 @@ public:
      */
     QList<::model::filter::Filter::sptr> getFilterList() const;
 
-    model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
+	/**
+	 * Returns the base video.
+	 *
+	 * @return The base video.
+	 */
+	::model::video::Video::sptr getBaseVideo() const;
+
+    virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
+	virtual QList<const Module*> getUsesList() const;
+	virtual unsigned int getFrameCount() const;
+	virtual bool uses(const model::Module &module) const;
+	virtual model::video::VideoMetadata getMetadata() const;
+
 
     virtual ::model::saveable::Memento getMemento() const;
     virtual void restore(::model::saveable::Memento memento);
-    static Saveable::sptr getDummy();
+	static Saveable::sptr getDummy();
+	virtual ::model::saveable::Saveable::SaveableType getType() const;
 
 private:
     /**
@@ -77,8 +90,8 @@ private:
      */
     FilteredVideo();
 
-    ::model::video::Video *baseVideo; /**< This provides the frames which will be modified by the filter pipeline. */
-    QList<::model::filter::Filter> *filters; /**< The filter pipeline */
+    ::model::video::Video::sptr baseVideo; /**< This provides the frames which will be modified by the filter pipeline. */
+    QList<::model::filter::Filter::sptr> filters; /**< The filter pipeline */
 };
 
 }  // namespace filter

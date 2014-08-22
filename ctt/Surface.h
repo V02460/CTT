@@ -54,9 +54,16 @@ public:
     GLuint getTextureHandle() const;
 
     /**
-     * Returns the share group in which the texture is accessible.
+     * Returns the context in which the texture is accessible.
      *
      * @return QOpenGLContext a QOpenGLContext in which the texture is accessible
+     */
+    QSharedPointer<QOpenGLContext> getContext() const;
+
+    /**
+     * Returns the share group in which the texture is accessible.
+     *
+     * @return QOpenGLContextGroup* a QOpenGLContext in which the texture is accessible
      */
     QOpenGLContextGroup *shareGroup() const;
 
@@ -68,24 +75,6 @@ public:
      * @return QSharedPointer<QOpenGLFramebufferObject> Framebuffer holding the texture of this object
      */
     QOpenGLFramebufferObject *getFramebufferObject();
-
-    /**
-     * Applies a shader program to the stored texture and returns a new Surface with the changed content.
-     *
-     * @param program The shader program to apply
-     * @param newSize The size of the returned texture
-     * @return Surface::sptr The new Surface with changed content
-     */
-    Surface::sptr applyShader(QOpenGLShaderProgram *program, QSize newSize) const;
-
-    /**
-     * Applies a shader program to the stored texture and returns a new Surface with the changed content.
-     * The size of the new Surface equals to the size of this Surface.
-     *
-     * @param program The shader program to apply
-     * @return Surface::sptr The new Surface with changed content
-     */
-    Surface::sptr applyShader(QOpenGLShaderProgram *program) const;
 
 protected:
     /**
