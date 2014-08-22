@@ -9,12 +9,14 @@ namespace view {
 
 VideoProcessingWidget::VideoProcessingWidget(::model::player::VideoScrubber::sptr scrubber,
 	::controller::VideoListController::sptr controller, bool showSaveButton, QWidget *parent) : QWidget(parent) {
-	this->videoWidget = new VideoWidget(scrubber);
-	this->showSaveButton = showSaveButton;
+	if (scrubber.data() != 0) {
+		this->videoWidget = new VideoWidget(scrubber);
+		this->showSaveButton = showSaveButton;
 
-	setupUi();
+		setupUi();
 
-	subscribe(controller);
+		subscribe(controller);
+	}
 }
 
 void VideoProcessingWidget::checkboxUseForAnalysisValueChanged(int state) {
