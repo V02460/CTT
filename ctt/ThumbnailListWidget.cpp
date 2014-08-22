@@ -8,7 +8,7 @@ namespace view {
 using ::model::saveable::SaveableList;
 using ::model::filter::FilteredVideo;
 
-ThumbnailListWidget::ThumbnailListWidget(SaveableList<FilteredVideo>::sptr filteredVideos, int selectableCount, bool isHorizontal, QWidget *parent) : QWidget(parent){
+ThumbnailListWidget::ThumbnailListWidget(SaveableList<FilteredVideo>::sptr filteredVideos, int selectableCount, bool isHorizontal, QWidget *parent) : QScrollArea(parent){
 	thumbnailList = QList<ListedPushButton::sptr>();
 	activatedButtons = QList<int>();
 
@@ -37,10 +37,13 @@ void ThumbnailListWidget::setupUi() {
 		thumbnailListLayout = new QVBoxLayout(this);
 	}
 	thumbnailListLayout->setAlignment(Qt::AlignCenter);
-	setLayout(thumbnailListLayout);
+	QWidget *scrollWidget = new QWidget(this);
+	scrollWidget->setLayout(thumbnailListLayout);
+	setWidget(scrollWidget);
+	setWidgetResizable(true);
 
 	btnAddVideo = new QPushButton(this);
-	btnAddVideo->setMinimumSize(QSize(70, 70));
+	btnAddVideo->setMinimumSize(QSize(50, 50));
 	btnAddVideo->setText(tr("ADD_VIDEO"));
 	thumbnailListLayout->addWidget(btnAddVideo);
 	QObject::connect(btnAddVideo, SIGNAL(clicked(bool)), this, SLOT(btnAddVideoClicked(bool)));
@@ -89,8 +92,13 @@ void ThumbnailListWidget::listedButtonToggled(bool checked, int id) {
 			emit buttonReplaced(oldActiveId, id);
 		}
 	} else if (!checked && activatedButtons.contains(id)) {
-		activatedButtons.removeOne(id);
-		emit buttonDeactivated(id);
+		if (activatedButtons.size() > 1) {
+			activatedButtons.removeOne(id);
+			emit buttonDeactivated(id);
+		}
+		else {
+			thumbnailList.at(id)->setChecked(true);
+		}
 	}
 }
 

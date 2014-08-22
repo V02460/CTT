@@ -5,6 +5,7 @@
 #include <QWeakPointer>
 #include <QLayout>
 #include <QWidget>
+#include <QScrollArea>
 #include <QPushButton>
 #include <QList>
 #include <QDir>
@@ -20,7 +21,7 @@ namespace view {
  * The TumbnailListWidget displays a set of videos by its thumbnails and provides the interactable components to set
  * one or more videos active, to add videos to and to remove videos from the program.
  */
-class ThumbnailListWidget : public QWidget, public::model::Observer, public ::model::Observable {
+class ThumbnailListWidget : public QScrollArea, public::model::Observer, public ::model::Observable {
     Q_OBJECT
 public:
     typedef QScopedPointer<ThumbnailListWidget> uptr;
