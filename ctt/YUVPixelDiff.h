@@ -31,7 +31,7 @@ public:
     YUVPixelDiff(::model::video::Video::sptr video1, ::model::video::Video::sptr video2);
     virtual ~YUVPixelDiff();
 
-    virtual Surface getPixelDiff(unsigned int frameNr) const;
+    virtual Surface::sptr getPixelDiff(unsigned int frameNr) const;
     virtual double getDiff(unsigned int frameNr) const;
 
     virtual ::model::saveable::Memento getMemento() const;
@@ -39,6 +39,11 @@ public:
     static Saveable::sptr getDummy();
 
 	virtual ::model::saveable::Saveable::SaveableType getType() const;
+private:
+    /**
+     * Creates a dummy YUVPixelDiff.
+     */
+    YUVPixelDiff();
 };
 
 }  // namespace difference

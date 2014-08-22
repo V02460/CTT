@@ -40,6 +40,9 @@ public:
      */
     unsigned int getFrameCount() const;
 
+    virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
+    virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
+
 protected:
     /**
     * Constructs the FrameDiff by taking two videos used to calculate their frame difference.
@@ -50,8 +53,8 @@ protected:
     FrameDiff(::model::video::Video::sptr video1, ::model::video::Video::sptr video2);
 
     /**
-    * Constructs a dummy FrameDiff.
-    */
+     * Constructs a dummy FrameDiff.
+     */
     FrameDiff::FrameDiff();
 
     /**

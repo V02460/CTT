@@ -421,6 +421,7 @@
     <ClCompile Include="SaturationHistogram.cpp" />
     <ClCompile Include="Saveable.cpp" />
     <ClCompile Include="SaveableList.cpp" />
+    <ClCompile Include="Shader\Diff\yuvPixelDiff.fs" />
     <ClCompile Include="Surface.cpp" />
     <ClCompile Include="ThumbnailListWidget.cpp" />
     <ClCompile Include="TimelineInterval.cpp" />
@@ -1036,6 +1037,25 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shader\compactAverage.fs" />
+    <None Include="Shader\Conversion\YUV420toRGBsdtv.fs" />
+    <None Include="Shader\Conversion\YUV422toRGBsdtv.fs" />
+    <None Include="Shader\Conversion\YUV444toRGBsdtv.fs" />
+    <None Include="Shader\Filter\1DBlur.fs" />
+    <None Include="Shader\Filter\Greyscale.fs" />
+    <None Include="Shader\Filter\Mix.fs" />
+    <None Include="Shader\Filter\Noise.fs" />
+    <None Include="Shader\Filter\RGBChannel.fs" />
+    <None Include="Shader\Histogram\blueHistogramGrid.fs" />
+    <None Include="Shader\Histogram\displayHistogram.fs" />
+    <None Include="Shader\Histogram\greenHistogramGrid.fs" />
+    <None Include="Shader\Histogram\histogramCompaction.fs" />
+    <None Include="Shader\Histogram\hueHistogramGrid.fs" />
+    <None Include="Shader\Histogram\luminanceHistogramGrid.fs" />
+    <None Include="Shader\Histogram\redHistogramGrid.fs" />
+    <None Include="Shader\Histogram\saturationHistogramGrid.fs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

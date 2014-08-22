@@ -36,7 +36,7 @@ public:
      */
     ~HSLPixelDiff();
 
-    virtual Surface getPixelDiff(unsigned int frameNr) const;
+    virtual ::model::Surface::sptr getPixelDiff(unsigned int frameNr) const;
     virtual double getDiff(unsigned int frameNr) const;
 
     virtual ::model::saveable::Memento getMemento() const;

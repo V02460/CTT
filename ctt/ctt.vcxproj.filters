@@ -122,6 +122,21 @@
     <Filter Include="Source Files\Helper">
       <UniqueIdentifier>{c1d742ec-7c5f-4d6e-a9ea-e4ac4a31af82}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader Files">
+      <UniqueIdentifier>{ba79908a-6c73-41f6-9197-b595d2228533}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Conversion">
+      <UniqueIdentifier>{3afce15e-df25-4871-aab7-0f4c87799362}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Filter">
+      <UniqueIdentifier>{41dd7b24-f8d4-40d4-a613-5ead97ab7934}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Histogram">
+      <UniqueIdentifier>{a3800756-33c5-47e1-8753-98cbd4d2c1d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Diff">
+      <UniqueIdentifier>{4fab2534-a35d-45a9-af8e-9d902c8a8809}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_ctt.cpp">
@@ -574,6 +589,9 @@
     <ClCompile Include="FilterMovedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
+    <ClCompile Include="Shader\Diff\yuvPixelDiff.fs">
+      <Filter>Shader Files\Diff</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -911,5 +929,58 @@
     <ClInclude Include="FilterMovedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shader\Conversion\YUV420toRGBsdtv.fs">
+      <Filter>Shader Files\Conversion</Filter>
+    </None>
+    <None Include="Shader\Conversion\YUV422toRGBsdtv.fs">
+      <Filter>Shader Files\Conversion</Filter>
+    </None>
+    <None Include="Shader\Conversion\YUV444toRGBsdtv.fs">
+      <Filter>Shader Files\Conversion</Filter>
+    </None>
+    <None Include="Shader\Filter\1DBlur.fs">
+      <Filter>Shader Files\Filter</Filter>
+    </None>
+    <None Include="Shader\Filter\Greyscale.fs">
+      <Filter>Shader Files\Filter</Filter>
+    </None>
+    <None Include="Shader\Filter\Mix.fs">
+      <Filter>Shader Files\Filter</Filter>
+    </None>
+    <None Include="Shader\Filter\Noise.fs">
+      <Filter>Shader Files\Filter</Filter>
+    </None>
+    <None Include="Shader\Filter\RGBChannel.fs">
+      <Filter>Shader Files\Filter</Filter>
+    </None>
+    <None Include="Shader\Histogram\blueHistogramGrid.fs">
+      <Filter>Shader Files\Histogram</Filter>
+    </None>
+    <None Include="Shader\Histogram\displayHistogram.fs">
+      <Filter>Shader Files\Histogram</Filter>
+    </None>
+    <None Include="Shader\Histogram\greenHistogramGrid.fs">
+      <Filter>Shader Files\Histogram</Filter>
+    </None>
+    <None Include="Shader\Histogram\histogramCompaction.fs">
+      <Filter>Shader Files\Histogram</Filter>
+    </None>
+    <None Include="Shader\Histogram\hueHistogramGrid.fs">
+      <Filter>Shader Files\Histogram</Filter>
+    </None>
+    <None Include="Shader\Histogram\luminanceHistogramGrid.fs">
+      <Filter>Shader Files\Histogram</Filter>
+    </None>
+    <None Include="Shader\Histogram\redHistogramGrid.fs">
+      <Filter>Shader Files\Histogram</Filter>
+    </None>
+    <None Include="Shader\Histogram\saturationHistogramGrid.fs">
+      <Filter>Shader Files\Histogram</Filter>
+    </None>
+    <None Include="Shader\compactAverage.fs">
+      <Filter>Shader Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
