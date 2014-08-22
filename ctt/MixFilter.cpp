@@ -9,7 +9,7 @@ using ::model::frame::Frame;
 using ::exception::NotImplementedException;
 using ::model::saveable::Saveable;
 
-MixFilter::MixFilter(Module::sptr predecessor, Surface::sptr surface) : Filter(predecessor) {
+MixFilter::MixFilter(Module::sptr predecessor, Module::sptr module) : Filter(predecessor) {
     throw new NotImplementedException();
 }
 
@@ -26,7 +26,7 @@ model::frame::Frame::sptr MixFilter::getFrame(unsigned int frameNumber) const {
 }
 
 Saveable::SaveableType MixFilter::getType() const {
-	return Saveable::SaveableType::mixFilter;
+    return Saveable::mixFilter;
 }
 
 }  // namespace filter

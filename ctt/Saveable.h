@@ -86,6 +86,7 @@ public:
 		overlay,
 		coloringOverlay,
 		heatmapOverlay,
+        heatmapOverlay_heatmap,
 		macroblockOverlay,
 		makropartitionOverlay,
 		motionVektorOverlay,

@@ -18,7 +18,7 @@ HSLPixelDiff::~HSLPixelDiff() {
     throw new NotImplementedException();
 }
 
-Surface HSLPixelDiff::getPixelDiff(unsigned int frameNr) const {
+Surface::sptr HSLPixelDiff::getPixelDiff(unsigned int frameNr) const {
     throw new NotImplementedException();
 }
 

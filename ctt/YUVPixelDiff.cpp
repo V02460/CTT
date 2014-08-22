@@ -18,7 +18,7 @@ YUVPixelDiff::~YUVPixelDiff() {
     throw new NotImplementedException();
 }
 
-Surface YUVPixelDiff::getPixelDiff(unsigned int frameNr) const {
+Surface::sptr YUVPixelDiff::getPixelDiff(unsigned int frameNr) const {
     throw new NotImplementedException();
 }
 

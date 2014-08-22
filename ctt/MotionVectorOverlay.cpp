@@ -10,7 +10,7 @@ using ::model::frame::Frame;
 using ::exception::NotImplementedException;
 using ::model::saveable::Saveable;
 
-MotionVectorOverlay::MotionVectorOverlay(Module::sptr predecessor) : Overlay(predecessor) {
+MotionVectorOverlay::MotionVectorOverlay(Module::sptr predecessor) : Overlay(predecessor, XXX, 0.5) {
     throw new NotImplementedException();
 }
 

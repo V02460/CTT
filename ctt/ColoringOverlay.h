@@ -25,27 +25,24 @@ public:
     typedef QWeakPointer<ColoringOverlay> wptr;
 
     /**
-     * Creates a new ColoringOverlay object with a given previous module.
-     *
-     * @param predecessor The previous module of this overlay.
-     */
-    explicit ColoringOverlay(Module::sptr predecessor);
-
-    /**
      * ColoringOverlay destructor.
      */
     virtual ~ColoringOverlay();
 
-    virtual bool supportsIntervals() const Q_DECL_OVERRIDE{ return true; }
-    QString getName() const;
-    model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
-
+    virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
 
 protected:
-    const ::model::filter::GreyscaleFilter &getGreyscaleFilter() const;
+    /**
+     * Creates a new ColoringOverlay object with a given previous module.
+     *
+     * @param predecessor The previous module of this overlay.
+     * @param overlay The image which is put on top
+     * @param overlayAlpha The transparency of the overlay
+     */
+    explicit ColoringOverlay(Module::sptr predecessor, Module::sptr overlay, float overlayAlpha);
 
 private:
-    ::model::filter::GreyscaleFilter::uptr greyscaleFilter;
+    ::model::filter::GreyscaleFilter::sptr greyscaleFilter;
 };
 
 

@@ -134,6 +134,9 @@
     <Filter Include="Shader Files\Histogram">
       <UniqueIdentifier>{2087191a-8e1e-4305-9da7-390d9c25ea18}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader Files\Overlay">
+      <UniqueIdentifier>{8fee5fd8-1fe7-4e77-9424-8bb8e6627595}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_ctt.cpp">
@@ -972,6 +975,9 @@
     </None>
     <None Include="Shader\Histogram\saturationHistogramGrid.fs">
       <Filter>Shader Files\Histogram</Filter>
+    </None>
+    <None Include="Shader\Overlay\heatmap.fs">
+      <Filter>Shader Files\Overlay</Filter>
     </None>
   </ItemGroup>
 </Project>
