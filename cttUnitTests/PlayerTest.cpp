@@ -170,3 +170,43 @@ void PlayerTest::testDummy()
 	model::saveable::Saveable::sptr dummy = Player::getDummy();
 	QVERIFY(dummy->isDummy());
 }
+
+void PlayerTest::saveRestore()
+{
+
+		model::video::YUVDataVideo *testVideo = new model::video::YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
+		YUVDataVideo::sptr videoPointer(testVideo);
+		VideoScrubber::sptr testScrubber(new VideoScrubber(videoPointer));
+
+		model::video::YUVDataVideo *testVideo2 = new model::video::YUVDataVideo("resources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext);
+		YUVDataVideo::sptr videoPointer2(testVideo2);
+		VideoScrubber::sptr testScrubber2(new VideoScrubber(videoPointer2));
+
+		Player testPlayer(10);
+
+		testPlayer.addScrubber(testScrubber);
+		testPlayer.addScrubber(testScrubber2);
+		model::UIntegerInterval testInterval(5, 10);
+		testPlayer.setLoop(testInterval);
+
+		Memento memento = testPlayer.getMemento();
+		Player::sptr dummy = Player::getDummy().dynamicCast<Player>();
+		dummy->restore(memento);
+
+		QCOMPARE(dummy->getFPS(), 10.0f);
+		QCOMPARE(dummy->scrubberCount(), (unsigned int)2);
+		QVERIFY(dummy->controlsScrubber(*testScrubber));
+		QVERIFY(dummy->controlsScrubber(*testScrubber2));
+		QVERIFY(!dummy->isPlaying());
+		QCOMPARE(dummy->getCurrentFrameNumber(), (unsigned int)5);
+		QVERIFY(dummy->isLooping());
+		QCOMPARE(dummy->getLoop().getStart(), (unsigned int)5);
+		QCOMPARE(dummy->getLoop().getEnd(), (unsigned int)10);
+
+		testPlayer.jumpToFrameNr(7);
+		testPlayer.removeScrubber(*testScrubber);
+		testPlayer.restore(memento);
+		QCOMPARE(testPlayer.getCurrentFrameNumber(), (unsigned int)7);
+		QVERIFY(testPlayer.controlsScrubber(*testScrubber));
+		QCOMPARE(testPlayer.scrubberCount(), (unsigned int)2);
+}

@@ -36,7 +36,7 @@ void FilteredVideo::addFilter(Filter::sptr filter, unsigned int pos) {
 	{
 		if (filter->uses(*module))
 		{
-			throw new IllegalArgumentException("Tried to add a filter to a FilteredVideo that is already used by the filtered video.");
+			throw new IllegalArgumentException("Tried to add a filter to a FilteredVideo using modules already used by the filtered video.");
 		}
 	}
 
@@ -148,7 +148,7 @@ QList<const Module*> FilteredVideo::getUsesList() const
 	for (int i = 0; i < filters.size(); ++i) {
 		result.append(filters.at(i)->getUsesList());
 	}
-
+//	result.append(filters.last()->getUsesList());
 	return result;
 }
 

@@ -17,6 +17,10 @@ using ::exception::NotImplementedException;
 const QString Player::fpsStringId("fps");
 const QString Player::scrubbersStringId("scrubbers");
 const QString Player::numberOfScrubbersStringId("numberOfScrubbers");
+const QString Player::loopingStringId("looping");
+const QString Player::loopEndAStringId("loopA");
+const QString Player::loopEndBStringId("loopB");
+const QString Player::frameNumberStringId("frameNr");
 
 
 Player::Player(double fps): fps(fps), loop(0, 0), currentFrameNumber(0), looping(false), playing(false) {
@@ -32,6 +36,7 @@ Player::Player(double fps): fps(fps), loop(0, 0), currentFrameNumber(0), looping
 Player::Player() : loop(0, 1)
 {
 	isDummyFlag = true;
+	currentFrameNumber = 0;
 }
 
 Player::~Player() {
@@ -134,10 +139,6 @@ void Player::addScrubber(VideoScrubber::sptr scrubber) {
 	{
 		throw new IllegalStateException("Tried to add a VideoScrubber to a dummy player.");
 	}
-	if (scrubber->isDummy())
-	{
-		throw new IllegalArgumentException("Tried to add a dummy VideoScrubber to a player.");
-	}
 	
 	videoScrubbers.append(scrubber);
 	connect(this, SIGNAL(currentFrameNrChanged(unsigned int)), scrubber.data(), SLOT(jumpToFrameNr(unsigned int)));
@@ -146,7 +147,7 @@ void Player::addScrubber(VideoScrubber::sptr scrubber) {
 	{
 		currentFrameNumber = scrubber->getFrameCount();
 		emit currentFrameNrChanged(getCurrentFrameNumber());
-}
+	}
 	else
 	{
 		scrubber->jumpToFrameNr(getCurrentFrameNumber());
@@ -352,6 +353,14 @@ Memento Player::getMemento() const {
 	Memento memento;
 
 	memento.setDouble(fpsStringId, fps);
+	memento.setUInt(frameNumberStringId, currentFrameNumber);
+
+	memento.setBool(loopingStringId, looping);
+	if (isLooping())
+	{
+		memento.setUInt(loopEndAStringId, loop.getStart());
+		memento.setUInt(loopEndBStringId, loop.getEnd());
+	}
 
 	memento.setUInt(numberOfScrubbersStringId, videoScrubbers.size());
 	for (unsigned int i = 0; i < static_cast<unsigned int>(videoScrubbers.size()); i++)
@@ -363,28 +372,35 @@ Memento Player::getMemento() const {
 }
 
 void Player::restore(Memento memento) {
-	//do this properly again
-// 	isDummyFlag = false;
-// 
-// 	if (!(memento.getDouble(FPSSTRINGID) > 0)) {
-// 		throw new IllegalArgumentException("Tried to create a player with a playback speed not greater than zero.)");
-// 	}
-// 	fps = memento.getDouble(FPSSTRINGID);
-// 
-// 	playing = false;
-// 
-// 	//This is the doesn't restore the current frame number and loop
-// 	looping = false;
-// 	currentFrameNumber = 0;
-// 	loop = UIntegerInterval(0, 0);
-// 
-// 	timer.setTimerType(Qt::PreciseTimer);
-// 	connect(&timer, SIGNAL(timeout()), this, SLOT(nextFrame()));
-// 
-// 	for (unsigned int i = 0; i < memento.getUInt(NUMBEROFSCRUBBERSSTRINGID); i++)
-// 	{
-// 		addScrubber(memento.getSharedPointer<VideoScrubber>(SCRUBBERSSTRINGID + QString::number(i)));
-// 	}
+	isDummyFlag = false;
+
+	if (!(memento.getDouble(fpsStringId) > 0)) {
+		throw new IllegalArgumentException("Tried to create a player with a playback speed not greater than zero.)");
+	}
+	fps = memento.getDouble(fpsStringId);
+
+ 	looping = memento.getBool(loopingStringId);
+
+	if (looping)
+	{
+		loop = UIntegerInterval(memento.getUInt(loopEndAStringId), memento.getUInt(loopEndBStringId));
+		if (!loop.contains(currentFrameNumber))
+		{
+			currentFrameNumber = loop.getStart();
+		}
+	}
+
+	playing = false;
+	timer.setTimerType(Qt::PreciseTimer);
+	timer.stop();
+	connect(&timer, SIGNAL(timeout()), this, SLOT(nextFrame()));
+
+	videoScrubbers.clear();
+	for (unsigned int i = 0; i < memento.getUInt(numberOfScrubbersStringId); i++)
+	{
+		videoScrubbers.append(memento.getSharedPointer(scrubbersStringId + QString::number(i)).dynamicCast<VideoScrubber>());
+		connect(this, SIGNAL(currentFrameNrChanged(unsigned int)), videoScrubbers[i].data(), SLOT(jumpToFrameNr(unsigned int)));
+	}
 }
 
 Saveable::sptr Player::getDummy() {

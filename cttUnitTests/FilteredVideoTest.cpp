@@ -46,6 +46,7 @@ void FilteredVideoTest::filterOperations()
 
 	model::video::YUVDataVideo::sptr predecessorVideo(new model::video::YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext));
 
+	//TODO zutizd real testing, as soon as natascha did her stuff (filterintervallist)
 //	GreyscaleFilter::sptr filter0(new GreyscaleFilter(predecessorVideo));
 
 // 	QEXPECT_EXCEPTION(testVideo.addFilter(filter0, 4), IllegalArgumentException);
