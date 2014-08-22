@@ -72,9 +72,14 @@ public:
 	::view::ViewState::sptr getView() const;
 
 	/**
-	* Returns the one instance this class can have.
-	*/
+	 * Returns the one instance this class can have.
+	 */
 	static Project *getInstance();
+
+	/**
+	 * Activates and returnes the OpenGLContext of this Programm.
+	 */
+	QOpenGLContext *getActiveContext() const;
 
 private:
 	Project();
@@ -88,6 +93,7 @@ private:
 	::model::player::Player::sptr player2;
 	::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr diffList;
 	::view::ViewState::sptr view;
+	QScopedPointer<QOpenGLContext> context;
 };
 
 }  // namespace project

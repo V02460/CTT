@@ -21,7 +21,8 @@ Project::Project() :
 	playerList1(new SaveableList<Player>()),
 	player2(new Player(24)),
 	diffList(new SaveableList<FrameDiff>()),
-	view(new ViewState()) {}
+	view(new ViewState()), // TODO later singelton -> getInstance()
+	context(new QOpenGLKontext()) {}
 
 SaveableList<FileVideo>::sptr Project::getBaseVideoList() const {
     throw new NotImplementedException();
