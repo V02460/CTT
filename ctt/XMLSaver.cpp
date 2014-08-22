@@ -145,5 +145,7 @@ void XMLSaver::endDocument() {
 	out->writeEndDocument();
 }
 
+XMLSaver::uptr XMLSaver::instance;
+
 }  // namespace project
 }  // namespace controller

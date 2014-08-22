@@ -93,8 +93,8 @@ public:
 	static BaseSaveableType stringToBaseSaveableType(QString string);
 
 	/**
-	* Returns the one instance this class can have.
-	*/
+	 * Returns the one instance this class can have.
+	 */
 	static XMLSaver *getInstance();
 
 private:

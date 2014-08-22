@@ -247,6 +247,7 @@ void XMLLoader::restore() {
 		}
 		element->restore(memento);
 	}
+	changed();
 }
 
 XMLLoader *XMLLoader::getInstance() {
@@ -255,6 +256,8 @@ XMLLoader *XMLLoader::getInstance() {
 	}
 	return instance.data();
 }
+
+XMLLoader::uptr XMLLoader::instance;
 
 }  // namespace project
 }  // namespace controller
