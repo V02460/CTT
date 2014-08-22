@@ -976,9 +976,6 @@
     <None Include="Shader\Histogram\histogramCompaction.fs">
       <Filter>ShaderFiles\Histogram</Filter>
     </None>
-    <ClInclude Include="YUVType.h">
-      <Filter>Header Files\Model\Video</Filter>
-    </ClInclude>
     <ClInclude Include="IOException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
@@ -987,9 +984,6 @@
     </ClInclude>
     <ClInclude Include="FilterMovedOperation.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="YUVType.h">
-      <Filter>Header Files\Model\Video</Filter>
     </ClInclude>
     <None Include="Greyscale.fs">
       <Filter>ShaderFiles\Filter</Filter>
