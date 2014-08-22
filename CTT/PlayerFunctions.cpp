@@ -11,9 +11,9 @@ PlayerFunctions::PlayerFunctions( QWidget *parent) : QWidget(parent) {
 	sliderCurrentFrame->setOrientation(Qt::Horizontal);
 	sliderCurrentFrame->setTickPosition(QSlider::TicksBelow);
 
-	subscribe(controller::PlayerController::sptr(new controller::PlayerController()));
-
 	setupUi();
+
+	subscribe(controller::PlayerController::sptr(new controller::PlayerController()));
 }
 
 void PlayerFunctions::setupUi() {
@@ -25,7 +25,6 @@ void PlayerFunctions::setupUi() {
 	btnPlayPause->setMinimumSize(buttonSize);
 	btnPlayPause->setSizePolicy(buttonSizePolicy);
 	layout->addWidget(btnPlayPause);
-	setPlayButton(true);
 	QObject::connect(btnPlayPause, SIGNAL(clicked(bool)), this, SLOT(btnPlayPauseClicked(bool)));
 
 	btnPreviousFrame = new QPushButton(this);
@@ -39,6 +38,9 @@ void PlayerFunctions::setupUi() {
 	btnNextFrame->setSizePolicy(buttonSizePolicy);
 	layout->addWidget(btnNextFrame);
 	btnNextFrame->setText(tr("NEXT_FRAME"));
+
+	//Must be after initialisation of btnNextFrame and btnPreviousFrame
+	setPlayButton(true);
 
 	layout->addStretch();
 
@@ -73,16 +75,20 @@ void PlayerFunctions::setPlayButton(bool isPlayButton) {
 }
 
 void PlayerFunctions::setPlayer(::model::player::Player::sptr player) {
-	this->player = player;
-	emit playerChanged(player);
+	if (player.data() != 0) {
+		this->player = player;
+		emit playerChanged(player);
+	
+		player->subscribe(PlayerFunctions::sptr(this));
 
-	player->subscribe(PlayerFunctions::sptr(this));
+		sliderCurrentFrame->setMaximum(static_cast<int>(player->getVideoLength()));
+		sliderCurrentFrame->setValue(static_cast<int>(player->getCurrentFrameNumber()));
+		sliderCurrentFrame->setTickInterval(static_cast<int>(player->getVideoLength()) / 10);
 
-	sliderCurrentFrame->setMaximum(static_cast<int>(player->getVideoLength()));
-	sliderCurrentFrame->setValue(static_cast<int>(player->getCurrentFrameNumber()));
-	sliderCurrentFrame->setTickInterval(static_cast<int>(player->getVideoLength()) / 10);
-
-	update();
+		update();
+	} else {
+		qDebug() << "Error in PlayerFunctions! Player to be set was empty.";
+	}
 }
 
 void PlayerFunctions::removePlayer() {
