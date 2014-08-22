@@ -37,6 +37,7 @@ void MainControlWidget::setupUi(ViewType viewType) {
 	} else if (viewType == ViewType::ANALYSING_VIEW) {
 		btnInsert->setText(tr("INSERT_DIFFERENCE"));
 	}
+	btnInsert->setCheckable(true);
 	QObject::connect(btnInsert, SIGNAL(clicked(bool)), this, SLOT(btnInsertClicked(bool)));
 	playerFunctionLayout->addWidget(btnInsert);
 
@@ -52,25 +53,22 @@ void MainControlWidget::setupUi(ViewType viewType) {
 	leftWidget->setLayout(leftWidgetLayout);
 
 	//Setup right side
-	rightWidgetLayout = new QStackedLayout(rightWidget);
+	QVBoxLayout *rightWidgetLayout = new QVBoxLayout();
+	rightWidgetLayout->addWidget(playerFunctions->getFrameSlider());
 
-	QWidget *rightDisplayWidget = new QWidget(rightWidget);
+	rightDisplayWidgetLayout = new QStackedLayout();
+	//Platzhalter für die Timelines
+	rightDisplayWidgetLayout->addWidget(new QWidget());
 
-	QVBoxLayout *rightDisplayWidgetLayout = new QVBoxLayout(rightDisplayWidget);
-	rightDisplayWidgetLayout->addWidget(playerFunctions->getFrameSlider());
-	rightDisplayWidgetLayout->addStretch();
-
-	rightDisplayWidget->setLayout(rightDisplayWidgetLayout);
-	rightWidgetLayout->addWidget(rightDisplayWidget);
-
-	QScrollArea *insertionScrollArea = new QScrollArea(rightWidget);
+	QScrollArea *insertionScrollArea = new QScrollArea();
 	insertionScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	insertionScrollArea->setViewport(insertionWidget);
 	insertionScrollArea->setWidgetResizable(true);
 
-	rightWidgetLayout->addWidget(insertionScrollArea);
+	rightDisplayWidgetLayout->addWidget(insertionScrollArea);
+	rightWidgetLayout->addLayout(rightDisplayWidgetLayout);
 
-	rightWidgetLayout->setCurrentIndex(0);
+	rightDisplayWidgetLayout->setCurrentIndex(0);
 	rightWidget->setLayout(rightWidgetLayout);
 
 	QSplitter *splitter = new QSplitter(this);
@@ -85,9 +83,9 @@ void MainControlWidget::setupUi(ViewType viewType) {
 
 void MainControlWidget::btnInsertClicked(bool active) {
 	if (active) {
-		rightWidgetLayout->setCurrentIndex(1);
+		rightDisplayWidgetLayout->setCurrentIndex(1);
 	} else {
-		rightWidgetLayout->setCurrentIndex(0);
+		rightDisplayWidgetLayout->setCurrentIndex(0);
 	}
 }
 

@@ -55,7 +55,7 @@ private:
     PlayerFunctions *playerFunctions; /** The funtionality to control the video player */
     AbstractListView *listView; /** The list view to show the current active differences or filters (depends on the viewState) */
 
-	QStackedLayout *rightWidgetLayout;
+	QStackedLayout *rightDisplayWidgetLayout;
 };
 
 }  // namespace view
