@@ -3,11 +3,15 @@
 namespace exception {
 
 FileNotFoundException::FileNotFoundException() : msg(""){
-
+#ifdef DEBUG_EXCEPTION_PRINT_ON_CALL
+    qDebug() << getName();
+#endif
 }
 
 FileNotFoundException::FileNotFoundException(QString msg) : msg(msg), asciiMsg(msg.toLatin1()) {
-
+#ifdef DEBUG_EXCEPTION_PRINT_ON_CALL
+    qDebug() << getName() << getMsg();
+#endif
 }
 
 FileNotFoundException::~FileNotFoundException() {
