@@ -2,7 +2,7 @@
 #define _LISTEDPUSHBUTTON
 
 #include <QPushButton>
-#include "Video.h"
+#include "FilteredVideo.h"
 #include "Observer.h"
 #include "Frame.h"
 
@@ -25,7 +25,7 @@ public:
 	 *	@param video The video from wich the thumbnail is taken.
 	 *	@param parent The parent widget.
 	 */
-	ListedPushButton(int id, model::video::Video::sptr video, QWidget *parent = 0);
+	ListedPushButton(int id, model::filter::FilteredVideo::sptr video, QWidget *parent = 0);
 	/**
 	 *	Creates a new ListedPushButton with an id for later identification and a parent wigdet.
 	 *
@@ -58,7 +58,7 @@ private:
 	void setThumbnail();
 
 	int id; /**< The id which represents the buttons index in the list */
-	model::video::Video::sptr video; /**< The video from which this button generates its thumbnail */
+	model::filter::FilteredVideo::sptr video; /**< The video from which this button generates its thumbnail */
 	model::frame::Frame::sptr testFrame;
 };
 

@@ -3,7 +3,7 @@
 #include <QApplication>
 
 namespace view {
-	ListedPushButton::ListedPushButton(int id, model::video::Video::sptr video, QWidget *parent) : QPushButton(parent) {
+	ListedPushButton::ListedPushButton(int id, model::filter::FilteredVideo::sptr video, QWidget *parent) : QPushButton(parent) {
 		init(id);
 		
 		this->video = video;
@@ -38,7 +38,8 @@ namespace view {
 	}
 
 	void ListedPushButton::setThumbnail() {
-		setIcon(QIcon(QPixmap::fromImage(video->getFrame(12)->getFramebufferObject()->toImage())));
+		int thumbnailFrame = video->getFrameCount() * 0.09;
+		setIcon(QIcon(QPixmap::fromImage(video->getFrame(thumbnailFrame)->getFramebufferObject()->toImage())));
 		setIconSize(size());
 	}
 
