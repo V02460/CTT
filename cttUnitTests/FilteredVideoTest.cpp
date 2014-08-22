@@ -4,10 +4,12 @@
 #include "..\CTT\YUVDataVideo.h"
 #include "..\CTT\FilteredVideo.h"
 #include "qoffscreensurface.h"
+#include "..\CTT\GreyscaleFilter.h"
 
 using exception::IllegalArgumentException;
 using model::video::YUVDataVideo;
 using model::filter::FilteredVideo;
+using model::filter::GreyscaleFilter;
 
 
 void FilteredVideoTest::initTestCase()
@@ -29,4 +31,10 @@ void FilteredVideoTest::filterOperations()
 {
 	model::video::YUVDataVideo::sptr baseVideo(new model::video::YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext));
 	FilteredVideo testVideo(baseVideo);
+
+	QCOMPARE(testVideo.getFilterCount(), 0);
+	QVERIFY(testVideo.getFilterList().isEmpty());
+
+	model::video::YUVDataVideo::sptr predecessorVideo(new model::video::YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext));
+
 }
