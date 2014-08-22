@@ -60,12 +60,12 @@ public:
 	/**
 	 * Returns the one instance this class can have.
 	 */
-	static OperationList::sptr getInstance();
+	static OperationList *getInstance();
 
 private:
 	OperationList();
 
-	static OperationList::sptr instance;
+	static OperationList::uptr instance;
 
     QList<Operation::sptr> operations;
 	QList<Operation::sptr>::iterator currentOperation;

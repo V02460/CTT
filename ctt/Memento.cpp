@@ -123,9 +123,6 @@ QSharedPointer<Saveable> Memento::getSharedPointer(QString name) const {
 		throw new IllegalArgumentException("There is no pointer with name " + name + " in this memento.");
 	}
 	QSharedPointer<Saveable> pointer = pointerMap.value(name);
-	if (!pointer) {
-		throw new IllegalArgumentException("The pointer is not of requested type.");
-	}
 	return pointer;
 }
 

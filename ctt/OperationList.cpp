@@ -11,8 +11,6 @@ using ::exception::IllegalStateException;
 
 OperationList::OperationList() : currentOperation(operations.begin()) {}
 
-//OperationList::~OperationList() {}
-
 void OperationList::doOperation(Operation::sptr operation) {
 	/* TODO
 	 * off by one?
@@ -56,14 +54,14 @@ bool OperationList::canRedo() const {
 	return currentOperation != operations.constEnd();
 }
 
-OperationList::sptr OperationList::getInstance() {
+OperationList *OperationList::getInstance() {
 	if (instance.isNull()) {
-		instance = QSharedPointer<OperationList>(new OperationList());
+		instance.reset(new OperationList());
 	}
-	return instance;
+	return instance.data();
 }
 
-OperationList::sptr OperationList::instance = OperationList::getInstance();
+OperationList::uptr OperationList::instance;
 
 }  // namespace operation
 }  // namespace controller

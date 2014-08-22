@@ -23,11 +23,6 @@ public:
     typedef QSharedPointer<XMLSaver> sptr;
     typedef QWeakPointer<XMLSaver> wptr;
 
-	/**
-	 * Creates a new XMLSaver.
-	 */
-	XMLSaver();
-
 	virtual void save(QDir path, const ::controller::project::Project &project);
 
 	/** String to tell not to change the XML File. */
@@ -97,7 +92,16 @@ public:
 	 */
 	static BaseSaveableType stringToBaseSaveableType(QString string);
 
+	/**
+	 * Returns the one instance this class can have.
+	 */
+	static XMLSaver *getInstance();
+
 private:
+	XMLSaver();
+
+	static XMLSaver::uptr instance;
+
 	QXmlStreamWriter *out;
 	QList<::model::saveable::Saveable::sptr> pointerList;
 	int elementID;

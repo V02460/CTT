@@ -14,13 +14,14 @@ using ::model::difference::FrameDiff;
 using ::view::ViewState;
 using ::exception::NotImplementedException;
 
-Project::Project() : player2(new Player(24.0)) {
-	baseVideoList = SaveableList<FileVideo>::sptr(new SaveableList<FileVideo>());
-	videoList1 = SaveableList<FilteredVideo>::sptr(new SaveableList<FilteredVideo>());
-	videoList2 = SaveableList<Video>::sptr(new SaveableList<Video>());
-	playerList1 = SaveableList<Player>::sptr(new SaveableList<Player>());
-	diffList = SaveableList<FrameDiff>::sptr(new SaveableList<FrameDiff>());
-}
+Project::Project() :
+	baseVideoList(new SaveableList<FileVideo>()),
+	videoList1(new SaveableList<FilteredVideo>()),
+	videoList2(new SaveableList<FilteredVideo>()),
+	playerList1(new SaveableList<Player>()),
+	player2(new Player(24)),
+	diffList(new SaveableList<FrameDiff>()),
+	view(new ViewState()) {}
 
 SaveableList<FileVideo>::sptr Project::getBaseVideoList() const {
 	return baseVideoList;
@@ -49,6 +50,15 @@ SaveableList<FrameDiff>::sptr Project::getDiffList() const {
 ViewState::sptr Project::getView() const {
     throw new NotImplementedException();
 }
+
+Project *Project::getInstance() {
+	if (instance.isNull()) {
+		instance.reset(new Project());
+	}
+	return instance.data();
+}
+
+Project::uptr Project::instance;
 
 }  // namespace project
 }  // namespace controller

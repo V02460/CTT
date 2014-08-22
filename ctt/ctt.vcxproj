@@ -915,7 +915,6 @@
     </CustomBuild>
     <ClInclude Include="ProjectLoader.h" />
     <ClInclude Include="ProjectSaver.h" />
-    <ClInclude Include="ProjectSaverFactory.h" />
     <ClInclude Include="RedHistogram.h" />
     <ClInclude Include="RescaleFilter.h" />
     <ClInclude Include="RGBChannelFilter.h" />

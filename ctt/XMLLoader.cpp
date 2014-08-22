@@ -48,8 +48,7 @@ using ::model::filter::overlay::ColoringOverlay;
 using ::model::video::Video;
 using ::model::video::FileVideo;
 
-XMLLoader::XMLLoader() {
-}
+XMLLoader::XMLLoader() {}
 
 void XMLLoader::restore(QDir path, Project project) {
 	openFile(path);
@@ -248,7 +247,17 @@ void XMLLoader::restore() {
 		}
 		element->restore(memento);
 	}
+	changed();
 }
+
+XMLLoader *XMLLoader::getInstance() {
+	if (instance.isNull()) {
+		instance.reset(new XMLLoader());
+	}
+	return instance.data();
+}
+
+XMLLoader::uptr XMLLoader::instance;
 
 }  // namespace project
 }  // namespace controller

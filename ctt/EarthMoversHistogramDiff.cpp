@@ -30,17 +30,15 @@ double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
 	}
 	Histogram::sptr a = video1->getFrame(frameNr)->getHistogram(type);
 	Histogram::sptr b = video2->getFrame(frameNr)->getHistogram(type);
-
 	float d[Histogram::SIZE + 1];
 	d[0] = 0;
-	int sum = 0;
+	double sum = 0;
 	for (int i = 0; i < Histogram::SIZE; i++) {
 		//TODO Fix getValue method
 		//d[i + 1] = a->getValue(i) - b->getValue(i) + d[i];
 		sum += std::abs(d[i + 1]);
 	}
-	// TODO scale
-	return sum;
+	return sum / (Histogram::SIZE - 1);
 }
 
 EarthMoversHistogramDiff::EarthMoversHistogramDiff() {}

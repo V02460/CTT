@@ -23,11 +23,6 @@ public:
     typedef QWeakPointer<Project> wptr;
 
     /**
-	* Creates a new project and all savable objects needed from the start of the program.
-     */
-    Project();
-
-    /**
      * Returns the list of all base videos the project uses, i.e. videos which are directly read from files.
      *
      * @return SaveableList<FileVideo> the list of all base videos the project uses.
@@ -76,7 +71,16 @@ public:
      */
 	::view::ViewState::sptr getView() const;
 
+	/**
+	* Returns the one instance this class can have.
+	*/
+	static Project *getInstance();
+
 private:
+	Project();
+
+	static Project::uptr instance;
+
     ::model::saveable::SaveableList<::model::video::FileVideo>::sptr baseVideoList;
 	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList1;
 	::model::saveable::SaveableList<::model::video::Video>::sptr videoList2;
