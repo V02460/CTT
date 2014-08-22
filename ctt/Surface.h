@@ -9,6 +9,7 @@
 #include <QOpenGLTexture>
 #include <QOpenGLContext>
 #include <QOpenGLShader>
+#include <QOpenGLFunctions>
 
 //#include "GPUHelper.h"
 namespace helper {
@@ -21,9 +22,7 @@ namespace model {
  * Encapsulates an OpenGL texture and a corresponding context.
  * Requires a valid current OpenGL context.
  */
-class Surface
-{
-    friend class ::helper::GPUHelper;
+class Surface : protected QOpenGLFunctions {
 public:
     typedef QScopedPointer<Surface> uptr;
     typedef QSharedPointer<Surface> sptr;
@@ -75,6 +74,12 @@ public:
      * @return QSharedPointer<QOpenGLFramebufferObject> Framebuffer holding the texture of this object
      */
     QOpenGLFramebufferObject *getFramebufferObject();
+
+    /**
+     * Returns the stored texture as an byte array.
+     * The pixel format is RGBA8888.
+     */
+    QByteArray getRawRGB();
 
 protected:
     /**

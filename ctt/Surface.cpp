@@ -1,7 +1,8 @@
 #include "Surface.h"
 
-#include "IllegalStateException.h"
 #include "GPUHelper.h"
+
+#include "IllegalStateException.h"
 
 namespace model {
     
@@ -56,6 +57,23 @@ QOpenGLFramebufferObject *Surface::getFramebufferObject() {
     }
 
     return framebuffer.data();
+}
+
+QByteArray Surface::getRawRGB() {
+    //TODO: find nicer way to handle changing contexts
+    initializeOpenGLFunctions();
+
+    QByteArray data;
+    data.resize(4 * size.width() * size.height());
+
+    glBindTexture(GL_TEXTURE_2D, getTextureHandle());
+
+    glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, data.data());
+    //glReadPixels(0, 0, size.width(), size.height(), GL_RGBA, GL_UNSIGNED_BYTE, data.data());
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    return data;
 }
 
 Surface::Surface(const Surface &surface)
