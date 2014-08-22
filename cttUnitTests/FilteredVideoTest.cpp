@@ -29,7 +29,7 @@ void FilteredVideoTest::dummyTest()
 
 void FilteredVideoTest::filterOperations()
 {
-	model::video::YUVDataVideo::sptr baseVideo(new model::video::YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext));
+	model::video::YUVDataVideo::sptr baseVideo(new model::video::YUVDataVideo("Resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext));
 	FilteredVideo testVideo(baseVideo);
 
 	QCOMPARE(testVideo.getFilterCount(), 0);

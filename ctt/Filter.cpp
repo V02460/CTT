@@ -102,5 +102,15 @@ QSize Filter::getResolution() const
 	return predecessor->getResolution();
 }
 
+Memento Filter::getMemento() const {
+    Memento memento;
+    memento.setSharedPointer("predecessor", predecessor);
+    return memento;
+}
+
+void Filter::restore(Memento memento) {
+    predecessor = memento.getSharedPointer("predecessor").dynamicCast<Module>();
+}
+
 }  // namespace filter
 }  // namespace model

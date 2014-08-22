@@ -57,7 +57,7 @@ public:
      * @return bool true only if the submitted module is this module, or used by this module directly or indirectly
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual bool uses(const model::Module &module) const = 0;
+    virtual bool uses(const model::Module &module) const;
 
 	/**
 	 * Returns the size of the frames this module provides.    

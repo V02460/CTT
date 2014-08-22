@@ -12,6 +12,7 @@ using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
 using ::model::saveable::Saveable;
+using ::model::video::Video;
 
 FilteredVideo::FilteredVideo(Video::sptr baseVideo) : baseVideo(baseVideo) {
 
@@ -200,6 +201,10 @@ model::video::VideoMetadata FilteredVideo::getMetadata() const
 
 Saveable::SaveableType FilteredVideo::getType() const {
 	return Saveable::SaveableType::filteredVideo;
+}
+
+Video::sptr FilteredVideo::getBaseVideo() const {
+	return baseVideo;
 }
 
 }  // namespace filter

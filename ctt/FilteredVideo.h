@@ -65,6 +65,13 @@ public:
      */
     QList<::model::filter::Filter::sptr> getFilterList() const;
 
+	/**
+	 * Returns the base video.
+	 *
+	 * @return The base video.
+	 */
+	::model::video::Video::sptr getBaseVideo() const;
+
     virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
 	virtual QList<const Module*> getUsesList() const;
 	virtual unsigned int getFrameCount() const;

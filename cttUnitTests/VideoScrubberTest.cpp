@@ -1,13 +1,17 @@
 #include "VideoScrubberTest.h"
-#include "..\ctt\VideoScrubber.h"
-#include "..\ctt\IllegalStateException.h"
+
+#include "VideoScrubber.h"
 #include "CustomTestingMacros.h"
-#include "..\CTT\YUVDataVideo.h"
-#include "qoffscreensurface.h"
+#include "YUVDataVideo.h"
+
+#include "IllegalStateException.h"
 
 using model::player::VideoScrubber;
 using exception::IllegalArgumentException;
 using model::video::YUVDataVideo;
+
+VideoScrubberTest::VideoScrubberTest() : testContext() {
+}
 
 void VideoScrubberTest::testDummy()
 {

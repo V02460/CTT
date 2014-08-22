@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _FILTEREDVIDEOTEST_H
+#define _FILTEREDVIDEOTEST_H
+
 #include <QtTest/QtTest>
 #include <qoffscreensurface.h>
 
@@ -16,3 +18,4 @@ private:
 	QSharedPointer<QOpenGLContext> testContext;
 };
 
+#endif  //_FILTEREDVIDEOTEST_H
