@@ -79,7 +79,7 @@ public:
      * Returns the stored texture as an byte array.
      * The pixel format is RGBA8888.
      */
-    QByteArray getRawRGB();
+    QByteArray getRawRGBA();
 
 protected:
     /**

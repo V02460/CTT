@@ -59,7 +59,7 @@ QOpenGLFramebufferObject *Surface::getFramebufferObject() {
     return framebuffer.data();
 }
 
-QByteArray Surface::getRawRGB() {
+QByteArray Surface::getRawRGBA() {
     //TODO: find nicer way to handle changing contexts
     initializeOpenGLFunctions();
 
