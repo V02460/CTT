@@ -16,7 +16,7 @@ namespace view {
  * The PlayerWidget holds the VideoWidget displaying the original and the filtered video.
  * The main purpose of this class is to handle the activation of a specific player by the user.
  */
-class PlayerWidget : public QWidget{
+class PlayerWidget : public QWidget {
 public:
     typedef QScopedPointer<PlayerWidget> uptr;
     typedef QSharedPointer<PlayerWidget> sptr;
