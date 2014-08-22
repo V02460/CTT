@@ -46,14 +46,18 @@ public:
     typedef QSharedPointer<XMLLoader> sptr;
     typedef QWeakPointer<XMLLoader> wptr;
 
-	/**
-	 * Creates a new XMLLoader.
-	 */
-	XMLLoader();
-
 	virtual void restore(QDir path, ::controller::project::Project project);
 
+	/**
+	* Returns the one instance this class can have.
+	*/
+	static XMLLoader *getInstance();
+
 private:
+	XMLLoader();
+
+	static XMLLoader::uptr instance;
+
 	QXmlStreamReader *xml;
 
 	QMap<int, ::model::saveable::Saveable::sptr> pointerMap;
