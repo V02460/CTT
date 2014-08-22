@@ -30,7 +30,7 @@ public:
 	static ::model::saveable::Saveable::sptr getDummy();
 	virtual ::model::saveable::Saveable::SaveableType getType() const;
 
-	static QSharedPointer<ViewState> getInstance();
+	static ViewState* getInstance();
 	QSharedPointer<VideoDisplayPolicy> getCurrentVideoDisplayPolicy();
 
 public slots:
@@ -48,9 +48,9 @@ signals:
 private:
 	ViewState();
 
-	QSharedPointer<ViewState> instance;
+	ViewState::uptr instance;
     ViewType currentView;
-	QSharedPointer<VideoDisplayPolicy> currentVideoDisplayPolicy;
+	VideoDisplayPolicy::sptr currentVideoDisplayPolicy;
 };
 
 }  // namespace view

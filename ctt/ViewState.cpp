@@ -28,7 +28,7 @@ Saveable::SaveableType ViewState::getType() const {
 	return Saveable::SaveableType::viewState;
 }
 
-QSharedPointer<ViewState> ViewState::getInstance() {
+ViewState* ViewState::getInstance() {
 	throw new NotImplementedException();
 }
 
