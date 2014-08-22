@@ -50,9 +50,9 @@ using ::model::video::FileVideo;
 
 XMLLoader::XMLLoader() {}
 
-void XMLLoader::restore(QDir path, Project project) {
+void XMLLoader::restore(QDir path) {
 	openFile(path);
-	createMaps(project);
+	createMaps();
 	restore();
 }
 
@@ -70,7 +70,8 @@ void XMLLoader::openFile(QDir path) {
 	}
 }
 
-void XMLLoader::createMaps(Project project) {
+void XMLLoader::createMaps() {
+	Project *project = Project::getInstance();
 	while (xml->readNextStartElement()) {
 		if (xml->qualifiedName() != XMLSaver::ELEMENT) {
 			throw new ParseException("Tag <" + XMLSaver::ELEMENT + "> expected.");
@@ -94,19 +95,19 @@ void XMLLoader::createMaps(Project project) {
 			// abfangen, wenn class string / template nicht stimmt?
 			switch (baseType) {
 			case XMLSaver::BaseSaveableType::BaseVideoList:
-				pointerMap.insert(id, project.getBaseVideoList()); break;
+				pointerMap.insert(id, project->getBaseVideoList()); break;
 			case XMLSaver::BaseSaveableType::VideoList1:
-				pointerMap.insert(id, project.getVideoList1()); break;
+				pointerMap.insert(id, project->getVideoList1()); break;
 			case XMLSaver::BaseSaveableType::VideoList2:
-				pointerMap.insert(id, project.getVideoList2()); break;
+				pointerMap.insert(id, project->getVideoList2()); break;
 			case XMLSaver::BaseSaveableType::PlayerList1:
-				pointerMap.insert(id, project.getPlayerList1()); break;
+				pointerMap.insert(id, project->getPlayerList1()); break;
 			case XMLSaver::BaseSaveableType::Player2:
-				pointerMap.insert(id, project.getPlayer2()); break;
+				pointerMap.insert(id, project->getPlayer2()); break;
 			case XMLSaver::BaseSaveableType::DiffList:
-				pointerMap.insert(id, project.getDiffList()); break;
+				pointerMap.insert(id, project->getDiffList()); break;
 			case XMLSaver::BaseSaveableType::View:
-				pointerMap.insert(id, project.getView()); break;
+				pointerMap.insert(id, project->getView()); break;
 			default: throw new NotImplementedException("Unknown base savable type."); break;
 			}
 		} else {

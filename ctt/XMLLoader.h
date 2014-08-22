@@ -47,7 +47,7 @@ public:
     typedef QSharedPointer<XMLLoader> sptr;
     typedef QWeakPointer<XMLLoader> wptr;
 
-	virtual void restore(QDir path, ::controller::project::Project project);
+	virtual void restore(QDir path);
 
 	/**
 	 * Returns the one instance this class can have.
@@ -66,7 +66,7 @@ private:
 	QMap<int, QMap<QString, int>> mementoIdMap;
 
 	void openFile(QDir path);
-	void createMaps(Project project);
+	void createMaps();
 	void restore();
 };
 

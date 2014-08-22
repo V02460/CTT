@@ -35,9 +35,9 @@ const QList<QString> XMLSaver::BASE_ELEMENT_NAMES = QList<QString>()
 	<< "diffList"
 	<< "view";
 
-void XMLSaver::save(QDir path, const Project &project) {
+void XMLSaver::save(QDir path) {
 	initDocument(path);
-	mapBasePointer(project);
+	mapBasePointer();
 	writeBaseElements();
 	writeElements();
 	endDocument();
@@ -64,14 +64,15 @@ void XMLSaver::initDocument(QDir path) {
 	out->writeStartElement(ELEMENTS);
 }
 
-void XMLSaver::mapBasePointer(Project project) {
-	pointerList.append(project.getBaseVideoList());
-	pointerList.append(project.getVideoList1());
-	pointerList.append(project.getVideoList2());
-	pointerList.append(project.getPlayerList1());
-	pointerList.append(project.getPlayer2());
-	pointerList.append(project.getDiffList());
-	pointerList.append(project.getView());
+void XMLSaver::mapBasePointer() {
+	Project *project = Project::getInstance();
+	pointerList.append(project->getBaseVideoList());
+	pointerList.append(project->getVideoList1());
+	pointerList.append(project->getVideoList2());
+	pointerList.append(project->getPlayerList1());
+	pointerList.append(project->getPlayer2());
+	pointerList.append(project->getDiffList());
+	pointerList.append(project->getView());
 }
 
 void XMLSaver::writeBaseElements() {

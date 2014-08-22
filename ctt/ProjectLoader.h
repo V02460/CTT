@@ -31,7 +31,7 @@ public:
      * @throws IOException Is thrown if there is any problem accessing or reading the given file.
      * @throws ParseException Is thrown if the content of the file can not be used to restore a project by the loader.
      */
-    virtual void restore(QDir path, ::controller::project::Project project) = 0;
+    virtual void restore(QDir path) = 0;
 };
 
 }  // namespace project
