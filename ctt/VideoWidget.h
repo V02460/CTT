@@ -32,7 +32,7 @@ public:
 	VideoWidget(::model::player::VideoScrubber::sptr scrubber, QWindow *parent = 0);
 
 	//TODO Testkonstruktor entfernen
-	VideoWidget(::model::frame::Frame::sptr renderedFrame);
+	VideoWidget(::model::frame::Frame::sptr renderedFrame, QWindow *parent = 0);
 
     /**
      * Returns the VideoScrubber at which the VideoWidget is registered and where the VideoWidget receives its frames

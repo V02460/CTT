@@ -1,9 +1,10 @@
 #include "VideoWidget.h"
 
+#include <QOffscreenSurface>
 #include "NotImplementedException.h"
 #include "ViewState.h"
-
 #include "OpenGLException.h"
+#include "Frame.h"
 
 namespace view {
 
@@ -11,23 +12,27 @@ using ::model::player::VideoScrubber;
 using ::model::Observer;
 using ::exception::NotImplementedException;
 using ::exception::OpenGLException;
+using ::model::frame::Frame;
 
 VideoWidget::VideoWidget(VideoScrubber::sptr scrubber, QWindow *parent)
         :QWindow(parent)
         ,context(0)
         ,isInitialized(false) {
 
-	this->scrubber = scrubber;
-	this->scrubber->subscribe(QSharedPointer<Observer>(this));
+	if (scrubber.data() != 0) {
+		this->scrubber = scrubber;
+		this->scrubber->subscribe(QSharedPointer<Observer>(this));
 
-	setSurfaceType(QWindow::OpenGLSurface);
+		setSurfaceType(QWindow::OpenGLSurface);
 
-    glViewport(0, 0, width(), height());
-
-	isInSingelFrameTest = false;
+		glViewport(0, 0, width(), height());
+		isInSingelFrameTest = false;
+	} else {
+		qDebug() << "Error in VideoWidget! Scrubber was empty.";
+	}
 }
 
-VideoWidget::VideoWidget(model::frame::Frame::sptr testFrame) : context(0), isInitialized(false) {
+VideoWidget::VideoWidget(Frame::sptr testFrame, QWindow *parent) : QWindow(parent), context(0), isInitialized(false) {
 	this->testFrame = testFrame;
 
 	setSurfaceType(QWindow::OpenGLSurface);
@@ -42,7 +47,9 @@ const VideoScrubber &VideoWidget::getScrubber() const {
 void VideoWidget::resizeEvent(QResizeEvent *ev) {
 	Q_UNUSED(ev);
 
-	render();
+	if (isExposed()) {
+		render();
+	}
 }
 
 void VideoWidget::exposeEvent(QExposeEvent *ev) {
