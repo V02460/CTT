@@ -842,9 +842,6 @@
     <ClInclude Include="Surface.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="ProjectSaverFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ProjectLoader.h">
       <Filter>Header Files\Controller\Project</Filter>
     </ClInclude>
@@ -906,7 +903,7 @@
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
     <ClInclude Include="FilterMovedOperation.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
