@@ -142,6 +142,7 @@ Memento FilteredVideo::getMemento() const {
 		memento.setSharedPointer(filtersStringId + QString::number(i), filters[i]);
 	}
 
+    return memento;
 }
 
 void FilteredVideo::restore(Memento memento) {

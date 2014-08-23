@@ -351,6 +351,8 @@ Memento YUVDataVideo::getMemento() const
 	memento.setDouble(framerateStringId, getMetadata().getFPS());
 
 	memento.setInt(yuvTypeStringId, type);
+
+    return memento;
 }
 
 void YUVDataVideo::restore(Memento memento)
