@@ -331,6 +331,10 @@ bool YUVDataVideo::hasFrameInBuffer(unsigned int frameNr) const
 
 Memento YUVDataVideo::getMemento() const
 {
+	if (isDummy()) {
+		throw new IllegalStateException("Tried to request a memento from a dummy YUVDataVideo.");
+	}
+
 	Memento memento;
 
 	memento.setBool(hasMetadataFileStringId, hasMetadataFile);

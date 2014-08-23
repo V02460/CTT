@@ -380,6 +380,7 @@ Memento Player::getMemento() const {
 		memento.setSharedPointer(scrubbersStringId + QString::number(i), videoScrubbers[i]);
 	}
 
+	saveObserversToMemento(&memento);
 
 	return memento;
 }
@@ -414,6 +415,8 @@ void Player::restore(Memento memento) {
 		videoScrubbers.append(memento.getSharedPointer(scrubbersStringId + QString::number(i)).dynamicCast<VideoScrubber>());
 		connect(this, SIGNAL(currentFrameNrChanged(unsigned int)), videoScrubbers[i].data(), SLOT(jumpToFrameNr(unsigned int)));
 	}
+
+	restoreObserversFromMemento(&memento);
 }
 
 Saveable::sptr Player::getDummy() {

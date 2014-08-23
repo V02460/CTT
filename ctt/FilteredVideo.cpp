@@ -128,6 +128,10 @@ model::frame::Frame::sptr FilteredVideo::getFrame(unsigned int frameNumber) cons
 }
 
 Memento FilteredVideo::getMemento() const {
+	if (isDummy())
+	{
+		throw new IllegalStateException("Tried to request a memento of a dummy FilteredVideo.");
+	}
 	Memento memento;
 
 	memento.setSharedPointer(baseVideoStringId, baseVideo);
@@ -137,6 +141,8 @@ Memento FilteredVideo::getMemento() const {
 	{
 		memento.setSharedPointer(filtersStringId + QString::number(i), filters[i]);
 	}
+
+	saveObserversToMemento(&memento);
 }
 
 void FilteredVideo::restore(Memento memento) {
@@ -148,6 +154,8 @@ void FilteredVideo::restore(Memento memento) {
 	{
 		filters.append(memento.getSharedPointer(filtersStringId + QString::number(i)).dynamicCast<Filter>());
 	}
+
+	restoreObserversFromMemento(&memento);
 	isDummyFlag = false;
 }
 
