@@ -47,12 +47,6 @@ protected:
      */
     void changed();
 
-	static const QString observersStringId;
-	static const QString numberOfObserversStringId;
-
-	void saveObserversToMemento(model::saveable::Memento *memento) const;
-
-	void restoreObserversFromMemento(model::saveable::Memento *memento);
 };
 
 }  // namespace model

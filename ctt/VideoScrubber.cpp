@@ -106,7 +106,6 @@ Memento VideoScrubber::getMemento() const {
 	Memento memento;
 	memento.setSharedPointer(videoStringId, video);
 	memento.setUInt(lastFrameNumberStringId, lastFrameNumber);
-	saveObserversToMemento(&memento);
 	return memento;
 }
 
@@ -119,7 +118,6 @@ void VideoScrubber::restore(Memento memento) {
 	}
 
 	lastFrameNumber = memento.getUInt(lastFrameNumberStringId);
-	restoreObserversFromMemento(&memento);
 	isDummyFlag = false;
 }
 
