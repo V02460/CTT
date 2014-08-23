@@ -16,7 +16,7 @@ public:
 	typedef QWeakPointer<NoScalePolicy> wptr;
 
 	NoScalePolicy();
-	virtual QRect getViewportSize(QSize displaySize, QSize videoSize) Q_DECL_OVERRIDE;
+	virtual QRect getViewportSize(QSize displaySize, QSize videoSize) const Q_DECL_OVERRIDE;
 };
 
 } // namespace view

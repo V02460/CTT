@@ -19,7 +19,7 @@ VideoWidget::VideoWidget(VideoScrubber::sptr scrubber, QWindow *parent)
         ,context(0)
         ,isInitialized(false) {
 
-	if (scrubber.data() != 0) {
+	if (!scrubber.isNull()) {
 		this->scrubber = scrubber;
 		this->scrubber->subscribe(QSharedPointer<Observer>(this));
 

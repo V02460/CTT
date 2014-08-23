@@ -14,7 +14,7 @@ public:
 	typedef QSharedPointer<VideoDisplayPolicy> sptr;
 	typedef QWeakPointer<VideoDisplayPolicy> wptr;
 
-	virtual QRect getViewportSize(QSize displaySize, QSize videoSize) = 0;
+	virtual QRect getViewportSize(QSize displaySize, QSize videoSize) const = 0;
 
 private:
 	VideoDisplayPolicy();

@@ -29,10 +29,14 @@ Saveable::SaveableType ViewState::getType() const {
 }
 
 ViewState* ViewState::getInstance() {
-	throw new NotImplementedException();
+	if (instance.isNull()) {
+		instance.reset(new ViewState());
+	}
+
+	return instance.data();
 }
 
-QSharedPointer<VideoDisplayPolicy> ViewState::getCurrentVideoDisplayPolicy() {
+const VideoDisplayPolicy* ViewState::getCurrentVideoDisplayPolicy() {
 	throw new NotImplementedException();
 }
 
@@ -40,4 +44,7 @@ void ViewState::changeVideoDisplayPolicy() {
 	throw new NotImplementedException();
 }
 
+ViewState::ViewState() : currentView(ViewType::PROCESSING_VIEW){}
+
+ViewState::uptr ViewState::instance;
 }  // namespace view
