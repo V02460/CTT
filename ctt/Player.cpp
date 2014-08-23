@@ -112,6 +112,7 @@ void Player::setFPS(double fps){
 	}
 
 	this->fps = fps;
+	changed();
 }
 
 double Player::getFPS() const {
@@ -152,6 +153,13 @@ void Player::addScrubber(VideoScrubber::sptr scrubber) {
 	{
 		scrubber->jumpToFrameNr(getCurrentFrameNumber());
 	}
+
+	if (isLooping() && (getLoop().getEnd() >= scrubber->getFrameCount()))
+	{
+		looping = false;
+	}
+
+	changed();
 }
 
 void Player::addScrubber(VideoScrubber::sptr scrubber, unsigned int position) {
@@ -177,11 +185,12 @@ void Player::addScrubber(VideoScrubber::sptr scrubber, unsigned int position) {
 	{
 		currentFrameNumber = scrubber->getFrameCount();
 		emit currentFrameNrChanged(getCurrentFrameNumber());
-}
+	}
 	else
 	{
 		scrubber->jumpToFrameNr(getCurrentFrameNumber());
 	}
+	changed();
 }
 
 void Player::removeScrubber(unsigned int position) {
@@ -198,6 +207,7 @@ void Player::removeScrubber(unsigned int position) {
 
 	disconnect(this, SIGNAL(currentFrameNrChanged(unsigned int)), videoScrubbers.at(position).data(), SLOT(jumpToFrameNr(unsigned int)));
 	videoScrubbers.removeAt(position);
+	changed();
 }
 
 void Player::removeScrubber(const VideoScrubber &scrubber) {
@@ -221,6 +231,7 @@ void Player::removeScrubber(const VideoScrubber &scrubber) {
 			return;
 		}
 	}
+	changed();
 }
 
 bool Player::controlsScrubber(const VideoScrubber &scrubber) const {
@@ -299,7 +310,7 @@ void Player::setLoop(UIntegerInterval interval) {
 	if (isDummy())
 	{
 		throw new IllegalStateException("Tried to set a loop on a dummy Player.");
-}
+	}
 
 	if (interval.isDummy())
 	{
@@ -314,11 +325,12 @@ void Player::setLoop(UIntegerInterval interval) {
 	}
 
 	loop = interval;
+	looping = true;
 	if (!loop.contains(getCurrentFrameNumber()))
 	{
 		jumpToFrameNr(loop.getStart());
-	}	
-	looping = true;
+	}		
+	changed();
 }
 
 UIntegerInterval Player::getLoop() const {
@@ -333,7 +345,7 @@ bool Player::isLooping() const {
 	if (isDummy())
 	{
 		throw new IllegalStateException("Tried to ask a dummy Player whether it's looping.");
-}
+	}
 	return looping;
 }
 

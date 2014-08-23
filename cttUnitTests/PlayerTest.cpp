@@ -154,6 +154,11 @@ void PlayerTest::scrubberOperations()
 	QVERIFY(!testPlayer.getScrubbers().contains(testScrubber));
 	QVERIFY(!testPlayer.controlsScrubber(*testScrubber));
 
+	model::UIntegerInterval testInterval(4, 100); 
+	testPlayer.setLoop(testInterval);
+	testPlayer.addScrubber(testScrubber);
+	QVERIFY(!testPlayer.isLooping());
+
 	QEXPECT_EXCEPTION(testPlayer.addScrubber(testScrubber, 10), IllegalArgumentException);
 }
 
