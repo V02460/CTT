@@ -1,6 +1,14 @@
 #ifndef _FFMPEGDATAVIDEO_H
 #define _FFMPEGDATAVIDEO_H
 
+extern "C"
+{
+#include "libavcodec\avcodec.h"
+#include "libavformat\avformat.h"
+#include "libswscale\swscale.h"
+#include "libavutil\frame.h"
+}
+
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
@@ -29,18 +37,29 @@ public:
      *
      * @param path the path to the video file which will be loaded
      * @param context the context in which the video creates its frames
-	 * @throws FileNotFoundException if the file at the submitted location can't be found.
      * @throws IOException if the file at the submitted location can't be accessed.
-     * @throws IllegalArgumentException if the file at the submitted location isn't a valid mpeg-2, mpeg-4 part 2 or
-     *     mpeg-4 part 10 video file
+     * @throws FFmpegException if ffmpeg isn't able to use the file as a video file it can open and decode
      */
 	FFmpegDataVideo(QString path, QSharedPointer<QOpenGLContext> context);
+
+	~FFmpegDataVideo();
 
     VideoMetadata getMetadata() const;
 
     virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
 
 	virtual ::model::saveable::Saveable::SaveableType getType() const;
+
+private:
+	//Information about the videoFile
+	AVFormatContext *videoFormatContext;
+	//Context of the codec used by the first video stream (the one that will be used)
+	AVCodecContext *codecContext;
+	//number of the first video stream (the one that will be used)
+	int videoStreamNr;
+	//the codec used to decode the video
+	AVCodec *vCodec;
+
 };
 
 }  // namespace video

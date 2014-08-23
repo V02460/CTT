@@ -13,10 +13,10 @@
 #include "UIntegerInterval.h"        
 #include "FilterIntervalList.h"    
 
+#include "AccessToDummyException.h"
+
 namespace model {
 namespace filter {
-
-class any; // TODO: make a class
 
 /**
  * An object which can attach itself to another module and outputs modified versions of the frames of this module.
@@ -45,7 +45,7 @@ public:
      * specific intervals.
      *
      * @return bool true only if the Filter supports being active only in specific intervals.
-     * @throws IllegalStateException if the the method was called on a dummy
+     * @throws AccessToDummyException if the the method was called on a dummy
      */
     virtual bool supportsIntervals() const = 0;
 
@@ -53,7 +53,7 @@ public:
      * Returns a list of the different parameters of the filter with their names and values.
      *
      * @return QList<FilterParam> a list of the different parameters of the filter
-     * @throws IllegalStateException if the the method was called on a dummy
+     * @throws AccessToDummyException if the the method was called on a dummy
      */
     QList<FilterParam> getParams() const;
 
@@ -61,23 +61,26 @@ public:
      * Sets the submitted parameter.
      *
      * @param parameter this parameter will be set
-     * @throws InvalidArgumentException if the Filter doesn't have a parameter with the name or type of the submitted parameter
+     * @throws IllegalArgumentException if the Filter doesn't have a parameter with the name or type of the submitted
+     *         parameter
+     * @throws AccessToDummyException if the the method was called on a dummy
      */
     void setParam(FilterParam parameter);
 
     /**
      * Tells the Filter to use the frames of the submitted Module as source material for its own frames.
      *
-     * @param previous the Filter will use the frames of this module as source material for its own frames
-     * @throws IllegalStateException if the the method was called on a dummy
+     * @param predecessor the Filter will use the frames of this module as source material for its own frames
+     * @throws IllegalArgumentException if predecessor is null
+     * @throws AccessToDummyException if the the method was called on a dummy
      */
-    void setPreviousModule(::model::Module::sptr previous);
+    void setPreviousModule(::model::Module::sptr predecessor);
 
     /**
      * Returns a designation of this type of Filter
      *
      * @return QString a designation of this type of Filter
-     * @throws IllegalStateException if the the method was called on a dummy
+     * @throws AccessToDummyException if the the method was called on a dummy
      */
     virtual QString getName() const = 0;
 
@@ -85,7 +88,7 @@ public:
      * Activates the Filter in the submitted interval.
      *
      * @param interval the filter will be activated in this interval
-     * @throws IllegalStateException if the the method was called on a dummy or a Filter without interval support
+     * @throws AccessToDummyException if the the method was called on a dummy or a Filter without interval support
      */
     void activate(UIntegerInterval interval);
 
@@ -93,7 +96,7 @@ public:
      * Deactivates the Filter in the submitted interval.
      *
      * @param interval the filter will be deactivated in this interval
-     * @throws IllegalStateException if the the method was called on a dummy or a Filter without interval support
+     * @throws AccessToDummyException if the the method was called on a dummy or a Filter without interval support
      */
     void deactivate(UIntegerInterval interval);
 
@@ -101,18 +104,45 @@ public:
      * Returns a list of all the intervals the filter is active in.
      *
      * @return List<IntegerInterval> a list of all the intervals the filter is active in
-     * @throws IllegalStateException if the the method was called on a dummy or a Filter without interval support
+     * @throws AccessToDummyException if the the method was called on a dummy or a Filter without interval support
      */
     QList<UIntegerInterval> getListOfActiveIntervals();
 
     virtual unsigned int getFrameCount() const Q_DECL_OVERRIDE;
 
+    virtual QSize getResolution() const Q_DECL_OVERRIDE;
+
+    ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
+    void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
+
+protected:
+    template <class T>
+    void newParameter(QString name, T initValue) {
+        if (isDummy()) {
+            throw new ::exception::AccessToDummyException();
+        }
+
+        parameters.insert(name, FilterParam(name, initValue));
+    }
+
+    template <class T>
+    T getParamValue(QString key, T defaultValue = T()) const {
+        if (isDummy()) {
+            throw new ::exception::AccessToDummyException();
+        }
+
+        FilterParam param = parameters.value(key, FilterParam(key, defaultValue));
+        return param.getValue().value<T>();
+    }
+
+    Module *getPredecessor() const;
+
 private:
     Q_DISABLE_COPY(Filter)
 
-    QMap<QString, FilterParam> parameters; /**< Parameters modifying the filters behavior */
     ::model::FilterIntervalList intervals; /**< The Intervals in which the Filter is active */
-    ::model::Module *previous; /**< The Filter gets the frames it modifies from this module */
+    QMap<QString, FilterParam> parameters; /**< Parameters modifying the filters behavior */
+    Module::sptr predecessor; /**< The Filter gets the frames it modifies from this module */
 };
 
 }  // namespace filter

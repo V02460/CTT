@@ -10,7 +10,7 @@ using ::exception::IllegalStateException;
 
 typedef QSharedPointer<QOpenGLContext> QOpenGLContext_sptr;
 
-Surface::Surface(QOpenGLContext_sptr context, QSize size) : context(context), size(size) {
+Surface::Surface(QOpenGLContext_sptr context, QSize size) : context(context), size(size), framebuffer(nullptr) {
 }
 
 QSize Surface::getSize() const {
@@ -39,6 +39,10 @@ GLuint Surface::getTextureHandle() const {
     return handle;
 }
 
+QSharedPointer<QOpenGLContext> Surface::getContext() const {
+    return context;
+}
+
 QOpenGLContextGroup *Surface::shareGroup() const {
     return context->shareGroup();
 }
@@ -46,23 +50,12 @@ QOpenGLContextGroup *Surface::shareGroup() const {
 QOpenGLFramebufferObject *Surface::getFramebufferObject() {
     if (!framebuffer) {
         framebuffer.reset(new QOpenGLFramebufferObject(size));
+
+        // don't store two textures
+        texture.reset();
     }
-    // don't store two textures
-    texture.reset();
 
     return framebuffer.data();
-}
-
-Surface::sptr Surface::applyShader(QOpenGLShaderProgram *program, QSize newSize) const {
-    Surface::sptr target(new Surface(context, newSize));
-
-    GPUHelper::instance()->runShader(target.data(), program);
-        
-    return target;
-}
-
-Surface::sptr Surface::applyShader(QOpenGLShaderProgram *program) const {
-    return applyShader(program, getSize());
 }
 
 Surface::Surface(const Surface &surface)

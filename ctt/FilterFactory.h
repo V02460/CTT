@@ -26,14 +26,14 @@ public:
      *
      * @return QList a list with identifiers for all types of filters which aren't overlays the factory can create
      */
-    static QList<QString> getAllFilterNotOverlayIDs();
+    static QList<QString> getAllNonOverlayFilterIDs();
 
     /**
     * Returns a list with identifiers for all types of Overlays the factory can create.
     *
     * @return QList a list with identifiers for all types of overlays the factory can create
     */
-    static QList<QString> getAllFilterIDs();
+    static QList<QString> getAllOverlayIDs();
 
     /**
      * Creates and returns a Filter of the type specified by the submitted id.
@@ -41,7 +41,7 @@ public:
      * @return Filter a Filter of the type specified by the submitted id
      * @throws InvalidArgumentException if the submitted id doesn't specify a type of Filter the factory can create.
      */
-    static Filter::sptr createFilter(QString id);
+    static Filter::sptr createFilter(QString id, Module::sptr predecessor);
 private:
     FilterFactory() {}
 };

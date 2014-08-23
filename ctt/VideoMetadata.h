@@ -86,6 +86,12 @@ public:
      */
 	unsigned int getLength()  const;
 
+	/**
+	 * Returns a map of additional metadata.
+	 * @return a map of additional metadata
+	 */
+	QMap<QString, QString> getAdditionalMetadata() const;
+
 private:
     QSize size; /**< The resolution of the Video described by this object. */
     double fps; /**< The default playback speed of the Video described by this object. */

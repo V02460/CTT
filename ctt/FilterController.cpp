@@ -12,11 +12,18 @@ using ::controller::operation::OperationList;
 using ::controller::operation::Operation;
 using ::controller::operation::FilterAddedOperation;
 using ::model::filter::FilterFactory;
+using ::model::Module;
 
 FilterController::FilterController(FilteredVideo::sptr video) : video(video), list(*OperationList::getInstance()) {}
 
 void FilterController::insertFilter(QString id) {
-	list.doOperation(QSharedPointer<Operation>(new FilterAddedOperation(FilterFactory::createFilter(id), video)));
+	Module::sptr module;
+	if (video->getFilterCount() == 0) {
+		module = video->getBaseVideo();
+	} else {
+		module = video->getFilterList().back();
+	}
+	list.doOperation(QSharedPointer<Operation>(new FilterAddedOperation(FilterFactory::createFilter(id, module), video)));
 }
 
 void FilterController::moveFilter(int oldPos, int newPos) {

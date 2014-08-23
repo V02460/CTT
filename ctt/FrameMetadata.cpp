@@ -8,21 +8,25 @@ using exception::IllegalStateException;
 FrameMetadata::FrameMetadata(QSize size)
         : size(size)
         , hasMbTypeFlag(false)
-        , hasMbPartitionsFlag(false)
         , hasMbMotionvectorsFlag(false) {
 }
 
 FrameMetadata::FrameMetadata(QSize size,
                              QVector<QVector<MacroblockType>> macroblockTypes,
-                             QVector<QVector<MacroblockPartition>> macroblockPartitions,
                              QVector<QVector<QVector2D>> macroblockMotionvectors)
         : size(size)
         , hasMbTypeFlag(true)
-        , hasMbPartitionsFlag(true)
         , hasMbMotionvectorsFlag(true)
         , mbTypes(macroblockTypes) 
-        , mbPartions(macroblockPartitions)
         , mbMotionvectors(macroblockMotionvectors) {
+}
+
+FrameMetadata::FrameMetadata(QSize size, QVector<QVector<MacroblockType>> macroblockTypes)
+		: size(size)
+		, hasMbTypeFlag(true)
+		, hasMbMotionvectorsFlag(false)
+		, mbTypes(macroblockTypes) {
+
 }
 
 QSize FrameMetadata::getSize() const {
@@ -37,13 +41,6 @@ QVector<QVector<MacroblockType>> FrameMetadata::getMbType() const {
     return mbTypes;
 }
 
-QVector<QVector<MacroblockPartition>> FrameMetadata::getMbPartitions() const {
-    if (!hasMbType()) {
-        throw new IllegalStateException("FrameMetadata object has no macroblock partition information.");
-    }
-
-    return mbPartions;
-}
 
 QVector<QVector<QVector2D>> FrameMetadata::getMbMotionvectors() const {
     if (!hasMbMotionvectors()) {
@@ -55,10 +52,6 @@ QVector<QVector<QVector2D>> FrameMetadata::getMbMotionvectors() const {
 
 bool FrameMetadata::hasMbType() const {
     return hasMbTypeFlag;
-}
-
-bool FrameMetadata::hasMbPartions() const {
-    return hasMbPartitionsFlag;
 }
 
 bool FrameMetadata::hasMbMotionvectors() const {

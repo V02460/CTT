@@ -26,13 +26,13 @@ public:
      *
      * @param frame Image source for the histogram calculation
      */
-    explicit SaturationHistogram(const Frame &frame);
+    explicit SaturationHistogram(const Frame &imageData);
 
     //virtual float getValue(unsigned int i) const Q_DECL_OVERRIDE;
     virtual HistogramType getType() const Q_DECL_OVERRIDE;
 
 protected:
-    virtual QSharedPointer<QOpenGLShader> getHistogramGridFS() Q_DECL_OVERRIDE;
+    virtual QString getGridFSFilePath() const  Q_DECL_OVERRIDE;
 };
 
 }  // namespace histogram

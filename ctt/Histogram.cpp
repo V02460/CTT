@@ -5,6 +5,7 @@
 #include "GPUHelper.h"
 
 #include "NotImplementedException.h"
+#include "OpenGLException.h"
 
 namespace model {
 namespace frame {
@@ -59,78 +60,43 @@ const Histogram::HistogramType Histogram::stringToType(QString string) {
 * This list must be parallel to the HistogramType enum.
 */
 static const QList<QString> HISTOGRAM_TYPE_STRINGS;
-
-void Histogram::init(const Frame &frame) {
+void Histogram::init(const Surface &frame) {
     Surface::sptr histogramGrid = makeHistogramGrid(frame);
-    requestValuesFromHistogramGrid(*histogramGrid.data());
+    Surface::sptr histogramData = requestValuesFromHistogramGrid(*histogramGrid.data());
+    histogramImage = renderHistogram(*histogramData.data());
 }
 
-float Histogram::getValue(unsigned int i) const {
-    if (i >= SIZE) {
-        throw new IllegalArgumentException("Out of bounds index " + QString::number(i));
-    }
+// float Histogram::getValue(unsigned int i) const {
+//     if (i >= histogramSize) {
+//         throw new IllegalArgumentException("Out of bounds index " + QString::number(i) + ".");
+//     }
+// 
+//     throw new NotImplementedException();
+// }
 
-    throw new NotImplementedException();
+Surface::sptr Histogram::getHistogramImage() const {
+    return histogramImage;
 }
 
-Surface::sptr Histogram::makeHistogramGrid(const Surface &imageData) {
-    QSize sourceSize = imageData.getSize();
+Surface::sptr Histogram::makeHistogramGrid(const Surface &imageData) const {
+    GPUHelper gpuHelper(getGridFSFilePath(), imageData.getContext());
 
     // scale output texture dimensions to the next bigger multiple of 16
-    QSize targetSize = ceilTo(sourceSize, 16);
+    QSize targetSize = ceilTo(imageData.getSize(), 16);
 
-    //QSize sizeDelta = targetSize - sourceSize;
-
-    QOpenGLShaderProgram program;
-    if (!program.addShader(GPUHelper::getDefaultFlatVS().data())) {
-        throw new OpenGLException("Adding of vertex shader failed. Log message: " + program.log());
+    return gpuHelper.run(imageData, targetSize);
     }
 
-    if (!program.addShader(getHistogramGridFS().data())) {
-        throw new OpenGLException("Adding of fragment shader failed. Log message: " + program.log());
-    }
+Surface::sptr Histogram::requestValuesFromHistogramGrid(const Surface &histogramGrid) const {
+    GPUHelper gpuHelper(":/Shader/Histogram/histogramCompaction.fs", histogramGrid.getContext(), getCompactedSize);
     
-    if (!program.link()) { // TODO: cache program
-        throw new OpenGLException("Linking of shader program failed. Log message: " + program.log());
+    return gpuHelper.run(histogramGrid, QSize(16, 16));
     }
 
-    program.setUniformValue("sourceSize", sourceSize);
-    program.setUniformValue("targetSize", targetSize);
-    program.setUniformValue("sourceImage", imageData.getTextureHandle());
+Surface::sptr Histogram::renderHistogram(const Surface &histogramData) const {
+    GPUHelper histogramDisplayer(":/Shader/Histogram/displayHistogram.fs", histogramData.getContext());
 
-    return imageData.applyShader(&program, targetSize);
-}
-
-void Histogram::requestValuesFromHistogramGrid(const Surface &histogramGrid) const {
-
-    QOpenGLShaderProgram program;
-
-    if (!program.addShader(GPUHelper::getDefaultFlatVS().data())) {
-        throw new OpenGLException("Adding of vertex shader failed. Log message: " + program.log());
-    }
-
-    const char fragmentSource[] = R"(
-        uniform vec2 sourceSize;
-        uniform vec2 targetSize;
-        uniform sampler2D sourceImage;
-
-        void main() {
-            //texelFetch(image, texcrd, 0);
-            gl_FragColor = vec4(gl_FragCoord.xy / targetSize.xy, 0.0, 0.0);
-        }
-    )";
-
-    if (!program.addShaderFromSourceCode(QOpenGLShader::Fragment, fragmentSource)) {
-        throw new OpenGLException("Adding or compilation of fragment shader failed. Log message: " + program.log());
-    }
-
-    if (!program.link()) { // TODO: cache program
-        throw new OpenGLException("Linking of shader program failed. Log message: " + program.log());
-    }
-
-    GPUHelper::instance()->compactTexture(histogramGrid, &program, getCompactedSize, QSize(16, 16));
-
-    // TODO: get values from calculated histogram
+    return histogramDisplayer.run(histogramData, QSize(256, 128));
 }
 
 /**
