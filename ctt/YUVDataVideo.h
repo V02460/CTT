@@ -6,7 +6,7 @@
 #include <QWeakPointer>
 #include <QFile>
 #include <QVector>
-#include <qcolor.h>
+#include <QColor>
 
 #include "Video.h"
 #include "Frame.h"

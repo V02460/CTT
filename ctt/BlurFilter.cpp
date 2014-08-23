@@ -2,6 +2,8 @@
 
 #include "GPUHelper.h"
 
+#include "AccessToDummyException.h"
+
 namespace model {
 namespace filter {
 

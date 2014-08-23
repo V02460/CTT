@@ -46,6 +46,7 @@ public:
     
 private:
     QString name; /**<  The name of the parameter. */
+    QVariant value; /**<  The stored value. */
 };
 
 }  // namespace filter

@@ -1,10 +1,12 @@
 #include "FilteredVideoTest.h"
-#include "..\ctt\IllegalStateException.h"
+
+#include <QOffscreenSurface>
 #include "CustomTestingMacros.h"
-#include "..\CTT\YUVDataVideo.h"
-#include "..\CTT\FilteredVideo.h"
-#include "qoffscreensurface.h"
-#include "..\CTT\GreyscaleFilter.h"
+#include "YUVDataVideo.h"
+#include "FilteredVideo.h"
+#include "GreyscaleFilter.h"
+
+#include "IllegalStateException.h"
 
 using exception::IllegalArgumentException;
 using model::video::YUVDataVideo;
@@ -29,7 +31,13 @@ void FilteredVideoTest::dummyTest()
 
 void FilteredVideoTest::filterOperations()
 {
-	model::video::YUVDataVideo::sptr baseVideo(new model::video::YUVDataVideo("Resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext));
+	model::video::YUVDataVideo::sptr baseVideo(
+        new model::video::YUVDataVideo("Resources/Videos/YUV444/squirrel-720x576-444P.yuv",
+                                       QSize(720, 576),
+                                       24,
+                                       model::video::YUVType::YUV444,
+                                       testContext));
+
 	FilteredVideo testVideo(baseVideo);
 
 	QVERIFY(testVideo.getContext() == baseVideo->getContext());
