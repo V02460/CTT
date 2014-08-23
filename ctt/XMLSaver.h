@@ -9,6 +9,7 @@
 #include "ProjectSaver.h"
 #include "Saveable.h"
 #include "Memento.h"
+#include "ViewState.h"
 
 namespace controller {
 namespace project {
@@ -111,6 +112,7 @@ private:
 	void writeBaseElements();
 	void writeMemento(model::saveable::Memento memento);
 	void writeElements();
+	void writeSingeltons();
 	void endDocument();
 };
 

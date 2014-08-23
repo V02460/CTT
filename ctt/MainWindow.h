@@ -34,7 +34,6 @@ signals:
     void menuItemViewStateChanged(ViewType newView);
 
 private:
-    ViewState viewState; /**< The current state the whole GUI is in */
     QMenuBar menu; /**< The menu bar which holds all menu items */
     ProcessingWidget processingWidget; /**< The widget to represent the processing view */
     AnalysingWidget analysingWidget; /**< The widget to represent the analyzing view */

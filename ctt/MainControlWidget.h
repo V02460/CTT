@@ -42,7 +42,6 @@ public slots:
 
 private:
     QPushButton btnInsert; /**< The toggle button that indicates whether insertion mode is active or not */
-    ViewState viewState; /**< The current state of the whole GUI */
     ExtendedTimeline timeline; /**< The ExtendedTimeline showing the currently relevant information */
     InsertionWidget insertionWidget; /**< The InsertionWidget to insert filters or differences */
     ZoomFunctions zoomBar; /**< The zoom funtionality */

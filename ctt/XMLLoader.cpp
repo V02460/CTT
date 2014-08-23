@@ -62,7 +62,7 @@ void XMLLoader::openFile(QDir path) {
 		throw new IOException("File " + path.absolutePath() + " could not be opened.");
 	}
 	xml = new QXmlStreamReader(&file);
-	if (!xml->readNextStartElement()) { // more to skip?
+	if (!xml->readNextStartElement()) { // TODO more to skip?
 		throw new ParseException("Document to restore from is empty.");
 	}
 	if (xml->qualifiedName() != XMLSaver::ELEMENTS) {
@@ -92,7 +92,7 @@ void XMLLoader::createMaps() {
 		if (attributes.hasAttribute(XMLSaver::TYPE)) {
 			XMLSaver::BaseSaveableType baseType =
 				XMLSaver::stringToBaseSaveableType(attributes.value(XMLSaver::TYPE).toString());
-			// abfangen, wenn class string / template nicht stimmt?
+			// TODO abfangen, wenn class string / template nicht stimmt?
 			switch (baseType) {
 			case XMLSaver::BaseSaveableType::BaseVideoList:
 				pointerMap.insert(id, project->getBaseVideoList()); break;
@@ -107,7 +107,21 @@ void XMLLoader::createMaps() {
 			case XMLSaver::BaseSaveableType::DiffList:
 				pointerMap.insert(id, project->getDiffList()); break;
 			case XMLSaver::BaseSaveableType::View:
-				pointerMap.insert(id, project->getView()); break;
+				while (xml->readNext() != QXmlStreamReader::EndElement) { // TODO check
+					if (xml->qualifiedName() == XMLSaver::VARIABLE) {
+						QXmlStreamAttributes variableAttributes = xml->attributes();
+						if (!variableAttributes.hasAttribute(XMLSaver::NAME)) {
+							throw new ParseException("Attribute " + XMLSaver::NAME + " expected.");
+						}
+						if (!variableAttributes.hasAttribute(XMLSaver::VALUE)) {
+							throw new ParseException("Attribute " + XMLSaver::VALUE + " expected.");
+						}
+						viewMemento.setString(variableAttributes.value(XMLSaver::NAME).toString(),
+					              variableAttributes.value(XMLSaver::NAME).toString());
+					} else {
+						throw new ParseException("ViewState can only save Variables.");
+					}
+				} continue;
 			default: throw new NotImplementedException("Unknown base savable type."); break;
 			}
 		} else {
@@ -144,7 +158,7 @@ void XMLLoader::createMaps() {
 			case Saveable::SaveableType::player: dummy = Player::getDummy(); break;
 			case Saveable::SaveableType::uIntegerInterval: dummy = UIntegerInterval::getDummy(); break;
 			case Saveable::SaveableType::videoScrubber: dummy = VideoScrubber::getDummy(); break;
-			case Saveable::SaveableType::viewState: dummy = ViewState::getDummy(); break;
+			case Saveable::SaveableType::viewState: continue;
 			case Saveable::SaveableType::saveableList:
 				if (!attributes.hasAttribute(XMLSaver::TEMPLATE_TYPE)) {
 					throw new ParseException("Attribute " + XMLSaver::TEMPLATE_TYPE + " expected.");
@@ -195,7 +209,7 @@ void XMLLoader::createMaps() {
 		}
 		Memento memento = Memento();
 		QMap<QString, int> idMap = QMap<QString, int>();
-		while (xml->readNext() != QXmlStreamReader::StartDocument) {
+		while (xml->readNext() != QXmlStreamReader::EndElement) { // TODO check
 			if (xml->qualifiedName() == XMLSaver::VARIABLE) {
 				QXmlStreamAttributes variableAttributes = xml->attributes();
 				if (!variableAttributes.hasAttribute(XMLSaver::NAME)) {
@@ -248,6 +262,7 @@ void XMLLoader::restore() {
 		}
 		element->restore(memento);
 	}
+	ViewState::getInstance()->restore(viewMemento);
 	changed();
 }
 

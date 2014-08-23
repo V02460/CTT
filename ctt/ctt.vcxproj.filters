@@ -583,14 +583,14 @@
     <ClCompile Include="NoScalePolicy.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
-    <ClCompile Include="FilterMovedOperation.cpp">
-      <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
     <ClCompile Include="FFmpegException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
     <ClCompile Include="Module.cpp">
       <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterMovedOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -973,9 +973,6 @@
     <None Include="Shader\Histogram\histogramCompaction.fs">
       <Filter>ShaderFiles\Histogram</Filter>
     </None>
-    <ClInclude Include="YUVType.h">
-      <Filter>Header Files\Model\Video</Filter>
-    </ClInclude>
     <ClInclude Include="IOException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>

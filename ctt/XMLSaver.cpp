@@ -10,6 +10,7 @@ using ::exception::IllegalArgumentException;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::model::saveable::SaveableList;
+using ::view::ViewState;
 
 XMLSaver::XMLSaver() {}
 
@@ -72,7 +73,6 @@ void XMLSaver::mapBasePointer() {
 	pointerList.append(project->getPlayerList1());
 	pointerList.append(project->getPlayer2());
 	pointerList.append(project->getDiffList());
-	pointerList.append(project->getView());
 }
 
 void XMLSaver::writeBaseElements() {
@@ -133,6 +133,16 @@ void XMLSaver::writeElements() {
 		writeMemento(element->getMemento());
 		out->writeEndElement();
 	}
+}
+
+void XMLSaver::writeSingeltons() {
+	out->writeStartElement(ELEMENT);
+	ViewState *view = ViewState::getInstance().data(); // TODO later remove .data();
+	out->writeAttribute(CLASS, Saveable::SAVEABLE_TYPE_STRINGS[view->getType()]);
+	out->writeAttribute(ID, QString::number(elementID++)); // TODO ++ should work
+	out->writeAttribute(TYPE, BASE_ELEMENT_NAMES[view->getType()]);
+	writeMemento(view->getMemento());
+	out->writeEndElement();
 }
 
 XMLSaver *XMLSaver::getInstance() {

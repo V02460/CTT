@@ -11,7 +11,6 @@ using ::model::video::Video;
 using ::model::filter::FilteredVideo;
 using ::model::player::Player;
 using ::model::difference::FrameDiff;
-using ::view::ViewState;
 using ::exception::NotImplementedException;
 
 Project::Project() : baseVideoList(new SaveableList<FileVideo>()),
@@ -20,7 +19,6 @@ Project::Project() : baseVideoList(new SaveableList<FileVideo>()),
 	                 playerList1(new SaveableList<Player>()),
 	                 player2(new Player(24)),
 	                 diffList(new SaveableList<FrameDiff>()),
-	                 view(new ViewState()), // TODO later singelton -> getInstance()
 	                 context(new QOpenGLContext()),
                      offscreenSurface() {
     offscreenSurface.create();
@@ -48,10 +46,6 @@ Player::sptr Project::getPlayer2() const {
 
 SaveableList<FrameDiff>::sptr Project::getDiffList() const {
 	return diffList;
-}
-
-ViewState::sptr Project::getView() const {
-	return view;
 }
 
 Project *Project::getInstance() {
