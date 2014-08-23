@@ -1,4 +1,5 @@
 #include "PlayerController.h"
+#include "NotImplementedException.h"
 
 namespace controller {
 
@@ -28,6 +29,10 @@ namespace controller {
 	void PlayerController::setToDefaultFPS() {
 		int defaultFPS = player->getDefaultFPS();
 		player->setFPS(defaultFPS);
+	}
+
+	void PlayerController::setFPS(int fps) {
+		throw new ::exception::NotImplementedException();
 	}
 
 	void PlayerController::setPlayer(Player::sptr player) {

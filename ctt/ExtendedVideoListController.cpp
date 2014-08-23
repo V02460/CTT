@@ -22,8 +22,8 @@ namespace controller {
 
 	void ExtendedVideoListController::addVideo(Video::sptr video) {
 		videoList->insert(videoList->getSize(), video);
-		filteredVideos->insert(filteredVideos->getSize(), FilteredVideo(video));
-
+		FilteredVideo::sptr filteredVideo(new FilteredVideo(video));
+		filteredVideos->insert(filteredVideos->getSize(), filteredVideo);
 	}
 
 	void ExtendedVideoListController::removeVideo(int index) {
