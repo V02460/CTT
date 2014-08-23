@@ -678,6 +678,9 @@
     <CustomBuild Include="Observer.h">
       <Filter>Header Files\Model</Filter>
     </CustomBuild>
+    <CustomBuild Include="NoScalePolicy.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnalysingWidget.h">
@@ -929,6 +932,15 @@
     <ClInclude Include="FilterMovedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
+    <ClInclude Include="FFmpegException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileNotFoundException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoDisplayPolicy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\Conversion\YUV420toRGBsdtv.fs">
@@ -940,6 +952,9 @@
     <None Include="Shader\Conversion\YUV444toRGBsdtv.fs">
       <Filter>Shader Files\Conversion</Filter>
     </None>
+    <None Include="Shader\Filter\RGBChannel.fs">
+      <Filter>Shader Files\Filter</Filter>
+    </None>
     <None Include="Shader\Filter\1DBlur.fs">
       <Filter>Shader Files\Filter</Filter>
     </None>
@@ -950,9 +965,6 @@
       <Filter>Shader Files\Filter</Filter>
     </None>
     <None Include="Shader\Filter\Noise.fs">
-      <Filter>Shader Files\Filter</Filter>
-    </None>
-    <None Include="Shader\Filter\RGBChannel.fs">
       <Filter>Shader Files\Filter</Filter>
     </None>
     <None Include="Shader\Histogram\blueHistogramGrid.fs">
@@ -976,11 +988,34 @@
     <None Include="Shader\Histogram\redHistogramGrid.fs">
       <Filter>Shader Files\Histogram</Filter>
     </None>
-    <None Include="Shader\Histogram\saturationHistogramGrid.fs">
-      <Filter>Shader Files\Histogram</Filter>
+    <None Include="Shader\Histogram\blueHistogramGrid.fs">
+      <Filter>ShaderFiles\Histogram</Filter>
     </None>
+    <None Include="Shader\Histogram\histogramCompaction.fs">
+      <Filter>ShaderFiles\Histogram</Filter>
+    </None>
+    <ClInclude Include="IOException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="ParseException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterMovedOperation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <None Include="Shader\compactAverage.fs">
       <Filter>Shader Files</Filter>
     </None>
+    <None Include="Shader\Histogram\saturationHistogramGrid.fs">
+      <Filter>Shader Files\Histogram</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AccessToDummyException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Images\big_buck_bunny_01337.png" />
   </ItemGroup>
 </Project>

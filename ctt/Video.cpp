@@ -3,6 +3,7 @@
 #include "NotImplementedException.h"
 #include "YUVType.h"
 #include "IOException.h"
+#include "GPUHelper.h"
 
 namespace model {
 namespace video {
@@ -13,10 +14,8 @@ using ::exception::IOException;
 
 using ::model::frame::Frame;
 
-void Video::save(QString path, YUVType type) const
+void Video::save(QString path, VideoFileType type) const
 {
-    throw new NotImplementedException();
-
 	if (isDummy()) {
 		throw new IllegalStateException("Tried to save a dummy video.");
 	}
@@ -34,33 +33,35 @@ void Video::save(QString path, YUVType type) const
 
 	QDataStream stream(&videoFile);
 
-	int bytesPerFrame = 0;
+	//Currently only supports YUV444
+	int bytesPerFrame = 3 * getResolution().width() * getResolution().height();
 
-	switch (type)
-	{
-	case YUV444:
-		bytesPerFrame = 3 * getResolution().width() * getResolution().height();
-		break;
-	case YUV422:
-		if ((getResolution().width() % 2) != 0) {
-			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV422 format.");
-		}
-		bytesPerFrame = 2 * getResolution().width() * getResolution().height();
-		break;
-	case YUV420:
-		if ((getResolution().width() % 2) != 0) {
-			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
-		}
-		if ((getResolution().height() % 2) != 0) {
-			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
-		}
-		bytesPerFrame = (3 * getResolution().width() * getResolution().height()) / 2;
-		break;
-	}
+// 	switch (type)
+// 	{
+// 	case YUV444:
+// 		bytesPerFrame = 3 * getResolution().width() * getResolution().height();
+// 		break;
+// 	case YUV422:
+// 		if ((getResolution().width() % 2) != 0) {
+// 			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV422 format.");
+// 		}
+// 		bytesPerFrame = 2 * getResolution().width() * getResolution().height();
+// 		break;
+// 	case YUV420:
+// 		if ((getResolution().width() % 2) != 0) {
+// 			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
+// 		}
+// 		if ((getResolution().height() % 2) != 0) {
+// 			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
+// 		}
+// 		bytesPerFrame = (3 * getResolution().width() * getResolution().height()) / 2;
+// 		break;
+// 	}
 
-	for (unsigned int i; i < getFrameCount(); i++)
+	helper::GPUHelper myHelper(":/Shader/Conversion/RGBtoYUV444sdtv.fs", getContext());
+	for (unsigned int i = 0; i < getFrameCount(); i++)
 	{
-		//TODO szeg get the data and write it
+		videoFile.write(myHelper.run(*getFrame(i))->getRawRGBA().left(bytesPerFrame));
 	}
 
 	if (!videoFile.flush())

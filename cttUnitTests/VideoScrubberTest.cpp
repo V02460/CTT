@@ -52,3 +52,30 @@ void VideoScrubberTest::initTestCase()
 	testContext->create();
 	QVERIFY2(testContext->makeCurrent(&surface), "Couldn't initialize OGL Context.");
 }
+
+void VideoScrubberTest::saveRestore()
+{
+	model::video::YUVDataVideo *testVideo = new model::video::YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
+	YUVDataVideo::sptr videoPointer(testVideo);
+	VideoScrubber testScrubber(videoPointer);
+
+	model::saveable::Memento memento = testScrubber.getMemento();
+
+	VideoScrubber::sptr dummy = VideoScrubber::getDummy().dynamicCast<VideoScrubber>();
+
+	dummy->restore(memento);
+	QVERIFY(!dummy->isDummy());
+	QVERIFY(dummy->getVideo() == videoPointer);
+
+
+	model::video::YUVDataVideo *testVideo2 = new model::video::YUVDataVideo("resources/Videos/YUV422/squirrel-720x576-422P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV422, testContext);
+	YUVDataVideo::sptr videoPointer2(testVideo2);
+	VideoScrubber testScrubber2(videoPointer2);
+
+	testScrubber2.restore(memento);
+	QVERIFY(testScrubber2.getVideo() == videoPointer);
+
+	YUVDataVideo::sptr nullPointer;
+	memento.setSharedPointer("video", nullPointer);
+	QEXPECT_EXCEPTION(dummy->restore(memento), IllegalArgumentException);
+}
