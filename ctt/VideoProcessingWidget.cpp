@@ -33,8 +33,8 @@ void VideoProcessingWidget::btnSaveVideoClicked() {
 }
 
 void VideoProcessingWidget::setupUi() {
-	QVBoxLayout *mainLayout = new QVBoxLayout(this);
-	QHBoxLayout *lowerLayout = new QHBoxLayout(this);
+	QVBoxLayout *mainLayout = new QVBoxLayout();
+	QHBoxLayout *lowerLayout = new QHBoxLayout();
 
 	QWidget *videoWidgetContainer = QWidget::createWindowContainer(videoWidget, this, Qt::Widget);
 	mainLayout->addWidget(videoWidgetContainer);

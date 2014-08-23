@@ -11,7 +11,8 @@ InsertionWidget::InsertionWidget(QWidget *parent) : QWidget(parent) {
 }
 
 void InsertionWidget::setupUi() {
-	layout = new QGridLayout(this);
+	setAccessibleName("InsertionWidget");
+	layout = new QGridLayout();
 
 	setLayout(layout);
 

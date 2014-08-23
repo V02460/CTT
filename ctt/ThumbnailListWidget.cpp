@@ -13,7 +13,7 @@ ThumbnailListWidget::ThumbnailListWidget(SaveableList<FilteredVideo>::sptr filte
 	activatedButtons = QList<int>();
 
 	this->filteredVideos = filteredVideos;
-	if (filteredVideos.data() != 0) {
+	if (!filteredVideos.isNull()) {
 		filteredVideos->subscribe(ThumbnailListWidget::sptr(this));
 	} else {
 		qDebug() << "Error in ThumbnailListWidget! The filteredVideo list was null! Using list with 5 empty elements instead";
@@ -31,18 +31,22 @@ ThumbnailListWidget::ThumbnailListWidget(SaveableList<FilteredVideo>::sptr filte
 }
 
 void ThumbnailListWidget::setupUi() {
+	setAccessibleName("ThumbnailListWidget");
 	if (isHorizontal) {
-		thumbnailListLayout = new QHBoxLayout(this);
+		thumbnailListLayout = new QHBoxLayout();
+		thumbnailListLayout->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 	} else {
-		thumbnailListLayout = new QVBoxLayout(this);
+		thumbnailListLayout = new QVBoxLayout();
+		thumbnailListLayout->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
 	}
-	thumbnailListLayout->setAlignment(Qt::AlignCenter);
 	QWidget *scrollWidget = new QWidget(this);
+	scrollWidget->setAccessibleName("ThumbnailListWidget->scrollWidget");
 	scrollWidget->setLayout(thumbnailListLayout);
 	setWidget(scrollWidget);
 	setWidgetResizable(true);
 
 	btnAddVideo = new QPushButton(this);
+	btnAddVideo->setAccessibleName("ThumbnailListWidget->btnAddVideo");
 	btnAddVideo->setMinimumSize(QSize(50, 50));
 	btnAddVideo->setText(tr("ADD_VIDEO"));
 	thumbnailListLayout->addWidget(btnAddVideo);
@@ -76,6 +80,7 @@ void ThumbnailListWidget::update() {
 
 	thumbnailListLayout->addWidget(btnAddVideo);
 
+	//TODO activatedButton entweder leeren oder die buttons anpassen
 	adjustSize();
 }
 

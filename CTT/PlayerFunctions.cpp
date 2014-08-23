@@ -17,23 +17,27 @@ PlayerFunctions::PlayerFunctions( QWidget *parent) : QWidget(parent) {
 }
 
 void PlayerFunctions::setupUi() {
-	QHBoxLayout *layout = new QHBoxLayout(this);
+	setAccessibleName("PlayerFunctions");
+	QHBoxLayout *layout = new QHBoxLayout();
 	QSize buttonSize = QSize(30, 30);
 	QSizePolicy buttonSizePolicy = QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
 	btnPlayPause = new QPushButton(this);
+	btnPlayPause->setAccessibleName("PlayerFunctions->btnPlayPause");
 	btnPlayPause->setMinimumSize(buttonSize);
 	btnPlayPause->setSizePolicy(buttonSizePolicy);
 	layout->addWidget(btnPlayPause);
 	QObject::connect(btnPlayPause, SIGNAL(clicked(bool)), this, SLOT(btnPlayPauseClicked(bool)));
 
 	btnPreviousFrame = new QPushButton(this);
+	btnPreviousFrame->setAccessibleName("PlayerFunctions->btnPreviousFrame");
 	btnPreviousFrame->setMinimumSize(buttonSize);
 	btnPreviousFrame->setSizePolicy(buttonSizePolicy);
 	layout->addWidget(btnPreviousFrame);
 	btnPreviousFrame->setText(tr("PREVIOUS_FRAME"));
 
 	btnNextFrame = new QPushButton(this);
+	btnNextFrame->setAccessibleName("PlayerFunctions->btnNextFrame");
 	btnNextFrame->setMinimumSize(buttonSize);
 	btnNextFrame->setSizePolicy(buttonSizePolicy);
 	layout->addWidget(btnNextFrame);
@@ -45,12 +49,14 @@ void PlayerFunctions::setupUi() {
 	layout->addStretch();
 
 	spinboxFPS = new QSpinBox(this);
+	spinboxFPS->setAccessibleName("PlayerFunctions->spinboxFPS");
 	spinboxFPS->setSuffix(" FPS");
 	spinboxFPS->setMinimum(0);
 	spinboxFPS->setValue(0);
 	layout->addWidget(spinboxFPS);
 
 	btnDefaultFPS = new QPushButton(this);
+	btnDefaultFPS->setAccessibleName("PlayerFunctions->btnDefaultFPS");
 	btnDefaultFPS->setMinimumSize(10, 30);
 	btnDefaultFPS->setSizePolicy(buttonSizePolicy);
 	btnDefaultFPS->setToolTip(tr("RESET_TO_DEFAULT_FPS"));

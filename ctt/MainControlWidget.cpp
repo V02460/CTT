@@ -6,9 +6,13 @@
 #include <QSplitter>
 #include "FilterInsertionWidget.h"
 
+using ::controller::FilterController;
+using ::controller::DifferenceController;
+using ::model::player::Player;
+
 namespace view {
 
-MainControlWidget::MainControlWidget(::controller::FilterController::sptr filterController,
+MainControlWidget::MainControlWidget(FilterController::sptr filterController,
 	QWidget *parent) : QWidget(parent){
 	insertionWidget = new FilterInsertionWidget(filterController, this);
 	playerFunctions = new PlayerFunctions(this);
@@ -16,20 +20,24 @@ MainControlWidget::MainControlWidget(::controller::FilterController::sptr filter
 	setupUi(ViewType::PROCESSING_VIEW);
 }
 
-MainControlWidget::MainControlWidget(::controller::DifferenceController::sptr filterController,
+MainControlWidget::MainControlWidget(DifferenceController::sptr filterController,
 	QWidget *parent) : QWidget(parent){
 	setupUi(ViewType::ANALYSING_VIEW);
 }
 
 void MainControlWidget::setupUi(ViewType viewType) {
+	setAccessibleName("MainControlWidget");
 	QWidget *leftWidget = new QWidget(this);
+	leftWidget->setAccessibleName("MainControlWidget->leftWidget");
 	QWidget *rightWidget = new QWidget(this);
+	rightWidget->setAccessibleName("MainControlWidget->rightWidget");
 
 	//Setup left side
-	QVBoxLayout *leftWidgetLayout = new QVBoxLayout(leftWidget);
+	QVBoxLayout *leftWidgetLayout = new QVBoxLayout();
 
-	QHBoxLayout *playerFunctionLayout = new QHBoxLayout(leftWidget);
+	QHBoxLayout *playerFunctionLayout = new QHBoxLayout();
 	btnInsert = new QPushButton(leftWidget);
+	btnInsert->setAccessibleName("MainControlWidget->btnInsert");
 	btnInsert->setMinimumSize(QSize(30, 30));
 	btnInsert->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	if (viewType == ViewType::PROCESSING_VIEW) {
@@ -42,6 +50,7 @@ void MainControlWidget::setupUi(ViewType viewType) {
 	playerFunctionLayout->addWidget(btnInsert);
 
 	QFrame *vLine = new QFrame();
+	vLine->setAccessibleName("MainControlWidget->vLine");
 	vLine->setFrameShape(QFrame::VLine);
 	vLine->setFrameShadow(QFrame::Sunken);
 	playerFunctionLayout->addWidget(vLine);
@@ -61,8 +70,9 @@ void MainControlWidget::setupUi(ViewType viewType) {
 	rightDisplayWidgetLayout->addWidget(new QWidget());
 
 	QScrollArea *insertionScrollArea = new QScrollArea();
+	insertionScrollArea->setAccessibleName("MainControlWidget->insertionScrollArea");
 	insertionScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	insertionScrollArea->setViewport(insertionWidget);
+	insertionScrollArea->setWidget(insertionWidget);
 	insertionScrollArea->setWidgetResizable(true);
 
 	rightDisplayWidgetLayout->addWidget(insertionScrollArea);
@@ -72,10 +82,11 @@ void MainControlWidget::setupUi(ViewType viewType) {
 	rightWidget->setLayout(rightWidgetLayout);
 
 	QSplitter *splitter = new QSplitter(this);
+	splitter->setAccessibleName("MainControlWidget->splitter");
 	splitter->addWidget(leftWidget);
 	splitter->addWidget(rightWidget);
 
-	QHBoxLayout *layout = new QHBoxLayout(this);
+	QHBoxLayout *layout = new QHBoxLayout();
 	layout->addWidget(splitter);
 
 	setLayout(layout);
@@ -89,7 +100,7 @@ void MainControlWidget::btnInsertClicked(bool active) {
 	}
 }
 
-void MainControlWidget::setPlayer(::model::player::Player::sptr player) {
+void MainControlWidget::setPlayer(Player::sptr player) {
 	playerFunctions->setPlayer(player);
 }
 

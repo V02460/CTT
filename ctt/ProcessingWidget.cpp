@@ -3,12 +3,19 @@
 #include <QSplitter>
 #include "FilterController.h"
 
+using ::model::saveable::SaveableList;
+using ::model::player::Player;
+using ::model::video::FileVideo;
+using ::model::filter::FilteredVideo;
+using ::controller::VideoListController;
+using ::controller::FilterController;
+
 namespace view {
 
-ProcessingWidget::ProcessingWidget(::model::saveable::SaveableList<::model::player::Player>::sptr players,
-	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos,
-	::model::saveable::SaveableList<::model::video::FileVideo>::sptr baseVideos,
-	::controller::VideoListController::sptr analysingVideosController, QWidget *parent) : QWidget(parent) {
+ProcessingWidget::ProcessingWidget(SaveableList<Player>::sptr players,
+	SaveableList<FilteredVideo>::sptr filteredVideos,
+	SaveableList<FileVideo>::sptr baseVideos,
+	VideoListController::sptr analysingVideosController, QWidget *parent) : QWidget(parent) {
 	this->analysingVideosController = analysingVideosController;
 
 	this->players = players;
@@ -25,10 +32,10 @@ ProcessingWidget::ProcessingWidget(::model::saveable::SaveableList<::model::play
 	QObject::connect(thumbnailWidget, SIGNAL(buttonDeactivated(int)), this, SLOT(videoDeactivated(int)));
 	QObject::connect(thumbnailWidget, SIGNAL(buttonReplaced(int, int)), this, SLOT(videoReplaced(int, int)));
 
-	controller::FilterController::sptr filterController = controller::FilterController::sptr(new controller::FilterController(model::filter::FilteredVideo::sptr()));
+	FilterController::sptr filterController = FilterController::sptr(new FilterController(FilteredVideo::sptr()));
 	mainControlWidget = new MainControlWidget(filterController);
-	QObject::connect(this, SIGNAL(videoChanged(model::filter::FilteredVideo::sptr)),
-		filterController.data(), SLOT(setVideo(model::filter::FilteredVideo::sptr)));
+	QObject::connect(this, SIGNAL(videoChanged(FilteredVideo::sptr)),
+		filterController.data(), SLOT(setVideo(FilteredVideo::sptr)));
 
 	update();
 
@@ -36,16 +43,22 @@ ProcessingWidget::ProcessingWidget(::model::saveable::SaveableList<::model::play
 }
 
 void ProcessingWidget::setupUi() {
+	setAccessibleName("ProcessingWidget");
 	QSplitter *verticalSplitter = new QSplitter(Qt::Vertical, this);
+	verticalSplitter->setAccessibleName("ProcessingWidget->verticalSplitter");
 
 	QWidget *upperWidget = new QWidget(verticalSplitter);
+	upperWidget->setAccessibleName("ProcessingWidget->upperWidget");
 
 	QSplitter *horizontalSplitter = new QSplitter(Qt::Horizontal, upperWidget);
+	horizontalSplitter->setAccessibleName("ProcessingWidget->horizontalSplitter");
 
 	QWidget *upperRightWidget = new QWidget(horizontalSplitter);
+	upperRightWidget->setAccessibleName("ProcessingWidget->upperRightWidget");
 	upperRightWidget->setLayout(playerWidgetsLayout);
 
 	QWidget *upperLeftWidget = new QWidget(horizontalSplitter);
+	upperLeftWidget->setAccessibleName("ProcessingWidget->upperLeftWidget");
 	QVBoxLayout *upperLeftLayout = new QVBoxLayout();
 
 	btnReady = new QPushButton(upperLeftWidget);
@@ -60,14 +73,14 @@ void ProcessingWidget::setupUi() {
 	horizontalSplitter->addWidget(upperLeftWidget);
 	horizontalSplitter->addWidget(upperRightWidget);
 
-	QHBoxLayout *upperLayout = new QHBoxLayout(upperWidget);
+	QHBoxLayout *upperLayout = new QHBoxLayout();
 	upperLayout->addWidget(horizontalSplitter);
 	upperWidget->setLayout(upperLayout);
 
 	verticalSplitter->addWidget(upperWidget);
 	verticalSplitter->addWidget(mainControlWidget);
 
-	QVBoxLayout *layout = new QVBoxLayout(this);
+	QVBoxLayout *layout = new QVBoxLayout();
 	layout->addWidget(verticalSplitter);
 	setLayout(layout);
 }
