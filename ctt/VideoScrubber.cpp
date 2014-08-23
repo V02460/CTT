@@ -4,7 +4,6 @@
 #include "IllegalStateException.h"
 #include "NotImplementedException.h"
 
-#define VIDEOSTRINGID "video"
 
 namespace model {
 namespace player {
@@ -18,7 +17,10 @@ using ::exception::NotImplementedException;
 using ::exception::IllegalArgumentException;
 using ::exception::IllegalStateException;
 
-VideoScrubber::VideoScrubber(video::Video::sptr video): video(video) {
+const QString VideoScrubber::videoStringId("video");
+const QString VideoScrubber::lastFrameNumberStringId("framenr");
+
+VideoScrubber::VideoScrubber(video::Video::sptr video): video(video), lastFrameNumber(0) {
 	if (video->isDummy()) {
 		throw new IllegalArgumentException("Tried to use a dummy Video to create a VideoScrubber");
 	}
@@ -66,6 +68,11 @@ Frame::sptr VideoScrubber::getCurrentFrame() const{
 		throw new IllegalStateException("Requested Frame from dummy VideoScrubber.");
 	}
 
+	if (currentFrame.isNull())
+	{
+		return video->getFrame(lastFrameNumber);
+	}
+
 	return currentFrame;
 }
 
@@ -82,10 +89,13 @@ void VideoScrubber::jumpToFrameNr(unsigned int frameNumber) {
 		throw new IllegalStateException("Requested a frame jump from dummy VideoScrubber.");
 	}
 
-	waitingForFrame = true;
-	currentFrame = video->getFrame(frameNumber);
-	waitingForFrame = false;
-	changed();
+	if (!isWaitingForFrame())
+	{
+		waitingForFrame = true;
+		currentFrame = video->getFrame(frameNumber);
+		waitingForFrame = false;
+		changed();
+	}
 }
 
 Memento VideoScrubber::getMemento() const {
@@ -94,19 +104,22 @@ Memento VideoScrubber::getMemento() const {
 	}
 
 	Memento memento;
-	memento.setSharedPointer(VIDEOSTRINGID, video);
+	memento.setSharedPointer(videoStringId, video);
+	memento.setUInt(lastFrameNumberStringId, lastFrameNumber);
 	return memento;
 }
 
 void VideoScrubber::restore(Memento memento) {
-	//TODO ykrjgh warum tut das nicht???
-	//video = memento.getSharedPointer<Video>(VIDEOSTRINGID);
+ 	video = memento.getSharedPointer(videoStringId).dynamicCast<Video>();
 
-// 	waitingForFrame = true;
-// 	currentFrame = video->getFrame(0);
-// 	waitingForFrame = false;
-// 
-// 	isDummyFlag = false;
+	if (video.isNull())
+	{
+		throw new IllegalArgumentException("Unable to restore, pointer received from Memento could'nt be cast to the right type.");
+	}
+
+	lastFrameNumber = memento.getUInt(lastFrameNumberStringId);
+
+	isDummyFlag = false;
 }
 
 Saveable::sptr VideoScrubber::getDummy() {

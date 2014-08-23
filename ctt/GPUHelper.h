@@ -49,7 +49,7 @@ public:
     /**
      * Set the shader uniform variable of the given name to the given value.
      * 
-     * @throws OpenGLException when name does not exist in shader
+     * @throws OpenGLException when the associated shader program can not be bound
      */
     void setValue(QString name, const ::model::Surface &texture);
     void setValue(QString name, GLint value);
@@ -67,6 +67,14 @@ public:
      *                   COMPACT: the size to which the texture must at least be shrunken
      */
     ::model::Surface::sptr run(const ::model::Surface &sourceTexture, QSize targetSize);
+
+    /**
+    * Executes the set up operations by executing the shader.
+    * The target texture dimensions matches those of the source texture.
+    *
+    * @param sourceTexture texture which is bound to the _sourceTexture shader uniform
+    */
+    ::model::Surface::sptr run(const ::model::Surface &sourceTexture);
 
 private:
     enum OperationMode {

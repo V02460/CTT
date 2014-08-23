@@ -4,6 +4,7 @@ namespace model {
 namespace filter {
 
 using ::model::frame::Frame;
+using ::model::saveable::Saveable;
 
 TimeshiftFilter::TimeshiftFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamShiftStr, 0);
@@ -17,11 +18,11 @@ model::frame::Frame::sptr TimeshiftFilter::getFrame(unsigned int frameNumber) co
     return getPredecessor()->getFrame(frameNumber + shift);
 }
 
-model::saveable::Saveable::SaveableType TimeshiftFilter::getType() const {
+const QString TimeshiftFilter::kParamShiftStr = "filter_timeshift_param_shift";
+
+Saveable::SaveableType TimeshiftFilter::getType() const {
 	return Saveable::SaveableType::timeshiftFilter;
 }
-
-const QString TimeshiftFilter::kParamShiftStr = "filter_timeshift_param_shift";
 
 }  // namespace filter
 }  // namespace model

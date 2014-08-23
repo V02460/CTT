@@ -122,34 +122,17 @@
     <Filter Include="Source Files\Helper">
       <UniqueIdentifier>{c1d742ec-7c5f-4d6e-a9ea-e4ac4a31af82}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ShaderFiles">
-      <UniqueIdentifier>{7742dc01-535e-4f80-be77-4cb8a7f04a6a}</UniqueIdentifier>
+    <Filter Include="Shader Files">
+      <UniqueIdentifier>{b4efe5b9-f6e3-40ed-a91d-96eb0ce90098}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ShaderFiles\Filter">
-      <UniqueIdentifier>{d85444e6-b95a-416d-94eb-e89e4fb82d18}</UniqueIdentifier>
+    <Filter Include="Shader Files\Filter">
+      <UniqueIdentifier>{02d86d30-8e67-41c5-8a3f-80d72c3f3d4d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ShaderFiles\Histogram">
-      <UniqueIdentifier>{dc75189b-eb86-4df2-a3d2-d1e64c2f7533}</UniqueIdentifier>
+    <Filter Include="Shader Files\Conversion">
+      <UniqueIdentifier>{e3bf623a-629a-43a0-837b-ec2dcfa694a3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Images">
-      <UniqueIdentifier>{e20e1833-b2fa-4e66-a0de-24671f52c9dc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Lokalisierungs Dateien">
-      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
-      <Extensions>ts</Extensions>
-      <ParseFiles>false</ParseFiles>
-    </Filter>
-    <Filter Include="Resource Files\Shader">
-      <UniqueIdentifier>{b8013e16-6f05-4cab-b7f7-b51b7909aa0b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Shader\Model">
-      <UniqueIdentifier>{4a5d4748-a183-4daf-b030-ed9b30a8d75b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Shader\Model\Frame">
-      <UniqueIdentifier>{2e410760-1186-444b-aefb-a3012ee86a48}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Shader\Model\Frame\Histogram">
-      <UniqueIdentifier>{a84b8dbc-dcbd-4824-91d8-3fcdc5cb3da6}</UniqueIdentifier>
+    <Filter Include="Shader Files\Histogram">
+      <UniqueIdentifier>{2087191a-8e1e-4305-9da7-390d9c25ea18}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -585,10 +568,10 @@
     <ClCompile Include="MockDisplayHelper.cpp">
       <Filter>Source Files\Helper</Filter>
     </ClCompile>
-    <ClCompile Include="IOException.cpp">
+    <ClCompile Include="AccessToDummyException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
-    <ClCompile Include="ParseException.cpp">
+    <ClCompile Include="FFmpegException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
     <ClCompile Include="FileNotFoundException.cpp">
@@ -597,38 +580,11 @@
     <ClCompile Include="IOException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
-    <ClCompile Include="NoScalePolicy.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="ListedPushButton.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_ListedPushButton.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_ListedPushButton.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_FilterInsertionWidget.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_FilterInsertionWidget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="FilterInsertionWidget.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="FilterListViewElement.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="VideoSaver.cpp">
-      <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
-    <ClCompile Include="AccessToDummyException.cpp">
+    <ClCompile Include="ParseException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
-    <ClCompile Include="ExtendedVideoListController.cpp">
-      <Filter>Source Files\Controller</Filter>
+    <ClCompile Include="FilterMovedOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -715,15 +671,6 @@
     </CustomBuild>
     <CustomBuild Include="Observer.h">
       <Filter>Header Files\Model</Filter>
-    </CustomBuild>
-    <CustomBuild Include="NoScalePolicy.h">
-      <Filter>Header Files\View</Filter>
-    </CustomBuild>
-    <CustomBuild Include="ListedPushButton.h">
-      <Filter>Header Files\View</Filter>
-    </CustomBuild>
-    <CustomBuild Include="FilterInsertionWidget.h">
-      <Filter>Header Files\View</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -919,6 +866,9 @@
     <ClInclude Include="Surface.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
+    <ClInclude Include="ProjectSaverFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="ProjectLoader.h">
       <Filter>Header Files\Controller\Project</Filter>
     </ClInclude>
@@ -970,75 +920,58 @@
     <ClInclude Include="MockDisplayHelper.h">
       <Filter>Header Files\Helper</Filter>
     </ClInclude>
-    <ClInclude Include="FileNotFoundException.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="IOException.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="VideoDisplayPolicy.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterListViewElement.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="ExtendedVideoListController.h">
-      <Filter>Header Files\Controller</Filter>
+    <ClInclude Include="FilterMovedOperation.h">
+      <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Shader\Conversion\YUV420toRGBsdtv.fs">
+      <Filter>Shader Files\Conversion</Filter>
+    </None>
+    <None Include="Shader\Conversion\YUV422toRGBsdtv.fs">
+      <Filter>Shader Files\Conversion</Filter>
+    </None>
+    <None Include="Shader\Conversion\YUV444toRGBsdtv.fs">
+      <Filter>Shader Files\Conversion</Filter>
+    </None>
     <None Include="Shader\Filter\RGBChannel.fs">
-      <Filter>ShaderFiles\Filter</Filter>
+      <Filter>Shader Files\Filter</Filter>
     </None>
     <None Include="Shader\Filter\1DBlur.fs">
-      <Filter>ShaderFiles\Filter</Filter>
+      <Filter>Shader Files\Filter</Filter>
+    </None>
+    <None Include="Shader\Filter\Greyscale.fs">
+      <Filter>Shader Files\Filter</Filter>
     </None>
     <None Include="Shader\Filter\Mix.fs">
-      <Filter>ShaderFiles\Filter</Filter>
+      <Filter>Shader Files\Filter</Filter>
     </None>
     <None Include="Shader\Filter\Noise.fs">
-      <Filter>ShaderFiles\Filter</Filter>
-    </None>
-    <None Include="Shader\Histogram\redHistogramGrid.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <None Include="Shader\Histogram\displayHistogram.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <None Include="Shader\Histogram\greenHistogramGrid.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <None Include="Shader\Histogram\hueHistogramGrid.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <None Include="Shader\Histogram\luminanceHistogramGrid.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
-    <None Include="Shader\Histogram\saturationHistogramGrid.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
+      <Filter>Shader Files\Filter</Filter>
     </None>
     <None Include="Shader\Histogram\blueHistogramGrid.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
+      <Filter>Shader Files\Histogram</Filter>
+    </None>
+    <None Include="Shader\Histogram\displayHistogram.fs">
+      <Filter>Shader Files\Histogram</Filter>
+    </None>
+    <None Include="Shader\Histogram\greenHistogramGrid.fs">
+      <Filter>Shader Files\Histogram</Filter>
     </None>
     <None Include="Shader\Histogram\histogramCompaction.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
+      <Filter>Shader Files\Histogram</Filter>
     </None>
-    <ClInclude Include="IOException.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="ParseException.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
-    <None Include="ctt_en.ts">
-      <Filter>Lokalisierungs Dateien</Filter>
+    <None Include="Shader\Histogram\hueHistogramGrid.fs">
+      <Filter>Shader Files\Histogram</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Resources\Images\big_buck_bunny_01337.png">
-      <Filter>Resource Files\Images</Filter>
-    </Image>
-    <ClInclude Include="AccessToDummyException.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
+    <None Include="Shader\Histogram\luminanceHistogramGrid.fs">
+      <Filter>Shader Files\Histogram</Filter>
+    </None>
+    <None Include="Shader\Histogram\redHistogramGrid.fs">
+      <Filter>Shader Files\Histogram</Filter>
+    </None>
+    <None Include="Shader\Histogram\saturationHistogramGrid.fs">
+      <Filter>Shader Files\Histogram</Filter>
+    </None>
   </ItemGroup>
 </Project>

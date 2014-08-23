@@ -1,32 +1,49 @@
 #include "GreyscaleFilter.h"
 
-#include "NotImplementedException.h"
+#include "GPUHelper.h"
 
 namespace model {
 namespace filter {
 
 using ::model::frame::Frame;
-using ::exception::NotImplementedException;
+using ::helper::GPUHelper;
 using ::model::saveable::Saveable;
+using ::model::saveable::Memento;
 
 GreyscaleFilter::GreyscaleFilter(Module::sptr predecessor) : Filter(predecessor) {
-    throw new NotImplementedException();
 }
 
 GreyscaleFilter::~GreyscaleFilter() {
-    throw new NotImplementedException();
 }
 
-QString GreyscaleFilter::getName() const {
-    throw new NotImplementedException();
-}
+Frame::sptr GreyscaleFilter::getFrame(unsigned int frameNumber) const {
+    Frame::sptr frame = getPredecessor()->getFrame(frameNumber);
 
-model::frame::Frame::sptr GreyscaleFilter::getFrame(unsigned int frameNumber) const {
-    throw new NotImplementedException();
+    GPUHelper gpuHelper(":/Shader/Filter/Greyscale.fs", frame->getContext());
+
+    Surface::sptr targetSurface = gpuHelper.run(*frame.data());
+
+    return Frame::sptr(new Frame(targetSurface, frame->getMetadata()));
 }
 
 Saveable::SaveableType GreyscaleFilter::getType() const {
 	return Saveable::SaveableType::greyscaleFilter;
+}
+
+Memento GreyscaleFilter::getMemento() const {
+    return Filter::getMemento();
+}
+
+void GreyscaleFilter::restore(Memento memento) {
+    Filter::restore(memento);
+}
+
+QList<const Module*> GreyscaleFilter::getUsesList() const {
+    return QList<const Module*>() << this;
+}
+
+bool GreyscaleFilter::uses(const Module &module) const {
+    return this == &module;
 }
 
 }  // namespace filter

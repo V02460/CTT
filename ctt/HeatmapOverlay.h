@@ -17,7 +17,7 @@ namespace overlay {
 /**
  * Provides a new version of the predecessors frame where any PixelDiff was mixed graphically into it.
  */
-class HeatmapOverlay : public ::model::filter::overlay::ColoringOverlay {
+class HeatmapOverlay : public ColoringOverlay {
 public:
     typedef QScopedPointer<HeatmapOverlay> uptr;
     typedef QSharedPointer<HeatmapOverlay> sptr;

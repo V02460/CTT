@@ -69,6 +69,10 @@ public:
 private: 
     // T *firstElement;
     QList<typename T::sptr> list;
+
+	static const QString SIZE;
+	static const QString TEMPLATE;
+	static const QString ELEMENT;
 };
 
 }  // namespace saveable

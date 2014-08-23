@@ -24,7 +24,7 @@ public:
 
 	void restore(model::saveable::Memento memento);
 
-	QList<Module*> getUsesList() const;
+	QList<const Module*> getUsesList() const;
 
 	~BBBTestVideo();
 

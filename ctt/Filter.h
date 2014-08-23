@@ -13,6 +13,8 @@
 #include "UIntegerInterval.h"        
 #include "FilterIntervalList.h"    
 
+#include "AccessToDummyException.h"
+
 namespace model {
 namespace filter {
 
@@ -108,12 +110,30 @@ public:
 
     virtual unsigned int getFrameCount() const Q_DECL_OVERRIDE;
 
+    virtual QSize getResolution() const Q_DECL_OVERRIDE;
+
+    ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
+    void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
+
 protected:
     template <class T>
-    void newParameter(QString name, T initValue);
+    void newParameter(QString name, T initValue) {
+        if (isDummy()) {
+            throw new ::exception::AccessToDummyException();
+        }
+
+        parameters.insert(name, FilterParam(name, initValue));
+    }
 
     template <class T>
-    T getParamValue(QString key, T defaultVar = T()) const;
+    T getParamValue(QString key, T defaultValue = T()) const {
+        if (isDummy()) {
+            throw new ::exception::AccessToDummyException();
+        }
+
+        FilterParam param = parameters.value(key, FilterParam(key, defaultValue));
+        return param.getValue().value<T>();
+    }
 
     Module *getPredecessor() const;
 

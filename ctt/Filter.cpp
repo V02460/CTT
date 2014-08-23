@@ -11,6 +11,7 @@ using ::model::Module;
 using ::model::saveable::Memento;
 using ::exception::AccessToDummyException;
 using ::exception::IllegalArgumentException;
+using ::exception::IllegalStateException;
 
 Filter::Filter(Module::sptr predecessor) : predecessor(predecessor), parameters(), intervals() {
 }
@@ -36,7 +37,7 @@ void Filter::setParam(FilterParam parameter) {
 
     if (!newValue.canConvert(oldValue.type())) {
         throw new IllegalArgumentException("Variable type of FilterParam does not match stored type.");
-}
+    }
 
     parameters.insert(parameter.getName(), parameter);
 }
@@ -44,7 +45,7 @@ void Filter::setParam(FilterParam parameter) {
 void Filter::setPreviousModule(Module::sptr predecessor) {
     if (isDummy()) {
         throw new AccessToDummyException();
-}
+    }
     if (predecessor.isNull()) {
         throw new IllegalArgumentException("Predecessor must not be null.");
     }
@@ -84,31 +85,32 @@ unsigned int Filter::getFrameCount() const {
     return predecessor->getFrameCount();
 }
 
-template <class T>
-void Filter::newParameter(QString name, T initValue) {
-    if (isDummy()) {
-        throw new AccessToDummyException();
-    }
-
-    parameters.insert(name, FilterParam(name, initValue));
-}
-
-template <class T>
-T Filter::getParamValue(QString key, T defaultValue) const {
-    if (isDummy()) {
-        throw new AccessToDummyException();
-    }
-
-    FilterParam param = parameters.value(paramShiftStr, FilterParam(paramShiftStr, defaultValue));
-    return param.getValue().value<T>();
-}
-
 Module *Filter::getPredecessor() const {
     if (isDummy()) {
         throw new AccessToDummyException();
     }
 
     return predecessor.data();
+}
+
+QSize Filter::getResolution() const
+{
+	if (isDummy())
+	{
+		throw new IllegalStateException("Tried to request the resolution of a dummy Filter.");
+	}
+
+	return predecessor->getResolution();
+}
+
+Memento Filter::getMemento() const {
+    Memento memento;
+    memento.setSharedPointer("predecessor", predecessor);
+    return memento;
+}
+
+void Filter::restore(Memento memento) {
+    predecessor = memento.getSharedPointer("predecessor").dynamicCast<Module>();
 }
 
 }  // namespace filter

@@ -69,6 +69,7 @@ public:
 
     /**
      * Jumps to the submitted frame number and updates the scrubbers accordingly.
+	 * Doesn't do anything if the loading if the previous frame isn't complete yet.
      *
      * @param frameNumber The player will jump to this frame number
      * @throws InvalidArgumentException if one of the scrubbers of the player don't have a frame with that number.
@@ -276,6 +277,14 @@ private:
 	* Creates a dummy Player.
 	*/
 	Player();
+
+	const static QString fpsStringId; /**< The Id the scrubber uses to save its fps in a memento */
+	const static QString scrubbersStringId; /**< The Id the scrubber uses to save its scrubbers in a memento */
+	const static QString numberOfScrubbersStringId; /**< The Id the scrubber uses to save its number of scrubbers in a memento */
+	const static QString loopingStringId;
+	const static QString loopEndAStringId;
+	const static QString loopEndBStringId;
+	const static QString frameNumberStringId;
 
     unsigned int currentFrameNumber; /**< The number of the frame that was requested last */
     QList<::model::player::VideoScrubber::sptr> videoScrubbers; /**< The VideoScrubbers controlled by this player*/

@@ -66,8 +66,6 @@ void FrameTest::withoutImage()
 	Frame testframe(testContext, testMetadata);
 
 	QVERIFY2(testframe.shareGroup() == testContext->shareGroup(), "The created frame didn't save the OGL Context correctly.");
-
-	//TODO write the testImage to the texture of the frame and check whether it worked, test metadata
 }
 
 void FrameTest::withImage()
@@ -78,5 +76,4 @@ void FrameTest::withImage()
 
 	QVERIFY2(testframe.shareGroup() == testContext->shareGroup(), "The created frame didn't save the OGL Context correctly.");
 
-	//TODO test the texture, write the to the texture of the frame and check whether it worked, test metadata
 }

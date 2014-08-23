@@ -9,7 +9,6 @@
 #include <QVector2D>
 
 #include "MacroblockType.h"
-#include "MacroblockPartition.h"
 
 #include "IllegalStateException.h"
 
@@ -38,13 +37,20 @@ public:
      *
      * @param size Size of the frame in pixel
      * @param macroblockTypes Type identifier for every macroblock in the frame
-     * @param macroblockPartitions Macroblock partition information for every macroblock in the frame
      * @param macroblockMotionvectors Motion vectors for every macroblock in the frame
      */
     FrameMetadata(QSize size,
                   QVector<QVector<MacroblockType>> macroblockTypes,
-                  QVector<QVector<MacroblockPartition>> macroblockPartitions,
                   QVector<QVector<QVector2D>> macroblockMotionvectors);
+
+	/**
+	* Creates a container holding metadata information for a Frame.
+	*
+	* @param size Size of the frame in pixel
+	* @param macroblockTypes Type identifier for every macroblock in the frame
+	*/
+	FrameMetadata(QSize size,
+		QVector<QVector<MacroblockType>> macroblockTypes);
 
     /**
      * Get the stored frame size.
@@ -61,13 +67,6 @@ public:
      */
     QVector<QVector<MacroblockType>> getMbType() const;
 
-    /**
-     * Get an array of the stored macroblock partition information.
-     *
-     * @return QVector<QVector<int>> [y][x]-Array of macroblock partition information.
-     * @throws IllegalStateException if no macroblock partition information was stored
-     */
-    QVector<QVector<MacroblockPartition>> getMbPartitions() const;
 
     /**
      * Get an array of the stored motion vectors.
@@ -84,12 +83,6 @@ public:
      */
     bool hasMbType() const;
 
-    /**
-     * Checks if partition type information is stored.
-     *
-     * @return bool True if partition type information is stored.
-    */
-    bool hasMbPartions() const;
 
     /**
      * Checks if motion vector information is stored.
@@ -100,11 +93,9 @@ public:
 private:
     const QSize size;
     const QVector<QVector<MacroblockType>> mbTypes;
-    const QVector<QVector<MacroblockPartition>> mbPartions;
     const QVector<QVector<QVector2D>> mbMotionvectors;
 
     const bool hasMbTypeFlag;
-    const bool hasMbPartitionsFlag;
     const bool hasMbMotionvectorsFlag;
 };
 

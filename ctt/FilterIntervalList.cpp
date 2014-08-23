@@ -9,7 +9,7 @@ using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
 
 FilterIntervalList::FilterIntervalList() {
-    throw new NotImplementedException();
+    //throw new NotImplementedException();
 }
 
 
