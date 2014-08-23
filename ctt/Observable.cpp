@@ -29,21 +29,21 @@ void Observable::changed()
 	}
 }
 
-void Observable::saveObserversToMemento(model::saveable::Memento memento)
+const void Observable::saveObserversToMemento(model::saveable::Memento *memento)
 {
-	memento.setUInt(numberOfObserversStringId, observers.size());
+	memento->setUInt(numberOfObserversStringId, observers.size());
 	for (unsigned int i = 0; i < static_cast<unsigned int>(observers.size()); i++)
 	{
-		memento.setSharedPointer(observersStringId + QString::number(i), observers[i]);
+		memento->setSharedPointer(observersStringId + QString::number(i), observers[i]);
 	}
 }
 
-void Observable::restoreObserversFromMemento(model::saveable::Memento memento)
+void Observable::restoreObserversFromMemento(model::saveable::Memento *memento)
 {
 	observers.clear();
-	for (unsigned int i = 0; i < memento.getUInt(numberOfObserversStringId); i++)
+	for (unsigned int i = 0; i < memento->getUInt(numberOfObserversStringId); i++)
 	{
-		observers.append(memento.getSharedPointer(observersStringId + QString::number(i)).dynamicCast<Observer>());
+		observers.append(memento->getSharedPointer(observersStringId + QString::number(i)).dynamicCast<Observer>());
 	}
 }
 

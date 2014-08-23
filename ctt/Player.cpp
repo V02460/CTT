@@ -380,6 +380,7 @@ Memento Player::getMemento() const {
 		memento.setSharedPointer(scrubbersStringId + QString::number(i), videoScrubbers[i]);
 	}
 
+
 	return memento;
 }
 
