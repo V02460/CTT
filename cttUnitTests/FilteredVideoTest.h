@@ -12,6 +12,7 @@ private slots:
 	void initTestCase();
 	void dummyTest();
 	void filterOperations();
+	void saveRestore();
 
 private:
 	QOffscreenSurface surface;

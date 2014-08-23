@@ -55,7 +55,7 @@ void FilteredVideo::addFilter(Filter::sptr filter, unsigned int pos) {
 	{
 		filter->setPreviousModule(filters.at(pos - 1));
 	}
-	if (pos = 0)
+	if (pos == 0)
 	{
 		filter->setPreviousModule(baseVideo);
 	}
@@ -75,7 +75,7 @@ Filter::sptr FilteredVideo::removeFilter(unsigned int pos) {
 			+ " Filters from position " + QString::number(pos) + ".");
 	}
 
-	if (pos = 0)
+	if ((pos == 0) && (filters.size() >= 2))
 	{
 		filters[1]->setPreviousModule(baseVideo);
 	}
