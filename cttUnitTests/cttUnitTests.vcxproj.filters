@@ -213,6 +213,24 @@
     <ClCompile Include="GeneratedFiles\Release\moc_FilterTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="FileVideoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FileVideoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FileVideoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -242,10 +260,19 @@
     <CustomBuild Include="FilteredVideoTest.h">
       <Filter>Header Files\Model\Video</Filter>
     </CustomBuild>
-    <CustomBuild Include="BlurFilterTest.h">
+    <CustomBuild Include="FilterTest.h">
       <Filter>Header Files\Model\Filter</Filter>
     </CustomBuild>
-    <CustomBuild Include="FilterTest.h">
+    <CustomBuild Include="FileVideoTest.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="VideoTest.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilteredVideoTest.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="BlurFilterTest.h">
       <Filter>Header Files\Model\Filter</Filter>
     </CustomBuild>
   </ItemGroup>
@@ -255,9 +282,6 @@
     </ClInclude>
     <ClInclude Include="TestResult.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ModelFilterTests.h">
-      <Filter>Test Structure\Model\Filter</Filter>
     </ClInclude>
     <ClInclude Include="ModelFrameTests.h">
       <Filter>Test Structure\Model\Frame</Filter>

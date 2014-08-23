@@ -10,8 +10,6 @@ using model::player::VideoScrubber;
 using exception::IllegalArgumentException;
 using model::video::YUVDataVideo;
 
-VideoScrubberTest::VideoScrubberTest() : testContext() {
-}
 
 void VideoScrubberTest::testDummy()
 {

@@ -77,7 +77,7 @@ public:
 	virtual unsigned int getFrameCount() const;
 	virtual bool uses(const model::Module &module) const;
 	virtual model::video::VideoMetadata getMetadata() const;
-
+	virtual QSharedPointer<QOpenGLContext> getContext() const;
 
     virtual ::model::saveable::Memento getMemento() const;
     virtual void restore(::model::saveable::Memento memento);

@@ -42,5 +42,9 @@ QList<const Module*> GreyscaleFilter::getUsesList() const {
     return QList<const Module*>() << this;
 }
 
+bool GreyscaleFilter::uses(const Module &module) const {
+    return this == &module;
+}
+
 }  // namespace filter
 }  // namespace model

@@ -2,6 +2,9 @@
 
 #include "GPUHelper.h"
 
+#include "AccessToDummyException.h"
+#include "NotImplementedException.h"
+
 namespace model {
 namespace filter {
 
@@ -9,6 +12,7 @@ using ::model::frame::Frame;
 using ::helper::GPUHelper;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
+using ::exception::NotImplementedException;
 
 BlurFilter::BlurFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamRadiusStr, 5.f);
@@ -51,6 +55,10 @@ void BlurFilter::restore(Memento memento) {
 
 QList<const Module*> BlurFilter::getUsesList() const {
     return QList<const Module*>() << this;
+}
+
+bool BlurFilter::uses(const model::Module &module) const {
+    throw new NotImplementedException();
 }
 
 const QString BlurFilter::kParamRadiusStr = "filter_blur_param_radius";

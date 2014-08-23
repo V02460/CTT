@@ -4,7 +4,6 @@
 #include "IOException.h"
 #include "FFmpegException.h"
 
-
 namespace model {
 namespace video {
 

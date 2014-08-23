@@ -75,12 +75,6 @@ void Video::save(QString path, YUVType type) const
     throw new NotImplementedException();
 }
 
-QSharedPointer<QOpenGLContext> Video::getContext() const {
-	if (isDummy()) {
-		throw new IllegalStateException("Tried to request the context of a dummy video.");
-	}
-	return context;
-}
 
 QSize Video::getResolution() const
 {

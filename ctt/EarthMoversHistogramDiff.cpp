@@ -1,16 +1,16 @@
 #include "EarthMoversHistogramDiff.h"
 
-#include "NotImplementedException.h"
-
 namespace model {
 namespace difference {
 
 using ::model::frame::histogram::Histogram;
 using ::model::video::Video;
-using ::exception::NotImplementedException;
 using ::model::saveable::Saveable;
-using ::model::frame::Histogram;
 using ::model::saveable::Memento;
+
+const QString EarthMoversHistogramDiff::VIDEO1 = "video1";
+const QString EarthMoversHistogramDiff::VIDEO2 = "video2";
+const QString EarthMoversHistogramDiff::TYPE = "type";
 
 EarthMoversHistogramDiff::EarthMoversHistogramDiff(Histogram::HistogramType type,
                                                    Video::sptr video1,
@@ -18,10 +18,6 @@ EarthMoversHistogramDiff::EarthMoversHistogramDiff(Histogram::HistogramType type
         : FrameDiff(video1, video2), type(type) {}
 
 EarthMoversHistogramDiff::~EarthMoversHistogramDiff() {}
-
-const QString EarthMoversHistogramDiff::VIDEO1 = "video1";
-const QString EarthMoversHistogramDiff::VIDEO2 = "video2";
-const QString EarthMoversHistogramDiff::TYPE = "type";
 
 double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
 	if (frameNr > getFrameCount()) {
@@ -37,11 +33,11 @@ double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
 		// TODO replace getValue
 		//d[i + 1] = a->getValue(i) - b->getValue(i) + d[i];
 		sum += std::abs(d[i + 1]);
-	}
+    }
+
 	return sum / (Histogram::SIZE - 1);
 }
 
-EarthMoversHistogramDiff::EarthMoversHistogramDiff() {}
 
 Memento EarthMoversHistogramDiff::getMemento() const {
 	Memento memento;
@@ -67,6 +63,9 @@ Saveable::sptr EarthMoversHistogramDiff::getDummy() {
 
 Saveable::SaveableType EarthMoversHistogramDiff::getType() const {
 	return Saveable::SaveableType::earthMoversHistogramDiff;
+}
+
+EarthMoversHistogramDiff::EarthMoversHistogramDiff() {
 }
 
 }  // namespace difference

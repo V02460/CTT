@@ -1,6 +1,7 @@
 #include "Filter.h"
 
 #include "IllegalArgumentException.h"
+#include "AccessToDummyException.h"
 
 namespace model {
 namespace filter {

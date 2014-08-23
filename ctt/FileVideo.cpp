@@ -6,6 +6,7 @@
 namespace model {
 namespace video {
 
+using ::model::Module;
 using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
 using ::exception::FileNotFoundException;
@@ -28,17 +29,17 @@ FileVideo::FileVideo()
 
 }
 
-QDir FileVideo::getPath() const {
+QString FileVideo::getPath() const
+{
 	if (isDummy()) {
 		throw new IllegalStateException("Tried to request the path of a dummy FileVideo.");
 	}
 	return pathToVideoFile;
 }
 
-QList<const Module*> FileVideo::getUsesList() const
-{
+QList<const Module*> FileVideo::getUsesList() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Tried to request a list of used modules from a dummy YUVDataVideo.");
+		throw new IllegalStateException("Tried to request a list of used modules from a dummy FileVideo.");
 	}
 
 	QList<const Module*> uses;
@@ -47,13 +48,21 @@ QList<const Module*> FileVideo::getUsesList() const
 	return uses;
 }
 
-bool FileVideo::uses(const model::Module &module) const
-{
+bool FileVideo::uses(const Module &module) const {
 	if (isDummy()) {
-		throw new IllegalStateException("Tried to ask a dummy YUVDataVideo whether it used a specific module.");
+		throw new IllegalStateException("Tried to ask a dummy FileVideo whether it used a specific module.");
 	}
 
 	return (this == &module);
+}
+
+QSharedPointer<QOpenGLContext> FileVideo::getContext() const
+{
+	if (isDummy()) {
+		throw new IllegalStateException("Tried to request the context from a dummy FileVideo.");
+	}
+
+	return context;
 }
 
 }  // namespace video
