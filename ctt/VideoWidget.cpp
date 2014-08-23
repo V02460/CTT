@@ -25,7 +25,6 @@ VideoWidget::VideoWidget(VideoScrubber::sptr scrubber, QWindow *parent)
 
 		setSurfaceType(QWindow::OpenGLSurface);
 
-		glViewport(0, 0, width(), height());
 		isInSingelFrameTest = false;
 	} else {
 		qDebug() << "Error in VideoWidget! Scrubber was empty.";
@@ -46,6 +45,10 @@ const VideoScrubber &VideoWidget::getScrubber() const {
 
 void VideoWidget::resizeEvent(QResizeEvent *ev) {
 	Q_UNUSED(ev);
+
+    if (isInitialized) {
+        glViewport(0, 0, width(), height());
+    }
 
 	if (isExposed()) {
 		render();
