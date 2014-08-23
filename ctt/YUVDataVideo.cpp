@@ -6,6 +6,7 @@
 #include "IOException.h"
 #include "FrameMetadata.h"
 #include "GPUHelper.h"
+#include "YUVType.h"
 
 namespace model {
 namespace video {
@@ -20,6 +21,14 @@ using ::exception::IllegalArgumentException;
 using ::model::frame::MacroblockType;
 using ::exception::IOException;
 using ::exception::FileNotFoundException;
+
+const QString YUVDataVideo::hasMetadataFileStringId = "hasMetadata";
+const QString YUVDataVideo::resXStringId = "resX";
+const QString YUVDataVideo::resYStringId = "resY";
+const QString YUVDataVideo::videoPathStringId = "vidPath";
+const QString YUVDataVideo::metadataPathStringId = "metaPath";
+const QString YUVDataVideo::framerateStringId = "framerate";
+const QString YUVDataVideo::yuvTypeStringId = "yuvtype";
 
 QVector<QRgb> YUVDataVideo::colorTable;
 
@@ -322,14 +331,117 @@ bool YUVDataVideo::hasFrameInBuffer(unsigned int frameNr) const
 
 Memento YUVDataVideo::getMemento() const
 {
-	//TODO eskjfe
-	throw new NotImplementedException();
+	if (isDummy()) {
+		throw new IllegalStateException("Tried to request a memento from a dummy YUVDataVideo.");
+	}
+
+	Memento memento;
+
+	memento.setBool(hasMetadataFileStringId, hasMetadataFile);
+	if (hasMetadataFile)
+	{
+		memento.setString(metadataPathStringId, pathToMetadataFile);
+	}
+
+	memento.setInt(resXStringId, getResolution().width());
+	memento.setInt(resYStringId, getResolution().height());
+
+	memento.setString(videoPathStringId, pathToVideoFile);
+
+	memento.setDouble(framerateStringId, getMetadata().getFPS());
+
+	memento.setInt(yuvTypeStringId, type);
 }
 
 void YUVDataVideo::restore(Memento memento)
 {
-	//TODO kehflakf
-	throw new NotImplementedException();
+	//TODO ztrdzt initialze context
+	pathToVideoFile = memento.getString(videoPathStringId);
+	videoFile.setFileName(pathToVideoFile);
+
+	if (!videoFile.exists())
+	{
+		throw new FileNotFoundException("The video file at \"" + pathToVideoFile + "\" doesn't exist");
+	}
+
+	QSize resolution(memento.getInt(resXStringId), memento.getInt(resYStringId));
+	pixelsPerFrame = resolution.height() * resolution.width();
+	type = static_cast<YUVType>(memento.getInt(yuvTypeStringId));
+
+	switch (type)
+	{
+	case YUV444:
+		chromaSize = pixelsPerFrame;
+		break;
+	case YUV422:
+		if ((resolution.width() % 2) != 0) {
+			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV422 format.");
+		}
+		chromaSize = pixelsPerFrame / 2;
+		break;
+	case YUV420:
+		if ((resolution.width() % 2) != 0) {
+			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
+		}
+		if ((resolution.height() % 2) != 0) {
+			throw new IllegalArgumentException("A video with an uneven number of pixels vertically mustn't be in the YUV420 format.");
+		}
+		chromaSize = pixelsPerFrame / 4;
+		break;
+	default:
+		throw new IllegalArgumentException("Submitted YUV type not supported.");
+	}
+
+
+	bytesPerFrame = pixelsPerFrame + (2 * chromaSize);
+
+	if ((videoFile.size() % bytesPerFrame) != 0)
+	{
+		throw new IllegalArgumentException("The size of the submitted video file (" + QString::number(videoFile.size())
+			+ " bytes) isn't a multiple of the calculated frame size (" + QString::number(bytesPerFrame) + " bytes).");
+	}
+	unsigned int length = videoFile.size() / bytesPerFrame;
+
+	metadata = VideoMetadata(resolution, memento.getDouble(framerateStringId), length);
+
+	load(0);
+
+	if (YUVDataVideo::colorTable.isEmpty())
+	{
+		YUVDataVideo::colorTable.resize(256);
+		QColor color;
+		for (int i = 0; i < 256; i++)
+		{
+			color.setRgb(i, i, i);
+			YUVDataVideo::colorTable[i] = color.rgb();
+		}
+	}
+
+	hasMetadataFile = memento.getBool(hasMetadataFileStringId);
+	if (hasMetadataFile)
+	{
+		pathToMetadataFile = memento.getString(metadataPathStringId);
+		metadataFile.setFileName(pathToMetadataFile);
+
+		if (!metadataFile.exists())
+		{
+			throw new FileNotFoundException("The metadata file at \"" + pathToMetadataFile + "\" doesn't exist.");
+		}
+
+		if (((resolution.height() % 16) != 0) || ((resolution.width() % 16) != 0))
+		{
+			throw new IllegalArgumentException("The video of the submitted resolution " + QString::number(resolution.width()) + "x"
+				+ QString::number(resolution.height()) + "can't be divided into 16x16 pixel macroblocks, that means the metadata file containing macroblockmetadata can't make sense");
+		}
+
+		if (((pixelsPerFrame / 256) * metadata.getLength()) != metadataFile.size())
+		{
+			throw new IllegalArgumentException("The metadata file at the submitted location doesn't contain information about the exact number of macroblocks in the videofile (assuming 16x16p macroblocks and 1 byte of metadata per macroblock).");
+		}
+
+		loadMetadata(0);
+	}
+	isDummyFlag = false;
 }
 
 saveable::Saveable::SaveableType YUVDataVideo::getType() const {

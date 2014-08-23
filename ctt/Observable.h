@@ -6,6 +6,7 @@
 #include <QWeakPointer>
 
 #include "Observer.h"
+#include "Memento.h"
 
 namespace model {
 
@@ -45,6 +46,7 @@ protected:
      *
      */
     void changed();
+
 };
 
 }  // namespace model

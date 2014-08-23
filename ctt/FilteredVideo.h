@@ -90,6 +90,11 @@ private:
      */
     FilteredVideo();
 
+	const static QString baseVideoStringId;
+	const static QString filtersStringId;
+	const static QString numberOfFiltersStringId;
+
+
     ::model::video::Video::sptr baseVideo; /**< This provides the frames which will be modified by the filter pipeline. */
     QList<::model::filter::Filter::sptr> filters; /**< The filter pipeline */
 };
