@@ -17,6 +17,10 @@
 #include "ListedPushButtonTest.h"
 #include "ProcessingWidget.h"
 #include "Project.h"
+#include "YUVDataVideo.h"
+#include "FilteredVideo.h"
+#include "Player.h"
+#include "VideoScrubber.h"
 
 using ::helper::MockDisplayHelper;
 using ::model::frame::Frame;
@@ -28,17 +32,22 @@ using ::controller::project::Project;
 using ::controller::VideoListController;
 using ::model::video::Video;
 using ::model::saveable::SaveableList;
+using ::model::video::YUVDataVideo;
+using ::model::filter::FilteredVideo;
+using ::model::player::Player;
+using ::model::player::VideoScrubber;
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     //ctt mainWindow;
-	view::VideoWidget *videoWidget;
+	//view::VideoWidget *videoWidget;
 	ThumbnailListWidgetTest *thumbnailListWidgetTest;
 	ListedPushButtonTest *listedPushButtonTest;
 	view::ProcessingWidget *processingWidget;
 
-    try {
+	//TODO wieder einkommentieren
+    //try {
         //mainWindow.show();
 
         QOffscreenSurface surface;
@@ -55,35 +64,49 @@ int main(int argc, char *argv[])
             return 1;
         }
 
-        Frame::sptr frame(new Frame(testContext, image));
-        BlueHistogram histogram(*frame.data());
+        //Frame::sptr frame(new Frame(testContext, image));
+        //BlueHistogram histogram(*frame.data());
 
         /*Surface::sptr histogramImage = histogram.getHistogramImage();
         MockDisplayHelper::showImage(histogramImage->getFramebufferObject()->toImage());*/
 
-		videoWidget = new view::VideoWidget(frame);
-		videoWidget->show();
+		//videoWidget = new view::VideoWidget(frame);
+		//videoWidget->show();
 
 		listedPushButtonTest = new ListedPushButtonTest();
-		listedPushButtonTest->show();
+		//listedPushButtonTest->show();
 
 		thumbnailListWidgetTest = new ThumbnailListWidgetTest();
-		thumbnailListWidgetTest->show();
+		//thumbnailListWidgetTest->show();
 
 		Project *testProject = Project::getInstance();
 		VideoListController::sptr analysingVideosController =
 			VideoListController::sptr(new VideoListController(testProject->getVideoList2().dynamicCast<SaveableList<Video>>()));
+
+		YUVDataVideo::sptr testVideo = YUVDataVideo::sptr(new YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext));
+		VideoScrubber::sptr testVideoScrubber = VideoScrubber::sptr(new VideoScrubber(testVideo));
+		testProject->getBaseVideoList()->insert(0, testVideo);
+
+		FilteredVideo::sptr testFilteredVideo = FilteredVideo::sptr(new FilteredVideo(testVideo));
+		testProject->getVideoList1()->insert(0, testFilteredVideo);
+		VideoScrubber::sptr testFilteredVideoScrubber = VideoScrubber::sptr(new VideoScrubber(testFilteredVideo));
+
+		Player::sptr testPlayer = Player::sptr(new Player(24));
+		testPlayer->addScrubber(testVideoScrubber);
+		testPlayer->addScrubber(testFilteredVideoScrubber);
+		testProject->getPlayerList1()->insert(0, testPlayer);
+
 		processingWidget = new view::ProcessingWidget(testProject->getPlayerList1(), testProject->getVideoList1(),
 			testProject->getBaseVideoList(), analysingVideosController);
 		processingWidget->show();
-    }
+    /*}
     catch (RuntimeException *e) {
 //         QMessageBox msgBox;
 //         msgBox.setWindowTitle(e->getName());
 //         msgBox.setText(e->getMsg());
 //         msgBox.exec();
         qDebug() << e->getName() << e->getMsg();
-    }
+    }*/
 
     return a.exec();
 }
