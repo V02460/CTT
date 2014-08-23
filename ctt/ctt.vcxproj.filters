@@ -116,9 +116,6 @@
     <Filter Include="Source Files\Controller\Project">
       <UniqueIdentifier>{aaf07077-65d8-4854-b73a-028a0c375b92}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Exception">
-      <UniqueIdentifier>{43f41436-2483-41db-b79d-a3ef731d4d18}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Helper">
       <UniqueIdentifier>{c1d742ec-7c5f-4d6e-a9ea-e4ac4a31af82}</UniqueIdentifier>
     </Filter>
@@ -133,6 +130,9 @@
     </Filter>
     <Filter Include="Shader Files\Histogram">
       <UniqueIdentifier>{2087191a-8e1e-4305-9da7-390d9c25ea18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controller\Exception">
+      <UniqueIdentifier>{43f41436-2483-41db-b79d-a3ef731d4d18}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -545,16 +545,16 @@
       <Filter>Source Files\Controller\Project</Filter>
     </ClCompile>
     <ClCompile Include="IllegalArgumentException.cpp">
-      <Filter>Source Files\Exception</Filter>
+      <Filter>Source Files\Controller\Exception</Filter>
     </ClCompile>
     <ClCompile Include="IllegalStateException.cpp">
-      <Filter>Source Files\Exception</Filter>
+      <Filter>Source Files\Controller\Exception</Filter>
     </ClCompile>
     <ClCompile Include="NotImplementedException.cpp">
-      <Filter>Source Files\Exception</Filter>
+      <Filter>Source Files\Controller\Exception</Filter>
     </ClCompile>
     <ClCompile Include="OpenGLException.cpp">
-      <Filter>Source Files\Exception</Filter>
+      <Filter>Source Files\Controller\Exception</Filter>
     </ClCompile>
     <ClCompile Include="GPUHelper.cpp">
       <Filter>Source Files\Helper</Filter>
@@ -569,22 +569,46 @@
       <Filter>Source Files\Helper</Filter>
     </ClCompile>
     <ClCompile Include="AccessToDummyException.cpp">
-      <Filter>Source Files\Exception</Filter>
+      <Filter>Source Files\Controller\Exception</Filter>
     </ClCompile>
     <ClCompile Include="FFmpegException.cpp">
-      <Filter>Source Files\Exception</Filter>
+      <Filter>Source Files\Controller\Exception</Filter>
     </ClCompile>
     <ClCompile Include="FileNotFoundException.cpp">
-      <Filter>Source Files\Exception</Filter>
+      <Filter>Source Files\Controller\Exception</Filter>
     </ClCompile>
     <ClCompile Include="IOException.cpp">
-      <Filter>Source Files\Exception</Filter>
+      <Filter>Source Files\Controller\Exception</Filter>
     </ClCompile>
     <ClCompile Include="ParseException.cpp">
-      <Filter>Source Files\Exception</Filter>
+      <Filter>Source Files\Controller\Exception</Filter>
     </ClCompile>
     <ClCompile Include="FilterMovedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="ExtendedVideoListController.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterInsertionWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilterInsertionWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FilterInsertionWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ListedPushButton.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ListedPushButton.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="ListedPushButton.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoSaver.cpp">
+      <Filter>Source Files\Model\Video</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -671,6 +695,12 @@
     </CustomBuild>
     <CustomBuild Include="Observer.h">
       <Filter>Header Files\Model</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilterInsertionWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ListedPushButton.h">
+      <Filter>Header Files\View</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -922,6 +952,9 @@
     </ClInclude>
     <ClInclude Include="FilterMovedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtendedVideoListController.h">
+      <Filter>Header Files\Controller</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

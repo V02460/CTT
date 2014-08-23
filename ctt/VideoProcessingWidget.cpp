@@ -67,4 +67,7 @@ void VideoProcessingWidget::unsubscribe(const ::controller::VideoListController 
 	QObject::disconnect(this, SIGNAL(videoForAnalysingRemoved(const model::video::Video&)),
 		&observer, SLOT(removeVideo(const model::video::Video&)));
 }
+
+
+
 }  // namespace view
