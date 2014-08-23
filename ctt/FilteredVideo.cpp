@@ -142,6 +142,8 @@ Memento FilteredVideo::getMemento() const {
 void FilteredVideo::restore(Memento memento) {
 	baseVideo = memento.getSharedPointer(baseVideoStringId).dynamicCast<Video>();
 	
+	filters.clear();
+
 	for (unsigned int i = 0; i < memento.getUInt(numberOfFiltersStringId); i++)
 	{
 		filters.append(memento.getSharedPointer(filtersStringId + QString::number(i)).dynamicCast<Filter>());
