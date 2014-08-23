@@ -971,7 +971,33 @@
       <Filter>Shader Files\Histogram</Filter>
     </None>
     <None Include="Shader\Histogram\saturationHistogramGrid.fs">
-      <Filter>Shader Files\Histogram</Filter>
+      <Filter>ShaderFiles\Histogram</Filter>
     </None>
+    <None Include="Shader\Histogram\blueHistogramGrid.fs">
+      <Filter>ShaderFiles\Histogram</Filter>
+    </None>
+    <None Include="Shader\Histogram\histogramCompaction.fs">
+      <Filter>ShaderFiles\Histogram</Filter>
+    </None>
+    <ClInclude Include="IOException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="ParseException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterMovedOperation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <None Include="Greyscale.fs">
+      <Filter>ShaderFiles\Filter</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Images\big_buck_bunny_01337.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <ClInclude Include="AccessToDummyException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
