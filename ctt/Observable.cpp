@@ -2,8 +2,6 @@
 
 namespace model {
 
-const QString Observable::observersStringId = "observer";
-
 void Observable::subscribe(Observer::sptr observer) {
 	if (!observers.contains(observer)) {
 		observers.append(observer);

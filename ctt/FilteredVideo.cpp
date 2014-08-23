@@ -142,7 +142,6 @@ Memento FilteredVideo::getMemento() const {
 		memento.setSharedPointer(filtersStringId + QString::number(i), filters[i]);
 	}
 
-	saveObserversToMemento(&memento);
 }
 
 void FilteredVideo::restore(Memento memento) {
@@ -155,7 +154,6 @@ void FilteredVideo::restore(Memento memento) {
 		filters.append(memento.getSharedPointer(filtersStringId + QString::number(i)).dynamicCast<Filter>());
 	}
 
-	restoreObserversFromMemento(&memento);
 	isDummyFlag = false;
 }
 
