@@ -101,6 +101,8 @@
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <BrowseInformation>true</BrowseInformation>
       <AdditionalOptions>/wd4716 %(AdditionalOptions)</AdditionalOptions>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -1052,6 +1054,7 @@
     <None Include="Shader\Filter\Greyscale.fs" />
     <None Include="Shader\Filter\Mix.fs" />
     <None Include="Shader\Filter\Noise.fs" />
+    <None Include="Shader\Filter\Rescale.fs" />
     <None Include="Shader\Filter\RGBChannel.fs" />
     <None Include="Shader\Histogram\blueHistogramGrid.fs" />
     <None Include="Shader\Histogram\displayHistogram.fs" />

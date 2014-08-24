@@ -672,6 +672,9 @@
     <CustomBuild Include="Observer.h">
       <Filter>Header Files\Model</Filter>
     </CustomBuild>
+    <CustomBuild Include="NoScalePolicy.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnalysingWidget.h">
@@ -923,6 +926,15 @@
     <ClInclude Include="FilterMovedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
+    <ClInclude Include="FFmpegException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileNotFoundException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoDisplayPolicy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\Conversion\YUV420toRGBsdtv.fs">
@@ -970,9 +982,6 @@
     <None Include="Shader\Histogram\redHistogramGrid.fs">
       <Filter>Shader Files\Histogram</Filter>
     </None>
-    <None Include="Shader\Histogram\saturationHistogramGrid.fs">
-      <Filter>ShaderFiles\Histogram</Filter>
-    </None>
     <None Include="Shader\Histogram\blueHistogramGrid.fs">
       <Filter>ShaderFiles\Histogram</Filter>
     </None>
@@ -988,16 +997,17 @@
     <ClInclude Include="FilterMovedOperation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <None Include="Greyscale.fs">
-      <Filter>ShaderFiles\Filter</Filter>
+    <None Include="Shader\Histogram\saturationHistogramGrid.fs" />
+    <None Include="Shader\Filter\Rescale.fs">
+      <Filter>Shader Files\Filter</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Resources\Images\big_buck_bunny_01337.png">
-      <Filter>Resource Files\Images</Filter>
-    </Image>
     <ClInclude Include="AccessToDummyException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Images\big_buck_bunny_01337.png" />
   </ItemGroup>
 </Project>

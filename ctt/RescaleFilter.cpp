@@ -1,45 +1,66 @@
 #include "RescaleFilter.h"
 
 #include "NotImplementedException.h"
+#include "GPUHelper.h"
+#include "FilterParam.h"
 
 namespace model {
 namespace filter {
 
 using ::model::frame::Frame;
-using ::exception::NotImplementedException;
+using ::model::filter::FilterParam;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
+using ::helper::GPUHelper;
+using ::exception::NotImplementedException;
+
+const QString RescaleFilter::kParamNewSize = "filter_rescale_param_newsize";
+const QString RescaleFilter::kParamNewSizeWidth = "filter_rescale_param_newsize_width";
+const QString RescaleFilter::kParamNewSizeHeight = "filter_rescale_param_newsize_height";
 
 RescaleFilter::RescaleFilter(Module::sptr predecessor) : Filter(predecessor) {
-    throw new NotImplementedException();
+    newParameter(kParamNewSize, predecessor->getResolution());
 }
 
 RescaleFilter::~RescaleFilter() {
-    throw new NotImplementedException();
-}
-
-QString RescaleFilter::getName() const {
-    throw new NotImplementedException();
 }
 
 model::frame::Frame::sptr RescaleFilter::getFrame(unsigned int frameNumber) const {
-    throw new NotImplementedException();
+    Frame::sptr sourceFrame = getPredecessor()->getFrame(frameNumber);
+
+    QSize newSize = getParamValue<QSize>(kParamNewSize);
+
+    GPUHelper gpuHelper(":/Shader/Filter/Rescale.fs", sourceFrame->getContext());
+
+    gpuHelper.run(*sourceFrame.data(), newSize);
 }
 
 Memento RescaleFilter::getMemento() const {
-    return Filter::getMemento();
+    Memento memento = Filter::getMemento();
+
+    QSize newSize = getParamValue<QSize>(kParamNewSize);
+
+    memento.setInt(kParamNewSizeWidth, newSize.width());
+    memento.setInt(kParamNewSizeHeight, newSize.height());
+
+    return memento;
 }
 
 void RescaleFilter::restore(Memento memento) {
     Filter::restore(memento);
+
+    QSize newSize;
+    newSize.setWidth(memento.getInt(kParamNewSizeWidth));
+    newSize.setWidth(memento.getInt(kParamNewSizeHeight));
+    setParam(FilterParam(kParamNewSize, newSize));
 }
 
 QList<const Module*> RescaleFilter::getUsesList() const {
-    return QList<const Module*>() << this;
+    throw new NotImplementedException();
 }
 
-Saveable::SaveableType RescaleFilter::getType() const {
-	return Saveable::SaveableType::rescaleFilter;
+bool RescaleFilter::uses(const ::model::Module &module) const {
+    throw new NotImplementedException();
 }
 
 }  // namespace filter
