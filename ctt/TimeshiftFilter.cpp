@@ -20,9 +20,5 @@ model::frame::Frame::sptr TimeshiftFilter::getFrame(unsigned int frameNumber) co
 
 const QString TimeshiftFilter::kParamShiftStr = "filter_timeshift_param_shift";
 
-Saveable::SaveableType TimeshiftFilter::getType() const {
-	return Saveable::SaveableType::timeshiftFilter;
-}
-
 }  // namespace filter
 }  // namespace model

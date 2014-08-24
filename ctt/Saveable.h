@@ -190,7 +190,7 @@ public:
 	 *
 	 * @return The type of the savable object.
 	 */
-	virtual SaveableType getType() const = 0;
+	static SaveableType getSaveableType();
 
 protected:
 	bool isDummyFlag = false;

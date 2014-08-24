@@ -26,10 +26,6 @@ Frame::sptr GreyscaleFilter::getFrame(unsigned int frameNumber) const {
     return Frame::sptr(new Frame(targetSurface, frame->getMetadata()));
 }
 
-Saveable::SaveableType GreyscaleFilter::getType() const {
-	return Saveable::SaveableType::greyscaleFilter;
-}
-
 Memento GreyscaleFilter::getMemento() const {
     return Filter::getMemento();
 }

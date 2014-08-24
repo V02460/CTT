@@ -65,9 +65,5 @@ Saveable::sptr EarthMoversHistogramDiff::getDummy() {
 	return dummyPointer;
 }
 
-Saveable::SaveableType EarthMoversHistogramDiff::getType() const {
-	return Saveable::SaveableType::earthMoversHistogramDiff;
-}
-
 }  // namespace difference
 }  // namespace model
