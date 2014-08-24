@@ -36,7 +36,6 @@ public slots:
 
 private:
     QList<QPushButton> insertionButtons; /**< The list of buttons to insert filters or differences */
-    ViewState viewState; /**< The current state of the whole GUI */
 };
 
 }  // namespace view

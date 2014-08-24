@@ -32,6 +32,7 @@
 #include "FFmpegDataVideo.h"
 #include "YUVDataVideo.h"
 #include "ViewState.h"
+#include "Observable.h"
 
 namespace controller {
 namespace project {
@@ -39,29 +40,34 @@ namespace project {
 /**
  * Loads a project saved as XML file by the XMLSaver.
  */
-class XMLLoader : public ProjectLoader {
+class XMLLoader : public ProjectLoader, public ::model::Observable {
 
 public:
     typedef QScopedPointer<XMLLoader> uptr;
     typedef QSharedPointer<XMLLoader> sptr;
     typedef QWeakPointer<XMLLoader> wptr;
 
-	/**
-	 * Creates a new XMLLoader.
-	 */
-	XMLLoader();
+	virtual void restore(QDir path);
 
-	virtual void restore(QDir path, ::controller::project::Project project);
+	/**
+	 * Returns the one instance this class can have.
+	 */
+	static XMLLoader *getInstance();
 
 private:
+	XMLLoader();
+
+	static XMLLoader::uptr instance;
+
 	QXmlStreamReader *xml;
 
 	QMap<int, ::model::saveable::Saveable::sptr> pointerMap;
 	QMap<int, ::model::saveable::Memento> mementoMap;
 	QMap<int, QMap<QString, int>> mementoIdMap;
+	Memento viewMemento;
 
 	void openFile(QDir path);
-	void createMaps(Project project);
+	void createMaps();
 	void restore();
 };
 

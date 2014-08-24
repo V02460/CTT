@@ -375,6 +375,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="GlobalContext.cpp" />
     <ClCompile Include="GPUHelper.cpp" />
     <ClCompile Include="GreenHistogram.cpp" />
     <ClCompile Include="GreyscaleFilter.cpp" />
@@ -589,6 +590,7 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml"</Command>
     </CustomBuild>
     <ClInclude Include="GeneratedFiles\ui_ctt.h" />
+    <ClInclude Include="GlobalContext.h" />
     <ClInclude Include="GPUHelper.h" />
     <ClInclude Include="GreenHistogram.h" />
     <ClInclude Include="GreyscaleFilter.h" />
@@ -858,7 +860,6 @@
     </CustomBuild>
     <ClInclude Include="ProjectLoader.h" />
     <ClInclude Include="ProjectSaver.h" />
-    <ClInclude Include="ProjectSaverFactory.h" />
     <ClInclude Include="RedHistogram.h" />
     <ClInclude Include="RescaleFilter.h" />
     <ClInclude Include="RGBChannelFilter.h" />
