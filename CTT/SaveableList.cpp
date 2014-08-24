@@ -105,9 +105,8 @@ template <class T>
 void SaveableList<T>::restore(Memento memento) {
 	int size = memento.getInt(SIZE);
 	for (int i = 0; i < size; i++) {
-		// TODO how to cast to T? every method seperate :/
-		// list.append(memento.getSharedPointer(ELEMENT + i));
-		throw new NotImplementedException();
+		// TODO works?
+		list.append(memento.getSharedPointer(ELEMENT + i).dynamicCast<T>());
 	}
 	isDummyFlag = false;
 }
