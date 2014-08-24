@@ -8,6 +8,7 @@
 #include "Video.h"
 
 #include "NotImplementedException.h"
+#include "IllegalStateException.h"
 
 #include "EarthMoversHistogramDiff.h"
 #include "PixelDiff.h"
@@ -35,6 +36,7 @@ namespace model {
 namespace saveable {
 
 using ::exception::NotImplementedException;
+using ::exception::IllegalStateException;
 
 template <class T>
 SaveableList<T>::SaveableList() {}
@@ -45,12 +47,18 @@ template <class T> const QString SaveableList<T>::ELEMENT = "element";
 
 template <class T>
 void SaveableList<T>::insert(int index, typename T::sptr element) {
+	if (isDummy()) {
+		throw new IllegalStateException("Called method at dummy class.");
+	}
 	list.insert(index, element);
 	changed();
 }
 
 template <class T>
 typename T::sptr SaveableList<T>::remove(int index) {
+	if (isDummy()) {
+		throw new IllegalStateException("Called method at dummy class.");
+	}
 	T::sptr element = get(index);
 	list.removeAt(index);
 	changed();
@@ -59,11 +67,17 @@ typename T::sptr SaveableList<T>::remove(int index) {
 
 template <class T>
 const typename T::sptr SaveableList<T>::get(int index) const {
+	if (isDummy()) {
+		throw new IllegalStateException("Called method at dummy class.");
+	}
 	return list[index];
 }
 
 template <class T>
 const int SaveableList<T>::getSize() const {
+	if (isDummy()) {
+		throw new IllegalStateException("Called method at dummy class.");
+	}
 	return list.size();
 }
 
@@ -74,6 +88,9 @@ const ::model::saveable::Saveable::SaveableType SaveableList<T>::getTemplateType
 
 template <class T>
 Memento SaveableList<T>::getMemento() const {
+	if (isDummy()) {
+		throw new IllegalStateException("Called method at dummy class.");
+	}
 	Memento memento = Memento();
 	int size = getSize();
 	memento.setInt(SIZE, size);
