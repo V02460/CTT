@@ -15,6 +15,8 @@ public:
 	static QOpenGLContext *get();
 
 private:
+	Q_DISABLE_COPY(GlobalContext)
+
 	GlobalContext();
 
 	static GlobalContext *getInstance();

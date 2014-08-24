@@ -13,7 +13,6 @@ namespace saveable {
     class Memento;
 }}
 
-
 namespace model {
 namespace saveable {
 

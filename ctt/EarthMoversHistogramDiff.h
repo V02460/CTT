@@ -44,6 +44,8 @@ public:
 	virtual ::model::saveable::Saveable::SaveableType getType() const Q_DECL_OVERRIDE;
 
 private:
+	Q_DISABLE_COPY(EarthMoversHistogramDiff)
+
 	static const QString VIDEO1;
 	static const QString VIDEO2;
 	static const QString TYPE;

@@ -66,8 +66,7 @@ public:
 	static Saveable::sptr getDummy();
 	virtual ::model::saveable::Saveable::SaveableType getType() const Q_DECL_OVERRIDE;
 
-private: 
-    // T *firstElement;
+private:
     QList<typename T::sptr> list;
 
 	static const QString SIZE;
