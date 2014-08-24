@@ -3,11 +3,15 @@
 namespace exception {
 
 NotImplementedException::NotImplementedException() : msg(""){
-
+#ifdef DEBUG_EXCEPTION_PRINT_ON_CALL
+    qDebug() << getName();
+#endif
 }
 
 NotImplementedException::NotImplementedException(QString msg) : msg(msg), asciiMsg(msg.toLatin1()) {
-
+#ifdef DEBUG_EXCEPTION_PRINT_ON_CALL
+    qDebug() << getName() << getMsg();
+#endif
 }
 
 NotImplementedException::~NotImplementedException() {

@@ -22,14 +22,16 @@ public:
     typedef QSharedPointer<MixFilter> sptr;
     typedef QWeakPointer<MixFilter> wptr;
 
+    static const QString kParamMixRatioStr;
+
     /**
-    * Creates a new MixFilter object with a given previous module and a Surface which provides the texture to be
-    * mixed with a frame.
+    * Creates a new MixFilter object with two modules to mix.
     *
-    * @param predecessor The previous module of this filter.
-    * @param surface The surface which provides the texture to be mixed with a frame.
+    * @param module1 The first module which is mixed
+    * @param module2 The second module which is mixed
+    * @throws IllegalArgumentException if resolution of the two modules does not match
     */
-    MixFilter(Module::sptr predecessor, Surface::sptr surface);
+    MixFilter(Module::sptr module1, Module::sptr module2);
 
     /**
      * MixFilter destructor.
@@ -37,9 +39,17 @@ public:
     virtual ~MixFilter();
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
-    virtual QString getName() const;
+    virtual QString getName() const Q_DECL_OVERRIDE { return "filter_mix"; };
 	virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
-	virtual ::model::saveable::Saveable::SaveableType getType() const;
+	
+    virtual ::model::saveable::Saveable::SaveableType getType() const Q_DECL_OVERRIDE;
+    virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
+    virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
+    virtual QList<const ::model::Module*> getUsesList() const Q_DECL_OVERRIDE;
+    virtual bool uses(const ::model::Module &module) const Q_DECL_OVERRIDE;
+
+private:
+    ::model::Module::sptr module2;
 };
 
 }  // namespace filter

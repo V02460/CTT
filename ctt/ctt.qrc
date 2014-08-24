@@ -15,5 +15,7 @@
         <file>Shader/Filter/Greyscale.fs</file>
         <file>Shader/Filter/1DBlur.fs</file>
         <file>Shader/Conversion/RGBtoYUV444sdtv.fs</file>
+        <file>Shader/Filter/Mix.fs</file>
+        <file>Shader/Filter/Rescale.fs</file>
     </qresource>
 </RCC>
