@@ -36,6 +36,8 @@ protected:
     */
     virtual ~Overlay();
 
+    static Saveable::SaveableType getSaveableType();
+
     ::model::filter::Filter &getMixFilter() const;
 private:
     ::model::filter::MixFilter::uptr mixFilter;

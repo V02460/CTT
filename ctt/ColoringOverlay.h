@@ -39,7 +39,7 @@ public:
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE{ return true; }
     QString getName() const;
     model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
-
+    static Saveable::SaveableType getSaveableType();
 
 protected:
     const ::model::filter::GreyscaleFilter &getGreyscaleFilter() const;

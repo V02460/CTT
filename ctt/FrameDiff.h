@@ -39,6 +39,8 @@ public:
      */
     unsigned int getFrameCount() const;
 
+    static Saveable::SaveableType getSaveableType();
+
 protected:
     /**
     * Constructs the FrameDiff by taking two videos used to calculate their frame difference.

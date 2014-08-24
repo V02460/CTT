@@ -108,6 +108,7 @@ Memento Filter::getMemento() const {
     return memento;
 }
 
+// TODO isDummyFlag = false ... nicht mehr zu restoren?
 void Filter::restore(Memento memento) {
     predecessor = memento.getSharedPointer("predecessor").dynamicCast<Module>();
 }
