@@ -30,6 +30,13 @@ model::frame::Frame::sptr RescaleFilter::getFrame(unsigned int frameNumber) cons
 
     QSize newSize = getParamValue<QSize>(kParamNewSize);
 
+    if (newSize.width() < 1) {
+        newSize.setWidth(1);
+    }
+    if (newSize.height() < 1) {
+        newSize.setHeight(1);
+    }
+
     GPUHelper gpuHelper(":/Shader/Filter/Rescale.fs", sourceFrame->getContext());
 
     gpuHelper.run(*sourceFrame.data(), newSize);

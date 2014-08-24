@@ -240,6 +240,15 @@
     <ClCompile Include="ModelTests.h">
       <Filter>Test Structure\Model</Filter>
     </ClCompile>
+    <ClCompile Include="RescaleFilterTest.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_RescaleFilterTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_RescaleFilterTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -288,6 +297,12 @@
       <Filter>Generated Files</Filter>
     </CustomBuild>
     <CustomBuild Include="MixFilterTest.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilteredVideoTest.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="RescaleFilterTest.h">
       <Filter>Header Files\Model\Filter</Filter>
     </CustomBuild>
   </ItemGroup>
