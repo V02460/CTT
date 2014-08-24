@@ -154,9 +154,9 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 		load(frameNumber);
 	}
 
-	QByteArray rawFrame = videoBuffer.mid((frameNumber - firstFrameInMemory) * bytesPerFrame, bytesPerFrame);
+	QByteArray rawFrame(videoBuffer.mid((frameNumber - firstFrameInMemory) * bytesPerFrame, bytesPerFrame));
 
-	QByteArray yChannel = rawFrame.mid(0, pixelsPerFrame);
+	QByteArray yChannel(rawFrame.left(pixelsPerFrame));
 	QScopedPointer<QByteArray> uChannel;
 	QScopedPointer<QByteArray> vChannel;
 

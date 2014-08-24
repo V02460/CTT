@@ -26,7 +26,7 @@ RescaleFilter::~RescaleFilter() {
 }
 
 model::frame::Frame::sptr RescaleFilter::getFrame(unsigned int frameNumber) const {
-    Frame::sptr sourceFrame = getPredecessor()->getFrame(frameNumber);
+    Surface::sptr sourceFrame(getPredecessor()->getFrame(frameNumber));
 
     QSize newSize = getParamValue<QSize>(kParamNewSize);
 
@@ -39,7 +39,8 @@ model::frame::Frame::sptr RescaleFilter::getFrame(unsigned int frameNumber) cons
 
     GPUHelper gpuHelper(":/Shader/Filter/Rescale.fs", sourceFrame->getContext());
 
-    gpuHelper.run(*sourceFrame.data(), newSize);
+	model::frame::FrameMetadata metadata(newSize);
+	return Frame::sptr(new Frame(gpuHelper.run(*sourceFrame.data(), newSize), metadata));
 }
 
 Memento RescaleFilter::getMemento() const {
