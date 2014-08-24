@@ -19,7 +19,6 @@ void YUVDataVideoTest::dummyTest()
 
 void YUVDataVideoTest::test444()
 {
-	//TODO relative Path zefgtiq
 	YUVDataVideo testVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
 	QCOMPARE(testVideo.getFrameCount(), (unsigned int) 15);
 
@@ -52,7 +51,6 @@ void YUVDataVideoTest::init()
 
 void YUVDataVideoTest::test422()
 {
-	//TODO relative Path zefgtiq
 	YUVDataVideo testVideo("resources/Videos/YUV422/squirrel-720x576-422P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV422, testContext);
 	QCOMPARE(testVideo.getFrameCount(), (unsigned int)15);
 
@@ -111,4 +109,27 @@ void YUVDataVideoTest::invalidConstruction()
 	QEXPECT_EXCEPTION(YUVDataVideo testVideo("resources/Videos/YUV422/squirrel-720x576-422P.yuv", "thismetadatafiledoesntexist",QSize(720, 576), 24, model::video::YUVType::YUV422, testContext), FileNotFoundException);
 
 	//TODO kugtexxxiiia metadatafiles of wrong sizes, resolutions that cant be divided into 16*16 pixel blocks
+}
+
+void YUVDataVideoTest::saveRestore()
+{
+
+	YUVDataVideo testVideo("resources/Videos/YUV422/squirrel-720x576-422P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV422, testContext);
+	Memento memento = testVideo.getMemento();
+	
+	YUVDataVideo::sptr dummy = YUVDataVideo::getDummy().dynamicCast<YUVDataVideo>();
+
+	dummy->restore(memento);
+	QCOMPARE(dummy->getFrameCount(), (unsigned int)15);
+
+	VideoMetadata metadata = dummy->getMetadata();
+	QCOMPARE(metadata.getLength(), (unsigned int)15);
+	QCOMPARE(metadata.getFPS(), 24.0f);
+	QCOMPARE(metadata.getSize().width(), 720);
+	QCOMPARE(metadata.getSize().height(), 576);
+
+
+
+	//TODO zfds get Frame, needs gloabal context 
+	//TODO iztd with metadata, needs metadata file
 }
