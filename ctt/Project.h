@@ -70,11 +70,6 @@ public:
 	 */
 	static Project *getInstance();
 
-	/**
-	 * Activates and returns the OpenGLContext of this program.
-	 */
-	QOpenGLContext *getActiveContext() const;
-
 private:
     Q_DISABLE_COPY(Project)
 
@@ -88,8 +83,6 @@ private:
 	::model::saveable::SaveableList<::model::player::Player>::sptr playerList1;
 	::model::player::Player::sptr player2;
 	::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr diffList;
-	QScopedPointer<QOpenGLContext> context;
-    mutable QOffscreenSurface offscreenSurface;
 };
 
 }  // namespace project

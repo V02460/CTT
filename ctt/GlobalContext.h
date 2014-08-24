@@ -2,17 +2,22 @@
 #define _GLOBALCONTEXT_H
 
 #include <QOffscreenSurface>
+#include <QOpenGLContext>
 
 namespace model {
 
 class GlobalContext {
+
 public:
+	/**
+	 * Returns the OpenGLContext this program is using.
+	 */
 	static QOpenGLContext *get();
 
 private:
 	GlobalContext();
 
-	GlobalContext *getInstance();
+	static GlobalContext *getInstance();
 
 	static QScopedPointer<GlobalContext> instance;
 

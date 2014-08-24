@@ -18,11 +18,7 @@ Project::Project() : baseVideoList(new SaveableList<FileVideo>()),
 	                 videoList2(new SaveableList<FilteredVideo>()),
 	                 playerList1(new SaveableList<Player>()),
 	                 player2(new Player(24)),
-	                 diffList(new SaveableList<FrameDiff>()),
-	                 context(new QOpenGLContext()),
-                     offscreenSurface() {
-    offscreenSurface.create();
-}
+	                 diffList(new SaveableList<FrameDiff>()) {}
 
 SaveableList<FileVideo>::sptr Project::getBaseVideoList() const {
 	return baseVideoList;
@@ -53,11 +49,6 @@ Project *Project::getInstance() {
 		instance.reset(new Project());
 	}
 	return instance.data();
-}
-
-QOpenGLContext *Project::getActiveContext() const {
-    context->makeCurrent(&offscreenSurface);
-    return context.data();
 }
 
 Project::uptr Project::instance;
