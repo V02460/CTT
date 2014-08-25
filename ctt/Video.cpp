@@ -11,8 +11,10 @@ namespace video {
 using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
 using ::exception::IOException;
-
 using ::model::frame::Frame;
+using model::filter::FilterParam;
+
+model::filter::RescaleFilter::uptr Video::rescaler;
 
 void Video::save(QString path, VideoFileType type) const
 {
@@ -72,8 +74,20 @@ void Video::save(QString path, VideoFileType type) const
 	videoFile.close();
 }
 
-::model::frame::Frame::sptr Video::getScaledFrame(unsigned int frameNumber, QSize size) const {
-    throw new NotImplementedException();
+::model::frame::Frame::sptr Video::getScaledFrame(Video::sptr video, unsigned int frameNumber, QSize size) {
+    if (rescaler.isNull())
+    {
+		rescaler.reset(new model::filter::RescaleFilter(video));
+	}
+	else
+	{
+		rescaler->setPreviousModule(video);
+	}
+
+	FilterParam param(model::filter::RescaleFilter::kParamNewSize, size);
+	rescaler->setParam(param);
+
+	return rescaler->getFrame(frameNumber);
 }
 
 

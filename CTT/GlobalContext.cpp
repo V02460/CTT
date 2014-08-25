@@ -1,25 +1,16 @@
 #include "GlobalContext.h"
 
 namespace model {
+	QScopedPointer<QOpenGLContext> GlobalContext::context;
+	QOffscreenSurface GlobalContext::surface;
 
-GlobalContext::GlobalContext() : context(new QOpenGLContext()), offscreenSurface() {
-    offscreenSurface.create();
-}
-
-QOpenGLContext *GlobalContext::get() {
-	GlobalContext *gc = getInstance();
-	QOpenGLContext *openGLContext = gc->context.data();
-	openGLContext->makeCurrent(&gc->offscreenSurface);
-	return openGLContext;
-}
-
-GlobalContext *GlobalContext::getInstance() {
-	if (instance.isNull()) {
-		instance.reset(new GlobalContext());
+	QOpenGLContext *GlobalContext::get() {
+		if (context.isNull()) {
+			context.reset(new QOpenGLContext());
+			surface.create();
+		}
+		context->makeCurrent(&surface);
+		return context.data();
 	}
-	return instance.data();
-}
-
-QScopedPointer<GlobalContext> GlobalContext::instance = QScopedPointer<GlobalContext>(new QOpenGLContext);
 
 }  // namespace model

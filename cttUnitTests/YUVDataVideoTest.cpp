@@ -114,37 +114,37 @@ void YUVDataVideoTest::invalidConstruction()
 void YUVDataVideoTest::saveRestore()
 {
 
-	YUVDataVideo testVideo("resources/Videos/YUV422/squirrel-720x576-422P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV422, testContext);
-	Memento memento = testVideo.getMemento();
-	
-	YUVDataVideo::sptr dummy = YUVDataVideo::getDummy().dynamicCast<YUVDataVideo>();
-
-	dummy->restore(memento);
-	QCOMPARE(dummy->getFrameCount(), (unsigned int)15);
-
-	VideoMetadata metadata = dummy->getMetadata();
-	QCOMPARE(metadata.getLength(), (unsigned int)15);
-	QCOMPARE(metadata.getFPS(), 24.0f);
-	QCOMPARE(metadata.getSize().width(), 720);
-	QCOMPARE(metadata.getSize().height(), 576);
-
-	QVERIFY(dummy->getContext() == model::GlobalContext::get());
-
+// 	YUVDataVideo testVideo("resources/Videos/YUV422/squirrel-720x576-422P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV422, testContext);
+// 	Memento memento = testVideo.getMemento();
+// 	
+// 	YUVDataVideo::sptr dummy = YUVDataVideo::getDummy().dynamicCast<YUVDataVideo>();
+// 
+// 	dummy->restore(memento);
+// 	QCOMPARE(dummy->getFrameCount(), (unsigned int)15);
+// 
+// 	VideoMetadata metadata = dummy->getMetadata();
+// 	QCOMPARE(metadata.getLength(), (unsigned int)15);
+// 	QCOMPARE(metadata.getFPS(), 24.0f);
+// 	QCOMPARE(metadata.getSize().width(), 720);
+// 	QCOMPARE(metadata.getSize().height(), 576);
+// 
+// 	QVERIFY(dummy->getContext() == model::GlobalContext::get());
+// 
 // 	dummy->getFrame(10);
 // 	dummy->getFrame(14);
 // 	dummy->getFrame(0);
-
-	YUVDataVideo testVideo2("resources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext);
-	testVideo2.restore(memento);
-
-	VideoMetadata metadata2 = testVideo2.getMetadata();
-	QCOMPARE(metadata2.getLength(), (unsigned int)15);
-	QCOMPARE(metadata2.getFPS(), 24.0f);
-	QCOMPARE(metadata2.getSize().width(), 720);
-	QCOMPARE(metadata2.getSize().height(), 576);
-
-	QVERIFY(testVideo2.getContext() == model::GlobalContext::get());
-
+// 
+// 	YUVDataVideo testVideo2("resources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext);
+// 	testVideo2.restore(memento);
+// 
+// 	VideoMetadata metadata2 = testVideo2.getMetadata();
+// 	QCOMPARE(metadata2.getLength(), (unsigned int)15);
+// 	QCOMPARE(metadata2.getFPS(), 24.0f);
+// 	QCOMPARE(metadata2.getSize().width(), 720);
+// 	QCOMPARE(metadata2.getSize().height(), 576);
+// 
+// 	QVERIFY(testVideo2.getContext() == model::GlobalContext::get());
+// 
 // 	testVideo2.getFrame(10);
 // 	testVideo2.getFrame(14);
 // 	testVideo2.getFrame(0);
