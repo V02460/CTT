@@ -7,6 +7,7 @@
 #include "BlurFilterTest.h"
 #include "MixFilterTest.h"
 #include "RescaleFilterTest.h"
+#include "GreyscaleFilterTest.h"
 
 #include "FilteredVideoTest.h"
 
@@ -20,6 +21,7 @@ static TestResult test(int argc, char *argv[]) {
     BlurFilterTest blurFilterTest;
     MixFilterTest mixFilterTest;
     RescaleFilterTest rescaleFilterTest;
+    GreyscaleFilterTest greyscaleFilterTest;
 
     FilteredVideoTest filteredVideoTest;
 
@@ -27,6 +29,7 @@ static TestResult test(int argc, char *argv[]) {
       << TestResult("BlurFilterTest", QTest::qExec(&blurFilterTest, argc, argv))
       << TestResult("MixFilterTest", QTest::qExec(&mixFilterTest, argc, argv))
       << TestResult("RescaleFilterTest", QTest::qExec(&rescaleFilterTest, argc, argv))
+      << TestResult("GreycaleFilterTest", QTest::qExec(&greyscaleFilterTest, argc, argv))
 
       << TestResult("FilteredVideoTest", QTest::qExec(&filteredVideoTest, argc, argv));
 

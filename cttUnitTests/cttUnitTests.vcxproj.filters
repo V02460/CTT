@@ -249,9 +249,6 @@
     <ClCompile Include="RGBChannelFilterTest.cpp">
       <Filter>Source Files\Model\Filter</Filter>
     </ClCompile>
-    <ClCompile Include="GreyscaleFilterTest.cpp">
-      <Filter>Source Files\Model\Filter</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_FilteredVideoTest.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -259,6 +256,15 @@
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="FilteredVideoTest.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GreyscaleFilterTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GreyscaleFilterTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GreyscaleFilterTest.cpp">
       <Filter>Source Files\Model\Filter</Filter>
     </ClCompile>
   </ItemGroup>
@@ -317,6 +323,9 @@
     <CustomBuild Include="FilteredVideoTest.h">
       <Filter>Header Files\Model\Filter</Filter>
     </CustomBuild>
+    <CustomBuild Include="GreyscaleFilterTest.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CustomTestingMacros.h">
@@ -356,9 +365,6 @@
       <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
     <ClInclude Include="RGBChannelFilterTest.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="GreyscaleFilterTest.h">
       <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
   </ItemGroup>
