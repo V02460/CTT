@@ -20,6 +20,6 @@ GlobalContext *GlobalContext::getInstance() {
 	return instance.data();
 }
 
-QScopedPointer<GlobalContext> GlobalContext::instance;
+QScopedPointer<GlobalContext> GlobalContext::instance = QScopedPointer<GlobalContext>(new QOpenGLContext);
 
 }  // namespace model

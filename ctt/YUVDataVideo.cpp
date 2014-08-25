@@ -7,6 +7,7 @@
 #include "FrameMetadata.h"
 #include "GPUHelper.h"
 #include "YUVType.h"
+#include "GlobalContext.h"
 
 namespace model {
 namespace video {
@@ -359,7 +360,7 @@ Memento YUVDataVideo::getMemento() const
 
 void YUVDataVideo::restore(Memento memento)
 {
-	//TODO ztrdzt initialze context
+	context.reset(GlobalContext::get());
 	hasMetadataFile = false;
 
 	pathToVideoFile = memento.getString(videoPathStringId);

@@ -101,7 +101,7 @@
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <BrowseInformation>true</BrowseInformation>
       <AdditionalOptions>/wd4716 %(AdditionalOptions)</AdditionalOptions>
-      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>

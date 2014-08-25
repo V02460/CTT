@@ -6,6 +6,7 @@
 #include "FileNotFoundException.h"
 #include "YUVDataVideo.h"
 #include "Frame.h"
+#include "..\CTT\GlobalContext.h"
 
 using namespace model::video;
 using namespace exception;
@@ -75,7 +76,6 @@ void YUVDataVideoTest::test422()
 
 void YUVDataVideoTest::test420()
 {
-	//TODO relative Path zefgtiq
 	YUVDataVideo testVideo("resources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext);
 	QCOMPARE(testVideo.getFrameCount(), (unsigned int)260);
 
@@ -128,8 +128,26 @@ void YUVDataVideoTest::saveRestore()
 	QCOMPARE(metadata.getSize().width(), 720);
 	QCOMPARE(metadata.getSize().height(), 576);
 
+	QVERIFY(dummy->getContext() == model::GlobalContext::get());
 
+// 	dummy->getFrame(10);
+// 	dummy->getFrame(14);
+// 	dummy->getFrame(0);
 
-	//TODO zfds get Frame, needs gloabal context 
+	YUVDataVideo testVideo2("resources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext);
+	testVideo2.restore(memento);
+
+	VideoMetadata metadata2 = testVideo2.getMetadata();
+	QCOMPARE(metadata2.getLength(), (unsigned int)15);
+	QCOMPARE(metadata2.getFPS(), 24.0f);
+	QCOMPARE(metadata2.getSize().width(), 720);
+	QCOMPARE(metadata2.getSize().height(), 576);
+
+	QVERIFY(testVideo2.getContext() == model::GlobalContext::get());
+
+// 	testVideo2.getFrame(10);
+// 	testVideo2.getFrame(14);
+// 	testVideo2.getFrame(0);
+	
 	//TODO iztd with metadata, needs metadata file
 }
