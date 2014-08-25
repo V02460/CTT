@@ -17,14 +17,8 @@ public:
 private:
 	Q_DISABLE_COPY(GlobalContext)
 
-	GlobalContext();
-
-	static GlobalContext *getInstance();
-
-	static QScopedPointer<GlobalContext> instance;
-
-	QScopedPointer<QOpenGLContext> context;
-	mutable QOffscreenSurface offscreenSurface;
+	static QScopedPointer<QOpenGLContext> context;
+	static QOffscreenSurface surface;
 };
 
 }  // namespace model
