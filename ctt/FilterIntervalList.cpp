@@ -9,7 +9,7 @@ using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
 
 FilterIntervalList::FilterIntervalList() {
-    throw new NotImplementedException();
+    //throw new NotImplementedException();
 }
 
 
@@ -47,9 +47,8 @@ Saveable::sptr FilterIntervalList::getDummy() {
     throw new NotImplementedException();
 }
 
-Saveable::SaveableType FilterIntervalList::getType() const {
-	return Saveable::SaveableType::filterIntervalList;
+Saveable::SaveableType FilterIntervalList::getSaveableType() {
+    return SaveableType::filterIntervalList;
 }
-
 
 }  // namespace model

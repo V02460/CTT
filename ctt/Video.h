@@ -46,7 +46,7 @@ public:
      * @throws IOException if it's not possible to save the video to the submitted path
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    void save(QString path, YUVType type) const;
+    void save(QString path, VideoFileType type) const;
 
     /**
      * Gets the frame with the submitted number scaled to the submitted resolution.
@@ -71,6 +71,7 @@ public:
 
 	virtual QSize getResolution() const;
 
+    static Saveable::SaveableType getSaveableType();
 };
 
 }  // namespace video

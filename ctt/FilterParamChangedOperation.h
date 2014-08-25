@@ -42,6 +42,8 @@ public:
     void undoOperation();
 
 private:
+	Q_DISABLE_COPY(FilterParamChangedOperation)
+
     ::model::filter::Filter::sptr filter;
     ::model::filter::FilterParam::sptr param;
 	::model::saveable::Memento memento;

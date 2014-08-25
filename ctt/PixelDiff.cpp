@@ -14,5 +14,9 @@ PixelDiff::~PixelDiff() {
 
 }
 
+Saveable::SaveableType PixelDiff::getSaveableType() {
+    return SaveableType::pixelDiff;
+}
+
 }  // namespace difference
 }  // namcespace model

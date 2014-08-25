@@ -34,12 +34,15 @@ public:
     virtual ~NoiseFilter();
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
-    virtual QString getName() const Q_DECL_OVERRIDE {return "filter_noise";}
+    virtual QString getName() const;
 	virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
-	virtual ::model::saveable::Saveable::SaveableType getType() const;
+	
+    virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
+    virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
+    virtual QList<const ::model::Module*> getUsesList() const Q_DECL_OVERRIDE;
+    static Saveable::SaveableType getSaveableType();
 
-private:
-    static const QString kParamIntensityStr;
+	static const QString kParamIntensityStr;
 };
 
 }  // namespace filter

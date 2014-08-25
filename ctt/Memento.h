@@ -34,7 +34,7 @@ public:
 	 * @return The pointer with given name.
 	 * @throws InvalidArgumentException Is thrown if there is no pointer with given name.
 	 */
-	Saveable* getPointer(QString name) const;
+	Saveable *getPointer(QString name) const;
 
 	/**
 	 * Returns the shared pointer with given name.
@@ -43,7 +43,7 @@ public:
 	 * @return The shared pointer with given name.
 	 * @throws InvalidArgumentException Is thrown if there is no pointer with given name.
 	 */
-	QSharedPointer<Saveable> getSharedPointer(QString name) const;
+	Saveable::sptr getSharedPointer(QString name) const;
 
 	/**
 	 * Creates a new, empty memento.
@@ -174,7 +174,7 @@ public:
      * @param name The name of the shared pointer to be saved in this memento.
 	 * @param pointer The shared pointer to be saved in this memento.
      */
-	void setSharedPointer(QString name, QSharedPointer<Saveable>);
+	void setSharedPointer(QString name, Saveable::sptr);
 
     /**
      * Returns the map of all variables.
@@ -188,11 +188,11 @@ public:
      *
      * @return The map of all pointers.
      */
-	QMap<QString, QSharedPointer<Saveable>> getPointerMap() const;
+	QMap<QString, Saveable::sptr> getPointerMap() const;
 
 private:
     QMap<QString, QString> variableMap; 
-	QMap<QString, QSharedPointer<Saveable>> pointerMap;
+	QMap<QString, Saveable::sptr> pointerMap;
 };
 
 }  // namespace saveable

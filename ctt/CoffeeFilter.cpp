@@ -10,6 +10,7 @@ namespace filter {
 using ::model::frame::Frame;
 using ::exception::NotImplementedException;
 using ::model::saveable::Saveable;
+using ::model::saveable::Memento;
 
 CoffeeFilter::CoffeeFilter(Module::sptr predecessor) : Filter(predecessor) {
     throw new NotImplementedException();
@@ -27,8 +28,20 @@ model::frame::Frame::sptr CoffeeFilter::getFrame(unsigned int frameNumber) const
     throw new NotImplementedException();
 }
 
-Saveable::SaveableType CoffeeFilter::getType() const {
-	return Saveable::SaveableType::coffeeFilter;
+Memento CoffeeFilter::getMemento() const {
+    return Filter::getMemento();
+}
+
+void CoffeeFilter::restore(Memento memento) {
+    Filter::restore(memento);
+}
+
+QList<const Module*> CoffeeFilter::getUsesList() const {
+    return QList<const Module*>() << this;
+}
+
+Saveable::SaveableType CoffeeFilter::getSaveableType() {
+    return SaveableType::coffeeFilter;
 }
 
 }  // namespace filter

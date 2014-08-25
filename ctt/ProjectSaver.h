@@ -30,7 +30,7 @@ public:
      * @param project The project to be saved.
      * @throws IOException Is thrown if for any reason the file cant be written.
      */
-    virtual void save(QDir path, const ::controller::project::Project &project) = 0;
+    virtual void save(QDir path) = 0;
 };
 
 }  // namespace project

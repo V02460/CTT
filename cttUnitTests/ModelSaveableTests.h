@@ -4,15 +4,18 @@
 #include "TestResult.h"
 
 #include "MementoTest.h"
+#include "SaveableListTest.h"
 
 namespace model {
 namespace saveable {
 
 static TestResult test(int argc, char *argv[]) {
-    TestResult r("memento");
+    TestResult r("saveable");
 
-    MementoTest frameTest;
-    r << TestResult("MementoTest", QTest::qExec(&frameTest, argc, argv));
+    MementoTest mementoTest;
+	SaveableListTest saveableListTest;
+	r << TestResult("MementoTest", QTest::qExec(&mementoTest, argc, argv))
+      << TestResult("SaveableListTest", QTest::qExec(&saveableListTest, argc, argv));
 
     return r;
 }

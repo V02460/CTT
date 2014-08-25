@@ -48,7 +48,11 @@ public:
 
     virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
 
-	virtual ::model::saveable::Saveable::SaveableType getType() const;
+    static Saveable::SaveableType getSaveableType();
+
+	virtual unsigned int getFrameCount() const;
+	virtual ::model::saveable::Memento getMemento() const;
+	virtual void restore(::model::saveable::Memento memento);
 
 private:
 	//Information about the videoFile
@@ -59,6 +63,8 @@ private:
 	int videoStreamNr;
 	//the codec used to decode the video
 	AVCodec *vCodec;
+	//length in frames of the video
+	unsigned int length;
 
 };
 

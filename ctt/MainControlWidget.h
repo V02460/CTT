@@ -46,6 +46,7 @@ public slots:
     void btnInsertClicked(bool active);
 
 private:
+
 	void setupUi(ViewType viewType);
 
     QPushButton *btnInsert; /**< The toggle button that indicates whether insertion mode is active or not */
@@ -56,6 +57,7 @@ private:
     AbstractListView *listView; /** The list view to show the current active differences or filters (depends on the viewState) */
 
 	QStackedLayout *rightDisplayWidgetLayout;
+
 };
 
 }  // namespace view

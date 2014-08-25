@@ -61,8 +61,8 @@ Saveable::sptr EarthMoversHistogramDiff::getDummy() {
 	return dummyPointer;
 }
 
-Saveable::SaveableType EarthMoversHistogramDiff::getType() const {
-	return Saveable::SaveableType::earthMoversHistogramDiff;
+Saveable::SaveableType EarthMoversHistogramDiff::getSaveableType() {
+    return SaveableType::earthMoversHistogramDiff;
 }
 
 EarthMoversHistogramDiff::EarthMoversHistogramDiff() {

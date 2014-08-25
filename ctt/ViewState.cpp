@@ -24,8 +24,8 @@ void ViewState::changeView(ViewType newView) {
     throw new NotImplementedException();
 }
 
-Saveable::SaveableType ViewState::getType() const {
-	return Saveable::SaveableType::viewState;
+Saveable::SaveableType ViewState::getSaveableType() {
+    return SaveableType::viewState;
 }
 
 ViewState* ViewState::getInstance() {

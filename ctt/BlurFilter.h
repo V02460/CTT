@@ -37,7 +37,12 @@ public:
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
     virtual QString getName() const Q_DECL_OVERRIDE { return "filter_blur"; }
     virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
-    virtual ::model::saveable::Saveable::SaveableType getType() const Q_DECL_OVERRIDE;
+    
+    virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
+    virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
+    virtual QList<const ::model::Module*> getUsesList() const Q_DECL_OVERRIDE;
+    virtual bool uses(const model::Module &module) const Q_DECL_OVERRIDE;
+    static Saveable::SaveableType getSaveableType();
 
 private:
     static const QString kParamRadiusStr;

@@ -1,5 +1,7 @@
 #include "FilterParam.h"
 
+#include "NotImplementedException.h"
+
 namespace model {
 namespace filter {
 
@@ -9,11 +11,11 @@ FilterParam::FilterParam(QString name, QVariant value) {
 }
 
 QVariant FilterParam::getValue() const {
-	return value;
+    return value;
 }
 
 QString FilterParam::getName() const {
-	return name;
+    return name;
 }
 
 }  // namespace filter

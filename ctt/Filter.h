@@ -114,6 +114,7 @@ public:
 
     ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
     void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
+    static Saveable::SaveableType getSaveableType();
 
 protected:
     template <class T>

@@ -26,8 +26,8 @@ model::frame::Frame::sptr MacroblockOverlay::getFrame(unsigned int frameNumber) 
     throw new NotImplementedException();
 }
 
-Saveable::SaveableType MacroblockOverlay::getType() const {
-	return Saveable::SaveableType::macroblockOverlay;
+Saveable::SaveableType MacroblockOverlay::getSaveableType() {
+    return SaveableType::macroblockOverlay;
 }
 
 }  // namespace overlay

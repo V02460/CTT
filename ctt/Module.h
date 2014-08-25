@@ -65,6 +65,8 @@ public:
 	 * @return the size of the frames this module provides
 	 */
 	virtual QSize getResolution() const = 0;
+
+    static Saveable::SaveableType getSaveableType();
 };
 
 }  // namespace model

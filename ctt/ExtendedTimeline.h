@@ -54,7 +54,6 @@ public slots:
 
 private:
     QSlider sliderProgress; /**< This is the slider to navigate the video */
-    ViewState viewState; /**< This is the current state of the whole GUI */
     
     /**
      * This is the currently shown timeline. It's either a FilterTimeline or a DifferenceTimeline.

@@ -1,6 +1,7 @@
 #include "NoiseFilter.h"
 
 #include "GPUHelper.h"
+#include "NotImplementedException.h"
 
 namespace model {
 namespace filter {
@@ -8,6 +9,8 @@ namespace filter {
 using ::model::frame::Frame;
 using ::helper::GPUHelper;
 using ::model::saveable::Saveable;
+using ::model::saveable::Memento;
+using ::exception::NotImplementedException;
 
 NoiseFilter::NoiseFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamIntensityStr, 0.5f);
@@ -28,8 +31,25 @@ model::frame::Frame::sptr NoiseFilter::getFrame(unsigned int frameNumber) const 
     return Frame::sptr(new Frame(targetSurface, frame->getMetadata()));
 }
 
-Saveable::SaveableType NoiseFilter::getType() const {
-	return Saveable::SaveableType::noiseFilter;
+QString NoiseFilter::getName() const {
+	// TODO sorry
+	throw new NotImplementedException();
+}
+
+Memento NoiseFilter::getMemento() const {
+    return Filter::getMemento();
+}
+
+void NoiseFilter::restore(Memento memento) {
+    Filter::restore(memento);
+}
+
+QList<const Module*> NoiseFilter::getUsesList() const {
+    return QList<const Module*>() << this;
+}
+
+Saveable::SaveableType NoiseFilter::getSaveableType() {
+    return SaveableType::noiseFilter;
 }
 
 const QString NoiseFilter::kParamIntensityStr = "filter_noise_param_intensity";

@@ -18,6 +18,7 @@ class PlayerTest :
 	void emptyPlayer();
 	void playingAndLooping();
 	void scrubberOperations();
+	void saveRestore();
 
 private:
 	QOffscreenSurface surface;

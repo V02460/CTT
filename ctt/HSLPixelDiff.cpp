@@ -26,8 +26,8 @@ double HSLPixelDiff::getDiff(unsigned int frameNr) const{
     throw new NotImplementedException();
 }
 
-Saveable::SaveableType HSLPixelDiff::getType() const {
-	return Saveable::SaveableType::hSLPixelDiff;
+Saveable::SaveableType HSLPixelDiff::getSaveableType() {
+    return SaveableType::hSLPixelDiff;
 }
 
 Memento HSLPixelDiff::getMemento() const {

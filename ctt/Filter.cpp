@@ -9,6 +9,7 @@ namespace filter {
 using ::model::frame::Frame;
 using ::model::Module;
 using ::model::saveable::Memento;
+using ::model::saveable::Saveable;
 using ::exception::AccessToDummyException;
 using ::exception::IllegalArgumentException;
 using ::exception::IllegalStateException;
@@ -22,7 +23,7 @@ Filter::~Filter() {
 QList<FilterParam> Filter::getParams() const {
     if (isDummy()) {
         throw new AccessToDummyException();
-}
+    }
 
     return parameters.values();
 }
@@ -30,12 +31,15 @@ QList<FilterParam> Filter::getParams() const {
 void Filter::setParam(FilterParam parameter) {
     if (isDummy()) {
         throw new AccessToDummyException();
-}
+    }
+    if (!parameters.contains(parameter.getName())) {
+        throw new IllegalArgumentException("Parameter '" + parameter.getName() + "' must exist in Filter to be set.");
+    }
 
     QVariant oldValue = parameters.value(parameter.getName(), parameter).getValue();
     QVariant newValue = parameter.getValue();
 
-    if (!newValue.canConvert(oldValue.type())) {
+    if (newValue.type() != oldValue.type()) {
         throw new IllegalArgumentException("Variable type of FilterParam does not match stored type.");
     }
 
@@ -95,8 +99,7 @@ Module *Filter::getPredecessor() const {
 
 QSize Filter::getResolution() const
 {
-	if (isDummy())
-	{
+	if (isDummy()) {
 		throw new IllegalStateException("Tried to request the resolution of a dummy Filter.");
 	}
 
@@ -109,8 +112,13 @@ Memento Filter::getMemento() const {
     return memento;
 }
 
+// TODO isDummyFlag = false ... nicht mehr zu restoren?
 void Filter::restore(Memento memento) {
     predecessor = memento.getSharedPointer("predecessor").dynamicCast<Module>();
+}
+
+Saveable::SaveableType Filter::getSaveableType() {
+    return SaveableType::filter;
 }
 
 }  // namespace filter

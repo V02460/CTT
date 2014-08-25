@@ -8,6 +8,7 @@ namespace filter {
 using ::model::frame::Frame;
 using ::exception::NotImplementedException;
 using ::model::saveable::Saveable;
+using ::model::saveable::Memento;
 
 RescaleFilter::RescaleFilter(Module::sptr predecessor) : Filter(predecessor) {
     throw new NotImplementedException();
@@ -25,8 +26,20 @@ model::frame::Frame::sptr RescaleFilter::getFrame(unsigned int frameNumber) cons
     throw new NotImplementedException();
 }
 
-Saveable::SaveableType RescaleFilter::getType() const {
-	return Saveable::SaveableType::rescaleFilter;
+Memento RescaleFilter::getMemento() const {
+    return Filter::getMemento();
+}
+
+void RescaleFilter::restore(Memento memento) {
+    Filter::restore(memento);
+}
+
+QList<const Module*> RescaleFilter::getUsesList() const {
+    return QList<const Module*>() << this;
+}
+
+Saveable::SaveableType RescaleFilter::getSaveableType() {
+    return SaveableType::rescaleFilter;
 }
 
 }  // namespace filter

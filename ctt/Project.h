@@ -1,13 +1,14 @@
 #ifndef _PROJECT_H
 #define _PROJECT_H
 
+#include <QOffscreenSurface>
+
 #include "SaveableList.h"
 #include "Video.h"
 #include "FileVideo.h"
 #include "FilteredVideo.h"
 #include "Player.h"
 #include "FrameDiff.h"
-#include "ViewState.h"
 
 namespace controller {
 namespace project {
@@ -64,20 +65,15 @@ public:
      */
 	::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr getDiffList() const;
 
-    /**
-     * Returns the current view of the project.
-     *
-     * @return the current view of the project.
-     */
-	::view::ViewState::sptr getView() const;
-
 	/**
-	* Returns the one instance this class can have.
-	*/
+	 * Returns the one instance this class can have.
+	 */
 	static Project *getInstance();
 
 private:
-	Project();
+    Q_DISABLE_COPY(Project)
+
+    Project();
 
 	static Project::uptr instance;
 
@@ -87,7 +83,6 @@ private:
 	::model::saveable::SaveableList<::model::player::Player>::sptr playerList1;
 	::model::player::Player::sptr player2;
 	::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr diffList;
-	::view::ViewState::sptr view;
 };
 
 }  // namespace project

@@ -10,6 +10,7 @@ using ::exception::IllegalArgumentException;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::model::saveable::SaveableList;
+using ::view::ViewState;
 
 XMLSaver::XMLSaver() {}
 
@@ -35,9 +36,9 @@ const QList<QString> XMLSaver::BASE_ELEMENT_NAMES = QList<QString>()
 	<< "diffList"
 	<< "view";
 
-void XMLSaver::save(QDir path, const Project &project) {
+void XMLSaver::save(QDir path) {
 	initDocument(path);
-	mapBasePointer(project);
+	mapBasePointer();
 	writeBaseElements();
 	writeElements();
 	endDocument();
@@ -64,14 +65,14 @@ void XMLSaver::initDocument(QDir path) {
 	out->writeStartElement(ELEMENTS);
 }
 
-void XMLSaver::mapBasePointer(Project project) {
-	pointerList.append(project.getBaseVideoList());
-	pointerList.append(project.getVideoList1());
-	pointerList.append(project.getVideoList2());
-	pointerList.append(project.getPlayerList1());
-	pointerList.append(project.getPlayer2());
-	pointerList.append(project.getDiffList());
-	pointerList.append(project.getView());
+void XMLSaver::mapBasePointer() {
+	Project *project = Project::getInstance();
+	pointerList.append(project->getBaseVideoList());
+	pointerList.append(project->getVideoList1());
+	pointerList.append(project->getVideoList2());
+	pointerList.append(project->getPlayerList1());
+	pointerList.append(project->getPlayer2());
+	pointerList.append(project->getDiffList());
 }
 
 void XMLSaver::writeBaseElements() {
@@ -79,7 +80,7 @@ void XMLSaver::writeBaseElements() {
 	for (elementID = 0; elementID < length; elementID++) {
 		out->writeStartElement(ELEMENT);
 		Saveable::sptr element = pointerList[elementID];
-		Saveable::SaveableType type = element->getType();
+		Saveable::SaveableType type = element->getSaveableType();
 		out->writeAttribute(CLASS, Saveable::SAVEABLE_TYPE_STRINGS[type]);
 		if (type == Saveable::SaveableType::saveableList) {
 			SaveableList<Saveable>::sptr list = element.staticCast<SaveableList<Saveable>>();
@@ -122,7 +123,7 @@ void XMLSaver::writeElements() {
 	for (; elementID < pointerList.length(); elementID++) {
 		out->writeStartElement(ELEMENT);
 		Saveable::sptr element = pointerList[elementID];
-		Saveable::SaveableType type = element->getType();
+		Saveable::SaveableType type = element->getSaveableType();
 		out->writeAttribute(CLASS, Saveable::SAVEABLE_TYPE_STRINGS[type]);
 		if (type = Saveable::SaveableType::saveableList) {
 			SaveableList<Saveable>::sptr list = element.staticCast<SaveableList<Saveable>>();
@@ -132,6 +133,16 @@ void XMLSaver::writeElements() {
 		writeMemento(element->getMemento());
 		out->writeEndElement();
 	}
+}
+
+void XMLSaver::writeSingeltons() {
+	out->writeStartElement(ELEMENT);
+	ViewState *view = ViewState::getInstance();
+	out->writeAttribute(CLASS, Saveable::SAVEABLE_TYPE_STRINGS[view->getSaveableType()]);
+	out->writeAttribute(ID, QString::number(elementID++)); // TODO ++ should work
+	out->writeAttribute(TYPE, BASE_ELEMENT_NAMES[view->getSaveableType()]);
+	writeMemento(view->getMemento());
+	out->writeEndElement();
 }
 
 XMLSaver *XMLSaver::getInstance() {

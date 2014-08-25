@@ -47,7 +47,7 @@ public:
     typedef QSharedPointer<XMLLoader> sptr;
     typedef QWeakPointer<XMLLoader> wptr;
 
-	virtual void restore(QDir path, ::controller::project::Project project);
+	virtual void restore(QDir path);
 
 	/**
 	 * Returns the one instance this class can have.
@@ -55,6 +55,8 @@ public:
 	static XMLLoader *getInstance();
 
 private:
+	Q_DISABLE_COPY(XMLLoader)
+
 	XMLLoader();
 
 	static XMLLoader::uptr instance;
@@ -64,9 +66,10 @@ private:
 	QMap<int, ::model::saveable::Saveable::sptr> pointerMap;
 	QMap<int, ::model::saveable::Memento> mementoMap;
 	QMap<int, QMap<QString, int>> mementoIdMap;
+	Memento viewMemento;
 
 	void openFile(QDir path);
-	void createMaps(Project project);
+	void createMaps();
 	void restore();
 };
 

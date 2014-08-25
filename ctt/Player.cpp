@@ -14,15 +14,16 @@ using ::exception::IllegalArgumentException;
 using ::exception::IllegalStateException;
 using ::exception::NotImplementedException;
 
-#define CURRENTFRAMENUMBERSTRINGID "currentFrameNumber"
-#define FPSSTRINGID "fps"
-#define LOOPINGSTRINGID "looping"
-#define LOOPSTARTSTRINGID "loopStart"
-#define LOOPENDSTRINGID "loopEnd"
-#define SCRUBBERSSTRINGID "scrubbers"
-#define NUMBEROFSCRUBBERSSTRINGID "numberOfScrubbers"
+const QString Player::fpsStringId("fps");
+const QString Player::scrubbersStringId("scrubbers");
+const QString Player::numberOfScrubbersStringId("numberOfScrubbers");
+const QString Player::loopingStringId("looping");
+const QString Player::loopEndAStringId("loopA");
+const QString Player::loopEndBStringId("loopB");
+const QString Player::frameNumberStringId("frameNr");
 
-Player::Player(double fps): fps(fps), defaultFPS(fps), loop(0, 0), currentFrameNumber(0), looping(false), playing(false) {
+
+Player::Player(double fps): fps(fps), loop(0, 0), currentFrameNumber(0), looping(false), playing(false) {
 	if (!(fps > 0)) {
 		throw new IllegalArgumentException("Tried to create a player with a playback speed not greater than zero.)");
 	}
@@ -35,6 +36,7 @@ Player::Player(double fps): fps(fps), defaultFPS(fps), loop(0, 0), currentFrameN
 Player::Player() : loop(0, 1)
 {
 	isDummyFlag = true;
+	currentFrameNumber = 0;
 }
 
 Player::~Player() {
@@ -100,10 +102,6 @@ void Player::jumpToFrameNr(unsigned int frameNr) {
 	emit currentFrameNrChanged(getCurrentFrameNumber());
 }
 
-double Player::getDefaultFPS() {
-	return defaultFPS;
-}
-
 void Player::setFPS(double fps){
 	if (isDummy())
 	{
@@ -114,6 +112,7 @@ void Player::setFPS(double fps){
 	}
 
 	this->fps = fps;
+	changed();
 }
 
 double Player::getFPS() const {
@@ -141,10 +140,6 @@ void Player::addScrubber(VideoScrubber::sptr scrubber) {
 	{
 		throw new IllegalStateException("Tried to add a VideoScrubber to a dummy player.");
 	}
-	if (scrubber->isDummy())
-	{
-		throw new IllegalArgumentException("Tried to add a dummy VideoScrubber to a player.");
-	}
 	
 	videoScrubbers.append(scrubber);
 	connect(this, SIGNAL(currentFrameNrChanged(unsigned int)), scrubber.data(), SLOT(jumpToFrameNr(unsigned int)));
@@ -153,11 +148,18 @@ void Player::addScrubber(VideoScrubber::sptr scrubber) {
 	{
 		currentFrameNumber = scrubber->getFrameCount();
 		emit currentFrameNrChanged(getCurrentFrameNumber());
-}
+	}
 	else
 	{
 		scrubber->jumpToFrameNr(getCurrentFrameNumber());
 	}
+
+	if (isLooping() && (getLoop().getEnd() >= scrubber->getFrameCount()))
+	{
+		looping = false;
+	}
+
+	changed();
 }
 
 void Player::addScrubber(VideoScrubber::sptr scrubber, unsigned int position) {
@@ -183,11 +185,12 @@ void Player::addScrubber(VideoScrubber::sptr scrubber, unsigned int position) {
 	{
 		currentFrameNumber = scrubber->getFrameCount();
 		emit currentFrameNrChanged(getCurrentFrameNumber());
-}
+	}
 	else
 	{
 		scrubber->jumpToFrameNr(getCurrentFrameNumber());
 	}
+	changed();
 }
 
 void Player::removeScrubber(unsigned int position) {
@@ -204,6 +207,7 @@ void Player::removeScrubber(unsigned int position) {
 
 	disconnect(this, SIGNAL(currentFrameNrChanged(unsigned int)), videoScrubbers.at(position).data(), SLOT(jumpToFrameNr(unsigned int)));
 	videoScrubbers.removeAt(position);
+	changed();
 }
 
 void Player::removeScrubber(const VideoScrubber &scrubber) {
@@ -227,6 +231,7 @@ void Player::removeScrubber(const VideoScrubber &scrubber) {
 			return;
 		}
 	}
+	changed();
 }
 
 bool Player::controlsScrubber(const VideoScrubber &scrubber) const {
@@ -305,7 +310,7 @@ void Player::setLoop(UIntegerInterval interval) {
 	if (isDummy())
 	{
 		throw new IllegalStateException("Tried to set a loop on a dummy Player.");
-}
+	}
 
 	if (interval.isDummy())
 	{
@@ -320,11 +325,12 @@ void Player::setLoop(UIntegerInterval interval) {
 	}
 
 	loop = interval;
+	looping = true;
 	if (!loop.contains(getCurrentFrameNumber()))
 	{
 		jumpToFrameNr(loop.getStart());
-	}	
-	looping = true;
+	}		
+	changed();
 }
 
 UIntegerInterval Player::getLoop() const {
@@ -339,7 +345,7 @@ bool Player::isLooping() const {
 	if (isDummy())
 	{
 		throw new IllegalStateException("Tried to ask a dummy Player whether it's looping.");
-}
+	}
 	return looping;
 }
 
@@ -358,54 +364,64 @@ Memento Player::getMemento() const {
 	}
 	Memento memento;
 
-	memento.setDouble(FPSSTRINGID, fps);
+	memento.setDouble(fpsStringId, fps);
+	memento.setUInt(frameNumberStringId, currentFrameNumber);
 
-	//?
-	memento.setUInt(CURRENTFRAMENUMBERSTRINGID, currentFrameNumber);
-	memento.setBool(LOOPINGSTRINGID, looping);
-	memento.setUInt(LOOPSTARTSTRINGID, loop.getStart());
-	memento.setUInt(LOOPENDSTRINGID, loop.getEnd());
+	memento.setBool(loopingStringId, looping);
+	if (isLooping())
+	{
+		memento.setUInt(loopEndAStringId, loop.getStart());
+		memento.setUInt(loopEndBStringId, loop.getEnd());
+	}
 
-	memento.setUInt(NUMBEROFSCRUBBERSSTRINGID, videoScrubbers.size());
+	memento.setUInt(numberOfScrubbersStringId, videoScrubbers.size());
 	for (unsigned int i = 0; i < static_cast<unsigned int>(videoScrubbers.size()); i++)
 	{
-		memento.setSharedPointer(SCRUBBERSSTRINGID + QString::number(i), videoScrubbers[i]);
+		memento.setSharedPointer(scrubbersStringId + QString::number(i), videoScrubbers[i]);
 	}
 
 	return memento;
 }
 
 void Player::restore(Memento memento) {
-	//do this properly again
-// 	isDummyFlag = false;
-// 
-// 	if (!(memento.getDouble(FPSSTRINGID) > 0)) {
-// 		throw new IllegalArgumentException("Tried to create a player with a playback speed not greater than zero.)");
-// 	}
-// 	fps = memento.getDouble(FPSSTRINGID);
-// 
-// 	playing = false;
-// 
-// 	//This is the doesn't restore the current frame number and loop
-// 	looping = false;
-// 	currentFrameNumber = 0;
-// 	loop = UIntegerInterval(0, 0);
-// 
-// 	timer.setTimerType(Qt::PreciseTimer);
-// 	connect(&timer, SIGNAL(timeout()), this, SLOT(nextFrame()));
-// 
-// 	for (unsigned int i = 0; i < memento.getUInt(NUMBEROFSCRUBBERSSTRINGID); i++)
-// 	{
-// 		addScrubber(memento.getSharedPointer<VideoScrubber>(SCRUBBERSSTRINGID + QString::number(i)));
-// 	}
+	isDummyFlag = false;
+
+	if (!(memento.getDouble(fpsStringId) > 0)) {
+		throw new IllegalArgumentException("Tried to create a player with a playback speed not greater than zero.)");
+	}
+	fps = memento.getDouble(fpsStringId);
+
+ 	looping = memento.getBool(loopingStringId);
+
+	if (looping)
+	{
+		loop = UIntegerInterval(memento.getUInt(loopEndAStringId), memento.getUInt(loopEndBStringId));
+		if (!loop.contains(currentFrameNumber))
+		{
+			currentFrameNumber = loop.getStart();
+		}
+	}
+
+	playing = false;
+	timer.setTimerType(Qt::PreciseTimer);
+	timer.stop();
+	connect(&timer, SIGNAL(timeout()), this, SLOT(nextFrame()));
+
+	videoScrubbers.clear();
+	for (unsigned int i = 0; i < memento.getUInt(numberOfScrubbersStringId); i++)
+	{
+		videoScrubbers.append(memento.getSharedPointer(scrubbersStringId + QString::number(i)).dynamicCast<VideoScrubber>());
+		connect(this, SIGNAL(currentFrameNrChanged(unsigned int)), videoScrubbers[i].data(), SLOT(jumpToFrameNr(unsigned int)));
+	}
+
 }
 
 Saveable::sptr Player::getDummy() {
 	return Saveable::sptr(new Player());
 }
 
-Saveable::SaveableType Player::getType() const {
-	return Saveable::SaveableType::player;
+Saveable::SaveableType Player::getSaveableType() {
+    return SaveableType::player;
 }
 
 void Player::nextFrame() {
@@ -449,6 +465,10 @@ void Player::previousFrame() {
 			jumpToFrameNr(getCurrentFrameNumber() - 1);
 		}
 	}
+}
+
+double Player::getDefaultFPS() {
+	return defaultFPS;
 }
 
 }  // namespace player

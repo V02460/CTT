@@ -14,7 +14,7 @@ using ::controller::operation::FilterAddedOperation;
 using ::model::filter::FilterFactory;
 using ::model::Module;
 
-FilterController::FilterController(FilteredVideo::sptr video) : video(video), list(OperationList::getInstance()) {}
+FilterController::FilterController(FilteredVideo::sptr video) : video(video) {}
 
 void FilterController::insertFilter(QString id) {
 	Module::sptr module;
@@ -23,19 +23,23 @@ void FilterController::insertFilter(QString id) {
 	} else {
 		module = video->getFilterList().back();
 	}
-	list->doOperation(QSharedPointer<Operation>(new FilterAddedOperation(FilterFactory::createFilter(id, module), video)));
+	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
+		new FilterAddedOperation(FilterFactory::createFilter(id, module), video)));
 }
 
 void FilterController::moveFilter(int oldPos, int newPos) {
-	list->doOperation(QSharedPointer<Operation>(new FilterMovedOperation(oldPos, newPos, video)));
+	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
+		new FilterMovedOperation(oldPos, newPos, video)));
 }
 
 void FilterController::changeFilterParam(const Filter::sptr filter, FilterParam::sptr param) {
-	list->doOperation(QSharedPointer<Operation>(new FilterParamChangedOperation(param, filter)));
+	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
+		new FilterParamChangedOperation(param, filter)));
 }
 
 void FilterController::removeFilter(int pos) {
-	list->doOperation(QSharedPointer<Operation>(new FilterRemovedOperation(pos, video)));
+	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
+		new FilterRemovedOperation(pos, video)));
 }
 
 void FilterController::setVideo(FilteredVideo::sptr newVideo) {

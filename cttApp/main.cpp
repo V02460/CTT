@@ -7,6 +7,7 @@
 
 #include "MockDisplayHelper.h"
 #include "YUVDataVideo.h"
+#include "FFmpegDataVideo.h"
 #include "Frame.h"
 #include "BlueHistogram.h"
 #include "Surface.h"
@@ -91,6 +92,7 @@ int main(int argc, char *argv[])
 		testProject->getVideoList1()->insert(0, testFilteredVideo);
 		VideoScrubber::sptr testFilteredVideoScrubber = VideoScrubber::sptr(new VideoScrubber(testFilteredVideo));
 
+
 		Player::sptr testPlayer = Player::sptr(new Player(24));
 		testPlayer->addScrubber(testVideoScrubber);
 		testPlayer->addScrubber(testFilteredVideoScrubber);
@@ -100,6 +102,14 @@ int main(int argc, char *argv[])
 			testProject->getBaseVideoList(), analysingVideosController);
 		processingWidget->show();
     /*}
+
+		//model::video::FFmpegDataVideo testVideo("Resources/Videos/mp4/mp4test.mp4", testContext);
+
+		testVideo.save("Resources/Videos/YUV444/XXXSAVEDVIDEOsquirrel-720x576-444P.yuv", model::video::VideoFileType::YUV);
+		MockDisplayHelper::showImage(testVideo.getFrame(10)->getFramebufferObject()->toImage());
+		       
+    }
+
     catch (RuntimeException *e) {
 //         QMessageBox msgBox;
 //         msgBox.setWindowTitle(e->getName());
