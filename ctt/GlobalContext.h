@@ -4,6 +4,7 @@
 #include <QOffscreenSurface>
 #include <QOpenGLContext>
 #include <QSharedPointer>
+#include <QScopedPointer>
 
 namespace model {
 
@@ -18,8 +19,11 @@ public:
 private:
 	Q_DISABLE_COPY(GlobalContext)
 
+    GlobalContext();
+    ~GlobalContext();
+
 	static QSharedPointer<QOpenGLContext> context;
-	static QOffscreenSurface surface;
+	static QScopedPointer<QOffscreenSurface> surface;
 };
 
 }  // namespace model

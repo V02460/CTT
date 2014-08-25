@@ -1006,9 +1006,6 @@
     <ClInclude Include="FilterMovedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
-    <ClInclude Include="YUVType.h">
-      <Filter>Header Files\Model\Video</Filter>
-    </ClInclude>
     <None Include="Shader\Histogram\saturationHistogramGrid.fs" />
   </ItemGroup>
   <ItemGroup>
