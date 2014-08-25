@@ -14,11 +14,11 @@ namespace model {
 static TestResult test(int argc, char *argv[]) {
     TestResult r("model");
 
-    r //<< frame::test(argc, argv)
-      //<< filter::test(argc, argv)
+    r << frame::test(argc, argv)
+      << filter::test(argc, argv)
       << saveable::test(argc, argv)
-      //<< player::test(argc, argv)
-      //<< video::test(argc, argv)
+      << player::test(argc, argv)
+      << video::test(argc, argv)
 	  ;
 
     return r;
