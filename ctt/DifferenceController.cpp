@@ -27,7 +27,11 @@ namespace controller {
 }
 
 void DifferenceController::diffRemoved(int pos) {
-	if (pos >= 0 && pos < diffList.getSize()) 	diffList.remove(pos);
+	if (pos >= 0 && pos < diffList.getSize()) 	{
+		diffList.remove(pos);
+		return;
+	}
+	else throw new exception::IllegalArgumentException("There is no Difference Function at the position one is to be removed.");
 }
 
 }  // namespace controller
