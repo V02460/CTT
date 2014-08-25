@@ -583,8 +583,20 @@
     <ClCompile Include="ParseException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
+    <ClCompile Include="NoScalePolicy.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="FFmpegException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="Module.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
     <ClCompile Include="FilterMovedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalContext.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -671,6 +683,9 @@
     </CustomBuild>
     <CustomBuild Include="Observer.h">
       <Filter>Header Files\Model</Filter>
+    </CustomBuild>
+    <CustomBuild Include="NoScalePolicy.h">
+      <Filter>Header Files\View</Filter>
     </CustomBuild>
     <CustomBuild Include="NoScalePolicy.h">
       <Filter>Header Files</Filter>
@@ -926,14 +941,17 @@
     <ClInclude Include="FilterMovedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
-    <ClInclude Include="FFmpegException.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileNotFoundException.h">
+	<ClInclude Include="FileNotFoundException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VideoDisplayPolicy.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="FFmpegException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalContext.h">
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -988,6 +1006,9 @@
     <None Include="Shader\Histogram\histogramCompaction.fs">
       <Filter>ShaderFiles\Histogram</Filter>
     </None>
+    <ClInclude Include="YUVType.h">
+      <Filter>Header Files\Model\Video</Filter>
+    </ClInclude>
     <ClInclude Include="IOException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
@@ -995,7 +1016,10 @@
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
     <ClInclude Include="FilterMovedOperation.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Controller\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="YUVType.h">
+      <Filter>Header Files\Model\Video</Filter>
     </ClInclude>
     <None Include="Shader\Histogram\saturationHistogramGrid.fs" />
     <None Include="Shader\Filter\Rescale.fs">
