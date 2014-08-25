@@ -36,7 +36,7 @@ public:
 
 	virtual void update() Q_DECL_OVERRIDE;
 
-	virtual int heightForWidth(int w) const Q_DECL_OVERRIDE;
+	virtual void resizeEvent(QResizeEvent *ev) Q_DECL_OVERRIDE;
 signals:
 	void toggled(bool checked, int id);
 	void clicked(bool checked, int id);
@@ -58,6 +58,7 @@ private:
 	void setThumbnail();
 
 	int id; /**< The id which represents the buttons index in the list */
+	double iconRatio; /**< Holds the icon's aspect ratio */
 	model::filter::FilteredVideo::sptr video; /**< The video from which this button generates its thumbnail */
 	model::frame::Frame::sptr testFrame;
 };

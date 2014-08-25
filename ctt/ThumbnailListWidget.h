@@ -73,7 +73,7 @@ private:
 	QList<int> activatedButtons;
 	int selectableCount;
 	bool isHorizontal;
-	QLayout *thumbnailListLayout;
+	QBoxLayout *thumbnailListLayout;
 
     /**
      * The list of filteredVideo which is needed for the thumbnail generation.

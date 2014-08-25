@@ -69,7 +69,7 @@ void InsertionWidget::removeContents() {
 }
 
 void InsertionWidget::resizeEvent(QResizeEvent *ev) {
-	QWidget::resizeEvent(ev);
+	Q_UNUSED(ev);
 
 	rearrangeContents();
 }

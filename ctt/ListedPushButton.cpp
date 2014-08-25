@@ -16,10 +16,10 @@ namespace view {
 		}
 
 		QSizePolicy sizePolicy = QSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
-		sizePolicy.setHeightForWidth(true);
 		setSizePolicy(sizePolicy);
 		setMinimumSize(QSize(80, 45));
 		setCheckable(true);
+		setFlat(true);
 	}
 
 	ListedPushButton::ListedPushButton(int id, QWidget *parent) : QPushButton(parent) {
@@ -39,8 +39,9 @@ namespace view {
 
 	void ListedPushButton::setThumbnail() {
 		int thumbnailFrame = video->getFrameCount() * 0.09;
-		setIcon(QIcon(QPixmap::fromImage(video->getFrame(thumbnailFrame)->getFramebufferObject()->toImage())));
-		setIconSize(size());
+		QImage iconImage = video->getFrame(thumbnailFrame)->getFramebufferObject()->toImage();
+		iconRatio = (double) iconImage.width() / iconImage.height();
+		setIcon(QIcon(QPixmap::fromImage(iconImage)));
 	}
 
 	void ListedPushButton::buttonClicked(bool checked) {
@@ -51,8 +52,17 @@ namespace view {
 		emit toggled(checked, id);
 	}
 
-	int ListedPushButton::heightForWidth(int w) const {
-		return w * ((float)9 / 16);
+	void ListedPushButton::resizeEvent(QResizeEvent *ev) {
+		Q_UNUSED(ev);
+
+		double buttonRatio = (double) width() / height();
+		int border = 10;
+
+		if (buttonRatio >= iconRatio) {
+			setIconSize(QSize((height() - border) * iconRatio, height() - border));
+		} else {
+			setIconSize(QSize(width() - border, (width() - border) * (1 / iconRatio)));
+		}
 	}
 
 } // namespace view

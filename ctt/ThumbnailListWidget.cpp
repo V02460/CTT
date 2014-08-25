@@ -79,6 +79,8 @@ void ThumbnailListWidget::update() {
 	}
 
 	thumbnailListLayout->addWidget(btnAddVideo);
+	//TODO muss bei der dynamischen neuerstellung ggf. angepasst werden
+	thumbnailListLayout->addStretch();
 
 	//TODO activatedButton entweder leeren oder die buttons anpassen
 	adjustSize();

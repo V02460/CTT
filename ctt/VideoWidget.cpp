@@ -113,7 +113,13 @@ void VideoWidget::initialize() {
 void VideoWidget::getVertexPosition(GLfloat *vertices) const {
     //TODO: Use DisplayPolicy
 
-    QSize frameSize = testFrame.data()->getSize();
+	QSize frameSize;
+	//TODO Testverzweigung rausnehmen
+	if (isInSingelFrameTest) {
+		frameSize = testFrame.data()->getSize();
+	} else {
+		frameSize = scrubber->getCurrentFrame()->getSize();
+	}
 
     // Fill screen while keeping aspect ratio
     float viewportAspect = (float)width() / height();
@@ -183,7 +189,11 @@ void VideoWidget::render() {
     program->setAttributeArray("aTexcrd", texcrd, 2);
 
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, testFrame->getTextureHandle());
+	if (isInSingelFrameTest) {
+		glBindTexture(GL_TEXTURE_2D, testFrame->getTextureHandle());
+	} else {
+		glBindTexture(GL_TEXTURE_2D, scrubber->getCurrentFrame()->getTextureHandle());
+	}
     program->setUniformValue("tex", static_cast<GLuint>(0));
 
     program->bind();
