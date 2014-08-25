@@ -621,6 +621,9 @@
     <ClCompile Include="NoScalePolicy.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AbstractListView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -714,6 +717,9 @@
       <Filter>Header Files\View</Filter>
     </CustomBuild>
     <CustomBuild Include="FilterInsertionWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="AbstractListView.h">
       <Filter>Header Files\View</Filter>
     </CustomBuild>
   </ItemGroup>
@@ -880,9 +886,6 @@
     <ClInclude Include="FilterIntervalList.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="AbstractListView.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
     <ClInclude Include="AbstractTimeline.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
@@ -977,6 +980,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VideoDisplayPolicy.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractListViewItem.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterListViewItem.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterParamItem.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
   </ItemGroup>

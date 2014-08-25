@@ -187,6 +187,7 @@
     <ClCompile Include="FrameDiff.cpp" />
     <ClCompile Include="FrameMetadata.cpp" />
     <ClCompile Include="FrameMetadataWidget.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_AbstractListView.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_ctt.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -505,7 +506,8 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AbstractListView.h" />
+    <CustomBuild Include="AbstractListView.h" />
+    <ClInclude Include="AbstractListViewItem.h" />
     <ClInclude Include="AbstractTimeline.h" />
     <ClInclude Include="AnalysingWidget.h" />
     <ClInclude Include="BlueHistogram.h" />
@@ -598,9 +600,11 @@
     <ClInclude Include="FilterListOperation.h" />
     <ClInclude Include="FilterListView.h" />
     <ClInclude Include="FilterListViewElement.h" />
+    <ClInclude Include="FilterListViewItem.h" />
     <ClInclude Include="FilterMovedOperation.h" />
     <ClInclude Include="FilterParam.h" />
     <ClInclude Include="FilterParamChangedOperation.h" />
+    <ClInclude Include="FilterParamItem.h" />
     <ClInclude Include="FilterRemovedOperation.h" />
     <ClInclude Include="FilterTimeline.h" />
     <ClInclude Include="FPSChangingOperation.h" />
