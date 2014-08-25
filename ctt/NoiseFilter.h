@@ -21,6 +21,8 @@ public:
     typedef QSharedPointer<NoiseFilter> sptr;
     typedef QWeakPointer<NoiseFilter> wptr;
 
+    static const QString kParamIntensityStr;
+
     /**
      * Creates a new NoiseFilter object with a given previous module.
      *
