@@ -34,12 +34,12 @@ QList<const Module*> TimeshiftFilter::getUsesList() const {
     return QList<const Module*>() << this;
 }
 
-Saveable::sptr TimeshiftFilter::getDummy() {
+bool TimeshiftFilter::uses(const ::model::Module &module) const {
     throw new NotImplementedException();
 }
 
-Saveable::SaveableType TimeshiftFilter::getType() const {
-	return Saveable::SaveableType::timeshiftFilter;
+Saveable::sptr TimeshiftFilter::getDummy() {
+    throw new NotImplementedException();
 }
 
 const QString TimeshiftFilter::kParamShiftStr = "filter_timeshift_param_shift";

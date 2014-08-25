@@ -35,11 +35,11 @@ void NoiseFilter::restore(Memento memento) {
 }
 
 QList<const Module*> NoiseFilter::getUsesList() const {
-    return QList<const Module*>() << this;
+    throw new NotImplementedException();
 }
 
-Saveable::SaveableType NoiseFilter::getType() const {
-	return Saveable::SaveableType::noiseFilter;
+bool NoiseFilter::uses(const Module &module) const {
+    throw new NotImplementedException();
 }
 
 }  // namespace filter
