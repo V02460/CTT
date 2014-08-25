@@ -17,5 +17,6 @@
         <file>Shader/Conversion/RGBtoYUV444sdtv.fs</file>
         <file>Shader/Filter/Mix.fs</file>
         <file>Shader/Filter/Rescale.fs</file>
+        <file>Shader/Filter/Noise.fs</file>
     </qresource>
 </RCC>

@@ -267,6 +267,12 @@
     <ClCompile Include="GreyscaleFilterTest.cpp">
       <Filter>Source Files\Model\Filter</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_NoiseFilterTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_NoiseFilterTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -326,6 +332,9 @@
     <CustomBuild Include="GreyscaleFilterTest.h">
       <Filter>Header Files\Model\Filter</Filter>
     </CustomBuild>
+    <CustomBuild Include="NoiseFilterTest.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CustomTestingMacros.h">
@@ -359,9 +368,6 @@
       <Filter>Test Structure\Model\Filter</Filter>
     </ClInclude>
     <ClInclude Include="TimeshiftFilterTest.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="NoiseFilterTest.h">
       <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
     <ClInclude Include="RGBChannelFilterTest.h">
