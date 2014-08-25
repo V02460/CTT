@@ -19,5 +19,9 @@ unsigned int FrameDiff::getFrameCount() const {
 	return std::min(video1->getFrameCount(), video2->getFrameCount());
 }
 
+Saveable::SaveableType FrameDiff::getSaveableType() {
+    return SaveableType::frameDiff;
+}
+
 }  // namespace difference
 }  // namespace model

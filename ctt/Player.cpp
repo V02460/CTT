@@ -391,8 +391,8 @@ Saveable::sptr Player::getDummy() {
 	return Saveable::sptr(new Player());
 }
 
-Saveable::SaveableType Player::getType() const {
-	return Saveable::SaveableType::player;
+Saveable::SaveableType Player::getSaveableType() {
+    return SaveableType::player;
 }
 
 void Player::nextFrame() {

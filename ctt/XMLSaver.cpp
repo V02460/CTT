@@ -138,9 +138,9 @@ void XMLSaver::writeElements() {
 void XMLSaver::writeSingeltons() {
 	out->writeStartElement(ELEMENT);
 	ViewState *view = ViewState::getInstance().data(); // TODO later remove .data();
-	out->writeAttribute(CLASS, Saveable::SAVEABLE_TYPE_STRINGS[view->getType()]);
+	out->writeAttribute(CLASS, Saveable::SAVEABLE_TYPE_STRINGS[view->getSaveableType()]);
 	out->writeAttribute(ID, QString::number(elementID++)); // TODO ++ should work
-	out->writeAttribute(TYPE, BASE_ELEMENT_NAMES[view->getType()]);
+	out->writeAttribute(TYPE, BASE_ELEMENT_NAMES[view->getSaveableType()]);
 	writeMemento(view->getMemento());
 	out->writeEndElement();
 }

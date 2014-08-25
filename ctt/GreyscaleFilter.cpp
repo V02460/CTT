@@ -38,5 +38,9 @@ QList<const Module*> GreyscaleFilter::getUsesList() const {
     return QList<const Module*>() << this;
 }
 
+Saveable::SaveableType GreyscaleFilter::getSaveableType() {
+    return SaveableType::greyscaleFilter;
+}
+
 }  // namespace filter
 }  // namespace model

@@ -25,8 +25,8 @@ model::frame::Frame::sptr RescaleFilter::getFrame(unsigned int frameNumber) cons
     throw new NotImplementedException();
 }
 
-Saveable::SaveableType RescaleFilter::getType() const {
-	return Saveable::SaveableType::rescaleFilter;
+Saveable::SaveableType RescaleFilter::getSaveableType() {
+    return SaveableType::rescaleFilter;
 }
 
 }  // namespace filter

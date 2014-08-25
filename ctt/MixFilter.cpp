@@ -25,8 +25,8 @@ model::frame::Frame::sptr MixFilter::getFrame(unsigned int frameNumber) const {
     throw new NotImplementedException();
 }
 
-Saveable::SaveableType MixFilter::getType() const {
-	return Saveable::SaveableType::mixFilter;
+Saveable::SaveableType MixFilter::getSaveableType() {
+    return SaveableType::mixFilter;
 }
 
 }  // namespace filter

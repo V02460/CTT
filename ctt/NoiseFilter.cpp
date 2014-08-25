@@ -25,8 +25,8 @@ model::frame::Frame::sptr NoiseFilter::getFrame(unsigned int frameNumber) const 
     throw new NotImplementedException();
 }
 
-Saveable::SaveableType NoiseFilter::getType() const {
-	return Saveable::SaveableType::noiseFilter;
+Saveable::SaveableType NoiseFilter::getSaveableType() {
+    return SaveableType::noiseFilter;
 }
 
 }  // namespace filter

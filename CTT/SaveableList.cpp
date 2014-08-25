@@ -129,6 +129,11 @@ Saveable::sptr SaveableList<T>::getDummy() {
 	return dummyPointer;
 }
 
+template <class T>
+Saveable::SaveableType SaveableList<T>::getSaveableType() {
+    return SaveableType::saveableList;
+}
+
 // A list of all objects which might be used with the SaveableList
 // This is necessary because *.cpp files are compiled separate, so it's unknown for the compiler for which types to
 // generate code.

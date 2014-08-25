@@ -27,8 +27,8 @@ model::frame::Frame::sptr CoffeeFilter::getFrame(unsigned int frameNumber) const
     throw new NotImplementedException();
 }
 
-Saveable::SaveableType CoffeeFilter::getType() const {
-	return Saveable::SaveableType::coffeeFilter;
+Saveable::SaveableType CoffeeFilter::getSaveableType() {
+    return SaveableType::coffeeFilter;
 }
 
 }  // namespace filter

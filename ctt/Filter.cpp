@@ -8,6 +8,7 @@ namespace filter {
 using ::model::frame::Frame;
 using ::model::Module;
 using ::model::saveable::Memento;
+using ::model::saveable::Saveable;
 using ::exception::AccessToDummyException;
 using ::exception::IllegalArgumentException;
 using ::exception::IllegalStateException;
@@ -111,6 +112,10 @@ Memento Filter::getMemento() const {
 // TODO isDummyFlag = false ... nicht mehr zu restoren?
 void Filter::restore(Memento memento) {
     predecessor = memento.getSharedPointer("predecessor").dynamicCast<Module>();
+}
+
+Saveable::SaveableType Filter::getSaveableType() {
+    return SaveableType::filter;
 }
 
 }  // namespace filter

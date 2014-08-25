@@ -76,8 +76,8 @@ Saveable::sptr UIntegerInterval::getDummy() {
 	return Saveable::sptr(new UIntegerInterval());
 }
 
-Saveable::SaveableType UIntegerInterval::getType() const {
-	return Saveable::SaveableType::uIntegerInterval;
+Saveable::SaveableType UIntegerInterval::getSaveableType() {
+    return SaveableType::uIntegerInterval;
 }
 
 }  // namespace model

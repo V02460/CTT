@@ -66,5 +66,9 @@ QSharedPointer<QOpenGLContext> FileVideo::getContext() const
 	return context;
 }
 
+Saveable::SaveableType FileVideo::getSaveableType() {
+    return SaveableType::fileVideo;
+}
+
 }  // namespace video
 }  // namespace model

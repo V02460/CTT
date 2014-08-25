@@ -26,8 +26,8 @@ model::frame::Frame::sptr MotionVectorOverlay::getFrame(unsigned int frameNumber
     throw new NotImplementedException();
 }
 
-Saveable::SaveableType MotionVectorOverlay::getType() const {
-	return Saveable::SaveableType::motionVektorOverlay;
+Saveable::SaveableType MotionVectorOverlay::getSaveableType() {
+    return SaveableType::motionVektorOverlay;
 }
 
 }  // namespace overlay

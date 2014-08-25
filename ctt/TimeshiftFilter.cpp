@@ -18,6 +18,10 @@ model::frame::Frame::sptr TimeshiftFilter::getFrame(unsigned int frameNumber) co
     return getPredecessor()->getFrame(frameNumber + shift);
 }
 
+Saveable::SaveableType TimeshiftFilter::getSaveableType() {
+    return SaveableType::timeshiftFilter;
+}
+
 const QString TimeshiftFilter::kParamShiftStr = "filter_timeshift_param_shift";
 
 }  // namespace filter

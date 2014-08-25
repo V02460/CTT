@@ -36,6 +36,10 @@ model::frame::Frame::sptr BlurFilter::getFrame(unsigned int frameNumber) const {
     return Frame::sptr(new Frame(targetSurface, frame->getMetadata()));
 }
 
+Saveable::SaveableType BlurFilter::getSaveableType() {
+    return SaveableType::blurFilter;
+}
+
 const QString BlurFilter::kParamRadiusStr = "filter_blur_param_radius";
 
 }  // namespace filter

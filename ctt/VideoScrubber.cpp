@@ -117,8 +117,8 @@ Saveable::sptr VideoScrubber::getDummy() {
 	return VideoScrubber::sptr(new VideoScrubber());
 }
 
-Saveable::SaveableType VideoScrubber::getType() const {
-	return Saveable::SaveableType::videoScrubber;
+Saveable::SaveableType VideoScrubber::getSaveableType() {
+    return SaveableType::videoScrubber;
 }
 
 unsigned int VideoScrubber::getFrameCount() const

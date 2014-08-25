@@ -23,6 +23,8 @@ public:
     typedef QSharedPointer<Overlay> sptr;
     typedef QWeakPointer<Overlay> wptr;
 
+    static Saveable::SaveableType getSaveableType();
+
 protected:
     /**
     * Constructs a Overlay which works on predecessor.
@@ -35,8 +37,6 @@ protected:
     * Overlay destructor.
     */
     virtual ~Overlay();
-
-    static Saveable::SaveableType getSaveableType();
 
     ::model::filter::Filter &getMixFilter() const;
 private:

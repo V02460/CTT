@@ -25,8 +25,8 @@ double YUVPixelDiff::getDiff(unsigned int frameNr) const {
     throw new NotImplementedException();
 }
 
-Saveable::SaveableType YUVPixelDiff::getType() const {
-	return Saveable::SaveableType::yUVPixelDiff;
+Saveable::SaveableType YUVPixelDiff::getSaveableType() {
+    return SaveableType::yUVPixelDiff;
 }
 
 }  // namespace difference
