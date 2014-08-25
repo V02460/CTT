@@ -18,10 +18,6 @@ RGBChannelFilter::~RGBChannelFilter() {
     throw new NotImplementedException();
 }
 
-QString RGBChannelFilter::getName() const {
-    throw new NotImplementedException();
-}
-
 model::frame::Frame::sptr RGBChannelFilter::getFrame(unsigned int frameNumber) const {
     throw new NotImplementedException();
 }
@@ -32,6 +28,10 @@ Memento RGBChannelFilter::getMemento() const {
 
 void RGBChannelFilter::restore(Memento memento) {
     throw new NotImplementedException();
+}
+
+QList<const Module*> RGBChannelFilter::getUsesList() const {
+    return QList<const Module*>() << this;
 }
 
 Saveable::sptr RGBChannelFilter::getDummy() {

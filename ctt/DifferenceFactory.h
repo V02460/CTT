@@ -66,6 +66,7 @@ public:
                                            ::model::video::Video::sptr video2);
 
 private:
+    Q_DISABLE_COPY(DifferenceFactory)
     DifferenceFactory();
 };
 

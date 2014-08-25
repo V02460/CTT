@@ -2,6 +2,7 @@
 #define _RUNTIMEEXCEPTION_H
 
 #include <QException>
+#include <QDebug>
 
 namespace exception {
 

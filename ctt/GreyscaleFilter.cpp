@@ -42,5 +42,9 @@ Saveable::SaveableType GreyscaleFilter::getSaveableType() {
     return SaveableType::greyscaleFilter;
 }
 
+bool GreyscaleFilter::uses(const Module &module) const {
+    return this == &module;
+}
+
 }  // namespace filter
 }  // namespace model

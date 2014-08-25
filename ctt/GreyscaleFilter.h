@@ -40,6 +40,7 @@ public:
     virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
     virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
     virtual QList<const ::model::Module*> getUsesList() const Q_DECL_OVERRIDE;
+    virtual bool uses(const ::model::Module &module) const Q_DECL_OVERRIDE;
     static Saveable::SaveableType getSaveableType();
 };
 

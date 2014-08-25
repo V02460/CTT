@@ -110,10 +110,12 @@ private:
 	Q_DISABLE_COPY(VideoScrubber)
 
 	const static QString videoStringId; /**< The Id the scrubber uses to save its video in a memento */
+	const static QString lastFrameNumberStringId;
 
     ::model::video::Video::sptr video; /**< The scrubber gets frames and metadata from this video */
     ::model::frame::Frame::sptr currentFrame; /**< This is the frame currently held by the scrubber */
     bool waitingForFrame; /**< This is true while Scrubber is still waiting for the frame it requested last*/
+	unsigned int lastFrameNumber;
 
 	/**
 	 * Constructor for a dummy VideoScrubber.

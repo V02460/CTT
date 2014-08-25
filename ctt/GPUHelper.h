@@ -49,7 +49,7 @@ public:
     /**
      * Set the shader uniform variable of the given name to the given value.
      * 
-     * @throws OpenGLException when name does not exist in shader
+     * @throws OpenGLException when the associated shader program can not be bound
      */
     void setValue(QString name, const ::model::Surface &texture);
     void setValue(QString name, GLint value);

@@ -20,8 +20,7 @@ UIntegerInterval::UIntegerInterval()
 }
 
 bool UIntegerInterval::contains(unsigned int x) const {
-	if (x < 0) throw new IllegalArgumentException();
-	return (x <= end || x > start);
+	return ((x <= end) && (x >= start));
 }
 
 unsigned int UIntegerInterval::getStart() const{

@@ -6,7 +6,7 @@
 #include <QWeakPointer>
 #include <QFile>
 #include <QVector>
-#include <qcolor.h>
+#include <QColor>
 
 #include "Video.h"
 #include "Frame.h"
@@ -87,6 +87,15 @@ public:
     static Saveable::SaveableType getSaveableType();
 
 private:
+
+	const static QString hasMetadataFileStringId;
+	const static QString resXStringId;
+	const static QString resYStringId;
+	const static QString videoPathStringId;
+	const static QString metadataPathStringId;
+	const static QString framerateStringId;
+	const static QString yuvTypeStringId;
+
     /**
     * Creates a dummy YUVDataVideo.
     */

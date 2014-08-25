@@ -50,7 +50,7 @@ private:
 	static const QString VIDEO2;
 	static const QString TYPE;
 
-	EarthMoversHistogramDiff();
+    EarthMoversHistogramDiff();
 
 	model::frame::Histogram::HistogramType type;
 };

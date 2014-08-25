@@ -1,6 +1,7 @@
 #include "Filter.h"
 
 #include "IllegalArgumentException.h"
+#include "AccessToDummyException.h"
 
 namespace model {
 namespace filter {
@@ -22,7 +23,7 @@ Filter::~Filter() {
 QList<FilterParam> Filter::getParams() const {
     if (isDummy()) {
         throw new AccessToDummyException();
-}
+    }
 
     return parameters.values();
 }
@@ -30,14 +31,17 @@ QList<FilterParam> Filter::getParams() const {
 void Filter::setParam(FilterParam parameter) {
     if (isDummy()) {
         throw new AccessToDummyException();
-}
+    }
+    if (!parameters.contains(parameter.getName())) {
+        throw new IllegalArgumentException("Parameter '" + parameter.getName() + "' must exist in Filter to be set.");
+    }
 
     QVariant oldValue = parameters.value(parameter.getName(), parameter).getValue();
     QVariant newValue = parameter.getValue();
 
-    if (!newValue.canConvert(oldValue.type())) {
+    if (newValue.type() != oldValue.type()) {
         throw new IllegalArgumentException("Variable type of FilterParam does not match stored type.");
-}
+    }
 
     parameters.insert(parameter.getName(), parameter);
 }
@@ -45,7 +49,7 @@ void Filter::setParam(FilterParam parameter) {
 void Filter::setPreviousModule(Module::sptr predecessor) {
     if (isDummy()) {
         throw new AccessToDummyException();
-}
+    }
     if (predecessor.isNull()) {
         throw new IllegalArgumentException("Predecessor must not be null.");
     }
@@ -95,8 +99,7 @@ Module *Filter::getPredecessor() const {
 
 QSize Filter::getResolution() const
 {
-	if (isDummy())
-	{
+	if (isDummy()) {
 		throw new IllegalStateException("Tried to request the resolution of a dummy Filter.");
 	}
 

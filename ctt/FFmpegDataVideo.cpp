@@ -4,7 +4,6 @@
 #include "IOException.h"
 #include "FFmpegException.h"
 
-
 namespace model {
 namespace video {
 
@@ -21,6 +20,8 @@ FFmpegDataVideo::FFmpegDataVideo(QString path, QSharedPointer<QOpenGLContext> co
 	av_register_all();
 
 	QByteArray rawPath = path.toLocal8Bit();
+	videoFormatContext = avformat_alloc_context();
+
 	if (avformat_open_input(&videoFormatContext, rawPath.constData(), NULL, NULL) < 0)
 	{
 		throw new IOException("FFmpeg couldn't open the file at \"" + path + "\".");
@@ -58,19 +59,21 @@ FFmpegDataVideo::FFmpegDataVideo(QString path, QSharedPointer<QOpenGLContext> co
 	{
 		throw new FFmpegException("FFmpeg couldn't open the codec necessary to decode a video stream in the file at \"" + path + "\".");
 	}
+
+	//TODO ztdztd find this out somehow :(
+	length = 100;// videoFormatContext->duration *;
 }
 
 VideoMetadata FFmpegDataVideo::getMetadata() const {
-    throw new NotImplementedException();
-	
+
 	if (isDummy())
 	{
 		throw new IllegalStateException("Tried to request metadata from a dummy ffmpeg video");
 	}
 
 	//Testen, das ist extrem geraten bisher!!!! duration ist glaub noch in sekunden oder sowas ähnlichem
-	VideoMetadata metadata(QSize(codecContext->width, codecContext->height), 1 / av_q2d(codecContext->time_base), videoFormatContext->duration);
-// 	return metadata;
+	VideoMetadata metadata(QSize(codecContext->width, codecContext->height), 1 / av_q2d(codecContext->time_base), length);
+ 	return metadata;
 }
 
 model::frame::Frame::sptr FFmpegDataVideo::getFrame(unsigned int frameNumber) const {
@@ -111,7 +114,7 @@ model::frame::Frame::sptr FFmpegDataVideo::getFrame(unsigned int frameNumber) co
 
 	if (av_read_frame(videoFormatContext, &packet) < 0)
 	{
-		throw new FFmpegException("FFmpeg couldn't read the frame with the number " + QString::number(frameNumber) + "in the video stream .");
+		throw new FFmpegException("FFmpeg couldn't read the frame with the number " + QString::number(frameNumber) + " in the video stream .");
 	}
 
 // 	if (packet.stream_index != videoStreamNr)
@@ -121,12 +124,12 @@ model::frame::Frame::sptr FFmpegDataVideo::getFrame(unsigned int frameNumber) co
 
 	if (avcodec_decode_video2(codecContext, frame, &decodingSuccessfull, &packet) < 0)
 	{
-		throw new FFmpegException("FFmpeg couldn't decode the frame with the number " + QString::number(frameNumber) + "in the video stream .");
+		throw new FFmpegException("FFmpeg couldn't decode the frame with the number " + QString::number(frameNumber) + " in the video stream .");
 	}
 
 	if (decodingSuccessfull == 0)
 	{
-		throw new FFmpegException("FFmpeg couldn't decode the frame with the number " + QString::number(frameNumber) + "in the video stream .");
+		throw new FFmpegException("FFmpeg couldn't decode the frame with the number " + QString::number(frameNumber) + " in the video stream .");
 	}
 
 	//TODO jdwfi the following sws stuff is for conversion to rgb ppm format, this could of course be done on the gpu to be faster, but I don't know yet what the original data looks like
@@ -156,15 +159,9 @@ model::frame::Frame::sptr FFmpegDataVideo::getFrame(unsigned int frameNumber) co
 		rgbFrame->linesize
 		);
 
-	QByteArray rawRGBppm(("P6\n" + QString::number(codecContext->width) + " " + QString::number(codecContext->height) + "\n255\n").toUtf8());
-	rawRGBppm.append((char*)rgbFrame->data[0], frame->width * frame->height * 3);
+	QImage rgbImage(rgbFrame->data[0], codecContext->width, codecContext->height, QImage::Format_RGB888);
 
-	QImage rgbImage;
-	rgbImage.loadFromData(rawRGBppm, "PPM");
-
-	//TODO zaueuf get all the fancy metadata, motion vectors and stuff
-	Frame resultFrame(context, rgbImage);
-	Frame::sptr result(&resultFrame);
+	Frame::sptr result(new Frame(context, rgbImage));
 
 	av_free_packet(&packet);
 	av_free(buffer);
@@ -183,6 +180,25 @@ FFmpegDataVideo::~FFmpegDataVideo()
 	//TODO useizf close the codec itself? how?
 	avcodec_close(codecContext);
 	avformat_close_input(&videoFormatContext);
+}
+
+void FFmpegDataVideo::restore(::model::saveable::Memento memento)
+{
+	throw new NotImplementedException;
+}
+
+unsigned int FFmpegDataVideo::getFrameCount() const
+{
+	if (isDummy())
+	{
+		throw new IllegalStateException("Tried to request the frame count of a dummy ffmpeg video");
+	}
+	return length;
+}
+
+::model::saveable::Memento FFmpegDataVideo::getMemento() const
+{
+	throw new NotImplementedException;
 }
 
 }  // namespace video

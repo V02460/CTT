@@ -25,8 +25,8 @@ public:
     /**
     * Constructs the PixelDiff by taking two videos used to calculate their frame difference.
     *
-    * @param video1 First Video used for comparisson
-    * @param video2 Second Video comparisson
+    * @param video1 First Video used for comparison
+    * @param video2 Second Video comparison
     */
     PixelDiff(::model::video::Video::sptr video1, ::model::video::Video::sptr video2);
 
