@@ -31,7 +31,7 @@ void TimeshiftFilter::restore(Memento memento) {
 }
 
 QList<const Module*> TimeshiftFilter::getUsesList() const {
-    return QList<const Module*>() << this;
+    throw new NotImplementedException();
 }
 
 bool TimeshiftFilter::uses(const ::model::Module &module) const {
