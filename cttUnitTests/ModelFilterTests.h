@@ -9,6 +9,7 @@
 #include "RescaleFilterTest.h"
 #include "GreyscaleFilterTest.h"
 #include "NoiseFilterTest.h"
+#include "TimeshiftFilterTest.h"
 
 #include "FilteredVideoTest.h"
 
@@ -24,6 +25,7 @@ static TestResult test(int argc, char *argv[]) {
     RescaleFilterTest rescaleFilterTest;
     GreyscaleFilterTest greyscaleFilterTest;
     NoiseFilterTest noiseFilterTest;
+    TimeshiftFilterTest timeshiftFilterTest;
 
     FilteredVideoTest filteredVideoTest;
 
@@ -33,6 +35,7 @@ static TestResult test(int argc, char *argv[]) {
       << TestResult("RescaleFilterTest", QTest::qExec(&rescaleFilterTest, argc, argv))
       << TestResult("GreycaleFilterTest", QTest::qExec(&greyscaleFilterTest, argc, argv))
       << TestResult("NoiseFilterTest", QTest::qExec(&noiseFilterTest, argc, argv))
+      << TestResult("TimeshiftFilterTest", QTest::qExec(&timeshiftFilterTest, argc, argv))
 
       << TestResult("FilteredVideoTest", QTest::qExec(&filteredVideoTest, argc, argv));
 
