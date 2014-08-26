@@ -3,6 +3,8 @@
 
 #include <QOffscreenSurface>
 #include <QOpenGLContext>
+#include <QSharedPointer>
+#include <QScopedPointer>
 
 namespace model {
 
@@ -12,13 +14,16 @@ namespace model {
 		/**
 		* Returns the OpenGLContext this program is using.
 		*/
-		static QOpenGLContext *get();
+		static QSharedPointer<QOpenGLContext> get();
 
 	private:
 		Q_DISABLE_COPY(GlobalContext)
 
-			static QScopedPointer<QOpenGLContext> context;
-		static QOffscreenSurface surface;
+			GlobalContext();
+		~GlobalContext();
+
+		static QSharedPointer<QOpenGLContext> context;
+		static QScopedPointer<QOffscreenSurface> surface;
 	};
 
 }  // namespace model

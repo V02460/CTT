@@ -7,10 +7,12 @@
 #include "YUVDataVideo.h"
 #include "Frame.h"
 #include "..\CTT\GlobalContext.h"
+#include "..\ctt\MacroblockType.h"
 
 using namespace model::video;
 using namespace exception;
 using model::frame::Frame;
+using model::frame::MacroblockType;
 
 
 void YUVDataVideoTest::dummyTest()
@@ -95,6 +97,9 @@ void YUVDataVideoTest::test420()
 	QCOMPARE(testframe->getMetadata().getSize().width(), 352);
 	QCOMPARE(testframe->getMetadata().getSize().height(), 288);
 
+	QVERIFY(!testframe->getMetadata().hasMbMotionvectors());
+	QVERIFY(!testframe->getMetadata().hasMbType());
+
 	QEXPECT_EXCEPTION(testVideo.getFrame(testVideo.getFrameCount()), IllegalArgumentException);
 }
 
@@ -108,7 +113,8 @@ void YUVDataVideoTest::invalidConstruction()
 	QEXPECT_EXCEPTION(YUVDataVideo testVideo("resources/Videos/YUV422/squirrel-720x576-422P.yuv", QSize(920, 886), 24, model::video::YUVType::YUV444, testContext), IllegalArgumentException);
 	QEXPECT_EXCEPTION(YUVDataVideo testVideo("resources/Videos/YUV422/squirrel-720x576-422P.yuv", "thismetadatafiledoesntexist",QSize(720, 576), 24, model::video::YUVType::YUV422, testContext), FileNotFoundException);
 
-	//TODO kugtexxxiiia metadatafiles of wrong sizes, resolutions that cant be divided into 16*16 pixel blocks
+	QEXPECT_EXCEPTION(YUVDataVideo testVideo2("resources/Videos/YUV420/raftingNEW_352x288_113.yuv", "resources/Videos/YUV420/ModeGrid_RD1_Rafting.dat", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext), IllegalArgumentException);
+	//TODO kugtexxxiiia resolutions that cant be divided into 16*16 pixel blocks
 }
 
 void YUVDataVideoTest::saveRestore()
@@ -148,6 +154,37 @@ void YUVDataVideoTest::saveRestore()
 // 	testVideo2.getFrame(10);
 // 	testVideo2.getFrame(14);
 // 	testVideo2.getFrame(0);
-	
-	//TODO iztd with metadata, needs metadata file
+// 
+// 	YUVDataVideo testVideo3("resources/Videos/YUV420/raftingNEW_352x288_113.yuv", "resources/Videos/YUV420/ModeGrid_raf_512my.dat", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext);
+// 
+// 	memento = testVideo3.getMemento();
+// 
+// 	testVideo.restore(memento);
+// 	Frame::sptr testFrame = testVideo.getFrame(0);
+// 	QVERIFY(testFrame->getMetadata().hasMbType());
+// 	QVERIFY(testFrame->getMetadata().getMbType()[0][0] == MacroblockType::INTRA_4X4);
+// 	QVERIFY(testFrame->getMetadata().getMbType()[0][9] == MacroblockType::INTRA_16X16);
+// 	QVERIFY(testFrame->getMetadata().getMbType()[0][21] == MacroblockType::INTRA_4X4);
+// 	QVERIFY(testFrame->getMetadata().getMbType()[1][0] == MacroblockType::INTRA_4X4);
+// 
+// 	testFrame.reset();
+// 	testFrame = testVideo.getFrame(testVideo.getFrameCount() - 1);
+// 	QVERIFY(testFrame->getMetadata().getMbType()[17][21] == MacroblockType::INTER_SKIP);
+}
+
+void YUVDataVideoTest::testMacroblockMetadata()
+{
+
+	YUVDataVideo testVideo("resources/Videos/YUV420/raftingNEW_352x288_113.yuv", "resources/Videos/YUV420/ModeGrid_raf_512my.dat", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext);
+
+	Frame::sptr testFrame = testVideo.getFrame(0);
+	QVERIFY(testFrame->getMetadata().hasMbType());
+	QVERIFY(testFrame->getMetadata().getMbType()[0][0] == MacroblockType::INTRA_4X4);
+	QVERIFY(testFrame->getMetadata().getMbType()[0][9] == MacroblockType::INTRA_16X16);
+	QVERIFY(testFrame->getMetadata().getMbType()[0][21] == MacroblockType::INTRA_4X4);
+	QVERIFY(testFrame->getMetadata().getMbType()[1][0] == MacroblockType::INTRA_4X4);
+
+	testFrame.reset();
+	testFrame = testVideo.getFrame(testVideo.getFrameCount() - 1);
+	QVERIFY(testFrame->getMetadata().getMbType()[17][21] == MacroblockType::INTER_SKIP);	
 }

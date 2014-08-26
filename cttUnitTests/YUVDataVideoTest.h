@@ -15,7 +15,7 @@ class YUVDataVideoTest : public QObject {
  	void test420();
  	void invalidConstruction();
 	void saveRestore();
-
+	void testMacroblockMetadata();
 	//TODO jezfua need test material
 //	void macroBlockMetadata(); 
 
