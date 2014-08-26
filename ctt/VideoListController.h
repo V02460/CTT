@@ -33,14 +33,22 @@ public:
 public slots:
 
     /**
-     * Initiates adding a video to the VideoList.
+     * Initiates adding a video, typically FFMPEG, to the VideoList.
      * Is called when a notification is received that a video should be added to the VideoList.
      *
      * @param path The path to the video which is to be added.
      */
     void addVideo(QString path);
 
-    /**
+	/**
+	* Initiates adding a video, typically YUV with metadata provided by the user, to the VideoList.
+	* Is called when a notification is received that a video should be added to the VideoList.
+	*
+	* @param path The path to the video which is to be added.
+	*/
+	void addVideo(QString path, int width, int height, double fps, model::video::YUVType type, unsigned int length);
+
+	/**
      * Initiates adding a video to the VideoList.
      * Is called when a notification is received that a video should be added to the VideoList.
      *
