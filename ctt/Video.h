@@ -70,6 +70,7 @@ public:
 
 	virtual QSize getResolution() const;
 
+    static Saveable::SaveableType getSaveableType();
 };
 
 }  // namespace video

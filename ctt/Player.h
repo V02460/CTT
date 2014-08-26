@@ -240,7 +240,7 @@ public:
     virtual ::model::saveable::Memento getMemento() const;
     virtual void restore(::model::saveable::Memento memento);
 	static ::model::saveable::Saveable::sptr getDummy();
-	virtual ::model::saveable::Saveable::SaveableType getType() const;
+    static Saveable::SaveableType getSaveableType();
 
 public slots:
     /**

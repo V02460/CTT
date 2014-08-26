@@ -505,9 +505,6 @@
     <ClCompile Include="FilterAddedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
-    <ClCompile Include="FilterListOperation.cpp">
-      <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
     <ClCompile Include="FilterParamChangedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
@@ -583,8 +580,17 @@
     <ClCompile Include="ParseException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
+    <ClCompile Include="FFmpegException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
     <ClCompile Include="FilterMovedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalContext.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Module.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -673,7 +679,7 @@
       <Filter>Header Files\Model</Filter>
     </CustomBuild>
     <CustomBuild Include="NoScalePolicy.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\View</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -709,9 +715,6 @@
     </ClInclude>
     <ClInclude Include="FilterFactory.h">
       <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterListOperation.h">
-      <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
     <ClInclude Include="FilterParam.h">
       <Filter>Header Files\Model\Filter</Filter>
@@ -869,9 +872,6 @@
     <ClInclude Include="Surface.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="ProjectSaverFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ProjectLoader.h">
       <Filter>Header Files\Controller\Project</Filter>
     </ClInclude>
@@ -926,13 +926,16 @@
     <ClInclude Include="FilterMovedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
+    <ClInclude Include="VideoDisplayPolicy.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
     <ClInclude Include="FFmpegException.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalContext.h">
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="FileNotFoundException.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VideoDisplayPolicy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -995,11 +998,13 @@
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
     <ClInclude Include="FilterMovedOperation.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
-    <None Include="Shader\Histogram\saturationHistogramGrid.fs" />
     <None Include="Shader\Filter\Rescale.fs">
       <Filter>Shader Files\Filter</Filter>
+    </None>
+    <None Include="Shader\Histogram\saturationHistogramGrid.fs">
+      <Filter>Shader Files\Histogram</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -1,13 +1,14 @@
 #ifndef _PROJECT_H
 #define _PROJECT_H
 
+#include <QOffscreenSurface>
+
 #include "SaveableList.h"
 #include "Video.h"
 #include "FileVideo.h"
 #include "FilteredVideo.h"
 #include "Player.h"
 #include "FrameDiff.h"
-#include "ViewState.h"
 
 namespace controller {
 namespace project {
@@ -21,11 +22,6 @@ public:
     typedef QScopedPointer<Project> uptr;
     typedef QSharedPointer<Project> sptr;
     typedef QWeakPointer<Project> wptr;
-
-    /**
-	* Creates a new project and all savable objects needed from the start of the program.
-     */
-    Project();
 
     /**
      * Returns the list of all base videos the project uses, i.e. videos which are directly read from files.
@@ -69,21 +65,24 @@ public:
      */
 	::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr getDiffList() const;
 
-    /**
-     * Returns the current view of the project.
-     *
-     * @return the current view of the project.
-     */
-	::view::ViewState::sptr getView() const;
+	/**
+	 * Returns the one instance this class can have.
+	 */
+	static Project *getInstance();
 
 private:
+    Q_DISABLE_COPY(Project)
+
+    Project();
+
+	static Project::uptr instance;
+
     ::model::saveable::SaveableList<::model::video::FileVideo>::sptr baseVideoList;
 	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList1;
 	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList2;
 	::model::saveable::SaveableList<::model::player::Player>::sptr playerList1;
 	::model::player::Player::sptr player2;
 	::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr diffList;
-	::view::ViewState::sptr view;
 };
 
 }  // namespace project

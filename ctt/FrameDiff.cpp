@@ -17,5 +17,9 @@ unsigned int FrameDiff::getFrameCount() const {
 FrameDiff::FrameDiff() {
 }
 
+Saveable::SaveableType FrameDiff::getSaveableType() {
+    return SaveableType::frameDiff;
+}
+
 }  // namespace difference
 }  // namespace model

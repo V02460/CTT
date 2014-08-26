@@ -159,6 +159,12 @@
     <ClCompile Include="GeneratedFiles\Release\moc_HistogramTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="FilterTest.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_PlayerTest.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -285,6 +291,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_RGBChannelFilterTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="SaveableListTest.cpp">
+      <Filter>Source Files\Model\Saveable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SaveableListTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SaveableListTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -353,6 +368,9 @@
     <CustomBuild Include="RGBChannelFilterTest.h">
       <Filter>Header Files\Model\Filter</Filter>
     </CustomBuild>
+    <CustomBuild Include="SaveableListTest.h">
+      <Filter>Header Files\Model\Saveable</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CustomTestingMacros.h">
@@ -360,6 +378,9 @@
     </ClInclude>
     <ClInclude Include="TestResult.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelFilterTests.h">
+      <Filter>Test Structure\Model\Filter</Filter>
     </ClInclude>
     <ClInclude Include="ModelFrameTests.h">
       <Filter>Test Structure\Model\Frame</Filter>

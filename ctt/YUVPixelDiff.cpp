@@ -38,8 +38,8 @@ Saveable::sptr YUVPixelDiff::getDummy() {
     throw new NotImplementedException();
 }
 
-Saveable::SaveableType YUVPixelDiff::getType() const {
-	return Saveable::SaveableType::yUVPixelDiff;
+Saveable::SaveableType YUVPixelDiff::getSaveableType() {
+    return SaveableType::yUVPixelDiff;
 }
 
 }  // namespace difference

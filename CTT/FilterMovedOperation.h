@@ -41,6 +41,8 @@ public:
     void undoOperation();
 
 private:
+	Q_DISABLE_COPY(FilterMovedOperation)
+
 	int oldPos;
 	int newPos; // The new position of the filter in the new(!) list.
 	model::filter::FilteredVideo::sptr filteredVideo;

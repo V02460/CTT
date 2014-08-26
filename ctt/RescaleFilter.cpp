@@ -37,7 +37,7 @@ model::frame::Frame::sptr RescaleFilter::getFrame(unsigned int frameNumber) cons
     }
     if (newSize.height() < 1) {
         newSize.setHeight(1);
-    }
+}
 
     GPUHelper gpuHelper(":/Shader/Filter/Rescale.fs", sourceFrame->getContext());
 

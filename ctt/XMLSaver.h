@@ -9,6 +9,7 @@
 #include "ProjectSaver.h"
 #include "Saveable.h"
 #include "Memento.h"
+#include "ViewState.h"
 
 namespace controller {
 namespace project {
@@ -23,12 +24,7 @@ public:
     typedef QSharedPointer<XMLSaver> sptr;
     typedef QWeakPointer<XMLSaver> wptr;
 
-	/**
-	 * Creates a new XMLSaver.
-	 */
-	XMLSaver();
-
-	virtual void save(QDir path, const ::controller::project::Project &project);
+	virtual void save(QDir path);
 
 	/** String to tell not to change the XML File. */
 	static const QString DO_NOT_CHANGE;
@@ -97,16 +93,28 @@ public:
 	 */
 	static BaseSaveableType stringToBaseSaveableType(QString string);
 
+	/**
+	 * Returns the one instance this class can have.
+	 */
+	static XMLSaver *getInstance();
+
 private:
+	Q_DISABLE_COPY(XMLSaver)
+
+	XMLSaver();
+
+	static XMLSaver::uptr instance;
+
 	QXmlStreamWriter *out;
 	QList<::model::saveable::Saveable::sptr> pointerList;
 	int elementID;
 
 	void initDocument(QDir path);
-	void mapBasePointer(Project project);
+	void mapBasePointer();
 	void writeBaseElements();
 	void writeMemento(model::saveable::Memento memento);
 	void writeElements();
+	void writeSingeltons();
 	void endDocument();
 };
 

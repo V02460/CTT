@@ -171,8 +171,8 @@ model::frame::Frame::sptr FFmpegDataVideo::getFrame(unsigned int frameNumber) co
 	return result;
 }
 
-Saveable::SaveableType FFmpegDataVideo::getType() const {
-	return Saveable::SaveableType::fFmpegDataVideo;
+Saveable::SaveableType FFmpegDataVideo::getSaveableType() {
+    return SaveableType::fFmpegDataVideo;
 }
 
 FFmpegDataVideo::~FFmpegDataVideo()

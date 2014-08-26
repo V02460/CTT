@@ -20,10 +20,6 @@ CoffeeFilter::~CoffeeFilter() {
     throw new NotImplementedException();
 }
 
-QString CoffeeFilter::getName() const {
-    throw new NotImplementedException();
-}
-
 model::frame::Frame::sptr CoffeeFilter::getFrame(unsigned int frameNumber) const {
     throw new NotImplementedException();
 }
@@ -37,11 +33,11 @@ void CoffeeFilter::restore(Memento memento) {
 }
 
 QList<const Module*> CoffeeFilter::getUsesList() const {
-    return QList<const Module*>() << this;
+    throw new NotImplementedException();
 }
 
-Saveable::SaveableType CoffeeFilter::getType() const {
-	return Saveable::SaveableType::coffeeFilter;
+bool CoffeeFilter::uses(const Module &module) const {
+    throw new NotImplementedException();
 }
 
 }  // namespace filter
