@@ -93,6 +93,8 @@ void PlayerFunctions::setPlayer(::model::player::Player::sptr player) {
 		sliderCurrentFrame->setValue(static_cast<int>(player->getCurrentFrameNumber()));
 		sliderCurrentFrame->setTickInterval(static_cast<int>(player->getVideoLength()) / 10);
 
+		setEnabledAll(true);
+
 		update();
 	} else {
 		qDebug() << "Error in PlayerFunctions! Player to be set was empty.";
@@ -100,11 +102,16 @@ void PlayerFunctions::setPlayer(::model::player::Player::sptr player) {
 }
 
 void PlayerFunctions::removePlayer() {
-	unsubscribe(*playerController.data());
+	setEnabledAll(false);
 }
 
 void PlayerFunctions::setEnabledAll(bool isEnabled) {
-
+	btnPlayPause->setEnabled(isEnabled);
+	btnPreviousFrame->setEnabled(isEnabled);
+	btnNextFrame->setEnabled(isEnabled);
+	btnDefaultFPS->setEnabled(isEnabled);
+	spinboxFPS->setEnabled(isEnabled);
+	sliderCurrentFrame->setEnabled(isEnabled);
 }
 
 QSlider* PlayerFunctions::getFrameSlider() {
