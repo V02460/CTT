@@ -621,9 +621,6 @@
     <ClCompile Include="NoScalePolicy.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_AbstractListView.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
     <ClCompile Include="FilterParamItem.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
@@ -646,6 +643,12 @@
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_FilterListView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AbstractListView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AbstractListView.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
