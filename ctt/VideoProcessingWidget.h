@@ -71,6 +71,8 @@ private:
     
     QPushButton *btnSaveVideo; /** The button which starts the video saving process */
     VideoWidget *videoWidget; /** The video widget which actually displays the video */
+
+	::controller::VideoListController::sptr videoListController;
 };
 
 }  // namespace view

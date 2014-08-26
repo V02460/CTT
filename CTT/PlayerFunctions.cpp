@@ -81,9 +81,11 @@ void PlayerFunctions::setPlayButton(bool isPlayButton) {
 }
 
 void PlayerFunctions::setPlayer(::model::player::Player::sptr player) {
-	if (player.data() != 0) {
+	if (!player.isNull()) {
+		//this->player->unsubscribe(*this);
+
 		this->player = player;
-		emit playerChanged(player);
+		emit playerChanged(this->player);
 	
 		player->subscribe(PlayerFunctions::sptr(this));
 
@@ -133,6 +135,8 @@ void PlayerFunctions::subscribe(::controller::PlayerController::sptr observer) {
 	QObject::connect(this, SIGNAL(playerChanged(::model::player::Player::sptr)), observer.data(),
 		SLOT(setPlayer(::model::player::Player::sptr)));
 
+	this->playerController = observer;
+
 	emit playerChanged(player);
 }
 
@@ -145,6 +149,8 @@ void PlayerFunctions::unsubscribe(const ::controller::PlayerController &observer
 	QObject::disconnect(spinboxFPS, SIGNAL(valueChanged(int)), &observer, SLOT(setFPS(int)));
 	QObject::disconnect(this, SIGNAL(playerChanged(::model::player::Player::sptr)), &observer,
 		SLOT(setPlayer(::model::player::Player::sptr)));
+
+	this->playerController = ::controller::PlayerController::sptr();
 }
 
 }  // namespace view

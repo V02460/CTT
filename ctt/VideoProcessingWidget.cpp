@@ -57,16 +57,18 @@ void VideoProcessingWidget::setupUi() {
 }
 
 void VideoProcessingWidget::subscribe(::controller::VideoListController::sptr observer) {
-	QObject::connect(this, SIGNAL(videoForAnalysingAdded(model::video::Video::sptr)),
-		observer.data(), SLOT(addVideo(model::video::Video::sptr)));
-	QObject::connect(this, SIGNAL(videoForAnalysingRemoved(const model::video::Video&)),
-		observer.data(), SLOT(removeVideo(const model::video::Video&)));
+	QObject::connect(this, SIGNAL(videoForAnalysingAdded(::model::video::Video::sptr)),
+		observer.data(), SLOT(addVideo(::model::video::Video::sptr)));
+	QObject::connect(this, SIGNAL(videoForAnalysingRemoved(const ::model::video::Video&)),
+		observer.data(), SLOT(removeVideo(const ::model::video::Video&)));
+
+	this->videoListController = observer;
 }
 
 void VideoProcessingWidget::unsubscribe(const ::controller::VideoListController &observer) {
-	QObject::disconnect(this, SIGNAL(videoForAnalysingAdded(model::video::Video::sptr)),
-		&observer, SLOT(addVideo(model::video::Video::sptr)));
-	QObject::disconnect(this, SIGNAL(videoForAnalysingRemoved(const model::video::Video&)),
-		&observer, SLOT(removeVideo(const model::video::Video&)));
+	QObject::disconnect(this, SIGNAL(videoForAnalysingAdded(::model::video::Video::sptr)),
+		&observer, SLOT(addVideo(::model::video::Video::sptr)));
+	QObject::disconnect(this, SIGNAL(videoForAnalysingRemoved(const ::model::video::Video&)),
+		&observer, SLOT(removeVideo(const ::model::video::Video&)));
 }
 }  // namespace view
