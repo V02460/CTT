@@ -279,6 +279,12 @@
     <ClCompile Include="GeneratedFiles\Release\moc_TimeshiftFilterTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_RGBChannelFilterTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_RGBChannelFilterTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -344,6 +350,9 @@
     <CustomBuild Include="TimeshiftFilterTest.h">
       <Filter>Header Files\Model\Filter</Filter>
     </CustomBuild>
+    <CustomBuild Include="RGBChannelFilterTest.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CustomTestingMacros.h">
@@ -375,9 +384,6 @@
     </ClInclude>
     <ClInclude Include="ModelFilterTests.h">
       <Filter>Test Structure\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="RGBChannelFilterTest.h">
-      <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

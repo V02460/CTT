@@ -10,6 +10,7 @@
 #include "GreyscaleFilterTest.h"
 #include "NoiseFilterTest.h"
 #include "TimeshiftFilterTest.h"
+#include "RGBChannelFilterTest.h"
 
 #include "FilteredVideoTest.h"
 
@@ -26,6 +27,7 @@ static TestResult test(int argc, char *argv[]) {
     GreyscaleFilterTest greyscaleFilterTest;
     NoiseFilterTest noiseFilterTest;
     TimeshiftFilterTest timeshiftFilterTest;
+    RGBChannelFilterTest rgbChannelFilterTest;
 
     FilteredVideoTest filteredVideoTest;
 
@@ -36,6 +38,7 @@ static TestResult test(int argc, char *argv[]) {
       << TestResult("GreycaleFilterTest", QTest::qExec(&greyscaleFilterTest, argc, argv))
       << TestResult("NoiseFilterTest", QTest::qExec(&noiseFilterTest, argc, argv))
       << TestResult("TimeshiftFilterTest", QTest::qExec(&timeshiftFilterTest, argc, argv))
+      << TestResult("RGBChannelFilterTest", QTest::qExec(&rgbChannelFilterTest, argc, argv))
 
       << TestResult("FilteredVideoTest", QTest::qExec(&filteredVideoTest, argc, argv));
 
