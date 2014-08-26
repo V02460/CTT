@@ -43,7 +43,7 @@ public:
     virtual void restore(::model::saveable::Memento memento);
     static Saveable::sptr getDummy();
 
-	virtual ::model::saveable::Saveable::SaveableType getType() const;
+    static Saveable::SaveableType getSaveableType() { return SaveableType::pixelDiff; }
 
 protected:
     /**

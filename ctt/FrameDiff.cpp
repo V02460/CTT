@@ -33,5 +33,9 @@ FrameDiff::FrameDiff() {
     isDummyFlag = true;
 }
 
+Saveable::SaveableType FrameDiff::getSaveableType() {
+    return SaveableType::frameDiff;
+}
+
 }  // namespace difference
 }  // namespace model

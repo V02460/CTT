@@ -47,10 +47,6 @@ Saveable::sptr YUVPixelDiff::getDummy() {
     return YUVPixelDiff::sptr(new YUVPixelDiff());
 }
 
-Saveable::SaveableType YUVPixelDiff::getType() const {
-	return Saveable::SaveableType::yUVPixelDiff;
-}
-
 YUVPixelDiff::YUVPixelDiff() : PixelDiff() {
     isDummyFlag = true;
 }

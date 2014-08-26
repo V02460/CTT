@@ -35,6 +35,8 @@ public:
 
 	virtual QSharedPointer<QOpenGLContext> getContext() const ;
 
+    static Saveable::SaveableType getSaveableType();
+
 protected:
 	/**
 	 * Creates a File video initialized with the submitted path and context.

@@ -49,10 +49,6 @@ Saveable::sptr HSLPixelDiff::getDummy() {
     return HSLPixelDiff::sptr(new HSLPixelDiff());
 }
 
-Saveable::SaveableType HSLPixelDiff::getType() const {
-    return Saveable::SaveableType::hSLPixelDiff;
-}
-
 HSLPixelDiff::HSLPixelDiff() : PixelDiff() {
     isDummyFlag = true;
 }

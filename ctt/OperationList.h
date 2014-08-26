@@ -63,6 +63,8 @@ public:
 	static OperationList *getInstance();
 
 private:
+	Q_DISABLE_COPY(OperationList)
+
 	OperationList();
 
 	static OperationList::uptr instance;

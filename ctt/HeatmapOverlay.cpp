@@ -27,8 +27,8 @@ model::frame::Frame::sptr HeatmapOverlay::getFrame(unsigned int frameNumber) con
     throw new NotImplementedException();
 }
 
-Saveable::SaveableType HeatmapOverlay::getType() const {
-	return Saveable::SaveableType::heatmapOverlay;
+Saveable::SaveableType HeatmapOverlay::getSaveableType() {
+    return SaveableType::heatmapOverlay;
 }
 
 }  // namespace overlay
