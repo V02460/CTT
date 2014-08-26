@@ -639,6 +639,36 @@
     <ClCompile Include="NoScalePolicy.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
+    <ClCompile Include="FilterParamItem.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilterParamItem.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FilterParamItem.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterListViewItem.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilterListViewItem.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FilterListViewItem.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilterListView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FilterListView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AbstractListView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AbstractListView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -732,6 +762,18 @@
       <Filter>Header Files\View</Filter>
     </CustomBuild>
     <CustomBuild Include="FilterInsertionWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="AbstractListView.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilterParamItem.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilterListViewItem.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilterListView.h">
       <Filter>Header Files\View</Filter>
     </CustomBuild>
   </ItemGroup>
@@ -898,9 +940,6 @@
     <ClInclude Include="FilterIntervalList.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="AbstractListView.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
     <ClInclude Include="AbstractTimeline.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
@@ -908,9 +947,6 @@
       <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="DifferenceTimeline.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterListView.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="FilterTimeline.h">
@@ -1078,6 +1114,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VideoDisplayPolicy.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractListViewItem.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
   </ItemGroup>
