@@ -109,6 +109,14 @@ void ThumbnailListWidget::listedButtonToggled(bool checked, int id) {
 	}
 }
 
+void ThumbnailListWidget::listedButtonRemoved(bool checked, int id) {
+	if (activatedButtons.contains(id)) {
+		thumbnailList.at(id)->setChecked(false);
+	}
+
+	emit videoRemoved(id);
+}
+
 void ThumbnailListWidget::btnAddVideoClicked(bool checked) {
 	QString videoPath = QFileDialog::getOpenFileName(0, tr("OPEN_VIDEO"), "", tr("ALL_FILES (*.*)"));
 	emit videoAdded(videoPath);

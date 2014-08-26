@@ -49,6 +49,7 @@ public:
 public slots:
 	void btnAddVideoClicked(bool checked);
 	void listedButtonToggled(bool checked, int id);
+	void listedButtonRemoved(bool checked, int id);
 signals:
     /**
      * This signal is emitted when a new video is added to the program.

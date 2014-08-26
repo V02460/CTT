@@ -1,7 +1,7 @@
 #ifndef _LISTEDPUSHBUTTON
 #define _LISTEDPUSHBUTTON
 
-#include <QPushButton>
+#include <QToolButton>
 #include "FilteredVideo.h"
 #include "Observer.h"
 #include "Frame.h"
@@ -11,7 +11,7 @@ namespace view {
 	 *	The ListedPushButton is a small utitlity button wich can be put into a list of dynaically generated buttons
 	 *	and whose signals can be later on identified by the id given to the button.
 	 */
-class ListedPushButton : public QPushButton , public model::Observer {
+class ListedPushButton : public QToolButton , public model::Observer {
 	Q_OBJECT
 public:
 	typedef QScopedPointer<ListedPushButton> uptr;
@@ -40,6 +40,7 @@ public:
 signals:
 	void toggled(bool checked, int id);
 	void clicked(bool checked, int id);
+	void removed(bool checked, int id);
 private slots:
 	/**
 	*	Wraps the default toggled signal of QPushButton to the custom toggled signal of this class.
@@ -53,6 +54,8 @@ private slots:
 	*	@param checked If the button is checkable this determines whether the button was checked or unchecked
 	*/
 	void buttonClicked(bool checked);
+
+	void removeToggled(bool checked);
 private:
 	void init(int id);
 	void setThumbnail();
