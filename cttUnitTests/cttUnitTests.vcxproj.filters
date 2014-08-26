@@ -323,6 +323,9 @@
     <CustomBuild Include="FilteredVideoTest.h">
       <Filter>Generated Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="FilteredVideoTest.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CustomTestingMacros.h">
@@ -363,8 +366,5 @@
     <Image Include="Resources\Images\big_buck_bunny_01337.png">
       <Filter>Resource Files</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

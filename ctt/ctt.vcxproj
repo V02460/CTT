@@ -100,7 +100,6 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <BrowseInformation>true</BrowseInformation>
-      <AdditionalOptions>/wd4716 %(AdditionalOptions)</AdditionalOptions>
       <WarningLevel>Level3</WarningLevel>
       <TreatWarningAsError>true</TreatWarningAsError>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -176,7 +175,6 @@
     <ClCompile Include="FilteredVideo.cpp" />
     <ClCompile Include="FilterFactory.cpp" />
     <ClCompile Include="FilterIntervalList.cpp" />
-    <ClCompile Include="FilterListOperation.cpp" />
     <ClCompile Include="FilterListView.cpp" />
     <ClCompile Include="FilterMovedOperation.cpp" />
     <ClCompile Include="FilterParam.cpp" />
@@ -564,7 +562,6 @@
     <ClInclude Include="FilteredVideo.h" />
     <ClInclude Include="FilterFactory.h" />
     <ClInclude Include="FilterIntervalList.h" />
-    <ClInclude Include="FilterListOperation.h" />
     <ClInclude Include="FilterListView.h" />
     <ClInclude Include="FilterMovedOperation.h" />
     <ClInclude Include="FilterParam.h" />
