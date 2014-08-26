@@ -34,7 +34,7 @@ private:
 	void initIntSpinbox();
 	void initDoubleSpinbox();
 
-	FilterParam::sptr param;
+	::model::filter::FilterParam::sptr param;
 
 	QLabel *nameLabel;
 	QCheckBox *boolCheckbox;
