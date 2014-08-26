@@ -18,5 +18,6 @@
         <file>Shader/Filter/Mix.fs</file>
         <file>Shader/Filter/Rescale.fs</file>
         <file>Shader/Filter/Noise.fs</file>
+        <file>Shader/Filter/RGBChannel.fs</file>
     </qresource>
 </RCC>

@@ -21,6 +21,10 @@ public:
     typedef QSharedPointer<RGBChannelFilter> sptr;
     typedef QWeakPointer<RGBChannelFilter> wptr;
 
+    static const QString kParamRedStr;
+    static const QString kParamGreenStr;
+    static const QString kParamBlueStr;
+
     /**
     * Creates a new RGBChannelFilter object with a given previous module.
     *
@@ -36,12 +40,13 @@ public:
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
 
     virtual QString getName() const Q_DECL_OVERRIDE { return "filter_rgbchannel"; }
-    virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
+    virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
 	
-    virtual ::model::saveable::Saveable::SaveableType getType() const Q_DECL_OVERRIDE;
+    virtual ::model::saveable::Saveable::SaveableType getType() const Q_DECL_OVERRIDE { return Saveable::rGBChannelFilter; }
     virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
     virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
     virtual QList<const ::model::Module*> getUsesList() const Q_DECL_OVERRIDE;
+    virtual bool uses(const model::Module &module) const Q_DECL_OVERRIDE;
     static Saveable::sptr getDummy();
 
 };
