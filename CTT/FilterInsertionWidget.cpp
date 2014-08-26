@@ -7,9 +7,11 @@ FilterInsertionWidget::FilterInsertionWidget(::controller::FilterController::spt
 	: InsertionWidget(parent) {
 	generateButtons();
 
-	rearrangeContents();
+	//rearrangeContents();
+	setupUi();
 
 	QObject::connect(this, SIGNAL(inserted(QString)), controller.data(), SLOT(insertFilter(QString)));
+	this->filterController = controller;
 }
 
 void FilterInsertionWidget::generateButtons() {

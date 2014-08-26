@@ -30,7 +30,7 @@ public:
 
 	InsertionWidget(QWidget *parent = 0);
 
-	virtual void resizeEvent(QResizeEvent *ev) Q_DECL_OVERRIDE;
+	//virtual void resizeEvent(QResizeEvent *ev) Q_DECL_OVERRIDE;
 
 signals:
 	void inserted(QString id);
@@ -38,11 +38,10 @@ signals:
 protected:
 	QSize preferredButtonSize;
 	QList<ListedPushButton::sptr> insertionButtons; /**< The list of buttons to insert filters or differences */
-	void rearrangeContents();
-private:
-
+	//void rearrangeContents();
 	void setupUi();
-	void removeContents();
+private:
+	//void removeContents();
 
 	QList<QSpacerItem*> spacers;
 	QGridLayout *layout;

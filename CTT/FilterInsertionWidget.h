@@ -16,6 +16,8 @@ namespace view {
 		void listedButtonClicked(bool checked, int id);
 	private:
 		void generateButtons();
+
+		::controller::FilterController::sptr filterController;
 	};
 } // namespace view
 #endif //_FILTERINSERTIONWIDGET_H

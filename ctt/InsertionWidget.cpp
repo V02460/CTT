@@ -6,8 +6,6 @@ InsertionWidget::InsertionWidget(QWidget *parent) : QWidget(parent) {
 	insertionButtons = QList<ListedPushButton::sptr>();
 	spacers = QList<QSpacerItem*>();
 	preferredButtonSize = QSize(100, 50);
-
-	setupUi();
 }
 
 void InsertionWidget::setupUi() {
@@ -16,10 +14,23 @@ void InsertionWidget::setupUi() {
 
 	setLayout(layout);
 
-	rearrangeContents();
+	//Ersatz für die rearrangeContentMethode
+	int currentRow = 0;
+	int currentColumn = 0;
+
+	for each (ListedPushButton::sptr btn in insertionButtons) {
+		if (currentColumn == 5) {
+			currentColumn = 0;
+			currentRow++;
+		}
+
+		layout->addWidget(btn.data(), currentRow, currentColumn);
+		currentColumn++;
+	}
+	//rearrangeContents();
 }
 
-void InsertionWidget::rearrangeContents() {
+/*void InsertionWidget::rearrangeContents() {
 	removeContents();
 
 	QSize widgetSize = size();
@@ -72,6 +83,6 @@ void InsertionWidget::resizeEvent(QResizeEvent *ev) {
 	Q_UNUSED(ev);
 
 	rearrangeContents();
-}
+}*/
 
 }  // namespace view
