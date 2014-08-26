@@ -21,7 +21,7 @@ VideoWidget::VideoWidget(VideoScrubber::sptr scrubber, QWindow *parent)
 
 	if (!scrubber.isNull()) {
 		this->scrubber = scrubber;
-		this->scrubber->subscribe(QSharedPointer<Observer>(this));
+		this->scrubber->subscribe(this);
 
 		setSurfaceType(QWindow::OpenGLSurface);
 

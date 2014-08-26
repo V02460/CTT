@@ -87,7 +87,7 @@ void PlayerFunctions::setPlayer(::model::player::Player::sptr player) {
 		this->player = player;
 		emit playerChanged(this->player);
 	
-		player->subscribe(PlayerFunctions::sptr(this));
+		player->subscribe(this);
 
 		sliderCurrentFrame->setMaximum(static_cast<int>(player->getVideoLength()));
 		sliderCurrentFrame->setValue(static_cast<int>(player->getCurrentFrameNumber()));

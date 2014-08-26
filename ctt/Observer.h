@@ -22,8 +22,7 @@ public:
     virtual ~Observer();
 
     /**
-     * This method is meant to be used to notify the Observer of changes of the state of the Object it observes. 
-     *
+     * This method is meant to be used to notify the Observer of changes of the state of the Object it observes.
      */
     virtual void update();
 };

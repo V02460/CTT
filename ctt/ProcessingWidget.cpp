@@ -19,7 +19,7 @@ ProcessingWidget::ProcessingWidget(SaveableList<Player>::sptr players,
 	this->analysingVideosController = analysingVideosController;
 
 	this->players = players;
-	players->subscribe(ProcessingWidget::sptr(this));
+	players->subscribe(this);
 
 	this->filteredVideos = filteredVideos;
 

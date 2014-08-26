@@ -14,7 +14,7 @@ ThumbnailListWidget::ThumbnailListWidget(SaveableList<FilteredVideo>::sptr filte
 
 	this->filteredVideos = filteredVideos;
 	if (!filteredVideos.isNull()) {
-		filteredVideos->subscribe(ThumbnailListWidget::sptr(this));
+		filteredVideos->subscribe(this);
 	} else {
 		qDebug() << "Error in ThumbnailListWidget! The filteredVideo list was null! Using list with 5 empty elements instead";
 		this->filteredVideos = SaveableList<FilteredVideo>::sptr(new SaveableList<FilteredVideo>());

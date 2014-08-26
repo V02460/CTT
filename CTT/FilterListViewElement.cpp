@@ -4,7 +4,7 @@ namespace view{
 	FilterListViewElement::FilterListViewElement(model::filter::Filter::sptr filter,
 		controller::FilterController::sptr controller, QWidget *parent) : QTableWidget(parent) {
 		this->filter = filter;
-		filter->subscribe(FilterListViewElement::sptr(this));
+		filter->subscribe(this);
 
 		QObject::connect(this, SIGNAL(changeFilterParam(const ::model::filter::Filter &filter,
 			::model::filter::FilterParam param)), controller.data(), SLOT(changeFilterParam

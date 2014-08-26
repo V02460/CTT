@@ -9,7 +9,7 @@ namespace view {
 		
 		this->video = video;
 		if (video.data() != 0) {
-			video->subscribe(ListedPushButton::sptr(this));
+			video->subscribe(this);
 
 			setThumbnail();
 		} else {

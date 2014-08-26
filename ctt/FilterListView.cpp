@@ -17,9 +17,9 @@ namespace view {
 	}
 
 	void FilterListView::setVideo(FilteredVideo::sptr video) {
-		video->unsubscribe(*this);
+		video->unsubscribe(this);
 		this->video = video;
-		video->subscribe(Observer::sptr(this));
+		video->subscribe(this);
 
 		update();
 	}
