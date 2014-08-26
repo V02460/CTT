@@ -36,6 +36,9 @@ void VideoListController::addVideo(Video::sptr video) {
 }
 
 void VideoListController::removeVideo(int index) {	
+	if (index < 0 || index >= videoList->getSize()) {
+		throw new exception::IllegalArgumentException("The Video which is to be removed is not part of this VideoList.");
+	}
 	videoList->remove(index);
 }
 
