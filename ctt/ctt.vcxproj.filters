@@ -811,9 +811,6 @@
     <ClInclude Include="FilterFactory.h">
       <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
-    <ClInclude Include="FilterListOperation.h">
-      <Filter>Header Files\Controller\Operation</Filter>
-    </ClInclude>
     <ClInclude Include="FilterParam.h">
       <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>

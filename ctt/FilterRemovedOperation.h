@@ -44,7 +44,7 @@ private:
 
 	int index;
 	::model::filter::FilteredVideo::sptr filteredVideo;
-	model::saveable::Memento memento;
+	::model::saveable::Memento memento;
 };
 
 }  // namespace operation
