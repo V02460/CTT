@@ -84,19 +84,33 @@ int main(int argc, char *argv[])
 		VideoListController::sptr analysingVideosController =
 			VideoListController::sptr(new VideoListController(testProject->getVideoList2().dynamicCast<SaveableList<Video>>()));
 
-		YUVDataVideo::sptr testVideo = YUVDataVideo::sptr(new YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext));
-		VideoScrubber::sptr testVideoScrubber = VideoScrubber::sptr(new VideoScrubber(testVideo));
-		testProject->getBaseVideoList()->insert(0, testVideo);
+		YUVDataVideo::sptr testVideoOne = YUVDataVideo::sptr(new YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext));
+		VideoScrubber::sptr testVideoScrubberOne = VideoScrubber::sptr(new VideoScrubber(testVideoOne));
+		testProject->getBaseVideoList()->insert(0, testVideoOne);
 
-		FilteredVideo::sptr testFilteredVideo = FilteredVideo::sptr(new FilteredVideo(testVideo));
-		testProject->getVideoList1()->insert(0, testFilteredVideo);
-		VideoScrubber::sptr testFilteredVideoScrubber = VideoScrubber::sptr(new VideoScrubber(testFilteredVideo));
+		FilteredVideo::sptr testFilteredVideoOne = FilteredVideo::sptr(new FilteredVideo(testVideoOne));
+		VideoScrubber::sptr testFilteredVideoScrubberOne = VideoScrubber::sptr(new VideoScrubber(testFilteredVideoOne));
+		testProject->getVideoList1()->insert(0, testFilteredVideoOne);
+
+		Player::sptr testPlayerOne = Player::sptr(new Player(24));
+		testPlayerOne->addScrubber(testVideoScrubberOne);
+		testPlayerOne->addScrubber(testFilteredVideoScrubberOne);
+		testProject->getPlayerList1()->insert(0, testPlayerOne);
 
 
-		Player::sptr testPlayer = Player::sptr(new Player(24));
-		testPlayer->addScrubber(testVideoScrubber);
-		testPlayer->addScrubber(testFilteredVideoScrubber);
-		testProject->getPlayerList1()->insert(0, testPlayer);
+		YUVDataVideo::sptr testVideoTwo = YUVDataVideo::sptr(new YUVDataVideo("resources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext));
+		VideoScrubber::sptr testVideoScrubberTwo = VideoScrubber::sptr(new VideoScrubber(testVideoTwo));
+		testProject->getBaseVideoList()->insert(1, testVideoTwo);
+
+		FilteredVideo::sptr testFilteredVideoTwo = FilteredVideo::sptr(new FilteredVideo(testVideoTwo));
+		VideoScrubber::sptr testFilteredVideoScrubberTwo = VideoScrubber::sptr(new VideoScrubber(testFilteredVideoTwo));
+		testProject->getVideoList1()->insert(1, testFilteredVideoTwo);
+
+		Player::sptr testPlayerTwo = Player::sptr(new Player(24));
+		testPlayerTwo->addScrubber(testVideoScrubberTwo);
+		testPlayerTwo->addScrubber(testFilteredVideoScrubberTwo);
+		testProject->getPlayerList1()->insert(1, testPlayerTwo);
+
 
 		processingWidget = new view::ProcessingWidget(testProject->getPlayerList1(), testProject->getVideoList1(),
 			testProject->getBaseVideoList(), analysingVideosController);
