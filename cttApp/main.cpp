@@ -43,8 +43,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     //ctt mainWindow;
 	//view::VideoWidget *videoWidget;
-	ThumbnailListWidgetTest *thumbnailListWidgetTest;
-	ListedPushButtonTest *listedPushButtonTest;
+	//ThumbnailListWidgetTest *thumbnailListWidgetTest;
+	//ListedPushButtonTest *listedPushButtonTest;
 	view::ProcessingWidget *processingWidget;
 
 	//TODO wieder einkommentieren
@@ -74,10 +74,10 @@ int main(int argc, char *argv[])
 		//videoWidget = new view::VideoWidget(frame);
 		//videoWidget->show();
 
-		listedPushButtonTest = new ListedPushButtonTest();
+		//listedPushButtonTest = new ListedPushButtonTest();
 		//listedPushButtonTest->show();
 
-		thumbnailListWidgetTest = new ThumbnailListWidgetTest();
+		//thumbnailListWidgetTest = new ThumbnailListWidgetTest();
 		//thumbnailListWidgetTest->show();
 
 		Project *testProject = Project::getInstance();

@@ -61,7 +61,6 @@ void MainControlWidget::setupUi(ViewType viewType) {
 
 	leftWidgetLayout->addLayout(playerFunctionLayout);
 	leftWidgetLayout->addWidget(listView);
-	leftWidgetLayout->addStretch();
 	leftWidget->setLayout(leftWidgetLayout);
 
 	//Setup right side
