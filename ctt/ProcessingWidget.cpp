@@ -37,6 +37,8 @@ ProcessingWidget::ProcessingWidget(SaveableList<Player>::sptr players,
 	QObject::connect(this, SIGNAL(videoChanged(FilteredVideo::sptr)),
 		filterController.data(), SLOT(setVideo(FilteredVideo::sptr)));
 
+	playerWidgetsLayout->addWidget(new QWidget());
+
 	update();
 
 	setupUi();
@@ -86,7 +88,8 @@ void ProcessingWidget::setupUi() {
 }
 
 void ProcessingWidget::videoActivated(int id) {
-	playerWidgetsLayout->setCurrentIndex(id);
+	//id + 1, da an Stelle 0 ein leeres Widget sitzt
+	playerWidgetsLayout->setCurrentIndex(id + 1);
 	mainControlWidget->setPlayer(players->get(id));
 	emit videoChanged(filteredVideos->get(id));
 }

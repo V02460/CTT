@@ -5,6 +5,7 @@
 #include <QScrollArea>
 #include <QSplitter>
 #include "FilterInsertionWidget.h"
+#include "FilterListView.h"
 
 using ::controller::FilterController;
 using ::controller::DifferenceController;
@@ -16,6 +17,7 @@ MainControlWidget::MainControlWidget(FilterController::sptr filterController,
 	QWidget *parent) : QWidget(parent){
 	insertionWidget = new FilterInsertionWidget(filterController, this);
 	playerFunctions = new PlayerFunctions(this);
+	listView = new FilterListView(filterController, this);
 
 	setupUi(ViewType::PROCESSING_VIEW);
 }
@@ -58,6 +60,7 @@ void MainControlWidget::setupUi(ViewType viewType) {
 	playerFunctionLayout->addWidget(playerFunctions);
 
 	leftWidgetLayout->addLayout(playerFunctionLayout);
+	leftWidgetLayout->addWidget(listView);
 	leftWidgetLayout->addStretch();
 	leftWidget->setLayout(leftWidgetLayout);
 
