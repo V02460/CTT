@@ -1,8 +1,11 @@
 #include "PlayerController.h"
 
+#include "NotImplementedException.h"
+
 namespace controller {
 
 	using ::model::player::Player;
+	using ::exception::NotImplementedException;
 
 	PlayerController::PlayerController() {
 		setPlayer(player);
@@ -36,6 +39,10 @@ namespace controller {
 
 	void PlayerController::setFPS(int fps) {
 		//TODO implement
+	}
+
+	void PlayerController::update() {
+		throw new NotImplementedException();
 	}
 
 }  // namespace controller

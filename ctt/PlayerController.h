@@ -27,6 +27,8 @@ public:
      */
     PlayerController();
 
+	virtual void update();
+
 public slots:
 
     /**

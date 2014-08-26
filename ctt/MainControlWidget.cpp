@@ -6,10 +6,12 @@
 #include <QSplitter>
 #include "FilterInsertionWidget.h"
 #include "FilterListView.h"
+#include "NotImplementedException.h"
 
 using ::controller::FilterController;
 using ::controller::DifferenceController;
 using ::model::player::Player;
+using ::exception::NotImplementedException;
 
 namespace view {
 
@@ -110,6 +112,10 @@ void MainControlWidget::setPlayer(Player::sptr player) {
 void MainControlWidget::removePlayer() {
 	playerFunctions->removePlayer();
 	btnInsert->setEnabled(false);
+}
+
+void MainControlWidget::update() {
+	throw new NotImplementedException();
 }
 
 }  // namespace view

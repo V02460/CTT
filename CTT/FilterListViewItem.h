@@ -22,6 +22,7 @@ public:
 	FilterListViewItem(::model::filter::Filter::sptr filter, ::controller::FilterController::sptr filterController);
 
 	virtual QString getIdentifier() Q_DECL_OVERRIDE;
+	virtual void update();
 
 public slots:
 	void changeFilterParam(::model::filter::FilterParam::sptr newParam);

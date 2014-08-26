@@ -36,6 +36,8 @@ public:
 	void setPlayer(::model::player::Player::sptr player);
 	void removePlayer();
 
+	virtual void update();
+
 public slots:
     /**
      * Hides the ExtendedTimeline widget and shows the insertion widget, as long as the button is active.

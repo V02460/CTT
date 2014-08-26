@@ -29,6 +29,8 @@ public:
      */
     VideoListController(::model::saveable::SaveableList<::model::video::Video>::sptr videoList);
 
+	virtual void update();
+
 public slots:
 
     /**

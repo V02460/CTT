@@ -10,9 +10,4 @@ Observer::~Observer() {
 
 }
 
-// TODO remove! + = 0 in .h
-void Observer::update() {
-	throw new NotImplementedException();
-}
-
 }  // namespace model

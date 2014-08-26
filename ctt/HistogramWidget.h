@@ -35,6 +35,9 @@ public:
      * So for example the widget switches from the histogram for reds to the one for greens.
      */
     void next();
+
+	virtual void update();
+
 private:
     void paint();
     ::model::player::VideoScrubber::sptr scrubber /**< The scrubber at which the HistogramWidget is registered */;

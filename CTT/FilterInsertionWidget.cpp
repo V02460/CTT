@@ -1,6 +1,9 @@
 #include "FilterInsertionWidget.h"
 
 #include "FilterFactory.h"
+#include "NotImplementedException.h"
+
+using ::exception::NotImplementedException;
 
 namespace view {
 FilterInsertionWidget::FilterInsertionWidget(::controller::FilterController::sptr controller, QWidget *parent) 
@@ -32,5 +35,9 @@ void FilterInsertionWidget::listedButtonClicked(bool checked, int id) {
 	QString filterId = model::filter::FilterFactory::getAllNonOverlayFilterIDs().at(id);
 
 	emit inserted(filterId);
+}
+
+void FilterInsertionWidget::update() {
+	throw new NotImplementedException();
 }
 } // namespace view
