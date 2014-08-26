@@ -66,6 +66,8 @@ private:
     MainControlWidget *mainControlWidget; /**< The MainControlWidget which provides the player functionality */
     QList<PlayerWidget::sptr> *playerWidgets; /**< The different PlayerWidgets which can be set as active */
 	QStackedLayout *playerWidgetsLayout;
+
+	::controller::FilterController::sptr filterController;
 };
 
 }  // namespace view

@@ -100,7 +100,7 @@ void PlayerFunctions::setPlayer(::model::player::Player::sptr player) {
 }
 
 void PlayerFunctions::removePlayer() {
-	
+	unsubscribe(*playerController.data());
 }
 
 void PlayerFunctions::setEnabledAll(bool isEnabled) {

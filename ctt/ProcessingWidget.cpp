@@ -32,7 +32,7 @@ ProcessingWidget::ProcessingWidget(SaveableList<Player>::sptr players,
 	QObject::connect(thumbnailWidget, SIGNAL(buttonDeactivated(int)), this, SLOT(videoDeactivated(int)));
 	QObject::connect(thumbnailWidget, SIGNAL(buttonReplaced(int, int)), this, SLOT(videoReplaced(int, int)));
 
-	FilterController::sptr filterController = FilterController::sptr(new FilterController(FilteredVideo::sptr()));
+	filterController = FilterController::sptr(new FilterController(FilteredVideo::sptr()));
 	mainControlWidget = new MainControlWidget(filterController);
 	QObject::connect(this, SIGNAL(videoChanged(::model::filter::FilteredVideo::sptr)),
 		filterController.data(), SLOT(setVideo(::model::filter::FilteredVideo::sptr)));
@@ -120,6 +120,7 @@ void ProcessingWidget::update() {
 	}
 
 	playerWidgetsLayout->setCurrentIndex(0);
+	mainControlWidget->removePlayer();
 }
 
 }// namespace view

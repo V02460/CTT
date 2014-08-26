@@ -41,6 +41,7 @@ void MainControlWidget::setupUi(ViewType viewType) {
 	btnInsert = new QPushButton(leftWidget);
 	btnInsert->setAccessibleName("MainControlWidget->btnInsert");
 	btnInsert->setMinimumSize(QSize(30, 30));
+	btnInsert->setEnabled(false);
 	btnInsert->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	if (viewType == ViewType::PROCESSING_VIEW) {
 		btnInsert->setText(tr("INSERT_FILTER"));
@@ -73,7 +74,6 @@ void MainControlWidget::setupUi(ViewType viewType) {
 
 	QScrollArea *insertionScrollArea = new QScrollArea();
 	insertionScrollArea->setAccessibleName("MainControlWidget->insertionScrollArea");
-	insertionScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	insertionScrollArea->setWidget(insertionWidget);
 	insertionScrollArea->setWidgetResizable(true);
 
@@ -104,10 +104,12 @@ void MainControlWidget::btnInsertClicked(bool active) {
 
 void MainControlWidget::setPlayer(Player::sptr player) {
 	playerFunctions->setPlayer(player);
+	btnInsert->setEnabled(true);
 }
 
 void MainControlWidget::removePlayer() {
-
+	playerFunctions->removePlayer();
+	btnInsert->setEnabled(false);
 }
 
 }  // namespace view
