@@ -34,8 +34,8 @@ ProcessingWidget::ProcessingWidget(SaveableList<Player>::sptr players,
 
 	FilterController::sptr filterController = FilterController::sptr(new FilterController(FilteredVideo::sptr()));
 	mainControlWidget = new MainControlWidget(filterController);
-	QObject::connect(this, SIGNAL(videoChanged(FilteredVideo::sptr)),
-		filterController.data(), SLOT(setVideo(FilteredVideo::sptr)));
+	QObject::connect(this, SIGNAL(videoChanged(::model::filter::FilteredVideo::sptr)),
+		filterController.data(), SLOT(setVideo(::model::filter::FilteredVideo::sptr)));
 
 	playerWidgetsLayout->addWidget(new QWidget());
 

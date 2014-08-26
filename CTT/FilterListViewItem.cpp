@@ -15,12 +15,12 @@ namespace view {
 		for each (FilterParam param in filter->getParams()) {
 			FilterParamItem *paramRepresentation = new FilterParamItem(FilterParam::sptr(&param));
 			filterParams.append(FilterParamItem::sptr(paramRepresentation));
-			QObject::connect(paramRepresentation, SIGNAL(filterParamChanged(FilterParam::sptr)),
-				this, SLOT(changeFilterParam(FilterParam::sptr)));
+			QObject::connect(paramRepresentation, SIGNAL(filterParamChanged(::model::filter::FilterParam::sptr)),
+				this, SLOT(changeFilterParam(::model::filter::FilterParam::sptr)));
 		}
 
-		QObject::connect(this, SIGNAL(filterParamChanged(const Filter::sptr, FilterParam::sptr)),
-			filterController.data(), SLOT(changeFilterParam(const Filter::sptr, FilterParam::sptr)));
+		QObject::connect(this, SIGNAL(filterParamChanged(const ::model::filter::Filter::sptr, ::model::filter::FilterParam::sptr)),
+			filterController.data(), SLOT(changeFilterParam(const ::model::filter::Filter::sptr, ::model::filter::FilterParam::sptr)));
 
 		setupUi();
 	}

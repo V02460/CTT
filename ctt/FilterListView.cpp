@@ -12,8 +12,8 @@ namespace view {
 
 		QObject::connect(this, SIGNAL(filterMoved(int, int)), filterController.data(), SLOT(moveFilter(int, int)));
 		QObject::connect(this, SIGNAL(elementRemoved(int)), filterController.data(), SLOT(removeFilter(int)));
-		QObject::connect(this, SIGNAL(videoChanged(FilteredVideo::sptr)),
-			filterController.data(), SLOT(setVideo(FilteredVideo::sptr)));
+		QObject::connect(this, SIGNAL(videoChanged(::model::filter::FilteredVideo::sptr)),
+			filterController.data(), SLOT(setVideo(::model::filter::FilteredVideo::sptr)));
 	}
 
 	void FilterListView::setVideo(FilteredVideo::sptr video) {

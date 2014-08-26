@@ -54,7 +54,7 @@ signals:
      */
     void btnChangeViewClicked(ViewType newView);
 
-	void videoChanged(model::filter::FilteredVideo::sptr video);
+	void videoChanged(::model::filter::FilteredVideo::sptr video);
 private:
 	void setupUi();
 
