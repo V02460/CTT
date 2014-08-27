@@ -9,17 +9,17 @@ namespace operation {
 using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
 
-OperationList::OperationList() : currentOperation(operations.begin()) {}
+OperationList::OperationList() : operations(), currentOperation(0), lastSavedOperation(-1) {}
 
 void OperationList::doOperation(Operation::sptr operation) {
-	/* TODO
-	 * off by one?
-	 * consistent?
-	 * delete nur wenn nötig für performance?
-	 */
-	currentOperation = operations.erase(currentOperation, operations.end() - 1);
+	if (currentOperation < lastSavedOperation) {
+		lastSavedOperation = -1;
+	}
+	while (currentOperation != operations.size()) {
+		operations.removeLast();
+	}
 	operations.append(operation);
-	operation->doOperation();
+	redoOperation();
 }
 
 void OperationList::undoOperation() {
@@ -27,14 +27,14 @@ void OperationList::undoOperation() {
 		throw new IllegalStateException("There are no operations to be undone.");
 	}
 	currentOperation--;
-	currentOperation[0]->undoOperation();
+	operations[currentOperation]->undoOperation();
 }
 
 void OperationList::redoOperation() {
 	if (!canRedo()) {
 		throw new IllegalStateException("There are no operations to be redone.");
 	}
-	currentOperation[0]->doOperation();
+	operations[currentOperation]->doOperation();
 	currentOperation++;
 }
 
@@ -47,11 +47,11 @@ bool OperationList::hasSaveableChanges() const {
 }
 
 bool OperationList::canUndo() const {
-	return currentOperation != operations.constBegin();
+	return currentOperation != 0;
 }
 
 bool OperationList::canRedo() const {
-	return currentOperation != operations.constEnd();
+	return currentOperation != operations.size();
 }
 
 OperationList *OperationList::getInstance() {

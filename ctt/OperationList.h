@@ -63,13 +63,15 @@ public:
 	static OperationList *getInstance();
 
 private:
+	Q_DISABLE_COPY(OperationList)
+
 	OperationList();
 
 	static OperationList::uptr instance;
 
     QList<Operation::sptr> operations;
-	QList<Operation::sptr>::iterator currentOperation;
-	QList<Operation::sptr>::iterator lastSavedOperation;
+	int currentOperation;
+	int lastSavedOperation;
 };
 
 }  // namespace operation

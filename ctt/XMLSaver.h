@@ -99,6 +99,8 @@ public:
 	static XMLSaver *getInstance();
 
 private:
+	Q_DISABLE_COPY(XMLSaver)
+
 	XMLSaver();
 
 	static XMLSaver::uptr instance;

@@ -7,6 +7,7 @@ namespace model {
 namespace video {
 
 using ::model::Module;
+using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
 using ::exception::FileNotFoundException;
@@ -63,6 +64,10 @@ QSharedPointer<QOpenGLContext> FileVideo::getContext() const
 	}
 
 	return context;
+}
+
+Saveable::SaveableType FileVideo::getSaveableType() {
+	return Saveable::fileVideo;
 }
 
 }  // namespace video

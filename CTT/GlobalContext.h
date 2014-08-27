@@ -8,23 +8,23 @@
 
 namespace model {
 
-	class GlobalContext {
+class GlobalContext {
 
-	public:
-		/**
-		* Returns the OpenGLContext this program is using.
-		*/
-		static QSharedPointer<QOpenGLContext> get();
+public:
+	/**
+	 * Returns the OpenGLContext this program is using.
+	 */
+	static QSharedPointer<QOpenGLContext> get();
 
-	private:
-		Q_DISABLE_COPY(GlobalContext)
+private:
+	Q_DISABLE_COPY(GlobalContext)
 
-			GlobalContext();
-		~GlobalContext();
+    GlobalContext();
+    ~GlobalContext();
 
-		static QSharedPointer<QOpenGLContext> context;
-		static QScopedPointer<QOffscreenSurface> surface;
-	};
+	static QSharedPointer<QOpenGLContext> context;
+	static QScopedPointer<QOffscreenSurface> surface;
+};
 
 }  // namespace model
 

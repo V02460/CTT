@@ -24,15 +24,19 @@ void ViewState::changeView(ViewType newView) {
     throw new NotImplementedException();
 }
 
-Saveable::SaveableType ViewState::getType() const {
-	return Saveable::SaveableType::viewState;
+Saveable::SaveableType ViewState::getSaveableType() {
+    return SaveableType::viewState;
 }
 
-QSharedPointer<ViewState> ViewState::getInstance() {
-	throw new NotImplementedException();
+ViewState* ViewState::getInstance() {
+	if (instance.isNull()) {
+		instance.reset(new ViewState());
+	}
+
+	return instance.data();
 }
 
-QSharedPointer<VideoDisplayPolicy> ViewState::getCurrentVideoDisplayPolicy() {
+const VideoDisplayPolicy* ViewState::getCurrentVideoDisplayPolicy() {
 	throw new NotImplementedException();
 }
 
@@ -40,4 +44,7 @@ void ViewState::changeVideoDisplayPolicy() {
 	throw new NotImplementedException();
 }
 
+ViewState::ViewState() : currentView(ViewType::PROCESSING_VIEW){}
+
+ViewState::uptr ViewState::instance;
 }  // namespace view

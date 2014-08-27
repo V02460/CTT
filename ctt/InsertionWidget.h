@@ -7,9 +7,13 @@
 #include <QWidget>
 #include <QList>
 #include <QPushButton>
+#include <QGridLayout>
 
 #include "ViewState.h"
 #include "Observer.h"
+#include "FilterController.h"
+#include "OverlayController.h"
+#include "ListedPushButton.h"
 
 namespace view {
 
@@ -24,18 +28,24 @@ public:
     typedef QSharedPointer<InsertionWidget> sptr;
     typedef QWeakPointer<InsertionWidget> wptr;
 
-public slots:
-    /**
-     * Adjusts the InsertionWidget according to the current state of tht whole view.
-     * Which means that it creates a button for every filter or difference registered at the corresponding factory (see
-     * FilterFactory and DifferenceFactory).
-     * So in the processing view only the buttons to add filter are shown while in the analysing view its the buttons to
-     * add differences to be shown.
-     */
-    void changeViewState();
+	InsertionWidget(QWidget *parent = 0);
 
+	//virtual void resizeEvent(QResizeEvent *ev) Q_DECL_OVERRIDE;
+
+signals:
+	void inserted(QString id);
+
+protected:
+	QSize preferredButtonSize;
+	QList<ListedPushButton::sptr> insertionButtons; /**< The list of buttons to insert filters or differences */
+	//void rearrangeContents();
+	void setupUi();
 private:
-    QList<QPushButton> insertionButtons; /**< The list of buttons to insert filters or differences */
+	//void removeContents();
+
+	QList<QSpacerItem*> spacers;
+	QGridLayout *layout;
+
 };
 
 }  // namespace view

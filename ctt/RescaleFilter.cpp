@@ -3,11 +3,13 @@
 #include "NotImplementedException.h"
 #include "GPUHelper.h"
 #include "FilterParam.h"
+#include "FrameMetadata.h"
 
 namespace model {
 namespace filter {
 
 using ::model::frame::Frame;
+using ::model::frame::FrameMetadata;
 using ::model::filter::FilterParam;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
@@ -26,7 +28,7 @@ RescaleFilter::~RescaleFilter() {
 }
 
 model::frame::Frame::sptr RescaleFilter::getFrame(unsigned int frameNumber) const {
-    Surface::sptr sourceFrame(getPredecessor()->getFrame(frameNumber));
+    Frame::sptr sourceFrame = getPredecessor()->getFrame(frameNumber);
 
     QSize newSize = getParamValue<QSize>(kParamNewSize);
 
@@ -39,8 +41,9 @@ model::frame::Frame::sptr RescaleFilter::getFrame(unsigned int frameNumber) cons
 
     GPUHelper gpuHelper(":/Shader/Filter/Rescale.fs", sourceFrame->getContext());
 
-	model::frame::FrameMetadata metadata(newSize);
-	return Frame::sptr(new Frame(gpuHelper.run(*sourceFrame.data(), newSize), metadata));
+    Surface::sptr targetSurface = gpuHelper.run(*sourceFrame.data(), newSize);
+
+    return Frame::sptr(new Frame(targetSurface, FrameMetadata(targetSurface->getSize())));
 }
 
 Memento RescaleFilter::getMemento() const {
