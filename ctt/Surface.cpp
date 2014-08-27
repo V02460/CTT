@@ -69,6 +69,7 @@ QOpenGLFramebufferObject *Surface::getFramebufferObject() {
     return framebuffer.data();
 }
 
+// TODO: make const
 QByteArray Surface::getRawRGBA() {
     //TODO: find nicer way to handle changing contexts
     initializeOpenGLFunctions();
