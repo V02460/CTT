@@ -18,7 +18,7 @@ namespace filter {
  * Represents a Video with a filter pipeline modifying its frames.
  *
  */
-class FilteredVideo : public ::model::video::Video, public ::model::Observable {
+class FilteredVideo : public ::model::video::Video {
 public:
     typedef QScopedPointer<FilteredVideo> uptr;
     typedef QSharedPointer<FilteredVideo> sptr;
@@ -82,7 +82,7 @@ public:
     virtual ::model::saveable::Memento getMemento() const;
     virtual void restore(::model::saveable::Memento memento);
 	static Saveable::sptr getDummy();
-	virtual ::model::saveable::Saveable::SaveableType getType() const;
+    static Saveable::SaveableType getSaveableType();
 
 private:
     /**

@@ -55,6 +55,8 @@ public:
 	static XMLLoader *getInstance();
 
 private:
+	Q_DISABLE_COPY(XMLLoader)
+
 	XMLLoader();
 
 	static XMLLoader::uptr instance;

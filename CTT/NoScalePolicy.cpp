@@ -2,7 +2,7 @@
 
 namespace view {
 
-QRect NoScalePolicy::getViewportSize(QSize windowSize, QSize videoSize) {
+QRect NoScalePolicy::getViewportSize(QSize windowSize, QSize videoSize) const {
 	QRect viewportSize = QRect(0, 0, windowSize.width(), windowSize.height());
 
 	if (windowSize.width() > videoSize.width()) {

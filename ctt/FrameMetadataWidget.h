@@ -30,6 +30,8 @@ public:
      */
     FrameMetadataWidget(::model::player::VideoScrubber::sptr scrubber);
 
+	virtual void update();
+
 private:
     ::model::player::VideoScrubber::sptr scrubber; /**< The scrubber at which the FrameMetadataWidget is registered */
 };

@@ -77,6 +77,13 @@ public:
      */
     void jumpToFrameNr(unsigned int frameNumber);
 
+	/**
+	* Returns the default FPS for the video.
+	*
+	* @returns the default FPS
+	*/
+	double getDefaultFPS();
+
     /**
      * Sets the playback speed in frames per second.
      *
@@ -240,7 +247,7 @@ public:
     virtual ::model::saveable::Memento getMemento() const;
     virtual void restore(::model::saveable::Memento memento);
 	static ::model::saveable::Saveable::sptr getDummy();
-	virtual ::model::saveable::Saveable::SaveableType getType() const;
+    static Saveable::SaveableType getSaveableType();
 
 public slots:
     /**
@@ -283,6 +290,7 @@ private:
     QList<::model::player::VideoScrubber::sptr> videoScrubbers; /**< The VideoScrubbers controlled by this player*/
     QTimer timer; /**< The timer controlling the playback speed */
     double fps; /**< The currently set playback speed in frames per second */
+	double defaultFPS; /**< The default fps for the player's video */
     bool looping; /**< Specifies whether the player is currently in a loop */
     bool playing; /**< Specifies whether the player is currently playing */
     UIntegerInterval loop; /**< Specifies the interval in which the player loops. */

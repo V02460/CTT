@@ -48,7 +48,7 @@ public:
 
     virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
 
-	virtual ::model::saveable::Saveable::SaveableType getType() const;
+    static Saveable::SaveableType getSaveableType();
 
 	virtual unsigned int getFrameCount() const;
 	virtual ::model::saveable::Memento getMemento() const;

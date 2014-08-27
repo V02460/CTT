@@ -226,8 +226,8 @@ model::video::VideoMetadata FilteredVideo::getMetadata() const
 	}
 }
 
-Saveable::SaveableType FilteredVideo::getType() const {
-	return Saveable::SaveableType::filteredVideo;
+Saveable::SaveableType FilteredVideo::getSaveableType() {
+    return Saveable::filteredVideo;
 }
 
 Video::sptr FilteredVideo::getBaseVideo() const {

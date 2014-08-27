@@ -6,6 +6,7 @@
 #include <QWeakPointer>
 
 #include "Saveable.h"
+#include "Observable.h"
 #include "Frame.h"
 #include "Memento.h"
 
@@ -15,7 +16,7 @@ namespace model {
  * An object able to provide specific frames from a sequentially numbered set of frames.
  *
  */
-class Module : public saveable::Saveable {
+class Module : public saveable::Saveable , public model::Observable {
 public:
     typedef QScopedPointer<Module> uptr;
     typedef QSharedPointer<Module> sptr;
@@ -64,6 +65,8 @@ public:
 	 * @return the size of the frames this module provides
 	 */
 	virtual QSize getResolution() const = 0;
+
+    static ::model::saveable::Saveable::SaveableType getSaveableType();
 };
 
 }  // namespace model

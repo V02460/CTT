@@ -38,6 +38,9 @@ public:
      */
     FilterController(::model::filter::FilteredVideo::sptr video);
 
+	virtual void update();
+
+public slots:
     /**
      * Initiates inserting a filter to the video's list of filters 
      * Is called when it receives a notification that a filter should be inserted.
@@ -82,8 +85,9 @@ public:
 	void setVideo(::model::filter::FilteredVideo::sptr newVideo);
 
 private:
+	Q_DISABLE_COPY(FilterController)
+
     ::model::filter::FilteredVideo::sptr video;
-	::controller::operation::OperationList list;
 };
 
 }  // namespace controller

@@ -11,6 +11,8 @@ namespace video {
 using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
 using ::exception::IOException;
+using ::model::saveable::Saveable;
+
 using ::model::frame::Frame;
 using model::filter::FilterParam;
 
@@ -89,7 +91,6 @@ void Video::save(QString path, VideoFileType type) const
 
 	return rescaler->getFrame(frameNumber);
 }
-
 
 QSize Video::getResolution() const
 {

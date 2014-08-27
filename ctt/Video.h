@@ -11,6 +11,7 @@
 
 #include "Module.h"
 #include "Frame.h"
+#include "Observable.h"
 #include "Memento.h"
 #include "VideoMetadata.h"
 #include "VideoFileType.h"

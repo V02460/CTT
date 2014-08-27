@@ -84,7 +84,7 @@ public:
 
 	virtual void restore(Memento memento);
 
-	virtual ::model::saveable::Saveable::SaveableType getType() const;
+    static Saveable::SaveableType getSaveableType();
 
 private:
 
