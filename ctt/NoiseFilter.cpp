@@ -1,16 +1,20 @@
 #include "NoiseFilter.h"
 
-#include "GPUHelper.h"
 #include "NotImplementedException.h"
+#include "GPUHelper.h"
+#include "MathHelper.h"
 
 namespace model {
 namespace filter {
 
 using ::model::frame::Frame;
-using ::helper::GPUHelper;
+using ::exception::NotImplementedException;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
-using ::exception::NotImplementedException;
+using ::helper::GPUHelper;
+using ::helper::clamp;
+
+const QString NoiseFilter::kParamIntensityStr = "filter_noise_param_intensity";
 
 NoiseFilter::NoiseFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamIntensityStr, 0.5f);
@@ -24,35 +28,37 @@ model::frame::Frame::sptr NoiseFilter::getFrame(unsigned int frameNumber) const 
 
     GPUHelper gpuHelper(":/Shader/Filter/Noise.fs", frame->getContext());
 
-    gpuHelper.setValue("intensity", getParamValue<float>(kParamIntensityStr));
+    float intensity = getParamValue<float>(kParamIntensityStr);
+    intensity = clamp(intensity, 0.f, 1.f);
+    gpuHelper.setValue("intensity", intensity);
+    gpuHelper.setValue("time", static_cast<GLfloat>(frameNumber));
 
     Surface::sptr targetSurface = gpuHelper.run(*frame.data());
 
     return Frame::sptr(new Frame(targetSurface, frame->getMetadata()));
 }
 
-QString NoiseFilter::getName() const {
-	// TODO sorry
-	throw new NotImplementedException();
-}
-
 Memento NoiseFilter::getMemento() const {
-    return Filter::getMemento();
+    Memento memento = Filter::getMemento();
+
+    memento.setFloat(kParamIntensityStr, getParamValue<float>(kParamIntensityStr));
+
+    return memento;
 }
 
 void NoiseFilter::restore(Memento memento) {
     Filter::restore(memento);
+
+    setParam(FilterParam(kParamIntensityStr, memento.getFloat(kParamIntensityStr)));
 }
 
 QList<const Module*> NoiseFilter::getUsesList() const {
-    return QList<const Module*>() << this;
+    throw new NotImplementedException();
 }
 
-Saveable::SaveableType NoiseFilter::getSaveableType() {
-    return SaveableType::noiseFilter;
+bool NoiseFilter::uses(const Module &module) const {
+    throw new NotImplementedException();
 }
-
-const QString NoiseFilter::kParamIntensityStr = "filter_noise_param_intensity";
 
 }  // namespace filter
 }  // namespace model

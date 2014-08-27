@@ -14,12 +14,13 @@ using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::exception::NotImplementedException;
 
+const QString BlurFilter::kParamRadiusStr = "filter_blur_param_radius";
+
 BlurFilter::BlurFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamRadiusStr, 5.f);
 }
 
 BlurFilter::~BlurFilter() {
-
 }
 
 model::frame::Frame::sptr BlurFilter::getFrame(unsigned int frameNumber) const {
@@ -41,10 +42,6 @@ model::frame::Frame::sptr BlurFilter::getFrame(unsigned int frameNumber) const {
     return Frame::sptr(new Frame(targetSurface, frame->getMetadata()));
 }
 
-Saveable::SaveableType BlurFilter::getSaveableType() {
-    return SaveableType::blurFilter;
-}
-
 Memento BlurFilter::getMemento() const {
     return Filter::getMemento();
 }
@@ -54,14 +51,12 @@ void BlurFilter::restore(Memento memento) {
 }
 
 QList<const Module*> BlurFilter::getUsesList() const {
-    return QList<const Module*>() << this;
+    throw new NotImplementedException();
 }
 
 bool BlurFilter::uses(const model::Module &module) const {
     throw new NotImplementedException();
 }
-
-const QString BlurFilter::kParamRadiusStr = "filter_blur_param_radius";
 
 }  // namespace filter
 }  // namespace model

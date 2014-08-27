@@ -6,6 +6,7 @@
 #include "FileNotFoundException.h"
 #include "OpenGLException.h"
 #include "NotImplementedException.h"
+#include "IllegalArgumentException.h"
 
 // #define WARN_INVALID_UNIFORM
 
@@ -16,6 +17,7 @@ using ::exception::OpenGLException;
 using ::exception::IOException;
 using ::exception::FileNotFoundException;
 using ::exception::NotImplementedException;
+using ::exception::IllegalArgumentException;
 
 static QSize getNewSizeDefault(QSize size) {
     return QSize(size.width() / 2, size.height() / 2);
@@ -213,6 +215,10 @@ void GPUHelper::setValue(QString name, QVector4D value) {
 }
 
 Surface::sptr GPUHelper::run(const Surface &sourceTexture, QSize targetSize) {
+    if (targetSize.width() < 1 || targetSize.height() < 1) {
+        throw new IllegalArgumentException("targetSize components must be positive.");
+    }
+
     switch (mode) {
         case APPLY:
             return applyShader(sourceTexture, targetSize);

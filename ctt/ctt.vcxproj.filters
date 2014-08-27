@@ -1089,7 +1089,12 @@
     <ClInclude Include="FilterMovedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
-    <None Include="Shader\Histogram\saturationHistogramGrid.fs" />
+    <None Include="Shader\Filter\Rescale.fs">
+      <Filter>Shader Files\Filter</Filter>
+    </None>
+    <None Include="Shader\Histogram\saturationHistogramGrid.fs">
+      <Filter>Shader Files\Histogram</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AccessToDummyException.h">

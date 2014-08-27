@@ -29,7 +29,7 @@ void MixFilterTest::initTestCase() {
     video2.reset(new YUVDataVideo("Resources/Videos/YUV444/squirrel-720x576-444P.yuv",
         QSize(720, 576),
         24,
-        YUVType::YUV420,
+        YUVType::YUV444,
         testContext));
 }
 
