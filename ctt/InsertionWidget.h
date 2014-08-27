@@ -38,7 +38,9 @@ signals:
 protected:
 	QSize preferredButtonSize;
 	QList<ListedPushButton::sptr> insertionButtons; /**< The list of buttons to insert filters or differences */
+
 private:
+
 };
 
 }  // namespace view

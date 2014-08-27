@@ -6,9 +6,7 @@ InsertionWidget::InsertionWidget(QWidget *parent) : QWidget(parent) {
 	
 }
 
-void InsertionWidget::inserted(QString id) {
 
-}
 
 
 void InsertionWidget::resizeEvent(QResizeEvent *ev) {

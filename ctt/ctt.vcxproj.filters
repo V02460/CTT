@@ -705,6 +705,12 @@
     <CustomBuild Include="NoScalePolicy.h">
       <Filter>Header Files\View</Filter>
     </CustomBuild>
+    <CustomBuild Include="FilterInsertionWidget.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ListedPushButton.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnalysingWidget.h">
