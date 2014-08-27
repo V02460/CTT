@@ -5,14 +5,14 @@ uniform ivec2 _targetSize;
 uniform sampler2D _sourceTexture;
 
 vec4 encodeFloatRGBA(float v) {
-	vec4 enc = vec4(1.f, 255.f, 65025.f, 160581375.f) * v;
+	vec4 enc = vec4(1.f, 256.f, 65025.f, 16581375.f) * v;
 	enc = fract(enc);
 	enc -= enc.yzww * vec4(vec3(1.f / 255.f), 0.f);
 	return enc;
 }
 
 float decodeFloatRGBA(vec4 rgba) {
-	return dot(rgba, vec4(1.f, 1.f / 255.f, 1.f / 65025.f, 1.f / 160581375.f));
+	return dot(rgba, vec4(1.f, 1.f / 255.f, 1.f / 65025.f, 1.f / 16581375.f));
 }
 
 void main() {
