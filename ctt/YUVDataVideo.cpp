@@ -360,7 +360,7 @@ Memento YUVDataVideo::getMemento() const
 
 void YUVDataVideo::restore(Memento memento)
 {
-	context =GlobalContext::get();
+	context = GlobalContext::get();
 	hasMetadataFile = false;
 
 	pathToVideoFile = memento.getString(videoPathStringId);
