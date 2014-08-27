@@ -5,7 +5,7 @@
 #include "YUVDataVideo.h"
 #include "FilteredVideo.h"
 #include "GreyscaleFilter.h"
-
+#include "Memento.h"
 #include "IllegalStateException.h"
 
 using exception::IllegalArgumentException;
@@ -113,5 +113,46 @@ void FilteredVideoTest::filterOperations()
 
 void FilteredVideoTest::saveRestore()
 {
+	model::video::YUVDataVideo::sptr baseVideo(
+		new model::video::YUVDataVideo("Resources/Videos/YUV444/squirrel-720x576-444P.yuv",
+		QSize(720, 576),
+		24,
+		model::video::YUVType::YUV444,
+		testContext));
 
+	FilteredVideo::sptr testVideoPointer(new FilteredVideo(baseVideo));
+
+	GreyscaleFilter::sptr filter0(new GreyscaleFilter(testVideoPointer));
+	testVideoPointer->addFilter(filter0, 0);
+
+	GreyscaleFilter::sptr filter1(new GreyscaleFilter(testVideoPointer));
+	testVideoPointer->addFilter(filter1, 0);
+
+	GreyscaleFilter::sptr filter2(new GreyscaleFilter(testVideoPointer));
+	testVideoPointer->addFilter(filter2, 2);
+
+	GreyscaleFilter::sptr filter3(new GreyscaleFilter(testVideoPointer));
+	testVideoPointer->addFilter(filter3, 2);
+
+	Memento memento = testVideoPointer->getMemento();
+
+	FilteredVideo::sptr dummy = FilteredVideo::getDummy().dynamicCast<FilteredVideo>();
+	dummy->restore(memento);
+	QVERIFY(dummy->getContext() == baseVideo->getContext());
+	QVERIFY(dummy->getBaseVideo() == baseVideo);
+	QCOMPARE(dummy->getFilterCount(), (unsigned int)4);
+	QVERIFY(dummy->getFilterList().at(0) == filter1);
+	QVERIFY(dummy->getFilterList().at(1) == filter0);
+	QVERIFY(dummy->getFilterList().at(2) == filter3);
+	QVERIFY(dummy->getFilterList().at(3) == filter2);
+
+	testVideoPointer->removeFilter(1);
+	testVideoPointer->restore(memento);
+	QVERIFY(testVideoPointer->getContext() == baseVideo->getContext());
+	QVERIFY(testVideoPointer->getBaseVideo() == baseVideo);
+	QCOMPARE(testVideoPointer->getFilterCount(), (unsigned int)4);
+	QVERIFY(testVideoPointer->getFilterList().at(0) == filter1);
+	QVERIFY(testVideoPointer->getFilterList().at(1) == filter0);
+	QVERIFY(testVideoPointer->getFilterList().at(2) == filter3);
+	QVERIFY(testVideoPointer->getFilterList().at(3) == filter2);
 }

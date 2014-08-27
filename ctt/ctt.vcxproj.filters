@@ -505,9 +505,6 @@
     <ClCompile Include="FilterAddedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
-    <ClCompile Include="FilterListOperation.cpp">
-      <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
     <ClCompile Include="FilterParamChangedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
@@ -583,6 +580,9 @@
     <ClCompile Include="ParseException.cpp">
       <Filter>Source Files\Controller\Exception</Filter>
     </ClCompile>
+    <ClCompile Include="FFmpegException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
     <ClCompile Include="FilterMovedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
@@ -609,6 +609,12 @@
     </ClCompile>
     <ClCompile Include="VideoSaver.cpp">
       <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalContext.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Module.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -696,10 +702,7 @@
     <CustomBuild Include="Observer.h">
       <Filter>Header Files\Model</Filter>
     </CustomBuild>
-    <CustomBuild Include="FilterInsertionWidget.h">
-      <Filter>Header Files\View</Filter>
-    </CustomBuild>
-    <CustomBuild Include="ListedPushButton.h">
+    <CustomBuild Include="NoScalePolicy.h">
       <Filter>Header Files\View</Filter>
     </CustomBuild>
   </ItemGroup>
@@ -736,9 +739,6 @@
     </ClInclude>
     <ClInclude Include="FilterFactory.h">
       <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterListOperation.h">
-      <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
     <ClInclude Include="FilterParam.h">
       <Filter>Header Files\Model\Filter</Filter>
@@ -896,9 +896,6 @@
     <ClInclude Include="Surface.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="ProjectSaverFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ProjectLoader.h">
       <Filter>Header Files\Controller\Project</Filter>
     </ClInclude>
@@ -953,6 +950,18 @@
     <ClInclude Include="FilterMovedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
+    <ClInclude Include="VideoDisplayPolicy.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="FFmpegException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalContext.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="FileNotFoundException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="ExtendedVideoListController.h">
       <Filter>Header Files\Controller</Filter>
     </ClInclude>
@@ -1003,8 +1012,34 @@
     <None Include="Shader\Histogram\redHistogramGrid.fs">
       <Filter>Shader Files\Histogram</Filter>
     </None>
+    <None Include="Shader\Histogram\blueHistogramGrid.fs">
+      <Filter>ShaderFiles\Histogram</Filter>
+    </None>
+    <None Include="Shader\Histogram\histogramCompaction.fs">
+      <Filter>ShaderFiles\Histogram</Filter>
+    </None>
+    <ClInclude Include="IOException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="ParseException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterMovedOperation.h">
+      <Filter>Header Files\Controller\Operation</Filter>
+    </ClInclude>
+    <None Include="Shader\Filter\Rescale.fs">
+      <Filter>Shader Files\Filter</Filter>
+    </None>
     <None Include="Shader\Histogram\saturationHistogramGrid.fs">
       <Filter>Shader Files\Histogram</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AccessToDummyException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Images\big_buck_bunny_01337.png" />
   </ItemGroup>
 </Project>

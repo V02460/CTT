@@ -39,12 +39,7 @@ protected:
 	QSize preferredButtonSize;
 	QList<ListedPushButton::sptr> insertionButtons; /**< The list of buttons to insert filters or differences */
 private:
-	void setupUi();
-	void rearrangeContents();
-	void removeContents();
-
-	QList<QSpacerItem*> spacers;
-	QGridLayout *layout;
+    QList<QPushButton> insertionButtons; /**< The list of buttons to insert filters or differences */
 };
 
 }  // namespace view

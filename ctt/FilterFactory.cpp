@@ -28,33 +28,33 @@ QList<QString> FilterFactory::getAllNonOverlayFilterIDs() {
 
     return list 
         << "filter_blur"
-        << "filter_coffee"
+        //<< "filter_coffee"
         << "filter_greyscale"
-        //<< "filter_mix"
+        ////<< "filter_mix"
         << "filter_noise"
         << "filter_rescale"
-        << "filter_rgbchannel"
+        //<< "filter_rgbchannel"
         << "filter_timeshift";
 }
 
 QList<QString> FilterFactory::getAllOverlayIDs() {
     QList<QString> list;
 
-    return list
-        << "overlay_heatmap"
-        << "overlay_macroblock"
-        << "overlay_motionvector";
+    return list;
+        //<< "overlay_heatmap"
+        //<< "overlay_macroblock"
+        //<< "overlay_motionvector";
 }
 
 Filter::sptr FilterFactory::createFilter(QString id, Module::sptr predecessor) {
-    //if (id == "filter_blur") { return BlurFilter::sptr(new BlurFilter(predecessor)); }
+    if (id == "filter_blur") { return BlurFilter::sptr(new BlurFilter(predecessor)); }
     //if (id == "filter_coffee") { return CoffeeFilter::sptr(new CoffeeFilter(predecessor)); }
     if (id == "filter_greyscale") { return GreyscaleFilter::sptr(new GreyscaleFilter(predecessor)); }
     //if (id == "filter_mix") { return MixFilter::sptr(new MixFilter(predecessor)); }
-    //if (id == "filter_noise") { return NoiseFilter::sptr(new NoiseFilter(predecessor)); }
-    //if (id == "filter_rescale") { return RescaleFilter::sptr(new RescaleFilter(predecessor)); }
+    if (id == "filter_noise") { return NoiseFilter::sptr(new NoiseFilter(predecessor)); }
+    if (id == "filter_rescale") { return RescaleFilter::sptr(new RescaleFilter(predecessor)); }
     //if (id == "filter_rgbchannel") { return RGBChannelFilter::sptr(new RGBChannelFilter(predecessor)); }
-    //if (id == "filter_timeshift") { return TimeshiftFilter::sptr(new TimeshiftFilter(predecessor)); }
+    if (id == "filter_timeshift") { return TimeshiftFilter::sptr(new TimeshiftFilter(predecessor)); }
 
     if (id == "overlay_heatmap") {
         // return HeatmapOverlay::sptr(new HeatmapOverlay(predecessor));

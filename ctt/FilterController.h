@@ -82,8 +82,9 @@ public:
 	void setVideo(::model::filter::FilteredVideo::sptr newVideo);
 
 private:
+	Q_DISABLE_COPY(FilterController)
+
     ::model::filter::FilteredVideo::sptr video;
-	::controller::operation::OperationList list;
 };
 
 }  // namespace controller

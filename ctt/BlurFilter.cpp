@@ -3,6 +3,7 @@
 #include "GPUHelper.h"
 
 #include "AccessToDummyException.h"
+#include "NotImplementedException.h"
 
 namespace model {
 namespace filter {
@@ -10,13 +11,16 @@ namespace filter {
 using ::model::frame::Frame;
 using ::helper::GPUHelper;
 using ::model::saveable::Saveable;
+using ::model::saveable::Memento;
+using ::exception::NotImplementedException;
+
+const QString BlurFilter::kParamRadiusStr = "filter_blur_param_radius";
 
 BlurFilter::BlurFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamRadiusStr, 5.f);
 }
 
 BlurFilter::~BlurFilter() {
-
 }
 
 model::frame::Frame::sptr BlurFilter::getFrame(unsigned int frameNumber) const {
@@ -38,11 +42,21 @@ model::frame::Frame::sptr BlurFilter::getFrame(unsigned int frameNumber) const {
     return Frame::sptr(new Frame(targetSurface, frame->getMetadata()));
 }
 
-Saveable::SaveableType BlurFilter::getType() const {
-	return Saveable::SaveableType::blurFilter;
+Memento BlurFilter::getMemento() const {
+    return Filter::getMemento();
 }
 
-const QString BlurFilter::kParamRadiusStr = "filter_blur_param_radius";
+void BlurFilter::restore(Memento memento) {
+    Filter::restore(memento);
+}
+
+QList<const Module*> BlurFilter::getUsesList() const {
+    throw new NotImplementedException();
+}
+
+bool BlurFilter::uses(const model::Module &module) const {
+    throw new NotImplementedException();
+}
 
 }  // namespace filter
 }  // namespace model

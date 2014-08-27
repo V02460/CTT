@@ -26,8 +26,8 @@ model::frame::Frame::sptr MacropartionOverlay::getFrame(unsigned int frameNumber
     throw new NotImplementedException();
 }
 
-Saveable::SaveableType MacropartionOverlay::getType() const {
-	return Saveable::SaveableType::makropartitionOverlay;
+Saveable::SaveableType MacropartionOverlay::getSaveableType() {
+    return SaveableType::makropartitionOverlay;
 }
 
 }  // namespace overlay

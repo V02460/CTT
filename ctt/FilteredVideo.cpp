@@ -14,6 +14,10 @@ using ::exception::IllegalStateException;
 using ::model::saveable::Saveable;
 using ::model::video::Video;
 
+const QString FilteredVideo::baseVideoStringId = "baseVideo";
+const QString FilteredVideo::filtersStringId = "filters";
+const QString FilteredVideo::numberOfFiltersStringId = "numberOfFilters";
+
 FilteredVideo::FilteredVideo(Video::sptr baseVideo) : baseVideo(baseVideo) {
 
 }
@@ -124,11 +128,34 @@ model::frame::Frame::sptr FilteredVideo::getFrame(unsigned int frameNumber) cons
 }
 
 Memento FilteredVideo::getMemento() const {
-    throw new NotImplementedException();
+	if (isDummy())
+	{
+		throw new IllegalStateException("Tried to request a memento of a dummy FilteredVideo.");
+	}
+	Memento memento;
+
+	memento.setSharedPointer(baseVideoStringId, baseVideo);
+
+	memento.setUInt(numberOfFiltersStringId, filters.size());
+	for (unsigned int i = 0; i < static_cast<unsigned int>(filters.size()); i++)
+	{
+		memento.setSharedPointer(filtersStringId + QString::number(i), filters[i]);
+	}
+
+	return memento;
 }
 
 void FilteredVideo::restore(Memento memento) {
-    throw new NotImplementedException();
+	baseVideo = memento.getSharedPointer(baseVideoStringId).dynamicCast<Video>();
+	
+	filters.clear();
+
+	for (unsigned int i = 0; i < memento.getUInt(numberOfFiltersStringId); i++)
+	{
+		filters.append(memento.getSharedPointer(filtersStringId + QString::number(i)).dynamicCast<Filter>());
+	}
+
+	isDummyFlag = false;
 }
 
 Saveable::sptr FilteredVideo::getDummy() {
@@ -199,8 +226,8 @@ model::video::VideoMetadata FilteredVideo::getMetadata() const
 	}
 }
 
-Saveable::SaveableType FilteredVideo::getType() const {
-	return Saveable::SaveableType::filteredVideo;
+Saveable::SaveableType FilteredVideo::getSaveableType() {
+    return Saveable::filteredVideo;
 }
 
 Video::sptr FilteredVideo::getBaseVideo() const {

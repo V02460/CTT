@@ -21,6 +21,8 @@ public:
     typedef QSharedPointer<TimeshiftFilter> sptr;
     typedef QWeakPointer<TimeshiftFilter> wptr;
 
+    static const QString kParamShiftStr;
+
     /**
      * Creates a new TimeshiftFilter object with a given previous module.
      *
@@ -35,11 +37,14 @@ public:
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
     virtual QString getName() const Q_DECL_OVERRIDE { return "filter_timeshift"; }
-    virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
-    Saveable::SaveableType getType() const Q_DECL_OVERRIDE;
-
-private:
-    static const QString kParamShiftStr;
+    virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
+    
+    virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
+    virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
+    virtual QList<const Module*> getUsesList() const Q_DECL_OVERRIDE;
+    virtual bool uses(const Module &module) const Q_DECL_OVERRIDE;
+    static Saveable::sptr getDummy();
+    static Saveable::SaveableType getSaveableType() { return Saveable::timeshiftFilter; }
 };
 
 }  // namespace filter

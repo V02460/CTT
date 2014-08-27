@@ -40,6 +40,8 @@ public:
     void undoOperation();
 
 private:
+	Q_DISABLE_COPY(FilterRemovedOperation)
+
 	int index;
 	::model::filter::FilteredVideo::sptr filteredVideo;
 	model::saveable::Memento memento;

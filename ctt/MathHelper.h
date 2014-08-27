@@ -27,6 +27,11 @@ static QSize floorTo(QSize x, int n) {
         ((x.height()) / n) * n);
 }
 
+template <class T>
+static T clamp(T x, T min, T max) {
+    return x < min ? min : (x > max ? max : x);
+}
+
 }  // namespace helper
 
 #endif  // _GPU_HELPER

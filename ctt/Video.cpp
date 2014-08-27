@@ -11,6 +11,7 @@ namespace video {
 using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
 using ::exception::IOException;
+using ::model::saveable::Saveable;
 
 using ::model::frame::Frame;
 
@@ -76,6 +77,9 @@ void Video::save(QString path, VideoFileType type) const
     throw new NotImplementedException();
 }
 
+Saveable::SaveableType Video::getSaveableType() {
+    return SaveableType::video;
+}
 
 QSize Video::getResolution() const
 {

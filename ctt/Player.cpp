@@ -417,14 +417,15 @@ void Player::restore(Memento memento) {
 		videoScrubbers.append(memento.getSharedPointer(scrubbersStringId + QString::number(i)).dynamicCast<VideoScrubber>());
 		connect(this, SIGNAL(currentFrameNrChanged(unsigned int)), videoScrubbers[i].data(), SLOT(jumpToFrameNr(unsigned int)));
 	}
+
 }
 
 Saveable::sptr Player::getDummy() {
 	return Saveable::sptr(new Player());
 }
 
-Saveable::SaveableType Player::getType() const {
-	return Saveable::SaveableType::player;
+Saveable::SaveableType Player::getSaveableType() {
+    return SaveableType::player;
 }
 
 void Player::nextFrame() {
