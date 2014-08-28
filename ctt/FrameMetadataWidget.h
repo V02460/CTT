@@ -44,10 +44,6 @@ private:
 	/** The scrubber at which the FrameMetadataWidget is registered. */
     ::model::player::VideoScrubber::sptr scrubber;
 
-	QBoxLayout layout;
-	QLabel fps;
-	QLabel length;
-	QList<QLabel> additionalVideoMetadata;
 	QLabel size;
 	QLabel hasTypes;
 	QLabel hasVectors;

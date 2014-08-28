@@ -10,33 +10,24 @@ using ::model::player::VideoScrubber;
 using ::model::video::VideoMetadata;
 using ::model::frame::FrameMetadata;
 
-FrameMetadataWidget::FrameMetadataWidget(VideoScrubber::sptr scrubber,
-	                                     QWidget *parent) : scrubber(scrubber),
-	                                                        QWidget(parent),
-															layout(QBoxLayout::Direction::TopToBottom, this),
-															fps(this),
-															length(this),
-															additionalVideoMetadata(),
-															size(this),
-															hasTypes(this),
-															hasVectors(this) {
+FrameMetadataWidget::FrameMetadataWidget(VideoScrubber::sptr scrubber, QWidget *parent) : scrubber(scrubber),
+                                                                                          size(this),
+																						  hasTypes(this),
+																						  hasVectors(this),
+																						  QWidget(parent) {
 	scrubber->subscribe(this);
 	VideoMetadata video = scrubber->getVideoMetadata();
-	fps.setText("Frames per second: " + QString::number(video.getFPS()));
-	layout.addWidget(&fps);
-	length.setText("Number of frames: " + QString::number(video.getLength()));
-	layout.addWidget(&length);
+	QBoxLayout *layout = new QBoxLayout(QBoxLayout::Direction::TopToBottom, this);
+	layout->addWidget(new QLabel("Frames per second: " + QString::number(video.getFPS()), this));
+	layout->addWidget(new QLabel("Number of frames: " + QString::number(video.getLength()), this));
 	for each (QString key in video.getAdditionalMetadata().keys()) {
-		// TODO funktioniert?
-		QLabel metadata(key + ":" + video.getData(key), this);
-		additionalVideoMetadata.append(metadata);
-		layout.addWidget(&metadata);
+		layout->addWidget(new QLabel(key + ": " + video.getData(key), this));
 	}
 	update();
-	layout.addWidget(&size);
-	layout.addWidget(&hasTypes);
-	layout.addWidget(&hasVectors);
-	setLayout(&layout);
+	layout->addWidget(&size);
+	layout->addWidget(&hasTypes);
+	layout->addWidget(&hasVectors);
+	setLayout(layout);
 }
 
 FrameMetadataWidget::~FrameMetadataWidget() {
