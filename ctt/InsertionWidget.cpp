@@ -2,8 +2,7 @@
 
 namespace view {
 
-InsertionWidget::InsertionWidget(QWidget *parent) : QWidget(parent) {
-	insertionButtons = QList<ListedPushButton::sptr>();
+InsertionWidget::InsertionWidget(QWidget *parent) : insertionButtons(), QWidget(parent) {
 	spacers = QList<QSpacerItem*>();
 	preferredButtonSize = QSize(100, 50);
 }

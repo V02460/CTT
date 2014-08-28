@@ -10,7 +10,7 @@ namespace view {
 
 AbstractListView::AbstractListView(QWidget *parent) : items(), QTreeWidget(parent) {
 	setIndentation(0);
-	//setItemsExpandable(true);
+	// TODO setItemsExpandable(true);
 	setRootIsDecorated(true);
 }
 
@@ -21,28 +21,31 @@ void AbstractListView::removeAllItems() {
 
 void AbstractListView::setupUi() {
 	for (int i = 0; i < items.size(); i++) {
-		QLabel *identifierLabel = new QLabel(items[i]->getIdentifier(), this);
-
-		ListedPushButton *removeButton = new ListedPushButton(i, this);
-		removeButton->setText(tr("REMOVE"));
-		QObject::connect(removeButton, SIGNAL(clicked(bool, int)), this, SLOT(buttonRemoveClicked(bool, int)));
-
-		QHBoxLayout *itemWidgetLayout = new QHBoxLayout(this);
-		itemWidgetLayout->addStretch();
-		itemWidgetLayout->addWidget(identifierLabel);
-		itemWidgetLayout->addWidget(removeButton);
+		// Create and set header
+		QTreeWidgetItem *item = new QTreeWidgetItem(this);
+		addTopLevelItem(item);
 
 		QWidget *itemWidget = new QWidget(this);
-		itemWidget->setLayout(itemWidgetLayout);
+		QHBoxLayout *itemWidgetLayout = new QHBoxLayout(this);
 
+		QLabel *identifierLabel = new QLabel(items[i]->getIdentifier(), this);
+		itemWidgetLayout->addWidget(identifierLabel);
+		itemWidgetLayout->addStretch();
+
+		// TODO Add icon
+		ListedPushButton *removeButton = new ListedPushButton(i, this);
+		removeButton->setText(tr("REMOVE"));
+		itemWidgetLayout->addWidget(removeButton);
+		QObject::connect(removeButton, SIGNAL(clicked(bool, int)), this, SLOT(buttonRemoveClicked(bool, int)));
+
+		itemWidget->setLayout(itemWidgetLayout);
+		setItemWidget(item, 0, itemWidget);
+
+		// Create and set child
 		QTreeWidgetItem *childItem = new QTreeWidgetItem(this);
 		childItem->setDisabled(true);
-		setItemWidget(childItem, 0, items[i]);
-
-		QTreeWidgetItem *item = new QTreeWidgetItem(this);
-		setItemWidget(item, 0, itemWidget);
 		item->addChild(childItem);
-		addTopLevelItem(item);
+		setItemWidget(childItem, 0, items[i]);
 	}
 }
 
