@@ -17,6 +17,8 @@ public:
 	typedef QSharedPointer<AbstractListViewItem> sptr;
 	typedef QWeakPointer<AbstractListViewItem> wptr;
 
+	AbstractListViewItem(QWidget *parent) : QTableWidget(parent) {}
+
 	virtual QString getIdentifier() const = 0;
 };
 

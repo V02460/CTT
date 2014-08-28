@@ -12,8 +12,10 @@
 #include "FilterParam.h"
 
 namespace view {
+
 class FilterParamItem : public QObject {
 	Q_OBJECT
+
 public:
 	typedef QScopedPointer<FilterParamItem> uptr;
 	typedef QSharedPointer<FilterParamItem> sptr;
@@ -23,12 +25,15 @@ public:
 
 	QLabel* getNameLabel();
 	QWidget* getInteractibleComponent();
+
 public slots:
 	void doubleValueChanged(double newValue);
 	void intValueChanged(int newValue);
 	void boolStateChanged(int newState);
+
 signals:
 	void filterParamChanged(::model::filter::FilterParam::sptr newFilterParam);
+
 private:
 	void initCheckBox();
 	void initIntSpinbox();
@@ -41,6 +46,7 @@ private:
 	QSpinBox *intSpinbox;
 	QDoubleSpinBox *doubleSpinbox;
 };
-}
+
+} // namespace view
 
 #endif // !_FILTERPARAMITEM_H

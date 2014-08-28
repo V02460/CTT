@@ -21,16 +21,18 @@ namespace view {
  */
 class FilterListView : public AbstractListView {
 	Q_OBJECT
+
 public:
     typedef QScopedPointer<FilterListView> uptr;
     typedef QSharedPointer<FilterListView> sptr;
     typedef QWeakPointer<FilterListView> wptr;
 
-	FilterListView(::controller::FilterController::sptr filterController, QWidget *parent = 0);
+	FilterListView(::controller::FilterController::sptr filterController, QWidget *parent);
 
 	virtual void update() Q_DECL_OVERRIDE;
 
-	void setVideo(::model::filter::FilteredVideo::sptr video);
+	void setVideo(::model::filter::FilteredVideo::sptr newVideo);
+
 signals:
     /**
      * This signal is emitted when the order of the filters is changed
@@ -42,6 +44,7 @@ signals:
     void filterMoved(int oldPos, int newPos);
 
 	void videoChanged(::model::filter::FilteredVideo::sptr video);
+
 private:
 	::model::filter::FilteredVideo::sptr video;
 	::controller::FilterController::sptr filterController;

@@ -14,12 +14,15 @@ namespace view {
 
 class FilterListViewItem : public AbstractListViewItem {
 	Q_OBJECT
+
 public:
 	typedef QScopedPointer<FilterListViewItem> uptr;
 	typedef QSharedPointer<FilterListViewItem> sptr;
 	typedef QWeakPointer<FilterListViewItem> wptr;
 
-	FilterListViewItem(::model::filter::Filter::sptr filter, ::controller::FilterController::sptr filterController);
+	FilterListViewItem(::model::filter::Filter::sptr filter,
+		               ::controller::FilterController::sptr filterController,
+					   QWidget *parent);
 
 	virtual QString getIdentifier() const Q_DECL_OVERRIDE;
 	virtual void update();
@@ -43,6 +46,6 @@ private:
 	QList<FilterParamItem::sptr> filterParams;
 };
 
-}
+} // namespace view
 
 #endif //_FILTERLISTVIEWITEM_H

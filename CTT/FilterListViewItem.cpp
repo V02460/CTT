@@ -9,23 +9,24 @@ using ::exception::NotImplementedException;
 
 namespace view {
 
-FilterListViewItem::FilterListViewItem(Filter::sptr filter, FilterController::sptr filterController) {
-	this->filter = filter;
-	filterParams = QList<FilterParamItem::sptr>();
-
+FilterListViewItem::FilterListViewItem(Filter::sptr filter,
+	                                   FilterController::sptr filterController,
+									   QWidget *parent) : filter(filter),
+									                      filterParams(),
+									                      AbstractListViewItem(parent) {
 	setColumnCount(2);
 	setRowCount(filter->getParams().size());
-
 	for each (FilterParam param in filter->getParams()) {
+		// TODO &param might not work, pointer must be freed
 		FilterParamItem *paramRepresentation = new FilterParamItem(FilterParam::sptr(&param));
 		filterParams.append(FilterParamItem::sptr(paramRepresentation));
 		QObject::connect(paramRepresentation, SIGNAL(filterParamChanged(::model::filter::FilterParam::sptr)),
 			             this, SLOT(changeFilterParam(::model::filter::FilterParam::sptr)));
 	}
-
-	QObject::connect(this, SIGNAL(filterParamChanged(const ::model::filter::Filter::sptr, ::model::filter::FilterParam::sptr)),
-		filterController.data(), SLOT(changeFilterParam(const ::model::filter::Filter::sptr, ::model::filter::FilterParam::sptr)));
-
+	QObject::connect(this, SIGNAL(filterParamChanged(const ::model::filter::Filter::sptr,
+		                                             ::model::filter::FilterParam::sptr)),
+		             filterController.data(), SLOT(changeFilterParam(const ::model::filter::Filter::sptr,
+					                               ::model::filter::FilterParam::sptr)));
 	setupUi();
 }
 

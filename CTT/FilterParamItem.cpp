@@ -3,8 +3,8 @@
 using ::model::filter::FilterParam;
 
 namespace view {
-	FilterParamItem::FilterParamItem(FilterParam::sptr param) {
-		this->param = param;
+
+	FilterParamItem::FilterParamItem(FilterParam::sptr param) : param(param) {
 
 		nameLabel = new QLabel(param->getName());
 
