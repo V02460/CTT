@@ -219,9 +219,6 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_HistogramWidget.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_FrameMetadataWidget.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_MainWindow.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -280,9 +277,6 @@
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_ProcessingWidget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_FrameMetadataWidget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_InsertionWidget.cpp">
@@ -454,9 +448,6 @@
       <Filter>Source Files\View</Filter>
     </ClCompile>
     <ClCompile Include="FilterTimeline.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="FrameMetadataWidget.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
     <ClCompile Include="HistogramWidget.cpp">
@@ -669,6 +660,24 @@
     <ClCompile Include="GeneratedFiles\Release\moc_AbstractListView.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="FrameMetadataWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FrameMetadataWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FrameMetadataWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qcustomplot.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qcustomplot.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="qcustomplot.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -714,9 +723,6 @@
       <Filter>Header Files\View</Filter>
     </CustomBuild>
     <CustomBuild Include="HistogramWidget.h">
-      <Filter>Header Files\View</Filter>
-    </CustomBuild>
-    <CustomBuild Include="FrameMetadataWidget.h">
       <Filter>Header Files\View</Filter>
     </CustomBuild>
     <CustomBuild Include="MainWindow.h">
@@ -774,6 +780,12 @@
       <Filter>Header Files\View</Filter>
     </CustomBuild>
     <CustomBuild Include="FilterListView.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FrameMetadataWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="qcustomplot.h">
       <Filter>Header Files\View</Filter>
     </CustomBuild>
   </ItemGroup>
