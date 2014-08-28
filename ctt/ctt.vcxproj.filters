@@ -669,6 +669,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_AbstractListView.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="ABXTest.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -1029,6 +1032,9 @@
     </ClInclude>
     <ClInclude Include="FilterListView.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ABXTest.h">
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
