@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en_US">
+<TS version="2.1" language="de_DE">
 <context>
     <name>cttClass</name>
     <message>
@@ -19,7 +19,7 @@
     <message>
         <location filename="AbstractListView.cpp" line="40"/>
         <source>REMOVE</source>
-        <translation type="unfinished">Remove</translation>
+        <translation type="unfinished">Entfernen</translation>
     </message>
 </context>
 <context>
@@ -27,20 +27,16 @@
     <message>
         <location filename="HistogramWidget.cpp" line="29"/>
         <source>NEXT_HISTOGRAM</source>
-        <translation>Next Histogram</translation>
+        <translation type="unfinished">Nächstes Histogramm</translation>
     </message>
 </context>
 <context>
     <name>view::ListedPushButton</name>
     <message>
-        <source>NO_VIDEO_SPECIFIED</source>
-        <comment>Missing video for pushbutton</comment>
-        <translation type="vanished">Error while transfering video</translation>
-    </message>
-    <message>
         <location filename="ListedPushButton.cpp" line="16"/>
         <source>NO_VIDEO_SPECIFIED</source>
-        <translation type="unfinished">Error while transfering video</translation>
+        <translatorcomment>Keine Ahnung is welcher Situation das auftaucht hab nur das Englische übersetzt</translatorcomment>
+        <translation type="unfinished">Fehler bei der Übertragung des Videos</translation>
     </message>
 </context>
 <context>
@@ -48,12 +44,12 @@
     <message>
         <location filename="MainControlWidget.cpp" line="49"/>
         <source>INSERT_FILTER</source>
-        <translation type="unfinished">Insert Filter</translation>
+        <translation type="unfinished">Filter einfügen</translation>
     </message>
     <message>
         <location filename="MainControlWidget.cpp" line="51"/>
         <source>INSERT_DIFFERENCE</source>
-        <translation type="unfinished">Insert Differencefunction</translation>
+        <translation type="unfinished">Differenzfunktion einfügen</translation>
     </message>
 </context>
 <context>
@@ -61,26 +57,27 @@
     <message>
         <location filename="PlayerFunctions.cpp" line="37"/>
         <source>PREVIOUS_FRAME</source>
-        <translation type="unfinished">Previous Frame</translation>
+        <translation type="unfinished">Vorheriges Bild</translation>
     </message>
     <message>
         <location filename="PlayerFunctions.cpp" line="44"/>
         <source>NEXT_FRAME</source>
-        <translation type="unfinished">Next Frame</translation>
+        <translation type="unfinished">Nächstes Bild</translation>
     </message>
     <message>
         <location filename="PlayerFunctions.cpp" line="62"/>
         <source>RESET_TO_DEFAULT_FPS</source>
-        <translation type="unfinished">Reset playback speed</translation>
+        <translation type="unfinished">Wiedergabegeschwindigkeit zurücksetzen</translation>
     </message>
     <message>
         <location filename="PlayerFunctions.cpp" line="64"/>
         <source>DEFAULT_FPS</source>
-        <translation type="unfinished">Default Playback Speed</translation>
+        <translation type="unfinished">Ursprüngliche Wiedergabegeschwindigkeit</translation>
     </message>
     <message>
         <location filename="PlayerFunctions.cpp" line="71"/>
         <source>PLAY</source>
+        <translatorcomment>Hier hat sich das englische Wort eingebürgert, vielleicht stattdessen &quot;Abspielen&quot;</translatorcomment>
         <translation type="unfinished">Play</translation>
     </message>
     <message>
@@ -94,7 +91,7 @@
     <message>
         <location filename="ProcessingWidget.cpp" line="67"/>
         <source>READY</source>
-        <translation type="unfinished">Ready</translation>
+        <translation type="unfinished">Bereit</translation>
     </message>
 </context>
 <context>
@@ -102,17 +99,17 @@
     <message>
         <location filename="ThumbnailListWidget.cpp" line="51"/>
         <source>ADD_VIDEO</source>
-        <translation type="unfinished">Add Video</translation>
+        <translation type="unfinished">Videi Hinzufügen</translation>
     </message>
     <message>
         <location filename="ThumbnailListWidget.cpp" line="121"/>
         <source>OPEN_VIDEO</source>
-        <translation type="unfinished">Open Video</translation>
+        <translation type="unfinished">Video öffnen</translation>
     </message>
     <message>
         <location filename="ThumbnailListWidget.cpp" line="121"/>
         <source>ALL_FILES (*.*)</source>
-        <translation type="unfinished">All Files (*.*)</translation>
+        <translation type="unfinished">Alle Dateien (*.*)</translation>
     </message>
 </context>
 <context>
@@ -120,17 +117,17 @@
     <message>
         <location filename="VideoProcessingWidget.cpp" line="31"/>
         <source>SAVE_VIDEO_DIALOG</source>
-        <translation type="unfinished">Save Video</translation>
+        <translation type="unfinished">Video speichern</translation>
     </message>
     <message>
         <location filename="VideoProcessingWidget.cpp" line="43"/>
         <source>USE_VIDEO_FOR_ANALYSIS</source>
-        <translation type="unfinished">Use Video for Analysis</translation>
+        <translation type="unfinished">Video zur Analyse benutzen</translation>
     </message>
     <message>
         <location filename="VideoProcessingWidget.cpp" line="49"/>
         <source>SAVE_VIDEO</source>
-        <translation type="unfinished">Save Video</translation>
+        <translation type="unfinished">Video speichern</translation>
     </message>
 </context>
 </TS>

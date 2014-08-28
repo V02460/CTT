@@ -1238,6 +1238,8 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ctt_de.ts" />
+    <None Include="ctt_en.ts" />
     <None Include="Shader\Conversion\YUV420toRGBsdtv.fs" />
     <None Include="Shader\Conversion\YUV422toRGBsdtv.fs" />
     <None Include="Shader\Conversion\YUV444toRGBsdtv.fs" />
