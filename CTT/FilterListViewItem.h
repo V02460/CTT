@@ -21,7 +21,7 @@ public:
 
 	FilterListViewItem(::model::filter::Filter::sptr filter, ::controller::FilterController::sptr filterController);
 
-	virtual QString getIdentifier() Q_DECL_OVERRIDE;
+	virtual QString getIdentifier() const Q_DECL_OVERRIDE;
 	virtual void update();
 
 public slots:

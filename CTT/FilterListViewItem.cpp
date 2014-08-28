@@ -20,7 +20,7 @@ FilterListViewItem::FilterListViewItem(Filter::sptr filter, FilterController::sp
 		FilterParamItem *paramRepresentation = new FilterParamItem(FilterParam::sptr(&param));
 		filterParams.append(FilterParamItem::sptr(paramRepresentation));
 		QObject::connect(paramRepresentation, SIGNAL(filterParamChanged(::model::filter::FilterParam::sptr)),
-			this, SLOT(changeFilterParam(::model::filter::FilterParam::sptr)));
+			             this, SLOT(changeFilterParam(::model::filter::FilterParam::sptr)));
 	}
 
 	QObject::connect(this, SIGNAL(filterParamChanged(const ::model::filter::Filter::sptr, ::model::filter::FilterParam::sptr)),
@@ -29,7 +29,7 @@ FilterListViewItem::FilterListViewItem(Filter::sptr filter, FilterController::sp
 	setupUi();
 }
 
-QString FilterListViewItem::getIdentifier() {
+QString FilterListViewItem::getIdentifier() const {
 	return filter->getName();
 }
 
@@ -48,4 +48,4 @@ void FilterListViewItem::update() {
 	throw new NotImplementedException();
 }
 
-}
+}  // namespace view

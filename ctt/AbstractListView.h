@@ -19,6 +19,7 @@ namespace view {
  */
 class AbstractListView : public QTreeWidget, public ::model::Observer, public ::model::Observable {
 	Q_OBJECT
+
 public:
     typedef QScopedPointer<AbstractListView> uptr;
     typedef QSharedPointer<AbstractListView> sptr;
@@ -26,16 +27,16 @@ public:
 
 signals:
 	void elementRemoved(int id);
+
 protected:
-	AbstractListView(QWidget *parent = 0);
+	AbstractListView(QWidget *parent);
 	void removeAllItems();
 	void setupUi();
 
-	QList<AbstractListViewItem::sptr> items;
+	QList<AbstractListViewItem*> items;
+
 protected slots:
 	void buttonRemoveClicked(bool checked, int id);
-private:
-    //SaveableList diplayableComponents; /**< The list over the components that should be displayed by the list view */
 };
 
 }  // namespace view

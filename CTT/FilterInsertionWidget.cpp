@@ -6,8 +6,8 @@
 using ::exception::NotImplementedException;
 
 namespace view {
-FilterInsertionWidget::FilterInsertionWidget(::controller::FilterController::sptr controller, QWidget *parent) 
-	: InsertionWidget(parent) {
+FilterInsertionWidget::FilterInsertionWidget(::controller::FilterController::sptr controller,
+	                                         QWidget *parent) : InsertionWidget(parent) {
 	generateButtons();
 
 	//rearrangeContents();
