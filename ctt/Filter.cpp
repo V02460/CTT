@@ -117,9 +117,5 @@ void Filter::restore(Memento memento) {
     predecessor = memento.getSharedPointer("predecessor").dynamicCast<Module>();
 }
 
-Saveable::SaveableType Filter::getSaveableType() {
-    return SaveableType::filter;
-}
-
 }  // namespace filter
 }  // namespace model

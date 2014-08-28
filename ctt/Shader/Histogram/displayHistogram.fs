@@ -5,7 +5,7 @@ uniform ivec2 _targetSize;
 uniform sampler2D _sourceTexture;
 
 float decodeFloatRGBA(vec4 rgba) {
-	return dot(rgba, vec4(1.f, 1.f / 255.f, 1.f / 65025.f, 1.f / 160581375.f));
+	return dot(rgba, vec4(1.f, 1.f / 255.f, 1.f / 65025.f, 1.f / 16581375.f));
 }
 
 void main() {

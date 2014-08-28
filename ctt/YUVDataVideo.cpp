@@ -447,7 +447,7 @@ void YUVDataVideo::restore(Memento memento)
 }
 
 Saveable::SaveableType YUVDataVideo::getSaveableType() {
-    return SaveableType::yUVDataVideo;
+    return Saveable::yUVDataVideo;
 }
 
 ::model::saveable::Saveable::sptr YUVDataVideo::getDummy()

@@ -103,12 +103,6 @@
     <Filter Include="Source Files\Controller">
       <UniqueIdentifier>{817914d2-000a-4a12-94af-9e66d02e975f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\SpecialTestingClasses">
-      <UniqueIdentifier>{d138eec3-3f83-4966-931a-99f03fd4c6b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\SpecialTestingClasses">
-      <UniqueIdentifier>{7114c9b9-bc06-4a93-9142-a622896826e2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\View">
       <UniqueIdentifier>{35351403-fb1c-43b4-a2c2-a6ed37fc16b4}</UniqueIdentifier>
     </Filter>
@@ -140,9 +134,6 @@
     </ClCompile>
     <ClCompile Include="VideoMetadataTest.cpp">
       <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
-    <ClCompile Include="ModelTests.h">
-      <Filter>Header Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_VideoMetadataTest.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -180,9 +171,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_PlayerTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="VideoWidgetTest.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
     <ClCompile Include="YUVDataVideoTest.cpp">
       <Filter>Source Files\Model\Video</Filter>
     </ClCompile>
@@ -192,26 +180,11 @@
     <ClCompile Include="GeneratedFiles\Release\moc_YUVDataVideoTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="FilteredVideoTest.cpp">
-      <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerTest.cpp">
       <Filter>Source Files\Model\Player</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_FileVideoTest.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_FilterTest.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Test Structure</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_BlurFilterTest.cpp">
       <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="FileVideoTest.cpp">
-      <Filter>Source Files\Model\Video</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_BlurFilterTest.cpp">
       <Filter>Generated Files\Release</Filter>
@@ -225,12 +198,6 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_FilterTest.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_VideoTest.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_VideoTest.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_FilterTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
@@ -240,19 +207,13 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_FileVideoTest.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="VideoTest.cpp">
-      <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_FilteredVideoTest.cpp">
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoTest.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_FileVideoTest.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_VideoTest.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_FilteredVideoTest.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="VideoTest.cpp">
@@ -270,11 +231,62 @@
     <ClCompile Include="main.cpp">
       <Filter>Test Structure</Filter>
     </ClCompile>
-    <ClCompile Include="FilteredVideoTest.cpp">
-      <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
     <ClCompile Include="ModelTests.h">
       <Filter>Test Structure\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="RescaleFilterTest.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_RescaleFilterTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_RescaleFilterTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="NoiseFilterTest.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeshiftFilterTest.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="RGBChannelFilterTest.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilteredVideoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FilteredVideoTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="FilteredVideoTest.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GreyscaleFilterTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GreyscaleFilterTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GreyscaleFilterTest.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_NoiseFilterTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_NoiseFilterTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_TimeshiftFilterTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_TimeshiftFilterTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_RGBChannelFilterTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_RGBChannelFilterTest.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="SaveableListTest.cpp">
       <Filter>Source Files\Model\Saveable</Filter>
@@ -308,29 +320,11 @@
     <CustomBuild Include="YUVDataVideoTest.h">
       <Filter>Header Files\Model\Video</Filter>
     </CustomBuild>
-    <CustomBuild Include="FilterTest.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </CustomBuild>
     <CustomBuild Include="PlayerTest.h">
       <Filter>Header Files\Model\Player</Filter>
     </CustomBuild>
-    <CustomBuild Include="FilteredVideoTest.h">
-      <Filter>Generated Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="FileVideoTest.h">
-      <Filter>Header Files\Model\Video</Filter>
-    </CustomBuild>
     <CustomBuild Include="FilterTest.h">
       <Filter>Header Files\Model\Filter</Filter>
-    </CustomBuild>
-    <CustomBuild Include="FilterTest.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </CustomBuild>
-    <CustomBuild Include="FileVideoTest.h">
-      <Filter>Generated Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="VideoTest.h">
-      <Filter>Header Files\Model\Video</Filter>
     </CustomBuild>
     <CustomBuild Include="FilteredVideoTest.h">
       <Filter>Generated Files</Filter>
@@ -344,11 +338,35 @@
     <CustomBuild Include="MixFilterTest.h">
       <Filter>Header Files\Model\Filter</Filter>
     </CustomBuild>
-    <CustomBuild Include="SaveableListTest.h">
-      <Filter>Header Files\Model\Saveable</Filter>
+    <CustomBuild Include="FilteredVideoTest.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="RescaleFilterTest.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FileVideoTest.h">
+      <Filter>Source Files\Model\Video</Filter>
+    </CustomBuild>
+    <CustomBuild Include="VideoTest.h">
+      <Filter>Header Files\Model\Video</Filter>
     </CustomBuild>
     <CustomBuild Include="FilteredVideoTest.h">
-      <Filter>Header Files\Model\Video</Filter>
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GreyscaleFilterTest.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="NoiseFilterTest.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="TimeshiftFilterTest.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="RGBChannelFilterTest.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="SaveableListTest.h">
+      <Filter>Header Files\Model\Saveable</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -390,8 +408,5 @@
     <Image Include="Resources\Images\big_buck_bunny_01337.png">
       <Filter>Resource Files</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

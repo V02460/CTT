@@ -1,5 +1,7 @@
 #include "TimeshiftFilter.h"
 
+#include "MathHelper.h"
+
 #include "NotImplementedException.h"
 
 namespace model {
@@ -8,7 +10,10 @@ namespace filter {
 using ::model::frame::Frame;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
+using ::helper::clamp;
 using ::exception::NotImplementedException;
+
+const QString TimeshiftFilter::kParamShiftStr = "filter_timeshift_param_shift";
 
 TimeshiftFilter::TimeshiftFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamShiftStr, 0);
@@ -19,7 +24,15 @@ TimeshiftFilter::~TimeshiftFilter() {
 
 model::frame::Frame::sptr TimeshiftFilter::getFrame(unsigned int frameNumber) const {
     int shift = getParamValue<int>(kParamShiftStr);
-    return getPredecessor()->getFrame(frameNumber + shift);
+
+    Module *predecessor = getPredecessor();
+
+    unsigned int newFrameNumber = clamp(static_cast<int>(frameNumber)+shift,
+                                        0,
+                                        static_cast<int>(predecessor->getFrameCount()) - 1);
+    
+
+    return predecessor->getFrame(newFrameNumber);
 }
 
 Memento TimeshiftFilter::getMemento() const {
@@ -31,17 +44,16 @@ void TimeshiftFilter::restore(Memento memento) {
 }
 
 QList<const Module*> TimeshiftFilter::getUsesList() const {
-    return QList<const Module*>() << this;
+    throw new NotImplementedException();
+}
+
+bool TimeshiftFilter::uses(const ::model::Module &module) const {
+    throw new NotImplementedException();
 }
 
 Saveable::sptr TimeshiftFilter::getDummy() {
     throw new NotImplementedException();
 }
-Saveable::SaveableType TimeshiftFilter::getSaveableType() {
-    return SaveableType::timeshiftFilter;
-}
-
-const QString TimeshiftFilter::kParamShiftStr = "filter_timeshift_param_shift";
 
 }  // namespace filter
 }  // namespace model

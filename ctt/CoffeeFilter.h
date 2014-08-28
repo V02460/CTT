@@ -30,13 +30,14 @@ public:
     virtual ~CoffeeFilter();
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
-    virtual QString getName() const;
-	virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
+    virtual QString getName() const Q_DECL_OVERRIDE { return "filter_coffee"; }
+	virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
 	
     virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
     virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
-    virtual QList<const ::model::Module*> getUsesList() const Q_DECL_OVERRIDE;
-    static Saveable::SaveableType getSaveableType();
+    virtual QList<const Module*> getUsesList() const Q_DECL_OVERRIDE;
+    virtual bool uses(const Module &module) const Q_DECL_OVERRIDE;
+    static Saveable::SaveableType getSaveableType() { return Saveable::coffeeFilter; }
 };
 
 }  // namespace filter

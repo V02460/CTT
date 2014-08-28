@@ -16,6 +16,8 @@ using ::model::saveable::Memento;
 using ::helper::GPUHelper;
 using ::helper::clamp;
 
+const QString MixFilter::kParamMixRatioStr = "filter_mix_param_mixRatio";
+
 MixFilter::MixFilter(Module::sptr module1, Module::sptr module2) : Filter(module1), module2(module2) {
     if (module1->getResolution() != module2->getResolution()) {
         throw new IllegalArgumentException("Resolution of the two Modules does not match.");
@@ -67,12 +69,6 @@ QList<const Module*> MixFilter::getUsesList() const {
 bool MixFilter::uses(const ::model::Module &module) const {
     throw new NotImplementedException();
 }
-
-Saveable::SaveableType MixFilter::getSaveableType() {
-    return SaveableType::mixFilter;
-}
-
-const QString MixFilter::kParamMixRatioStr = "filter_mix_param_mixRatio";
 
 }  // namespace filter
 }  // namespace model

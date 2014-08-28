@@ -8,16 +8,16 @@ using ::model::video::Video;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 
+const QString EarthMoversHistogramDiff::VIDEO1 = "video1";
+const QString EarthMoversHistogramDiff::VIDEO2 = "video2";
+const QString EarthMoversHistogramDiff::TYPE = "type";
+
 EarthMoversHistogramDiff::EarthMoversHistogramDiff(Histogram::HistogramType type,
                                                    Video::sptr video1,
                                                    Video::sptr video2)
         : FrameDiff(video1, video2), type(type) {}
 
 EarthMoversHistogramDiff::~EarthMoversHistogramDiff() {}
-
-const QString EarthMoversHistogramDiff::VIDEO1 = "video1";
-const QString EarthMoversHistogramDiff::VIDEO2 = "video2";
-const QString EarthMoversHistogramDiff::TYPE = "type";
 
 double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
 	if (frameNr > getFrameCount()) {
@@ -26,16 +26,16 @@ double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
 	}
 	Histogram::sptr a = video1->getFrame(frameNr)->getHistogram(type);
 	Histogram::sptr b = video2->getFrame(frameNr)->getHistogram(type);
-	float d[Histogram::SIZE + 1];
+	float d[Histogram::kSize + 1];
 	d[0] = 0;
 	double sum = 0;
-	for (int i = 0; i < Histogram::SIZE; i++) {
-		//TODO Fix getValue method
+	for (int i = 0; i < Histogram::kSize; i++) {
+		// TODO replace getValue
 		//d[i + 1] = a->getValue(i) - b->getValue(i) + d[i];
 		sum += std::abs(d[i + 1]);
-	}
+    }
 
-	return sum / (Histogram::SIZE - 1);
+	return sum / (Histogram::kSize - 1);
 }
 
 
