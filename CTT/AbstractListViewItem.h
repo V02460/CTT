@@ -9,7 +9,9 @@
 #include "Observer.h"
 
 namespace view {
+
 class AbstractListViewItem : public QTableWidget, public::model::Observer {
+
 public:
 	typedef QScopedPointer<AbstractListViewItem> uptr;
 	typedef QSharedPointer<AbstractListViewItem> sptr;
@@ -17,6 +19,7 @@ public:
 
 	virtual QString getIdentifier() const = 0;
 };
-}
+
+}  // namespace view
 
 #endif //_ABSTRACTLISTVIEWITEM_H
