@@ -6,6 +6,8 @@
 #include <QWeakPointer>
 #include <QWidget>
 
+#include "qcustomplot.h"
+
 #include "Observer.h"
 #include "VideoScrubber.h"
 
@@ -30,16 +32,22 @@ public:
      */
     HistogramWidget(::model::player::VideoScrubber::sptr scrubber);
 
+
+	virtual void update() Q_DECL_OVERRIDE;
+
+public slots:
     /**
      * Shows the next histogram.
      * So for example the widget switches from the histogram for reds to the one for greens.
      */
     void next();
 
-	virtual void update();
-
 private:
-    void paint();
+	void setupUi();
+
+	QString currentHistogramType;
+	QCustomPlot *histogramPlot;
+	QCPBars *histogramBars;
     ::model::player::VideoScrubber::sptr scrubber /**< The scrubber at which the HistogramWidget is registered */;
 };
 
