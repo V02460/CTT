@@ -25,12 +25,12 @@ public:
     /**
      * Manages requests to manipulate the VideoList which is used for generating test videos or analysing.
      */
-    virtual void doOperation();
+    virtual void doOperation() = 0;
 
     /**
      * Manages requests to undo manipulations of the VideoList which is used for generating test videos or analysing.
      */
-    virtual void undoOperation();
+    virtual void undoOperation() = 0;
 protected:
     ::model::video::Video::uptr video;
     int index;
