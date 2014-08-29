@@ -22,6 +22,8 @@ public:
     typedef QSharedPointer<MacroblockOverlay> sptr;
     typedef QWeakPointer<MacroblockOverlay> wptr;
 
+    static const QByteArray kFilterID;
+
     /**
      * Creates a new MacroblockOverlay object with a given previous module.
      *
@@ -35,8 +37,10 @@ public:
     virtual ~MacroblockOverlay();
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE{ return true; }
-    virtual QString getName() const;
-	virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
+    virtual QString getName() const Q_DECL_OVERRIDE { return tr(kFilterID); }
+	virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
+    virtual QList<const ::model::Module*> getUsesList() const Q_DECL_OVERRIDE;
+    virtual bool uses(const ::model::Module &module) const Q_DECL_OVERRIDE;
     static Saveable::SaveableType getSaveableType();
 };
 

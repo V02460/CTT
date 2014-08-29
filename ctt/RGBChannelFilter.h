@@ -21,6 +21,8 @@ public:
     typedef QSharedPointer<RGBChannelFilter> sptr;
     typedef QWeakPointer<RGBChannelFilter> wptr;
 
+    static const QByteArray kFilterID;
+
     static const QString kParamRedStr;
     static const QString kParamGreenStr;
     static const QString kParamBlueStr;
@@ -39,7 +41,7 @@ public:
     
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
 
-    virtual QString getName() const Q_DECL_OVERRIDE { return "filter_rgbchannel"; }
+    virtual QString getName() const Q_DECL_OVERRIDE { return tr(kFilterID); }
     virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
 	
     virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;

@@ -22,6 +22,8 @@ public:
     typedef QSharedPointer<BlurFilter> sptr;
     typedef QWeakPointer<BlurFilter> wptr;
 
+    static const QByteArray kFilterID;
+
     /**
      * Creates a new BlurFilter object with a given previous module.
      *
@@ -35,7 +37,7 @@ public:
     virtual ~BlurFilter();
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
-    virtual QString getName() const Q_DECL_OVERRIDE { return "filter_blur"; }
+    virtual QString getName() const Q_DECL_OVERRIDE { return tr(kFilterID); }
     virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
     
     virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;

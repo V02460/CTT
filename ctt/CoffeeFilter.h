@@ -21,6 +21,8 @@ public:
     typedef QSharedPointer<CoffeeFilter> sptr;
     typedef QWeakPointer<CoffeeFilter> wptr;
 
+    static const QByteArray kFilterID;
+
     /**
      * Creates a new CoffeeFilter object with a given previous module.
      *
@@ -30,7 +32,7 @@ public:
     virtual ~CoffeeFilter();
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
-    virtual QString getName() const Q_DECL_OVERRIDE { return "filter_coffee"; }
+    virtual QString getName() const Q_DECL_OVERRIDE { return tr(kFilterID); }
 	virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
 	
     virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;

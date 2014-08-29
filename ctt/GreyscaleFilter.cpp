@@ -10,6 +10,8 @@ using ::helper::GPUHelper;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 
+const QByteArray GreyscaleFilter::kFilterID = QT_TR_NOOP("filter_greyscale");
+
 GreyscaleFilter::GreyscaleFilter(Module::sptr predecessor) : Filter(predecessor) {
 }
 

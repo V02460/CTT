@@ -16,7 +16,9 @@ using ::model::saveable::Memento;
 using ::helper::GPUHelper;
 using ::helper::clamp;
 
-const QString MixFilter::kParamMixRatioStr = "filter_mix_param_mixRatio";
+const QByteArray MixFilter::kFilterID = QT_TR_NOOP("filter_mix");
+
+const QString MixFilter::kParamMixRatioStr = QT_TR_NOOP("filter_mix_param_mixRatio");
 
 MixFilter::MixFilter(Module::sptr module1, Module::sptr module2) : Filter(module1), module2(module2) {
     if (module1->getResolution() != module2->getResolution()) {

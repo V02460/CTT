@@ -15,9 +15,11 @@ using ::helper::GPUHelper;
 using ::helper::clamp;
 using ::exception::NotImplementedException;
 
-const QString RGBChannelFilter::kParamRedStr = "filter_rgbchannel_param_red";
-const QString RGBChannelFilter::kParamGreenStr = "filter_rgbchannel_param_green";
-const QString RGBChannelFilter::kParamBlueStr = "filter_rgbchannel_param_blue";
+const QByteArray RGBChannelFilter::kFilterID = QT_TR_NOOP("filter_rgbchannel");
+
+const QString RGBChannelFilter::kParamRedStr = QT_TR_NOOP("filter_rgbchannel_param_red");
+const QString RGBChannelFilter::kParamGreenStr = QT_TR_NOOP("filter_rgbchannel_param_green");
+const QString RGBChannelFilter::kParamBlueStr = QT_TR_NOOP("filter_rgbchannel_param_blue");
 
 RGBChannelFilter::RGBChannelFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamRedStr, 100);

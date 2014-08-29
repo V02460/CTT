@@ -21,6 +21,8 @@ public:
     typedef QSharedPointer<TimeshiftFilter> sptr;
     typedef QWeakPointer<TimeshiftFilter> wptr;
 
+    static const QByteArray kFilterID;
+
     static const QString kParamShiftStr;
 
     /**
@@ -36,7 +38,7 @@ public:
     virtual ~TimeshiftFilter();
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
-    virtual QString getName() const Q_DECL_OVERRIDE { return "filter_timeshift"; }
+    virtual QString getName() const Q_DECL_OVERRIDE { return tr(kFilterID); }
     virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
     
     virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;

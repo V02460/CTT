@@ -14,7 +14,9 @@ using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::exception::NotImplementedException;
 
-const QString BlurFilter::kParamRadiusStr = "filter_blur_param_radius";
+const QByteArray BlurFilter::kFilterID = QT_TR_NOOP("filter_blur");
+
+const QString BlurFilter::kParamRadiusStr = QT_TR_NOOP("filter_blur_param_radius");
 
 BlurFilter::BlurFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamRadiusStr, 5.f);

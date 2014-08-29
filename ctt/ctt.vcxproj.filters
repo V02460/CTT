@@ -339,9 +339,6 @@
     <ClCompile Include="MacroblockOverlay.cpp">
       <Filter>Source Files\Model\Filter\Overlay</Filter>
     </ClCompile>
-    <ClCompile Include="MacropartitionOverlay.cpp">
-      <Filter>Source Files\Model\Filter\Overlay</Filter>
-    </ClCompile>
     <ClCompile Include="MotionVectorOverlay.cpp">
       <Filter>Source Files\Model\Filter\Overlay</Filter>
     </ClCompile>
@@ -842,9 +839,6 @@
       <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
     <ClInclude Include="MacroblockOverlay.h">
-      <Filter>Header Files\Model\Filter\Overlay</Filter>
-    </ClInclude>
-    <ClInclude Include="MacropartitionOverlay.h">
       <Filter>Header Files\Model\Filter\Overlay</Filter>
     </ClInclude>
     <ClInclude Include="NoiseFilter.h">

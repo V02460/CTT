@@ -444,7 +444,6 @@
     <ClCompile Include="ListedPushButton.cpp" />
     <ClCompile Include="LuminanceHistogram.cpp" />
     <ClCompile Include="MacroblockOverlay.cpp" />
-    <ClCompile Include="MacropartitionOverlay.cpp" />
     <ClCompile Include="MainController.cpp" />
     <ClCompile Include="MainControlWidget.cpp" />
     <ClCompile Include="MainWindow.cpp" />
@@ -817,7 +816,6 @@
     <ClInclude Include="UIntegerInterval.h" />
     <ClInclude Include="LuminanceHistogram.h" />
     <ClInclude Include="MacroblockOverlay.h" />
-    <ClInclude Include="MacropartitionOverlay.h" />
     <CustomBuild Include="MainControlWidget.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing MainControlWidget.h...</Message>

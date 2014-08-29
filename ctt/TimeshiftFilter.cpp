@@ -13,7 +13,9 @@ using ::model::saveable::Memento;
 using ::helper::clamp;
 using ::exception::NotImplementedException;
 
-const QString TimeshiftFilter::kParamShiftStr = "filter_timeshift_param_shift";
+const QByteArray TimeshiftFilter::kFilterID = QT_TR_NOOP("filter_timeshift");
+
+const QString TimeshiftFilter::kParamShiftStr = QT_TR_NOOP("filter_timeshift_param_shift");
 
 TimeshiftFilter::TimeshiftFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamShiftStr, 0);
