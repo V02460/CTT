@@ -40,13 +40,16 @@ void MixFilterTest::testRun() {
 
 void MixFilterTest::wrongParams() {
     MixFilter mixFilter(video1, video2);
-    QEXPECT_EXCEPTION(mixFilter.setParam(FilterParam("not right", "at all")), IllegalArgumentException);
-    QEXPECT_EXCEPTION(mixFilter.setParam(FilterParam("a bit off", 1.0)), IllegalArgumentException);
-    QEXPECT_EXCEPTION(mixFilter.setParam(FilterParam(MixFilter::kParamMixRatioStr, "WRONG!")), IllegalArgumentException);
+	QEXPECT_EXCEPTION(mixFilter.setParam(FilterParam::sptr(new FilterParam("not right", "at all"))),
+		              IllegalArgumentException);
+	QEXPECT_EXCEPTION(mixFilter.setParam(FilterParam::sptr(new FilterParam("a bit off", 1.0))),
+		              IllegalArgumentException);
+	QEXPECT_EXCEPTION(mixFilter.setParam(FilterParam::sptr(new FilterParam(MixFilter::kParamMixRatioStr, "WRONG!"))),
+		              IllegalArgumentException);
     mixFilter.getFrame(9);
-    mixFilter.setParam(FilterParam(MixFilter::kParamMixRatioStr, 10.0f));
+	mixFilter.setParam(FilterParam::sptr(new FilterParam(MixFilter::kParamMixRatioStr, 10.0f)));
     mixFilter.getFrame(14);
-    mixFilter.setParam(FilterParam(MixFilter::kParamMixRatioStr, -3.5f));
+	mixFilter.setParam(FilterParam::sptr(new FilterParam(MixFilter::kParamMixRatioStr, -3.5f)));
     mixFilter.getFrame(3);
 }
 
