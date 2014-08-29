@@ -22,9 +22,9 @@ void PlayerTest::emptyPlayer()
 	QVERIFY(!test.hasNextFrame());
 	QVERIFY(!test.hasPreviousFrame());
 
-	QCOMPARE(test.scrubberCount(), (unsigned int)0);
-	QCOMPARE(test.getVideoLength(), (unsigned int)0);
-	QCOMPARE(test.getCurrentFrameNumber(), (unsigned int)0);
+	QCOMPARE(test.scrubberCount(), 0U);
+	QCOMPARE(test.getVideoLength(), 0U);
+	QCOMPARE(test.getCurrentFrameNumber(), 0U);
 
 	QCOMPARE(test.getFPS(), 10.0);
 
@@ -44,28 +44,28 @@ void PlayerTest::playingAndLooping()
 	QVERIFY(!testPlayer.isPlaying());
 	QVERIFY(!testPlayer.hasPreviousFrame());
 	QVERIFY(testPlayer.hasNextFrame());
-	QCOMPARE(testPlayer.getCurrentFrameNumber(), (unsigned int)0);
+	QCOMPARE(testPlayer.getCurrentFrameNumber(), 0U);
 
 	testPlayer.previousFrame();
 	QVERIFY(!testPlayer.hasPreviousFrame());
 	QVERIFY(testPlayer.hasNextFrame());
-	QCOMPARE(testPlayer.getCurrentFrameNumber(), (unsigned int)0);
+	QCOMPARE(testPlayer.getCurrentFrameNumber(), 0U);
 
 	testPlayer.nextFrame();
 	QVERIFY(testPlayer.hasPreviousFrame());
 	QVERIFY(testPlayer.hasNextFrame());
-	QCOMPARE(testPlayer.getCurrentFrameNumber(), (unsigned int)1);
+	QCOMPARE(testPlayer.getCurrentFrameNumber(), 1U);
 
 
 	testPlayer.jumpToFrameNr(13);
 	QVERIFY(testPlayer.hasPreviousFrame());
 	QVERIFY(testPlayer.hasNextFrame());
-	QCOMPARE(testPlayer.getCurrentFrameNumber(), (unsigned int)13);
+	QCOMPARE(testPlayer.getCurrentFrameNumber(), 13U);
 
 	testPlayer.nextFrame();
 	QVERIFY(testPlayer.hasPreviousFrame());
 	QVERIFY(!testPlayer.hasNextFrame());
-	QCOMPARE(testPlayer.getCurrentFrameNumber(), (unsigned int)14);
+	QCOMPARE(testPlayer.getCurrentFrameNumber(), 14U);
 
 	QEXPECT_EXCEPTION(testPlayer.jumpToFrameNr(100), IllegalArgumentException);
 
@@ -86,22 +86,22 @@ void PlayerTest::playingAndLooping()
 	QVERIFY(!testPlayer.isLooping());
 	testPlayer.setLoop(testInterval);
 	QVERIFY(testPlayer.isLooping());
-	QCOMPARE(testPlayer.getLoop().getStart(), (unsigned int)5);
-	QCOMPARE(testPlayer.getLoop().getEnd(), (unsigned int)10);
+	QCOMPARE(testPlayer.getLoop().getStart(), 5U);
+	QCOMPARE(testPlayer.getLoop().getEnd(), 10U);
 	testPlayer.jumpToFrameNr(10);
-	QCOMPARE(testPlayer.getCurrentFrameNumber(), (unsigned int)10);
+	QCOMPARE(testPlayer.getCurrentFrameNumber(), 10U);
 	testPlayer.nextFrame();
-	QCOMPARE(testPlayer.getCurrentFrameNumber(), (unsigned int)5);
+	QCOMPARE(testPlayer.getCurrentFrameNumber(), 5U);
 	testPlayer.nextFrame();
-	QCOMPARE(testPlayer.getCurrentFrameNumber(), (unsigned int)6);
+	QCOMPARE(testPlayer.getCurrentFrameNumber(), 6U);
 	testPlayer.previousFrame();
 	testPlayer.previousFrame();
-	QCOMPARE(testPlayer.getCurrentFrameNumber(), (unsigned int)10);
+	QCOMPARE(testPlayer.getCurrentFrameNumber(), 10U);
 
 	testPlayer.stopLooping();
 	QVERIFY(!testPlayer.isLooping());
 	testPlayer.nextFrame();
-	QCOMPARE(testPlayer.getCurrentFrameNumber(), (unsigned int)11);
+	QCOMPARE(testPlayer.getCurrentFrameNumber(), 11U);
 
 	model::UIntegerInterval testInterval2(0, 14);
 	testPlayer.setLoop(testInterval2);
@@ -125,31 +125,31 @@ void PlayerTest::scrubberOperations()
 	QVERIFY(testPlayer.getScrubbers().isEmpty());
 
 	testPlayer.addScrubber(testScrubber2);
-	QCOMPARE(testPlayer.scrubberCount(), (unsigned int)1);
+	QCOMPARE(testPlayer.scrubberCount(), 1U);
 	QCOMPARE(testPlayer.getVideoLength(), videoPointer2->getFrameCount());
 	QVERIFY(testPlayer.getScrubbers().contains(testScrubber2));
 	QVERIFY(testPlayer.controlsScrubber(*testScrubber2));
 
 	testPlayer.addScrubber(testScrubber);
-	QCOMPARE(testPlayer.scrubberCount(), (unsigned int)2);
+	QCOMPARE(testPlayer.scrubberCount(), 2U);
 	QCOMPARE(testPlayer.getVideoLength(), videoPointer->getFrameCount());
 	QVERIFY(testPlayer.getScrubbers().contains(testScrubber));
 	QVERIFY(testPlayer.controlsScrubber(*testScrubber));
 
 	testPlayer.removeScrubber(*testScrubber);
-	QCOMPARE(testPlayer.scrubberCount(), (unsigned int)1);
+	QCOMPARE(testPlayer.scrubberCount(), 1U);
 	QCOMPARE(testPlayer.getVideoLength(), videoPointer2->getFrameCount());
 	QVERIFY(!testPlayer.getScrubbers().contains(testScrubber));
 	QVERIFY(!testPlayer.controlsScrubber(*testScrubber));
 
-	testPlayer.addScrubber(testScrubber, (unsigned int)0);
-	QCOMPARE(testPlayer.scrubberCount(), (unsigned int)2);
+	testPlayer.addScrubber(testScrubber, 0U);
+	QCOMPARE(testPlayer.scrubberCount(), 2U);
 	QCOMPARE(testPlayer.getVideoLength(), videoPointer->getFrameCount());
 	QVERIFY(testPlayer.getScrubbers().at(0) == testScrubber);
 	QVERIFY(testPlayer.controlsScrubber(*testScrubber));
 
 	testPlayer.removeScrubber(0);
-	QCOMPARE(testPlayer.scrubberCount(), (unsigned int)1);
+	QCOMPARE(testPlayer.scrubberCount(), 1U);
 	QCOMPARE(testPlayer.getVideoLength(), videoPointer2->getFrameCount());
 	QVERIFY(!testPlayer.getScrubbers().contains(testScrubber));
 	QVERIFY(!testPlayer.controlsScrubber(*testScrubber));
@@ -199,19 +199,19 @@ void PlayerTest::saveRestore()
 		dummy->restore(memento);
 
 		QCOMPARE(dummy->getFPS(), 10.0f);
-		QCOMPARE(dummy->scrubberCount(), (unsigned int)2);
+		QCOMPARE(dummy->scrubberCount(), 2U);
 		QVERIFY(dummy->controlsScrubber(*testScrubber));
 		QVERIFY(dummy->controlsScrubber(*testScrubber2));
 		QVERIFY(!dummy->isPlaying());
-		QCOMPARE(dummy->getCurrentFrameNumber(), (unsigned int)5);
+		QCOMPARE(dummy->getCurrentFrameNumber(), 5U);
 		QVERIFY(dummy->isLooping());
-		QCOMPARE(dummy->getLoop().getStart(), (unsigned int)5);
-		QCOMPARE(dummy->getLoop().getEnd(), (unsigned int)10);
+		QCOMPARE(dummy->getLoop().getStart(), 5U);
+		QCOMPARE(dummy->getLoop().getEnd(), 10U);
 
 		testPlayer.jumpToFrameNr(7);
 		testPlayer.removeScrubber(*testScrubber);
 		testPlayer.restore(memento);
-		QCOMPARE(testPlayer.getCurrentFrameNumber(), (unsigned int)7);
+		QCOMPARE(testPlayer.getCurrentFrameNumber(), 7U);
 		QVERIFY(testPlayer.controlsScrubber(*testScrubber));
-		QCOMPARE(testPlayer.scrubberCount(), (unsigned int)2);
+		QCOMPARE(testPlayer.scrubberCount(), 2U);
 }

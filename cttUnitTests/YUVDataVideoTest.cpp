@@ -24,10 +24,10 @@ void YUVDataVideoTest::dummyTest()
 void YUVDataVideoTest::test444()
 {
 	YUVDataVideo testVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
-	QCOMPARE(testVideo.getFrameCount(), (unsigned int) 15);
+	QCOMPARE(testVideo.getFrameCount(), 15U);
 
 	VideoMetadata metadata = testVideo.getMetadata();
-	QCOMPARE(metadata.getLength(), (unsigned int) 15);
+	QCOMPARE(metadata.getLength(), 15U);
 	QCOMPARE(metadata.getFPS(), 24.0f);
 	QCOMPARE(metadata.getSize().width(), 720);
 	QCOMPARE(metadata.getSize().height(), 576);
@@ -56,10 +56,10 @@ void YUVDataVideoTest::init()
 void YUVDataVideoTest::test422()
 {
 	YUVDataVideo testVideo("resources/Videos/YUV422/squirrel-720x576-422P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV422, testContext);
-	QCOMPARE(testVideo.getFrameCount(), (unsigned int)15);
+	QCOMPARE(testVideo.getFrameCount(), 15U);
 
 	VideoMetadata metadata = testVideo.getMetadata();
-	QCOMPARE(metadata.getLength(), (unsigned int)15);
+	QCOMPARE(metadata.getLength(), 15U);
 	QCOMPARE(metadata.getFPS(), 24.0f);
 	QCOMPARE(metadata.getSize().width(), 720);
 	QCOMPARE(metadata.getSize().height(), 576);
@@ -80,10 +80,10 @@ void YUVDataVideoTest::test422()
 void YUVDataVideoTest::test420()
 {
 	YUVDataVideo testVideo("resources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext);
-	QCOMPARE(testVideo.getFrameCount(), (unsigned int)260);
+	QCOMPARE(testVideo.getFrameCount(), 260U);
 
 	VideoMetadata metadata = testVideo.getMetadata();
-	QCOMPARE(metadata.getLength(), (unsigned int)260);
+	QCOMPARE(metadata.getLength(), 260U);
 	QCOMPARE(metadata.getFPS(), 24.0f);
 	QCOMPARE(metadata.getSize().width(), 352);
 	QCOMPARE(metadata.getSize().height(), 288);
@@ -126,10 +126,10 @@ void YUVDataVideoTest::saveRestore()
 	YUVDataVideo::sptr dummy = YUVDataVideo::getDummy().dynamicCast<YUVDataVideo>();
 
 	dummy->restore(memento);
-	QCOMPARE(dummy->getFrameCount(), (unsigned int)15);
+	QCOMPARE(dummy->getFrameCount(), 15U);
 
 	VideoMetadata metadata = dummy->getMetadata();
-	QCOMPARE(metadata.getLength(), (unsigned int)15);
+	QCOMPARE(metadata.getLength(), 15U);
 	QCOMPARE(metadata.getFPS(), 24.0f);
 	QCOMPARE(metadata.getSize().width(), 720);
 	QCOMPARE(metadata.getSize().height(), 576);
@@ -144,7 +144,7 @@ void YUVDataVideoTest::saveRestore()
 	testVideo2.restore(memento);
 
 	VideoMetadata metadata2 = testVideo2.getMetadata();
-	QCOMPARE(metadata2.getLength(), (unsigned int)15);
+	QCOMPARE(metadata2.getLength(), 15U);
 	QCOMPARE(metadata2.getFPS(), 24.0f);
 	QCOMPARE(metadata2.getSize().width(), 720);
 	QCOMPARE(metadata2.getSize().height(), 576);
