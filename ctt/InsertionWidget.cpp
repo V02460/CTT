@@ -17,13 +17,13 @@ void InsertionWidget::setupUi() {
 	int currentRow = 0;
 	int currentColumn = 0;
 
-	for each (ListedPushButton::sptr btn in insertionButtons) {
+	for each (ListedPushButton *btn in insertionButtons) {
 		if (currentColumn == 5) {
 			currentColumn = 0;
 			currentRow++;
 		}
 
-		layout->addWidget(btn.data(), currentRow, currentColumn);
+		layout->addWidget(btn, currentRow, currentColumn);
 		currentColumn++;
 	}
 	//rearrangeContents();
