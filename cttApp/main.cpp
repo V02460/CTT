@@ -22,6 +22,7 @@
 #include "FilteredVideo.h"
 #include "Player.h"
 #include "VideoScrubber.h"
+#include "MainWindow.h"
 
 using ::helper::MockDisplayHelper;
 using ::model::frame::Frame;
@@ -45,7 +46,8 @@ int main(int argc, char *argv[])
 	//view::VideoWidget *videoWidget;
 	//ThumbnailListWidgetTest *thumbnailListWidgetTest;
 	//ListedPushButtonTest *listedPushButtonTest;
-	view::ProcessingWidget *processingWidget;
+	//view::ProcessingWidget *processingWidget;
+	view::MainWindow *mainWindow;
 
 	//TODO wieder einkommentieren
     //try {
@@ -112,9 +114,12 @@ int main(int argc, char *argv[])
 		testProject->getPlayerList1()->insert(1, testPlayerTwo);
 
 
-		processingWidget = new view::ProcessingWidget(testProject->getPlayerList1(), testProject->getVideoList1(),
-			testProject->getBaseVideoList(), analysingVideosController);
-		processingWidget->show();
+		//(processingWidget = new view::ProcessingWidget(testProject->getPlayerList1(), testProject->getVideoList1(),
+		//	testProject->getBaseVideoList(), analysingVideosController);
+		//processingWidget->show();
+
+		mainWindow = new view::MainWindow();
+		mainWindow->show();
     /*}
 
 		//model::video::FFmpegDataVideo testVideo("Resources/Videos/mp4/mp4test.mp4", testContext);
