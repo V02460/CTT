@@ -30,7 +30,7 @@ public:
      *
      * @param scrubber The VideoScrubber to register at and which provides the histograms.
      */
-    HistogramWidget(::model::player::VideoScrubber::sptr scrubber);
+    HistogramWidget(::model::player::VideoScrubber::sptr scrubber, QWidget *parent = 0);
 
 
 	virtual void update() Q_DECL_OVERRIDE;

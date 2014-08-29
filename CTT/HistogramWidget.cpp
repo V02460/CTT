@@ -11,7 +11,7 @@ using ::model::frame::histogram::Histogram;
 
 namespace view {
 
-HistogramWidget::HistogramWidget(::model::player::VideoScrubber::sptr scrubber) : scrubber(scrubber) {
+HistogramWidget::HistogramWidget(::model::player::VideoScrubber::sptr scrubber, QWidget *parent) : QWidget(parent), scrubber(scrubber) {
 	scrubber->subscribe(this);
 	currentHistogramType = Histogram::HISTOGRAM_TYPE_STRINGS.at(0);
 	histogramPlot = new QCustomPlot();

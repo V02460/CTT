@@ -23,11 +23,16 @@ public:
     typedef QSharedPointer<AnalysingWidget> sptr;
     typedef QWeakPointer<AnalysingWidget> wptr;
 
+	AnalysingWidget(::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos,
+		::controller::DifferenceController::sptr differenceCotroller, QWidget *parent = 0);
 private:
-    ::model::player::Player player; /**< The player which plays all activated videos */
+	void setupUi();
+
+    ::model::player::Player::sptr player; /**< The player which plays all activated videos */
+	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos;
     QList<VideoAnalysingWidget> analysingWidgets; /**< The AnalysingWidgets which actually display videos and their metadata */
-    ThumbnailListWidget thumbnailWidget; /**< The ThumbnalListWidget to choose the active videos and to add new videos */
-    MainControlWidget mainControlWidget;/**< The MainControlWidget which provides the player functionalities */
+    ThumbnailListWidget *thumbnailWidget; /**< The ThumbnalListWidget to choose the active videos and to add new videos */
+    MainControlWidget *mainControlWidget;/**< The MainControlWidget which provides the player functionalities */
 };
 
 }  // namespace view
