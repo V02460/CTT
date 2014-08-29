@@ -520,9 +520,6 @@
     <ClCompile Include="VideoAddedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
-    <ClCompile Include="VideoListOperation.cpp">
-      <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
     <ClCompile Include="VideoRemovedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>

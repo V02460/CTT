@@ -452,7 +452,6 @@
     <ClCompile Include="VideoAddedOperation.cpp" />
     <ClCompile Include="VideoAnalysingWidget.cpp" />
     <ClCompile Include="VideoListController.cpp" />
-    <ClCompile Include="VideoListOperation.cpp" />
     <ClCompile Include="VideoMetadata.cpp" />
     <ClCompile Include="VideoProcessingWidget.cpp" />
     <ClCompile Include="VideoRemovedOperation.cpp" />
