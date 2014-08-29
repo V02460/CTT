@@ -1107,6 +1107,12 @@
     <None Include="Shader\Histogram\saturationHistogramGrid.fs">
       <Filter>Shader Files\Histogram</Filter>
     </None>
+    <None Include="ctt_en.ts">
+      <Filter>Lokalisierungs Dateien</Filter>
+    </None>
+    <None Include="ctt_de.ts">
+      <Filter>Lokalisierungs Dateien</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AccessToDummyException.h">
