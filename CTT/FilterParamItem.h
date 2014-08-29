@@ -41,10 +41,10 @@ private:
 
 	::model::filter::FilterParam::sptr param;
 
-	QLabel *nameLabel;
-	QCheckBox *boolCheckbox;
-	QSpinBox *intSpinbox;
-	QDoubleSpinBox *doubleSpinbox;
+	QLabel nameLabel;
+	QCheckBox boolCheckbox;
+	QSpinBox intSpinbox;
+	QDoubleSpinBox doubleSpinbox;
 };
 
 } // namespace view
