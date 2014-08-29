@@ -12,7 +12,7 @@ using ::exception::NotImplementedException;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 
-const QByteArray CoffeeFilter::kFilterID = QT_TR_NOOP("filter_coffee");
+const QByteArray CoffeeFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_coffee");
 
 CoffeeFilter::CoffeeFilter(Module::sptr predecessor) : Filter(predecessor) {
     throw new NotImplementedException();

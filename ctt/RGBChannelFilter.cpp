@@ -15,7 +15,7 @@ using ::helper::GPUHelper;
 using ::helper::clamp;
 using ::exception::NotImplementedException;
 
-const QByteArray RGBChannelFilter::kFilterID = QT_TR_NOOP("filter_rgbchannel");
+const QByteArray RGBChannelFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_rgbchannel");
 
 const QString RGBChannelFilter::kParamRedStr = QT_TR_NOOP("filter_rgbchannel_param_red");
 const QString RGBChannelFilter::kParamGreenStr = QT_TR_NOOP("filter_rgbchannel_param_green");

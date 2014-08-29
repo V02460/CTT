@@ -13,7 +13,7 @@ using ::model::saveable::Memento;
 using ::helper::clamp;
 using ::exception::NotImplementedException;
 
-const QByteArray TimeshiftFilter::kFilterID = QT_TR_NOOP("filter_timeshift");
+const QByteArray TimeshiftFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_timeshift");
 
 const QString TimeshiftFilter::kParamShiftStr = QT_TR_NOOP("filter_timeshift_param_shift");
 

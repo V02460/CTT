@@ -14,7 +14,7 @@ using ::model::saveable::Memento;
 using ::helper::GPUHelper;
 using ::helper::clamp;
 
-const QByteArray NoiseFilter::kFilterID = QT_TR_NOOP("filter_noise");
+const QByteArray NoiseFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_noise");
 
 const QString NoiseFilter::kParamIntensityStr = QT_TR_NOOP("filter_noise_param_intensity");
 

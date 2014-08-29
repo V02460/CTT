@@ -24,8 +24,8 @@ using overlay::MotionVectorOverlay;
 using ::model::difference::PixelDiff;
 using exception::NotImplementedException;
 
-QList<QString> FilterFactory::getAllNonOverlayFilterIDs() {
-    QList<QString> list;
+QList<QByteArray> FilterFactory::getAllNonOverlayFilterIDs() {
+    QList<QByteArray> list;
 
     return list 
         << BlurFilter::kFilterID
@@ -38,8 +38,8 @@ QList<QString> FilterFactory::getAllNonOverlayFilterIDs() {
         << TimeshiftFilter::kFilterID;
 }
 
-QList<QString> FilterFactory::getAllOverlayIDs() {
-    QList<QString> list;
+QList<QByteArray> FilterFactory::getAllOverlayIDs() {
+    QList<QByteArray> list;
 
     return list
         << HeatmapOverlay::kFilterID

@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QCoreApplication>
 
 #include "Filter.h"
 #include "Frame.h"
@@ -16,6 +17,8 @@ namespace filter {
  * Provides a greyscale version of the predecessors frame.
  */
 class GreyscaleFilter : public Filter {
+    Q_OBJECT
+
 public:
     typedef QScopedPointer<GreyscaleFilter> uptr;
     typedef QSharedPointer<GreyscaleFilter> sptr;
@@ -36,7 +39,7 @@ public:
     virtual ~GreyscaleFilter();
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
-    virtual QString getName() const Q_DECL_OVERRIDE { return tr(kFilterID); }
+    virtual QString getName() const Q_DECL_OVERRIDE { return QCoreApplication::translate("Filter", kFilterID); }
     virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
 
     virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;

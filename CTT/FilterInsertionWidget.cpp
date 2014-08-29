@@ -1,5 +1,7 @@
 #include "FilterInsertionWidget.h"
 
+#include <QCoreApplication>
+
 #include "FilterFactory.h"
 #include "NotImplementedException.h"
 
@@ -18,11 +20,11 @@ FilterInsertionWidget::FilterInsertionWidget(::controller::FilterController::spt
 }
 
 void FilterInsertionWidget::generateButtons() {
-	QList<QString> filterIds = model::filter::FilterFactory::getAllNonOverlayFilterIDs();
+    QList<QByteArray> filterIds = model::filter::FilterFactory::getAllNonOverlayFilterIDs();
 
 	for (int i = 0; i < filterIds.size(); i++) {
 		ListedPushButton::sptr button = ListedPushButton::sptr(new ListedPushButton(i, this));
-		button->setText(filterIds.at(i));
+        button->setText(QCoreApplication::translate("Filter", filterIds.at(i)));
 		button->setMinimumSize(preferredButtonSize);
 		button->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 		insertionButtons.append(button);

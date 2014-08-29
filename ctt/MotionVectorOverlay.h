@@ -17,6 +17,8 @@ namespace overlay {
  * Provides a new version of the predecessors frame with the graphical representation of motion vectors mixed into it.
  */
 class MotionVectorOverlay : public Overlay {
+    Q_OBJECT
+
 public:
     typedef QScopedPointer<MotionVectorOverlay> uptr;
     typedef QSharedPointer<MotionVectorOverlay> sptr;

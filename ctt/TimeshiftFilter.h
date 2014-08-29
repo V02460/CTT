@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QCoreApplication>
 
 #include "Filter.h"
 #include "Frame.h"
@@ -16,6 +17,8 @@ namespace filter {
  * Provides the unmodified version of a previous or subsequent frame of the predecessor
  */
 class TimeshiftFilter : public Filter {
+    Q_OBJECT
+
 public:
     typedef QScopedPointer<TimeshiftFilter> uptr;
     typedef QSharedPointer<TimeshiftFilter> sptr;
@@ -38,7 +41,7 @@ public:
     virtual ~TimeshiftFilter();
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
-    virtual QString getName() const Q_DECL_OVERRIDE { return tr(kFilterID); }
+    virtual QString getName() const Q_DECL_OVERRIDE { return QCoreApplication::translate("Filter", kFilterID); }
     virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
     
     virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;

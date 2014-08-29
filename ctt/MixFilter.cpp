@@ -16,7 +16,7 @@ using ::model::saveable::Memento;
 using ::helper::GPUHelper;
 using ::helper::clamp;
 
-const QByteArray MixFilter::kFilterID = QT_TR_NOOP("filter_mix");
+const QByteArray MixFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_mix");
 
 const QString MixFilter::kParamMixRatioStr = QT_TR_NOOP("filter_mix_param_mixRatio");
 

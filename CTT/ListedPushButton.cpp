@@ -23,7 +23,7 @@ namespace view {
 		//setFlat(true);
 
 		QMenu *buttonMenu = new QMenu();
-		QAction* removeAction = buttonMenu->addAction("Entfernen");
+		QAction* removeAction = buttonMenu->addAction(tr("REMOVE"));
 		QObject::connect(removeAction, SIGNAL(toggled(bool)), this, SLOT(removeToggled(bool)));
 
 		setMenu(buttonMenu);

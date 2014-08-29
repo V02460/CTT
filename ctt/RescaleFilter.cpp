@@ -16,7 +16,7 @@ using ::model::saveable::Memento;
 using ::helper::GPUHelper;
 using ::exception::NotImplementedException;
 
-const QByteArray RescaleFilter::kFilterID = QT_TR_NOOP("filter_rescale");
+const QByteArray RescaleFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_rescale");
 
 const QString RescaleFilter::kParamNewSize = QT_TR_NOOP("filter_rescale_param_newsize");
 const QString RescaleFilter::kParamNewSizeWidth = QT_TR_NOOP("filter_rescale_param_newsize_width");

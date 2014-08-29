@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QCoreApplication>
 
 #include "Filter.h"
 #include "Frame.h"
@@ -16,6 +17,8 @@ namespace filter {
 * Provides a new version of the predecessors frame which has been rescaled.
 */
 class RescaleFilter : public Filter {
+    Q_OBJECT
+
 public:
     typedef QScopedPointer<RescaleFilter> uptr;
     typedef QSharedPointer<RescaleFilter> sptr;
@@ -40,7 +43,7 @@ public:
     virtual ~RescaleFilter();
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return false; }
-    virtual QString getName() const Q_DECL_OVERRIDE { return tr(kFilterID); }
+    virtual QString getName() const Q_DECL_OVERRIDE { return QCoreApplication::translate("Filter", kFilterID); }
     virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
 	
     virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;

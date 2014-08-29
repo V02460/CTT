@@ -657,6 +657,72 @@
     <ClCompile Include="GeneratedFiles\Release\moc_AbstractListView.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_BlurFilter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CoffeeFilter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_BlurFilter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CoffeeFilter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GreyscaleFilter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GreyscaleFilter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_HeatmapOverlay.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_HeatmapOverlay.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MotionVectorOverlay.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MotionVectorOverlay.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MixFilter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MixFilter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_NoiseFilter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_NoiseFilter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_RGBChannelFilter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_RGBChannelFilter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_RescaleFilter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_RescaleFilter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_TimeshiftFilter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_TimeshiftFilter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MacroblockOverlay.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MacroblockOverlay.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -764,6 +830,39 @@
     <CustomBuild Include="FilterListView.h">
       <Filter>Header Files\View</Filter>
     </CustomBuild>
+    <CustomBuild Include="BlurFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="CoffeeFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GreyscaleFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="HeatmapOverlay.h">
+      <Filter>Header Files\Model\Filter\Overlay</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MotionVectorOverlay.h">
+      <Filter>Header Files\Model\Filter\Overlay</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MixFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="NoiseFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="RGBChannelFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="RescaleFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="TimeshiftFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MacroblockOverlay.h">
+      <Filter>Header Files\Model\Filter\Overlay</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnalysingWidget.h">
@@ -771,12 +870,6 @@
     </ClInclude>
     <ClInclude Include="BlueHistogram.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
-    </ClInclude>
-    <ClInclude Include="BlurFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="CoffeeFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
     <ClInclude Include="ColoringOverlay.h">
       <Filter>Header Files\Model\Filter\Overlay</Filter>
@@ -823,12 +916,6 @@
     <ClInclude Include="GreenHistogram.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
-    <ClInclude Include="GreyscaleFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="HeatmapOverlay.h">
-      <Filter>Header Files\Model\Filter\Overlay</Filter>
-    </ClInclude>
     <ClInclude Include="Histogram.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
@@ -837,15 +924,6 @@
     </ClInclude>
     <ClInclude Include="LuminanceHistogram.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
-    </ClInclude>
-    <ClInclude Include="MacroblockOverlay.h">
-      <Filter>Header Files\Model\Filter\Overlay</Filter>
-    </ClInclude>
-    <ClInclude Include="NoiseFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="MotionVectorOverlay.h">
-      <Filter>Header Files\Model\Filter\Overlay</Filter>
     </ClInclude>
     <ClInclude Include="Video.h">
       <Filter>Header Files\Model\Video</Filter>
@@ -862,9 +940,6 @@
     <ClInclude Include="Memento.h">
       <Filter>Header Files\Model\Saveable</Filter>
     </ClInclude>
-    <ClInclude Include="MixFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
     <ClInclude Include="Overlay.h">
       <Filter>Header Files\Model\Filter\Overlay</Filter>
     </ClInclude>
@@ -873,15 +948,6 @@
     </ClInclude>
     <ClInclude Include="PlayerWidget.h">
       <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="RescaleFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="RGBChannelFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="TimeshiftFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
     <ClInclude Include="VideoAddedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
@@ -1082,6 +1148,12 @@
     </None>
     <None Include="Shader\Filter\RGBChannel.fs">
       <Filter>Shader Files\Filter</Filter>
+    </None>
+    <None Include="..\cttApp\ctt_de.ts">
+      <Filter>Lokalisierungs Dateien</Filter>
+    </None>
+    <None Include="..\cttApp\ctt_en.ts">
+      <Filter>Lokalisierungs Dateien</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

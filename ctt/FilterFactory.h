@@ -27,14 +27,14 @@ public:
      *
      * @return QList a list with identifiers for all types of filters which aren't overlays the factory can create
      */
-    static QList<QString> getAllNonOverlayFilterIDs();
+    static QList<QByteArray> getAllNonOverlayFilterIDs();
 
     /**
     * Returns a list with identifiers for all types of Overlays the factory can create.
     *
     * @return QList a list with identifiers for all types of overlays the factory can create
     */
-    static QList<QString> getAllOverlayIDs();
+    static QList<QByteArray> getAllOverlayIDs();
 
     /**
      * Creates and returns a Filter of the type specified by the submitted id.
