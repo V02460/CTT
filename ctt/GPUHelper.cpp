@@ -1,7 +1,5 @@
 #include "GPUHelper.h"
 
-#include <QFile>
-
 #include "IOException.h"
 #include "FileNotFoundException.h"
 #include "OpenGLException.h"
@@ -19,38 +17,60 @@ using ::exception::FileNotFoundException;
 using ::exception::NotImplementedException;
 using ::exception::IllegalArgumentException;
 
+typedef QSharedPointer<QOpenGLContext> QOpenGLContext_sptr;
+typedef QSharedPointer<QOpenGLShaderProgram> QOpenGLShaderProgram_sptr;
+
 static QSize getNewSizeDefault(QSize size) {
     return QSize(size.width() / 2, size.height() / 2);
 }
 
-GPUHelper::GPUHelper(QString fragmentShaderFile, QSharedPointer<QOpenGLContext> context)
+GPUHelper::GPUHelper(QString fragmentShaderFile, QOpenGLContext_sptr context)
         : mode(APPLY)
         , context(context)
-        , getNewSize(getNewSizeDefault) {
+        , getNewSize(getNewSizeDefault)
+        , textures()
+        , textureNames()
+        , program() {
     initializeOpenGLFunctions();
     initShaderProgram(fragmentShaderFile);
 }
 
-GPUHelper::GPUHelper(QString fragmentShaderFile, QSharedPointer<QOpenGLContext> context, QSize(&getNewSize)(QSize))
+GPUHelper::GPUHelper(QString fragmentShaderFile, QOpenGLContext_sptr context, QSize(&getNewSize)(QSize))
         : mode(COMPACT)
         , context(context)
-        , getNewSize(getNewSize) {
+        , getNewSize(getNewSize)
+        , textures()
+        , textureNames()
+        , program() {
     initializeOpenGLFunctions();
     initShaderProgram(fragmentShaderFile);
 }
 
 void GPUHelper::initShaderProgram(QString fragmentShaderFile) {
-    QSharedPointer<QOpenGLShader> vertexShader = GPUHelper::getDefaultFlatVS();
-    if (!program.addShader(vertexShader.data())) {
-        throw new OpenGLException("Adding of vertex shader failed. Log message: " + program.log());
-    }
+    QPair<QString, QOpenGLContext_sptr> cacheKey(fragmentShaderFile, context);
 
-    if (!program.addShaderFromSourceFile(QOpenGLShader::Fragment, fragmentShaderFile)) {
-        throw new OpenGLException("Adding of fragment shader failed. Log message: " + program.log());
-    }
+    if (shaderProgramCache.contains(cacheKey)) {
+        // get the existing shader from the cache
+        program = shaderProgramCache.value(cacheKey);
+    } else {
+        // create a new shader program
+        program.reset(new QOpenGLShaderProgram());
 
-    if (!program.link()) {
-        throw new OpenGLException("Linking of shader program failed. Log message: " + program.log());
+        QSharedPointer<QOpenGLShader> vertexShader = GPUHelper::getDefaultFlatVS();
+        if (!program->addShader(vertexShader.data())) {
+            throw new OpenGLException("Adding of vertex shader failed. Log message: " + program->log());
+        }
+
+        if (!program->addShaderFromSourceFile(QOpenGLShader::Fragment, fragmentShaderFile)) {
+            throw new OpenGLException("Adding of fragment shader failed. Log message: " + program->log());
+        }
+
+        if (!program->link()) {
+            throw new OpenGLException("Linking of shader program failed. Log message: " + program->log());
+        }
+
+        // add the shader to the cache
+        shaderProgramCache.insert(cacheKey, program);
     }
 }
 
@@ -59,43 +79,49 @@ void GPUHelper::setValue(QString name, const Surface &texture) {
         throw new OpenGLException("Context of texture argument does not share resources with context of GPUHelper.");
     }
 
-    // TODO: make reassign work
+    if (textureNames.contains(name)) { // texture name already used - reassign
+        int textureIndex = textures.indexOf(textureNames.value(name));
 
-    int textureIndex = textures.size();
+        textures[textureIndex] = texture.getTextureHandle();
 
-    // check number of available texture units
-    int maxTextureUnits;
-    glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &maxTextureUnits);
-    if (textureIndex + 1 > maxTextureUnits) {
-        throw new OpenGLException("Texture unit count exceeds the maximum.");
-    }
+    } else { // new texture
 
-    // get location of the uniform in the shader
-    GLint textureLocation = glGetUniformLocation(program.programId(), name.toLatin1().constData());
+        int textureIndex = textures.size();
+
+        // check number of available texture units
+        int maxTextureUnits;
+        glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &maxTextureUnits);
+        if (textureIndex + 1 > maxTextureUnits) {
+            throw new OpenGLException("Texture unit count exceeds the maximum.");
+        }
+
+        // get location of the uniform in the shader
+        GLint textureLocation = glGetUniformLocation(program->programId(), name.toLatin1().constData());
 #ifdef WARN_INVALID_UNIFORM
-    if (textureLocation == -1) {
-        // throw new OpenGLException("'" + name + "' was set but is not defined in the current shader.");
-        qWarning() << name << "was set but is not defined in the current shader.";
-    }
+        if (textureLocation == -1) {
+            // throw new OpenGLException("'" + name + "' was set but is not defined in the current shader.");
+            qWarning() << name << "was set but is not defined in the current shader.";
+        }
 #endif
 
-    // bind program to set the uniform
-    if (!program.bind()) {
-        throw new OpenGLException("Could not bind shader program.");
+        // bind program to set the uniform
+        if (!program->bind()) {
+            throw new OpenGLException("Could not bind shader program.");
+        }
+
+        // set uniform to the proper texture unit
+        glUniform1i(textureLocation, textureIndex);
+
+        program->release();
+
+        // save the texture to be able to bind it when 'run' is called
+        // It's ugly we just keep the handle, but a shared pointer gave us problems in the hierarchy...
+        textures.append(texture.getTextureHandle());
     }
-
-    // set uniform to the proper texture unit
-    glUniform1i(textureLocation, textureIndex);
-    
-    program.release();
-
-    // save the texture to be able to bind it when 'run' is called
-    // It's ugly we just keep the handle, but a shared pointer gave us problems in the hierarchy...
-    textures.append(texture.getTextureHandle());
 }
 
 void GPUHelper::setValue(QString name, GLint value) {
-    GLint uniformLocation = glGetUniformLocation(program.programId(), name.toLatin1().constData());
+    GLint uniformLocation = glGetUniformLocation(program->programId(), name.toLatin1().constData());
 #ifdef WARN_INVALID_UNIFORM
     if (uniformLocation == -1) {
         // throw new OpenGLException("'" + name + "' was set but is not defined in the current shader.");
@@ -104,18 +130,18 @@ void GPUHelper::setValue(QString name, GLint value) {
 #endif
 
     // bind program to set the uniform
-    if (!program.bind()) {
-        throw new OpenGLException("Could not bind shader program.");
+    if (!program->bind()) {
+        throw new OpenGLException("Could not bind shader program->");
     }
 
     // set the uniform to the given value
     glUniform1i(uniformLocation, value);
 
-    program.release();
+    program->release();
 }
 
 void GPUHelper::setValue(QString name, QSize value) {
-    GLint uniformLocation = glGetUniformLocation(program.programId(), name.toLatin1().constData());
+    GLint uniformLocation = glGetUniformLocation(program->programId(), name.toLatin1().constData());
 #ifdef WARN_INVALID_UNIFORM
     if (uniformLocation == -1) {
         // throw new OpenGLException("'" + name + "' was set but is not defined in the current shader.");
@@ -124,18 +150,18 @@ void GPUHelper::setValue(QString name, QSize value) {
 #endif
 
     // bind program to set the uniform
-    if (!program.bind()) {
-        throw new OpenGLException("Could not bind shader program.");
+    if (!program->bind()) {
+        throw new OpenGLException("Could not bind shader program->");
     }
 
     // set the uniform to the given value
     glUniform2i(uniformLocation, value.width(), value.height());
 
-    program.release();
+    program->release();
 }
 
 void GPUHelper::setValue(QString name, GLfloat value) {
-    GLint uniformLocation = glGetUniformLocation(program.programId(), name.toLatin1().constData());
+    GLint uniformLocation = glGetUniformLocation(program->programId(), name.toLatin1().constData());
 #ifdef WARN_INVALID_UNIFORM
     if (uniformLocation == -1) {
         // throw new OpenGLException("'" + name + "' was set but is not defined in the current shader.");
@@ -144,18 +170,18 @@ void GPUHelper::setValue(QString name, GLfloat value) {
 #endif
 
     // bind program to set the uniform
-    if (!program.bind()) {
-        throw new OpenGLException("Could not bind shader program.");
+    if (!program->bind()) {
+        throw new OpenGLException("Could not bind shader program->");
     }
 
     // set the uniform to the given value
     glUniform1f(uniformLocation, value);
 
-    program.release();
+    program->release();
 }
 
 void GPUHelper::setValue(QString name, QVector2D value) {
-    GLint uniformLocation = glGetUniformLocation(program.programId(), name.toLatin1().constData());
+    GLint uniformLocation = glGetUniformLocation(program->programId(), name.toLatin1().constData());
 #ifdef WARN_INVALID_UNIFORM
     if (uniformLocation == -1) {
         // throw new OpenGLException("'" + name + "' was set but is not defined in the current shader.");
@@ -164,18 +190,18 @@ void GPUHelper::setValue(QString name, QVector2D value) {
 #endif
 
     // bind program to set the uniform
-    if (!program.bind()) {
-        throw new OpenGLException("Could not bind shader program.");
+    if (!program->bind()) {
+        throw new OpenGLException("Could not bind shader program->");
     }
 
     // set the uniform to the given value
     glUniform2f(uniformLocation, value.x(), value.y());
 
-    program.release();
+    program->release();
 }
 
 void GPUHelper::setValue(QString name, QVector3D value) {
-    GLint uniformLocation = glGetUniformLocation(program.programId(), name.toLatin1().constData());
+    GLint uniformLocation = glGetUniformLocation(program->programId(), name.toLatin1().constData());
 #ifdef WARN_INVALID_UNIFORM
     if (uniformLocation == -1) {
         // throw new OpenGLException("'" + name + "' was set but is not defined in the current shader.");
@@ -184,18 +210,18 @@ void GPUHelper::setValue(QString name, QVector3D value) {
 #endif
 
     // bind program to set the uniform
-    if (!program.bind()) {
-        throw new OpenGLException("Could not bind shader program.");
+    if (!program->bind()) {
+        throw new OpenGLException("Could not bind shader program->");
     }
 
     // set the uniform to the given value
     glUniform3f(uniformLocation, value.x(), value.y(), value.z());
 
-    program.release();
+    program->release();
 }
 
 void GPUHelper::setValue(QString name, QVector4D value) {
-    GLint uniformLocation = glGetUniformLocation(program.programId(), name.toLatin1().constData());
+    GLint uniformLocation = glGetUniformLocation(program->programId(), name.toLatin1().constData());
 #ifdef WARN_INVALID_UNIFORM
     if (uniformLocation == -1) {
         // throw new OpenGLException("'" + name + "' was set but is not defined in the current shader.");
@@ -204,14 +230,14 @@ void GPUHelper::setValue(QString name, QVector4D value) {
 #endif
 
     // bind program to set the uniform
-    if (!program.bind()) {
-        throw new OpenGLException("Could not bind shader program.");
+    if (!program->bind()) {
+        throw new OpenGLException("Could not bind shader program->");
     }
 
     // set the uniform to the given value
     glUniform4f(uniformLocation, value.x(), value.y(), value.z(), value.w());
 
-    program.release();
+    program->release();
 }
 
 Surface::sptr GPUHelper::run(const Surface &sourceTexture, QSize targetSize) {
@@ -267,13 +293,13 @@ Surface::sptr GPUHelper::applyShader(const Surface &sourceTexture, QSize targetS
 
     // setup vertex position attribute
     static const QString vertexPositionStr = "_pos";
-    int vertexLocation = program.attributeLocation(vertexPositionStr);
+    int vertexLocation = program->attributeLocation(vertexPositionStr);
     if (vertexLocation == -1) {
         throw new OpenGLException("Vertex shader has no \"" + vertexPositionStr + "\" attribute to assign vertex "
                                   "positions to.");
     }
-    program.enableAttributeArray(vertexLocation);
-    program.setAttributeArray(vertexLocation, vertices);
+    program->enableAttributeArray(vertexLocation);
+    program->setAttributeArray(vertexLocation, vertices);
 
     // bind all the textures
     unsigned int textureCnt = textures.size();
@@ -284,8 +310,8 @@ Surface::sptr GPUHelper::applyShader(const Surface &sourceTexture, QSize targetS
     }
 
     // bind the shader program for drawing
-    if (!program.bind()) {
-        throw new OpenGLException("Could not bind shader program.");
+    if (!program->bind()) {
+        throw new OpenGLException("Could not bind shader program->");
     }
 
     // draw
@@ -295,8 +321,8 @@ Surface::sptr GPUHelper::applyShader(const Surface &sourceTexture, QSize targetS
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
     // cleanup
-    program.disableAttributeArray(vertexLocation);
-    program.release();
+    program->disableAttributeArray(vertexLocation);
+    program->release();
 
     fbo->release();
 
@@ -352,9 +378,10 @@ Surface::sptr GPUHelper::compactTexture(const Surface &sourceTexture, QSize targ
     // repeat until we reach target size
      } while (newSize.width() > targetSize.width() ||
               newSize.height() > targetSize.height());
-    //} while (iteration < 1);
 
     return target;
 }
 
-}
+QMap<QPair<QString, QOpenGLContext_sptr>, QOpenGLShaderProgram_sptr> GPUHelper::shaderProgramCache;
+
+}  // namespace helper
