@@ -4,8 +4,12 @@
 #include <QFrame>
 #include <QScrollArea>
 #include <QSplitter>
+
 #include "FilterInsertionWidget.h"
 #include "FilterListView.h"
+#include "DifferenceInsertionWidget.h"
+#include "DifferenceListView.h"
+#include "DifferenceController.h"
 #include "NotImplementedException.h"
 
 using ::controller::FilterController;
@@ -13,6 +17,7 @@ using ::controller::DifferenceController;
 using ::model::player::Player;
 using ::model::saveable::SaveableList;
 using ::model::difference::FrameDiff;
+using ::controller::DifferenceController;
 using ::exception::NotImplementedException;
 
 namespace view {
@@ -26,8 +31,14 @@ MainControlWidget::MainControlWidget(FilterController::sptr filterController,
 	setupUi(ViewType::PROCESSING_VIEW);
 }
 
-MainControlWidget::MainControlWidget(SaveableList<FrameDiff>::sptr differences,
-	QWidget *parent) : QWidget(parent){
+MainControlWidget::MainControlWidget(SaveableList<FrameDiff>::sptr differences, AnalysingOrderingWidget::sptr orderingWidget,
+	QWidget *parent) : QWidget(parent) {
+	//TODO An das DifferenceControllerInterface anpassen
+	DifferenceController::sptr differenceController = DifferenceController::sptr();
+	insertionWidget = new DifferenceInsertionWidget(differenceController, orderingWidget, this);
+	playerFunctions = new PlayerFunctions(this);
+	listView = new DifferenceListView(differences, differenceController, this);
+
 	setupUi(ViewType::ANALYSING_VIEW);
 }
 

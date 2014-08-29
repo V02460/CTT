@@ -14,9 +14,9 @@
 #include "ZoomFunctions.h"
 #include "PlayerFunctions.h"
 #include "FrameDiff.h"
-
 #include "FilterController.h"
 #include "DifferenceController.h"
+#include "AnalysingOrderingWidget.h"
 
 namespace view {
 
@@ -32,7 +32,8 @@ public:
 
 	MainControlWidget(::controller::FilterController::sptr filterController, QWidget *parent = 0);
 
-	MainControlWidget(::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr differences, QWidget *parent = 0);
+	MainControlWidget(::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr differences,
+		AnalysingOrderingWidget::sptr orderingWidget, QWidget *parent = 0);
 
 	void setPlayer(::model::player::Player::sptr player);
 	void removePlayer();
