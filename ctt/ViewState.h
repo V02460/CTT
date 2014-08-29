@@ -32,6 +32,7 @@ public:
 
 	static ViewState* getInstance();
 	const VideoDisplayPolicy* getCurrentVideoDisplayPolicy();
+	ViewType getCurrentViewType();
 
 public slots:
     /**

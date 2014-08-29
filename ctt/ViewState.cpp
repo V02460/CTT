@@ -21,7 +21,8 @@ Saveable::sptr ViewState::getDummy() {
 }
 
 void ViewState::changeView(ViewType newView) {
-    throw new NotImplementedException();
+	currentView = newView;
+	changed();
 }
 
 Saveable::SaveableType ViewState::getSaveableType() {
@@ -42,6 +43,10 @@ const VideoDisplayPolicy* ViewState::getCurrentVideoDisplayPolicy() {
 
 void ViewState::changeVideoDisplayPolicy() {
 	throw new NotImplementedException();
+}
+
+ViewType ViewState::getCurrentViewType() {
+	return currentView;
 }
 
 ViewState::ViewState() : currentView(ViewType::PROCESSING_VIEW){}

@@ -103,7 +103,7 @@ void ProcessingWidget::videoDeactivated(int id) {
 }
 
 void ProcessingWidget::btnChangeViewClicked(bool active) {
-
+	ViewState::getInstance()->changeView(ViewType::ANALYSING_VIEW);
 }
 
 void ProcessingWidget::update() {
