@@ -122,6 +122,10 @@ void ThumbnailListWidget::btnAddVideoClicked(bool checked) {
 	emit videoAdded(videoPath);
 }
 
+const QList<int> ThumbnailListWidget::getActiveIndices() {
+	return activatedButtons;
+}
+
 void ThumbnailListWidget::subscribe(::controller::VideoListController::sptr observer) {
 	QObject::connect(this, SIGNAL(videoAdded(QString)), observer.data(), SLOT(addVideo(QString)));
 	QObject::connect(this, SIGNAL(videoRemoved(int)), observer.data(), SLOT(removeVideo(int)));

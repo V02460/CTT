@@ -89,12 +89,6 @@ void PlayerFunctions::setPlayer(::model::player::Player::sptr player) {
 	
 		player->subscribe(this);
 
-		sliderCurrentFrame->setMaximum(static_cast<int>(player->getVideoLength()));
-		sliderCurrentFrame->setValue(static_cast<int>(player->getCurrentFrameNumber()));
-		sliderCurrentFrame->setTickInterval(static_cast<int>(player->getVideoLength()) / 10);
-
-		setEnabledAll(true);
-
 		update();
 	} else {
 		qDebug() << "Error in PlayerFunctions! Player to be set was empty.";
@@ -125,9 +119,12 @@ void PlayerFunctions::btnPlayPauseClicked(bool checked) {
 }
 
 void PlayerFunctions::update() {
+	setEnabledAll(player->scrubberCount() != 0);
 	setPlayButton(!player->isPlaying());
 
+	sliderCurrentFrame->setMaximum(static_cast<int>(player->getVideoLength()));
 	sliderCurrentFrame->setValue(static_cast<int>(player->getCurrentFrameNumber()));
+	sliderCurrentFrame->setTickInterval(static_cast<int>(player->getVideoLength()) / 10);
 
 	spinboxFPS->setValue(player->getFPS());
 }

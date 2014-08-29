@@ -11,6 +11,8 @@
 using ::controller::FilterController;
 using ::controller::DifferenceController;
 using ::model::player::Player;
+using ::model::saveable::SaveableList;
+using ::model::difference::FrameDiff;
 using ::exception::NotImplementedException;
 
 namespace view {
@@ -24,7 +26,7 @@ MainControlWidget::MainControlWidget(FilterController::sptr filterController,
 	setupUi(ViewType::PROCESSING_VIEW);
 }
 
-MainControlWidget::MainControlWidget(DifferenceController::sptr filterController,
+MainControlWidget::MainControlWidget(SaveableList<FrameDiff>::sptr differences,
 	QWidget *parent) : QWidget(parent){
 	setupUi(ViewType::ANALYSING_VIEW);
 }

@@ -13,6 +13,7 @@
 #include "InsertionWidget.h"
 #include "ZoomFunctions.h"
 #include "PlayerFunctions.h"
+#include "FrameDiff.h"
 
 #include "FilterController.h"
 #include "DifferenceController.h"
@@ -31,7 +32,7 @@ public:
 
 	MainControlWidget(::controller::FilterController::sptr filterController, QWidget *parent = 0);
 
-	MainControlWidget(::controller::DifferenceController::sptr filterController, QWidget *parent = 0);
+	MainControlWidget(::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr differences, QWidget *parent = 0);
 
 	void setPlayer(::model::player::Player::sptr player);
 	void removePlayer();

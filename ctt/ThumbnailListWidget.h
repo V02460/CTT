@@ -41,6 +41,8 @@ public:
     ThumbnailListWidget(::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos,
                         int selectableCount, bool isHorizontal = false, QWidget *parent = 0);
 
+	const QList<int> getActiveIndices();
+
 	virtual void update() Q_DECL_OVERRIDE;
 
 	void subscribe(::controller::VideoListController::sptr observer);
