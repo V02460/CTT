@@ -678,6 +678,12 @@
     <ClCompile Include="qcustomplot.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
+    <ClCompile Include="AnalysingOrderingWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="DifferenceInsertionWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -1038,6 +1044,12 @@
     </ClInclude>
     <ClInclude Include="FileNotFoundException.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnalysingOrderingWidget.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="DifferenceInsertionWidget.h">
+      <Filter>Header Files\View</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
