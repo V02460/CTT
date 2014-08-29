@@ -63,7 +63,7 @@ void RescaleFilter::restore(Memento memento) {
     QSize newSize;
     newSize.setWidth(memento.getInt(kParamNewSizeWidth));
     newSize.setWidth(memento.getInt(kParamNewSizeHeight));
-    setParam(FilterParam(kParamNewSize, newSize));
+    setParam(FilterParam::sptr(new FilterParam(kParamNewSize, newSize)));
 }
 
 QList<const Module*> RescaleFilter::getUsesList() const {

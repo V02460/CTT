@@ -10,6 +10,7 @@ namespace view {
 
 FilterListView::FilterListView(FilterController::sptr filterController,
 	                           QWidget *parent) : AbstractListView(parent),
+							                      video(),
                                                   filterController(filterController) {
 	QObject::connect(this, SIGNAL(filterMoved(int, int)), filterController.data(), SLOT(moveFilter(int, int)));
 	QObject::connect(this, SIGNAL(elementRemoved(int)), filterController.data(), SLOT(removeFilter(int)));

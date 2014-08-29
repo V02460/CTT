@@ -58,7 +58,7 @@ Memento MixFilter::getMemento() const {
 void MixFilter::restore(Memento memento) {
     Filter::restore(memento);
 
-    setParam(FilterParam(kParamMixRatioStr, memento.getFloat(kParamMixRatioStr)));
+    setParam(FilterParam::sptr(new FilterParam(kParamMixRatioStr, memento.getFloat(kParamMixRatioStr))));
     module2 = memento.getSharedPointer("module2").dynamicCast<Module>();
 }
 

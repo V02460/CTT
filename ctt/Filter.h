@@ -55,7 +55,7 @@ public:
      * @return QList<FilterParam> a list of the different parameters of the filter
      * @throws AccessToDummyException if the the method was called on a dummy
      */
-    QList<FilterParam> getParams() const;
+    QList<FilterParam::sptr> getParams() const;
 
     /**
      * Sets the submitted parameter.
@@ -65,7 +65,7 @@ public:
      *         parameter
      * @throws AccessToDummyException if the the method was called on a dummy
      */
-    void setParam(FilterParam parameter);
+    void setParam(FilterParam::sptr parameter);
 
     /**
      * Tells the Filter to use the frames of the submitted Module as source material for its own frames.
@@ -123,7 +123,7 @@ protected:
             throw new ::exception::AccessToDummyException();
         }
 
-        parameters.insert(name, FilterParam(name, initValue));
+		parameters.insert(name, FilterParam::sptr(new FilterParam(name, initValue)));
     }
 
     template <class T>
@@ -132,8 +132,8 @@ protected:
             throw new ::exception::AccessToDummyException();
         }
 
-        FilterParam param = parameters.value(key, FilterParam(key, defaultValue));
-        return param.getValue().value<T>();
+        FilterParam::sptr param = parameters.value(key, FilterParam::sptr(new FilterParam(key, defaultValue)));
+        return param->getValue().value<T>();
     }
 
     Module *getPredecessor() const;
@@ -142,7 +142,7 @@ private:
     Q_DISABLE_COPY(Filter)
 
     ::model::FilterIntervalList intervals; /**< The Intervals in which the Filter is active */
-    QMap<QString, FilterParam> parameters; /**< Parameters modifying the filters behavior */
+    QMap<QString, FilterParam::sptr> parameters; /**< Parameters modifying the filters behavior */
     Module::sptr predecessor; /**< The Filter gets the frames it modifies from this module */
 };
 
