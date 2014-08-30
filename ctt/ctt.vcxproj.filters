@@ -137,6 +137,9 @@
     <Filter Include="Shader Files\Overlay">
       <UniqueIdentifier>{8fee5fd8-1fe7-4e77-9424-8bb8e6627595}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader Files\Default">
+      <UniqueIdentifier>{18e2e876-1c15-4f5d-9cbf-b34ccfe4a029}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_ctt.cpp">
@@ -332,9 +335,6 @@
       <Filter>Source Files\Model\Filter\Overlay</Filter>
     </ClCompile>
     <ClCompile Include="MacroblockOverlay.cpp">
-      <Filter>Source Files\Model\Filter\Overlay</Filter>
-    </ClCompile>
-    <ClCompile Include="MacropartitionOverlay.cpp">
       <Filter>Source Files\Model\Filter\Overlay</Filter>
     </ClCompile>
     <ClCompile Include="MotionVectorOverlay.cpp">
@@ -559,9 +559,6 @@
     <ClCompile Include="OpenGLException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
-    <ClCompile Include="GPUHelper.cpp">
-      <Filter>Source Files\Helper</Filter>
-    </ClCompile>
     <ClCompile Include="ctt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -588,6 +585,18 @@
     </ClCompile>
     <ClCompile Include="FilterMovedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="GPUSurfacePainter.cpp">
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="GPUSurfaceCompactor.cpp">
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="GPUSurfaceShader.cpp">
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexAttribute.cpp">
+      <Filter>Source Files\Helper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -755,9 +764,6 @@
     <ClInclude Include="MacroblockOverlay.h">
       <Filter>Header Files\Model\Filter\Overlay</Filter>
     </ClInclude>
-    <ClInclude Include="MacropartitionOverlay.h">
-      <Filter>Header Files\Model\Filter\Overlay</Filter>
-    </ClInclude>
     <ClInclude Include="NoiseFilter.h">
       <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
@@ -908,9 +914,6 @@
     <ClInclude Include="MathHelper.h">
       <Filter>Header Files\Helper</Filter>
     </ClInclude>
-    <ClInclude Include="GPUHelper.h">
-      <Filter>Header Files\Helper</Filter>
-    </ClInclude>
     <ClInclude Include="OpenGLException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
@@ -925,6 +928,18 @@
     </ClInclude>
     <ClInclude Include="FilterMovedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexAttribute.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="GPUSurfacePainter.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="GPUSurfaceCompactor.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="GPUSurfaceShader.h">
+      <Filter>Header Files\Helper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -978,6 +993,9 @@
     </None>
     <None Include="Shader\Overlay\heatmap.fs">
       <Filter>Shader Files\Overlay</Filter>
+    </None>
+    <None Include="Shader\Default\Default.vs">
+      <Filter>Shader Files\Default</Filter>
     </None>
   </ItemGroup>
 </Project>

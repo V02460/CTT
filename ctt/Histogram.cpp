@@ -2,7 +2,8 @@
 
 #include "Frame.h"
 #include "MathHelper.h"
-#include "GPUHelper.h"
+#include "GPUSurfaceShader.h"
+#include "GPUSurfaceCompactor.h"
 
 #include "NotImplementedException.h"
 #include "OpenGLException.h"
@@ -11,7 +12,8 @@ namespace model {
 namespace frame {
 namespace histogram {
 
-using ::helper::GPUHelper;
+using ::helper::GPUSurfaceShader;
+using ::helper::GPUSurfaceCompactor;
 
 using ::exception::IllegalArgumentException;
 using ::exception::OpenGLException;
@@ -60,10 +62,10 @@ const Histogram::HistogramType Histogram::stringToType(QString string) {
 * This list must be parallel to the HistogramType enum.
 */
 static const QList<QString> HISTOGRAM_TYPE_STRINGS;
-void Histogram::init(const Surface &frame) {
+void Histogram::init(Surface::sptr frame) {
     Surface::sptr histogramGrid = makeHistogramGrid(frame);
-    Surface::sptr histogramData = requestValuesFromHistogramGrid(*histogramGrid.data());
-    histogramImage = renderHistogram(*histogramData.data());
+    Surface::sptr histogramData = requestValuesFromHistogramGrid(histogramGrid);
+    histogramImage = renderHistogram(histogramData);
 }
 
 // float Histogram::getValue(unsigned int i) const {
@@ -78,25 +80,27 @@ Surface::sptr Histogram::getHistogramImage() const {
     return histogramImage;
 }
 
-Surface::sptr Histogram::makeHistogramGrid(const Surface &imageData) const {
-    GPUHelper gpuHelper(getGridFSFilePath(), imageData.getContext());
+Surface::sptr Histogram::makeHistogramGrid(Surface::sptr imageData) const {
+    GPUSurfaceShader gpuHelper(getGridFSFilePath(), imageData);
 
     // scale output texture dimensions to the next bigger multiple of 16
-    QSize targetSize = ceilTo(imageData.getSize(), 16);
+    QSize targetSize = ceilTo(imageData->getSize(), 16);
 
-    return gpuHelper.run(imageData, targetSize);
-    }
+    return gpuHelper.run(targetSize);
+}
 
-Surface::sptr Histogram::requestValuesFromHistogramGrid(const Surface &histogramGrid) const {
-    GPUHelper gpuHelper(":/Shader/Histogram/histogramCompaction.fs", histogramGrid.getContext(), getCompactedSize);
+Surface::sptr Histogram::requestValuesFromHistogramGrid(Surface::sptr histogramGrid) const {
+    GPUSurfaceCompactor gpuHelper(":/Shader/Histogram/histogramCompaction.fs",
+                                  histogramGrid,
+                                  getCompactedSize);
     
-    return gpuHelper.run(histogramGrid, QSize(16, 16));
-    }
+    return gpuHelper.run(QSize(16, 16));
+}
 
-Surface::sptr Histogram::renderHistogram(const Surface &histogramData) const {
-    GPUHelper histogramDisplayer(":/Shader/Histogram/displayHistogram.fs", histogramData.getContext());
+Surface::sptr Histogram::renderHistogram(Surface::sptr histogramData) const {
+    GPUSurfaceShader histogramDisplayer(":/Shader/Histogram/displayHistogram.fs", histogramData);
 
-    return histogramDisplayer.run(histogramData, QSize(256, 128));
+    return histogramDisplayer.run(QSize(256, 128));
 }
 
 /**

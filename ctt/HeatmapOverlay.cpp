@@ -1,6 +1,6 @@
 #include "HeatmapOverlay.h"
 
-#include "GPUHelper.h"
+#include "GPUSurfaceShader.h"
 #include "FrameMetadata.h"
 #include "NotImplementedException.h"
 
@@ -11,7 +11,7 @@ namespace overlay {
 using ::model::difference::PixelDiff;
 using ::model::frame::Frame;
 using ::model::frame::FrameMetadata;
-using ::helper::GPUHelper;
+using ::helper::GPUSurfaceShader;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::exception::NotImplementedException;
@@ -33,8 +33,9 @@ HeatmapOverlay::Heatmap::~Heatmap() {
 Frame::sptr HeatmapOverlay::Heatmap::getFrame(unsigned int frameNumber) const {
     Surface::sptr pixelDiff = difference->getPixelDiff(frameNumber);
 
-    GPUHelper gpuHelper(":/Shader/Overlay/heatmap.fs", pixelDiff->getContext());
-    Surface::sptr heatmapSurface = gpuHelper.run(*pixelDiff.data());
+    GPUSurfaceShader gpuHelper(":/Shader/Overlay/heatmap.fs", pixelDiff->getContext());
+    gpuHelper.setSourceTexture(pixelDiff);
+    Surface::sptr heatmapSurface = gpuHelper.run();
 
     return Frame::sptr(new Frame(heatmapSurface, FrameMetadata(pixelDiff->getSize())));
 }
@@ -54,6 +55,18 @@ QSize HeatmapOverlay::Heatmap::getResolution() const {
 }
 
 unsigned int HeatmapOverlay::Heatmap::getFrameCount() const {
+    throw new NotImplementedException();
+}
+
+QList<const Module*> HeatmapOverlay::Heatmap::getUsesList() const {
+    QList<const ::model::Module*> list;
+
+    list.append(this);
+
+    return list;
+}
+
+bool HeatmapOverlay::Heatmap::uses(const Module &module) const {
     throw new NotImplementedException();
 }
 

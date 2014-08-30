@@ -11,7 +11,7 @@
 #include "BlueHistogram.h"
 #include "Surface.h"
 #include "RuntimeException.h"
-#include "GPUHelper.h"
+#include "GPUSurfaceShader.h"
 #include "..\CTT\YUVType.h"
 #include <stdlib.h>
 
@@ -19,7 +19,7 @@ using ::helper::MockDisplayHelper;
 using ::model::frame::Frame;
 using ::model::frame::histogram::BlueHistogram;
 using ::model::Surface;
-using ::helper::GPUHelper;
+using ::helper::GPUSurfaceShader;
 using ::exception::RuntimeException;
 
 int main(int argc, char *argv[])

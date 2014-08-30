@@ -78,21 +78,21 @@ FrameMetadata Frame::getMetadata() const {
     return metadata;
 }
 
-Histogram::sptr Frame::getHistogram(Histogram::HistogramType type) const {
+Histogram::sptr Frame::getHistogram(Frame::sptr frame, Histogram::HistogramType type) {
     switch (type)
     {
     case Histogram::Red:
-        return Histogram::sptr(new RedHistogram(*this));
+        return Histogram::sptr(new RedHistogram(frame));
     case Histogram::Green:
-        return Histogram::sptr(new GreenHistogram(*this));
+        return Histogram::sptr(new GreenHistogram(frame));
     case Histogram::Blue:
-        return Histogram::sptr(new BlueHistogram(*this));
+        return Histogram::sptr(new BlueHistogram(frame));
     case Histogram::Luminance:
-        return Histogram::sptr(new LuminanceHistogram(*this));
+        return Histogram::sptr(new LuminanceHistogram(frame));
     case Histogram::Hue:
-        return Histogram::sptr(new HueHistogram(*this));
+        return Histogram::sptr(new HueHistogram(frame));
     case Histogram::Saturation:
-        return Histogram::sptr(new SaturationHistogram(*this));
+        return Histogram::sptr(new SaturationHistogram(frame));
     default:
         throw new IllegalArgumentException("Unsupported histogram type " + QString(type) + ".");
     }

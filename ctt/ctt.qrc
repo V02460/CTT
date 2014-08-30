@@ -14,5 +14,6 @@
         <file>Shader/Conversion/YUV444toRGBsdtv.fs</file>
         <file>Shader/Filter/Greyscale.fs</file>
         <file>Shader/Filter/1DBlur.fs</file>
+        <file>Shader/Default/Default.vs</file>
     </qresource>
 </RCC>

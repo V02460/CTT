@@ -88,6 +88,7 @@ public:
 		heatmapOverlay,
         heatmapOverlay_heatmap,
 		macroblockOverlay,
+        macroblockOverlay_macroblocks,
 		makropartitionOverlay,
 		motionVektorOverlay,
 		rescaleFilter,

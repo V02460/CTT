@@ -111,7 +111,7 @@ protected:
     *
     * @param frame Frame to calculate the histogram for
     */
-    void init(const Surface &frame);
+    void init(Surface::sptr frame);
 
     /**
      * Provides the path to the fragment shader used for creating the histogram grid.
@@ -128,7 +128,7 @@ private:
     * @param imageData Image data that will be used for the histogram grid calculation
     * @return Surface::sptr the generated histogram grid
     */
-    Surface::sptr makeHistogramGrid(const Surface &imageData) const;
+    Surface::sptr makeHistogramGrid(Surface::sptr imageData) const;
 
     /**
     * Extracts values for a single histogram from the grid of local histograms.
@@ -136,9 +136,9 @@ private:
     * @param histogramGrid Grid of local histograms
     * @return the histogram values
     */
-    Surface::sptr requestValuesFromHistogramGrid(const Surface &imageData) const;
+    Surface::sptr requestValuesFromHistogramGrid(Surface::sptr imageData) const;
 
-    Surface::sptr renderHistogram(const Surface &histogramData) const;
+    Surface::sptr renderHistogram(Surface::sptr histogramData) const;
 
     Surface::sptr histogramImage;
 };

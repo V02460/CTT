@@ -26,7 +26,7 @@ public:
      *
      * @param frame Image source for the histogram calculation
      */
-    explicit SaturationHistogram(const Frame &imageData);
+    explicit SaturationHistogram(Frame::sptr imageData);
 
     //virtual float getValue(unsigned int i) const Q_DECL_OVERRIDE;
     virtual HistogramType getType() const Q_DECL_OVERRIDE;

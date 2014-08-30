@@ -29,5 +29,13 @@ Saveable::SaveableType MixFilter::getType() const {
     return Saveable::mixFilter;
 }
 
+QList<const Module*> MixFilter::getUsesList() const {
+    throw new NotImplementedException();
+}
+
+bool MixFilter::uses(const Module &module) const {
+    throw new NotImplementedException();
+}
+
 }  // namespace filter
 }  // namespace model
