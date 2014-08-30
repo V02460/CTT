@@ -2,71 +2,87 @@
 
 #include "NotImplementedException.h"
 #include "IllegalArgumentException.h"
+#include "AccessToDummyException.h"
 
 namespace model {
 
 using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
+using ::exception::AccessToDummyException;
 
-FilterIntervalList::FilterIntervalList() {
-		intervals.clear();
-}
-
+FilterIntervalList::FilterIntervalList() : intervals() {}
 
 bool FilterIntervalList::isActive(unsigned int frameNumber) const {
-		if (frameNumber < 0) throw new exception::IllegalArgumentException();
-		for (int i = 0; i < intervals.length(); i++) {
-			if (intervals.at(i).contains(frameNumber)) {
-				return true;
-}
-		}
-		return false;
+	if (isDummy()) {
+		throw new AccessToDummyException();
 	}
-
-
-void FilterIntervalList::activate(UIntegerInterval interval) {
-		intervals.append(interval);
-}
-
-
-void FilterIntervalList::deactivate(UIntegerInterval interval) {
-		for (int i = 0; i < intervals.length(); i++) {
-			for (int j = interval.getStart(); j = interval.getEnd(); j++){
-				if (interval.contains(j)) {
-					intervals.removeAt(i);
-}
-			}
+	for each (UIntegerInterval::sptr interval in intervals) {
+		if (interval->contains(frameNumber)) {
+			return true;
 		}
 	}
+	return false;
+}
 
 
-QList<UIntegerInterval> FilterIntervalList::getIntervalList() const {
-		return intervals;
+void FilterIntervalList::activate(UIntegerInterval::sptr newInterval) {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
+	for each (UIntegerInterval::sptr interval in intervals) {
+		if (newInterval->canMergeWith(*interval)) {
+			newInterval->mergeWith(*interval);
+			// TODO works?
+			intervals.removeOne(interval);
+		}
+	}
+	intervals.append(newInterval);
+}
+
+
+void FilterIntervalList::deactivate(UIntegerInterval::sptr toDelete) {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
+	// TODO is that what should happen?
+	// TODO works?
+	if (!intervals.removeOne(toDelete)) {
+		throw new IllegalArgumentException("[" + QString::number(toDelete->getStart()) + ", " + toDelete->getEnd() +
+			                               "] is not in the list.");
+	}
+}
+
+QList<UIntegerInterval::sptr> FilterIntervalList::getIntervalList() const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
+	return intervals;
 }
 
 Memento FilterIntervalList::getMemento() const {
-		Memento m;
-		for (int i = 0; i < intervals.length(); i++) {
-			m.setInt("intervalStart" + i, intervals.at(i).getStart());
-			m.setInt("intervalEnd" + i, intervals.at(i).getEnd());
-		}
-		m.setInt("length", intervals.length());
-		return m;
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
+	Memento memento;
+	memento.setInt("length", intervals.length());
+	for (int i = 0; i < intervals.length(); i++) {
+		memento.setSharedPointer("interval" + i, intervals[i]);
+	}
+	return memento;
 }
 
 void FilterIntervalList::restore(Memento memento) {
-		int length = memento.getInt("length");
-		for (int i = 0; i < length; i++) {
-			unsigned int start = memento.getInt("intervalStart" + i);
-			unsigned int end = memento.getInt("intervalEnd" + i);
-
-			activate(UIntegerInterval(start, end));
-		}
+	int length = memento.getInt("length");
+	for (int i = 0; i < length; i++) {
+		intervals.append(memento.getSharedPointer("interval" + i).dynamicCast<UIntegerInterval>());
+	}
 }
 
 Saveable::sptr FilterIntervalList::getDummy() {
-		return Saveable::sptr(new FilterIntervalList());
+	FilterIntervalList::sptr dummy(new FilterIntervalList());
+	dummy->isDummyFlag = true;
+	return dummy;
 }
 
 Saveable::SaveableType FilterIntervalList::getSaveableType() {

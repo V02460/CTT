@@ -9,6 +9,7 @@
 #include "Observable.h"
 #include "Frame.h"
 #include "Memento.h"
+#include "AccessToDummyException.h"
 
 namespace model {
 

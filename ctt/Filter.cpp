@@ -57,35 +57,31 @@ void Filter::setPreviousModule(Module::sptr predecessor) {
     this->predecessor = predecessor;
 }
 
-void Filter::activate(UIntegerInterval interval) {
+void Filter::activate(UIntegerInterval::sptr interval) {
     if (isDummy()) {
         throw new AccessToDummyException();
     }
-
-    intervals.activate(interval);
+    intervals->activate(interval);
 }
 
-void Filter::deactivate(UIntegerInterval interval) {
+void Filter::deactivate(UIntegerInterval::sptr interval) {
     if (isDummy()) {
         throw new AccessToDummyException();
     }
-
-    intervals.deactivate(interval);
+    intervals->deactivate(interval);
 }
 
-QList<UIntegerInterval> Filter::getListOfActiveIntervals() {
+QList<UIntegerInterval::sptr> Filter::getListOfActiveIntervals() {
     if (isDummy()) {
         throw new AccessToDummyException();
     }
-
-    return intervals.getIntervalList();
+    return intervals->getIntervalList();
 }
 
 unsigned int Filter::getFrameCount() const {
     if (isDummy()) {
         throw new AccessToDummyException();
     }
-
     return predecessor->getFrameCount();
 }
 
@@ -93,28 +89,31 @@ Module *Filter::getPredecessor() const {
     if (isDummy()) {
         throw new AccessToDummyException();
     }
-
     return predecessor.data();
 }
 
-QSize Filter::getResolution() const
-{
+QSize Filter::getResolution() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Tried to request the resolution of a dummy Filter.");
+		throw new AccessToDummyException();
 	}
-
 	return predecessor->getResolution();
 }
 
 Memento Filter::getMemento() const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
     Memento memento;
     memento.setSharedPointer("predecessor", predecessor);
+	memento.setSharedPointer("intervals", intervals);
     return memento;
 }
 
 // TODO isDummyFlag = false ... nicht mehr zu restoren? Doch!!!
 void Filter::restore(Memento memento) {
     predecessor = memento.getSharedPointer("predecessor").dynamicCast<Module>();
+	intervals = memento.getSharedPointer("intervals").dynamicCast<FilterIntervalList>();
+	isDummyFlag = false;
 }
 
 }  // namespace filter

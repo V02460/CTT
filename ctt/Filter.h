@@ -90,7 +90,7 @@ public:
      * @param interval the filter will be activated in this interval
      * @throws AccessToDummyException if the the method was called on a dummy or a Filter without interval support
      */
-    void activate(UIntegerInterval interval);
+    void activate(UIntegerInterval::sptr interval);
 
     /**
      * Deactivates the Filter in the submitted interval.
@@ -98,7 +98,7 @@ public:
      * @param interval the filter will be deactivated in this interval
      * @throws AccessToDummyException if the the method was called on a dummy or a Filter without interval support
      */
-    void deactivate(UIntegerInterval interval);
+    void deactivate(UIntegerInterval::sptr interval);
 
     /**
      * Returns a list of all the intervals the filter is active in.
@@ -106,7 +106,7 @@ public:
      * @return List<IntegerInterval> a list of all the intervals the filter is active in
      * @throws AccessToDummyException if the the method was called on a dummy or a Filter without interval support
      */
-    QList<UIntegerInterval> getListOfActiveIntervals();
+    QList<UIntegerInterval::sptr> getListOfActiveIntervals();
 
     virtual unsigned int getFrameCount() const Q_DECL_OVERRIDE;
 
@@ -141,7 +141,7 @@ protected:
 private:
     Q_DISABLE_COPY(Filter)
 
-    ::model::FilterIntervalList intervals; /**< The Intervals in which the Filter is active */
+    ::model::FilterIntervalList::sptr intervals; /**< The Intervals in which the Filter is active */
     QMap<QString, FilterParam::sptr> parameters; /**< Parameters modifying the filters behavior */
     Module::sptr predecessor; /**< The Filter gets the frames it modifies from this module */
 };

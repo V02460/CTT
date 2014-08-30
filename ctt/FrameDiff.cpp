@@ -5,17 +5,20 @@ namespace difference {
 
 using ::model::video::Video;
 using ::model::saveable::Saveable;
+using ::exception::AccessToDummyException;
 
 FrameDiff::FrameDiff(Video::sptr video1, Video::sptr video2) : video1(video1), video2(video2) {}
 
 FrameDiff::~FrameDiff() {}
 
 unsigned int FrameDiff::getFrameCount() const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
     return qMin(video1->getFrameCount(), video2->getFrameCount());
 }
 
-FrameDiff::FrameDiff() {
-}
+FrameDiff::FrameDiff() {}
 
 Saveable::SaveableType FrameDiff::getSaveableType() {
     return SaveableType::frameDiff;
