@@ -6,8 +6,8 @@
 
 #include "Operation.h"
 #include "OperationList.h"
-#include "VideoAddedOperation.h"
-#include "VideoRemovedOperation.h"
+#include "ExtendedVideoAddedOperation.h"
+#include "ExtendedVideoRemovedOperation.h"
 
 #include "IllegalArgumentException.h"
 
@@ -23,8 +23,8 @@ namespace controller {
 	using ::model::GlobalContext;
 	using ::controller::operation::Operation;
 	using ::controller::operation::OperationList;
-	using ::controller::operation::VideoAddedOperation;
-	using ::controller::operation::VideoRemovedOperation;
+	using ::controller::operation::ExtendedVideoAddedOperation;
+	using ::controller::operation::ExtendedVideoRemovedOperation;
 
 	ExtendedVideoListController::ExtendedVideoListController(SaveableList<FilteredVideo>::sptr baseVideos,
 		SaveableList<FilteredVideo>::sptr filteredVideos,
@@ -35,17 +35,12 @@ namespace controller {
 
 		QOpenGLContext context(GlobalContext::get().data());
 		FFmpegDataVideo ffmpegVideo(path, QSharedPointer<QOpenGLContext>(&context));
+
 		FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<FFmpegDataVideo>(&ffmpegVideo)));
-
-
-		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
-			new VideoAddedOperation(video, videoList)));
-
-
 		FilteredVideo::sptr filteredVideo(new FilteredVideo(QSharedPointer<FFmpegDataVideo>(&ffmpegVideo)));
 
 		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
-			new VideoAddedOperation(filteredVideo, filteredVideos)));
+			new ExtendedVideoAddedOperation(video, filteredVideo, videoList, filteredVideos)));
 	}
 
 	void ExtendedVideoListController::addVideo(QString path, int width, int height, double fps, model::video::YUVType type, unsigned int length) {
@@ -54,36 +49,28 @@ namespace controller {
 		YUVDataVideo yuvVideo(path, resolution, fps, type, QSharedPointer<QOpenGLContext>(&context));
 
 		FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(&yuvVideo)));		
-		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
-			new VideoAddedOperation(video, videoList)));
-
-
 		FilteredVideo::sptr filteredVideo(new FilteredVideo(QSharedPointer<YUVDataVideo>(&yuvVideo)));
-		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
-			new VideoAddedOperation(filteredVideo, filteredVideos)));
 
+		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
+			new ExtendedVideoAddedOperation(video, filteredVideo, videoList, filteredVideos)));
 	}
 
 	void ExtendedVideoListController::addVideo(FilteredVideo::sptr video) {
-		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
-			new VideoAddedOperation(video, videoList)));
-
-
 		FilteredVideo::sptr filteredVideo(new FilteredVideo(video));
 		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
-			new VideoAddedOperation(filteredVideo, filteredVideos)));
+			new ExtendedVideoAddedOperation(video, filteredVideo, videoList, filteredVideos)));
 	}
 
 	void ExtendedVideoListController::removeVideo(int index) {
 		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
-			new VideoRemovedOperation(index, videoList)));
+			new ExtendedVideoRemovedOperation(index, videoList, filteredVideos)));
 	}
 
-	void ExtendedVideoListController::removeVideo(const FilteredVideo &video) {
+	void ExtendedVideoListController::removeVideo(const FilteredVideo &baseVideo) {
 		for (int i = 0; i < videoList->getSize(); i++) {
-			if (&video == videoList->get(i).data()) {
+			if (&baseVideo == videoList->get(i).data()) {
 				OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
-					new VideoRemovedOperation(i, videoList)));
+					new ExtendedVideoRemovedOperation(i, videoList, filteredVideos)));
 				return;
 			}
 			throw new exception::IllegalArgumentException("The Video which is to be removed is not part of this VideoList.");
