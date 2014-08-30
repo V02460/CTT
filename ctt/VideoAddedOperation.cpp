@@ -7,7 +7,6 @@ namespace operation {
 using ::model::video::Video;
 using ::model::saveable::SaveableList;
 using ::model::filter::FilteredVideo;
-using ::model::player::Player;
 
 VideoAddedOperation::VideoAddedOperation(FilteredVideo::sptr video, SaveableList<FilteredVideo>::sptr videoList) : video(video), 
 	videoList(videoList), index(videoList->getSize()){
