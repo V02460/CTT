@@ -16,7 +16,7 @@ void VideoMetadataTest::noAdditionalMetadata()
 	QCOMPARE(testMetadata.getSize().height(), testSize.height());
 	QCOMPARE(testMetadata.getSize().width(), testSize.width());
 	QCOMPARE(23.9, testMetadata.getFPS());
-	QCOMPARE((unsigned int)1337, testMetadata.getLength());
+	QCOMPARE(1337U, testMetadata.getLength());
 
 	QVERIFY2(!testMetadata.hasData(""), "The tested object has metadata it isn't supposed to have!");
 	QVERIFY2(!testMetadata.hasData("test"), "The tested object has metadata it isn't supposed to have!");
@@ -52,7 +52,7 @@ void VideoMetadataTest::withAdditionalMetadata()
 	QCOMPARE(testMetadata.getSize().height(), testSize.height());
 	QCOMPARE(testMetadata.getSize().width(), testSize.width());
 	QCOMPARE(23.9, testMetadata.getFPS());
-	QCOMPARE((unsigned int)1337, testMetadata.getLength());
+	QCOMPARE(1337U, testMetadata.getLength());
 
 	QVERIFY2(!testMetadata.hasData(""), "The tested object has metadata it isn't supposed to have!");
 	QVERIFY2(!testMetadata.hasData("test"), "The tested object has metadata it isn't supposed to have!");

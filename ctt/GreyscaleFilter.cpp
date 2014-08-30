@@ -10,6 +10,8 @@ using ::helper::GPUSurfaceShader;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 
+const QByteArray GreyscaleFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_greyscale");
+
 GreyscaleFilter::GreyscaleFilter(Module::sptr predecessor) : Filter(predecessor) {
 }
 
@@ -24,10 +26,6 @@ Frame::sptr GreyscaleFilter::getFrame(unsigned int frameNumber) const {
     Surface::sptr targetSurface = gpuHelper.run();
 
     return Frame::sptr(new Frame(targetSurface, frame->getMetadata()));
-}
-
-Saveable::SaveableType GreyscaleFilter::getType() const {
-	return Saveable::SaveableType::greyscaleFilter;
 }
 
 Memento GreyscaleFilter::getMemento() const {

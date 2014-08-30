@@ -14,6 +14,7 @@ namespace helper {
 
 typedef QSharedPointer<QOpenGLFramebufferObject> QOpenGLFramebufferObject_sptr;
 typedef QSharedPointer<QOpenGLShader> QOpenGLShader_sptr;
+typedef QSharedPointer<QOpenGLShaderProgram> QOpenGLShaderProgram_sptr;
 typedef QSharedPointer<QOpenGLContext> QOpenGLContext_sptr;
 
 class GPUSurfacePainter : protected QOpenGLFunctions {
@@ -77,10 +78,12 @@ private:
     inline void bindAttributeArrays();
     inline void releaseAttributeArrays();
 
-    QOpenGLShaderProgram program;
+    QSharedPointer<QOpenGLShaderProgram> program;
     QList<::model::Surface::sptr> textures;
     QSharedPointer<QOpenGLContext> context;
     ::model::Surface::sptr targetTexture;
+    QMap<QString, ::model::Surface::sptr> textureNames;
+    static QMap<QPair<QString, QOpenGLContext_sptr>, QOpenGLShaderProgram_sptr> shaderProgramCache;
 };
 
 }  // namespace helper

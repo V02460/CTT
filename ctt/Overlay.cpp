@@ -5,6 +5,7 @@ namespace filter {
 namespace overlay {
 
 using ::model::frame::Frame;
+using ::model::saveable::Saveable;
 
 Overlay::Overlay(Module::sptr predecessor, Module::sptr overlay, float overlayAlpha)
         : Filter(predecessor)
@@ -13,6 +14,10 @@ Overlay::Overlay(Module::sptr predecessor, Module::sptr overlay, float overlayAl
 }
 
 Overlay::~Overlay() {
+}
+
+Saveable::SaveableType Overlay::getSaveableType() {
+    return SaveableType::overlay;
 }
 
 Frame::sptr Overlay::getFrame(unsigned int frameNumber) const {

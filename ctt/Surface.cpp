@@ -1,6 +1,7 @@
 #include "Surface.h"
 
 #include "GPUSurfaceShader.h"
+#include "OpenGLException.h"
 
 #include "IllegalStateException.h"
 
@@ -8,6 +9,7 @@ namespace model {
     
 using ::helper::GPUSurfaceShader;
 using ::exception::IllegalStateException;
+using ::exception::OpenGLException;
 
 typedef QSharedPointer<QOpenGLContext> QOpenGLContext_sptr;
 
@@ -52,6 +54,14 @@ QOpenGLFramebufferObject *Surface::getFramebufferObject() {
     if (!framebuffer) {
         framebuffer.reset(new QOpenGLFramebufferObject(size));
 
+        if (!framebuffer->isValid()) {
+            throw new OpenGLException("Framebuffer initialization failed. Size was "
+                                    + QString::number(size.width())
+                                    + "x"
+                                    + QString::number(size.height())
+                                    + ".");
+        }
+
         // don't store two textures
         texture.reset();
     }
@@ -59,6 +69,7 @@ QOpenGLFramebufferObject *Surface::getFramebufferObject() {
     return framebuffer.data();
 }
 
+// TODO: make const
 QByteArray Surface::getRawRGBA() {
     //TODO: find nicer way to handle changing contexts
     initializeOpenGLFunctions();

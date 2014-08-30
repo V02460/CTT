@@ -3,6 +3,7 @@
 #include "NotImplementedException.h"
 #include "YUVType.h"
 #include "IOException.h"
+#include "GPUSurfaceShader.h"
 
 namespace model {
 namespace video {
@@ -10,13 +11,15 @@ namespace video {
 using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
 using ::exception::IOException;
+using ::model::saveable::Saveable;
 
 using ::model::frame::Frame;
+using model::filter::FilterParam;
 
-void Video::save(QString path, YUVType type) const
+model::filter::RescaleFilter::uptr Video::rescaler;
+
+void Video::save(QString path, VideoFileType type) const
 {
-    throw new NotImplementedException();
-
 	if (isDummy()) {
 		throw new IllegalStateException("Tried to save a dummy video.");
 	}
@@ -34,33 +37,38 @@ void Video::save(QString path, YUVType type) const
 
 	QDataStream stream(&videoFile);
 
-	int bytesPerFrame = 0;
+	//Currently only supports YUV444
+	int bytesPerFrame = 3 * getResolution().width() * getResolution().height();
 
-	switch (type)
-	{
-	case YUV444:
-		bytesPerFrame = 3 * getResolution().width() * getResolution().height();
-		break;
-	case YUV422:
-		if ((getResolution().width() % 2) != 0) {
-			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV422 format.");
-		}
-		bytesPerFrame = 2 * getResolution().width() * getResolution().height();
-		break;
-	case YUV420:
-		if ((getResolution().width() % 2) != 0) {
-			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
-		}
-		if ((getResolution().height() % 2) != 0) {
-			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
-		}
-		bytesPerFrame = (3 * getResolution().width() * getResolution().height()) / 2;
-		break;
-	}
+// 	switch (type)
+// 	{
+// 	case YUV444:
+// 		bytesPerFrame = 3 * getResolution().width() * getResolution().height();
+// 		break;
+// 	case YUV422:
+// 		if ((getResolution().width() % 2) != 0) {
+// 			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV422 format.");
+// 		}
+// 		bytesPerFrame = 2 * getResolution().width() * getResolution().height();
+// 		break;
+// 	case YUV420:
+// 		if ((getResolution().width() % 2) != 0) {
+// 			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
+// 		}
+// 		if ((getResolution().height() % 2) != 0) {
+// 			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
+// 		}
+// 		bytesPerFrame = (3 * getResolution().width() * getResolution().height()) / 2;
+// 		break;
+// 	}
 
-	for (unsigned int i; i < getFrameCount(); i++)
+	helper::GPUSurfaceShader myHelper(":/Shader/Conversion/RGBtoYUV444sdtv.fs", getContext());
+	for (unsigned int i = 0; i < getFrameCount(); i++)
 	{
-		//TODO szeg get the data and write it
+        myHelper.setSourceTexture(getFrame(i));
+        Surface::sptr frame = myHelper.run();
+
+		videoFile.write(frame->getRawRGBA().left(bytesPerFrame));
 	}
 
 	if (!videoFile.flush())
@@ -71,10 +79,21 @@ void Video::save(QString path, YUVType type) const
 	videoFile.close();
 }
 
-::model::frame::Frame::sptr Video::getScaledFrame(unsigned int frameNumber, QSize size) const {
-    throw new NotImplementedException();
-}
+::model::frame::Frame::sptr Video::getScaledFrame(Video::sptr video, unsigned int frameNumber, QSize size) {
+    if (rescaler.isNull())
+    {
+		rescaler.reset(new model::filter::RescaleFilter(video));
+	}
+	else
+	{
+		rescaler->setPreviousModule(video);
+	}
 
+	FilterParam param(model::filter::RescaleFilter::kParamNewSize, size);
+	rescaler->setParam(param);
+
+	return rescaler->getFrame(frameNumber);
+}
 
 QSize Video::getResolution() const
 {

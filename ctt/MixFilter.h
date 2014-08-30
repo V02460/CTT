@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QCoreApplication>
 
 #include "Filter.h"
 #include "Frame.h"
@@ -17,19 +18,25 @@ namespace filter {
  * Provides a new version of the predecessors frame which has been mixed with another texture.
  */
 class MixFilter : public Filter {
+    Q_OBJECT
+
 public:
     typedef QScopedPointer<MixFilter> uptr;
     typedef QSharedPointer<MixFilter> sptr;
     typedef QWeakPointer<MixFilter> wptr;
 
+    static const QByteArray kFilterID;
+
+    static const QString kParamMixRatioStr;
+
     /**
-    * Creates a new MixFilter object with a given previous module and a Surface which provides the texture to be
-    * mixed with a frame.
+    * Creates a new MixFilter object with two modules to mix.
     *
-    * @param predecessor The previous module of this filter.
-    * @param surface The surface which provides the texture to be mixed with a frame.
+    * @param module1 The first module which is mixed
+    * @param module2 The second module which is mixed
+    * @throws IllegalArgumentException if resolution of the two modules does not match
     */
-    MixFilter(Module::sptr predecessor, Module::sptr module);
+    MixFilter(Module::sptr module1, Module::sptr module2);
 
     /**
      * MixFilter destructor.
@@ -37,11 +44,17 @@ public:
     virtual ~MixFilter();
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
-    virtual QString getName() const Q_DECL_OVERRIDE;
-    virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
-    virtual ::model::saveable::Saveable::SaveableType getType() const Q_DECL_OVERRIDE;
+    virtual QString getName() const Q_DECL_OVERRIDE { return QCoreApplication::translate("Filter", kFilterID); }
+	virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
+	
+    virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
+    virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
     virtual QList<const Module*> getUsesList() const Q_DECL_OVERRIDE;
     virtual bool uses(const Module &module) const Q_DECL_OVERRIDE;
+    static Saveable::SaveableType getSaveableType() { return Saveable::mixFilter; }
+
+private:
+    ::model::Module::sptr module2;
 };
 
 }  // namespace filter

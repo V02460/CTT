@@ -1,0 +1,45 @@
+#include "FilterInsertionWidget.h"
+
+#include <QCoreApplication>
+
+#include "FilterFactory.h"
+#include "NotImplementedException.h"
+
+using ::exception::NotImplementedException;
+
+namespace view {
+FilterInsertionWidget::FilterInsertionWidget(::controller::FilterController::sptr controller, QWidget *parent) 
+	: InsertionWidget(parent) {
+	generateButtons();
+
+	//rearrangeContents();
+	setupUi();
+
+	QObject::connect(this, SIGNAL(inserted(QString)), controller.data(), SLOT(insertFilter(QString)));
+	this->filterController = controller;
+}
+
+void FilterInsertionWidget::generateButtons() {
+    QList<QByteArray> filterIds = model::filter::FilterFactory::getAllNonOverlayFilterIDs();
+
+	for (int i = 0; i < filterIds.size(); i++) {
+		ListedPushButton::sptr button = ListedPushButton::sptr(new ListedPushButton(i, this));
+        button->setText(QCoreApplication::translate("Filter", filterIds.at(i)));
+		button->setMinimumSize(preferredButtonSize);
+		button->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+		insertionButtons.append(button);
+
+		QObject::connect(button.data(), SIGNAL(clicked(bool, int)), this, SLOT(listedButtonClicked(bool, int)));
+	}
+}
+
+void FilterInsertionWidget::listedButtonClicked(bool checked, int id) {
+	QString filterId = model::filter::FilterFactory::getAllNonOverlayFilterIDs().at(id);
+
+	emit inserted(filterId);
+}
+
+void FilterInsertionWidget::update() {
+	throw new NotImplementedException();
+}
+} // namespace view

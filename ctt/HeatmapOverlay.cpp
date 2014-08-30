@@ -16,6 +16,8 @@ using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::exception::NotImplementedException;
 
+const QByteArray HeatmapOverlay::kFilterID = QT_TR_NOOP("overlay_heatmap");
+
 HeatmapOverlay::HeatmapOverlay(Module::sptr predecessor, PixelDiff::sptr difference)
         : heatmap(new Heatmap(difference))
         , ColoringOverlay(predecessor, heatmap, 0.5) {
@@ -28,6 +30,17 @@ HeatmapOverlay::Heatmap::Heatmap(PixelDiff::sptr difference) : difference(differ
 }
 
 HeatmapOverlay::Heatmap::~Heatmap() {
+}
+
+QList<const Module*> HeatmapOverlay::getUsesList() const {
+    QList<const ::model::Module*> list;
+
+    return list << this
+                << heatmap.data();
+}
+
+bool HeatmapOverlay::uses(const Module &module) const {
+    throw new NotImplementedException();
 }
 
 Frame::sptr HeatmapOverlay::Heatmap::getFrame(unsigned int frameNumber) const {
@@ -61,9 +74,7 @@ unsigned int HeatmapOverlay::Heatmap::getFrameCount() const {
 QList<const Module*> HeatmapOverlay::Heatmap::getUsesList() const {
     QList<const ::model::Module*> list;
 
-    list.append(this);
-
-    return list;
+    return list << this;
 }
 
 bool HeatmapOverlay::Heatmap::uses(const Module &module) const {

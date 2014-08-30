@@ -20,8 +20,7 @@ UIntegerInterval::UIntegerInterval()
 }
 
 bool UIntegerInterval::contains(unsigned int x) const {
-	if (x < 0) throw new IllegalArgumentException();
-	return (x <= end || x > start);
+	return ((x <= end) && (x >= start));
 }
 
 unsigned int UIntegerInterval::getStart() const{
@@ -76,8 +75,8 @@ Saveable::sptr UIntegerInterval::getDummy() {
 	return Saveable::sptr(new UIntegerInterval());
 }
 
-Saveable::SaveableType UIntegerInterval::getType() const {
-	return Saveable::SaveableType::uIntegerInterval;
+Saveable::SaveableType UIntegerInterval::getSaveableType() {
+    return SaveableType::uIntegerInterval;
 }
 
 }  // namespace model

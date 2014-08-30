@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QCoreApplication>
 
 #include "Filter.h"
 #include "Frame.h"
@@ -16,10 +17,18 @@ namespace filter {
 * Provides a new version of the predecessors frame which has been rescaled.
 */
 class RescaleFilter : public Filter {
+    Q_OBJECT
+
 public:
     typedef QScopedPointer<RescaleFilter> uptr;
     typedef QSharedPointer<RescaleFilter> sptr;
     typedef QWeakPointer<RescaleFilter> wptr;
+
+    static const QByteArray kFilterID;
+
+    static const QString kParamNewSize;
+    static const QString kParamNewSizeWidth;
+    static const QString kParamNewSizeHeight;
 
     /**
      * Creates a new RescaleFilter object with a given previous module.
@@ -34,9 +43,14 @@ public:
     virtual ~RescaleFilter();
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return false; }
-    virtual QString getName() const;
-	virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
-	virtual ::model::saveable::Saveable::SaveableType getType() const;
+    virtual QString getName() const Q_DECL_OVERRIDE { return QCoreApplication::translate("Filter", kFilterID); }
+    virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
+	
+    virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
+    virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
+    virtual QList<const Module*> getUsesList() const Q_DECL_OVERRIDE;
+    virtual bool uses(const Module &module) const Q_DECL_OVERRIDE;
+    static Saveable::SaveableType getSaveableType() { return Saveable::rescaleFilter; }
 };
 
 }  // namespace filter

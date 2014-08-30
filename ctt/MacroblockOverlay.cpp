@@ -10,7 +10,9 @@ using ::model::frame::Frame;
 using ::exception::NotImplementedException;
 using ::model::saveable::Saveable;
 
-MacroblockOverlay::MacroblockOverlay(Module::sptr predecessor) : ColoringOverlay(predecessor, XXX, 0.5) {
+const QByteArray MacroblockOverlay::kFilterID = QT_TR_NOOP("overlay_macroblock");
+
+MacroblockOverlay::MacroblockOverlay(Module::sptr predecessor) : ColoringOverlay(predecessor, Module::sptr(), 0.5) {
     throw new NotImplementedException();
 }
 
@@ -18,16 +20,20 @@ MacroblockOverlay::~MacroblockOverlay() {
     throw new NotImplementedException();
 }
 
-QString MacroblockOverlay::getName() const {
-    throw new NotImplementedException();
-}
-
 model::frame::Frame::sptr MacroblockOverlay::getFrame(unsigned int frameNumber) const {
     throw new NotImplementedException();
 }
 
-Saveable::SaveableType MacroblockOverlay::getType() const {
-	return Saveable::SaveableType::macroblockOverlay;
+Saveable::SaveableType MacroblockOverlay::getSaveableType() {
+    return SaveableType::macroblockOverlay;
+}
+
+QList<const ::model::Module*> MacroblockOverlay::getUsesList() const {
+    throw new NotImplementedException();
+}
+
+bool MacroblockOverlay::uses(const ::model::Module &module) const {
+    throw new NotImplementedException();
 }
 
 }  // namespace overlay

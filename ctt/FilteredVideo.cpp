@@ -14,6 +14,10 @@ using ::exception::IllegalStateException;
 using ::model::saveable::Saveable;
 using ::model::video::Video;
 
+const QString FilteredVideo::baseVideoStringId = "baseVideo";
+const QString FilteredVideo::filtersStringId = "filters";
+const QString FilteredVideo::numberOfFiltersStringId = "numberOfFilters";
+
 FilteredVideo::FilteredVideo(Video::sptr baseVideo) : baseVideo(baseVideo) {
 
 }
@@ -36,17 +40,17 @@ void FilteredVideo::addFilter(Filter::sptr filter, unsigned int pos) {
 	{
 		if (filter->uses(*module))
 		{
-			throw new IllegalArgumentException("Tried to add a filter to a FilteredVideo that is already used by the filtered video.");
+			throw new IllegalArgumentException("Tried to add a filter to a FilteredVideo using modules already used by the filtered video.");
 		}
 	}
 
-	if (pos > (unsigned int) filters.count())
+	if (pos > static_cast<unsigned int>(filters.count()))
 	{
 		throw new IllegalArgumentException("Can not insert a Filter into a FilteredVideo with " + QString::number(filters.count())
 			+ " Filters at position " + QString::number(pos) + ".");
 	}
 
-	if (pos < (unsigned int) filters.count())
+	if (pos < static_cast<unsigned int>(filters.count()))
 	{
 		filters.at(pos)->setPreviousModule(filter);
 	}
@@ -55,7 +59,7 @@ void FilteredVideo::addFilter(Filter::sptr filter, unsigned int pos) {
 	{
 		filter->setPreviousModule(filters.at(pos - 1));
 	}
-	if (pos = 0)
+	if (pos == 0)
 	{
 		filter->setPreviousModule(baseVideo);
 	}
@@ -69,17 +73,17 @@ Filter::sptr FilteredVideo::removeFilter(unsigned int pos) {
 		throw new IllegalStateException("Tried to remove a filter from a dummy FilteredVideo.");
 	}
 
-	if (pos >= (unsigned int) filters.count())
+	if (pos >= static_cast<unsigned int>(filters.count()))
 	{
 		throw new IllegalArgumentException("Can not remove a Filter from a FilteredVideo with " + QString::number(filters.count())
 			+ " Filters from position " + QString::number(pos) + ".");
 	}
 
-	if (pos = 0)
+	if ((pos == 0) && (filters.size() >= 2))
 	{
 		filters[1]->setPreviousModule(baseVideo);
 	}
-	else if (pos < ((unsigned int) filters.count() - 1))
+	else if (pos < static_cast<unsigned int>(filters.count() - 1))
 	{
 		filters[pos + 1]->setPreviousModule(filters[pos - 1]);
 	}
@@ -124,11 +128,34 @@ model::frame::Frame::sptr FilteredVideo::getFrame(unsigned int frameNumber) cons
 }
 
 Memento FilteredVideo::getMemento() const {
-    throw new NotImplementedException();
+	if (isDummy())
+	{
+		throw new IllegalStateException("Tried to request a memento of a dummy FilteredVideo.");
+	}
+	Memento memento;
+
+	memento.setSharedPointer(baseVideoStringId, baseVideo);
+
+	memento.setUInt(numberOfFiltersStringId, filters.size());
+	for (unsigned int i = 0; i < static_cast<unsigned int>(filters.size()); i++)
+	{
+		memento.setSharedPointer(filtersStringId + QString::number(i), filters[i]);
+	}
+
+	return memento;
 }
 
 void FilteredVideo::restore(Memento memento) {
-    throw new NotImplementedException();
+	baseVideo = memento.getSharedPointer(baseVideoStringId).dynamicCast<Video>();
+	
+	filters.clear();
+
+	for (unsigned int i = 0; i < memento.getUInt(numberOfFiltersStringId); i++)
+	{
+		filters.append(memento.getSharedPointer(filtersStringId + QString::number(i)).dynamicCast<Filter>());
+	}
+
+	isDummyFlag = false;
 }
 
 Saveable::sptr FilteredVideo::getDummy() {
@@ -148,7 +175,7 @@ QList<const Module*> FilteredVideo::getUsesList() const
 	for (int i = 0; i < filters.size(); ++i) {
 		result.append(filters.at(i)->getUsesList());
 	}
-
+//	result.append(filters.last()->getUsesList());
 	return result;
 }
 
@@ -199,8 +226,8 @@ model::video::VideoMetadata FilteredVideo::getMetadata() const
 	}
 }
 
-Saveable::SaveableType FilteredVideo::getType() const {
-	return Saveable::SaveableType::filteredVideo;
+Saveable::SaveableType FilteredVideo::getSaveableType() {
+    return Saveable::filteredVideo;
 }
 
 Video::sptr FilteredVideo::getBaseVideo() const {

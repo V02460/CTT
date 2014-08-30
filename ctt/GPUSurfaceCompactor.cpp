@@ -34,7 +34,7 @@ GPUSurfaceCompactor::GPUSurfaceCompactor(QString fragmentShaderFile,
 }
 
 Surface::sptr GPUSurfaceCompactor::run() {
-    run(getSourceTexture()->getSize());
+    return run(getSourceTexture()->getSize());
 }
 
 Surface::sptr GPUSurfaceCompactor::run(QSize targetSize) {

@@ -1,9 +1,13 @@
 #include "FilterParam.h"
 
+#include "NotImplementedException.h"
+
 namespace model {
 namespace filter {
 
-FilterParam::FilterParam(QString name, QVariant value) : name(name), value(value) {
+FilterParam::FilterParam(QString name, QVariant value) {
+	this->name = name;
+	this->value = value;
 }
 
 QVariant FilterParam::getValue() const {

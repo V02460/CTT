@@ -6,6 +6,7 @@
 #include <QWeakPointer>
 
 #include "Observer.h"
+#include "Memento.h"
 
 namespace model {
 
@@ -27,7 +28,7 @@ public:
      *
      * @param observer this Observer will be subscribed to the Observable.
      */
-    void subscribe(Observer::sptr observer);
+    void subscribe(Observer *observer);
 
     /**
      * Unsubscribes the submitted Observer from the Observable, i.e. the Observer will not/no longer be notified when
@@ -35,16 +36,17 @@ public:
      *
      * @param observer this Observer will be unsubscribed from the Observable.
      */
-    void unsubscribe(const Observer &observer);
+    void unsubscribe(const Observer *observer);
 
 protected:
-	QList<Observer::sptr> observers;
+	QList<Observer*> observers;
 
     /**
      * this calls the update routine on all Observers observing this Observable.
      *
      */
     void changed();
+
 };
 
 }  // namespace model

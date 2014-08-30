@@ -28,7 +28,7 @@ public:
      * @param type the type of the videofile that will be saved
      * @throws IOException if the videofile can't be written to the location specified in path
      */
-    static void writeToFile(Video video, QDir path, VideoFileType type);
+    static void writeToFile(Video::sptr video, QString path, VideoFileType type);
 
 private:
     VideoSaver();

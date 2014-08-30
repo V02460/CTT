@@ -11,13 +11,17 @@
 
 #include "Module.h"
 #include "Frame.h"
+#include "Observable.h"
 #include "Memento.h"
 #include "VideoMetadata.h"
 #include "VideoFileType.h"
 #include "YUVType.h"
+#include "RescaleFilter.h"
 
 namespace model {
 namespace video {
+
+using  model::filter::RescaleFilter;
 
 /**
  * Represents a video with all it's frames and metadata.
@@ -45,7 +49,7 @@ public:
      * @throws IOException if it's not possible to save the video to the submitted path
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    void save(QString path, YUVType type) const;
+    void save(QString path, VideoFileType type) const;
 
     /**
      * Gets the frame with the submitted number scaled to the submitted resolution.
@@ -56,7 +60,7 @@ public:
      * @return Frame the scaled Frame
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual ::model::frame::Frame::sptr getScaledFrame(unsigned int frameNumber, QSize size) const;
+	static ::model::frame::Frame::sptr getScaledFrame(Video::sptr video, unsigned int frameNumber, QSize size);
 
     /**
      * Returns the QOpenGLContext in which the Video creates its frames.
@@ -69,6 +73,9 @@ public:
     virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const = 0;
 
 	virtual QSize getResolution() const;
+
+private:
+	static RescaleFilter::uptr rescaler;
 
 };
 

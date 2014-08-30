@@ -1,5 +1,8 @@
 #include "RGBChannelFilter.h"
 
+#include "GPUSurfaceShader.h"
+#include "MathHelper.h"
+
 #include "NotImplementedException.h"
 
 namespace model {
@@ -8,38 +11,72 @@ namespace filter {
 using ::model::frame::Frame;
 using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
+using ::helper::GPUSurfaceShader;
+using ::helper::clamp;
 using ::exception::NotImplementedException;
 
+const QByteArray RGBChannelFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_rgbchannel");
+
+const QString RGBChannelFilter::kParamRedStr = QT_TR_NOOP("filter_rgbchannel_param_red");
+const QString RGBChannelFilter::kParamGreenStr = QT_TR_NOOP("filter_rgbchannel_param_green");
+const QString RGBChannelFilter::kParamBlueStr = QT_TR_NOOP("filter_rgbchannel_param_blue");
+
 RGBChannelFilter::RGBChannelFilter(Module::sptr predecessor) : Filter(predecessor) {
-    throw new NotImplementedException();
+    newParameter(kParamRedStr, 100);
+    newParameter(kParamGreenStr, 100);
+    newParameter(kParamBlueStr, 100);
 }
 
 RGBChannelFilter::~RGBChannelFilter() {
-    throw new NotImplementedException();
-}
-
-QString RGBChannelFilter::getName() const {
-    throw new NotImplementedException();
 }
 
 model::frame::Frame::sptr RGBChannelFilter::getFrame(unsigned int frameNumber) const {
-    throw new NotImplementedException();
+    Frame::sptr frame = getPredecessor()->getFrame(frameNumber);
+
+    GPUSurfaceShader gpuHelper(":/Shader/Filter/RGBChannel.fs", frame.staticCast<Surface>());
+
+    float red = getParamValue<float>(kParamRedStr) / 100.f;
+    red = clamp(red, 0.f, 1.f);
+    float green = getParamValue<float>(kParamGreenStr) / 100;
+    green = clamp(green, 0.f, 1.f);
+    float blue = getParamValue<float>(kParamBlueStr) / 100;
+    blue = clamp(blue, 0.f, 1.f);
+
+    gpuHelper.setValue("colorFactor", QVector4D(red, green, blue, 1.f));
+
+    Surface::sptr targetSurface = gpuHelper.run();
+
+    return Frame::sptr(new Frame(targetSurface, frame->getMetadata()));
 }
 
 Memento RGBChannelFilter::getMemento() const {
-    throw new NotImplementedException();
+    Memento memento = Filter::getMemento();
+
+    memento.setInt(kParamRedStr, getParamValue<int>(kParamRedStr));
+    memento.setInt(kParamGreenStr, getParamValue<int>(kParamGreenStr));
+    memento.setInt(kParamBlueStr, getParamValue<int>(kParamBlueStr));
+
+    return memento;
 }
 
 void RGBChannelFilter::restore(Memento memento) {
+    Filter::restore(memento);
+
+    setParam(FilterParam(kParamRedStr, memento.getInt(kParamRedStr)));
+    setParam(FilterParam(kParamGreenStr, memento.getInt(kParamGreenStr)));
+    setParam(FilterParam(kParamBlueStr, memento.getInt(kParamBlueStr)));
+}
+
+QList<const Module*> RGBChannelFilter::getUsesList() const {
+    throw new NotImplementedException();
+}
+
+bool RGBChannelFilter::uses(const model::Module &module) const {
     throw new NotImplementedException();
 }
 
 Saveable::sptr RGBChannelFilter::getDummy() {
     throw new NotImplementedException();
-}
-
-Saveable::SaveableType RGBChannelFilter::getType() const {
-	return Saveable::SaveableType::rGBChannelFilter;
 }
 
 }  // namespace filter

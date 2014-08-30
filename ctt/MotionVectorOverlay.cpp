@@ -10,6 +10,8 @@ using ::model::frame::Frame;
 using ::exception::NotImplementedException;
 using ::model::saveable::Saveable;
 
+const QByteArray MotionVectorOverlay::kFilterID = QT_TR_NOOP("overlay_motionvector");
+
 MotionVectorOverlay::MotionVectorOverlay(Module::sptr predecessor)
         : Overlay(predecessor
         , Module::sptr()
@@ -21,16 +23,16 @@ MotionVectorOverlay::~MotionVectorOverlay () {
     throw new NotImplementedException();
 }
 
-QString MotionVectorOverlay::getName() const {
-    throw new NotImplementedException();
-}
-
 model::frame::Frame::sptr MotionVectorOverlay::getFrame(unsigned int frameNumber) const {
     throw new NotImplementedException();
 }
 
-Saveable::SaveableType MotionVectorOverlay::getType() const {
-	return Saveable::SaveableType::motionVektorOverlay;
+QList<const ::model::Module*> MotionVectorOverlay::getUsesList() const {
+    throw new NotImplementedException();
+}
+
+bool MotionVectorOverlay::uses(const ::model::Module &module) const {
+    throw new NotImplementedException();
 }
 
 }  // namespace overlay

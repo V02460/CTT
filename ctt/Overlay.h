@@ -23,6 +23,8 @@ public:
     typedef QSharedPointer<Overlay> sptr;
     typedef QWeakPointer<Overlay> wptr;
 
+    static Saveable::SaveableType getSaveableType();
+
 protected:
     /**
     * Constructs a Overlay which works on predecessor.

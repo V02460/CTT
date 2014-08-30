@@ -17,10 +17,14 @@ namespace overlay {
  * Provides a new version of the predecessors frame with the graphical representation of motion vectors mixed into it.
  */
 class MotionVectorOverlay : public Overlay {
+    Q_OBJECT
+
 public:
     typedef QScopedPointer<MotionVectorOverlay> uptr;
     typedef QSharedPointer<MotionVectorOverlay> sptr;
     typedef QWeakPointer<MotionVectorOverlay> wptr;
+
+    static const QByteArray kFilterID;
 
     /**
     * Creates a new MotionVectorOverlay object with a given previous module.
@@ -34,10 +38,12 @@ public:
      */
     virtual ~MotionVectorOverlay();
 
-    virtual bool supportsIntervals() const Q_DECL_OVERRIDE{ return true; }
-    virtual QString getName() const;
-	virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
-	virtual ::model::saveable::Saveable::SaveableType getType() const;
+    virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
+    virtual QString getName() const Q_DECL_OVERRIDE { return kFilterID; }
+	virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
+    virtual QList<const ::model::Module*> getUsesList() const Q_DECL_OVERRIDE;
+    virtual bool uses(const ::model::Module &module) const Q_DECL_OVERRIDE;
+    static Saveable::SaveableType getSaveableType() { return Saveable::motionVektorOverlay; }
 };
 
 }  // namespace overlay

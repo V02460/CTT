@@ -27,16 +27,16 @@ double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
 	}
     Histogram::sptr a = Frame::getHistogram(video1->getFrame(frameNr), type);
     Histogram::sptr b = Frame::getHistogram(video2->getFrame(frameNr), type);
-	float d[Histogram::SIZE + 1];
+    float d[Histogram::kSize + 1];
 	d[0] = 0;
 	double sum = 0;
-	for (int i = 0; i < Histogram::SIZE; i++) {
+	for (int i = 0; i < Histogram::kSize; i++) {
 		// TODO replace getValue
 		//d[i + 1] = a->getValue(i) - b->getValue(i) + d[i];
 		sum += std::abs(d[i + 1]);
     }
 
-	return sum / (Histogram::SIZE - 1);
+	return sum / (Histogram::kSize - 1);
 }
 
 
@@ -62,8 +62,8 @@ Saveable::sptr EarthMoversHistogramDiff::getDummy() {
 	return dummyPointer;
 }
 
-Saveable::SaveableType EarthMoversHistogramDiff::getType() const {
-	return Saveable::SaveableType::earthMoversHistogramDiff;
+Saveable::SaveableType EarthMoversHistogramDiff::getSaveableType() {
+    return SaveableType::earthMoversHistogramDiff;
 }
 
 EarthMoversHistogramDiff::EarthMoversHistogramDiff() {

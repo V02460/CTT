@@ -29,14 +29,18 @@ public:
      */
     virtual ~ColoringOverlay();
 
-    virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
+    virtual bool supportsIntervals() const Q_DECL_OVERRIDE{ return true; }
+    QString getName() const;
+    model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
+    static Saveable::SaveableType getSaveableType();
 
 protected:
     /**
-     * Creates a new ColoringOverlay object with a given previous module.
+     * Creates a new ColoringOverlay object with the given predecessor.
+     * The overlay is rendered above the greyed out predecessor with with the given transparency.
      *
      * @param predecessor The previous module of this overlay.
-     * @param overlay The image which is put on top
+     * @param overlay The module which content is rendered above the predecessor
      * @param overlayAlpha The transparency of the overlay
      */
     explicit ColoringOverlay(Module::sptr predecessor, Module::sptr overlay, float overlayAlpha);

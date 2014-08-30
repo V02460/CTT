@@ -1,31 +1,48 @@
 #include "PlayerController.h"
 
+#include "NotImplementedException.h"
+
 namespace controller {
 
-using ::model::player::Player;
+	using ::model::player::Player;
+	using ::exception::NotImplementedException;
 
-void PlayerController::playPause() {
+	PlayerController::PlayerController() {
+		setPlayer(player);
+	}
 
-}
+	void PlayerController::playPause() {
+		player->togglePlayPause();
+	}
 
-void PlayerController::nextFrame() {
+	void PlayerController::nextFrame() {
+		player->nextFrame();
 
-}
+	}
 
-void PlayerController::previousFrame() {
+	void PlayerController::previousFrame() {
+		player->previousFrame();
+	}
 
-}
+	void PlayerController::currentFrameChanged(int frameNumber) {
+		player->currentFrameNrChanged(frameNumber);
+	}
 
-void PlayerController::currentFrameChanged(int frameNumber) {
+	void PlayerController::setToDefaultFPS() {
+		int defaultFPS = player->getDefaultFPS();
+		player->setFPS(defaultFPS);
+	}
 
-}
+	void PlayerController::setPlayer(Player::sptr player) {
+		this->player = player;
+	}
 
-void PlayerController::setToDefaultFPS() {
+	void PlayerController::setFPS(int fps) {
+		//TODO implement
+	}
 
-}
-
-void PlayerController::setPlayer(Player::sptr player) {
-
-}
+	void PlayerController::update() {
+		throw new NotImplementedException();
+	}
 
 }  // namespace controller

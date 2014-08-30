@@ -84,9 +84,18 @@ public:
 
 	virtual void restore(Memento memento);
 
-	virtual ::model::saveable::Saveable::SaveableType getType() const;
+    static Saveable::SaveableType getSaveableType();
 
 private:
+
+	const static QString hasMetadataFileStringId;
+	const static QString resXStringId;
+	const static QString resYStringId;
+	const static QString videoPathStringId;
+	const static QString metadataPathStringId;
+	const static QString framerateStringId;
+	const static QString yuvTypeStringId;
+
     /**
     * Creates a dummy YUVDataVideo.
     */

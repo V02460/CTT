@@ -45,8 +45,10 @@ public:
 
     
 private:
-    QString name; /**<  The name of the parameter. */
-    QVariant value; /**<  The stored value. */
+	/** The name of the parameter. */
+    QString name;
+	/** The stored value. */
+    QVariant value;
 };
 
 }  // namespace filter

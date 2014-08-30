@@ -21,6 +21,8 @@ public:
     typedef QSharedPointer<AbstractTimeline> sptr;
     typedef QWeakPointer<AbstractTimeline> wptr;
 
+	virtual void update();
+
 private:
     //SaveableList displayableComponents; /**< The list over the components that should be displayed by the timeline */
 };
