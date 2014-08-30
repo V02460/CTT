@@ -28,7 +28,7 @@ namespace controller {
 
 	ExtendedVideoListController::ExtendedVideoListController(SaveableList<FilteredVideo>::sptr baseVideos,
 		SaveableList<FilteredVideo>::sptr filteredVideos,
-		SaveableList<Player>::sptr player) : VideoListController(baseVideos), filteredVideos(filteredVideos), player(player){
+		SaveableList<Player>::sptr playerList) : VideoListController(baseVideos), filteredVideos(filteredVideos), playerList(playerList){
 	}
 
 	void ExtendedVideoListController::addVideo(QString path) {
@@ -40,7 +40,8 @@ namespace controller {
 		FilteredVideo::sptr filteredVideo(new FilteredVideo(QSharedPointer<FFmpegDataVideo>(&ffmpegVideo)));
 
 		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
-			new ExtendedVideoAddedOperation(video, filteredVideo, videoList, filteredVideos)));
+			new ExtendedVideoAddedOperation(playerList, video, filteredVideo, videoList, filteredVideos)));
+
 	}
 
 	void ExtendedVideoListController::addVideo(QString path, int width, int height, double fps, model::video::YUVType type, unsigned int length) {
@@ -52,13 +53,13 @@ namespace controller {
 		FilteredVideo::sptr filteredVideo(new FilteredVideo(QSharedPointer<YUVDataVideo>(&yuvVideo)));
 
 		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
-			new ExtendedVideoAddedOperation(video, filteredVideo, videoList, filteredVideos)));
+			new ExtendedVideoAddedOperation(playerList, video, filteredVideo, videoList, filteredVideos)));
 	}
 
 	void ExtendedVideoListController::addVideo(FilteredVideo::sptr video) {
 		FilteredVideo::sptr filteredVideo(new FilteredVideo(video));
 		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
-			new ExtendedVideoAddedOperation(video, filteredVideo, videoList, filteredVideos)));
+			new ExtendedVideoAddedOperation(playerList, video, filteredVideo, videoList, filteredVideos)));
 	}
 
 	void ExtendedVideoListController::removeVideo(int index) {

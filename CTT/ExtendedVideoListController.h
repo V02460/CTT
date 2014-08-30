@@ -15,7 +15,7 @@ namespace controller {
 
 		ExtendedVideoListController(model::saveable::SaveableList<model::filter::FilteredVideo>::sptr baseVideos,
 			model::saveable::SaveableList<model::filter::FilteredVideo>::sptr filteredVideos,
-			model::saveable::SaveableList<model::player::Player>::sptr player);
+			model::saveable::SaveableList<model::player::Player>::sptr playerList);
 
 	public slots:
 		void addVideo(QString path);
@@ -26,7 +26,7 @@ namespace controller {
 
 	private:
 		model::saveable::SaveableList<model::filter::FilteredVideo>::sptr filteredVideos;
-		model::saveable::SaveableList<model::player::Player>::sptr player;
+		model::saveable::SaveableList<model::player::Player>::sptr playerList;
 	};
 }
 

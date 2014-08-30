@@ -8,6 +8,7 @@
 #include "Operation.h"
 #include "Video.h"
 #include "FilteredVideo.h"
+#include "Player.h"
 #include "SaveableList.h"
 
 namespace controller {
@@ -29,7 +30,7 @@ namespace controller {
 			* @param videoList The list to which a certain video should be added.
 			* @param filteredVideos Another list to which a certain video should be added.
 			*/
-			ExtendedVideoAddedOperation(::model::filter::FilteredVideo::sptr video1, ::model::filter::FilteredVideo::sptr video2,
+			ExtendedVideoAddedOperation(model::saveable::SaveableList<model::player::Player>::sptr playerList, ::model::filter::FilteredVideo::sptr video1, ::model::filter::FilteredVideo::sptr video2,
 				::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList, ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos);
 
 			/**
@@ -43,6 +44,7 @@ namespace controller {
 			void undoOperation();
 
 		private:
+			::model::saveable::SaveableList<model::player::Player>::sptr playerList;
 			::model::filter::FilteredVideo::sptr video1;
 			::model::filter::FilteredVideo::sptr video2;
 			int index;
