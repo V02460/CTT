@@ -10,6 +10,7 @@
 #include "Video.h"
 #include "SaveableList.h"
 #include "FileVideo.h"
+#include "FilteredVideo.h"
 
 namespace controller {
 
@@ -28,7 +29,7 @@ public:
      *
      * @param videoList The list the controller will manage
      */
-    VideoListController(::model::saveable::SaveableList<::model::video::Video>::sptr videoList);
+    VideoListController(::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList);
 
 public slots:
 
@@ -54,7 +55,7 @@ public slots:
      *
      * @param video The video which is to be added.
      */
-    void addVideo(::model::video::Video::sptr video);
+    void addVideo(::model::filter::FilteredVideo::sptr video);
 
     /**
     * Initiates removing a video from the VideoList.
@@ -70,10 +71,10 @@ public slots:
     *
     * @param video The video which is to be removed.
     **/
-    void removeVideo(const ::model::video::Video &video);
+    void removeVideo(const ::model::filter::FilteredVideo &video);
 
 protected:
-	::model::saveable::SaveableList<::model::video::Video>::sptr videoList;
+	model::saveable::SaveableList<model::filter::FilteredVideo>::sptr videoList;
 };
 
 }  // namespace controller

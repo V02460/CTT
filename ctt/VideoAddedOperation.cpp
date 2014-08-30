@@ -1,16 +1,14 @@
 #include "VideoAddedOperation.h"
-#include "FFmpegDataVideo.h"
-#include "YUVDataVideo.h"
+#include "FilteredVideo.h"
 
 namespace controller {
 namespace operation {
 
 using ::model::video::Video;
 using ::model::saveable::SaveableList;
-using ::model::video::FFmpegDataVideo;
-using ::model::video::YUVDataVideo;
+using ::model::filter::FilteredVideo;
 
-VideoAddedOperation::VideoAddedOperation(Video::sptr video, SaveableList<Video>::sptr videoList) : video(video), videoList(videoList), memento(video->getMemento()){
+VideoAddedOperation::VideoAddedOperation(FilteredVideo::sptr video, SaveableList<FilteredVideo>::sptr videoList) : video(video), videoList(videoList), memento(video->getMemento()){
 
 }
 

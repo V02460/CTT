@@ -5,7 +5,7 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 
-#include "Video.h"
+#include "FilteredVideo.h"
 #include "Operation.h"
 #include "SaveableList.h"
 
@@ -27,7 +27,7 @@ public:
      * @param index The index of a video which should be removed from the list of videos.
      * @param videoList The list from which a certain video should be removed.
      */
-    VideoRemovedOperation(int index, ::model::saveable::SaveableList<::model::video::Video>::sptr videoList);
+    VideoRemovedOperation(int index, ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList);
 
     /**
      * Manages requests to remove a Video from a VideoList.
@@ -40,9 +40,9 @@ public:
     void undoOperation();
 
 private:
-	::model::video::Video::sptr video;
+	::model::filter::FilteredVideo::sptr video;
 	int index;
-	::model::saveable::SaveableList<::model::video::Video>::sptr videoList;
+	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList;
 };
 
 }  // namespace operation
