@@ -32,7 +32,7 @@ public:
      */
     virtual void undoOperation() = 0;
 protected:
-    ::model::video::Video::uptr video;
+    ::model::video::Video::sptr video;
     int index;
     ::model::saveable::SaveableList<::model::video::Video> videoList;
 };

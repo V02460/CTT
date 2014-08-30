@@ -39,6 +39,10 @@ public:
      * Manages requests to undo adding a Video to a VideoList.
      */
     void undoOperation();
+
+private:
+	::model::video::Video::sptr video;
+
 };
 
 }  // namespace operation
