@@ -66,7 +66,7 @@ public:
 	 */
 	virtual QSize getResolution() const = 0;
 
-    static Saveable::SaveableType getSaveableType();
+    static ::model::saveable::Saveable::SaveableType getSaveableType();
 };
 
 }  // namespace model

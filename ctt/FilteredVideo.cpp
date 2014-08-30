@@ -44,13 +44,13 @@ void FilteredVideo::addFilter(Filter::sptr filter, unsigned int pos) {
 		}
 	}
 
-	if (pos > (unsigned int) filters.count())
+	if (pos > static_cast<unsigned int>(filters.count()))
 	{
 		throw new IllegalArgumentException("Can not insert a Filter into a FilteredVideo with " + QString::number(filters.count())
 			+ " Filters at position " + QString::number(pos) + ".");
 	}
 
-	if (pos < (unsigned int) filters.count())
+	if (pos < static_cast<unsigned int>(filters.count()))
 	{
 		filters.at(pos)->setPreviousModule(filter);
 	}
@@ -73,7 +73,7 @@ Filter::sptr FilteredVideo::removeFilter(unsigned int pos) {
 		throw new IllegalStateException("Tried to remove a filter from a dummy FilteredVideo.");
 	}
 
-	if (pos >= (unsigned int) filters.count())
+	if (pos >= static_cast<unsigned int>(filters.count()))
 	{
 		throw new IllegalArgumentException("Can not remove a Filter from a FilteredVideo with " + QString::number(filters.count())
 			+ " Filters from position " + QString::number(pos) + ".");
@@ -83,7 +83,7 @@ Filter::sptr FilteredVideo::removeFilter(unsigned int pos) {
 	{
 		filters[1]->setPreviousModule(baseVideo);
 	}
-	else if (pos < ((unsigned int) filters.count() - 1))
+	else if (pos < static_cast<unsigned int>(filters.count() - 1))
 	{
 		filters[pos + 1]->setPreviousModule(filters[pos - 1]);
 	}

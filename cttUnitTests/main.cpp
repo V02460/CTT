@@ -4,8 +4,8 @@
 #include "TestResult.h"
 
 #include "ModelTests.h"
-//#include "ViewTests.h"
-//#include "ControllerTests.h"
+// #include "ViewTests.h"
+// #include "ControllerTests.h"
 
 int main(int argc, char *argv[])
 {

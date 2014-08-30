@@ -24,7 +24,6 @@
 #include "NoiseFilter.h"
 #include "HeatmapOverlay.h"
 #include "MacroblockOverlay.h"
-#include "MacropartitionOverlay.h"
 #include "MotionVectorOverlay.h"
 #include "RescaleFilter.h"
 #include "RGBChannelFilter.h"

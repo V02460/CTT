@@ -7,6 +7,7 @@
 #include "FrameMetadata.h"
 #include "GPUHelper.h"
 #include "YUVType.h"
+#include "GlobalContext.h"
 
 namespace model {
 namespace video {
@@ -87,6 +88,8 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QSize resolution, double fra
 			YUVDataVideo::colorTable[i] = color.rgb();
 		}
 	}
+
+	isDummyFlag = false;
 }
 
 YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, QSize resolution, double framerate, YUVType type, QSharedPointer<QOpenGLContext> context)
@@ -152,9 +155,9 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 		load(frameNumber);
 	}
 
-	QByteArray rawFrame = videoBuffer.mid((frameNumber - firstFrameInMemory) * bytesPerFrame, bytesPerFrame);
+	QByteArray rawFrame(videoBuffer.mid((frameNumber - firstFrameInMemory) * bytesPerFrame, bytesPerFrame));
 
-	QByteArray yChannel = rawFrame.mid(0, pixelsPerFrame);
+	QByteArray yChannel(rawFrame.left(pixelsPerFrame));
 	QScopedPointer<QByteArray> uChannel;
 	QScopedPointer<QByteArray> vChannel;
 
@@ -357,7 +360,9 @@ Memento YUVDataVideo::getMemento() const
 
 void YUVDataVideo::restore(Memento memento)
 {
-	//TODO ztrdzt initialze context
+	context = GlobalContext::get();
+	hasMetadataFile = false;
+
 	pathToVideoFile = memento.getString(videoPathStringId);
 	videoFile.setFileName(pathToVideoFile);
 
@@ -406,6 +411,7 @@ void YUVDataVideo::restore(Memento memento)
 
 	metadata = VideoMetadata(resolution, memento.getDouble(framerateStringId), length);
 
+	isDummyFlag = false;
 	load(0);
 
 	if (YUVDataVideo::colorTable.isEmpty())
@@ -443,7 +449,8 @@ void YUVDataVideo::restore(Memento memento)
 
 		loadMetadata(0);
 	}
-	isDummyFlag = false;
+
+	
 }
 
 Saveable::SaveableType YUVDataVideo::getSaveableType() {

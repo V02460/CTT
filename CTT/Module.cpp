@@ -9,7 +9,7 @@ bool Module::uses(const Module &module) const {
 }
 
 Saveable::SaveableType Module::getSaveableType() {
-    return SaveableType::module;
+	return Saveable::module;
 }
 
 }  // namespace model

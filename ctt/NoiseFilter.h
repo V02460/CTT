@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QCoreApplication>
 
 #include "Filter.h"
 #include "Frame.h"
@@ -16,10 +17,14 @@ namespace filter {
  * Provides a new version of the predecessors frame where noise has been added.
  */
 class NoiseFilter : public Filter {
+    Q_OBJECT
+
 public:
     typedef QScopedPointer<NoiseFilter> uptr;
     typedef QSharedPointer<NoiseFilter> sptr;
     typedef QWeakPointer<NoiseFilter> wptr;
+
+    static const QByteArray kFilterID;
 
     static const QString kParamIntensityStr;
 
@@ -36,7 +41,7 @@ public:
     virtual ~NoiseFilter();
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
-    virtual QString getName() const Q_DECL_OVERRIDE { return "filter_noise"; }
+    virtual QString getName() const Q_DECL_OVERRIDE { return QCoreApplication::translate("Filter", kFilterID); }
     virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
 	
     virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;

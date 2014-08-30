@@ -15,9 +15,12 @@
 #include "VideoMetadata.h"
 #include "VideoFileType.h"
 #include "YUVType.h"
+#include "RescaleFilter.h"
 
 namespace model {
 namespace video {
+
+using  model::filter::RescaleFilter;
 
 /**
  * Represents a video with all it's frames and metadata.
@@ -56,7 +59,7 @@ public:
      * @return Frame the scaled Frame
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual ::model::frame::Frame::sptr getScaledFrame(unsigned int frameNumber, QSize size) const;
+	static ::model::frame::Frame::sptr getScaledFrame(Video::sptr video, unsigned int frameNumber, QSize size);
 
     /**
      * Returns the QOpenGLContext in which the Video creates its frames.
@@ -70,7 +73,9 @@ public:
 
 	virtual QSize getResolution() const;
 
-    static Saveable::SaveableType getSaveableType();
+private:
+	static RescaleFilter::uptr rescaler;
+
 };
 
 }  // namespace video

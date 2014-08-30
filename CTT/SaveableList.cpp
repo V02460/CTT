@@ -21,7 +21,6 @@
 #include "ColoringOverlay.h"
 #include "HeatmapOverlay.h"
 #include "MacroblockOverlay.h"
-#include "MacropartitionOverlay.h"
 #include "MotionVectorOverlay.h"
 #include "RescaleFilter.h"
 #include "RGBChannelFilter.h"
@@ -161,7 +160,6 @@ template class SaveableList<model::filter::overlay::Overlay>;
 template class SaveableList<model::filter::overlay::ColoringOverlay>;
 template class SaveableList<model::filter::overlay::HeatmapOverlay>;
 template class SaveableList<model::filter::overlay::MacroblockOverlay>;
-template class SaveableList<model::filter::overlay::MacropartionOverlay>;
 template class SaveableList<model::filter::overlay::MotionVectorOverlay>;
 template class SaveableList<model::filter::RescaleFilter>;
 template class SaveableList<model::filter::RGBChannelFilter>;

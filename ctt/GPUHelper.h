@@ -6,6 +6,7 @@
 #include <QOpenGLShaderProgram>
 #include <QSize>
 #include <QOpenGLFunctions>
+#include <QPair>
 
 #include "Surface.h"
 
@@ -95,11 +96,13 @@ private:
     */
     static QOpenGLShader_sptr getDefaultFlatVS();
 
-    QOpenGLShaderProgram program;
+    QSharedPointer<QOpenGLShaderProgram> program;
     QList<GLuint> textures;
+    QMap<QString, GLuint> textureNames;
     QSharedPointer<QOpenGLContext> context;
     OperationMode mode;
     QSize (&getNewSize)(QSize);
+    static QMap<QPair<QString, QSharedPointer<QOpenGLContext>>, QSharedPointer<QOpenGLShaderProgram>> shaderProgramCache;
 };
 
 }  // namespace helper

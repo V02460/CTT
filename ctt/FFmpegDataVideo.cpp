@@ -104,6 +104,7 @@ model::frame::Frame::sptr FFmpegDataVideo::getFrame(unsigned int frameNumber) co
 	avpicture_fill((AVPicture *)rgbFrame, buffer, PIX_FMT_RGB24, codecContext->width, codecContext->height);
 
 	AVPacket packet;
+	av_init_packet(&packet);
 	int decodingSuccessfull;
 
 	//TODO keine ahnung ob das tut... und was es tut... ACHTUNG, anscheinend müssen da noch irgendwelche internen buffer geflusht werden damit das tut! man wird selbst irgendwie buffern müssen denk ich

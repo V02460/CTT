@@ -100,6 +100,12 @@
     <Filter Include="Source Files\Controller">
       <UniqueIdentifier>{817914d2-000a-4a12-94af-9e66d02e975f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\SpecialTestingClasses">
+      <UniqueIdentifier>{d138eec3-3f83-4966-931a-99f03fd4c6b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SpecialTestingClasses">
+      <UniqueIdentifier>{7114c9b9-bc06-4a93-9142-a622896826e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_FrameTest.cpp">
@@ -125,6 +131,9 @@
     </ClCompile>
     <ClCompile Include="VideoMetadataTest.cpp">
       <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelTests.h">
+      <Filter>Header Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_VideoMetadataTest.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -168,8 +177,20 @@
     <ClCompile Include="GeneratedFiles\Release\moc_YUVDataVideoTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="FilteredVideoTest.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
     <ClCompile Include="PlayerTest.cpp">
       <Filter>Source Files\Model\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FileVideoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilterTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Test Structure</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_BlurFilterTest.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -308,22 +329,20 @@
     <CustomBuild Include="FilterTest.h">
       <Filter>Header Files\Model\Filter</Filter>
     </CustomBuild>
-    <CustomBuild Include="FilteredVideoTest.h">
-      <Filter>Generated Files</Filter>
-    </CustomBuild>
+
     <CustomBuild Include="BlurFilterTest.h">
       <Filter>Header Files\Model\Filter</Filter>
-    </CustomBuild>
-    <CustomBuild Include="FilteredVideoTest.h">
-      <Filter>Generated Files</Filter>
     </CustomBuild>
     <CustomBuild Include="MixFilterTest.h">
       <Filter>Header Files\Model\Filter</Filter>
     </CustomBuild>
-    <CustomBuild Include="FilteredVideoTest.h">
-      <Filter>Generated Files</Filter>
+    <CustomBuild Include="FileVideoTest.h">
+      <Filter>Header Files\Model\Video</Filter>
     </CustomBuild>
     <CustomBuild Include="RescaleFilterTest.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilterTest.h">
       <Filter>Header Files\Model\Filter</Filter>
     </CustomBuild>
     <CustomBuild Include="FileVideoTest.h">
@@ -349,6 +368,18 @@
     </CustomBuild>
     <CustomBuild Include="SaveableListTest.h">
       <Filter>Header Files\Model\Saveable</Filter>
+    </CustomBuild>
+    <CustomBuild Include="VideoTest.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilteredVideoTest.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilteredVideoTest.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilteredVideoTest.h">
+      <Filter>Generated Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -384,5 +415,8 @@
     <Image Include="Resources\Images\big_buck_bunny_01337.png">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
