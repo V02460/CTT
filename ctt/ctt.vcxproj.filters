@@ -848,9 +848,6 @@
     <ClInclude Include="YUVPixelDiff.h">
       <Filter>Header Files\Model\Difference</Filter>
     </ClInclude>
-    <ClInclude Include="VideoListOperation.h">
-      <Filter>Header Files\Controller\Operation</Filter>
-    </ClInclude>
     <ClInclude Include="ViewType.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
