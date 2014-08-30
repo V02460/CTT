@@ -61,7 +61,6 @@ private:
     AbstractListView *listView; /** The list view to show the current active differences or filters (depends on the viewState) */
 
 	QStackedLayout *rightDisplayWidgetLayout;
-
 };
 
 }  // namespace view

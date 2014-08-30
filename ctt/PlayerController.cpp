@@ -1,4 +1,5 @@
 #include "PlayerController.h"
+#include "NotImplementedException.h"
 
 #include "NotImplementedException.h"
 
@@ -25,7 +26,7 @@ namespace controller {
 	}
 
 	void PlayerController::currentFrameChanged(int frameNumber) {
-		player->currentFrameNrChanged(frameNumber);
+		player->jumpToFrameNr(static_cast<unsigned int>(frameNumber));
 	}
 
 	void PlayerController::setToDefaultFPS() {

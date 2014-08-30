@@ -11,7 +11,7 @@
 #include "ThumbnailListWidget.h"
 
 namespace view {
-	class AnalysingOrderingWidget : public QWidget, ::model::Observer{
+	class AnalysingOrderingWidget : public QWidget, public ::model::Observer {
 	public:
 		typedef QScopedPointer<AnalysingOrderingWidget> uptr;
 		typedef QSharedPointer<AnalysingOrderingWidget> sptr;

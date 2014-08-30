@@ -116,9 +116,6 @@
     <Filter Include="Source Files\Controller\Project">
       <UniqueIdentifier>{aaf07077-65d8-4854-b73a-028a0c375b92}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Exception">
-      <UniqueIdentifier>{43f41436-2483-41db-b79d-a3ef731d4d18}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Helper">
       <UniqueIdentifier>{c1d742ec-7c5f-4d6e-a9ea-e4ac4a31af82}</UniqueIdentifier>
     </Filter>
@@ -150,6 +147,9 @@
     </Filter>
     <Filter Include="Shader Files\Histogram">
       <UniqueIdentifier>{2087191a-8e1e-4305-9da7-390d9c25ea18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exception">
+      <UniqueIdentifier>{af2fafcf-877f-4afc-97b9-c30448ac2a77}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -528,9 +528,6 @@
     <ClCompile Include="VideoAddedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
-    <ClCompile Include="VideoListOperation.cpp">
-      <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
     <ClCompile Include="VideoRemovedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
@@ -549,18 +546,6 @@
     <ClCompile Include="XMLSaver.cpp">
       <Filter>Source Files\Controller\Project</Filter>
     </ClCompile>
-    <ClCompile Include="IllegalArgumentException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="IllegalStateException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="NotImplementedException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="OpenGLException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
     <ClCompile Include="GPUHelper.cpp">
       <Filter>Source Files\Helper</Filter>
     </ClCompile>
@@ -572,18 +557,6 @@
     </ClCompile>
     <ClCompile Include="MockDisplayHelper.cpp">
       <Filter>Source Files\Helper</Filter>
-    </ClCompile>
-    <ClCompile Include="AccessToDummyException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="FFmpegException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="FileNotFoundException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="IOException.cpp">
-      <Filter>Source Files\Exception</Filter>
     </ClCompile>
     <ClCompile Include="ListedPushButton.cpp">
       <Filter>Source Files\View</Filter>
@@ -618,16 +591,10 @@
     <ClCompile Include="FilterMovedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
-    <ClCompile Include="GlobalContext.cpp">
-      <Filter>Source Files\Model</Filter>
+    <ClCompile Include="ExtendedVideoListController.cpp">
+      <Filter>Source Files\Controller</Filter>
     </ClCompile>
-    <ClCompile Include="Module.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="ParseException.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="NoScalePolicy.cpp">
+    <ClCompile Include="FilterInsertionWidget.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
     <ClCompile Include="FilterParamItem.cpp">
@@ -681,8 +648,44 @@
     <ClCompile Include="AnalysingOrderingWidget.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
+    <ClCompile Include="GlobalContext.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Module.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
     <ClCompile Include="DifferenceInsertionWidget.cpp">
       <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="AccessToDummyException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="FileNotFoundException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="IllegalArgumentException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="IllegalStateException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="IOException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="NoScalePolicy.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="NotImplementedException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGLException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="ParseException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="FFmpegException.cpp">
+      <Filter>Source Files\Exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1042,14 +1045,23 @@
     <ClInclude Include="GlobalContext.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="FileNotFoundException.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AnalysingOrderingWidget.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="DifferenceInsertionWidget.h">
       <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="FileNotFoundException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtendedVideoListController.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterListViewElement.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="YUVType.h">
+      <Filter>Header Files\Model\Video</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1133,12 +1145,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Images\big_buck_bunny_01337.png" />
-    <ClInclude Include="FilterListViewElement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="YUVType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IOException.h">
       <Filter>Header Files</Filter>
     </ClInclude>

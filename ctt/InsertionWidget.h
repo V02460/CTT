@@ -45,7 +45,6 @@ private:
 
 	QList<QSpacerItem*> spacers;
 	QGridLayout *layout;
-
 };
 
 }  // namespace view

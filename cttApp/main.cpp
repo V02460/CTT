@@ -122,13 +122,6 @@ int main(int argc, char *argv[])
 		mainWindow->show();
     /*}
 
-		//model::video::FFmpegDataVideo testVideo("Resources/Videos/mp4/mp4test.mp4", testContext);
-
-		testVideo.save("Resources/Videos/YUV444/XXXSAVEDVIDEOsquirrel-720x576-444P.yuv", model::video::VideoFileType::YUV);
-		MockDisplayHelper::showImage(testVideo.getFrame(10)->getFramebufferObject()->toImage());
-		       
-    }
-
     catch (RuntimeException *e) {
 //         QMessageBox msgBox;
 //         msgBox.setWindowTitle(e->getName());

@@ -97,17 +97,8 @@
     <Filter Include="Source Files\Model\Filter">
       <UniqueIdentifier>{87a606a2-ff44-40b4-9c9e-6f38d8eaccc1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\View">
-      <UniqueIdentifier>{5d8d3045-439a-4cd6-afb5-38deff25a74e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Controller">
       <UniqueIdentifier>{817914d2-000a-4a12-94af-9e66d02e975f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\View">
-      <UniqueIdentifier>{35351403-fb1c-43b4-a2c2-a6ed37fc16b4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Test Structure\View">
-      <UniqueIdentifier>{5e6fc042-f6b0-4d8f-b40e-cfc162a06b9b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -384,12 +375,6 @@
     </ClInclude>
     <ClInclude Include="ModelVideoTests.h">
       <Filter>Test Structure\Model\Video</Filter>
-    </ClInclude>
-    <ClInclude Include="VideoWidgetTest.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="ViewTests.h">
-      <Filter>Test Structure\View</Filter>
     </ClInclude>
     <ClInclude Include="ModelFilterTests.h">
       <Filter>Test Structure\Model\Filter</Filter>

@@ -23,7 +23,7 @@ Filter::~Filter() {
 QList<FilterParam> Filter::getParams() const {
     if (isDummy()) {
         throw new AccessToDummyException();
-    }
+}
 
     return parameters.values();
 }
@@ -31,7 +31,7 @@ QList<FilterParam> Filter::getParams() const {
 void Filter::setParam(FilterParam parameter) {
     if (isDummy()) {
         throw new AccessToDummyException();
-    }
+}
     if (!parameters.contains(parameter.getName())) {
         throw new IllegalArgumentException("Parameter '" + parameter.getName() + "' must exist in Filter to be set.");
     }

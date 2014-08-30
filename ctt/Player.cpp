@@ -148,7 +148,7 @@ void Player::addScrubber(VideoScrubber::sptr scrubber) {
 	{
 		currentFrameNumber = scrubber->getFrameCount();
 		emit currentFrameNrChanged(getCurrentFrameNumber());
-	}
+}
 	else
 	{
 		scrubber->jumpToFrameNr(getCurrentFrameNumber());
@@ -157,7 +157,7 @@ void Player::addScrubber(VideoScrubber::sptr scrubber) {
 	if (isLooping() && (getLoop().getEnd() >= scrubber->getFrameCount()))
 	{
 		looping = false;
-	}
+}
 
 	changed();
 }
@@ -185,7 +185,7 @@ void Player::addScrubber(VideoScrubber::sptr scrubber, unsigned int position) {
 	{
 		currentFrameNumber = scrubber->getFrameCount();
 		emit currentFrameNrChanged(getCurrentFrameNumber());
-	}
+}
 	else
 	{
 		scrubber->jumpToFrameNr(getCurrentFrameNumber());
@@ -280,7 +280,7 @@ unsigned int Player::getVideoLength() const {
 	{
 		throw new IllegalStateException("Tried to ask a dummy Player for the length of the shortest video of his "
 			"scrubber.");
-	}
+}
 
 	if (scrubberCount() == 0)
 	{
@@ -310,7 +310,7 @@ void Player::setLoop(UIntegerInterval interval) {
 	if (isDummy())
 	{
 		throw new IllegalStateException("Tried to set a loop on a dummy Player.");
-	}
+}
 
 	if (interval.isDummy())
 	{
@@ -329,7 +329,7 @@ void Player::setLoop(UIntegerInterval interval) {
 	if (!loop.contains(getCurrentFrameNumber()))
 	{
 		jumpToFrameNr(loop.getStart());
-	}		
+	}	
 	changed();
 }
 
@@ -345,7 +345,7 @@ bool Player::isLooping() const {
 	if (isDummy())
 	{
 		throw new IllegalStateException("Tried to ask a dummy Player whether it's looping.");
-	}
+}
 	return looping;
 }
 
@@ -460,8 +460,8 @@ void Player::previousFrame() {
 	}
 	else
 	{
-		if (hasPreviousFrame())
-		{
+	if (hasPreviousFrame())
+	{
 			jumpToFrameNr(getCurrentFrameNumber() - 1);
 		}
 	}

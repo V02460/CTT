@@ -6,7 +6,7 @@ namespace operation {
 using ::model::video::Video;
 using ::model::saveable::SaveableList;
 
-VideoAddedOperation::VideoAddedOperation(Video::sptr video, SaveableList<Video>::sptr videoList) {
+VideoAddedOperation::VideoAddedOperation(Video::sptr video, SaveableList<Video>::sptr videoList) : video(video){
 
 }
 
