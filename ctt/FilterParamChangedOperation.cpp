@@ -10,7 +10,7 @@ FilterParamChangedOperation::FilterParamChangedOperation(FilterParam::sptr param
 	: param(param), filter(filter), memento(filter->getMemento()) {}
 
 void FilterParamChangedOperation::doOperation() {
-	filter->setParam(*param);
+	filter->setParam(param);
 }
 
 void FilterParamChangedOperation::undoOperation() {

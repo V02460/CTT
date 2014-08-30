@@ -24,7 +24,7 @@ public:
     typedef QSharedPointer<XMLSaver> sptr;
     typedef QWeakPointer<XMLSaver> wptr;
 
-	virtual void save(QDir path);
+	virtual void save(QString path);
 
 	/** String to tell not to change the XML File. */
 	static const QString DO_NOT_CHANGE;
@@ -109,7 +109,7 @@ private:
 	QList<::model::saveable::Saveable::sptr> pointerList;
 	int elementID;
 
-	void initDocument(QDir path);
+	void initDocument(QString path);
 	void mapBasePointer();
 	void writeBaseElements();
 	void writeMemento(model::saveable::Memento memento);

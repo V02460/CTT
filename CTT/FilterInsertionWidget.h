@@ -7,17 +7,17 @@ namespace view {
 
 class FilterInsertionWidget : public InsertionWidget {
 	Q_OBJECT
+
 public:
 	typedef QScopedPointer<FilterInsertionWidget> uptr;
 	typedef QSharedPointer<FilterInsertionWidget> sptr;
 	typedef QWeakPointer<FilterInsertionWidget> wptr;
 
-	FilterInsertionWidget(controller::FilterController::sptr, QWidget *parent = 0);
-
-	virtual void update();
+	FilterInsertionWidget(controller::FilterController::sptr, QWidget *parent);
 
 private slots:
 	void listedButtonClicked(bool checked, int id);
+
 private:
 	void generateButtons();
 

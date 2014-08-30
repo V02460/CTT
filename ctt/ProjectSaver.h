@@ -4,7 +4,6 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
-#include <QDir>
 
 #include "Project.h"
 
@@ -30,7 +29,7 @@ public:
      * @param project The project to be saved.
      * @throws IOException Is thrown if for any reason the file cant be written.
      */
-    virtual void save(QDir path) = 0;
+    virtual void save(QString path) = 0;
 };
 
 }  // namespace project

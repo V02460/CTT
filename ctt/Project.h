@@ -9,6 +9,8 @@
 #include "FilteredVideo.h"
 #include "Player.h"
 #include "FrameDiff.h"
+#include "ViewState.h"
+#include "Observable.h"
 
 namespace controller {
 namespace project {
@@ -16,7 +18,7 @@ namespace project {
 /**
  * The project contains all savable objects that already exist in an empty project.
  */
-class Project {
+class Project : public ::model::Observable {
 
 public:
     typedef QScopedPointer<Project> uptr;
@@ -64,6 +66,10 @@ public:
      * @return the list of all the FrameDiffs the project uses.
      */
 	::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr getDiffList() const;
+
+	void clear();
+
+	void everythingChanged();
 
 	/**
 	 * Returns the one instance this class can have.

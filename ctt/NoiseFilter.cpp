@@ -49,7 +49,7 @@ Memento NoiseFilter::getMemento() const {
 void NoiseFilter::restore(Memento memento) {
     Filter::restore(memento);
 
-    setParam(FilterParam(kParamIntensityStr, memento.getFloat(kParamIntensityStr)));
+    setParam(FilterParam::sptr(new FilterParam(kParamIntensityStr, memento.getFloat(kParamIntensityStr))));
 }
 
 QList<const Module*> NoiseFilter::getUsesList() const {

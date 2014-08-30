@@ -36,7 +36,7 @@ const QList<QString> XMLSaver::BASE_ELEMENT_NAMES = QList<QString>()
 	<< "diffList"
 	<< "view";
 
-void XMLSaver::save(QDir path) {
+void XMLSaver::save(QString path) {
 	initDocument(path);
 	mapBasePointer();
 	writeBaseElements();
@@ -53,10 +53,10 @@ XMLSaver::BaseSaveableType XMLSaver::stringToBaseSaveableType(QString string) {
 	throw new IllegalArgumentException(string + " is not a base saveable type.");
 }
 
-void XMLSaver::initDocument(QDir path) {
-	QFile file(path.absolutePath());
+void XMLSaver::initDocument(QString path) {
+	QFile file(path);
 	if (!file.open(QIODevice::WriteOnly)) {
-		throw new IOException("File " + path.absolutePath() + " could not be opened.");
+		throw new IOException("File " + path + " could not be opened.");
 	}
 	out = new QXmlStreamWriter(&file);
 	out->setAutoFormatting(true);

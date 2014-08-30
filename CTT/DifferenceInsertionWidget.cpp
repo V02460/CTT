@@ -7,8 +7,4 @@ namespace view {
 		AnalysingOrderingWidget::sptr orderingWidget, QWidget *parent) {
 
 	}
-
-	void DifferenceInsertionWidget::update() {
-
-	}
 }

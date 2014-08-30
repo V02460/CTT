@@ -43,10 +43,6 @@ public:
 private:
 	/** The scrubber at which the FrameMetadataWidget is registered. */
     ::model::player::VideoScrubber::sptr scrubber;
-
-	QLabel size;
-	QLabel hasTypes;
-	QLabel hasVectors;
 };
 
 }  // namespace view

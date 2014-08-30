@@ -15,8 +15,6 @@ public:
 
 	DifferenceInsertionWidget(::controller::DifferenceController::sptr differenceController,
 		AnalysingOrderingWidget::sptr orderingWidget, QWidget *parent = 0);
-
-	virtual void update() Q_DECL_OVERRIDE;
 };
 }
 #endif

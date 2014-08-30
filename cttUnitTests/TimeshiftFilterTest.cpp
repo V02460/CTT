@@ -34,15 +34,15 @@ void TimeshiftFilterTest::testRun() {
 
 void TimeshiftFilterTest::wrongParams() {
     TimeshiftFilter timeshiftFilter(video);
-    QEXPECT_EXCEPTION(timeshiftFilter.setParam(FilterParam("not right", "at all")), IllegalArgumentException);
-    QEXPECT_EXCEPTION(timeshiftFilter.setParam(FilterParam("a bit off", 1.0)), IllegalArgumentException);
+	QEXPECT_EXCEPTION(timeshiftFilter.setParam(FilterParam::sptr(new FilterParam("not right", "at all"))), IllegalArgumentException);
+	QEXPECT_EXCEPTION(timeshiftFilter.setParam(FilterParam::sptr(new FilterParam("a bit off", 1.0))), IllegalArgumentException);
     timeshiftFilter.getFrame(9);
-    timeshiftFilter.setParam(FilterParam(TimeshiftFilter::kParamShiftStr, -2));
+	timeshiftFilter.setParam(FilterParam::sptr(new FilterParam(TimeshiftFilter::kParamShiftStr, -2)));
     timeshiftFilter.getFrame(4);
-    timeshiftFilter.setParam(FilterParam(TimeshiftFilter::kParamShiftStr, 9));
+	timeshiftFilter.setParam(FilterParam::sptr(new FilterParam(TimeshiftFilter::kParamShiftStr, 9)));
     timeshiftFilter.getFrame(2);
-    timeshiftFilter.setParam(FilterParam(TimeshiftFilter::kParamShiftStr, -100));
+	timeshiftFilter.setParam(FilterParam::sptr(new FilterParam(TimeshiftFilter::kParamShiftStr, -100)));
     timeshiftFilter.getFrame(3);
-    timeshiftFilter.setParam(FilterParam(TimeshiftFilter::kParamShiftStr, 100));
+	timeshiftFilter.setParam(FilterParam::sptr(new FilterParam(TimeshiftFilter::kParamShiftStr, 100)));
     timeshiftFilter.getFrame(3);
 }

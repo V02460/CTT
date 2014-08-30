@@ -12,6 +12,8 @@ using ::model::filter::FilteredVideo;
 using ::model::player::Player;
 using ::model::difference::FrameDiff;
 using ::exception::NotImplementedException;
+using ::view::ViewState;
+using ::view::ViewType;
 
 Project::Project() : baseVideoList(new SaveableList<FileVideo>()),
 	                 videoList1(new SaveableList<FilteredVideo>()),
@@ -42,6 +44,21 @@ Player::sptr Project::getPlayer2() const {
 
 SaveableList<FrameDiff>::sptr Project::getDiffList() const {
 	return diffList;
+}
+
+void Project::clear() {
+	baseVideoList->restore(SaveableList<FileVideo>().getMemento());
+	videoList1->restore(SaveableList<FilteredVideo>().getMemento());
+	videoList2->restore(SaveableList<FilteredVideo>().getMemento());
+	playerList1->restore(SaveableList<Player>().getMemento());
+	player2->restore(Player(24).getMemento());
+	diffList->restore(SaveableList<FrameDiff>().getMemento());
+	ViewState::getInstance()->changeView(ViewType::PROCESSING_VIEW);
+	everythingChanged();
+}
+
+void Project::everythingChanged() {
+	changed();
 }
 
 Project *Project::getInstance() {

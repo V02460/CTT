@@ -50,16 +50,16 @@ using ::model::video::FileVideo;
 
 XMLLoader::XMLLoader() {}
 
-void XMLLoader::restore(QDir path) {
+void XMLLoader::restore(QString path) {
 	openFile(path);
 	createMaps();
 	restore();
 }
 
-void XMLLoader::openFile(QDir path) {
-	QFile file(path.absolutePath());
+void XMLLoader::openFile(QString path) {
+	QFile file(path);
 	if (!file.open(QIODevice::ReadOnly)) {
-		throw new IOException("File " + path.absolutePath() + " could not be opened.");
+		throw new IOException("File " + path + " could not be opened.");
 	}
 	xml = new QXmlStreamReader(&file);
 	if (!xml->readNextStartElement()) { // TODO more to skip?
@@ -263,7 +263,7 @@ void XMLLoader::restore() {
 		element->restore(memento);
 	}
 	ViewState::getInstance()->restore(viewMemento);
-	changed();
+	Project::getInstance()->everythingChanged();
 }
 
 XMLLoader *XMLLoader::getInstance() {

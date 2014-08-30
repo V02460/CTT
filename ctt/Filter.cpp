@@ -20,30 +20,30 @@ Filter::Filter(Module::sptr predecessor) : predecessor(predecessor), parameters(
 Filter::~Filter() {
 }
 
-QList<FilterParam> Filter::getParams() const {
+QList<FilterParam::sptr> Filter::getParams() const {
     if (isDummy()) {
         throw new AccessToDummyException();
-}
+    }
 
     return parameters.values();
 }
 
-void Filter::setParam(FilterParam parameter) {
+void Filter::setParam(FilterParam::sptr parameter) {
     if (isDummy()) {
         throw new AccessToDummyException();
-}
-    if (!parameters.contains(parameter.getName())) {
-        throw new IllegalArgumentException("Parameter '" + parameter.getName() + "' must exist in Filter to be set.");
+    }
+    if (!parameters.contains(parameter->getName())) {
+        throw new IllegalArgumentException("Parameter '" + parameter->getName() + "' must exist in Filter to be set.");
     }
 
-    QVariant oldValue = parameters.value(parameter.getName(), parameter).getValue();
-    QVariant newValue = parameter.getValue();
+    QVariant oldValue = parameters.value(parameter->getName(), parameter)->getValue();
+    QVariant newValue = parameter->getValue();
 
     if (newValue.type() != oldValue.type()) {
         throw new IllegalArgumentException("Variable type of FilterParam does not match stored type.");
     }
 
-    parameters.insert(parameter.getName(), parameter);
+    parameters.insert(parameter->getName(), parameter);
 }
 
 void Filter::setPreviousModule(Module::sptr predecessor) {
@@ -112,7 +112,7 @@ Memento Filter::getMemento() const {
     return memento;
 }
 
-// TODO isDummyFlag = false ... nicht mehr zu restoren?
+// TODO isDummyFlag = false ... nicht mehr zu restoren? Doch!!!
 void Filter::restore(Memento memento) {
     predecessor = memento.getSharedPointer("predecessor").dynamicCast<Module>();
 }

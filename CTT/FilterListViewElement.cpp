@@ -14,12 +14,12 @@ namespace view{
 	}
 
 	void FilterListViewElement::setupUi() {
-		QList<model::filter::FilterParam> params = filter->getParams();
+		QList<model::filter::FilterParam::sptr> params = filter->getParams();
 
 		setColumnCount(2);
 		setRowCount(params.size());
 
-		for each (::model::filter::FilterParam param in params) {
+		for each (::model::filter::FilterParam::sptr param in params) {
 
 		}
 	}
