@@ -7,7 +7,6 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
-#include <QDir>
 
 #include "Module.h"
 #include "Frame.h"

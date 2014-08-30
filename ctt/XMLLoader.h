@@ -40,14 +40,14 @@ namespace project {
 /**
  * Loads a project saved as XML file by the XMLSaver.
  */
-class XMLLoader : public ProjectLoader, public ::model::Observable {
+class XMLLoader : public ProjectLoader {
 
 public:
     typedef QScopedPointer<XMLLoader> uptr;
     typedef QSharedPointer<XMLLoader> sptr;
     typedef QWeakPointer<XMLLoader> wptr;
 
-	virtual void restore(QDir path);
+	virtual void restore(QString path);
 
 	/**
 	 * Returns the one instance this class can have.
@@ -68,7 +68,7 @@ private:
 	QMap<int, QMap<QString, int>> mementoIdMap;
 	Memento viewMemento;
 
-	void openFile(QDir path);
+	void openFile(QString path);
 	void createMaps();
 	void restore();
 };

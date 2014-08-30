@@ -5,6 +5,8 @@
 #include "IOException.h"
 #include "GPUHelper.h"
 
+#include <QFile>
+
 namespace model {
 namespace video {
 

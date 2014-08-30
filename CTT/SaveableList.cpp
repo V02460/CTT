@@ -96,6 +96,12 @@ const ::model::saveable::Saveable::SaveableType SaveableList<T>::getTemplateType
 }
 
 template <class T>
+void SaveableList<T>::clear() {
+	list.clear();
+	changed();
+}
+
+template <class T>
 Memento SaveableList<T>::getMemento() const {
 	if (isDummy()) {
 		throw new IllegalStateException("Called method at dummy class.");

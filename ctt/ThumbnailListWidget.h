@@ -8,7 +8,6 @@
 #include <QScrollArea>
 #include <QPushButton>
 #include <QList>
-#include <QDir>
 
 #include "Observer.h"
 #include "FilteredVideo.h"
