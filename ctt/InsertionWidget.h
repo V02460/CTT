@@ -33,9 +33,6 @@ public:
 
 	// TODO virtual void resizeEvent(QResizeEvent *ev) Q_DECL_OVERRIDE;
 
-signals:
-	void inserted(QString id);
-
 protected:
 	QSize preferredButtonSize;
 	QList<ListedPushButton*> insertionButtons; /**< The list of buttons to insert filters or differences */
