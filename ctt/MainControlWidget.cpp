@@ -34,11 +34,10 @@ MainControlWidget::MainControlWidget(FilterController::sptr filterController,
 
 MainControlWidget::MainControlWidget(SaveableList<FrameDiff>::sptr differences, AnalysingOrderingWidget::sptr orderingWidget,
 	QWidget *parent) : QWidget(parent) {
-	//TODO An das DifferenceControllerInterface anpassen
-	DifferenceController::sptr differenceController = DifferenceController::sptr();
+	DifferenceController::sptr differenceController = DifferenceController::sptr(new DifferenceController(differences));
 	insertionWidget = new DifferenceInsertionWidget(differenceController, orderingWidget, this);
 	playerFunctions = new PlayerFunctions(this);
-	listView = new DifferenceListView(differences, differenceController, this);
+	listView = new DifferenceListView(differences, this);
 
 	setupUi(ViewType::ANALYSING_VIEW);
 }

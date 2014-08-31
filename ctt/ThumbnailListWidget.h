@@ -41,8 +41,9 @@ public:
 	 * @param isHorizontal Defines whether to use a QHBoxLayout (on true) or a QVBoxLayout (on false).
 	 * @param parent The parent widget.
      */
-    ThumbnailListWidget(::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos,
-                        int selectableCount, bool isHorizontal = false, QWidget *parent = 0);
+    ThumbnailListWidget(::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos
+		, int selectableCount, bool isHorizontal = false
+		, QWidget *parent = 0);
 
 	const QList<int> getActiveIndices();
 
@@ -100,6 +101,7 @@ private:
      * The list of filteredVideo which is needed for the thumbnail generation.
      */
 	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos;
+	::controller::VideoListController::sptr videoListController;
 
 	void setupUi();
 	void setupOpenVideoDialog();

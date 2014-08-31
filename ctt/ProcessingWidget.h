@@ -34,7 +34,7 @@ public:
      */
 	ProcessingWidget(::model::saveable::SaveableList<::model::player::Player>::sptr players,
 		::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos,
-		::model::saveable::SaveableList<::model::video::FileVideo>::sptr baseVideos, 
+		::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr baseVideos, 
 		::controller::VideoListController::sptr analysingVideosController, QWidget *parent = 0);
 
 	virtual void update() Q_DECL_OVERRIDE;

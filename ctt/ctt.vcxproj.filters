@@ -747,6 +747,12 @@
     <ClCompile Include="GeneratedFiles\Release\moc_DifferenceInsertionWidget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="ExtendedVideoAddedOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="ExtendedVideoRemovedOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -1000,9 +1006,6 @@
     <ClInclude Include="YUVPixelDiff.h">
       <Filter>Header Files\Model\Difference</Filter>
     </ClInclude>
-    <ClInclude Include="VideoListOperation.h">
-      <Filter>Header Files\Controller\Operation</Filter>
-    </ClInclude>
     <ClInclude Include="ViewType.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
@@ -1122,6 +1125,12 @@
     </ClInclude>
     <ClInclude Include="YUVType.h">
       <Filter>Header Files\Model\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtendedVideoRemovedOperation.h">
+      <Filter>Header Files\Controller\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtendedVideoAddedOperation.h">
+      <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

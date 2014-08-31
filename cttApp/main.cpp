@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
 		//thumbnailListWidgetTest->show();
 
 		Project *testProject = Project::getInstance();
-		VideoListController::sptr analysingVideosController =
+		/*VideoListController::sptr analysingVideosController =
 			VideoListController::sptr(new VideoListController(testProject->getVideoList2().dynamicCast<SaveableList<Video>>()));
 
 		YUVDataVideo::sptr testVideoOne = YUVDataVideo::sptr(new YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext));
@@ -122,7 +122,7 @@ int main(int argc, char *argv[])
 		Player::sptr testPlayerTwo = Player::sptr(new Player(24));
 		testPlayerTwo->addScrubber(testVideoScrubberTwo);
 		testPlayerTwo->addScrubber(testFilteredVideoScrubberTwo);
-		testProject->getPlayerList1()->insert(1, testPlayerTwo);
+		testProject->getPlayerList1()->insert(1, testPlayerTwo);*/
 
 
 		//(processingWidget = new view::ProcessingWidget(testProject->getPlayerList1(), testProject->getVideoList1(),
