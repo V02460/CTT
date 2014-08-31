@@ -1,9 +1,14 @@
 #include "PlayerController.h"
-#include "NotImplementedException.h"
+#include "Operation.h"
+#include "OperationList.h"
+#include "FPSChangingOperation.h"
 
 namespace controller {
 
 	using ::model::player::Player;
+	using ::controller::operation::Operation;
+	using ::controller::operation::OperationList;
+	using ::controller::operation::FPSChangingOperation;
 
 	PlayerController::PlayerController() {
 		setPlayer(player);
@@ -27,12 +32,14 @@ namespace controller {
 	}
 
 	void PlayerController::setToDefaultFPS() {
-		int defaultFPS = player->getDefaultFPS();
-		player->setFPS(defaultFPS);
+		double defaultFPS = player->getDefaultFPS();
+		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
+			new FPSChangingOperation(defaultFPS, player)));
 	}
 
-	void PlayerController::setFPS(int fps) {
-		throw new ::exception::NotImplementedException();
+	void PlayerController::setFPS(double fps) {
+		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
+			new FPSChangingOperation(fps, player)));
 	}
 
 	void PlayerController::setPlayer(Player::sptr player) {

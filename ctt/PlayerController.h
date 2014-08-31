@@ -64,7 +64,7 @@ public slots:
 	 *
 	 *	@param fps The FPS value the player's fps should be set to.
 	 */
-	void setFPS(int fps);
+	void setFPS(double fps);
 
     /**
      * Is notified when a new player is requested and initiates setting it.
