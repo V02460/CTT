@@ -21,7 +21,7 @@ HSLPixelDiff::~HSLPixelDiff() {
 
 Surface::sptr HSLPixelDiff::getPixelDiff(unsigned int frameNr) const {
     if (isDummy()) {
-        throw new AccessToDummyException();
+        throw AccessToDummyException();
     }
     if (frameNr >= getFrameCount()) {
         throw IllegalArgumentException("Requested frame number " +
@@ -43,7 +43,7 @@ Surface::sptr HSLPixelDiff::getPixelDiff(unsigned int frameNr) const {
 
 Memento HSLPixelDiff::getMemento() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 
     return PixelDiff::getMemento();

@@ -35,15 +35,15 @@ QList<const ::model::Module*> MacroblockOverlay::getUsesList() const {
 }
 
 Memento MacroblockOverlay::getMemento() const {
-    throw new NotImplementedException();
+    throw NotImplementedException();
 }
 
 void MacroblockOverlay::restore(Memento memento) {
-    throw new NotImplementedException();
+    throw NotImplementedException();
 }
 
 bool MacroblockOverlay::uses(const ::model::Module &module) const {
-    throw new NotImplementedException();
+    throw NotImplementedException();
 }
 
 MacroblockOverlay::Macroblocks::Macroblocks(Module::sptr predecessor)
@@ -85,7 +85,7 @@ QColor MacroblockOverlay::Macroblocks::getMacroblockColor(MacroblockType type) c
         case MacroblockType::UNKNOWN:
         default:
             // invalid values
-            throw new IllegalStateException("An unknown macroblock type was passed.");
+            throw IllegalStateException("An unknown macroblock type was passed.");
     }
 
     return blockColor;
@@ -176,7 +176,7 @@ Frame::sptr MacroblockOverlay::Macroblocks::getFrame(unsigned int frameNumber) c
     FrameMetadata metadata = sourceFrame->getMetadata();
 
     if (!metadata.hasMbType()) {
-        throw new IllegalStateException("Frame does not contain any macroblock metadata to be used with the overlay.");
+        throw IllegalStateException("Frame does not contain any macroblock metadata to be used with the overlay.");
     }
 
     QVector<QVector<MacroblockType>> mbTypes = metadata.getMbType();
@@ -196,19 +196,19 @@ Frame::sptr MacroblockOverlay::Macroblocks::getFrame(unsigned int frameNumber) c
 }
 
 Memento MacroblockOverlay::Macroblocks::getMemento() const {
-    throw new NotImplementedException(); // TODO: think about the buffers
+    throw NotImplementedException(); // TODO: think about the buffers
 }
 
 void MacroblockOverlay::Macroblocks::restore(::model::saveable::Memento memento) {
-    throw new NotImplementedException();
+    throw NotImplementedException();
 }
 
 QList<const Module*> MacroblockOverlay::Macroblocks::getUsesList() const {
-    throw new IllegalArgumentException();
+    throw IllegalArgumentException();
 }
 
 Saveable::sptr MacroblockOverlay::getDummy() {
-	throw new IllegalArgumentException();
+	throw IllegalArgumentException();
 }
 
 }  // namespace overlay

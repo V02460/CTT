@@ -33,7 +33,7 @@ QList<QString> DifferenceFactory::getAllPixelDiffIDs() {
 FrameDiff::sptr DifferenceFactory::createFrameDiff(QString id, Video::sptr video1, Video::sptr video2) {
     // TODO: change check to use shared group
     if (video1->getContext() != video2->getContext()) {
-        throw new IllegalArgumentException("OpenGL contexts of the two videos don't match.");
+        throw IllegalArgumentException("OpenGL contexts of the two videos don't match.");
 }
 
     if (id == "framediff_earthmover_red") {
@@ -55,13 +55,13 @@ FrameDiff::sptr DifferenceFactory::createFrameDiff(QString id, Video::sptr video
         return EarthMoversHistogramDiff::sptr(new EarthMoversHistogramDiff(Histogram::Luminance, video1, video2));
     }
 
-    throw new IllegalArgumentException("Id does not match a FrameDiff.");
+    throw IllegalArgumentException("Id does not match a FrameDiff.");
 }
 
 PixelDiff::sptr DifferenceFactory::createPixelDiff(QString id, Video::sptr video1, Video::sptr video2) {
     // TODO: change check to use shared group
     if (video1->getContext() != video2->getContext()) {
-        throw new IllegalArgumentException("OpenGL contexts of the two videos don't match.");
+        throw IllegalArgumentException("OpenGL contexts of the two videos don't match.");
     }
 
     if (id == "pixeldiff_hsl") {
@@ -71,7 +71,7 @@ PixelDiff::sptr DifferenceFactory::createPixelDiff(QString id, Video::sptr video
         return YUVPixelDiff::sptr(new YUVPixelDiff(video1, video2));
     }
     
-    throw new IllegalArgumentException("Id does not match a PixelDiff.");
+    throw IllegalArgumentException("Id does not match a PixelDiff.");
 }
 
 }  // namespace difference

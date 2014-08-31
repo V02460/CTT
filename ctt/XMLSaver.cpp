@@ -50,13 +50,13 @@ XMLSaver::BaseSaveableType XMLSaver::stringToBaseSaveableType(QString string) {
 			return static_cast<BaseSaveableType>(i);
 		}
 	}
-	throw new IllegalArgumentException(string + " is not a base saveable type.");
+	throw IllegalArgumentException(string + " is not a base saveable type.");
 }
 
 void XMLSaver::initDocument(QString path) {
 	QFile file(path);
 	if (!file.open(QIODevice::WriteOnly)) {
-		throw new IOException("File " + path + " could not be opened.");
+		throw IOException("File " + path + " could not be opened.");
 	}
 	out = new QXmlStreamWriter(&file);
 	out->setAutoFormatting(true);

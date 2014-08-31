@@ -41,7 +41,7 @@ void VertexAttribute::reset(unsigned int vertexCount, unsigned int tupelSize) {
 
 void VertexAttribute::bind() {
     if (writeActive) {
-        throw new IllegalStateException("Write must be finished before attribute can be bound. Wrong buffer size?");
+        throw IllegalStateException("Write must be finished before attribute can be bound. Wrong buffer size?");
     }
 
     QOpenGLBuffer::bind();
@@ -52,7 +52,7 @@ void VertexAttribute::appendElement(float value) {
         startWrite();
     }
     if (bufferPointer + 1 > bufferEnd) {
-        throw new IllegalStateException("Write would cause buffer overflow.");
+        throw IllegalStateException("Write would cause buffer overflow.");
     }
 
     *bufferPointer++ = value;
@@ -67,7 +67,7 @@ void VertexAttribute::appendElement(QVector2D value) {
         startWrite();
     }
     if (bufferPointer + 2 > bufferEnd) {
-        throw new IllegalStateException("Write would cause buffer overflow.");
+        throw IllegalStateException("Write would cause buffer overflow.");
     }
 
     *bufferPointer++ = value.x();
@@ -83,7 +83,7 @@ void VertexAttribute::appendElement(QVector3D value) {
         startWrite();
     }
     if (bufferPointer + 3 > bufferEnd) {
-        throw new IllegalStateException("Write would cause buffer overflow.");
+        throw IllegalStateException("Write would cause buffer overflow.");
     }
 
     *bufferPointer++ = value.x();
@@ -97,13 +97,13 @@ void VertexAttribute::appendElement(QVector3D value) {
 
 void VertexAttribute::startWrite() {
     if (writeActive) {
-        throw new IllegalStateException("Already in write mode.");
+        throw IllegalStateException("Already in write mode.");
     }
 
     QOpenGLBuffer::bind();
     bufferStart = reinterpret_cast<GLfloat*>(map(WriteOnly));
     if (bufferStart == nullptr) {
-        throw new OpenGLException("Could not map vertex attribute buffer.");
+        throw OpenGLException("Could not map vertex attribute buffer.");
     }
 
     bufferPointer = bufferStart;
@@ -114,7 +114,7 @@ void VertexAttribute::startWrite() {
 
 void VertexAttribute::finishWrite() {
     if (!writeActive) {
-        throw new IllegalStateException("Already finished writing.");
+        throw IllegalStateException("Already finished writing.");
     }
 
     QOpenGLBuffer::bind();

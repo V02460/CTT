@@ -19,7 +19,7 @@ namespace view {
 	case QMetaType::Float:
 	case QVariant::Double: initDoubleSpinbox(); break;
 	default:
-		throw new IllegalArgumentException("There are only bool, integer, unsigned integer, float and double params.");
+		throw IllegalArgumentException("There are only bool, integer, unsigned integer, float and double params.");
 		break;
 	}
 }
@@ -49,7 +49,7 @@ QWidget* FilterParamItem::getInteractibleComponent() {
 	case QMetaType::Float:
 	case QVariant::Double: return &doubleSpinbox; break;
 	default:
-		throw new IllegalArgumentException("There are only bool, integer, unsigned integer, float and double params.");
+		throw IllegalArgumentException("There are only bool, integer, unsigned integer, float and double params.");
 		break;
 	}
 }

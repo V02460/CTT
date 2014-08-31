@@ -7,9 +7,9 @@ try\
 	expression; \
 	QFAIL("Expected " #ExpectedExceptionType " wasn't thrown!"); \
 }\
-catch (ExpectedExceptionType* e)\
+catch (ExpectedExceptionType &e)\
 {\
-	qDebug(e->getMsg().toLatin1());\
+	qDebug(e.getMsg().toLatin1());\
 }\
 
 #endif

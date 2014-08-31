@@ -19,7 +19,7 @@ AveragePixelDiff::~AveragePixelDiff() {
 
 double AveragePixelDiff::getDiff(unsigned int frameNr) const {
     if (isDummy()) {
-        throw new AccessToDummyException();
+        throw AccessToDummyException();
     }
     if (frameNr >= getFrameCount()) {
         throw IllegalArgumentException("Requested frame number " + 

@@ -14,7 +14,7 @@ FrameDiff::~FrameDiff() {}
 
 unsigned int FrameDiff::getFrameCount() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 
     return qMin(video1->getFrameCount(), video2->getFrameCount());

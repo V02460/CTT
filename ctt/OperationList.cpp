@@ -24,7 +24,7 @@ void OperationList::doOperation(Operation::sptr operation) {
 
 void OperationList::undoOperation() {
 	if (!canUndo()) {
-		throw new IllegalStateException("There are no operations to be undone.");
+		throw IllegalStateException("There are no operations to be undone.");
 	}
 	currentOperation--;
 	operations[currentOperation]->undoOperation();
@@ -32,7 +32,7 @@ void OperationList::undoOperation() {
 
 void OperationList::redoOperation() {
 	if (!canRedo()) {
-		throw new IllegalStateException("There are no operations to be redone.");
+		throw IllegalStateException("There are no operations to be redone.");
 	}
 	operations[currentOperation]->doOperation();
 	currentOperation++;

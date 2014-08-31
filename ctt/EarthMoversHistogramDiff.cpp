@@ -25,10 +25,10 @@ EarthMoversHistogramDiff::~EarthMoversHistogramDiff() {
 
 double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	if (frameNr > getFrameCount()) {
-		throw new IllegalArgumentException("One or both videos have less then " + QString::number(frameNr)
+		throw IllegalArgumentException("One or both videos have less then " + QString::number(frameNr)
 			                               + " frames.");
 	}
     Histogram::sptr a = Frame::getHistogram(video1->getFrame(frameNr), type);
@@ -47,7 +47,7 @@ double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
 
 Memento EarthMoversHistogramDiff::getMemento() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	Memento memento;
 	memento.setSharedPointer(VIDEO1, video1);

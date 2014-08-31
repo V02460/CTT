@@ -27,14 +27,14 @@ CoffeeFilter::~CoffeeFilter() {}
 
 model::frame::Frame::sptr CoffeeFilter::getFrame(unsigned int frameNumber) const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return getPredecessor()->getFrame(frameNumber);
 }
 
 Memento CoffeeFilter::getMemento() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
     return Filter::getMemento();
 }
@@ -46,7 +46,7 @@ void CoffeeFilter::restore(Memento memento) {
 
 QList<const Module*> CoffeeFilter::getUsesList() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return QList<const Module*>() << this;
 }

@@ -88,7 +88,7 @@ void VideoWidget::initialize() {
                                         "   texcrd = aTexcrd;\n"
                                         "   gl_Position = vec4(aPos, 0.0, 1.0);\n"
                                         "}\n")) {
-        throw new OpenGLException("Adding of vertex shader failed. Log message: " + program->log());
+        throw OpenGLException("Adding of vertex shader failed. Log message: " + program->log());
     }
 
     if(!program->addShaderFromSourceCode(QOpenGLShader::Fragment,
@@ -100,11 +100,11 @@ void VideoWidget::initialize() {
                                         "   vec4 outColor = texture2D(tex, texcrd);\n"
                                         "   gl_FragColor = outColor;\n"
                                         "}\n")) {
-        throw new OpenGLException("Adding of fragment shader failed. Log message: " + program->log());
+        throw OpenGLException("Adding of fragment shader failed. Log message: " + program->log());
     }
 
     if (!program->link()) {
-        throw new OpenGLException("Linking of shader program failed. Log message: " + program->log());
+        throw OpenGLException("Linking of shader program failed. Log message: " + program->log());
     }
 
     isInitialized = true;
@@ -158,7 +158,7 @@ void VideoWidget::render() {
 		}
 
         if (!context->create()) {
-            throw new OpenGLException("OpenGL context creation failed.");
+            throw OpenGLException("OpenGL context creation failed.");
         }
 
 		needsInitialize = true;

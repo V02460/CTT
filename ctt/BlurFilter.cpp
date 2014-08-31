@@ -31,7 +31,7 @@ BlurFilter::~BlurFilter() {}
 
 model::frame::Frame::sptr BlurFilter::getFrame(unsigned int frameNumber) const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 
     Frame::sptr frame = getPredecessor()->getFrame(frameNumber);
@@ -55,7 +55,7 @@ model::frame::Frame::sptr BlurFilter::getFrame(unsigned int frameNumber) const {
 
 Memento BlurFilter::getMemento() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
     return Filter::getMemento();
 }
@@ -67,7 +67,7 @@ void BlurFilter::restore(Memento memento) {
 
 QList<const Module*> BlurFilter::getUsesList() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return QList<const Module*>() << this;
 }

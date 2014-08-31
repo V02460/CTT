@@ -136,7 +136,7 @@ void MainControlWidget::removeVideo() {
 }
 
 void MainControlWidget::update() {
-	throw new NotImplementedException();
+	throw NotImplementedException();
 }
 
 }  // namespace view

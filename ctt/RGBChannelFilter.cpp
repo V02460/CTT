@@ -34,7 +34,7 @@ RGBChannelFilter::~RGBChannelFilter() {}
 
 model::frame::Frame::sptr RGBChannelFilter::getFrame(unsigned int frameNumber) const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
     Frame::sptr frame = getPredecessor()->getFrame(frameNumber);
 
@@ -56,7 +56,7 @@ model::frame::Frame::sptr RGBChannelFilter::getFrame(unsigned int frameNumber) c
 
 Memento RGBChannelFilter::getMemento() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
     Memento memento = Filter::getMemento();
 
@@ -78,7 +78,7 @@ void RGBChannelFilter::restore(Memento memento) {
 
 QList<const Module*> RGBChannelFilter::getUsesList() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 }
 	return QList<const Module*>() << this;
 }

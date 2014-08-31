@@ -26,7 +26,7 @@ GLuint Surface::getTextureHandle() const {
     if (framebuffer) {
         handle = framebuffer->texture();
         if (handle == 0) {
-            throw new IllegalStateException("Framebuffer object returned an invalid handle.");
+            throw IllegalStateException("Framebuffer object returned an invalid handle.");
         }
     } else {
         if (!texture) {
@@ -35,7 +35,7 @@ GLuint Surface::getTextureHandle() const {
 
         handle = texture->textureId();
         if (handle == 0) {
-            throw new IllegalStateException("Texture object returned an invalid handle.");
+            throw IllegalStateException("Texture object returned an invalid handle.");
         }
     }
 
@@ -55,7 +55,7 @@ QOpenGLFramebufferObject *Surface::getFramebufferObject() {
         framebuffer.reset(new QOpenGLFramebufferObject(size));
 
         if (!framebuffer->isValid()) {
-            throw new OpenGLException("Framebuffer initialization failed. Size was "
+            throw OpenGLException("Framebuffer initialization failed. Size was "
                                     + QString::number(size.width())
                                     + "x"
                                     + QString::number(size.height())
@@ -96,7 +96,7 @@ Surface::Surface(const Surface &surface)
 
 QOpenGLTexture *Surface::getTexture() const {
     if (framebuffer) {
-        throw new IllegalStateException("Surface has a framebuffer: Don't request texture.");
+        throw IllegalStateException("Surface has a framebuffer: Don't request texture.");
     }
 
     if (!texture) {

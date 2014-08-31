@@ -40,7 +40,7 @@ GPUSurfaceShader::GPUSurfaceShader(QString fragmentShaderFile,
 
 Surface::sptr GPUSurfaceShader::run() {
     if (sourceTexture.isNull()) {
-        throw new IllegalStateException("Source texture must be set before calling run.");
+        throw IllegalStateException("Source texture must be set before calling run.");
     }
 
     setTargetTexture(Surface::sptr(new Surface(getContext(), sourceTexture->getSize())));
@@ -50,7 +50,7 @@ Surface::sptr GPUSurfaceShader::run() {
 
 Surface::sptr GPUSurfaceShader::run(QSize targetSize) {
     if (sourceTexture.isNull()) {
-        throw new IllegalStateException("Source texture must be set before calling run.");
+        throw IllegalStateException("Source texture must be set before calling run.");
     }
 
     // create the target texture
@@ -73,7 +73,7 @@ void GPUSurfaceShader::setSourceTexture(Surface::sptr sourceTexture) {
 
 Surface::sptr GPUSurfaceShader::getSourceTexture() {
     if (sourceTexture.isNull()) {
-        throw new IllegalStateException("Source texture was not set.");
+        throw IllegalStateException("Source texture was not set.");
     }
 
     return sourceTexture;

@@ -9,16 +9,16 @@ using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
 
 Memento ViewState::getMemento() const {
-    throw new NotImplementedException();
+    throw NotImplementedException();
 }
 
 void ViewState::restore(Memento memento) {
-    throw new NotImplementedException();
+    throw NotImplementedException();
 }
 
 Saveable::sptr ViewState::getDummy() {
 	// TODO absprachebedarf!
-    throw new NotImplementedException();
+    throw NotImplementedException();
 }
 
 void ViewState::changeView(ViewType newView) {
@@ -39,11 +39,11 @@ ViewState* ViewState::getInstance() {
 }
 
 const VideoDisplayPolicy* ViewState::getCurrentVideoDisplayPolicy() {
-	throw new NotImplementedException();
+	throw NotImplementedException();
 }
 
 void ViewState::changeVideoDisplayPolicy() {
-	throw new NotImplementedException();
+	throw NotImplementedException();
 }
 
 ViewType ViewState::getCurrentViewType() {

@@ -56,7 +56,7 @@ void VideoListController::addVideo(FilteredVideo::sptr video) {
 
 void VideoListController::removeVideo(int index) {	
 	if (index < 0 || index >= videoList->getSize()) {
-		throw new exception::IllegalArgumentException("The Video which is to be removed is not part of this VideoList.");
+		throw exception::IllegalArgumentException("The Video which is to be removed is not part of this VideoList.");
 	}
 	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
 		new VideoRemovedOperation(index, videoList)));
@@ -69,7 +69,7 @@ void VideoListController::removeVideo(const FilteredVideo &video) {
 				new VideoRemovedOperation(i, videoList)));
 			return;
 		}
-		throw new exception::IllegalArgumentException("The Video which is to be removed is not part of this VideoList.");
+		throw exception::IllegalArgumentException("The Video which is to be removed is not part of this VideoList.");
 	}
 }
 

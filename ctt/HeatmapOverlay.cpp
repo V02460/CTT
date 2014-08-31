@@ -42,11 +42,11 @@ QList<const Module*> HeatmapOverlay::getUsesList() const {
 }
 
 Memento HeatmapOverlay::getMemento() const {
-    throw new NotImplementedException();
+    throw NotImplementedException();
 }
 
 void HeatmapOverlay::restore(Memento memento) {
-    throw new NotImplementedException();
+    throw NotImplementedException();
 }
 
 Frame::sptr HeatmapOverlay::Heatmap::getFrame(unsigned int frameNumber) const {
@@ -74,7 +74,7 @@ QSize HeatmapOverlay::Heatmap::getResolution() const {
 }
 
 unsigned int HeatmapOverlay::Heatmap::getFrameCount() const {
-    throw new NotImplementedException();
+    throw NotImplementedException();
 }
 
 QList<const Module*> HeatmapOverlay::Heatmap::getUsesList() const {
@@ -84,7 +84,7 @@ QList<const Module*> HeatmapOverlay::Heatmap::getUsesList() const {
 }
 
 Saveable::sptr HeatmapOverlay::getDummy() {
-    throw new NotImplementedException();
+    throw NotImplementedException();
 }
 
 }  // namespace overlay

@@ -28,7 +28,7 @@ NoiseFilter::~NoiseFilter() {}
 
 model::frame::Frame::sptr NoiseFilter::getFrame(unsigned int frameNumber) const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
     Frame::sptr frame = getPredecessor()->getFrame(frameNumber);
 
@@ -46,7 +46,7 @@ model::frame::Frame::sptr NoiseFilter::getFrame(unsigned int frameNumber) const 
 
 Memento NoiseFilter::getMemento() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
     Memento memento = Filter::getMemento();
 
@@ -64,7 +64,7 @@ void NoiseFilter::restore(Memento memento) {
 
 QList<const Module*> NoiseFilter::getUsesList() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return QList<const Module*>() << this;
 }

@@ -25,7 +25,7 @@ YUVPixelDiff::~YUVPixelDiff() {
 
 Surface::sptr YUVPixelDiff::getPixelDiff(unsigned int frameNr) const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
     if (frameNr >= getFrameCount()) {
         throw IllegalArgumentException("Requested frame number " +
@@ -47,7 +47,7 @@ Surface::sptr YUVPixelDiff::getPixelDiff(unsigned int frameNr) const {
 
 Memento YUVPixelDiff::getMemento() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 
     return PixelDiff::getMemento();
