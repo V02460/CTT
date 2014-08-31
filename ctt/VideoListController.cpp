@@ -46,6 +46,15 @@ void VideoListController::addVideo(QString path, int width, int height, double f
 		new VideoAddedOperation(video, videoList)));
 }
 
+void VideoListController::addVideo(QString pathToVideoFile, QString pathToMetadataFile, int width, int height, double fps, YUVType type, unsigned int length) {
+	YUVDataVideo yuvVideo(pathToVideoFile, pathToMetadataFile, QSize(width, height), fps, type, GlobalContext::get());
+
+	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(&yuvVideo)));
+
+	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
+		new VideoAddedOperation(video, videoList)));
+}
+
 void VideoListController::addVideo(FilteredVideo::sptr video) {
 	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
 		new VideoAddedOperation(video, videoList)));

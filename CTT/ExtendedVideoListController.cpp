@@ -53,6 +53,16 @@ namespace controller {
 			new ExtendedVideoAddedOperation(playerList, video, filteredVideo, videoList, filteredVideos)));
 	}
 
+	void ExtendedVideoListController::addVideo(QString pathToVideoFile, QString pathToMetadataFile, int width, int height, double fps, model::video::YUVType type, unsigned int length) {
+		YUVDataVideo yuvVideo(pathToVideoFile, pathToMetadataFile, QSize(width, height), fps, type, GlobalContext::get());
+
+		FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(&yuvVideo)));
+		FilteredVideo::sptr filteredVideo(new FilteredVideo(QSharedPointer<YUVDataVideo>(&yuvVideo)));
+
+		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
+			new ExtendedVideoAddedOperation(playerList, video, filteredVideo, videoList, filteredVideos)));
+	}
+
 	void ExtendedVideoListController::addVideo(FilteredVideo::sptr video) {
 		FilteredVideo::sptr filteredVideo(new FilteredVideo(video));
 		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
