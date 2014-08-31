@@ -4,9 +4,11 @@ namespace model {
 namespace difference {
 
 using ::model::frame::histogram::Histogram;
+using ::model::frame::Frame;
 using ::model::video::Video;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
+using ::exception::AccessToDummyException;
 
 const QString EarthMoversHistogramDiff::VIDEO1 = "video1";
 const QString EarthMoversHistogramDiff::VIDEO2 = "video2";
@@ -14,32 +16,39 @@ const QString EarthMoversHistogramDiff::TYPE = "type";
 
 EarthMoversHistogramDiff::EarthMoversHistogramDiff(Histogram::HistogramType type,
                                                    Video::sptr video1,
-                                                   Video::sptr video2)
-        : FrameDiff(video1, video2), type(type) {}
+                                                   Video::sptr video2) : FrameDiff(video1, video2),
+												                         type(type) {}
 
-EarthMoversHistogramDiff::~EarthMoversHistogramDiff() {}
+EarthMoversHistogramDiff::~EarthMoversHistogramDiff() {
+	isDummyFlag = true;
+}
 
 double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
 	if (frameNr > getFrameCount()) {
 		throw new IllegalArgumentException("One or both videos have less then " + QString::number(frameNr)
 			                               + " frames.");
 	}
-	Histogram::sptr a = video1->getFrame(frameNr)->getHistogram(type);
-	Histogram::sptr b = video2->getFrame(frameNr)->getHistogram(type);
-	float d[Histogram::SIZE + 1];
+    Histogram::sptr a = Frame::getHistogram(video1->getFrame(frameNr), type);
+    Histogram::sptr b = Frame::getHistogram(video2->getFrame(frameNr), type);
+    float d[Histogram::kSize + 1];
 	d[0] = 0;
 	double sum = 0;
-	for (int i = 0; i < Histogram::SIZE; i++) {
-		// TODO replace getValue
-		//d[i + 1] = a->getValue(i) - b->getValue(i) + d[i];
+	for (int i = 0; i < Histogram::kSize; i++) {
+		d[i + 1] = a->getValue(i) - b->getValue(i) + d[i];
 		sum += std::abs(d[i + 1]);
     }
 
-	return sum / (Histogram::SIZE - 1);
+	return sum / (Histogram::kSize - 1);
 }
 
 
 Memento EarthMoversHistogramDiff::getMemento() const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
 	Memento memento;
 	memento.setSharedPointer(VIDEO1, video1);
 	memento.setSharedPointer(VIDEO2, video2);
@@ -55,10 +64,7 @@ void EarthMoversHistogramDiff::restore(Memento memento) {
 }
 
 Saveable::sptr EarthMoversHistogramDiff::getDummy() {
-	EarthMoversHistogramDiff *dummy = new EarthMoversHistogramDiff();
-	dummy->isDummyFlag = true;
-	EarthMoversHistogramDiff::sptr dummyPointer = QSharedPointer<EarthMoversHistogramDiff>(dummy);
-	return dummyPointer;
+	return EarthMoversHistogramDiff::sptr(new EarthMoversHistogramDiff());
 }
 
 Saveable::SaveableType EarthMoversHistogramDiff::getSaveableType() {

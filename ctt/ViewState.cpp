@@ -17,22 +17,28 @@ void ViewState::restore(Memento memento) {
 }
 
 Saveable::sptr ViewState::getDummy() {
+	// TODO absprachebedarf!
     throw new NotImplementedException();
 }
 
 void ViewState::changeView(ViewType newView) {
-    throw new NotImplementedException();
+	currentView = newView;
+	changed();
 }
 
 Saveable::SaveableType ViewState::getSaveableType() {
     return SaveableType::viewState;
 }
 
-QSharedPointer<ViewState> ViewState::getInstance() {
-	throw new NotImplementedException();
+ViewState* ViewState::getInstance() {
+	if (instance.isNull()) {
+		instance.reset(new ViewState());
+	}
+
+	return instance.data();
 }
 
-QSharedPointer<VideoDisplayPolicy> ViewState::getCurrentVideoDisplayPolicy() {
+const VideoDisplayPolicy* ViewState::getCurrentVideoDisplayPolicy() {
 	throw new NotImplementedException();
 }
 
@@ -40,4 +46,11 @@ void ViewState::changeVideoDisplayPolicy() {
 	throw new NotImplementedException();
 }
 
+ViewType ViewState::getCurrentViewType() {
+	return currentView;
+}
+
+ViewState::ViewState() : currentView(ViewType::PROCESSING_VIEW){}
+
+ViewState::uptr ViewState::instance;
 }  // namespace view

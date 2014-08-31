@@ -9,6 +9,8 @@
 #include "FilteredVideo.h"
 #include "Player.h"
 #include "FrameDiff.h"
+#include "ViewState.h"
+#include "Observable.h"
 
 namespace controller {
 namespace project {
@@ -16,7 +18,7 @@ namespace project {
 /**
  * The project contains all savable objects that already exist in an empty project.
  */
-class Project {
+class Project : public ::model::Observable {
 
 public:
     typedef QScopedPointer<Project> uptr;
@@ -28,7 +30,7 @@ public:
      *
      * @return SaveableList<FileVideo> the list of all base videos the project uses.
      */
-	::model::saveable::SaveableList<::model::video::FileVideo>::sptr getBaseVideoList() const;
+	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr getBaseVideoList() const;
 
     /**
      * Returns the List of all FilteredVideos the Project uses in the first view, i.e. the editing view.
@@ -65,6 +67,10 @@ public:
      */
 	::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr getDiffList() const;
 
+	void clear();
+
+	void everythingChanged();
+
 	/**
 	 * Returns the one instance this class can have.
 	 */
@@ -77,7 +83,7 @@ private:
 
 	static Project::uptr instance;
 
-    ::model::saveable::SaveableList<::model::video::FileVideo>::sptr baseVideoList;
+    ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr baseVideoList;
 	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList1;
 	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList2;
 	::model::saveable::SaveableList<::model::player::Player>::sptr playerList1;

@@ -55,7 +55,7 @@ public:
      * @return QList<FilterParam> a list of the different parameters of the filter
      * @throws AccessToDummyException if the the method was called on a dummy
      */
-    QList<FilterParam> getParams() const;
+    QList<FilterParam::sptr> getParams() const;
 
     /**
      * Sets the submitted parameter.
@@ -65,7 +65,7 @@ public:
      *         parameter
      * @throws AccessToDummyException if the the method was called on a dummy
      */
-    void setParam(FilterParam parameter);
+    void setParam(FilterParam::sptr parameter);
 
     /**
      * Tells the Filter to use the frames of the submitted Module as source material for its own frames.
@@ -90,7 +90,7 @@ public:
      * @param interval the filter will be activated in this interval
      * @throws AccessToDummyException if the the method was called on a dummy or a Filter without interval support
      */
-    void activate(UIntegerInterval interval);
+    void activate(UIntegerInterval::sptr interval);
 
     /**
      * Deactivates the Filter in the submitted interval.
@@ -98,7 +98,7 @@ public:
      * @param interval the filter will be deactivated in this interval
      * @throws AccessToDummyException if the the method was called on a dummy or a Filter without interval support
      */
-    void deactivate(UIntegerInterval interval);
+    void deactivate(UIntegerInterval::sptr interval);
 
     /**
      * Returns a list of all the intervals the filter is active in.
@@ -106,24 +106,24 @@ public:
      * @return List<IntegerInterval> a list of all the intervals the filter is active in
      * @throws AccessToDummyException if the the method was called on a dummy or a Filter without interval support
      */
-    QList<UIntegerInterval> getListOfActiveIntervals();
+    QList<UIntegerInterval::sptr> getListOfActiveIntervals();
 
     virtual unsigned int getFrameCount() const Q_DECL_OVERRIDE;
 
     virtual QSize getResolution() const Q_DECL_OVERRIDE;
 
-    ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
-    void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
+    virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
+    virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
     static Saveable::SaveableType getSaveableType() { return Saveable::filter; }
 
 protected:
+
     template <class T>
     void newParameter(QString name, T initValue) {
         if (isDummy()) {
             throw new ::exception::AccessToDummyException();
         }
-
-        parameters.insert(name, FilterParam(name, initValue));
+		parameters.insert(name, FilterParam::sptr(new FilterParam(name, initValue)));
     }
 
     template <class T>
@@ -131,18 +131,19 @@ protected:
         if (isDummy()) {
             throw new ::exception::AccessToDummyException();
         }
-
-        FilterParam param = parameters.value(key, FilterParam(key, defaultValue));
-        return param.getValue().value<T>();
+        FilterParam::sptr param = parameters.value(key, FilterParam::sptr(new FilterParam(key, defaultValue)));
+        return param->getValue().value<T>();
     }
 
     Module *getPredecessor() const;
 
+	Filter() {}
+
 private:
     Q_DISABLE_COPY(Filter)
 
-    ::model::FilterIntervalList intervals; /**< The Intervals in which the Filter is active */
-    QMap<QString, FilterParam> parameters; /**< Parameters modifying the filters behavior */
+    ::model::FilterIntervalList::sptr intervals; /**< The Intervals in which the Filter is active */
+    QMap<QString, FilterParam::sptr> parameters; /**< Parameters modifying the filters behavior */
     Module::sptr predecessor; /**< The Filter gets the frames it modifies from this module */
 };
 

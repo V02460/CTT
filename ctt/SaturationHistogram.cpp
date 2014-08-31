@@ -8,7 +8,7 @@ namespace histogram {
 
 using ::exception::OpenGLException;
 
-SaturationHistogram::SaturationHistogram(const Frame &frame) {
+SaturationHistogram::SaturationHistogram(Frame::sptr frame) {
     init(frame);
 }
 

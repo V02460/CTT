@@ -14,7 +14,7 @@ QSharedPointer<QOpenGLContext> GlobalContext::get() {
     return context;
 }
 
-QSharedPointer<QOpenGLContext> GlobalContext::context(new QOpenGLContext());
+QSharedPointer<QOpenGLContext> GlobalContext::context;
 QScopedPointer<QOffscreenSurface> GlobalContext::surface;
 
 }  // namespace model

@@ -18,12 +18,11 @@ static TestResult test(int argc, char *argv[]) {
       << filter::test(argc, argv)
       << saveable::test(argc, argv)
       << player::test(argc, argv)
-      << video::test(argc, argv)
-	  ;
+      << video::test(argc, argv);
 
     return r;
 }
 
-}
+}  // namespace model
 
 #endif

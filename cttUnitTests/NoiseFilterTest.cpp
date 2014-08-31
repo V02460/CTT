@@ -34,13 +34,15 @@ void NoiseFilterTest::testRun() {
 
 void NoiseFilterTest::wrongParams() {
     NoiseFilter noiseFilter(video);
-    QEXPECT_EXCEPTION(noiseFilter.setParam(FilterParam("not right", "at all")), IllegalArgumentException);
-    QEXPECT_EXCEPTION(noiseFilter.setParam(FilterParam("a bit off", 1.0)), IllegalArgumentException);
+	QEXPECT_EXCEPTION(noiseFilter.setParam(FilterParam::sptr(new FilterParam("not right", "at all"))),
+		              IllegalArgumentException);
+	QEXPECT_EXCEPTION(noiseFilter.setParam(FilterParam::sptr(new FilterParam("a bit off", 1.0))),
+		              IllegalArgumentException);
     noiseFilter.getFrame(9);
-    noiseFilter.setParam(FilterParam(NoiseFilter::kParamIntensityStr, 0.8f));
+	noiseFilter.setParam(FilterParam::sptr(new FilterParam(NoiseFilter::kParamIntensityStr, 0.8f)));
     noiseFilter.getFrame(5);
-    noiseFilter.setParam(FilterParam(NoiseFilter::kParamIntensityStr, -10.f));
+	noiseFilter.setParam(FilterParam::sptr(new FilterParam(NoiseFilter::kParamIntensityStr, -10.f)));
     noiseFilter.getFrame(2);
-    noiseFilter.setParam(FilterParam(NoiseFilter::kParamIntensityStr, 42.f));
+	noiseFilter.setParam(FilterParam::sptr(new FilterParam(NoiseFilter::kParamIntensityStr, 42.f)));
     noiseFilter.getFrame(3);
 }

@@ -21,49 +21,57 @@ namespace filter {
 using overlay::HeatmapOverlay;
 using overlay::MacroblockOverlay;
 using overlay::MotionVectorOverlay;
+using ::model::difference::PixelDiff;
 using exception::NotImplementedException;
 
-QList<QString> FilterFactory::getAllNonOverlayFilterIDs() {
-    QList<QString> list;
+QList<QByteArray> FilterFactory::getAllNonOverlayFilterIDs() {
+    QList<QByteArray> list;
 
     return list 
-        << "filter_blur"
-        //<< "filter_coffee"
-        << "filter_greyscale"
-        ////<< "filter_mix"
-        << "filter_noise"
-        << "filter_rescale"
-        //<< "filter_rgbchannel"
-        << "filter_timeshift";
+        << BlurFilter::kFilterID
+        //<< CoffeFilter::kFilterID
+        << GreyscaleFilter::kFilterID
+        //<< MixFilter::kFilterID
+        << NoiseFilter::kFilterID
+        << RescaleFilter::kFilterID
+        << RGBChannelFilter::kFilterID
+        << TimeshiftFilter::kFilterID;
 }
 
-QList<QString> FilterFactory::getAllOverlayIDs() {
-    QList<QString> list;
+QList<QByteArray> FilterFactory::getAllOverlayIDs() {
+    QList<QByteArray> list;
 
-    return list;
-        //<< "overlay_heatmap"
-        //<< "overlay_macroblock"
-        //<< "overlay_motionvector";
+    return list
+        << HeatmapOverlay::kFilterID
+        << MacroblockOverlay::kFilterID
+        << MotionVectorOverlay::kFilterID;
 }
 
 Filter::sptr FilterFactory::createFilter(QString id, Module::sptr predecessor) {
-    if (id == "filter_blur") { return BlurFilter::sptr(new BlurFilter(predecessor)); }
-    //if (id == "filter_coffee") { return CoffeeFilter::sptr(new CoffeeFilter(predecessor)); }
-    if (id == "filter_greyscale") { return GreyscaleFilter::sptr(new GreyscaleFilter(predecessor)); }
-    //if (id == "filter_mix") { return MixFilter::sptr(new MixFilter(predecessor)); }
-    if (id == "filter_noise") { return NoiseFilter::sptr(new NoiseFilter(predecessor)); }
-    if (id == "filter_rescale") { return RescaleFilter::sptr(new RescaleFilter(predecessor)); }
-    //if (id == "filter_rgbchannel") { return RGBChannelFilter::sptr(new RGBChannelFilter(predecessor)); }
-    if (id == "filter_timeshift") { return TimeshiftFilter::sptr(new TimeshiftFilter(predecessor)); }
+    if (id == BlurFilter::kFilterID) { return BlurFilter::sptr(new BlurFilter(predecessor)); }
+    //if (id == CoffeFilter::kFilterID) { return CoffeeFilter::sptr(new CoffeeFilter(predecessor)); }
+    if (id == GreyscaleFilter::kFilterID) { return GreyscaleFilter::sptr(new GreyscaleFilter(predecessor)); }
+    //if (id == MixFilter::kFilterID) { return MixFilter::sptr(new MixFilter(predecessor)); }
+    if (id == NoiseFilter::kFilterID) { return NoiseFilter::sptr(new NoiseFilter(predecessor)); }
+    if (id == RescaleFilter::kFilterID) { return RescaleFilter::sptr(new RescaleFilter(predecessor)); }
+    if (id == RGBChannelFilter::kFilterID) { return RGBChannelFilter::sptr(new RGBChannelFilter(predecessor)); }
+    if (id == TimeshiftFilter::kFilterID) { return TimeshiftFilter::sptr(new TimeshiftFilter(predecessor)); }
 
-    if (id == "overlay_heatmap") {
-        // return HeatmapOverlay::sptr(new HeatmapOverlay(predecessor));
-        throw new NotImplementedException();
+    if (id == HeatmapOverlay::kFilterID) {
+        throw new IllegalArgumentException("HeatmapOverlay needs a PixelDiff to get created.");
     }
-    //if (id == "overlay_macroblock") { return MacroblockOverlay::sptr(new MacroblockOverlay(predecessor)); }
-    //if (id == "overlay_motionvector") { return MotionVectorOverlay::sptr(new MotionVectorOverlay(predecessor)); }
+    if (id == MacroblockOverlay::kFilterID) { return MacroblockOverlay::sptr(new MacroblockOverlay(predecessor)); }
+    if (id == MotionVectorOverlay::kFilterID) { return MotionVectorOverlay::sptr(new MotionVectorOverlay(predecessor)); }
 
     throw new IllegalArgumentException("There is no filter with this id to create.");
+}
+
+Filter::sptr FilterFactory::createFilter(QString id, Module::sptr predecessor, PixelDiff::sptr pixelDiff) {
+    if (id == HeatmapOverlay::kFilterID) {
+        return HeatmapOverlay::sptr(new HeatmapOverlay(predecessor, pixelDiff));
+    }
+
+    return createFilter(id, predecessor);
 }
 
 }  // namespace filter

@@ -23,16 +23,16 @@ public:
     typedef QWeakPointer<VideoListOperation> wptr;
 
     /**
-     * Manages requests to manipulate the VideoList which is used for generating test videos or analyzing.
+     * Manages requests to manipulate the VideoList which is used for generating test videos or analysing.
      */
-    void doOperation();
+    virtual void doOperation() = 0;
 
     /**
-     * Manages requests to undo manipulations of the VideoList which is used for generating test videos or analyzing.
+     * Manages requests to undo manipulations of the VideoList which is used for generating test videos or analysing.
      */
-    void undoOperation();
+    virtual void undoOperation() = 0;
 protected:
-    ::model::video::Video::uptr video;
+    ::model::video::Video::sptr video;
     int index;
     ::model::saveable::SaveableList<::model::video::Video> videoList;
 };

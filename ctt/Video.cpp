@@ -3,22 +3,26 @@
 #include "NotImplementedException.h"
 #include "YUVType.h"
 #include "IOException.h"
-#include "GPUHelper.h"
+#include "GPUSurfaceShader.h"
+
+#include <QFile>
 
 namespace model {
 namespace video {
 
 using ::exception::NotImplementedException;
-using ::exception::IllegalStateException;
+using ::exception::AccessToDummyException;
 using ::exception::IOException;
 using ::model::saveable::Saveable;
 
 using ::model::frame::Frame;
+using model::filter::FilterParam;
 
-void Video::save(QString path, VideoFileType type) const
-{
+model::filter::RescaleFilter::uptr Video::rescaler;
+
+void Video::save(QString path, VideoFileType type) const {
 	if (isDummy()) {
-		throw new IllegalStateException("Tried to save a dummy video.");
+		throw new AccessToDummyException();
 	}
 
 	QFile videoFile(path);
@@ -59,10 +63,13 @@ void Video::save(QString path, VideoFileType type) const
 // 		break;
 // 	}
 
-	helper::GPUHelper myHelper(":/Shader/Conversion/RGBtoYUV444sdtv.fs", getContext());
+	helper::GPUSurfaceShader myHelper(":/Shader/Conversion/RGBtoYUV444sdtv.fs", getContext());
 	for (unsigned int i = 0; i < getFrameCount(); i++)
 	{
-		videoFile.write(myHelper.run(*getFrame(i))->getRawRGBA().left(bytesPerFrame));
+        myHelper.setSourceTexture(getFrame(i));
+        Surface::sptr frame = myHelper.run();
+
+		videoFile.write(frame->getRawRGBA().left(bytesPerFrame));
 	}
 
 	if (!videoFile.flush())
@@ -73,18 +80,25 @@ void Video::save(QString path, VideoFileType type) const
 	videoFile.close();
 }
 
-::model::frame::Frame::sptr Video::getScaledFrame(unsigned int frameNumber, QSize size) const {
-    throw new NotImplementedException();
+::model::frame::Frame::sptr Video::getScaledFrame(Video::sptr video, unsigned int frameNumber, QSize size) {
+    if (rescaler.isNull())
+    {
+		rescaler.reset(new model::filter::RescaleFilter(video));
+	}
+	else
+	{
+		rescaler->setPreviousModule(video);
+	}
+
+	FilterParam::sptr param(new FilterParam(model::filter::RescaleFilter::kParamNewSize, size));
+	rescaler->setParam(param);
+
+	return rescaler->getFrame(frameNumber);
 }
 
-Saveable::SaveableType Video::getSaveableType() {
-    return SaveableType::video;
-}
-
-QSize Video::getResolution() const
-{
+QSize Video::getResolution() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Tried to request the resolution of a dummy video.");
+		throw new AccessToDummyException();
 	}
 	return getMetadata().getSize();
 }

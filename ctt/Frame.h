@@ -67,11 +67,12 @@ public:
     /**
      * Creates a histogram of the submitted type from the frame and returns it.
      *
+     * @param frame the frame used for the histogram creation
      * @param type specifies the histogram type
      * @return Histogram a histogram of the submitted type.
      * @throws IllegalArgumentException on unsupported type
      */
-    Histogram::sptr getHistogram(Histogram::HistogramType type) const;
+    static Histogram::sptr getHistogram(Frame::sptr frame, Histogram::HistogramType type);
 
 //TODO: this is a dangerous constructor when used without care
 //protected:

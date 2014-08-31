@@ -1,9 +1,11 @@
 #include "RescaleFilter.h"
 
-#include "NotImplementedException.h"
-#include "GPUHelper.h"
+#include "GPUSurfaceShader.h"
 #include "FilterParam.h"
 #include "FrameMetadata.h"
+
+#include "NotImplementedException.h"
+#include "AccessToDummyException.h"
 
 namespace model {
 namespace filter {
@@ -13,21 +15,30 @@ using ::model::frame::FrameMetadata;
 using ::model::filter::FilterParam;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
-using ::helper::GPUHelper;
+using ::helper::GPUSurfaceShader;
 using ::exception::NotImplementedException;
+using ::exception::AccessToDummyException;
 
-const QString RescaleFilter::kParamNewSize = "filter_rescale_param_newsize";
-const QString RescaleFilter::kParamNewSizeWidth = "filter_rescale_param_newsize_width";
-const QString RescaleFilter::kParamNewSizeHeight = "filter_rescale_param_newsize_height";
+const QByteArray RescaleFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_rescale");
+
+const QString RescaleFilter::kParamNewSize = QT_TR_NOOP("filter_rescale_param_newsize");
+const QString RescaleFilter::kParamNewSizeWidth = QT_TR_NOOP("filter_rescale_param_newsize_width");
+const QString RescaleFilter::kParamNewSizeHeight = QT_TR_NOOP("filter_rescale_param_newsize_height");
 
 RescaleFilter::RescaleFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamNewSize, predecessor->getResolution());
 }
 
-RescaleFilter::~RescaleFilter() {
+RescaleFilter::RescaleFilter() {
+	isDummyFlag = true;
 }
 
+RescaleFilter::~RescaleFilter() {}
+
 model::frame::Frame::sptr RescaleFilter::getFrame(unsigned int frameNumber) const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
     Frame::sptr sourceFrame = getPredecessor()->getFrame(frameNumber);
 
     QSize newSize = getParamValue<QSize>(kParamNewSize);
@@ -37,16 +48,19 @@ model::frame::Frame::sptr RescaleFilter::getFrame(unsigned int frameNumber) cons
     }
     if (newSize.height() < 1) {
         newSize.setHeight(1);
-}
+    }
 
-    GPUHelper gpuHelper(":/Shader/Filter/Rescale.fs", sourceFrame->getContext());
+    GPUSurfaceShader gpuHelper(":/Shader/Filter/Rescale.fs", sourceFrame.staticCast<Surface>());
 
-    Surface::sptr targetSurface = gpuHelper.run(*sourceFrame.data(), newSize);
+    Surface::sptr targetSurface = gpuHelper.run(newSize);
 
     return Frame::sptr(new Frame(targetSurface, FrameMetadata(targetSurface->getSize())));
 }
 
 Memento RescaleFilter::getMemento() const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
     Memento memento = Filter::getMemento();
 
     QSize newSize = getParamValue<QSize>(kParamNewSize);
@@ -63,15 +77,18 @@ void RescaleFilter::restore(Memento memento) {
     QSize newSize;
     newSize.setWidth(memento.getInt(kParamNewSizeWidth));
     newSize.setWidth(memento.getInt(kParamNewSizeHeight));
-    setParam(FilterParam(kParamNewSize, newSize));
+    setParam(FilterParam::sptr(new FilterParam(kParamNewSize, newSize)));
+	isDummyFlag = false;
 }
 
 QList<const Module*> RescaleFilter::getUsesList() const {
-    throw new NotImplementedException();
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
+	return QList<const Module*>() << this;
 }
-
-bool RescaleFilter::uses(const ::model::Module &module) const {
-    throw new NotImplementedException();
+Saveable::sptr RescaleFilter::getDummy() {
+	return RescaleFilter::sptr(new RescaleFilter());
 }
 
 }  // namespace filter

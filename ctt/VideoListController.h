@@ -9,13 +9,15 @@
 #include "Observer.h"
 #include "Video.h"
 #include "SaveableList.h"
+#include "FileVideo.h"
+#include "FilteredVideo.h"
 
 namespace controller {
 
 /**
  * The VideoListController manages requests to manipulate the VideoList.
  */
-class VideoListController : public QObject, public::model::Observer {
+class VideoListController : public QObject {
     Q_OBJECT
 public:
     typedef QScopedPointer<VideoListController> uptr;
@@ -27,25 +29,33 @@ public:
      *
      * @param videoList The list the controller will manage
      */
-    VideoListController(::model::saveable::SaveableList<::model::video::Video>::sptr videoList);
+    VideoListController(::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList);
 
 public slots:
 
     /**
-     * Initiates adding a video to the VideoList.
+     * Initiates adding a video, typically FFMPEG, to the VideoList.
      * Is called when a notification is received that a video should be added to the VideoList.
      *
      * @param path The path to the video which is to be added.
      */
     void addVideo(QString path);
 
-    /**
+	/**
+	* Initiates adding a video, typically YUV with metadata provided by the user, to the VideoList.
+	* Is called when a notification is received that a video should be added to the VideoList.
+	*
+	* @param path The path to the video which is to be added.
+	*/
+	void addVideo(QString path, int width, int height, double fps, model::video::YUVType type, unsigned int length);
+
+	/**
      * Initiates adding a video to the VideoList.
      * Is called when a notification is received that a video should be added to the VideoList.
      *
      * @param video The video which is to be added.
      */
-    void addVideo(::model::video::Video::sptr video);
+    void addVideo(::model::filter::FilteredVideo::sptr video);
 
     /**
     * Initiates removing a video from the VideoList.
@@ -61,7 +71,10 @@ public slots:
     *
     * @param video The video which is to be removed.
     **/
-    void removeVideo(const ::model::video::Video &video);
+    void removeVideo(const ::model::filter::FilteredVideo &video);
+
+protected:
+	model::saveable::SaveableList<model::filter::FilteredVideo>::sptr videoList;
 };
 
 }  // namespace controller

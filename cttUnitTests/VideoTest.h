@@ -1,5 +1,5 @@
 #include <QtTest/QtTest>
-#include <qoffscreensurface.h>
+#include <QOffscreenSurface>
 
 class VideoTest : public QObject
 {

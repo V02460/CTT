@@ -5,9 +5,12 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 #include <QWidget>
+#include <QLabel>
+#include <QBoxLayout>
 
 #include "Observer.h"
 #include "VideoScrubber.h"
+#include "VideoMetadata.h"
 
 namespace view {
 
@@ -15,7 +18,7 @@ namespace view {
  * The FrameMetadataWidget displays the metadata information provided by a frame.
  * Therefore it registers itself at a VideoScrubber to receive the metadata for the current frame.
  */
-class FrameMetadataWidget : public QWidget, public::model::Observer{
+class FrameMetadataWidget : public QWidget, public::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<FrameMetadataWidget> uptr;
@@ -28,10 +31,18 @@ public:
      *
      * @param scrubber The VideoScrubber to register at and which provides the metadata.
      */
-    FrameMetadataWidget(::model::player::VideoScrubber::sptr scrubber);
+	FrameMetadataWidget(::model::player::VideoScrubber::sptr scrubber, QWidget *parent = 0);
+
+	/**
+	 * Destroys the FrameMetadataWidget.
+	 */
+	~FrameMetadataWidget();
+
+	virtual void update();
 
 private:
-    ::model::player::VideoScrubber::sptr scrubber; /**< The scrubber at which the FrameMetadataWidget is registered */
+	/** The scrubber at which the FrameMetadataWidget is registered. */
+    ::model::player::VideoScrubber::sptr scrubber;
 };
 
 }  // namespace view

@@ -3,6 +3,8 @@
 
 #include "TestResult.h"
 
+#include "ModelFilterOverlayTests.h"
+
 #include "FilterTest.h"
 #include "BlurFilterTest.h"
 #include "MixFilterTest.h"
@@ -19,6 +21,8 @@ namespace filter {
 
 static TestResult test(int argc, char *argv[]) {
     TestResult r("filter");
+
+    r << overlay::test(argc, argv);
 
     FilterTest filterTest;
     BlurFilterTest blurFilterTest;

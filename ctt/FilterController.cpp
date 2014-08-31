@@ -1,5 +1,7 @@
 #include "FilterController.h"
 
+#include "NotImplementedException.h"
+
 namespace controller {
 
 using ::model::filter::Filter;
@@ -13,6 +15,7 @@ using ::controller::operation::Operation;
 using ::controller::operation::FilterAddedOperation;
 using ::model::filter::FilterFactory;
 using ::model::Module;
+using ::exception::NotImplementedException;
 
 FilterController::FilterController(FilteredVideo::sptr video) : video(video) {}
 
@@ -44,6 +47,10 @@ void FilterController::removeFilter(int pos) {
 
 void FilterController::setVideo(FilteredVideo::sptr newVideo) {
 	video = newVideo;
+}
+
+void FilterController::update() {
+	throw new NotImplementedException();
 }
 
 }  // namespace controller

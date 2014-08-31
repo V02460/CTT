@@ -6,8 +6,10 @@
 #include <QWeakPointer>
 
 #include "AbstractListView.h"
+#include "FilteredVideo.h"
 #include "Filter.h"
 #include "FilterParam.h"
+#include "FilterController.h"
 
 namespace view {
 
@@ -18,10 +20,19 @@ namespace view {
  * parameters can be easily changed by just clicking on them and adjusting its value.
  */
 class FilterListView : public AbstractListView {
+	Q_OBJECT
+
 public:
     typedef QScopedPointer<FilterListView> uptr;
     typedef QSharedPointer<FilterListView> sptr;
     typedef QWeakPointer<FilterListView> wptr;
+
+	FilterListView(::controller::FilterController::sptr filterController, QWidget *parent);
+
+	virtual void update() Q_DECL_OVERRIDE;
+
+	virtual void setVideo(::model::filter::FilteredVideo::sptr newVideo) Q_DECL_OVERRIDE;
+	virtual void removeVideo() Q_DECL_OVERRIDE;
 
 signals:
     /**
@@ -33,13 +44,11 @@ signals:
      */
     void filterMoved(int oldPos, int newPos);
 
-    /**
-     * This signal is emitted when any filter parameter is changed by the user.
-     *    
-     * @param filter The filter of which the parameter has changed.
-     * @param param The parameter that has changed with its new value.
-     */
-    void filterParamChanged(const ::model::filter::Filter &filter, const ::model::filter::FilterParam &param);
+	void videoChanged(::model::filter::FilteredVideo::sptr video);
+
+private:
+	::model::filter::FilteredVideo::sptr video;
+	::controller::FilterController::sptr filterController;
 };
 
 }  // namespace view

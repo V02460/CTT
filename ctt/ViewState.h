@@ -20,6 +20,7 @@ namespace view {
  */
 class ViewState : public QObject, public model::Observable, public ::model::saveable::Saveable {
     Q_OBJECT
+
 public:
     typedef QScopedPointer<ViewState> uptr;
     typedef QSharedPointer<ViewState> sptr;
@@ -30,9 +31,9 @@ public:
 	static ::model::saveable::Saveable::sptr getDummy();
     static Saveable::SaveableType getSaveableType();
 
-	static QSharedPointer<ViewState> getInstance();
-	QSharedPointer<VideoDisplayPolicy> getCurrentVideoDisplayPolicy();
-
+	static ViewState* getInstance();
+	const VideoDisplayPolicy* getCurrentVideoDisplayPolicy();
+	ViewType getCurrentViewType();
 
 public slots:
     /**
@@ -44,13 +45,14 @@ public slots:
 
 signals:
 	void videoDisplayPolicyChanged();
+	void viewTypeChanged();
 
 private:
 	ViewState();
 
-	QSharedPointer<ViewState> instance;
+	static ViewState::uptr instance;
     ViewType currentView;
-	QSharedPointer<VideoDisplayPolicy> currentVideoDisplayPolicy;
+	VideoDisplayPolicy::uptr currentVideoDisplayPolicy;
 };
 
 }  // namespace view

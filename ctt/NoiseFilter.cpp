@@ -1,44 +1,53 @@
 #include "NoiseFilter.h"
 
 #include "NotImplementedException.h"
-#include "GPUHelper.h"
-#include "MathHelper.h"
+#include "GPUSurfaceShader.h"
 
 namespace model {
 namespace filter {
 
 using ::model::frame::Frame;
-using ::exception::NotImplementedException;
+using ::exception::AccessToDummyException;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
-using ::helper::GPUHelper;
-using ::helper::clamp;
+using ::helper::GPUSurfaceShader;
 
-const QString NoiseFilter::kParamIntensityStr = "filter_noise_param_intensity";
+const QByteArray NoiseFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_noise");
+
+const QString NoiseFilter::kParamIntensityStr = QT_TR_NOOP("filter_noise_param_intensity");
 
 NoiseFilter::NoiseFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamIntensityStr, 0.5f);
 }
 
-NoiseFilter::~NoiseFilter() {
+NoiseFilter::NoiseFilter() {
+	isDummyFlag = true;
 }
 
+NoiseFilter::~NoiseFilter() {}
+
 model::frame::Frame::sptr NoiseFilter::getFrame(unsigned int frameNumber) const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
     Frame::sptr frame = getPredecessor()->getFrame(frameNumber);
 
-    GPUHelper gpuHelper(":/Shader/Filter/Noise.fs", frame->getContext());
+    GPUSurfaceShader gpuHelper(":/Shader/Filter/Noise.fs", frame.staticCast<Surface>());
 
     float intensity = getParamValue<float>(kParamIntensityStr);
-    intensity = clamp(intensity, 0.f, 1.f);
+    intensity = qBound(0.f, intensity, 1.f);
     gpuHelper.setValue("intensity", intensity);
     gpuHelper.setValue("time", static_cast<GLfloat>(frameNumber));
 
-    Surface::sptr targetSurface = gpuHelper.run(*frame.data());
+    Surface::sptr targetSurface = gpuHelper.run();
 
     return Frame::sptr(new Frame(targetSurface, frame->getMetadata()));
 }
 
 Memento NoiseFilter::getMemento() const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
     Memento memento = Filter::getMemento();
 
     memento.setFloat(kParamIntensityStr, getParamValue<float>(kParamIntensityStr));
@@ -49,15 +58,19 @@ Memento NoiseFilter::getMemento() const {
 void NoiseFilter::restore(Memento memento) {
     Filter::restore(memento);
 
-    setParam(FilterParam(kParamIntensityStr, memento.getFloat(kParamIntensityStr)));
+    setParam(FilterParam::sptr(new FilterParam(kParamIntensityStr, memento.getFloat(kParamIntensityStr))));
+	isDummyFlag = false;
 }
 
 QList<const Module*> NoiseFilter::getUsesList() const {
-    throw new NotImplementedException();
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
+	return QList<const Module*>() << this;
 }
 
-bool NoiseFilter::uses(const Module &module) const {
-    throw new NotImplementedException();
+Saveable::sptr NoiseFilter::getDummy() {
+	return NoiseFilter::sptr(new NoiseFilter());
 }
 
 }  // namespace filter

@@ -6,10 +6,13 @@
 #include <QWeakPointer>
 #include <QMenuBar>
 #include <QMainWindow>
+#include <QStackedLayout>
+#include <QAction>
 
 #include "Observable.h"
 #include "Observer.h"
 #include "ViewType.h"
+
 #include "ViewState.h"
 #include "ProcessingWidget.h"
 #include "AnalysingWidget.h"
@@ -25,6 +28,14 @@ public:
     typedef QSharedPointer<MainWindow> sptr;
     typedef QWeakPointer<MainWindow> wptr;
 
+	MainWindow();
+
+	virtual void update() Q_DECL_OVERRIDE;
+
+public slots:
+	void menuToProcessing();
+	void menuToAnalysing();
+
 signals:
     /**
      * This signal is emitted when the view state is changed.
@@ -34,9 +45,12 @@ signals:
     void menuItemViewStateChanged(ViewType newView);
 
 private:
-    QMenuBar menu; /**< The menu bar which holds all menu items */
-    ProcessingWidget processingWidget; /**< The widget to represent the processing view */
-    AnalysingWidget analysingWidget; /**< The widget to represent the analyzing view */
+	void setupUi();
+
+    QMenuBar *menu; /**< The menu bar which holds all menu items */
+	QAction *toProcessingView;
+	QAction *toAnalysingView;
+	QStackedLayout *centralWidgetLayout;
 };
 
 }  // namespace view

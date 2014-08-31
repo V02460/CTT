@@ -2,7 +2,8 @@
 
 #include "Frame.h"
 #include "MathHelper.h"
-#include "GPUHelper.h"
+#include "GPUSurfaceShader.h"
+#include "GPUSurfaceCompactor.h"
 
 #include "NotImplementedException.h"
 #include "OpenGLException.h"
@@ -11,14 +12,13 @@ namespace model {
 namespace frame {
 namespace histogram {
 
-using ::helper::GPUHelper;
-
+using ::helper::GPUSurfaceShader;
+using ::helper::GPUSurfaceCompactor;
+using ::helper::ceilTo;
+using ::helper::floorTo;
 using ::exception::IllegalArgumentException;
 using ::exception::OpenGLException;
 using ::exception::NotImplementedException;
-
-using helper::ceilTo;
-using helper::floorTo;
 
 typedef QSharedPointer<QOpenGLShaderProgram> QOpenGLShaderProgram_sptr;
 typedef QSharedPointer<QOpenGLTexture> QOpenGLTexture_sptr;
@@ -27,23 +27,58 @@ typedef QSharedPointer<QOpenGLFramebufferObject> QOpenGLFramebufferObject_sptr;
 
 static QSize getCompactedSize(QSize currentSize);
 
+const QString Histogram::kRedStr = "red";
+const QString Histogram::kGreenStr = "green";
+const QString Histogram::kBlueStr = "blue";
+const QString Histogram::kHueStr = "hue";
+const QString Histogram::kSaturationStr = "saturation";
+const QString Histogram::kLuminanceStr = "luminance";
+
+const QList<QString> Histogram::HISTOGRAM_TYPE_STRINGS = 
+    QList<QString>() << kRedStr
+                     << kGreenStr
+                     << kBlueStr
+                     << kHueStr
+                     << kSaturationStr
+                     << kLuminanceStr;
+
+static const QList<QString> HISTOGRAM_TYPE_STRINGS;
+
 Histogram::Histogram() {
 }
 
-const QString Histogram::RED = "red";
-const QString Histogram::GREEN = "green";
-const QString Histogram::BLUE = "blue";
-const QString Histogram::LUMINANCE = "luminance";
-const QString Histogram::HUE = "hue";
-const QString Histogram::SATURATION = "saturation";
+float Histogram::getValue(unsigned int idx) const {
+    if (idx >= kSize) {
+        throw new IllegalArgumentException("Out of bounds index " + QString::number(idx) + ".");
+    }
 
-const QList<QString> Histogram::HISTOGRAM_TYPE_STRINGS = QList<QString>()
-<< RED
-<< GREEN
-<< BLUE
-<< LUMINANCE
-<< HUE
-<< SATURATION;
+    if (values.isEmpty()) {
+        values.resize(kSize);
+
+        // TODO: use PBO to prevent GPU pipeline flush
+        QByteArray rawValues = histogramData->getRawRGBA();
+
+        for (unsigned int i = 0; i < 16; i++) {
+
+            // decode the floats stored in the RGBA8888 format
+            char r = rawValues[4 * i    ];
+            char g = rawValues[4 * i + 1];
+            char b = rawValues[4 * i + 2];
+            char a = rawValues[4 * i + 3];
+                
+            values[i] = reinterpret_cast<unsigned char&>(r) / 255.f
+                      + reinterpret_cast<unsigned char&>(g) / 65025.f
+                      + reinterpret_cast<unsigned char&>(b) / 16581375.f
+                      + reinterpret_cast<unsigned char&>(a) / 4228250625.f;
+        }
+    }
+
+    return values[idx];
+}
+
+Surface::sptr Histogram::getHistogramImage(QSize dimensions) const {
+    return renderHistogram(histogramData, dimensions);
+}
 
 const Histogram::HistogramType Histogram::stringToType(QString string) {
 	for (int i = 0; i < HISTOGRAM_TYPE_STRINGS.length(); i++) {
@@ -51,52 +86,36 @@ const Histogram::HistogramType Histogram::stringToType(QString string) {
 			return static_cast<HistogramType>(i);
 		}
 	}
+
 	throw new IllegalArgumentException(string + " is not a histogram type.");
 }
 
-/**
-* A list if String representations of Histogram Types.
-*
-* This list must be parallel to the HistogramType enum.
-*/
-static const QList<QString> HISTOGRAM_TYPE_STRINGS;
-void Histogram::init(const Surface &frame) {
+void Histogram::init(Surface::sptr frame) {
     Surface::sptr histogramGrid = makeHistogramGrid(frame);
-    Surface::sptr histogramData = requestValuesFromHistogramGrid(*histogramGrid.data());
-    histogramImage = renderHistogram(*histogramData.data());
+    histogramData = requestValuesFromHistogramGrid(histogramGrid);
 }
 
-// float Histogram::getValue(unsigned int i) const {
-//     if (i >= histogramSize) {
-//         throw new IllegalArgumentException("Out of bounds index " + QString::number(i) + ".");
-//     }
-// 
-//     throw new NotImplementedException();
-// }
-
-Surface::sptr Histogram::getHistogramImage() const {
-    return histogramImage;
-}
-
-Surface::sptr Histogram::makeHistogramGrid(const Surface &imageData) const {
-    GPUHelper gpuHelper(getGridFSFilePath(), imageData.getContext());
+Surface::sptr Histogram::makeHistogramGrid(Surface::sptr imageData) const {
+    GPUSurfaceShader gpuHelper(getGridFSFilePath(), imageData);
 
     // scale output texture dimensions to the next bigger multiple of 16
-    QSize targetSize = ceilTo(imageData.getSize(), 16);
+    QSize targetSize = ceilTo(imageData->getSize(), 16);
 
-    return gpuHelper.run(imageData, targetSize);
+    return gpuHelper.run(targetSize);
     }
 
-Surface::sptr Histogram::requestValuesFromHistogramGrid(const Surface &histogramGrid) const {
-    GPUHelper gpuHelper(":/Shader/Histogram/histogramCompaction.fs", histogramGrid.getContext(), getCompactedSize);
+Surface::sptr Histogram::requestValuesFromHistogramGrid(Surface::sptr histogramGrid) const {
+    GPUSurfaceCompactor gpuHelper(":/Shader/Histogram/histogramCompaction.fs",
+                                  histogramGrid,
+                                  getCompactedSize);
     
-    return gpuHelper.run(histogramGrid, QSize(16, 16));
+    return gpuHelper.run(QSize(16, 16));
     }
 
-Surface::sptr Histogram::renderHistogram(const Surface &histogramData) const {
-    GPUHelper histogramDisplayer(":/Shader/Histogram/displayHistogram.fs", histogramData.getContext());
+Surface::sptr Histogram::renderHistogram(Surface::sptr histogramData, QSize targetSize) const {
+    GPUSurfaceShader histogramDisplayer(":/Shader/Histogram/displayHistogram.fs", histogramData);
 
-    return histogramDisplayer.run(histogramData, QSize(256, 128));
+    return histogramDisplayer.run(targetSize);
 }
 
 /**

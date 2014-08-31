@@ -4,9 +4,12 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QTreeWidget>
 
 #include "Observer.h"
 #include "Observable.h"
+#include "AbstractListViewItem.h"
+#include "FilteredVideo.h"
 
 namespace view {
 
@@ -15,14 +18,28 @@ namespace view {
  * It stands basically for some kind of list and displays all the elements of that list in a way that is concretized in
  * the specific implementation.
  */
-class AbstractListView : public ::model::Observer, public ::model::Observable {
+class AbstractListView : public QTreeWidget, public ::model::Observer, public ::model::Observable {
+	Q_OBJECT
+
 public:
     typedef QScopedPointer<AbstractListView> uptr;
     typedef QSharedPointer<AbstractListView> sptr;
     typedef QWeakPointer<AbstractListView> wptr;
 
-private:
-    //SaveableList diplayableComponents; /**< The list over the components that should be displayed by the list view */
+	virtual void setVideo(::model::filter::FilteredVideo::sptr video);
+	virtual void removeVideo();
+signals:
+	void elementRemoved(int id);
+
+protected:
+	AbstractListView(QWidget *parent);
+	void removeAllItems();
+	void setupUi();
+
+	QList<AbstractListViewItem*> items;
+
+protected slots:
+	void buttonRemoveClicked(bool checked, int id);
 };
 
 }  // namespace view

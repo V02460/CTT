@@ -31,11 +31,11 @@ public:
     YUVPixelDiff(::model::video::Video::sptr video1, ::model::video::Video::sptr video2);
     virtual ~YUVPixelDiff();
 
-    virtual Surface::sptr getPixelDiff(unsigned int frameNr) const;
-    virtual double getDiff(unsigned int frameNr) const;
+    virtual Surface::sptr getPixelDiff(unsigned int frameNr) const Q_DECL_OVERRIDE;
+    virtual double getDiff(unsigned int frameNr) const Q_DECL_OVERRIDE;
 
-    virtual ::model::saveable::Memento getMemento() const;
-    virtual void restore(::model::saveable::Memento memento);
+    virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
+    virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
     static Saveable::sptr getDummy();
 
     static Saveable::SaveableType getSaveableType() { return Saveable::yUVPixelDiff; }

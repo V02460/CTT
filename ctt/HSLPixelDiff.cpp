@@ -1,7 +1,7 @@
 #include "HSLPixelDiff.h"
 
 #include "NotImplementedException.h"
-#include "GPUHelper.h"
+#include "GPUSurfaceShader.h"
 
 namespace model {
 namespace difference {
@@ -9,8 +9,9 @@ namespace difference {
 using ::model::video::Video;
 using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
-using ::helper::GPUHelper;
+using ::helper::GPUSurfaceShader;
 using ::exception::NotImplementedException;
+using ::exception::AccessToDummyException;
 
 HSLPixelDiff::HSLPixelDiff(Video::sptr video1, Video::sptr video2) : PixelDiff(video1, video2) {
     throw new NotImplementedException();
@@ -21,23 +22,39 @@ HSLPixelDiff::~HSLPixelDiff() {
 }
 
 Surface::sptr HSLPixelDiff::getPixelDiff(unsigned int frameNr) const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
     throw new NotImplementedException();
-    GPUHelper gpuHelper(":/Shader/Diff/hslPixelDiff.fs", video1->getContext());
+    
+    Surface::sptr frame1 = video1->getFrame(frameNr);
+    Surface::sptr frame2 = video2->getFrame(frameNr);
 
-    gpuHelper.setValue("sourceTexture2", *video2->getFrame(frameNr).data());
+    GPUSurfaceShader gpuHelper(":/Shader/Diff/hslPixelDiff.fs", frame1);
 
-    return Surface::sptr(gpuHelper.run(*video1->getFrame(frameNr).data()));
+    gpuHelper.setValue("sourceTexture2", frame2);
+
+    return Surface::sptr(gpuHelper.run());
 }
 
 double HSLPixelDiff::getDiff(unsigned int frameNr) const{
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
     throw new NotImplementedException();
+
+    Surface::sptr frame1 = video1->getFrame(frameNr);
 
     Surface::sptr pixelDiff = getPixelDiff(frameNr);
 
-    GPUHelper gpuHelper(":/Shader/compactAverage.fs", video1->getContext());
+    GPUSurfaceShader gpuHelper(":/Shader/compactAverage.fs", frame1);
 }
 
 Memento HSLPixelDiff::getMemento() const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
+
     return PixelDiff::getMemento();
 }
 

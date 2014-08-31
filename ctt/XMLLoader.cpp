@@ -25,7 +25,6 @@ using ::model::filter::MixFilter;
 using ::model::filter::NoiseFilter;
 using ::model::filter::overlay::HeatmapOverlay;
 using ::model::filter::overlay::MacroblockOverlay;
-using ::model::filter::overlay::MacropartionOverlay;
 using ::model::filter::overlay::MotionVectorOverlay;
 using ::model::filter::RescaleFilter;
 using ::model::filter::RGBChannelFilter;
@@ -50,16 +49,16 @@ using ::model::video::FileVideo;
 
 XMLLoader::XMLLoader() {}
 
-void XMLLoader::restore(QDir path) {
+void XMLLoader::restore(QString path) {
 	openFile(path);
 	createMaps();
 	restore();
 }
 
-void XMLLoader::openFile(QDir path) {
-	QFile file(path.absolutePath());
+void XMLLoader::openFile(QString path) {
+	QFile file(path);
 	if (!file.open(QIODevice::ReadOnly)) {
-		throw new IOException("File " + path.absolutePath() + " could not be opened.");
+		throw new IOException("File " + path + " could not be opened.");
 	}
 	xml = new QXmlStreamReader(&file);
 	if (!xml->readNextStartElement()) { // TODO more to skip?
@@ -147,7 +146,6 @@ void XMLLoader::createMaps() {
 			case Saveable::SaveableType::noiseFilter: dummy = NoiseFilter::getDummy(); break;
 			case Saveable::SaveableType::heatmapOverlay: dummy = HeatmapOverlay::getDummy(); break;
 			case Saveable::SaveableType::macroblockOverlay: dummy = MacroblockOverlay::getDummy(); break;
-			case Saveable::SaveableType::makropartitionOverlay: dummy = MacropartionOverlay::getDummy(); break;
 			case Saveable::SaveableType::motionVektorOverlay: dummy = MotionVectorOverlay::getDummy(); break;
 			case Saveable::SaveableType::rescaleFilter: dummy = RescaleFilter::getDummy(); break;
 			case Saveable::SaveableType::rGBChannelFilter: dummy = RGBChannelFilter::getDummy(); break;
@@ -184,7 +182,6 @@ void XMLLoader::createMaps() {
 				case Saveable::SaveableType::coloringOverlay: dummy = SaveableList<ColoringOverlay>::getDummy(); break;
 				case Saveable::SaveableType::heatmapOverlay: dummy = SaveableList<HeatmapOverlay>::getDummy(); break;
 				case Saveable::SaveableType::macroblockOverlay: dummy = SaveableList<MacroblockOverlay>::getDummy(); break;
-				case Saveable::SaveableType::makropartitionOverlay: dummy = SaveableList<MacropartionOverlay>::getDummy(); break;
 				case Saveable::SaveableType::motionVektorOverlay: dummy = SaveableList<MotionVectorOverlay>::getDummy(); break;
 				case Saveable::SaveableType::rescaleFilter: dummy = SaveableList<RescaleFilter>::getDummy(); break;
 				case Saveable::SaveableType::rGBChannelFilter: dummy = SaveableList<RGBChannelFilter>::getDummy(); break;
@@ -263,7 +260,7 @@ void XMLLoader::restore() {
 		element->restore(memento);
 	}
 	ViewState::getInstance()->restore(viewMemento);
-	changed();
+	Project::getInstance()->everythingChanged();
 }
 
 XMLLoader *XMLLoader::getInstance() {

@@ -36,18 +36,18 @@ void RescaleFilterTest::wrongParams() {
     RescaleFilter rescaleFilter(video);
 
     // some really wrong values
-    QEXPECT_EXCEPTION(rescaleFilter.setParam(FilterParam("not right", "at all")), IllegalArgumentException);
-    QEXPECT_EXCEPTION(rescaleFilter.setParam(FilterParam("a bit off", 1.0)), IllegalArgumentException);
-    QEXPECT_EXCEPTION(rescaleFilter.setParam(FilterParam(RescaleFilter::kParamNewSize, "WRONG!")), IllegalArgumentException);
+	QEXPECT_EXCEPTION(rescaleFilter.setParam(FilterParam::sptr(new FilterParam("not right", "at all"))), IllegalArgumentException);
+	QEXPECT_EXCEPTION(rescaleFilter.setParam(FilterParam::sptr(new FilterParam("a bit off", 1.0))), IllegalArgumentException);
+	QEXPECT_EXCEPTION(rescaleFilter.setParam(FilterParam::sptr(new FilterParam(RescaleFilter::kParamNewSize, "WRONG!"))), IllegalArgumentException);
     rescaleFilter.getFrame(9);
 
     // test a proper value
-    rescaleFilter.setParam(FilterParam(RescaleFilter::kParamNewSize, QSize(10, 500)));
+	rescaleFilter.setParam(FilterParam::sptr(new FilterParam(RescaleFilter::kParamNewSize, QSize(10, 500))));
     rescaleFilter.getFrame(14);
 
     // test some invalid values which should be handled silently by the class
-    rescaleFilter.setParam(FilterParam(RescaleFilter::kParamNewSize, QSize(200, 0)));
+	rescaleFilter.setParam(FilterParam::sptr(new FilterParam(RescaleFilter::kParamNewSize, QSize(200, 0))));
     rescaleFilter.getFrame(3);
-    rescaleFilter.setParam(FilterParam(RescaleFilter::kParamNewSize, QSize(-10, 5)));
+	rescaleFilter.setParam(FilterParam::sptr(new FilterParam(RescaleFilter::kParamNewSize, QSize(-10, 5))));
     rescaleFilter.getFrame(3);
 }

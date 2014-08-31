@@ -29,6 +29,12 @@
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Header Files\View">
+      <UniqueIdentifier>{46dd4f40-7afd-453a-8f63-ab1bda300bf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View">
+      <UniqueIdentifier>{70bacd5d-96cc-4fc0-9854-3b9be955b549}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

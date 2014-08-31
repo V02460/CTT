@@ -5,17 +5,19 @@
 #include "FileNotFoundException.h"
 #include "IOException.h"
 #include "FrameMetadata.h"
-#include "GPUHelper.h"
+#include "GPUSurfaceShader.h"
 #include "YUVType.h"
+#include "GlobalContext.h"
 
 namespace model {
 namespace video {
 
 using ::model::frame::Frame;
-using ::helper::GPUHelper;
+using ::helper::GPUSurfaceShader;
 using ::model::frame::FrameMetadata;
 using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
+using ::exception::AccessToDummyException;
 using ::exception::IllegalStateException;
 using ::exception::IllegalArgumentException;
 using ::model::frame::MacroblockType;
@@ -87,6 +89,8 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QSize resolution, double fra
 			YUVDataVideo::colorTable[i] = color.rgb();
 		}
 	}
+
+	isDummyFlag = false;
 }
 
 YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, QSize resolution, double framerate, YUVType type, QSharedPointer<QOpenGLContext> context)
@@ -129,19 +133,15 @@ YUVDataVideo::~YUVDataVideo() {
 
 VideoMetadata YUVDataVideo::getMetadata() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Tried to request metadata from a dummy YUVDataVideo.");
+		throw new AccessToDummyException();
 	}
-
 	return metadata;
 }
 
-model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const 
-{
-	if (isDummy())
-	{
-		throw new NotImplementedException("Tried to request a frame from a dummy YUVDataVideo");
+model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
 	}
-
 	if (frameNumber >= getFrameCount())
 	{
 		throw new IllegalArgumentException("Tried to request frame " + QString::number(frameNumber) 
@@ -152,9 +152,9 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 		load(frameNumber);
 	}
 
-	QByteArray rawFrame = videoBuffer.mid((frameNumber - firstFrameInMemory) * bytesPerFrame, bytesPerFrame);
+	QByteArray rawFrame(videoBuffer.mid((frameNumber - firstFrameInMemory) * bytesPerFrame, bytesPerFrame));
 
-	QByteArray yChannel = rawFrame.mid(0, pixelsPerFrame);
+	QByteArray yChannel(rawFrame.left(pixelsPerFrame));
 	QScopedPointer<QByteArray> uChannel;
 	QScopedPointer<QByteArray> vChannel;
 
@@ -196,21 +196,21 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 	uImage->save("C:/Users/Jonas/Downloads/utestpic.bmp", "BMP");
 	vImage->save("C:/Users/Jonas/Downloads/vtestpic.bmp", "BMP");
 
-	Frame yFrame(context, yImage);
-	Frame uFrame(context, *uImage);
-	Frame vFrame(context, *vImage);
+    Surface::sptr yFrame(new Frame(context, yImage));
+	Surface::sptr uFrame(new Frame(context, *uImage));
+    Surface::sptr vFrame(new Frame(context, *vImage));
 
-	GPUHelper::uptr myHelper;
+	GPUSurfaceShader::uptr myHelper;
 	switch (type)
 	{
 	case YUV444:
-		myHelper.reset(new GPUHelper(":/Shader/Conversion/YUV444toRGBsdtv.fs", context));
+        myHelper.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV444toRGBsdtv.fs", yFrame));
 		break;
 	case YUV422:
-		myHelper.reset(new GPUHelper(":/Shader/Conversion/YUV422toRGBsdtv.fs", context));
+        myHelper.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV422toRGBsdtv.fs", yFrame));
 		break;
 	case YUV420:
-		myHelper.reset(new GPUHelper(":/Shader/Conversion/YUV420toRGBsdtv.fs", context));
+        myHelper.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV420toRGBsdtv.fs", yFrame));
 		break;
 	default:
 		throw new IllegalStateException("YUV type not supported.");
@@ -220,7 +220,7 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 	myHelper->setValue("uChannel", uFrame);
 	myHelper->setValue("vChannel", vFrame);
 
-	Surface::sptr resultSurface = myHelper->run(yFrame, getMetadata().getSize());
+	Surface::sptr resultSurface = myHelper->run(getMetadata().getSize());
 
 	Frame::sptr result;
 
@@ -297,12 +297,10 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 }
 
 
-unsigned int YUVDataVideo::getFrameCount() const
-{
+unsigned int YUVDataVideo::getFrameCount() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Tried to request the frame count from a dummy YUVDataVideo.");
+		throw new AccessToDummyException();
 	}
-
 	return metadata.getLength();
 }
 
@@ -329,12 +327,10 @@ bool YUVDataVideo::hasFrameInBuffer(unsigned int frameNr) const
 		& (frameNr < metadata.getLength());
 }
 
-Memento YUVDataVideo::getMemento() const
-{
+Memento YUVDataVideo::getMemento() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Tried to request a memento from a dummy YUVDataVideo.");
+		throw new AccessToDummyException();
 	}
-
 	Memento memento;
 
 	memento.setBool(hasMetadataFileStringId, hasMetadataFile);
@@ -355,9 +351,10 @@ Memento YUVDataVideo::getMemento() const
 	return memento;
 }
 
-void YUVDataVideo::restore(Memento memento)
-{
-	//TODO ztrdzt initialze context
+void YUVDataVideo::restore(Memento memento) {
+	context = GlobalContext::get();
+	hasMetadataFile = false;
+
 	pathToVideoFile = memento.getString(videoPathStringId);
 	videoFile.setFileName(pathToVideoFile);
 
@@ -406,6 +403,7 @@ void YUVDataVideo::restore(Memento memento)
 
 	metadata = VideoMetadata(resolution, memento.getDouble(framerateStringId), length);
 
+	isDummyFlag = false;
 	load(0);
 
 	if (YUVDataVideo::colorTable.isEmpty())
@@ -443,21 +441,19 @@ void YUVDataVideo::restore(Memento memento)
 
 		loadMetadata(0);
 	}
-	isDummyFlag = false;
+
+	
 }
 
 Saveable::SaveableType YUVDataVideo::getSaveableType() {
     return Saveable::yUVDataVideo;
 }
 
-::model::saveable::Saveable::sptr YUVDataVideo::getDummy()
-{
+::model::saveable::Saveable::sptr YUVDataVideo::getDummy() {
 	return YUVDataVideo::sptr(new YUVDataVideo);
 }
 
-void YUVDataVideo::loadVideodata(unsigned int startFrame) const
-{
-
+void YUVDataVideo::loadVideodata(unsigned int startFrame) const {
 	if (!videoFile.open(QIODevice::ReadOnly)) {
 		throw new IOException("Couldn't open the video file at \"" + pathToVideoFile + "\".");
 	}
@@ -477,8 +473,7 @@ void YUVDataVideo::loadVideodata(unsigned int startFrame) const
 	videoFile.close();
 }
 
-void YUVDataVideo::loadMetadata(unsigned int startFrame) const
-{
+void YUVDataVideo::loadMetadata(unsigned int startFrame) const {
 	if (!hasMetadataFile)
 	{
 		throw new IllegalStateException("Tried to load metadata without having a metadata file.");

@@ -16,7 +16,7 @@ namespace controller {
 /**
  * The OverlayController manages requests to manipulate the list of overlays which can be used for analyzing.
  */
-class OverlayController : public QObject, public::model::Observer {
+class OverlayController : public QObject {
     Q_OBJECT
 
 public:

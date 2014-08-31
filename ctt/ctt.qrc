@@ -19,6 +19,7 @@
         <file>Shader/Filter/Rescale.fs</file>
         <file>Shader/Filter/Noise.fs</file>
         <file>Shader/Filter/RGBChannel.fs</file>
+        <file>Shader/Default/Default.vs</file>
         <file>Shader/Diff/yuvPixelDiff.fs</file>
     </qresource>
 </RCC>

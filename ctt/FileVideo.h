@@ -4,7 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
-#include <QDir>
+#include <QFile>
 
 #include "Video.h"
 
@@ -24,7 +24,7 @@ public:
     /**
     * Returns the path to the video file this Video loads its frames from.
     *
-    * @return QDir the path to the video file this Video loads its frames from
+    * @return QString the path to the video file this Video loads its frames from
 	* @throws IllegalStateException if the method is called on a dummy
     */
     QString getPath() const;
@@ -35,7 +35,7 @@ public:
 
 	virtual QSharedPointer<QOpenGLContext> getContext() const ;
 
-    static Saveable::SaveableType getSaveableType();
+    static ::model::saveable::Saveable::SaveableType getSaveableType();
 
 protected:
 	/**

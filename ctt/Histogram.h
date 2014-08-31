@@ -32,7 +32,7 @@ public:
 	typedef QWeakPointer<Histogram> wptr;
 
 	/** The size of a histogram. */
-	static const unsigned int SIZE = 256;
+	static const unsigned int kSize = 256;
 
     /**
      * Labels for the channels histograms describe the intensity distribution of.
@@ -43,23 +43,23 @@ public:
         Red,
         Green,
         Blue,
-        Luminance,
         Hue,
-        Saturation
+        Saturation,
+        Luminance
     };
 
 	/** String representation of the red histogram type. */
-	static const QString RED;
+	static const QString kRedStr;
 	/** String representation of the green histogram type. */
-	static const QString GREEN;
+	static const QString kGreenStr;
 	/** String representation of the blue histogram type. */
-	static const QString BLUE;
-	/** String representation of the luminance histogram type. */
-	static const QString LUMINANCE;
+	static const QString kBlueStr;
 	/** String representation of the hue histogram type. */
-	static const QString HUE;
+    static const QString kHueStr;
 	/** String representation of the saturation histogram type. */
-	static const QString SATURATION;
+    static const QString kSaturationStr;
+	/** String representation of the luminance histogram type. */
+	static const QString kLuminanceStr;
 
 	/**
 	 * A list if String representations of Histogram Types.
@@ -80,9 +80,9 @@ public:
      * @return float the value for the entry with the number i
      * @throws InvalidArgumentException if i > 255
      */
-    //virtual float getValue(unsigned int i) const;
+    virtual float getValue(unsigned int i) const;
 
-    Surface::sptr getHistogramImage() const;
+    Surface::sptr getHistogramImage(QSize dimensions) const;
 
     /**
      * Gets the type of the histogram, specifying the type of variable the histogram describes the distribution of. 
@@ -111,7 +111,7 @@ protected:
     *
     * @param frame Frame to calculate the histogram for
     */
-    void init(const Surface &frame);
+    void init(Surface::sptr frame);
 
     /**
      * Provides the path to the fragment shader used for creating the histogram grid.
@@ -128,7 +128,7 @@ private:
     * @param imageData Image data that will be used for the histogram grid calculation
     * @return Surface::sptr the generated histogram grid
     */
-    Surface::sptr makeHistogramGrid(const Surface &imageData) const;
+    Surface::sptr makeHistogramGrid(Surface::sptr imageData) const;
 
     /**
     * Extracts values for a single histogram from the grid of local histograms.
@@ -136,11 +136,21 @@ private:
     * @param histogramGrid Grid of local histograms
     * @return the histogram values
     */
-    Surface::sptr requestValuesFromHistogramGrid(const Surface &imageData) const;
+    Surface::sptr requestValuesFromHistogramGrid(Surface::sptr imageData) const;
 
-    Surface::sptr renderHistogram(const Surface &histogramData) const;
+    Surface::sptr renderHistogram(Surface::sptr histogramData, QSize targetSize) const;
 
-    Surface::sptr histogramImage;
+    /**
+     * The values stored in a 16x16px Surface (on GPU).
+     */
+    Surface::sptr histogramData;
+
+    /**
+     * The values of the histogram stored as float array (on CPU).
+     */
+    mutable QVector<float> values;
+    
+
 };
 
 }  // namespace histogram

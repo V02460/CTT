@@ -18,7 +18,7 @@ namespace filter {
  * Represents a Video with a filter pipeline modifying its frames.
  *
  */
-class FilteredVideo : public ::model::video::Video, public ::model::Observable {
+class FilteredVideo : public ::model::video::Video {
 public:
     typedef QScopedPointer<FilteredVideo> uptr;
     typedef QSharedPointer<FilteredVideo> sptr;
@@ -75,7 +75,6 @@ public:
     virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
 	virtual QList<const Module*> getUsesList() const;
 	virtual unsigned int getFrameCount() const;
-	virtual bool uses(const model::Module &module) const;
 	virtual model::video::VideoMetadata getMetadata() const;
 	virtual QSharedPointer<QOpenGLContext> getContext() const;
 

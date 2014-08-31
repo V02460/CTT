@@ -12,7 +12,6 @@ extern "C"
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
-#include <QDir>
 
 #include "Video.h"
 #include "Frame.h"

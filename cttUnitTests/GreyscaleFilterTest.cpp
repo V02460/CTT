@@ -34,7 +34,9 @@ void GreyscaleFilterTest::testRun() {
 
 void GreyscaleFilterTest::wrongParams() {
     GreyscaleFilter greyscaleFilter(video);
-    QEXPECT_EXCEPTION(greyscaleFilter.setParam(FilterParam("not right", "at all")), IllegalArgumentException);
-    QEXPECT_EXCEPTION(greyscaleFilter.setParam(FilterParam("a bit off", 1.0)), IllegalArgumentException);
+	QEXPECT_EXCEPTION(greyscaleFilter.setParam(FilterParam::sptr(new FilterParam("not right", "at all"))),
+		              IllegalArgumentException);
+	QEXPECT_EXCEPTION(greyscaleFilter.setParam(FilterParam::sptr(new FilterParam("a bit off", 1.0))),
+		              IllegalArgumentException);
     greyscaleFilter.getFrame(9);
 }

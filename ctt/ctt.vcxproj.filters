@@ -116,11 +116,13 @@
     <Filter Include="Source Files\Controller\Project">
       <UniqueIdentifier>{aaf07077-65d8-4854-b73a-028a0c375b92}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Exception">
-      <UniqueIdentifier>{43f41436-2483-41db-b79d-a3ef731d4d18}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Helper">
       <UniqueIdentifier>{c1d742ec-7c5f-4d6e-a9ea-e4ac4a31af82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lokalisierungs Dateien">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+      <ParseFiles>false</ParseFiles>
     </Filter>
     <Filter Include="Shader Files">
       <UniqueIdentifier>{ba79908a-6c73-41f6-9197-b595d2228533}</UniqueIdentifier>
@@ -136,6 +138,15 @@
     </Filter>
     <Filter Include="Shader Files\Diff">
       <UniqueIdentifier>{4fab2534-a35d-45a9-af8e-9d902c8a8809}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Overlay">
+      <UniqueIdentifier>{8fee5fd8-1fe7-4e77-9424-8bb8e6627595}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Default">
+      <UniqueIdentifier>{18e2e876-1c15-4f5d-9cbf-b34ccfe4a029}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exception">
+      <UniqueIdentifier>{af2fafcf-877f-4afc-97b9-c30448ac2a77}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -205,9 +216,6 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_HistogramWidget.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_FrameMetadataWidget.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_MainWindow.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -266,9 +274,6 @@
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_ProcessingWidget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_FrameMetadataWidget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_InsertionWidget.cpp">
@@ -332,9 +337,6 @@
       <Filter>Source Files\Model\Filter\Overlay</Filter>
     </ClCompile>
     <ClCompile Include="MacroblockOverlay.cpp">
-      <Filter>Source Files\Model\Filter\Overlay</Filter>
-    </ClCompile>
-    <ClCompile Include="MacropartitionOverlay.cpp">
       <Filter>Source Files\Model\Filter\Overlay</Filter>
     </ClCompile>
     <ClCompile Include="MotionVectorOverlay.cpp">
@@ -442,9 +444,6 @@
     <ClCompile Include="FilterTimeline.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
-    <ClCompile Include="FrameMetadataWidget.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
     <ClCompile Include="HistogramWidget.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
@@ -523,9 +522,6 @@
     <ClCompile Include="VideoAddedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
-    <ClCompile Include="VideoListOperation.cpp">
-      <Filter>Source Files\Controller\Operation</Filter>
-    </ClCompile>
     <ClCompile Include="VideoRemovedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
@@ -556,9 +552,6 @@
     <ClCompile Include="OpenGLException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
-    <ClCompile Include="GPUHelper.cpp">
-      <Filter>Source Files\Helper</Filter>
-    </ClCompile>
     <ClCompile Include="ctt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -568,19 +561,31 @@
     <ClCompile Include="MockDisplayHelper.cpp">
       <Filter>Source Files\Helper</Filter>
     </ClCompile>
+    <ClCompile Include="ListedPushButton.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ListedPushButton.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ListedPushButton.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilterInsertionWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FilterInsertionWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterInsertionWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterListViewElement.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoSaver.cpp">
+      <Filter>Source Files\Model\Video</Filter>
+    </ClCompile>
     <ClCompile Include="AccessToDummyException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="FFmpegException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="FileNotFoundException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="IOException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="ParseException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
     <ClCompile Include="FFmpegException.cpp">
@@ -589,11 +594,191 @@
     <ClCompile Include="FilterMovedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
+    <ClCompile Include="ExtendedVideoListController.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterInsertionWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterParamItem.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilterParamItem.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FilterParamItem.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterListViewItem.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilterListViewItem.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FilterListViewItem.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilterListView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FilterListView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AbstractListView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AbstractListView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameMetadataWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FrameMetadataWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FrameMetadataWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qcustomplot.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qcustomplot.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="qcustomplot.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="AnalysingOrderingWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
     <ClCompile Include="GlobalContext.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="Module.cpp">
       <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="DifferenceInsertionWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="AccessToDummyException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="FileNotFoundException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="IllegalArgumentException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="IllegalStateException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="IOException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="NoScalePolicy.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="NotImplementedException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGLException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="ParseException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="FFmpegException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_BlurFilter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CoffeeFilter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_BlurFilter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CoffeeFilter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GreyscaleFilter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GreyscaleFilter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_HeatmapOverlay.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_HeatmapOverlay.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MotionVectorOverlay.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MotionVectorOverlay.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MixFilter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MixFilter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_NoiseFilter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_NoiseFilter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_RGBChannelFilter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_RGBChannelFilter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_RescaleFilter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_RescaleFilter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_TimeshiftFilter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_TimeshiftFilter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MacroblockOverlay.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MacroblockOverlay.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DifferenceInsertionWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DifferenceInsertionWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GPUSurfacePainter.cpp">
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="GPUSurfaceCompactor.cpp">
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="GPUSurfaceShader.cpp">
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexAttribute.cpp">
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="ExtendedVideoAddedOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="ExtendedVideoRemovedOperation.cpp">
+      <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
     <ClCompile Include="Shader\Diff\yuvPixelDiff.fs">
       <Filter>Shader Files\Diff</Filter>
@@ -645,9 +830,6 @@
     <CustomBuild Include="HistogramWidget.h">
       <Filter>Header Files\View</Filter>
     </CustomBuild>
-    <CustomBuild Include="FrameMetadataWidget.h">
-      <Filter>Header Files\View</Filter>
-    </CustomBuild>
     <CustomBuild Include="MainWindow.h">
       <Filter>Header Files\View</Filter>
     </CustomBuild>
@@ -687,6 +869,69 @@
     <CustomBuild Include="NoScalePolicy.h">
       <Filter>Header Files\View</Filter>
     </CustomBuild>
+    <CustomBuild Include="ListedPushButton.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilterInsertionWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="AbstractListView.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilterParamItem.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilterListViewItem.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilterListView.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FrameMetadataWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="qcustomplot.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="BlurFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="CoffeeFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GreyscaleFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="HeatmapOverlay.h">
+      <Filter>Header Files\Model\Filter\Overlay</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MotionVectorOverlay.h">
+      <Filter>Header Files\Model\Filter\Overlay</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MixFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="NoiseFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="RGBChannelFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="RescaleFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="TimeshiftFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MacroblockOverlay.h">
+      <Filter>Header Files\Model\Filter\Overlay</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DifferenceInsertionWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilterListView.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnalysingWidget.h">
@@ -694,12 +939,6 @@
     </ClInclude>
     <ClInclude Include="BlueHistogram.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
-    </ClInclude>
-    <ClInclude Include="BlurFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="CoffeeFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
     <ClInclude Include="ColoringOverlay.h">
       <Filter>Header Files\Model\Filter\Overlay</Filter>
@@ -746,12 +985,6 @@
     <ClInclude Include="GreenHistogram.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
-    <ClInclude Include="GreyscaleFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="HeatmapOverlay.h">
-      <Filter>Header Files\Model\Filter\Overlay</Filter>
-    </ClInclude>
     <ClInclude Include="Histogram.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
@@ -760,18 +993,6 @@
     </ClInclude>
     <ClInclude Include="LuminanceHistogram.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
-    </ClInclude>
-    <ClInclude Include="MacroblockOverlay.h">
-      <Filter>Header Files\Model\Filter\Overlay</Filter>
-    </ClInclude>
-    <ClInclude Include="MacropartitionOverlay.h">
-      <Filter>Header Files\Model\Filter\Overlay</Filter>
-    </ClInclude>
-    <ClInclude Include="NoiseFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="MotionVectorOverlay.h">
-      <Filter>Header Files\Model\Filter\Overlay</Filter>
     </ClInclude>
     <ClInclude Include="Video.h">
       <Filter>Header Files\Model\Video</Filter>
@@ -788,9 +1009,6 @@
     <ClInclude Include="Memento.h">
       <Filter>Header Files\Model\Saveable</Filter>
     </ClInclude>
-    <ClInclude Include="MixFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
     <ClInclude Include="Overlay.h">
       <Filter>Header Files\Model\Filter\Overlay</Filter>
     </ClInclude>
@@ -799,15 +1017,6 @@
     </ClInclude>
     <ClInclude Include="PlayerWidget.h">
       <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="RescaleFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="RGBChannelFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="TimeshiftFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
     <ClInclude Include="VideoAddedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
@@ -827,9 +1036,6 @@
     <ClInclude Include="YUVPixelDiff.h">
       <Filter>Header Files\Model\Difference</Filter>
     </ClInclude>
-    <ClInclude Include="VideoListOperation.h">
-      <Filter>Header Files\Controller\Operation</Filter>
-    </ClInclude>
     <ClInclude Include="ViewType.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
@@ -848,9 +1054,6 @@
     <ClInclude Include="FilterIntervalList.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="AbstractListView.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
     <ClInclude Include="AbstractTimeline.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
@@ -858,9 +1061,6 @@
       <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="DifferenceTimeline.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterListView.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="FilterTimeline.h">
@@ -914,9 +1114,6 @@
     <ClInclude Include="MathHelper.h">
       <Filter>Header Files\Helper</Filter>
     </ClInclude>
-    <ClInclude Include="GPUHelper.h">
-      <Filter>Header Files\Helper</Filter>
-    </ClInclude>
     <ClInclude Include="OpenGLException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
@@ -941,8 +1138,38 @@
     <ClInclude Include="GlobalContext.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
+    <ClInclude Include="AnalysingOrderingWidget.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
     <ClInclude Include="FileNotFoundException.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtendedVideoListController.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterListViewElement.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="YUVType.h">
+      <Filter>Header Files\Model\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtendedVideoRemovedOperation.h">
+      <Filter>Header Files\Controller\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexAttribute.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="GPUSurfacePainter.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="GPUSurfaceCompactor.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="GPUSurfaceShader.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtendedVideoAddedOperation.h">
+      <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1015,6 +1242,21 @@
     <None Include="Shader\Histogram\saturationHistogramGrid.fs">
       <Filter>Shader Files\Histogram</Filter>
     </None>
+    <None Include="Shader\Filter\RGBChannel.fs">
+      <Filter>Shader Files\Filter</Filter>
+    </None>
+    <None Include="..\cttApp\ctt_de.ts">
+      <Filter>Lokalisierungs Dateien</Filter>
+    </None>
+    <None Include="..\cttApp\ctt_en.ts">
+      <Filter>Lokalisierungs Dateien</Filter>
+    </None>
+    <None Include="Shader\Overlay\Macroblock.fs">
+      <Filter>Shader Files\Overlay</Filter>
+    </None>
+    <None Include="Shader\Overlay\Macroblock.vs">
+      <Filter>Shader Files\Overlay</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AccessToDummyException.h">
@@ -1023,5 +1265,23 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Images\big_buck_bunny_01337.png" />
+    <ClInclude Include="IOException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParseException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoDisplayPolicy.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractListViewItem.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <None Include="Shader\Overlay\heatmap.fs">
+      <Filter>Shader Files\Overlay</Filter>
+    </None>
+    <None Include="Shader\Default\Default.vs">
+      <Filter>Shader Files\Default</Filter>
+    </None>
   </ItemGroup>
 </Project>

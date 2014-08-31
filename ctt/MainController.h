@@ -4,12 +4,13 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
-#include <QDir>
 #include <QObject>
 
 #include "Observer.h"
 #include "SaveFileType.h"
 #include "Project.h"
+#include "XMLLoader.h"
+#include "OperationList.h"
 
 namespace controller {
 
@@ -18,12 +19,14 @@ namespace controller {
  */
 class MainController : public QObject, public ::model::Observer {
     Q_OBJECT
+
 public:
     typedef QScopedPointer<MainController> uptr;
     typedef QSharedPointer<MainController> sptr;
     typedef QWeakPointer<MainController> wptr;
 
-    project::Project &getProject() const;
+	MainController();
+
 public slots:
 
     /**
@@ -39,7 +42,7 @@ public slots:
      * @param path The path to where the Project should be saved.
      * @param fileType The type of file as which the Project should be saved.
      */
-    void saveAsClicked(QDir path, project::SaveFileType fileType);
+    void saveAsClicked(QString path, project::SaveFileType fileType);
 
     /**
      * Initiates loading an existing Project from a specified location.
@@ -47,7 +50,7 @@ public slots:
      *
      * @param path The path from where the Project should be loaded.
      */
-    void loadClicked(QDir path);
+    void loadClicked(QString path);
 
     /**
      * Initiates creating a new Project.
@@ -56,9 +59,8 @@ public slots:
     void newProject();
 
 private:
-    QDir currentSavePath;
+    QString currentSavePath;
     project::SaveFileType currentSaveFileType;
-    project::Project::uptr project;
 };
 
 }  // namespace controller
