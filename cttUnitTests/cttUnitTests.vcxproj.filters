@@ -106,7 +106,16 @@
     <Filter Include="Header Files\View">
       <UniqueIdentifier>{35351403-fb1c-43b4-a2c2-a6ed37fc16b4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Test Structure\Model\View">
+    <Filter Include="Source Files\Model\Filter\Overlay">
+      <UniqueIdentifier>{0f56f134-e1ba-45d0-9f2f-fb76fa90002b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Filter\Overlay">
+      <UniqueIdentifier>{73cec221-f10d-474f-8ac9-68327b89eb90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Structure\Model\Filter\Overlay">
+      <UniqueIdentifier>{8bc17a77-cdd1-4bcd-b8f4-b98b1603bdc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Structure\View">
       <UniqueIdentifier>{5e6fc042-f6b0-4d8f-b40e-cfc162a06b9b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -134,9 +143,6 @@
     </ClCompile>
     <ClCompile Include="VideoMetadataTest.cpp">
       <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
-    <ClCompile Include="ModelTests.h">
-      <Filter>Header Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_VideoMetadataTest.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -291,6 +297,18 @@
     <ClCompile Include="SaveableListTest.cpp">
       <Filter>Source Files\Model\Saveable</Filter>
     </ClCompile>
+    <ClCompile Include="MacroblockOverlayTest.cpp">
+      <Filter>Source Files\Model\Filter\Overlay</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MacroblockOverlayTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MacroblockOverlayTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelTests.h">
+      <Filter>Test Structure\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -356,6 +374,9 @@
     <CustomBuild Include="SaveableListTest.h">
       <Filter>Header Files\Model\Saveable</Filter>
     </CustomBuild>
+    <CustomBuild Include="MacroblockOverlayTest.h">
+      <Filter>Header Files\Model\Filter\Overlay</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CustomTestingMacros.h">
@@ -383,7 +404,13 @@
       <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="ViewTests.h">
-      <Filter>Test Structure\Model\View</Filter>
+      <Filter>Test Structure\View</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelFilterOverlayTests.h">
+      <Filter>Test Structure\Model\Filter\Overlay</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelFilterTests.h">
+      <Filter>Test Structure\Model\Filter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
