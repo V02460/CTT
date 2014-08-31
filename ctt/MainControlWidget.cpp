@@ -19,6 +19,7 @@ using ::model::saveable::SaveableList;
 using ::model::difference::FrameDiff;
 using ::controller::DifferenceController;
 using ::exception::NotImplementedException;
+using ::model::filter::FilteredVideo;
 
 namespace view {
 
@@ -119,11 +120,19 @@ void MainControlWidget::btnInsertClicked(bool active) {
 
 void MainControlWidget::setPlayer(Player::sptr player) {
 	playerFunctions->setPlayer(player);
+}
+
+void MainControlWidget::setVideo(FilteredVideo::sptr video) {
+	listView->setVideo(video);
 	btnInsert->setEnabled(true);
 }
 
 void MainControlWidget::removePlayer() {
 	playerFunctions->removePlayer();
+}
+
+void MainControlWidget::removeVideo() {
+	listView->removeVideo();
 	btnInsert->setEnabled(false);
 }
 

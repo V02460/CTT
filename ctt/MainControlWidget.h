@@ -36,7 +36,9 @@ public:
 		AnalysingOrderingWidget::sptr orderingWidget, QWidget *parent = 0);
 
 	void setPlayer(::model::player::Player::sptr player);
+	void setVideo(::model::filter::FilteredVideo::sptr video);
 	void removePlayer();
+	void removeVideo();
 
 	virtual void update();
 
