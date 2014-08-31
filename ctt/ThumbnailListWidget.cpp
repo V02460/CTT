@@ -12,11 +12,11 @@ using ::model::saveable::SaveableList;
 using ::model::filter::FilteredVideo;
 using ::model::video::YUVType;
 
-ThumbnailListWidget::ThumbnailListWidget(SaveableList<FilteredVideo>::sptr filteredVideos, int selectableCount, bool isHorizontal, QWidget *parent) : QScrollArea(parent), macroblockFilePath("") {
-	thumbnailList = QList<ListedPushButton::sptr>();
-	activatedButtons = QList<int>();
+ThumbnailListWidget::ThumbnailListWidget(SaveableList<FilteredVideo>::sptr filteredVideos, int selectableCount,
+	bool isHorizontal, QWidget *parent) : QScrollArea(parent), macroblockFilePath(""), isInUpdateRequest(false),
+	activatedButtons(), thumbnailList(), filteredVideos(filteredVideos), selectableCount(selectableCount),
+	isHorizontal(isHorizontal) {
 
-	this->filteredVideos = filteredVideos;
 	if (!filteredVideos.isNull()) {
 		filteredVideos->subscribe(this);
 	} else {
@@ -27,9 +27,6 @@ ThumbnailListWidget::ThumbnailListWidget(SaveableList<FilteredVideo>::sptr filte
 			this->filteredVideos->insert(i, FilteredVideo::sptr());
 		}
 	}
-
-	this->selectableCount = selectableCount;
-	this->isHorizontal = isHorizontal;
 
 	setupUi();
 }
@@ -63,6 +60,7 @@ void ThumbnailListWidget::setupUi() {
 
 void ThumbnailListWidget::setupOpenVideoDialog() {
 	openVideoDialog = new QDialog(this, Qt::Dialog | Qt::WindowTitleHint | Qt::WindowSystemMenuHint);
+	openVideoDialog->setWindowTitle(tr("MORE_VIDEO_INFORMATION"));
 
 	QGridLayout *dialogMainLayout = new QGridLayout();
 
@@ -119,6 +117,7 @@ void ThumbnailListWidget::setupOpenVideoDialog() {
 
 void ThumbnailListWidget::update() {
 	//Remove all contents of the ThumbnailListWidget
+	isInUpdateRequest = true;
 
 	//Remove and delete all ListedPushButtons of this widget
 	for each (ListedPushButton::sptr btn in thumbnailList) {
@@ -146,6 +145,8 @@ void ThumbnailListWidget::update() {
 
 	//TODO activatedButton entweder leeren oder die buttons anpassen
 	adjustSize();
+
+	isInUpdateRequest = false;
 }
 
 void ThumbnailListWidget::listedButtonToggled(bool checked, int id) {
@@ -163,9 +164,10 @@ void ThumbnailListWidget::listedButtonToggled(bool checked, int id) {
 	} else if (!checked && activatedButtons.contains(id)) {
 		if (activatedButtons.size() > 1) {
 			activatedButtons.removeOne(id);
-			emit buttonDeactivated(id);
-		}
-		else {
+			if (!isInUpdateRequest) {
+				emit buttonDeactivated(id);
+			}
+		} else {
 			thumbnailList.at(id)->setChecked(true);
 		}
 	}
@@ -182,9 +184,7 @@ void ThumbnailListWidget::listedButtonRemoved(bool checked, int id) {
 void ThumbnailListWidget::btnAddVideoClicked(bool checked) {
 	QString videoPath = QFileDialog::getOpenFileName(0, tr("OPEN_VIDEO"), "", tr("YUV_FILES (*.yuv)"));
 	if (videoPath != "") {
-		openVideoDialog->exec();
-
-		if (openVideoDialog->result() == QDialog::Accepted) {
+		if (openVideoDialog->exec() == QDialog::Accepted) {
 			YUVType videoType;
 
 			switch (yuvType->currentIndex()) {
@@ -214,6 +214,10 @@ void ThumbnailListWidget::btnAddMacroblockFileClicked(bool checked) {
 
 const QList<int> ThumbnailListWidget::getActiveIndices() {
 	return activatedButtons;
+}
+
+const int ThumbnailListWidget::getSelectableCount() {
+	return selectableCount;
 }
 
 void ThumbnailListWidget::subscribe(::controller::VideoListController::sptr observer) {

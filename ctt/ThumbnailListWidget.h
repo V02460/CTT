@@ -46,6 +46,8 @@ public:
 
 	const QList<int> getActiveIndices();
 
+	const int getSelectableCount();
+
 	virtual void update() Q_DECL_OVERRIDE;
 
 	void subscribe(::controller::VideoListController::sptr observer);
@@ -83,6 +85,7 @@ private:
 	int selectableCount;
 	bool isHorizontal;
 	QBoxLayout *thumbnailListLayout;
+	bool isInUpdateRequest;
 
 	QDialog *openVideoDialog;
 	QSpinBox *widthSpinBox;
