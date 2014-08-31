@@ -16,6 +16,9 @@ using ::exception::IOException;
 using ::model::saveable::Saveable;
 
 using ::model::frame::Frame;
+using model::filter::FilterParam;
+
+model::filter::RescaleFilter::uptr Video::rescaler;
 
 void Video::save(QString path, VideoFileType type) const
 {
@@ -75,12 +78,20 @@ void Video::save(QString path, VideoFileType type) const
 	videoFile.close();
 }
 
-::model::frame::Frame::sptr Video::getScaledFrame(unsigned int frameNumber, QSize size) const {
-    throw new NotImplementedException();
-}
+::model::frame::Frame::sptr Video::getScaledFrame(Video::sptr video, unsigned int frameNumber, QSize size) {
+    if (rescaler.isNull())
+    {
+		rescaler.reset(new model::filter::RescaleFilter(video));
+	}
+	else
+	{
+		rescaler->setPreviousModule(video);
+	}
 
-Saveable::SaveableType Video::getSaveableType() {
-    return SaveableType::video;
+	FilterParam::sptr param(new FilterParam(model::filter::RescaleFilter::kParamNewSize, size));
+	rescaler->setParam(param);
+
+	return rescaler->getFrame(frameNumber);
 }
 
 QSize Video::getResolution() const

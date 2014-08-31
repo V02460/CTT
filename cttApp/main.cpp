@@ -4,6 +4,8 @@
 #include <QOffscreenSurface>
 #include <QOpenGLContext>
 #include <QMessageBox>
+#include <QTranslator>
+#include <QLibraryInfo>
 
 #include "MockDisplayHelper.h"
 #include "YUVDataVideo.h"
@@ -48,6 +50,15 @@ int main(int argc, char *argv[])
 	//ListedPushButtonTest *listedPushButtonTest;
 	//view::ProcessingWidget *processingWidget;
 	view::MainWindow *mainWindow;
+
+    QTranslator qtTranslator;
+    qtTranslator.load("qt_" + QLocale::system().name(),
+                      QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    a.installTranslator(&qtTranslator);
+
+    QTranslator cttTranslator;
+    cttTranslator.load("ctt_" + QLocale::system().name());
+    a.installTranslator(&cttTranslator);
 
 	//TODO wieder einkommentieren
     //try {

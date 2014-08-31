@@ -15,6 +15,9 @@ public:
 
 	FilterInsertionWidget(controller::FilterController::sptr, QWidget *parent);
 
+signals:
+	void inserted(QString id);
+
 private slots:
 	void listedButtonClicked(bool checked, int id);
 

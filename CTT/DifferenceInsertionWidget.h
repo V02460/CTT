@@ -15,6 +15,18 @@ public:
 
 	DifferenceInsertionWidget(::controller::DifferenceController::sptr differenceController,
 		AnalysingOrderingWidget::sptr orderingWidget, QWidget *parent = 0);
+
+signals:
+	void inserted(QString id, ::model::video::Video::sptr video1, ::model::video::Video::sptr video2);
+
+private slots:
+	void listedPushButtonClicked(bool checked, int id);
+
+private:
+	void generateButtons();
+
+	::controller::DifferenceController::sptr differenceController;
+	AnalysingOrderingWidget::sptr orderingWidget;
 };
 }
 #endif

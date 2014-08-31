@@ -1,9 +1,11 @@
 #include "VideoAnalysingWidget.h"
 
+#include <QCoreApplication>
 #include <QBoxLayout>
 
 #include "NotImplementedException.h"
 #include "FilterFactory.h"
+#include "HeatmapOverlay.h"
 
 namespace view {
 
@@ -12,6 +14,7 @@ using ::controller::OverlayController;
 using ::model::player::VideoScrubber;
 using ::model::filter::FilterFactory;
 using ::model::video::Video;
+using ::model::filter::overlay::HeatmapOverlay;
 
 VideoAnalysingWidget::VideoAnalysingWidget(OverlayController::sptr overlayController, VideoScrubber::sptr scrubber,
 	QWidget *parent) : QWidget(parent) {
@@ -31,7 +34,10 @@ void VideoAnalysingWidget::setupUi() {
 	QHBoxLayout *informationLayout = new QHBoxLayout();
 	comboboxOverlay = new QComboBox(this);
 	comboboxOverlay->addItem(tr("NO_OVERLAY"));
-	comboboxOverlay->addItems(FilterFactory::getAllOverlayIDs());
+	QList<QByteArray> overlayIds = FilterFactory::getAllOverlayIDs();
+	for (int i = 0; i < overlayIds.size(); i++) {
+		comboboxOverlay->addItem(QCoreApplication::translate("Filter", overlayIds.at(i)));
+	}
 	comboboxOverlay->setCurrentIndex(0);
 	QObject::connect(comboboxOverlay, SIGNAL(currentIndexChanged(int)),
 		this, SLOT(comboboxOverlayCurrentIndexChanged(int)));
@@ -52,13 +58,17 @@ void VideoAnalysingWidget::comboboxOverlayCurrentIndexChanged(int index) {
 	if (index > 0) {
 		QString overlayId = FilterFactory::getAllOverlayIDs().at(index - 1);
 
-		if (index == 1) {
+		if (overlayId == HeatmapOverlay::kFilterID) {
 			//TODO Request video for difference
 			emit overlayAdded(overlayId, Video::sptr());
 		} else {
 			emit overlayAdded(overlayId);
 		}
 	}
+}
+
+VideoScrubber::sptr VideoAnalysingWidget::getVideoScrubber() {
+	return videoWidget->getScrubber();
 }
 
 }  // namespace view

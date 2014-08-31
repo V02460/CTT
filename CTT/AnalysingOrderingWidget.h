@@ -2,11 +2,13 @@
 #define _ANALYSINGORDERINGWIDGET
 
 #include <QWidget>
+#include <QDialog>
+#include <QPushButton>
 
 #include "SaveableList.h"
 #include "FilteredVideo.h"
 #include "Player.h"
-#include "VideoScrubber.h"
+#include "VideoAnalysingWidget.h"
 #include "Observer.h"
 #include "ThumbnailListWidget.h"
 
@@ -22,16 +24,33 @@ namespace view {
 
 		virtual void update() Q_DECL_OVERRIDE;
 
+		QList<::model::filter::FilteredVideo::sptr> getVideos(int selectableCount);
+
 	public slots:
 		void videoActivated(int id);
 		void videoReplaced(int oldId, int newId);
 		void videoDeactivated(int id);
 
+		void dialogButtonToggled(bool checked, int id);
+
 	private:
+		void setupDialog();
+		void setupUi();
+
 		::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos;
-		QList<::model::player::VideoScrubber::sptr> scrubbers;
+		QList<VideoAnalysingWidget::sptr> analysingWidget;
+		QList<ListedPushButton::sptr> dialogButtons;
 		::model::player::Player::sptr player;
 		ThumbnailListWidget::sptr thumbnails;
+
+		QScopedPointer<QGridLayout> widgetLayout;
+
+		QDialog *videoSelectionDialog;
+		QPushButton *dialogAcceptButton;
+		QDialogButtonBox *dialogButtonBox;
+		QScopedPointer<QGridLayout> dialogLayout;
+		QList<int> activeDialogButtonIds;
+		int selectableDialogButtons;
 	};
 }
 

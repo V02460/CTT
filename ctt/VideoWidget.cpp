@@ -39,15 +39,15 @@ VideoWidget::VideoWidget(Frame::sptr testFrame, QWindow *parent) : QWindow(paren
 	isInSingelFrameTest = true;
 }
 
-const VideoScrubber &VideoWidget::getScrubber() const {
-	return *this->scrubber.data();
+const VideoScrubber::sptr VideoWidget::getScrubber() const {
+	return this->scrubber;
 }
 
 void VideoWidget::resizeEvent(QResizeEvent *ev) {
 	Q_UNUSED(ev);
 
     if (isInitialized) {
-        glViewport(0, 0, width(), height());
+        //glViewport(0, 0, width(), height());
     }
 
 	if (isExposed()) {

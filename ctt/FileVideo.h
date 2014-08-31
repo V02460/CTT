@@ -35,7 +35,7 @@ public:
 
 	virtual QSharedPointer<QOpenGLContext> getContext() const ;
 
-    static Saveable::SaveableType getSaveableType();
+    static ::model::saveable::Saveable::SaveableType getSaveableType();
 
 protected:
 	/**

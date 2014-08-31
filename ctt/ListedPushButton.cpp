@@ -25,7 +25,7 @@ namespace view {
 		// TODO setFlat(true);
 
 		QMenu *buttonMenu = new QMenu(this);
-		QObject::connect(buttonMenu->addAction("Entfernen"), SIGNAL(toggled(bool)), this, SLOT(removeToggled(bool)));
+		QObject::connect(buttonMenu->addAction(tr("REMOVE")), SIGNAL(toggled(bool)), this, SLOT(removeToggled(bool)));
 		setMenu(buttonMenu);
 		setPopupMode(QToolButton::MenuButtonPopup);
 	}

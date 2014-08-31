@@ -16,9 +16,11 @@ using ::model::saveable::Memento;
 using ::helper::GPUHelper;
 using ::exception::NotImplementedException;
 
-const QString RescaleFilter::kParamNewSize = "filter_rescale_param_newsize";
-const QString RescaleFilter::kParamNewSizeWidth = "filter_rescale_param_newsize_width";
-const QString RescaleFilter::kParamNewSizeHeight = "filter_rescale_param_newsize_height";
+const QByteArray RescaleFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_rescale");
+
+const QString RescaleFilter::kParamNewSize = QT_TR_NOOP("filter_rescale_param_newsize");
+const QString RescaleFilter::kParamNewSizeWidth = QT_TR_NOOP("filter_rescale_param_newsize_width");
+const QString RescaleFilter::kParamNewSizeHeight = QT_TR_NOOP("filter_rescale_param_newsize_height");
 
 RescaleFilter::RescaleFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamNewSize, predecessor->getResolution());
@@ -37,7 +39,7 @@ model::frame::Frame::sptr RescaleFilter::getFrame(unsigned int frameNumber) cons
     }
     if (newSize.height() < 1) {
         newSize.setHeight(1);
-}
+    }
 
     GPUHelper gpuHelper(":/Shader/Filter/Rescale.fs", sourceFrame->getContext());
 

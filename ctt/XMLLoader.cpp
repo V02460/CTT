@@ -25,7 +25,6 @@ using ::model::filter::MixFilter;
 using ::model::filter::NoiseFilter;
 using ::model::filter::overlay::HeatmapOverlay;
 using ::model::filter::overlay::MacroblockOverlay;
-using ::model::filter::overlay::MacropartionOverlay;
 using ::model::filter::overlay::MotionVectorOverlay;
 using ::model::filter::RescaleFilter;
 using ::model::filter::RGBChannelFilter;
@@ -134,7 +133,7 @@ void XMLLoader::createMaps() {
 			switch (saveableType) {
 			default:
 				throw new ParseException(attributes.value(XMLSaver::CLASS).toString()
-					+ " can not be instanciated.");
+					+ " can not be instantiated.");
 				break;
 			case Saveable::SaveableType::filterIntervalList: dummy = FilterIntervalList::getDummy(); break;
 			case Saveable::SaveableType::earthMoversHistogramDiff: dummy = EarthMoversHistogramDiff::getDummy(); break;
@@ -147,7 +146,6 @@ void XMLLoader::createMaps() {
 			case Saveable::SaveableType::noiseFilter: dummy = NoiseFilter::getDummy(); break;
 			case Saveable::SaveableType::heatmapOverlay: dummy = HeatmapOverlay::getDummy(); break;
 			case Saveable::SaveableType::macroblockOverlay: dummy = MacroblockOverlay::getDummy(); break;
-			case Saveable::SaveableType::makropartitionOverlay: dummy = MacropartionOverlay::getDummy(); break;
 			case Saveable::SaveableType::motionVektorOverlay: dummy = MotionVectorOverlay::getDummy(); break;
 			case Saveable::SaveableType::rescaleFilter: dummy = RescaleFilter::getDummy(); break;
 			case Saveable::SaveableType::rGBChannelFilter: dummy = RGBChannelFilter::getDummy(); break;
@@ -184,7 +182,6 @@ void XMLLoader::createMaps() {
 				case Saveable::SaveableType::coloringOverlay: dummy = SaveableList<ColoringOverlay>::getDummy(); break;
 				case Saveable::SaveableType::heatmapOverlay: dummy = SaveableList<HeatmapOverlay>::getDummy(); break;
 				case Saveable::SaveableType::macroblockOverlay: dummy = SaveableList<MacroblockOverlay>::getDummy(); break;
-				case Saveable::SaveableType::makropartitionOverlay: dummy = SaveableList<MacropartionOverlay>::getDummy(); break;
 				case Saveable::SaveableType::motionVektorOverlay: dummy = SaveableList<MotionVectorOverlay>::getDummy(); break;
 				case Saveable::SaveableType::rescaleFilter: dummy = SaveableList<RescaleFilter>::getDummy(); break;
 				case Saveable::SaveableType::rGBChannelFilter: dummy = SaveableList<RGBChannelFilter>::getDummy(); break;

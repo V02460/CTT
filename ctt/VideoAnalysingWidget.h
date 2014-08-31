@@ -28,6 +28,7 @@ public:
 	VideoAnalysingWidget(::controller::OverlayController::sptr overlayController,
 		::model::player::VideoScrubber::sptr scrubber, QWidget *parent = 0);
 
+	::model::player::VideoScrubber::sptr getVideoScrubber();
 public slots:
     /**
      * This method is called when the user changes the currently selected overly via the overlay combobox.
