@@ -1,7 +1,6 @@
 #include "MixFilter.h"
 
 #include "GPUSurfaceShader.h"
-#include "MathHelper.h"
 
 #include "NotImplementedException.h"
 
@@ -14,7 +13,6 @@ using ::exception::NotImplementedException;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::helper::GPUSurfaceShader;
-using ::helper::clamp;
 
 const QByteArray MixFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_mix");
 
@@ -40,7 +38,7 @@ Frame::sptr MixFilter::getFrame(unsigned int frameNumber) const {
      gpuHelper.setValue("sourceTexture2", frame2.staticCast<Surface>());
 
      float mixRatio = getParamValue<float>(kParamMixRatioStr);
-     mixRatio = clamp(mixRatio, 0.f, 1.f);
+     mixRatio = qBound(0.f, mixRatio, 1.f);
      gpuHelper.setValue("mixRatio", mixRatio);
 
      Surface::sptr mixed = gpuHelper.run();

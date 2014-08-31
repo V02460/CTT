@@ -2,7 +2,6 @@
 
 #include "NotImplementedException.h"
 #include "GPUSurfaceShader.h"
-#include "MathHelper.h"
 
 namespace model {
 namespace filter {
@@ -12,7 +11,6 @@ using ::exception::NotImplementedException;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::helper::GPUSurfaceShader;
-using ::helper::clamp;
 
 const QByteArray NoiseFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_noise");
 
@@ -31,7 +29,7 @@ model::frame::Frame::sptr NoiseFilter::getFrame(unsigned int frameNumber) const 
     GPUSurfaceShader gpuHelper(":/Shader/Filter/Noise.fs", frame.staticCast<Surface>());
 
     float intensity = getParamValue<float>(kParamIntensityStr);
-    intensity = clamp(intensity, 0.f, 1.f);
+    intensity = qBound(0.f, intensity, 1.f);
     gpuHelper.setValue("intensity", intensity);
     gpuHelper.setValue("time", static_cast<GLfloat>(frameNumber));
 

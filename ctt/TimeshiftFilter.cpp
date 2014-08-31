@@ -1,7 +1,5 @@
 #include "TimeshiftFilter.h"
 
-#include "MathHelper.h"
-
 #include "NotImplementedException.h"
 
 namespace model {
@@ -10,7 +8,6 @@ namespace filter {
 using ::model::frame::Frame;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
-using ::helper::clamp;
 using ::exception::NotImplementedException;
 
 const QByteArray TimeshiftFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_timeshift");
@@ -29,9 +26,9 @@ model::frame::Frame::sptr TimeshiftFilter::getFrame(unsigned int frameNumber) co
 
     Module *predecessor = getPredecessor();
 
-    unsigned int newFrameNumber = clamp(static_cast<int>(frameNumber)+shift,
-                                        0,
-                                        static_cast<int>(predecessor->getFrameCount()) - 1);
+    unsigned int newFrameNumber = qBound(0,
+                                         static_cast<int>(frameNumber) + shift,
+                                         static_cast<int>(predecessor->getFrameCount()) - 1);
     
 
     return predecessor->getFrame(newFrameNumber);

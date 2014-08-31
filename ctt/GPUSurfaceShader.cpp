@@ -28,12 +28,14 @@ GPUSurfaceShader::GPUSurfaceShader(QString fragmentShaderFile,
         : GPUSurfacePainter(":/Shader/Default/Default.vs",
                             fragmentShaderFile,
                             context)
-        , sourceTexture(sourceTexture)
-        , positionAttribute(new VertexAttribute()) {
-    positionAttribute->appendElement(QVector2D(-1.f, 1.f));
-    positionAttribute->appendElement(QVector2D(1.f, 1.f));
-    positionAttribute->appendElement(QVector2D(-1.f, -1.f));
-    positionAttribute->appendElement(QVector2D(1.f, -1.f));
+        , sourceTexture()
+        , positionAttribute(new VertexAttribute(4, 2)) {
+
+    // vertex coordinates for a screen filling quad
+    *positionAttribute << -1.f <<  1.f
+                       <<  1.f <<  1.f
+                       << -1.f << -1.f
+                       <<  1.f << -1.f;
 }
 
 Surface::sptr GPUSurfaceShader::run() {

@@ -78,12 +78,16 @@ private:
     inline void bindAttributeArrays();
     inline void releaseAttributeArrays();
 
+    unsigned int getVertexCount();
+
     QSharedPointer<QOpenGLShaderProgram> program;
     QList<::model::Surface::sptr> textures;
     QSharedPointer<QOpenGLContext> context;
     ::model::Surface::sptr targetTexture;
     QMap<QString, ::model::Surface::sptr> textureNames;
     static QMap<QPair<QString, QOpenGLContext_sptr>, QOpenGLShaderProgram_sptr> shaderProgramCache;
+
+    QMap<QString, VertexAttribute::sptr> vertexAttributes;
 };
 
 }  // namespace helper

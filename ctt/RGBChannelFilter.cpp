@@ -1,7 +1,6 @@
 #include "RGBChannelFilter.h"
 
 #include "GPUSurfaceShader.h"
-#include "MathHelper.h"
 
 #include "NotImplementedException.h"
 
@@ -12,7 +11,6 @@ using ::model::frame::Frame;
 using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
 using ::helper::GPUSurfaceShader;
-using ::helper::clamp;
 using ::exception::NotImplementedException;
 
 const QByteArray RGBChannelFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_rgbchannel");
@@ -36,11 +34,11 @@ model::frame::Frame::sptr RGBChannelFilter::getFrame(unsigned int frameNumber) c
     GPUSurfaceShader gpuHelper(":/Shader/Filter/RGBChannel.fs", frame.staticCast<Surface>());
 
     float red = getParamValue<float>(kParamRedStr) / 100.f;
-    red = clamp(red, 0.f, 1.f);
+    red = qBound(0.f, red, 1.f);
     float green = getParamValue<float>(kParamGreenStr) / 100;
-    green = clamp(green, 0.f, 1.f);
+    green = qBound(0.f, green, 1.f);
     float blue = getParamValue<float>(kParamBlueStr) / 100;
-    blue = clamp(blue, 0.f, 1.f);
+    blue = qBound(0.f, blue, 1.f);
 
     gpuHelper.setValue("colorFactor", QVector4D(red, green, blue, 1.f));
 

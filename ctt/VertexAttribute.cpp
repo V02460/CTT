@@ -1,27 +1,136 @@
 #include "VertexAttribute.h"
 
 #include "NotImplementedException.h"
+#include "OpenGLException.h"
+#include "IllegalStateException.h"
 
 namespace helper {
 
 using ::exception::NotImplementedException;
+using ::exception::OpenGLException;
+using ::exception::IllegalStateException;
 
-VertexAttribute::VertexAttribute() {
+VertexAttribute::VertexAttribute(unsigned int vertexCount, unsigned int tupelSize)
+        : QOpenGLBuffer(VertexBuffer)
+        , tupelSize(tupelSize)
+        , vertexCount(vertexCount)
+        , entryCount(vertexCount * tupelSize)
+        , writeActive(false){
+    create();
+    bind();
+    allocate(entryCount * sizeof(GLfloat));
+    release();
 }
 
 VertexAttribute::~VertexAttribute() {
 }
 
+void VertexAttribute::bind() {
+    if (writeActive) {
+        throw new IllegalStateException("Write must be finished before Attribute can be bound.");
+    }
+
+    QOpenGLBuffer::bind();
+}
+
 void VertexAttribute::appendElement(float value) {
-    throw new NotImplementedException();
+    if (!writeActive) {
+        startWrite();
+    }
+    if (bufferPointer + 1 > bufferEnd) {
+        throw new IllegalStateException("Write would cause buffer overflow.");
+    }
+
+    *bufferPointer++ = value;
+
+    if (bufferPointer == bufferEnd) {
+        finishWrite();
+    }
 }
 
 void VertexAttribute::appendElement(QVector2D value) {
-    throw new NotImplementedException();
+    if (!writeActive) {
+        startWrite();
+    }
+    if (bufferPointer + 2 > bufferEnd) {
+        throw new IllegalStateException("Write would cause buffer overflow.");
+    }
+
+    *bufferPointer++ = value.x();
+    *bufferPointer++ = value.y();
+
+    if (bufferPointer == bufferEnd) {
+        finishWrite();
+    }
 }
 
 void VertexAttribute::appendElement(QVector3D value) {
-    throw new NotImplementedException();
+    if (!writeActive) {
+        startWrite();
+    }
+    if (bufferPointer + 3 > bufferEnd) {
+        throw new IllegalStateException("Write would cause buffer overflow.");
+    }
+
+    *bufferPointer++ = value.x();
+    *bufferPointer++ = value.y();
+    *bufferPointer++ = value.z();
+
+    if (bufferPointer == bufferEnd) {
+        finishWrite();
+    }
+}
+
+void VertexAttribute::startWrite() {
+    if (writeActive) {
+        throw new IllegalStateException("Already in write mode.");
+    }
+
+    QOpenGLBuffer::bind();
+    bufferStart = reinterpret_cast<GLfloat*>(map(WriteOnly));
+    bufferPointer = bufferStart;
+    bufferEnd = bufferStart + entryCount;
+
+    writeActive = true;
+}
+
+void VertexAttribute::finishWrite() {
+    if (!writeActive) {
+        throw new IllegalStateException("Already finished writing.");
+    }
+
+    QOpenGLBuffer::bind();
+    unmap();
+
+    writeActive = false;
+}
+
+
+unsigned int VertexAttribute::getTupelSize() const {
+    return tupelSize;
+}
+
+unsigned int VertexAttribute::getVertexCount() const {
+    return vertexCount;
+}
+
+GLenum VertexAttribute::getType() const {
+    return GL_FLOAT;
+}
+
+VertexAttribute &operator<<(VertexAttribute &attribute, float value) {
+    attribute.appendElement(value);
+    return attribute;
+}
+
+VertexAttribute &operator<<(VertexAttribute &attribute, QVector2D &value) {
+    attribute.appendElement(value);
+    return attribute;
+}
+
+VertexAttribute &operator<<(VertexAttribute &attribute, QVector3D &value) {
+    attribute.appendElement(value);
+    return attribute;
 }
 
 }  // namespace helper

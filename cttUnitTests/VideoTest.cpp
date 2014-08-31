@@ -1,6 +1,6 @@
 #include "VideoTest.h"
 #include "CustomTestingMacros.h"
-#include "..\CTT\YUVDataVideo.h"
+#include "YUVDataVideo.h"
 #include "qoffscreensurface.h"
 
 void VideoTest::initTestCase()

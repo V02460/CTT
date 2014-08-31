@@ -45,23 +45,25 @@ void GPUSurfacePainter::initShaderProgram(QString vertexShaderFile, QString frag
 
         if (!program->addShaderFromSourceFile(QOpenGLShader::Vertex, vertexShaderFile)) {
             throw new OpenGLException("Adding of vertex shader failed. Log message: " + program->log());
-    }
+        }
 
         if (!program->addShaderFromSourceFile(QOpenGLShader::Fragment, fragmentShaderFile)) {
             throw new OpenGLException("Adding of fragment shader failed. Log message: " + program->log());
-    }
+        }
 
         if (!program->link()) {
             throw new OpenGLException("Linking of shader program failed. Log message: " + program->log());
-    }
+        }
 
         // add the shader to the cache
         shaderProgramCache.insert(cacheKey, program);
-}
+    }
 }
 
 void GPUSurfacePainter::setValue(QString name, VertexAttribute::sptr texture) {
-    throw new NotImplementedException();
+    // TODO: context check
+
+    vertexAttributes.insert(name, texture);
 }
 
 
@@ -96,7 +98,7 @@ void GPUSurfacePainter::setValue(QString name, Surface::sptr texture) {
         }
 #endif
 
-    // bind program to set the uniform
+        // bind program to set the uniform
         if (!program->bind()) {
             throw new OpenGLException("Could not bind shader program.");
         }
@@ -243,6 +245,9 @@ Surface::sptr GPUSurfacePainter::run() {
     if (targetTexture.isNull()) {
         throw new IllegalStateException("Target texture must be set before calling run.");
     }
+    if (vertexAttributes.isEmpty()) {
+
+    }
 
     // make target size available in the shader
     setValue("_targetSize", targetTexture->getSize());
@@ -265,7 +270,7 @@ Surface::sptr GPUSurfacePainter::run() {
     bindTextures();
 
     // draw
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, getVertexCount());
 
     // cleanup
     releaseTextures();
@@ -299,26 +304,44 @@ inline void GPUSurfacePainter::releaseTextures() {
 }
 
 inline void GPUSurfacePainter::bindAttributeArrays() {
-    // vertex coordinates for a screen filling quad
-    static const QVector2D vertices[] = {{-1.f,  1.f},
-                                         { 1.f,  1.f},
-                                         {-1.f, -1.f},
-                                         { 1.f, -1.f}};
+    for (auto i = vertexAttributes.begin(); i != vertexAttributes.end(); i++) {
+        VertexAttribute::sptr attribute = i.value();
+        QString name = i.key();
 
-    // setup vertex position attribute
-    static const QString vertexPositionStr = "_pos";
-    int vertexLocation = program->attributeLocation(vertexPositionStr);
-    if (vertexLocation == -1) {
-        throw new OpenGLException("Vertex shader has no \"" + vertexPositionStr + "\" attribute to assign vertex "
-                                  "positions to.");
+        attribute->bind();
+
+        program->enableAttributeArray(name.toLatin1().constData());
+        // TODO: rewrite to use vertexLocation
+        //if (vertexLocation == -1) {
+        //    throw new OpenGLException("Vertex shader has no \"" + vertexPositionStr + "\" attribute to assign vertex "
+        //                                   "positions to.");
+        //}
+
+        program->setAttributeBuffer(name.toLatin1().constData(),
+                                    attribute->getType(),
+                                    0,
+                                    attribute->getTupelSize());
     }
-    program->enableAttributeArray(vertexLocation);
-    program->setAttributeArray(vertexLocation, vertices);
 }
 
 inline void GPUSurfacePainter::releaseAttributeArrays() {
-    //program.disableAttributeArray(vertexLocation);
+    for (auto i = vertexAttributes.begin(); i != vertexAttributes.end(); i++) {
+        QString name = i.key();
+        program->disableAttributeArray(name.toLatin1().constData());
+    }
 }
+
+unsigned int GPUSurfacePainter::getVertexCount() {
+    unsigned int vertexCount = std::numeric_limits<unsigned int>::max();
+
+    for (auto i = vertexAttributes.begin(); i != vertexAttributes.end(); i++) {
+        VertexAttribute::sptr attribute = i.value();
+        vertexCount = qMin(vertexCount, attribute->getVertexCount());
+    }
+
+    return vertexCount;
+}
+
 
 QMap<QPair<QString, QOpenGLContext_sptr>, QOpenGLShaderProgram_sptr> GPUSurfacePainter::shaderProgramCache;
 
