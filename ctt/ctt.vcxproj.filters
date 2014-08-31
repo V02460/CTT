@@ -741,6 +741,12 @@
     <ClCompile Include="GeneratedFiles\Release\moc_MacroblockOverlay.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DifferenceInsertionWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DifferenceInsertionWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -883,6 +889,12 @@
     </CustomBuild>
     <CustomBuild Include="MacroblockOverlay.h">
       <Filter>Header Files\Model\Filter\Overlay</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DifferenceInsertionWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilterListView.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -1099,9 +1111,6 @@
     <ClInclude Include="AnalysingOrderingWidget.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
-    <ClInclude Include="DifferenceInsertionWidget.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
     <ClInclude Include="FileNotFoundException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
@@ -1114,9 +1123,7 @@
     <ClInclude Include="YUVType.h">
       <Filter>Header Files\Model\Video</Filter>
     </ClInclude>
-    <ClInclude Include="FilterListView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>  </ItemGroup>
+  </ItemGroup>
   <ItemGroup>
     <None Include="Shader\Conversion\YUV420toRGBsdtv.fs">
       <Filter>Shader Files\Conversion</Filter>
