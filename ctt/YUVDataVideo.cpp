@@ -17,6 +17,7 @@ using ::helper::GPUHelper;
 using ::model::frame::FrameMetadata;
 using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
+using ::exception::AccessToDummyException;
 using ::exception::IllegalStateException;
 using ::exception::IllegalArgumentException;
 using ::model::frame::MacroblockType;
@@ -132,19 +133,15 @@ YUVDataVideo::~YUVDataVideo() {
 
 VideoMetadata YUVDataVideo::getMetadata() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Tried to request metadata from a dummy YUVDataVideo.");
+		throw new AccessToDummyException();
 	}
-
 	return metadata;
 }
 
-model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const 
-{
-	if (isDummy())
-	{
-		throw new NotImplementedException("Tried to request a frame from a dummy YUVDataVideo");
+model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
 	}
-
 	if (frameNumber >= getFrameCount())
 	{
 		throw new IllegalArgumentException("Tried to request frame " + QString::number(frameNumber) 
@@ -300,12 +297,10 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 }
 
 
-unsigned int YUVDataVideo::getFrameCount() const
-{
+unsigned int YUVDataVideo::getFrameCount() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Tried to request the frame count from a dummy YUVDataVideo.");
+		throw new AccessToDummyException();
 	}
-
 	return metadata.getLength();
 }
 
@@ -332,12 +327,10 @@ bool YUVDataVideo::hasFrameInBuffer(unsigned int frameNr) const
 		& (frameNr < metadata.getLength());
 }
 
-Memento YUVDataVideo::getMemento() const
-{
+Memento YUVDataVideo::getMemento() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Tried to request a memento from a dummy YUVDataVideo.");
+		throw new AccessToDummyException();
 	}
-
 	Memento memento;
 
 	memento.setBool(hasMetadataFileStringId, hasMetadataFile);
@@ -358,8 +351,7 @@ Memento YUVDataVideo::getMemento() const
 	return memento;
 }
 
-void YUVDataVideo::restore(Memento memento)
-{
+void YUVDataVideo::restore(Memento memento) {
 	context = GlobalContext::get();
 	hasMetadataFile = false;
 
@@ -457,14 +449,11 @@ Saveable::SaveableType YUVDataVideo::getSaveableType() {
     return Saveable::yUVDataVideo;
 }
 
-::model::saveable::Saveable::sptr YUVDataVideo::getDummy()
-{
+::model::saveable::Saveable::sptr YUVDataVideo::getDummy() {
 	return YUVDataVideo::sptr(new YUVDataVideo);
 }
 
-void YUVDataVideo::loadVideodata(unsigned int startFrame) const
-{
-
+void YUVDataVideo::loadVideodata(unsigned int startFrame) const {
 	if (!videoFile.open(QIODevice::ReadOnly)) {
 		throw new IOException("Couldn't open the video file at \"" + pathToVideoFile + "\".");
 	}
@@ -484,8 +473,7 @@ void YUVDataVideo::loadVideodata(unsigned int startFrame) const
 	videoFile.close();
 }
 
-void YUVDataVideo::loadMetadata(unsigned int startFrame) const
-{
+void YUVDataVideo::loadMetadata(unsigned int startFrame) const {
 	if (!hasMetadataFile)
 	{
 		throw new IllegalStateException("Tried to load metadata without having a metadata file.");

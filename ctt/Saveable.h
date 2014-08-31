@@ -229,13 +229,12 @@ protected:
 22		|  |  |> TimeshiftFilter
 23		|  |> Video
 24		|     |> FileVideo
-25		|     |  |> FFmpegDataVideo
-26		|     |  |> YUVDataVideo
-27		|     |> FilteredVideo
-28		|> Player
-29		|> SaveableList
-30		|> UIntegerInterval
-31		|> VideoScrubber
-32		|> ViewState
+25		|     |  |> YUVDataVideo
+26		|     |> FilteredVideo
+27		|> Player
+28		|> SaveableList
+29		|> UIntegerInterval
+30		|> VideoScrubber
+31		|> ViewState
 
 */

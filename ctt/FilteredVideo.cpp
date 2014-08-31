@@ -10,7 +10,7 @@ using ::model::frame::Frame;
 using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
-using ::exception::IllegalStateException;
+using ::exception::AccessToDummyException;
 using ::model::saveable::Saveable;
 using ::model::video::Video;
 
@@ -18,25 +18,19 @@ const QString FilteredVideo::baseVideoStringId = "baseVideo";
 const QString FilteredVideo::filtersStringId = "filters";
 const QString FilteredVideo::numberOfFiltersStringId = "numberOfFilters";
 
-FilteredVideo::FilteredVideo(Video::sptr baseVideo) : baseVideo(baseVideo) {
+FilteredVideo::FilteredVideo(Video::sptr baseVideo) : baseVideo(baseVideo) {}
 
-}
-
-FilteredVideo::FilteredVideo()
-{
+FilteredVideo::FilteredVideo() {
 	isDummyFlag = true;
 }
 
 void FilteredVideo::addFilter(Filter::sptr filter, unsigned int pos) {
-	if (isDummy())
-	{
-		throw new IllegalStateException("Tried to add a filter to a dummy FilteredVideo.");
+	if (isDummy()) {
+		throw new AccessToDummyException();
 	}
-
-
 	QList<const Module*> usesList(getUsesList());
 
-	foreach(const Module* module, usesList)
+	for each(const Module* module in usesList)
 	{
 		if (filter->uses(*module))
 		{
@@ -68,11 +62,9 @@ void FilteredVideo::addFilter(Filter::sptr filter, unsigned int pos) {
 }
 
 Filter::sptr FilteredVideo::removeFilter(unsigned int pos) {
-	if (isDummy())
-	{
-		throw new IllegalStateException("Tried to remove a filter from a dummy FilteredVideo.");
+	if (isDummy()) {
+		throw new AccessToDummyException();
 	}
-
 	if (pos >= static_cast<unsigned int>(filters.count()))
 	{
 		throw new IllegalArgumentException("Can not remove a Filter from a FilteredVideo with " + QString::number(filters.count())
@@ -96,29 +88,23 @@ Filter::sptr FilteredVideo::removeFilter(unsigned int pos) {
 }
 
 unsigned int FilteredVideo::getFilterCount() const {
-    if (isDummy())
-    {
-		throw new IllegalStateException("Tried to request the filter count of a dummy FilteredVideo.");
+	if (isDummy()) {
+		throw new AccessToDummyException();
 	}
-
 	return filters.count();
 }
 
 QList<Filter::sptr> FilteredVideo::getFilterList() const {
-	if (isDummy())
-	{
-		throw new IllegalStateException("Tried to request the filters of a dummy FilteredVideo.");
+	if (isDummy()) {
+		throw new AccessToDummyException();
 	}
-
 	return filters;
 }
 
-model::frame::Frame::sptr FilteredVideo::getFrame(unsigned int frameNumber) const{
-	if (isDummy())
-	{
-		throw new IllegalStateException("Tried to request a frame of a dummy FilteredVideo.");
+model::frame::Frame::sptr FilteredVideo::getFrame(unsigned int frameNumber) const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
 	}
-
 	if (filters.empty())
 	{
 		return baseVideo->getFrame(frameNumber);
@@ -128,9 +114,8 @@ model::frame::Frame::sptr FilteredVideo::getFrame(unsigned int frameNumber) cons
 }
 
 Memento FilteredVideo::getMemento() const {
-	if (isDummy())
-	{
-		throw new IllegalStateException("Tried to request a memento of a dummy FilteredVideo.");
+	if (isDummy()) {
+		throw new AccessToDummyException();
 	}
 	Memento memento;
 
@@ -162,13 +147,10 @@ Saveable::sptr FilteredVideo::getDummy() {
 	return Saveable::sptr(new FilteredVideo);
 }
 
-QList<const Module*> FilteredVideo::getUsesList() const
-{
-	if (isDummy())
-	{
-		throw new IllegalStateException("Tried to request a list of used modules from a dummy FilteredVideo.");
+QList<const Module*> FilteredVideo::getUsesList() const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
 	}
-
 	QList<const Module*> result;
 	result.append(this);
 	result.append(baseVideo->getUsesList());
@@ -179,13 +161,10 @@ QList<const Module*> FilteredVideo::getUsesList() const
 	return result;
 }
 
-unsigned int FilteredVideo::getFrameCount() const
-{
-	if (isDummy())
-	{
-		throw new IllegalStateException("Tried to request the frame count of a dummy FilteredVideo.");
+unsigned int FilteredVideo::getFrameCount() const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
 	}
-
 	if (filters.isEmpty())
 	{
 		return baseVideo->getFrameCount();
@@ -196,23 +175,10 @@ unsigned int FilteredVideo::getFrameCount() const
 	}
 }
 
-bool FilteredVideo::uses(const model::Module &module) const
-{
-	if (isDummy())
-	{
-		throw new IllegalStateException("Tried to ask a dummy FilteredVideo whether it used a specific module.");
+model::video::VideoMetadata FilteredVideo::getMetadata() const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
 	}
-
-	return getUsesList().contains(&module);
-}
-
-model::video::VideoMetadata FilteredVideo::getMetadata() const
-{
-	if (isDummy())
-	{
-		throw new IllegalStateException("Tried to request metadata from a dummy FilteredVideo.");
-	}
-
 	if (filters.isEmpty())
 	{
 		return baseVideo->getMetadata();
@@ -231,16 +197,16 @@ Saveable::SaveableType FilteredVideo::getSaveableType() {
 }
 
 Video::sptr FilteredVideo::getBaseVideo() const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
 	return baseVideo;
 }
 
-QSharedPointer<QOpenGLContext> FilteredVideo::getContext() const
-{
-	if (isDummy())
-	{
-		throw new IllegalStateException("Tried to request the context from a dummy FilteredVideo.");
+QSharedPointer<QOpenGLContext> FilteredVideo::getContext() const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
 	}
-
 	return baseVideo->getContext();
 }
 

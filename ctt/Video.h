@@ -24,7 +24,6 @@ using  model::filter::RescaleFilter;
 
 /**
  * Represents a video with all it's frames and metadata.
- *
  */
 class Video : public ::model::Module {
 public:
@@ -73,9 +72,10 @@ public:
 
 	virtual QSize getResolution() const;
 
+	static SaveableType getSaveableType() { return Saveable::video; }
+
 private:
 	static RescaleFilter::uptr rescaler;
-
 };
 
 }  // namespace video

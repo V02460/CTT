@@ -11,7 +11,7 @@ namespace model {
 namespace video {
 
 using ::exception::NotImplementedException;
-using ::exception::IllegalStateException;
+using ::exception::AccessToDummyException;
 using ::exception::IOException;
 using ::model::saveable::Saveable;
 
@@ -20,10 +20,9 @@ using model::filter::FilterParam;
 
 model::filter::RescaleFilter::uptr Video::rescaler;
 
-void Video::save(QString path, VideoFileType type) const
-{
+void Video::save(QString path, VideoFileType type) const {
 	if (isDummy()) {
-		throw new IllegalStateException("Tried to save a dummy video.");
+		throw new AccessToDummyException();
 	}
 
 	QFile videoFile(path);
@@ -94,10 +93,9 @@ void Video::save(QString path, VideoFileType type) const
 	return rescaler->getFrame(frameNumber);
 }
 
-QSize Video::getResolution() const
-{
+QSize Video::getResolution() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Tried to request the resolution of a dummy video.");
+		throw new AccessToDummyException();
 	}
 	return getMetadata().getSize();
 }

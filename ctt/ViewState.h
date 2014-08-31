@@ -20,6 +20,7 @@ namespace view {
  */
 class ViewState : public QObject, public model::Observable, public ::model::saveable::Saveable {
     Q_OBJECT
+
 public:
     typedef QScopedPointer<ViewState> uptr;
     typedef QSharedPointer<ViewState> sptr;

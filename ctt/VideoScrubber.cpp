@@ -15,7 +15,7 @@ using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
 using ::exception::IllegalArgumentException;
-using ::exception::IllegalStateException;
+using ::exception::AccessToDummyException;
 
 const QString VideoScrubber::videoStringId("video");
 const QString VideoScrubber::lastFrameNumberStringId("framenr");
@@ -29,9 +29,7 @@ VideoScrubber::VideoScrubber(video::Video::sptr video): video(video), lastFrameN
 	waitingForFrame = false;
 }
 
-VideoScrubber::~VideoScrubber() {
-
-}
+VideoScrubber::~VideoScrubber() {}
 
 VideoScrubber::VideoScrubber(video::Video::sptr video, unsigned int frameNumber) {
 	if (video->isDummy()) {
@@ -49,25 +47,22 @@ VideoScrubber::VideoScrubber()
 
 VideoMetadata VideoScrubber::getVideoMetadata() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Requested VideoMetadata from dummy VideoScrubber.");
+		throw new AccessToDummyException();
 	}
-
 	return video->getMetadata();
 }
 
 Video::sptr VideoScrubber::getVideo() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Requested Video from dummy VideoScrubber.");
+		throw new AccessToDummyException();
 	}
-
 	return video;
 }
 
-Frame::sptr VideoScrubber::getCurrentFrame() const{
+Frame::sptr VideoScrubber::getCurrentFrame() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Requested Frame from dummy VideoScrubber.");
+		throw new AccessToDummyException();
 	}
-
 	if (currentFrame.isNull())
 	{
 		return video->getFrame(lastFrameNumber);
@@ -78,17 +73,15 @@ Frame::sptr VideoScrubber::getCurrentFrame() const{
 
 bool VideoScrubber::isWaitingForFrame() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Asked dummy VideoScrubber whether it's waiting for a Frame.");
+		throw new AccessToDummyException();
 	}
-
 	return waitingForFrame;
 }
 
 void VideoScrubber::jumpToFrameNr(unsigned int frameNumber) {
 	if (isDummy()) {
-		throw new IllegalStateException("Requested a frame jump from dummy VideoScrubber.");
+		throw new AccessToDummyException();
 	}
-
 	if (!isWaitingForFrame())
 	{
 		waitingForFrame = true;
@@ -100,9 +93,8 @@ void VideoScrubber::jumpToFrameNr(unsigned int frameNumber) {
 
 Memento VideoScrubber::getMemento() const {
 	if (isDummy()) {
-		throw new exception::IllegalStateException("Requested a memento from a dummy VideoScrubber.");
+		throw new AccessToDummyException();
 	}
-
 	Memento memento;
 	memento.setSharedPointer(videoStringId, video);
 	memento.setUInt(lastFrameNumberStringId, lastFrameNumber);

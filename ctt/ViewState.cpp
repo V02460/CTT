@@ -17,6 +17,7 @@ void ViewState::restore(Memento memento) {
 }
 
 Saveable::sptr ViewState::getDummy() {
+	// TODO absprachebedarf!
     throw new NotImplementedException();
 }
 
