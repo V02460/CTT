@@ -119,8 +119,8 @@ void PlayerFunctions::btnPlayPauseClicked(bool checked) {
 }
 
 void PlayerFunctions::update() {
-	setEnabledAll(player->scrubberCount() != 0);
 	setPlayButton(!player->isPlaying());
+	setEnabledAll(player->scrubberCount() != 0);
 
 	sliderCurrentFrame->setMaximum(static_cast<int>(player->getVideoLength()));
 	sliderCurrentFrame->setValue(static_cast<int>(player->getCurrentFrameNumber()));
