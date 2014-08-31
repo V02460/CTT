@@ -164,6 +164,7 @@
     <ClCompile Include="DifferenceFactory.cpp" />
     <ClCompile Include="DifferenceInsertionWidget.cpp" />
     <ClCompile Include="DifferenceListView.cpp" />
+    <ClCompile Include="DifferenceListViewItem.cpp" />
     <ClCompile Include="DifferenceTimeline.cpp" />
     <ClCompile Include="EarthMoversHistogramDiff.cpp" />
     <ClCompile Include="ExtendedTimeline.cpp" />
