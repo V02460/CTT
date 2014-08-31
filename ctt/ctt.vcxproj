@@ -1511,6 +1511,8 @@
     <None Include="Shader\Histogram\redHistogramGrid.fs" />
     <None Include="Shader\Histogram\saturationHistogramGrid.fs" />
     <None Include="Shader\Overlay\heatmap.fs" />
+    <None Include="Shader\Overlay\Macroblock.fs" />
+    <None Include="Shader\Overlay\Macroblock.vs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Images\big_buck_bunny_01337.png" />

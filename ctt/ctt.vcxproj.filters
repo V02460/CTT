@@ -886,12 +886,6 @@
     <ClInclude Include="BlueHistogram.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
-    <ClInclude Include="BlurFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="CoffeeFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
     <ClInclude Include="ColoringOverlay.h">
       <Filter>Header Files\Model\Filter\Overlay</Filter>
     </ClInclude>
@@ -937,12 +931,6 @@
     <ClInclude Include="GreenHistogram.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
-    <ClInclude Include="GreyscaleFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="HeatmapOverlay.h">
-      <Filter>Header Files\Model\Filter\Overlay</Filter>
-    </ClInclude>
     <ClInclude Include="Histogram.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
     </ClInclude>
@@ -951,15 +939,6 @@
     </ClInclude>
     <ClInclude Include="LuminanceHistogram.h">
       <Filter>Header Files\Model\Frame\Histogram</Filter>
-    </ClInclude>
-    <ClInclude Include="MacroblockOverlay.h">
-      <Filter>Header Files\Model\Filter\Overlay</Filter>
-    </ClInclude>
-    <ClInclude Include="NoiseFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="MotionVectorOverlay.h">
-      <Filter>Header Files\Model\Filter\Overlay</Filter>
     </ClInclude>
     <ClInclude Include="Video.h">
       <Filter>Header Files\Model\Video</Filter>
@@ -976,9 +955,6 @@
     <ClInclude Include="Memento.h">
       <Filter>Header Files\Model\Saveable</Filter>
     </ClInclude>
-    <ClInclude Include="MixFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
     <ClInclude Include="Overlay.h">
       <Filter>Header Files\Model\Filter\Overlay</Filter>
     </ClInclude>
@@ -987,15 +963,6 @@
     </ClInclude>
     <ClInclude Include="PlayerWidget.h">
       <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="RescaleFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="RGBChannelFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
-    </ClInclude>
-    <ClInclude Include="TimeshiftFilter.h">
-      <Filter>Header Files\Model\Filter</Filter>
     </ClInclude>
     <ClInclude Include="VideoAddedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
@@ -1123,9 +1090,6 @@
     <ClInclude Include="FileNotFoundException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FilterListView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="VertexAttribute.h">
       <Filter>Header Files\Helper</Filter>
     </ClInclude>
@@ -1214,6 +1178,12 @@
     </None>
     <None Include="..\cttApp\ctt_en.ts">
       <Filter>Lokalisierungs Dateien</Filter>
+    </None>
+    <None Include="Shader\Overlay\Macroblock.fs">
+      <Filter>Shader Files\Overlay</Filter>
+    </None>
+    <None Include="Shader\Overlay\Macroblock.vs">
+      <Filter>Shader Files\Overlay</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

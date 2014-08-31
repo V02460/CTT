@@ -10,7 +10,7 @@ using ::model::saveable::Saveable;
 Overlay::Overlay(Module::sptr predecessor, Module::sptr overlay, float overlayAlpha)
         : Filter(predecessor)
         , mixFilter(predecessor, overlay) {
-    mixFilter.setParam(FilterParam("mixFactor", overlayAlpha));
+    mixFilter.setParam(FilterParam(MixFilter::kParamMixRatioStr, overlayAlpha));
 }
 
 Overlay::~Overlay() {

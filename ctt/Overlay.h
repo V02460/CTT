@@ -25,6 +25,8 @@ public:
 
     static Saveable::SaveableType getSaveableType();
 
+    virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
+
 protected:
     /**
     * Constructs a Overlay which works on predecessor.
@@ -39,8 +41,6 @@ protected:
     * Overlay destructor.
     */
     virtual ~Overlay();
-
-    virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
 
 private:
     ::model::filter::MixFilter mixFilter;

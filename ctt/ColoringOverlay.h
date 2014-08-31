@@ -29,10 +29,9 @@ public:
      */
     virtual ~ColoringOverlay();
 
-    virtual bool supportsIntervals() const Q_DECL_OVERRIDE{ return true; }
-    QString getName() const;
-    model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
-    static Saveable::SaveableType getSaveableType();
+    virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
+    //model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
+    static Saveable::SaveableType getSaveableType() { return Saveable::coloringOverlay; }
 
 protected:
     /**
@@ -44,9 +43,6 @@ protected:
      * @param overlayAlpha The transparency of the overlay
      */
     explicit ColoringOverlay(Module::sptr predecessor, Module::sptr overlay, float overlayAlpha);
-
-private:
-    ::model::filter::GreyscaleFilter::sptr greyscaleFilter;
 };
 
 
