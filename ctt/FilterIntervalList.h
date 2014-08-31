@@ -67,7 +67,7 @@ public:
     static Saveable::SaveableType getSaveableType();
 
 private:
-    QList<UIntegerInterval::sptr> intervals; /**< The list of active Intervals*/
+    QList<UIntegerInterval::sptr> intervals;
 };
 
 }  // namespace model

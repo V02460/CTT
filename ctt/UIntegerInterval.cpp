@@ -10,8 +10,8 @@ using ::model::saveable::Saveable;
 using ::exception::IllegalArgumentException;
 using ::exception::AccessToDummyException;
 
-UIntegerInterval::UIntegerInterval(unsigned int a, unsigned int b) : start(a), end(b) {
-	if (a > b) {
+UIntegerInterval::UIntegerInterval(unsigned int start, unsigned int end) : start(start), end(end) {
+	if (start > end) {
 		throw new IllegalArgumentException("start > end");
 	}
 }
@@ -65,12 +65,7 @@ bool UIntegerInterval::canMergeWith(const UIntegerInterval &interval) const {
 	if (isDummy()) {
 		throw new AccessToDummyException();
 	}
-	unsigned int otherStart = interval.getStart();
-	unsigned int otherEnd = interval.getEnd();
-	return (     start < otherStart && otherStart < end      ||
-		         start < otherEnd   && otherEnd   < end      ||
-//			otherStart < start      && start      < otherEnd ||
-			otherStart < end        && end        < otherEnd);
+	return (!(interval.getEnd() < start || end < interval.getStart()));
 }
 
 void UIntegerInterval::mergeWith(const UIntegerInterval &interval) {
@@ -80,8 +75,8 @@ void UIntegerInterval::mergeWith(const UIntegerInterval &interval) {
 	if (!canMergeWith(interval)) {
 		throw new IllegalArgumentException("Intervals can't merge.");
 	}
-	setStart(std::min(getStart(), interval.getStart()));
-	setEnd(std::max(getEnd(), interval.getEnd()));
+	setStart(std::min(start, interval.getStart()));
+	setEnd(std::max(end, interval.getEnd()));
 }
 
 Memento UIntegerInterval::getMemento() const {
@@ -89,8 +84,8 @@ Memento UIntegerInterval::getMemento() const {
 		throw new AccessToDummyException();
 	}
 	Memento memento;
-    memento.setInt("intervalStart", getStart());
-    memento.setInt("intervalEnd", getEnd());
+    memento.setInt("intervalStart", start);
+    memento.setInt("intervalEnd", end);
 	return memento;
 }
 
