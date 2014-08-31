@@ -17,9 +17,29 @@ public:
     typedef QSharedPointer<VertexAttribute> sptr;
     typedef QWeakPointer<VertexAttribute> wptr;
 
+    /**
+     * Creates a new VertexAttribute with a buffer size fit to hold the given number of vertices.
+     * The values can be written in a stream like fashion by using the << operator.
+     * The buffer can be used when it was filled completely.
+     *
+     * @param vertexCount The number of vertices this buffer can hold
+     * @param tupelSize The number of components per vertex
+     */
     VertexAttribute(unsigned int vertexCount, unsigned int tupelSize);
+
+    /**
+     * Destroys the VertexAttribute.
+     */
     ~VertexAttribute();
 
+    /**
+     * Reallocates space for this buffer.
+     * If an write is in progress, it will be canceled.
+     *
+     * @param vertexCount The number of vertices this buffer can hold
+     * @param tupelSize The number of components per vertex
+     */
+    void reset(unsigned int vertexCount, unsigned int tupelSize);
     void bind();
 
     unsigned int getTupelSize() const;

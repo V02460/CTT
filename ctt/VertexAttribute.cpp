@@ -17,17 +17,31 @@ VertexAttribute::VertexAttribute(unsigned int vertexCount, unsigned int tupelSiz
         , entryCount(vertexCount * tupelSize)
         , writeActive(false){
     create();
-    bind();
+    QOpenGLBuffer::bind();
     allocate(entryCount * sizeof(GLfloat));
-    release();
 }
 
 VertexAttribute::~VertexAttribute() {
 }
 
+void VertexAttribute::reset(unsigned int vertexCount, unsigned int tupelSize) {
+    if (vertexCount != getVertexCount() || tupelSize != getTupelSize()) {
+        this->vertexCount = vertexCount;
+        this->tupelSize = tupelSize;
+        entryCount = vertexCount * tupelSize;
+
+        QOpenGLBuffer::bind();
+        allocate(entryCount * sizeof(GLfloat));
+    }
+
+    if (writeActive) {
+        finishWrite();
+    }
+}
+
 void VertexAttribute::bind() {
     if (writeActive) {
-        throw new IllegalStateException("Write must be finished before Attribute can be bound.");
+        throw new IllegalStateException("Write must be finished before attribute can be bound. Wrong buffer size?");
     }
 
     QOpenGLBuffer::bind();
@@ -88,6 +102,10 @@ void VertexAttribute::startWrite() {
 
     QOpenGLBuffer::bind();
     bufferStart = reinterpret_cast<GLfloat*>(map(WriteOnly));
+    if (bufferStart == nullptr) {
+        throw new OpenGLException("Could not map vertex attribute buffer.");
+    }
+
     bufferPointer = bufferStart;
     bufferEnd = bufferStart + entryCount;
 
