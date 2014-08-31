@@ -29,8 +29,7 @@ VideoListController::VideoListController(SaveableList<FilteredVideo>::sptr video
 }
 
 void VideoListController::addVideo(QString path) {
-	QOpenGLContext context(GlobalContext::get().data());
-	FFmpegDataVideo ffmpegVideo(path, QSharedPointer<QOpenGLContext>(&context));	
+	FFmpegDataVideo ffmpegVideo(path, GlobalContext::get());
 
 	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<FFmpegDataVideo>(&ffmpegVideo)));
 	
@@ -39,9 +38,7 @@ void VideoListController::addVideo(QString path) {
 }
 
 void VideoListController::addVideo(QString path, int width, int height, double fps, YUVType type, unsigned int length) {
-	QOpenGLContext context(GlobalContext::get().data());
-	QSize resolution(QSize(width, height));
-	YUVDataVideo yuvVideo(path, resolution, fps, type, QSharedPointer<QOpenGLContext>(&context));
+	YUVDataVideo yuvVideo(path, QSize(width, height), fps, type, GlobalContext::get());
 
 	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(&yuvVideo)));
 
