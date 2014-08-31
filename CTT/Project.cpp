@@ -15,7 +15,8 @@ using ::exception::NotImplementedException;
 using ::view::ViewState;
 using ::view::ViewType;
 
-Project::Project() : baseVideoList(new SaveableList<FilteredVideo>()),
+Project::Project() : Observable(),
+					 baseVideoList(new SaveableList<FilteredVideo>()),
 	                 videoList1(new SaveableList<FilteredVideo>()),
 	                 videoList2(new SaveableList<FilteredVideo>()),
 	                 playerList1(new SaveableList<Player>()),

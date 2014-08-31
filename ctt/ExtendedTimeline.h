@@ -18,7 +18,7 @@ namespace view {
 /**
  * The ExtendedTimeline manages the shown timeline and the navigation of the videos in a given player.
  */
-class ExtendedTimeline : public QWidget, public::model::Observer, public ::model::Observable {
+class ExtendedTimeline : public QWidget, public::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<ExtendedTimeline> uptr;

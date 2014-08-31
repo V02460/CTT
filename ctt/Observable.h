@@ -41,6 +41,8 @@ public:
 protected:
 	QList<Observer*> observers;
 
+	Observable() : observers() {}
+
     /**
      * this calls the update routine on all Observers observing this Observable.
      *

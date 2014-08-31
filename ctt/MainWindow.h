@@ -21,7 +21,7 @@ namespace view {
 /**
  * The MainWindow unites all intractable components which represent the whole functionality provided by the model.
  */
-class MainWindow : public QMainWindow, public::model::Observable, public ::model::Observer {
+class MainWindow : public QMainWindow, public ::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<MainWindow> uptr;

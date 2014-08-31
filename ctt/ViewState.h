@@ -18,7 +18,7 @@ namespace view {
  * The view state class determines the state the GUI is currently in and notifies all relevant components when the
  * state changes.
  */
-class ViewState : public QObject, public model::Observable, public ::model::saveable::Saveable {
+class ViewState : public QObject, public ::model::Observable, public ::model::saveable::Saveable {
     Q_OBJECT
 
 public:

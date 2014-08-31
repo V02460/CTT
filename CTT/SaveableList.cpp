@@ -37,7 +37,7 @@ namespace saveable {
 using ::exception::AccessToDummyException;
 
 template <class T>
-SaveableList<T>::SaveableList() : list() {}
+SaveableList<T>::SaveableList() : Observable(), list() {}
 
 template <class T> const QString SaveableList<T>::SIZE = "size";
 template <class T> const QString SaveableList<T>::TEMPLATE = "template";

@@ -10,7 +10,7 @@ using ::model::filter::FilteredVideo;
 
 namespace view {
 
-AbstractListView::AbstractListView(QWidget *parent) : items(), QTreeWidget(parent) {
+	AbstractListView::AbstractListView(QWidget *parent) : QTreeWidget(parent), items() {
 	setIndentation(0);
 	// TODO setItemsExpandable(true);
 	setRootIsDecorated(true);

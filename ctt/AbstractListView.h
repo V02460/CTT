@@ -18,7 +18,7 @@ namespace view {
  * It stands basically for some kind of list and displays all the elements of that list in a way that is concretized in
  * the specific implementation.
  */
-class AbstractListView : public QTreeWidget, public ::model::Observer, public ::model::Observable {
+class AbstractListView : public QTreeWidget, public ::model::Observer {
 	Q_OBJECT
 
 public:

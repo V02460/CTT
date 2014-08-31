@@ -50,7 +50,8 @@ ViewType ViewState::getCurrentViewType() {
 	return currentView;
 }
 
-ViewState::ViewState() : currentView(ViewType::PROCESSING_VIEW){}
+ViewState::ViewState() : Observable(), currentView(ViewType::PROCESSING_VIEW) {}
 
 ViewState::uptr ViewState::instance;
+
 }  // namespace view
