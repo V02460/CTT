@@ -153,6 +153,7 @@
     <ClCompile Include="AccessToDummyException.cpp" />
     <ClCompile Include="AnalysingOrderingWidget.cpp" />
     <ClCompile Include="AnalysingWidget.cpp" />
+    <ClCompile Include="AveragePixelDiff.cpp" />
     <ClCompile Include="BlueHistogram.cpp" />
     <ClCompile Include="BlurFilter.cpp" />
     <ClCompile Include="CoffeeFilter.cpp" />
@@ -589,7 +590,6 @@
     <ClCompile Include="SaturationHistogram.cpp" />
     <ClCompile Include="Saveable.cpp" />
     <ClCompile Include="SaveableList.cpp" />
-    <ClCompile Include="Shader\Diff\yuvPixelDiff.fs" />
     <ClCompile Include="Surface.cpp" />
     <ClCompile Include="ThumbnailListWidget.cpp" />
     <ClCompile Include="TimelineInterval.cpp" />
@@ -677,6 +677,7 @@
     <ClInclude Include="AccessToDummyException.h" />
     <ClInclude Include="AnalysingOrderingWidget.h" />
     <ClInclude Include="AnalysingWidget.h" />
+    <ClInclude Include="AveragePixelDiff.h" />
     <ClInclude Include="BlueHistogram.h" />
     <CustomBuild Include="BlurFilter.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
@@ -1510,7 +1511,6 @@
     <ClInclude Include="XMLLoader.h" />
     <ClInclude Include="XMLSaver.h" />
     <ClInclude Include="YUVDataVideo.h" />
-    <ClInclude Include="YUVPixelDiff.h" />
     <CustomBuild Include="ZoomFunctions.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing ZoomFunctions.h...</Message>
@@ -1553,11 +1553,14 @@
   <ItemGroup>
     <None Include="..\cttApp\ctt_de.ts" />
     <None Include="..\cttApp\ctt_en.ts" />
-    <None Include="Shader\compactAverage.fs" />
+    <None Include="Shader\CompactAverage.fs" />
     <None Include="Shader\Conversion\YUV420toRGBsdtv.fs" />
     <None Include="Shader\Conversion\YUV422toRGBsdtv.fs" />
     <None Include="Shader\Conversion\YUV444toRGBsdtv.fs" />
     <None Include="Shader\Default\Default.vs" />
+    <None Include="Shader\Diff\HSLPixelDiff.fs" />
+    <None Include="Shader\Diff\RGBPixelDiff.fs" />
+    <None Include="Shader\Diff\YUVPixelDiff.fs" />
     <None Include="Shader\Filter\1DBlur.fs" />
     <None Include="Shader\Filter\Greyscale.fs" />
     <None Include="Shader\Filter\Mix.fs" />

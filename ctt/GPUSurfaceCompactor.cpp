@@ -15,7 +15,7 @@ using ::exception::IOException;
 using ::exception::FileNotFoundException;
 using ::exception::NotImplementedException;
 
-static QSize getNewSizeDefault(QSize size) {
+QSize getNewSizeDefault(QSize size) {
     return QSize(size.width() / 2, size.height() / 2);
 }
 

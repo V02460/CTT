@@ -72,6 +72,10 @@ void GPUSurfaceShader::setSourceTexture(Surface::sptr sourceTexture) {
 }
 
 Surface::sptr GPUSurfaceShader::getSourceTexture() {
+    if (sourceTexture.isNull()) {
+        throw new IllegalStateException("Source texture was not set.");
+    }
+
     return sourceTexture;
 }
 

@@ -4,7 +4,8 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
-#include "PixelDiff.h"
+
+#include "AveragePixelDiff.h"
 #include "Video.h"
 #include "Memento.h"
 
@@ -15,7 +16,7 @@ namespace difference {
  * Calculates the distances in the YUV-colorspace between frames for every pair of corresponding pixels, and is able to
  * normalize the resulting matrix if required.
  */
-class YUVPixelDiff : public PixelDiff {
+class YUVPixelDiff : public AveragePixelDiff {
 public:
     typedef QScopedPointer<YUVPixelDiff> uptr;
     typedef QSharedPointer<YUVPixelDiff> sptr;
@@ -32,7 +33,6 @@ public:
     virtual ~YUVPixelDiff();
 
     virtual Surface::sptr getPixelDiff(unsigned int frameNr) const Q_DECL_OVERRIDE;
-    virtual double getDiff(unsigned int frameNr) const Q_DECL_OVERRIDE;
 
     virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
     virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;

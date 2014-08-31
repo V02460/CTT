@@ -780,8 +780,8 @@
     <ClCompile Include="ExtendedVideoRemovedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
-    <ClCompile Include="Shader\Diff\yuvPixelDiff.fs">
-      <Filter>Shader Files\Diff</Filter>
+    <ClCompile Include="AveragePixelDiff.cpp">
+      <Filter>Source Files\Model\Difference</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1033,9 +1033,6 @@
     <ClInclude Include="YUVDataVideo.h">
       <Filter>Header Files\Model\Video</Filter>
     </ClInclude>
-    <ClInclude Include="YUVPixelDiff.h">
-      <Filter>Header Files\Model\Difference</Filter>
-    </ClInclude>
     <ClInclude Include="ViewType.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
@@ -1171,6 +1168,9 @@
     <ClInclude Include="ExtendedVideoAddedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
+    <ClInclude Include="AveragePixelDiff.h">
+      <Filter>Header Files\Model\Difference</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\Conversion\YUV420toRGBsdtv.fs">
@@ -1233,9 +1233,6 @@
     <ClInclude Include="FilterMovedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
-    <None Include="Shader\compactAverage.fs">
-      <Filter>Shader Files</Filter>
-    </None>
     <None Include="Shader\Filter\Rescale.fs">
       <Filter>Shader Files\Filter</Filter>
     </None>
@@ -1256,6 +1253,18 @@
     </None>
     <None Include="Shader\Overlay\Macroblock.vs">
       <Filter>Shader Files\Overlay</Filter>
+    </None>
+    <None Include="Shader\CompactAverage.fs">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="Shader\Diff\HSLPixelDiff.fs">
+      <Filter>Shader Files\Diff</Filter>
+    </None>
+    <None Include="Shader\Diff\RGBPixelDiff.fs">
+      <Filter>Shader Files\Diff</Filter>
+    </None>
+    <None Include="Shader\Diff\YUVPixelDiff.fs">
+      <Filter>Shader Files\Diff</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
