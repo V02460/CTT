@@ -9,10 +9,6 @@
 #include <QPushButton>
 #include <QGridLayout>
 
-#include "ViewState.h"
-#include "Observer.h"
-#include "FilterController.h"
-#include "OverlayController.h"
 #include "ListedPushButton.h"
 
 namespace view {

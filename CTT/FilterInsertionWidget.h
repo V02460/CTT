@@ -3,6 +3,8 @@
 
 #include "InsertionWidget.h"
 
+#include "FilterController.h"
+
 namespace view {
 
 class FilterInsertionWidget : public InsertionWidget {

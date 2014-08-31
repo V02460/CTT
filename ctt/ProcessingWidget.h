@@ -53,8 +53,6 @@ signals:
      * @param newView The identifier of the new view state.
      */
     void btnChangeViewClicked(ViewType newView);
-
-	void videoChanged(::model::filter::FilteredVideo::sptr video);
 private:
 	void setupUi();
 

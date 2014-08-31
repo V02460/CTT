@@ -19,9 +19,6 @@ namespace view {
 	}
 
 	void AnalysingOrderingWidget::update() {
-		widgetLayout.reset(new QGridLayout(this));
-		dialogLayout.reset(new QGridLayout(videoSelectionDialog));
-
 		for (int i = 0; i < analysingWidget.size(); i++) {
 			analysingWidget.at(i)->comboboxOverlayCurrentIndexChanged(0);
 			QObject::disconnect(dialogButtons.at(i).data(), SIGNAL(toggled(bool, int)), this, SLOT(dialogButtonToggled(bool, int)));
@@ -39,6 +36,8 @@ namespace view {
 			dialogButtons.insert(i, dialogButton);
 			QObject::connect(dialogButton.data(), SIGNAL(toggled(bool, int)), this, SLOT(dialogButtonToggled(bool, int)));
 		}
+
+		setupUi();
 	}
 
 	void AnalysingOrderingWidget::setupDialog() {
@@ -67,12 +66,14 @@ namespace view {
 		}
 
 		dialogLayout->addWidget(dialogButtonBox, columnCount + 1, 0);
+		videoSelectionDialog->setLayout(dialogLayout.data());
+		setLayout(widgetLayout.data());
 	}
 
 	QList<FilteredVideo::sptr> AnalysingOrderingWidget::getVideos(int selectableCount) {
 		activeDialogButtonIds.clear();
 		QList<FilteredVideo::sptr> selectedVideoList = QList<FilteredVideo::sptr>();
-		int maxSize = thumbnails->getActiveIndices().size();
+		int maxSize = thumbnails->getSelectableCount();
 
 		if (selectableCount <= maxSize && selectableCount > 0) {
 			selectableDialogButtons = selectableCount;
@@ -104,20 +105,25 @@ namespace view {
 	}
 
 	void AnalysingOrderingWidget::dialogButtonToggled(bool checked, int id) {
-		if (checked && !activeDialogButtonIds.contains(id)) {
-			if (activeDialogButtonIds.size() == selectableDialogButtons) {
-				activeDialogButtonIds.removeFirst();
-			}
-			
-			activeDialogButtonIds.append(id);
+		if (selectableDialogButtons > 0) {
+			if (checked && !activeDialogButtonIds.contains(id)) {
+				if (activeDialogButtonIds.size() == selectableDialogButtons) {
+					activeDialogButtonIds.removeFirst();
+				}
 
-			if (activeDialogButtonIds.size() == selectableDialogButtons) {
-				dialogAcceptButton->setEnabled(true);
-			}
-		} else if (!checked && activeDialogButtonIds.contains(id)) {
-			activeDialogButtonIds.removeOne(id);
+				activeDialogButtonIds.append(id);
 
-			dialogAcceptButton->setEnabled(false);
+				if (activeDialogButtonIds.size() == selectableDialogButtons) {
+					dialogAcceptButton->setEnabled(true);
+				}
+			}
+			else if (!checked && activeDialogButtonIds.contains(id)) {
+				activeDialogButtonIds.removeOne(id);
+
+				dialogAcceptButton->setEnabled(false);
+			}
+		} else {
+			dialogButtons.at(id)->setChecked(false);
 		}
 	}
 }

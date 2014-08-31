@@ -35,8 +35,6 @@ ProcessingWidget::ProcessingWidget(SaveableList<Player>::sptr players,
 
 	filterController = FilterController::sptr(new FilterController(FilteredVideo::sptr()));
 	mainControlWidget = new MainControlWidget(filterController);
-	QObject::connect(this, SIGNAL(videoChanged(::model::filter::FilteredVideo::sptr)),
-		filterController.data(), SLOT(setVideo(::model::filter::FilteredVideo::sptr)));
 
 	playerWidgetsLayout->addWidget(new QWidget());
 
@@ -92,7 +90,7 @@ void ProcessingWidget::videoActivated(int id) {
 	//id + 1, da an Stelle 0 ein leeres Widget sitzt
 	playerWidgetsLayout->setCurrentIndex(id + 1);
 	mainControlWidget->setPlayer(players->get(id));
-	emit videoChanged(filteredVideos->get(id));
+	mainControlWidget->setVideo(filteredVideos->get(id));
 }
 
 void ProcessingWidget::videoReplaced(int oldId, int newId) {
@@ -122,6 +120,7 @@ void ProcessingWidget::update() {
 
 	playerWidgetsLayout->setCurrentIndex(0);
 	mainControlWidget->removePlayer();
+	mainControlWidget->removeVideo();
 }
 
 }// namespace view
