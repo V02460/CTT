@@ -31,7 +31,8 @@ public:
 
 	virtual void update() Q_DECL_OVERRIDE;
 
-	void setVideo(::model::filter::FilteredVideo::sptr newVideo);
+	virtual void setVideo(::model::filter::FilteredVideo::sptr newVideo) Q_DECL_OVERRIDE;
+	virtual void removeVideo() Q_DECL_OVERRIDE;
 
 signals:
     /**

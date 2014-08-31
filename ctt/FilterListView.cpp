@@ -19,12 +19,20 @@ FilterListView::FilterListView(FilterController::sptr filterController,
 }
 
 void FilterListView::setVideo(FilteredVideo::sptr newVideo) {
-	if (!video.isNull()) {
-		video->unsubscribe(this);
-	}
+	removeVideo();
 	video = newVideo;
 	video->subscribe(this);
 	update();
+	emit videoChanged(newVideo);
+}
+
+void FilterListView::removeVideo() {
+	if (!video.isNull()) {
+		video->unsubscribe(this);
+	}
+
+	removeAllItems();
+	setupUi();
 }
 
 void FilterListView::update() {
