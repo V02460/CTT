@@ -13,6 +13,7 @@ using ::helper::GPUHelper;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::exception::NotImplementedException;
+using ::exception::AccessToDummyException;
 
 const QByteArray BlurFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_blur");
 
@@ -22,10 +23,16 @@ BlurFilter::BlurFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamRadiusStr, 5.f);
 }
 
-BlurFilter::~BlurFilter() {
+BlurFilter::BlurFilter() {
+	isDummyFlag = true;
 }
 
+BlurFilter::~BlurFilter() {}
+
 model::frame::Frame::sptr BlurFilter::getFrame(unsigned int frameNumber) const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
 
     Frame::sptr frame = getPredecessor()->getFrame(frameNumber);
 
@@ -45,19 +52,26 @@ model::frame::Frame::sptr BlurFilter::getFrame(unsigned int frameNumber) const {
 }
 
 Memento BlurFilter::getMemento() const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
     return Filter::getMemento();
 }
 
 void BlurFilter::restore(Memento memento) {
-    Filter::restore(memento);
+	Filter::restore(memento);
+	isDummyFlag = false;
 }
 
 QList<const Module*> BlurFilter::getUsesList() const {
-    throw new NotImplementedException();
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
+	return QList<const Module*>() << this;
 }
 
-bool BlurFilter::uses(const model::Module &module) const {
-    throw new NotImplementedException();
+Saveable::sptr BlurFilter::getDummy() {
+	return BlurFilter::sptr(new BlurFilter());
 }
 
 }  // namespace filter

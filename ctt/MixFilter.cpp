@@ -10,7 +10,7 @@ namespace filter {
 
 using ::model::frame::Frame;
 using ::model::frame::FrameMetadata;
-using ::exception::NotImplementedException;
+using ::exception::AccessToDummyException;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::helper::GPUHelper;
@@ -28,31 +28,41 @@ MixFilter::MixFilter(Module::sptr module1, Module::sptr module2) : Filter(module
     newParameter(kParamMixRatioStr, 0.5f);
 }
 
+MixFilter::MixFilter() {
+	isDummyFlag = true;
+}
+
 MixFilter::~MixFilter() {
 }
 
 Frame::sptr MixFilter::getFrame(unsigned int frameNumber) const {
-     Frame::sptr frame1 = getPredecessor()->getFrame(frameNumber);
-     Frame::sptr frame2 = module2->getFrame(frameNumber);
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
+    Frame::sptr frame1 = getPredecessor()->getFrame(frameNumber);
+    Frame::sptr frame2 = module2->getFrame(frameNumber);
 
-     GPUHelper gpuHelper(":/Shader/Filter/Mix.fs", frame1->getContext());
+    GPUHelper gpuHelper(":/Shader/Filter/Mix.fs", frame1->getContext());
 
-     gpuHelper.setValue("sourceTexture2", *frame2.data());
+    gpuHelper.setValue("sourceTexture2", *frame2.data());
 
-     float mixRatio = getParamValue<float>(kParamMixRatioStr);
-     mixRatio = clamp(mixRatio, 0.f, 1.f);
-     gpuHelper.setValue("mixRatio", mixRatio);
+    float mixRatio = getParamValue<float>(kParamMixRatioStr);
+    mixRatio = clamp(mixRatio, 0.f, 1.f);
+    gpuHelper.setValue("mixRatio", mixRatio);
 
-     Surface::sptr mixed = gpuHelper.run(*frame1.data());
+    Surface::sptr mixed = gpuHelper.run(*frame1.data());
 
-     return Frame::sptr(new Frame(mixed, FrameMetadata(mixed->getSize())));
+    return Frame::sptr(new Frame(mixed, FrameMetadata(mixed->getSize())));
 }
 
 Memento MixFilter::getMemento() const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
     Memento memento = Filter::getMemento();
     
-   memento.setFloat(kParamMixRatioStr, getParamValue<float>(kParamMixRatioStr));
-   memento.setSharedPointer("module2", module2);
+    memento.setFloat(kParamMixRatioStr, getParamValue<float>(kParamMixRatioStr));
+    memento.setSharedPointer("module2", module2);
 
     return memento;
 }
@@ -62,14 +72,19 @@ void MixFilter::restore(Memento memento) {
 
     setParam(FilterParam::sptr(new FilterParam(kParamMixRatioStr, memento.getFloat(kParamMixRatioStr))));
     module2 = memento.getSharedPointer("module2").dynamicCast<Module>();
+	isDummyFlag = false;
 }
 
 QList<const Module*> MixFilter::getUsesList() const {
-    throw new NotImplementedException();
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
+	return QList<const Module*>() << this
+		                          << module2.data(); // TODO
 }
 
-bool MixFilter::uses(const ::model::Module &module) const {
-    throw new NotImplementedException();
+Saveable::sptr MixFilter::getDummy() {
+	return MixFilter::sptr(new MixFilter());
 }
 
 }  // namespace filter

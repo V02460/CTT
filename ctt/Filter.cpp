@@ -14,17 +14,14 @@ using ::exception::AccessToDummyException;
 using ::exception::IllegalArgumentException;
 using ::exception::IllegalStateException;
 
-Filter::Filter(Module::sptr predecessor) : predecessor(predecessor), parameters(), intervals() {
-}
+Filter::Filter(Module::sptr predecessor) : predecessor(predecessor), parameters(), intervals() {}
 
-Filter::~Filter() {
-}
+Filter::~Filter() {}
 
 QList<FilterParam::sptr> Filter::getParams() const {
     if (isDummy()) {
         throw new AccessToDummyException();
     }
-
     return parameters.values();
 }
 
@@ -35,14 +32,11 @@ void Filter::setParam(FilterParam::sptr parameter) {
     if (!parameters.contains(parameter->getName())) {
         throw new IllegalArgumentException("Parameter '" + parameter->getName() + "' must exist in Filter to be set.");
     }
-
     QVariant oldValue = parameters.value(parameter->getName(), parameter)->getValue();
     QVariant newValue = parameter->getValue();
-
     if (newValue.type() != oldValue.type()) {
         throw new IllegalArgumentException("Variable type of FilterParam does not match stored type.");
     }
-
     parameters.insert(parameter->getName(), parameter);
 }
 
@@ -53,7 +47,6 @@ void Filter::setPreviousModule(Module::sptr predecessor) {
     if (predecessor.isNull()) {
         throw new IllegalArgumentException("Predecessor must not be null.");
     }
-
     this->predecessor = predecessor;
 }
 
@@ -103,17 +96,15 @@ Memento Filter::getMemento() const {
 	if (isDummy()) {
 		throw new AccessToDummyException();
 	}
-    Memento memento;
+	Memento memento;
     memento.setSharedPointer("predecessor", predecessor);
 	memento.setSharedPointer("intervals", intervals);
     return memento;
 }
 
-// TODO isDummyFlag = false ... nicht mehr zu restoren? Doch!!!
 void Filter::restore(Memento memento) {
     predecessor = memento.getSharedPointer("predecessor").dynamicCast<Module>();
 	intervals = memento.getSharedPointer("intervals").dynamicCast<FilterIntervalList>();
-	isDummyFlag = false;
 }
 
 }  // namespace filter

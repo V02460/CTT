@@ -13,7 +13,7 @@ using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
 using ::helper::GPUHelper;
 using ::helper::clamp;
-using ::exception::NotImplementedException;
+using ::exception::AccessToDummyException;
 
 const QByteArray RGBChannelFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_rgbchannel");
 
@@ -27,10 +27,16 @@ RGBChannelFilter::RGBChannelFilter(Module::sptr predecessor) : Filter(predecesso
     newParameter(kParamBlueStr, 100);
 }
 
-RGBChannelFilter::~RGBChannelFilter() {
+RGBChannelFilter::RGBChannelFilter() {
+	isDummyFlag = true;
 }
 
+RGBChannelFilter::~RGBChannelFilter() {}
+
 model::frame::Frame::sptr RGBChannelFilter::getFrame(unsigned int frameNumber) const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
     Frame::sptr frame = getPredecessor()->getFrame(frameNumber);
 
     GPUHelper gpuHelper(":/Shader/Filter/RGBChannel.fs", frame->getContext());
@@ -50,6 +56,9 @@ model::frame::Frame::sptr RGBChannelFilter::getFrame(unsigned int frameNumber) c
 }
 
 Memento RGBChannelFilter::getMemento() const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
     Memento memento = Filter::getMemento();
 
     memento.setInt(kParamRedStr, getParamValue<int>(kParamRedStr));
@@ -65,18 +74,18 @@ void RGBChannelFilter::restore(Memento memento) {
 	setParam(FilterParam::sptr(new FilterParam(kParamRedStr, memento.getInt(kParamRedStr))));
 	setParam(FilterParam::sptr(new FilterParam(kParamGreenStr, memento.getInt(kParamGreenStr))));
 	setParam(FilterParam::sptr(new FilterParam(kParamBlueStr, memento.getInt(kParamBlueStr))));
+	isDummyFlag = false;
 }
 
 QList<const Module*> RGBChannelFilter::getUsesList() const {
-    throw new NotImplementedException();
-}
-
-bool RGBChannelFilter::uses(const model::Module &module) const {
-    throw new NotImplementedException();
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
+	return QList<const Module*>() << this;
 }
 
 Saveable::sptr RGBChannelFilter::getDummy() {
-    throw new NotImplementedException();
+	return RGBChannelFilter::sptr(new RGBChannelFilter());
 }
 
 }  // namespace filter

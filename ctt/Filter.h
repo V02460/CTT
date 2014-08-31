@@ -112,17 +112,17 @@ public:
 
     virtual QSize getResolution() const Q_DECL_OVERRIDE;
 
-    ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
-    void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
+    virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
+    virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
     static Saveable::SaveableType getSaveableType() { return Saveable::filter; }
 
 protected:
+
     template <class T>
     void newParameter(QString name, T initValue) {
         if (isDummy()) {
             throw new ::exception::AccessToDummyException();
         }
-
 		parameters.insert(name, FilterParam::sptr(new FilterParam(name, initValue)));
     }
 
@@ -131,12 +131,13 @@ protected:
         if (isDummy()) {
             throw new ::exception::AccessToDummyException();
         }
-
         FilterParam::sptr param = parameters.value(key, FilterParam::sptr(new FilterParam(key, defaultValue)));
         return param->getValue().value<T>();
     }
 
     Module *getPredecessor() const;
+
+	Filter() {}
 
 private:
     Q_DISABLE_COPY(Filter)

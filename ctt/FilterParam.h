@@ -42,7 +42,6 @@ public:
      * @return any the name of the parameter
      */
     QString getName() const;
-
     
 private:
     QString name; /**<  The name of the parameter. */

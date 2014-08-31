@@ -14,7 +14,7 @@ using ::model::filter::FilterParam;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::helper::GPUHelper;
-using ::exception::NotImplementedException;
+using ::exception::AccessToDummyException;
 
 const QByteArray RescaleFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_rescale");
 
@@ -26,10 +26,16 @@ RescaleFilter::RescaleFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamNewSize, predecessor->getResolution());
 }
 
-RescaleFilter::~RescaleFilter() {
+RescaleFilter::RescaleFilter() {
+	isDummyFlag = true;
 }
 
+RescaleFilter::~RescaleFilter() {}
+
 model::frame::Frame::sptr RescaleFilter::getFrame(unsigned int frameNumber) const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
     Frame::sptr sourceFrame = getPredecessor()->getFrame(frameNumber);
 
     QSize newSize = getParamValue<QSize>(kParamNewSize);
@@ -49,6 +55,9 @@ model::frame::Frame::sptr RescaleFilter::getFrame(unsigned int frameNumber) cons
 }
 
 Memento RescaleFilter::getMemento() const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
     Memento memento = Filter::getMemento();
 
     QSize newSize = getParamValue<QSize>(kParamNewSize);
@@ -66,14 +75,17 @@ void RescaleFilter::restore(Memento memento) {
     newSize.setWidth(memento.getInt(kParamNewSizeWidth));
     newSize.setWidth(memento.getInt(kParamNewSizeHeight));
     setParam(FilterParam::sptr(new FilterParam(kParamNewSize, newSize)));
+	isDummyFlag = false;
 }
 
 QList<const Module*> RescaleFilter::getUsesList() const {
-    throw new NotImplementedException();
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
+	return QList<const Module*>() << this;
 }
-
-bool RescaleFilter::uses(const ::model::Module &module) const {
-    throw new NotImplementedException();
+Saveable::sptr RescaleFilter::getDummy() {
+	return RescaleFilter::sptr(new RescaleFilter());
 }
 
 }  // namespace filter

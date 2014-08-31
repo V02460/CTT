@@ -8,7 +8,7 @@ namespace model {
 namespace filter {
 
 using ::model::frame::Frame;
-using ::exception::NotImplementedException;
+using ::exception::AccessToDummyException;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::helper::GPUHelper;
@@ -22,10 +22,16 @@ NoiseFilter::NoiseFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamIntensityStr, 0.5f);
 }
 
-NoiseFilter::~NoiseFilter() {
+NoiseFilter::NoiseFilter() {
+	isDummyFlag = true;
 }
 
+NoiseFilter::~NoiseFilter() {}
+
 model::frame::Frame::sptr NoiseFilter::getFrame(unsigned int frameNumber) const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
     Frame::sptr frame = getPredecessor()->getFrame(frameNumber);
 
     GPUHelper gpuHelper(":/Shader/Filter/Noise.fs", frame->getContext());
@@ -41,6 +47,9 @@ model::frame::Frame::sptr NoiseFilter::getFrame(unsigned int frameNumber) const 
 }
 
 Memento NoiseFilter::getMemento() const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
     Memento memento = Filter::getMemento();
 
     memento.setFloat(kParamIntensityStr, getParamValue<float>(kParamIntensityStr));
@@ -52,14 +61,18 @@ void NoiseFilter::restore(Memento memento) {
     Filter::restore(memento);
 
     setParam(FilterParam::sptr(new FilterParam(kParamIntensityStr, memento.getFloat(kParamIntensityStr))));
+	isDummyFlag = false;
 }
 
 QList<const Module*> NoiseFilter::getUsesList() const {
-    throw new NotImplementedException();
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
+	return QList<const Module*>() << this;
 }
 
-bool NoiseFilter::uses(const Module &module) const {
-    throw new NotImplementedException();
+Saveable::sptr NoiseFilter::getDummy() {
+	return NoiseFilter::sptr(new NoiseFilter());
 }
 
 }  // namespace filter

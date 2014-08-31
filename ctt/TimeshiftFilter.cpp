@@ -11,7 +11,7 @@ using ::model::frame::Frame;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::helper::clamp;
-using ::exception::NotImplementedException;
+using ::exception::AccessToDummyException;
 
 const QByteArray TimeshiftFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_timeshift");
 
@@ -21,10 +21,16 @@ TimeshiftFilter::TimeshiftFilter(Module::sptr predecessor) : Filter(predecessor)
     newParameter(kParamShiftStr, 0);
 }
 
-TimeshiftFilter::~TimeshiftFilter() {
+TimeshiftFilter::TimeshiftFilter() {
+	isDummyFlag = true;
 }
 
+TimeshiftFilter::~TimeshiftFilter() {}
+
 model::frame::Frame::sptr TimeshiftFilter::getFrame(unsigned int frameNumber) const {
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
     int shift = getParamValue<int>(kParamShiftStr);
 
     Module *predecessor = getPredecessor();
@@ -38,23 +44,26 @@ model::frame::Frame::sptr TimeshiftFilter::getFrame(unsigned int frameNumber) co
 }
 
 Memento TimeshiftFilter::getMemento() const {
-    throw new NotImplementedException();
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
+	return Filter::getMemento();
 }
 
 void TimeshiftFilter::restore(Memento memento) {
-    throw new NotImplementedException();
+	if (isDummy()) {
+		throw new AccessToDummyException();
+	}
+	Filter::restore(memento);
+	isDummyFlag = false;
 }
 
 QList<const Module*> TimeshiftFilter::getUsesList() const {
-    throw new NotImplementedException();
-}
-
-bool TimeshiftFilter::uses(const ::model::Module &module) const {
-    throw new NotImplementedException();
+	return QList<const Module*>() << this;
 }
 
 Saveable::sptr TimeshiftFilter::getDummy() {
-    throw new NotImplementedException();
+	return TimeshiftFilter::sptr(new TimeshiftFilter());
 }
 
 }  // namespace filter
