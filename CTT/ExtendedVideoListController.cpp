@@ -33,8 +33,7 @@ namespace controller {
 
 	void ExtendedVideoListController::addVideo(QString path) {
 
-		QOpenGLContext context(GlobalContext::get().data());
-		FFmpegDataVideo ffmpegVideo(path, QSharedPointer<QOpenGLContext>(&context));
+		FFmpegDataVideo ffmpegVideo(path, GlobalContext::get());
 
 		FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<FFmpegDataVideo>(&ffmpegVideo)));
 		FilteredVideo::sptr filteredVideo(new FilteredVideo(QSharedPointer<FFmpegDataVideo>(&ffmpegVideo)));
@@ -45,9 +44,7 @@ namespace controller {
 	}
 
 	void ExtendedVideoListController::addVideo(QString path, int width, int height, double fps, model::video::YUVType type, unsigned int length) {
-		QOpenGLContext context(GlobalContext::get().data());
-		QSize resolution(QSize(width, height));
-		YUVDataVideo yuvVideo(path, resolution, fps, type, QSharedPointer<QOpenGLContext>(&context));
+		YUVDataVideo yuvVideo(path, QSize(width, height), fps, type, GlobalContext::get());
 
 		FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(&yuvVideo)));		
 		FilteredVideo::sptr filteredVideo(new FilteredVideo(QSharedPointer<YUVDataVideo>(&yuvVideo)));
