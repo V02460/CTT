@@ -48,7 +48,7 @@ void PlayerFunctions::setupUi() {
 
 	layout->addStretch();
 
-	spinboxFPS = new QSpinBox(this);
+	spinboxFPS = new QDoubleSpinBox(this);
 	spinboxFPS->setAccessibleName("PlayerFunctions->spinboxFPS");
 	spinboxFPS->setSuffix(" FPS");
 	spinboxFPS->setMinimum(0);
@@ -135,7 +135,7 @@ void PlayerFunctions::subscribe(::controller::PlayerController::sptr observer) {
 	QObject::connect(btnPreviousFrame, SIGNAL(clicked()), observer.data(), SLOT(previousFrame()));
 	QObject::connect(sliderCurrentFrame, SIGNAL(sliderMoved(int)), observer.data(), SLOT(currentFrameChanged(int)));
 	QObject::connect(btnDefaultFPS, SIGNAL(clicked()), observer.data(), SLOT(setToDefaultFPS()));
-	QObject::connect(spinboxFPS, SIGNAL(valueChanged(int)), observer.data(), SLOT(setFPS(int)));
+	QObject::connect(spinboxFPS, SIGNAL(valueChanged(double)), observer.data(), SLOT(setFPS(double)));
 	QObject::connect(this, SIGNAL(playerChanged(::model::player::Player::sptr)), observer.data(),
 		SLOT(setPlayer(::model::player::Player::sptr)));
 
@@ -150,7 +150,7 @@ void PlayerFunctions::unsubscribe(const ::controller::PlayerController &observer
 	QObject::disconnect(btnPreviousFrame, SIGNAL(clicked()), &observer, SLOT(previousFrame()));
 	QObject::disconnect(sliderCurrentFrame, SIGNAL(sliderMoved(int)), &observer, SLOT(currentFrameChanged(int)));
 	QObject::disconnect(btnDefaultFPS, SIGNAL(clicked()), &observer, SLOT(setToDefaultFPS()));
-	QObject::disconnect(spinboxFPS, SIGNAL(valueChanged(int)), &observer, SLOT(setFPS(int)));
+	QObject::disconnect(spinboxFPS, SIGNAL(valueChanged(double)), &observer, SLOT(setFPS(double)));
 	QObject::disconnect(this, SIGNAL(playerChanged(::model::player::Player::sptr)), &observer,
 		SLOT(setPlayer(::model::player::Player::sptr)));
 
