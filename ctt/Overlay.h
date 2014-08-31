@@ -25,23 +25,25 @@ public:
 
     static Saveable::SaveableType getSaveableType();
 
+    virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
+
 protected:
     /**
     * Constructs a Overlay which works on predecessor.
     *
     * @param predecessor The Module Overlay is receiving its Frames from.
+    * @param overlay The image which is put on top
+    * @param overlayAlpha The transparency of the overlay
     */
-    explicit Overlay(Module::sptr predecessor);
+    explicit Overlay(Module::sptr predecessor, Module::sptr overlay, float overlayAlpha);
 
     /**
     * Overlay destructor.
     */
     virtual ~Overlay();
 
-    ::model::filter::Filter &getMixFilter() const;
-
 private:
-    ::model::filter::MixFilter::uptr mixFilter;
+    ::model::filter::MixFilter mixFilter;
 };
 
 }  // namespace overlay

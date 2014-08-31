@@ -1,8 +1,7 @@
 #include "NoiseFilter.h"
 
 #include "NotImplementedException.h"
-#include "GPUHelper.h"
-#include "MathHelper.h"
+#include "GPUSurfaceShader.h"
 
 namespace model {
 namespace filter {
@@ -11,8 +10,7 @@ using ::model::frame::Frame;
 using ::exception::AccessToDummyException;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
-using ::helper::GPUHelper;
-using ::helper::clamp;
+using ::helper::GPUSurfaceShader;
 
 const QByteArray NoiseFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_noise");
 
@@ -34,14 +32,14 @@ model::frame::Frame::sptr NoiseFilter::getFrame(unsigned int frameNumber) const 
 	}
     Frame::sptr frame = getPredecessor()->getFrame(frameNumber);
 
-    GPUHelper gpuHelper(":/Shader/Filter/Noise.fs", frame->getContext());
+    GPUSurfaceShader gpuHelper(":/Shader/Filter/Noise.fs", frame.staticCast<Surface>());
 
     float intensity = getParamValue<float>(kParamIntensityStr);
-    intensity = clamp(intensity, 0.f, 1.f);
+    intensity = qBound(0.f, intensity, 1.f);
     gpuHelper.setValue("intensity", intensity);
     gpuHelper.setValue("time", static_cast<GLfloat>(frameNumber));
 
-    Surface::sptr targetSurface = gpuHelper.run(*frame.data());
+    Surface::sptr targetSurface = gpuHelper.run();
 
     return Frame::sptr(new Frame(targetSurface, frame->getMetadata()));
 }

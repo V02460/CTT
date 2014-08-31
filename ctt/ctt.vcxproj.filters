@@ -119,9 +119,6 @@
     <Filter Include="Source Files\Helper">
       <UniqueIdentifier>{c1d742ec-7c5f-4d6e-a9ea-e4ac4a31af82}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Images">
-      <UniqueIdentifier>{e20e1833-b2fa-4e66-a0de-24671f52c9dc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Lokalisierungs Dateien">
       <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
       <Extensions>ts</Extensions>
@@ -138,6 +135,12 @@
     </Filter>
     <Filter Include="Shader Files\Histogram">
       <UniqueIdentifier>{2087191a-8e1e-4305-9da7-390d9c25ea18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Overlay">
+      <UniqueIdentifier>{8fee5fd8-1fe7-4e77-9424-8bb8e6627595}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Default">
+      <UniqueIdentifier>{18e2e876-1c15-4f5d-9cbf-b34ccfe4a029}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Exception">
       <UniqueIdentifier>{af2fafcf-877f-4afc-97b9-c30448ac2a77}</UniqueIdentifier>
@@ -534,8 +537,17 @@
     <ClCompile Include="XMLSaver.cpp">
       <Filter>Source Files\Controller\Project</Filter>
     </ClCompile>
-    <ClCompile Include="GPUHelper.cpp">
-      <Filter>Source Files\Helper</Filter>
+    <ClCompile Include="IllegalArgumentException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="IllegalStateException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="NotImplementedException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGLException.cpp">
+      <Filter>Source Files\Exception</Filter>
     </ClCompile>
     <ClCompile Include="ctt.cpp">
       <Filter>Source Files</Filter>
@@ -746,6 +758,18 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_DifferenceInsertionWidget.cpp">
       <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GPUSurfacePainter.cpp">
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="GPUSurfaceCompactor.cpp">
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="GPUSurfaceShader.cpp">
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexAttribute.cpp">
+      <Filter>Source Files\Helper</Filter>
     </ClCompile>
     <ClCompile Include="ExtendedVideoAddedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
@@ -1084,9 +1108,6 @@
     <ClInclude Include="MathHelper.h">
       <Filter>Header Files\Helper</Filter>
     </ClInclude>
-    <ClInclude Include="GPUHelper.h">
-      <Filter>Header Files\Helper</Filter>
-    </ClInclude>
     <ClInclude Include="OpenGLException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
@@ -1129,6 +1150,18 @@
     <ClInclude Include="ExtendedVideoRemovedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
+    <ClInclude Include="VertexAttribute.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="GPUSurfacePainter.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="GPUSurfaceCompactor.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="GPUSurfaceShader.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
     <ClInclude Include="ExtendedVideoAddedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
@@ -1153,6 +1186,9 @@
       <Filter>Shader Files\Filter</Filter>
     </None>
     <None Include="Shader\Filter\Mix.fs">
+      <Filter>Shader Files\Filter</Filter>
+    </None>
+    <None Include="Shader\Filter\Noise.fs">
       <Filter>Shader Files\Filter</Filter>
     </None>
     <None Include="Shader\Histogram\blueHistogramGrid.fs">
@@ -1206,6 +1242,12 @@
     <None Include="..\cttApp\ctt_en.ts">
       <Filter>Lokalisierungs Dateien</Filter>
     </None>
+    <None Include="Shader\Overlay\Macroblock.fs">
+      <Filter>Shader Files\Overlay</Filter>
+    </None>
+    <None Include="Shader\Overlay\Macroblock.vs">
+      <Filter>Shader Files\Overlay</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AccessToDummyException.h">
@@ -1226,5 +1268,11 @@
     <ClInclude Include="AbstractListViewItem.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
+    <None Include="Shader\Overlay\heatmap.fs">
+      <Filter>Shader Files\Overlay</Filter>
+    </None>
+    <None Include="Shader\Default\Default.vs">
+      <Filter>Shader Files\Default</Filter>
+    </None>
   </ItemGroup>
 </Project>

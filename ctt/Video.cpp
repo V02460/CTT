@@ -3,7 +3,7 @@
 #include "NotImplementedException.h"
 #include "YUVType.h"
 #include "IOException.h"
-#include "GPUHelper.h"
+#include "GPUSurfaceShader.h"
 
 #include <QFile>
 
@@ -63,10 +63,13 @@ void Video::save(QString path, VideoFileType type) const {
 // 		break;
 // 	}
 
-	helper::GPUHelper myHelper(":/Shader/Conversion/RGBtoYUV444sdtv.fs", getContext());
+	helper::GPUSurfaceShader myHelper(":/Shader/Conversion/RGBtoYUV444sdtv.fs", getContext());
 	for (unsigned int i = 0; i < getFrameCount(); i++)
 	{
-		videoFile.write(myHelper.run(*getFrame(i))->getRawRGBA().left(bytesPerFrame));
+        myHelper.setSourceTexture(getFrame(i));
+        Surface::sptr frame = myHelper.run();
+
+		videoFile.write(frame->getRawRGBA().left(bytesPerFrame));
 	}
 
 	if (!videoFile.flush())

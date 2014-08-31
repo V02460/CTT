@@ -1,12 +1,12 @@
 #include "GreyscaleFilter.h"
 
-#include "GPUHelper.h"
+#include "GPUSurfaceShader.h"
 
 namespace model {
 namespace filter {
 
 using ::model::frame::Frame;
-using ::helper::GPUHelper;
+using ::helper::GPUSurfaceShader;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::exception::AccessToDummyException;
@@ -27,9 +27,9 @@ Frame::sptr GreyscaleFilter::getFrame(unsigned int frameNumber) const {
 	}
     Frame::sptr frame = getPredecessor()->getFrame(frameNumber);
 
-    GPUHelper gpuHelper(":/Shader/Filter/Greyscale.fs", frame->getContext());
+    GPUSurfaceShader gpuHelper(":/Shader/Filter/Greyscale.fs", frame.staticCast<Surface>());
 
-    Surface::sptr targetSurface = gpuHelper.run(*frame.data());
+    Surface::sptr targetSurface = gpuHelper.run();
 
     return Frame::sptr(new Frame(targetSurface, frame->getMetadata()));
 }

@@ -2,7 +2,8 @@
 
 #include "Frame.h"
 #include "MathHelper.h"
-#include "GPUHelper.h"
+#include "GPUSurfaceShader.h"
+#include "GPUSurfaceCompactor.h"
 
 #include "NotImplementedException.h"
 #include "OpenGLException.h"
@@ -11,9 +12,10 @@ namespace model {
 namespace frame {
 namespace histogram {
 
-using ::helper::GPUHelper;
-using helper::ceilTo;
-using helper::floorTo;
+using ::helper::GPUSurfaceShader;
+using ::helper::GPUSurfaceCompactor;
+using ::helper::ceilTo;
+using ::helper::floorTo;
 using ::exception::IllegalArgumentException;
 using ::exception::OpenGLException;
 using ::exception::NotImplementedException;
@@ -42,9 +44,12 @@ const QList<QString> Histogram::HISTOGRAM_TYPE_STRINGS =
 
 static const QList<QString> HISTOGRAM_TYPE_STRINGS;
 
-float Histogram::getValue(unsigned int i) const {
-    if (i >= kSize) {
-        throw new IllegalArgumentException("Out of bounds index " + QString::number(i) + ".");
+Histogram::Histogram() {
+}
+
+float Histogram::getValue(unsigned int idx) const {
+    if (idx >= kSize) {
+        throw new IllegalArgumentException("Out of bounds index " + QString::number(idx) + ".");
     }
 
     if (values.isEmpty()) {
@@ -68,50 +73,49 @@ float Histogram::getValue(unsigned int i) const {
         }
     }
 
-    return values[i];
+    return values[idx];
 }
 
 Surface::sptr Histogram::getHistogramImage(QSize dimensions) const {
-    return renderHistogram(*histogramData.data(), dimensions);
+    return renderHistogram(histogramData, dimensions);
 }
 
 const Histogram::HistogramType Histogram::stringToType(QString string) {
-    for (int i = 0; i < HISTOGRAM_TYPE_STRINGS.length(); i++) {
-        if (string == HISTOGRAM_TYPE_STRINGS[i]) {
-            return static_cast<HistogramType>(i);
-        }
-    }
+	for (int i = 0; i < HISTOGRAM_TYPE_STRINGS.length(); i++) {
+		if (string == HISTOGRAM_TYPE_STRINGS[i]) {
+			return static_cast<HistogramType>(i);
+		}
+	}
 
-    throw new IllegalArgumentException(string + " is not a histogram type.");
+	throw new IllegalArgumentException(string + " is not a histogram type.");
 }
 
-Histogram::Histogram() : histogramData(), values() {
-}
-
-void Histogram::init(const Surface &frame) {
+void Histogram::init(Surface::sptr frame) {
     Surface::sptr histogramGrid = makeHistogramGrid(frame);
-    histogramData = requestValuesFromHistogramGrid(*histogramGrid.data());
+    histogramData = requestValuesFromHistogramGrid(histogramGrid);
 }
 
-Surface::sptr Histogram::makeHistogramGrid(const Surface &imageData) const {
-    GPUHelper gpuHelper(getGridFSFilePath(), imageData.getContext());
+Surface::sptr Histogram::makeHistogramGrid(Surface::sptr imageData) const {
+    GPUSurfaceShader gpuHelper(getGridFSFilePath(), imageData);
 
     // scale output texture dimensions to the next bigger multiple of 16
-    QSize targetSize = ceilTo(imageData.getSize(), 16);
+    QSize targetSize = ceilTo(imageData->getSize(), 16);
 
-    return gpuHelper.run(imageData, targetSize);
-}
+    return gpuHelper.run(targetSize);
+    }
 
-Surface::sptr Histogram::requestValuesFromHistogramGrid(const Surface &histogramGrid) const {
-    GPUHelper gpuHelper(":/Shader/Histogram/histogramCompaction.fs", histogramGrid.getContext(), getCompactedSize);
+Surface::sptr Histogram::requestValuesFromHistogramGrid(Surface::sptr histogramGrid) const {
+    GPUSurfaceCompactor gpuHelper(":/Shader/Histogram/histogramCompaction.fs",
+                                  histogramGrid,
+                                  getCompactedSize);
     
-    return gpuHelper.run(histogramGrid, QSize(16, 16));
-}
+    return gpuHelper.run(QSize(16, 16));
+    }
 
-Surface::sptr Histogram::renderHistogram(const Surface &histogramData, QSize targetSize) const {
-    GPUHelper histogramDisplayer(":/Shader/Histogram/displayHistogram.fs", histogramData.getContext());
+Surface::sptr Histogram::renderHistogram(Surface::sptr histogramData, QSize targetSize) const {
+    GPUSurfaceShader histogramDisplayer(":/Shader/Histogram/displayHistogram.fs", histogramData);
 
-    return histogramDisplayer.run(histogramData, targetSize);
+    return histogramDisplayer.run(targetSize);
 }
 
 /**

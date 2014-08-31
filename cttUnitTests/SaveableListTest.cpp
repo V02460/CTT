@@ -1,15 +1,17 @@
 #include "SaveableListTest.h"
 
-#include "../CTT/UIntegerInterval.h"
-#include "../CTT/Memento.h"
+#include "UIntegerInterval.h"
+#include "Memento.h"
 
-#include "../CTT/IllegalStateException.h"
+#include "IllegalStateException.h"
+#include "AccessToDummyException.h"
 
 using ::model::saveable::SaveableList;
 using ::model::saveable::Saveable;
 using ::model::UIntegerInterval;
-using ::exception::IllegalStateException;
 using ::model::saveable::Memento;
+using ::exception::IllegalStateException;
+using ::exception::AccessToDummyException;
 
 void SaveableListTest::setAndGet() {
 	SaveableList<Saveable> list;
@@ -50,15 +52,14 @@ void SaveableListTest::outOfBounds() {
 	QEXPECT_EXCEPTION(list.get(0), IllegalArgumentException);
 }
 
-// TODO: WTF WTF WTF !!!
 void SaveableListTest::dummyCheck() {
 	SaveableList<Saveable>::sptr list = SaveableList<Saveable>::getDummy().dynamicCast<SaveableList<Saveable>>();
 	Saveable::sptr element = QSharedPointer<Saveable>(new UIntegerInterval(0, 1));
-	QEXPECT_EXCEPTION(list->insert(0, element), IllegalStateException);
-	QEXPECT_EXCEPTION(list->remove(0), IllegalStateException);
-	QEXPECT_EXCEPTION(list->get(0), IllegalStateException);
-	QEXPECT_EXCEPTION(list->getSize(), IllegalStateException);
-	QEXPECT_EXCEPTION(list->getMemento(), IllegalStateException);
+	QEXPECT_EXCEPTION(list->insert(0, element), AccessToDummyException);
+    QEXPECT_EXCEPTION(list->remove(0), AccessToDummyException);
+    QEXPECT_EXCEPTION(list->get(0), AccessToDummyException);
+    QEXPECT_EXCEPTION(list->getSize(), AccessToDummyException);
+    QEXPECT_EXCEPTION(list->getMemento(), AccessToDummyException);
 }
 
 void SaveableListTest::mementoAndRestore() {

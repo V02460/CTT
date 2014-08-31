@@ -14,7 +14,10 @@ using ::model::saveable::Saveable;
 
 const QByteArray MotionVectorOverlay::kFilterID = QT_TR_NOOP("overlay_motionvector");
 
-MotionVectorOverlay::MotionVectorOverlay(Module::sptr predecessor) : Overlay(predecessor) {
+MotionVectorOverlay::MotionVectorOverlay(Module::sptr predecessor)
+        : Overlay(predecessor
+        , Module::sptr()
+        , 0.5) {
     throw new NotImplementedException();
 }
 

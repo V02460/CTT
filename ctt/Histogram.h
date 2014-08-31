@@ -54,9 +54,9 @@ public:
 	static const QString kGreenStr;
 	/** String representation of the blue histogram type. */
 	static const QString kBlueStr;
-    /** String representation of the hue histogram type. */
+	/** String representation of the hue histogram type. */
     static const QString kHueStr;
-    /** String representation of the saturation histogram type. */
+	/** String representation of the saturation histogram type. */
     static const QString kSaturationStr;
 	/** String representation of the luminance histogram type. */
 	static const QString kLuminanceStr;
@@ -102,16 +102,16 @@ public:
 protected:
 
     /**
-     * Creates a new Histogram.
-     */
+    * Creates a new Histogram.
+    */
     Histogram();
 
     /**
-     * Initializes the histogram.
-     *
-     * @param frame Frame to calculate the histogram for
-     */
-    void init(const Surface &frame);
+    * Initializes the histogram.
+    *
+    * @param frame Frame to calculate the histogram for
+    */
+    void init(Surface::sptr frame);
 
     /**
      * Provides the path to the fragment shader used for creating the histogram grid.
@@ -122,23 +122,23 @@ protected:
 
 private:
     /**
-     * Converts every 16x16 block of the texture to a local normalized histogram.
-     * Requires a valid OpenGL context.
-     *
-     * @param imageData Image data that will be used for the histogram grid calculation
-     * @return Surface::sptr the generated histogram grid
-     */
-    Surface::sptr makeHistogramGrid(const Surface &imageData) const;
+    * Converts every 16x16 block of the texture to a local normalized histogram.
+    * Requires a valid OpenGL context.
+    *
+    * @param imageData Image data that will be used for the histogram grid calculation
+    * @return Surface::sptr the generated histogram grid
+    */
+    Surface::sptr makeHistogramGrid(Surface::sptr imageData) const;
 
     /**
-     * Extracts values for a single histogram from the grid of local histograms.
-     *
-     * @param histogramGrid Grid of local histograms
-     * @return the histogram values
-     */
-    Surface::sptr requestValuesFromHistogramGrid(const Surface &imageData) const;
+    * Extracts values for a single histogram from the grid of local histograms.
+    *
+    * @param histogramGrid Grid of local histograms
+    * @return the histogram values
+    */
+    Surface::sptr requestValuesFromHistogramGrid(Surface::sptr imageData) const;
 
-    Surface::sptr renderHistogram(const Surface &histogramData, QSize targetSize) const;
+    Surface::sptr renderHistogram(Surface::sptr histogramData, QSize targetSize) const;
 
     /**
      * The values stored in a 16x16px Surface (on GPU).
@@ -149,6 +149,7 @@ private:
      * The values of the histogram stored as float array (on CPU).
      */
     mutable QVector<float> values;
+    
 
 };
 

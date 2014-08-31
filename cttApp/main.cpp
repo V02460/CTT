@@ -14,7 +14,6 @@
 #include "BlueHistogram.h"
 #include "Surface.h"
 #include "RuntimeException.h"
-#include "GPUHelper.h"
 #include "VideoWidget.h"
 #include "ThumbnailListWidgetTest.h"
 #include "ListedPushButtonTest.h"
@@ -25,12 +24,14 @@
 #include "Player.h"
 #include "VideoScrubber.h"
 #include "MainWindow.h"
+#include "GPUSurfaceShader.h"
+#include "YUVType.h"
 
 using ::helper::MockDisplayHelper;
 using ::model::frame::Frame;
 using ::model::frame::histogram::BlueHistogram;
 using ::model::Surface;
-using ::helper::GPUHelper;
+using ::helper::GPUSurfaceShader;
 using ::exception::RuntimeException;
 using ::controller::project::Project;
 using ::controller::VideoListController;

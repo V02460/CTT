@@ -11,9 +11,9 @@
 #include <QOpenGLShader>
 #include <QOpenGLFunctions>
 
-//#include "GPUHelper.h"
+//#include "GPUSurfaceShader.h"
 namespace helper {
-    class GPUHelper;
+    class GPUSurfaceShader;
 }
 
 namespace model {

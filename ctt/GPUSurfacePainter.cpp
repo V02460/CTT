@@ -1,52 +1,39 @@
-#include "GPUHelper.h"
+#include "GPUSurfacePainter.h"
 
 #include "IOException.h"
 #include "FileNotFoundException.h"
 #include "OpenGLException.h"
 #include "NotImplementedException.h"
 #include "IllegalArgumentException.h"
+#include "IllegalStateException.h"
 
 // #define WARN_INVALID_UNIFORM
 
 namespace helper {
 
 using ::model::Surface;
+using ::helper::VertexAttribute;
 using ::exception::OpenGLException;
 using ::exception::IOException;
 using ::exception::FileNotFoundException;
 using ::exception::NotImplementedException;
 using ::exception::IllegalArgumentException;
-
-typedef QSharedPointer<QOpenGLContext> QOpenGLContext_sptr;
-typedef QSharedPointer<QOpenGLShaderProgram> QOpenGLShaderProgram_sptr;
+using ::exception::IllegalStateException;
 
 static QSize getNewSizeDefault(QSize size) {
     return QSize(size.width() / 2, size.height() / 2);
 }
 
-GPUHelper::GPUHelper(QString fragmentShaderFile, QOpenGLContext_sptr context)
-        : mode(APPLY)
-        , context(context)
-        , getNewSize(getNewSizeDefault)
-        , textures()
-        , textureNames()
-        , program() {
+GPUSurfacePainter::GPUSurfacePainter(QString vertexShaderFile, 
+                                     QString fragmentShaderFile,
+                                     QSharedPointer<QOpenGLContext> context)
+        : targetTexture()
+        , context(context) {
     initializeOpenGLFunctions();
-    initShaderProgram(fragmentShaderFile);
+    initShaderProgram(vertexShaderFile, fragmentShaderFile);
 }
 
-GPUHelper::GPUHelper(QString fragmentShaderFile, QOpenGLContext_sptr context, QSize(&getNewSize)(QSize))
-        : mode(COMPACT)
-        , context(context)
-        , getNewSize(getNewSize)
-        , textures()
-        , textureNames()
-        , program() {
-    initializeOpenGLFunctions();
-    initShaderProgram(fragmentShaderFile);
-}
-
-void GPUHelper::initShaderProgram(QString fragmentShaderFile) {
+void GPUSurfacePainter::initShaderProgram(QString vertexShaderFile, QString fragmentShaderFile) {
     QPair<QString, QOpenGLContext_sptr> cacheKey(fragmentShaderFile, context);
 
     if (shaderProgramCache.contains(cacheKey)) {
@@ -56,8 +43,7 @@ void GPUHelper::initShaderProgram(QString fragmentShaderFile) {
         // create a new shader program
         program.reset(new QOpenGLShaderProgram());
 
-        QSharedPointer<QOpenGLShader> vertexShader = GPUHelper::getDefaultFlatVS();
-        if (!program->addShader(vertexShader.data())) {
+        if (!program->addShaderFromSourceFile(QOpenGLShader::Vertex, vertexShaderFile)) {
             throw new OpenGLException("Adding of vertex shader failed. Log message: " + program->log());
         }
 
@@ -74,15 +60,23 @@ void GPUHelper::initShaderProgram(QString fragmentShaderFile) {
     }
 }
 
-void GPUHelper::setValue(QString name, const Surface &texture) {
-    if (context->shareGroup() != texture.shareGroup()) {
-        throw new OpenGLException("Context of texture argument does not share resources with context of GPUHelper.");
+void GPUSurfacePainter::setValue(QString name, VertexAttribute::sptr texture) {
+    // TODO: context check
+
+    vertexAttributes.insert(name, texture);
+}
+
+
+void GPUSurfacePainter::setValue(QString name, Surface::sptr texture) {
+    if (context->shareGroup() != texture->shareGroup()) {
+        throw new OpenGLException(
+            "Context of texture argument does not share resources with context of GPUSurfacePainter.");
     }
 
     if (textureNames.contains(name)) { // texture name already used - reassign
         int textureIndex = textures.indexOf(textureNames.value(name));
 
-        textures[textureIndex] = texture.getTextureHandle();
+        textures[textureIndex] = texture;
 
     } else { // new texture
 
@@ -111,16 +105,16 @@ void GPUHelper::setValue(QString name, const Surface &texture) {
 
         // set uniform to the proper texture unit
         glUniform1i(textureLocation, textureIndex);
-
+    
         program->release();
 
         // save the texture to be able to bind it when 'run' is called
         // It's ugly we just keep the handle, but a shared pointer gave us problems in the hierarchy...
-        textures.append(texture.getTextureHandle());
+        textures.append(texture);
     }
 }
 
-void GPUHelper::setValue(QString name, GLint value) {
+void GPUSurfacePainter::setValue(QString name, GLint value) {
     GLint uniformLocation = glGetUniformLocation(program->programId(), name.toLatin1().constData());
 #ifdef WARN_INVALID_UNIFORM
     if (uniformLocation == -1) {
@@ -140,7 +134,7 @@ void GPUHelper::setValue(QString name, GLint value) {
     program->release();
 }
 
-void GPUHelper::setValue(QString name, QSize value) {
+void GPUSurfacePainter::setValue(QString name, QSize value) {
     GLint uniformLocation = glGetUniformLocation(program->programId(), name.toLatin1().constData());
 #ifdef WARN_INVALID_UNIFORM
     if (uniformLocation == -1) {
@@ -160,7 +154,7 @@ void GPUHelper::setValue(QString name, QSize value) {
     program->release();
 }
 
-void GPUHelper::setValue(QString name, GLfloat value) {
+void GPUSurfacePainter::setValue(QString name, GLfloat value) {
     GLint uniformLocation = glGetUniformLocation(program->programId(), name.toLatin1().constData());
 #ifdef WARN_INVALID_UNIFORM
     if (uniformLocation == -1) {
@@ -180,7 +174,7 @@ void GPUHelper::setValue(QString name, GLfloat value) {
     program->release();
 }
 
-void GPUHelper::setValue(QString name, QVector2D value) {
+void GPUSurfacePainter::setValue(QString name, QVector2D value) {
     GLint uniformLocation = glGetUniformLocation(program->programId(), name.toLatin1().constData());
 #ifdef WARN_INVALID_UNIFORM
     if (uniformLocation == -1) {
@@ -200,7 +194,7 @@ void GPUHelper::setValue(QString name, QVector2D value) {
     program->release();
 }
 
-void GPUHelper::setValue(QString name, QVector3D value) {
+void GPUSurfacePainter::setValue(QString name, QVector3D value) {
     GLint uniformLocation = glGetUniformLocation(program->programId(), name.toLatin1().constData());
 #ifdef WARN_INVALID_UNIFORM
     if (uniformLocation == -1) {
@@ -220,7 +214,7 @@ void GPUHelper::setValue(QString name, QVector3D value) {
     program->release();
 }
 
-void GPUHelper::setValue(QString name, QVector4D value) {
+void GPUSurfacePainter::setValue(QString name, QVector4D value) {
     GLint uniformLocation = glGetUniformLocation(program->programId(), name.toLatin1().constData());
 #ifdef WARN_INVALID_UNIFORM
     if (uniformLocation == -1) {
@@ -240,148 +234,115 @@ void GPUHelper::setValue(QString name, QVector4D value) {
     program->release();
 }
 
-Surface::sptr GPUHelper::run(const Surface &sourceTexture, QSize targetSize) {
-    if (targetSize.width() < 1 || targetSize.height() < 1) {
-        throw new IllegalArgumentException("targetSize components must be positive.");
-    }
-
-    switch (mode) {
-        case APPLY:
-            return applyShader(sourceTexture, targetSize);
-            break;
-        case COMPACT:
-            return compactTexture(sourceTexture, targetSize);
-            break;
-        default:
-            throw new NotImplementedException("The mode " + QString::number(mode) + " is not implemented.");
-            break;
-    }
+void GPUSurfacePainter::setTargetTexture(Surface::sptr targetTexture) {
+    this->targetTexture = targetTexture;
 }
 
-Surface::sptr GPUHelper::run(const Surface &sourceTexture) {
-    return run(sourceTexture, sourceTexture.getSize());
-}
-
-Surface::sptr GPUHelper::applyShader(const Surface &sourceTexture, QSize targetSize) {
+Surface::sptr GPUSurfacePainter::run() {
     if (context->shareGroup() != QOpenGLContext::currentContext()->shareGroup()) {
         throw new OpenGLException("Cannot access resources in the currently bound context.");
     }
+    if (targetTexture.isNull()) {
+        throw new IllegalStateException("Target texture must be set before calling run.");
+    }
+    if (vertexAttributes.isEmpty()) {
 
-    setValue("_sourceTexture", sourceTexture);
-    setValue("_sourceSize", sourceTexture.getSize());
-    setValue("_targetSize", targetSize);
+    }
 
-    // create the target texture
-    Surface::sptr target(new Surface(context, targetSize));
+    // make target size available in the shader
+    setValue("_targetSize", targetTexture->getSize());
 
     // enable render to texture
-    QOpenGLFramebufferObject *fbo = target->getFramebufferObject();
+    QOpenGLFramebufferObject *fbo = targetTexture->getFramebufferObject();
 
     if (!fbo->isValid()) {
         throw new OpenGLException("Framebuffer object is not valid.");
     }
-
     if (!fbo->bind()) {
         throw new OpenGLException("Could not bind framebuffer object.");
     }
 
-    // vertex coordinates for a screen filling quad
-    static const QVector2D vertices[] = {{-1.f,  1.f},
-                                         { 1.f,  1.f},
-                                         {-1.f, -1.f},
-                                         { 1.f, -1.f}};
-
-    // setup vertex position attribute
-    static const QString vertexPositionStr = "_pos";
-    int vertexLocation = program->attributeLocation(vertexPositionStr);
-    if (vertexLocation == -1) {
-        throw new OpenGLException("Vertex shader has no \"" + vertexPositionStr + "\" attribute to assign vertex "
-                                  "positions to.");
-    }
-    program->enableAttributeArray(vertexLocation);
-    program->setAttributeArray(vertexLocation, vertices);
-
-    // bind all the textures
-    unsigned int textureCnt = textures.size();
-    for (unsigned int i = 0; i < textureCnt; i++) {
-        glActiveTexture(GL_TEXTURE0 + i);
-        GLuint textureHandle = textures.at(i);
-        glBindTexture(GL_TEXTURE_2D, textureHandle);
-    }
-
-    // bind the shader program for drawing
+    // prepare
     if (!program->bind()) {
-        throw new OpenGLException("Could not bind shader program->");
+        throw new OpenGLException("Could not bind shader program.");
     }
+    bindAttributeArrays();
+    bindTextures();
 
     // draw
-    //glClearColor(0.f, 0.f, 0.8f, 1.f);
-    //glClear(GL_COLOR_BUFFER_BIT);
-
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, getVertexCount());
 
     // cleanup
-    program->disableAttributeArray(vertexLocation);
+    releaseTextures();
+    releaseAttributeArrays();
     program->release();
 
     fbo->release();
 
-    return target;
+    return targetTexture;
 }
 
-QOpenGLShader_sptr GPUHelper::getDefaultFlatVS() {
-    
-    QOpenGLShader_sptr shader(new QOpenGLShader(QOpenGLShader::Vertex));
-
-    bool success = shader->compileSourceCode(R"(#version 130
-
-        attribute vec2 _pos;
-        varying vec2 texcrd;
-
-        void main() {
-            texcrd = (_pos + 1.f) * 0.5f;
-
-            gl_Position = vec4(_pos, 0.f, 1.f);
+QSharedPointer<QOpenGLContext> GPUSurfacePainter::getContext() {
+    return context;
         }
-    )");
 
-    if (!success) {
-        throw new OpenGLException("Unable to compile Vertex Shader: " + shader->log());
+inline void GPUSurfacePainter::bindTextures() {
+    unsigned int textureCnt = textures.size();
+    for (unsigned int i = 0; i < textureCnt; i++) {
+        glActiveTexture(GL_TEXTURE0 + i);
+        GLuint textureHandle = textures.at(i)->getTextureHandle();
+        glBindTexture(GL_TEXTURE_2D, textureHandle);
+    }
     }
 
-    return shader;
+inline void GPUSurfacePainter::releaseTextures() {
+    unsigned int textureCnt = textures.size();
+    for (unsigned int i = 0; i < textureCnt; i++) {
+        glActiveTexture(GL_TEXTURE0 + i);
+        glBindTexture(GL_TEXTURE_2D, 0);
+    }
+}
+
+inline void GPUSurfacePainter::bindAttributeArrays() {
+    for (auto i = vertexAttributes.begin(); i != vertexAttributes.end(); i++) {
+        VertexAttribute::sptr attribute = i.value();
+        QString name = i.key();
+
+        attribute->bind();
+
+        program->enableAttributeArray(name.toLatin1().constData());
+        // TODO: rewrite to use vertexLocation
+        //if (vertexLocation == -1) {
+        //    throw new OpenGLException("Vertex shader has no \"" + vertexPositionStr + "\" attribute to assign vertex "
+        //                                   "positions to.");
+        //}
+
+        program->setAttributeBuffer(name.toLatin1().constData(),
+                                    attribute->getType(),
+                                    0,
+                                    attribute->getTupelSize());
+    }
+}
+
+inline void GPUSurfacePainter::releaseAttributeArrays() {
+    for (auto i = vertexAttributes.begin(); i != vertexAttributes.end(); i++) {
+        QString name = i.key();
+        program->disableAttributeArray(name.toLatin1().constData());
+    }
+}
+
+unsigned int GPUSurfacePainter::getVertexCount() {
+    unsigned int vertexCount = std::numeric_limits<unsigned int>::max();
+
+    for (auto i = vertexAttributes.begin(); i != vertexAttributes.end(); i++) {
+        VertexAttribute::sptr attribute = i.value();
+        vertexCount = qMin(vertexCount, attribute->getVertexCount());
+    }
+
+    return vertexCount;
 }
 
 
-
-Surface::sptr GPUHelper::compactTexture(const Surface &sourceTexture, QSize targetSize) {
-    QSize oldSize;
-    QSize newSize = sourceTexture.getSize();
-
-    Surface::sptr target;
-
-    const Surface *sourceTextureHandle = &sourceTexture;
-
-    int iteration = 0;
-
-    do {
-        oldSize = newSize;
-        newSize = getNewSize(newSize);
-
-        setValue("_iteration", iteration++);
-
-        target = applyShader(*sourceTextureHandle, newSize);
-
-        // get ready for the next round by making target texture to source
-        sourceTextureHandle = target.data();
-
-    // repeat until we reach target size
-     } while (newSize.width() > targetSize.width() ||
-              newSize.height() > targetSize.height());
-
-    return target;
-}
-
-QMap<QPair<QString, QOpenGLContext_sptr>, QOpenGLShaderProgram_sptr> GPUHelper::shaderProgramCache;
+QMap<QPair<QString, QOpenGLContext_sptr>, QOpenGLShaderProgram_sptr> GPUSurfacePainter::shaderProgramCache;
 
 }  // namespace helper

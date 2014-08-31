@@ -4,6 +4,7 @@ namespace model {
 namespace difference {
 
 using ::model::frame::histogram::Histogram;
+using ::model::frame::Frame;
 using ::model::video::Video;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
@@ -30,9 +31,9 @@ double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
 		throw new IllegalArgumentException("One or both videos have less then " + QString::number(frameNr)
 			                               + " frames.");
 	}
-	Histogram::sptr a = video1->getFrame(frameNr)->getHistogram(type);
-	Histogram::sptr b = video2->getFrame(frameNr)->getHistogram(type);
-	float d[Histogram::kSize + 1];
+    Histogram::sptr a = Frame::getHistogram(video1->getFrame(frameNr), type);
+    Histogram::sptr b = Frame::getHistogram(video2->getFrame(frameNr), type);
+    float d[Histogram::kSize + 1];
 	d[0] = 0;
 	double sum = 0;
 	for (int i = 0; i < Histogram::kSize; i++) {

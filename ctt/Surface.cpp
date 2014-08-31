@@ -1,13 +1,13 @@
 #include "Surface.h"
 
-#include "GPUHelper.h"
+#include "GPUSurfaceShader.h"
 #include "OpenGLException.h"
 
 #include "IllegalStateException.h"
 
 namespace model {
     
-using ::helper::GPUHelper;
+using ::helper::GPUSurfaceShader;
 using ::exception::IllegalStateException;
 using ::exception::OpenGLException;
 

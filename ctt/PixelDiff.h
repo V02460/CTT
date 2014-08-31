@@ -45,7 +45,7 @@ public:
     * @return Surface the calculated distance between the two frames
     * @throws IllegalArgumentException if one or both of the videos don't have a frame with the submitted number
     */
-    virtual Surface getPixelDiff(unsigned int frameNr) const = 0;
+    virtual Surface::sptr getPixelDiff(unsigned int frameNr) const = 0;
 
     static Saveable::SaveableType getSaveableType();
 };

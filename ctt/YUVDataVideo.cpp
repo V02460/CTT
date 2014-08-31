@@ -5,7 +5,7 @@
 #include "FileNotFoundException.h"
 #include "IOException.h"
 #include "FrameMetadata.h"
-#include "GPUHelper.h"
+#include "GPUSurfaceShader.h"
 #include "YUVType.h"
 #include "GlobalContext.h"
 
@@ -13,7 +13,7 @@ namespace model {
 namespace video {
 
 using ::model::frame::Frame;
-using ::helper::GPUHelper;
+using ::helper::GPUSurfaceShader;
 using ::model::frame::FrameMetadata;
 using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
@@ -196,21 +196,21 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 	uImage->save("C:/Users/Jonas/Downloads/utestpic.bmp", "BMP");
 	vImage->save("C:/Users/Jonas/Downloads/vtestpic.bmp", "BMP");
 
-	Frame yFrame(context, yImage);
-	Frame uFrame(context, *uImage);
-	Frame vFrame(context, *vImage);
+    Surface::sptr yFrame(new Frame(context, yImage));
+	Surface::sptr uFrame(new Frame(context, *uImage));
+    Surface::sptr vFrame(new Frame(context, *vImage));
 
-	GPUHelper::uptr myHelper;
+	GPUSurfaceShader::uptr myHelper;
 	switch (type)
 	{
 	case YUV444:
-		myHelper.reset(new GPUHelper(":/Shader/Conversion/YUV444toRGBsdtv.fs", context));
+        myHelper.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV444toRGBsdtv.fs", yFrame));
 		break;
 	case YUV422:
-		myHelper.reset(new GPUHelper(":/Shader/Conversion/YUV422toRGBsdtv.fs", context));
+        myHelper.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV422toRGBsdtv.fs", yFrame));
 		break;
 	case YUV420:
-		myHelper.reset(new GPUHelper(":/Shader/Conversion/YUV420toRGBsdtv.fs", context));
+        myHelper.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV420toRGBsdtv.fs", yFrame));
 		break;
 	default:
 		throw new IllegalStateException("YUV type not supported.");
@@ -220,7 +220,7 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 	myHelper->setValue("uChannel", uFrame);
 	myHelper->setValue("vChannel", vFrame);
 
-	Surface::sptr resultSurface = myHelper->run(yFrame, getMetadata().getSize());
+	Surface::sptr resultSurface = myHelper->run(getMetadata().getSize());
 
 	Frame::sptr result;
 

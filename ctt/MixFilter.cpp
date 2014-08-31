@@ -1,7 +1,6 @@
 #include "MixFilter.h"
 
-#include "GPUHelper.h"
-#include "MathHelper.h"
+#include "GPUSurfaceShader.h"
 
 #include "NotImplementedException.h"
 
@@ -13,8 +12,7 @@ using ::model::frame::FrameMetadata;
 using ::exception::AccessToDummyException;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
-using ::helper::GPUHelper;
-using ::helper::clamp;
+using ::helper::GPUSurfaceShader;
 
 const QByteArray MixFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_mix");
 
@@ -39,20 +37,20 @@ Frame::sptr MixFilter::getFrame(unsigned int frameNumber) const {
 	if (isDummy()) {
 		throw new AccessToDummyException();
 	}
-    Frame::sptr frame1 = getPredecessor()->getFrame(frameNumber);
-    Frame::sptr frame2 = module2->getFrame(frameNumber);
+     Frame::sptr frame1 = getPredecessor()->getFrame(frameNumber);
+     Frame::sptr frame2 = module2->getFrame(frameNumber);
 
-    GPUHelper gpuHelper(":/Shader/Filter/Mix.fs", frame1->getContext());
+     GPUSurfaceShader gpuHelper(":/Shader/Filter/Mix.fs", frame1.staticCast<Surface>());
 
-    gpuHelper.setValue("sourceTexture2", *frame2.data());
+     gpuHelper.setValue("sourceTexture2", frame2.staticCast<Surface>());
 
-    float mixRatio = getParamValue<float>(kParamMixRatioStr);
-    mixRatio = clamp(mixRatio, 0.f, 1.f);
-    gpuHelper.setValue("mixRatio", mixRatio);
+     float mixRatio = getParamValue<float>(kParamMixRatioStr);
+     mixRatio = qBound(0.f, mixRatio, 1.f);
+     gpuHelper.setValue("mixRatio", mixRatio);
 
-    Surface::sptr mixed = gpuHelper.run(*frame1.data());
+     Surface::sptr mixed = gpuHelper.run();
 
-    return Frame::sptr(new Frame(mixed, FrameMetadata(mixed->getSize())));
+     return Frame::sptr(new Frame(mixed, FrameMetadata(mixed->getSize())));
 }
 
 Memento MixFilter::getMemento() const {
@@ -61,8 +59,8 @@ Memento MixFilter::getMemento() const {
 	}
     Memento memento = Filter::getMemento();
     
-    memento.setFloat(kParamMixRatioStr, getParamValue<float>(kParamMixRatioStr));
-    memento.setSharedPointer("module2", module2);
+   memento.setFloat(kParamMixRatioStr, getParamValue<float>(kParamMixRatioStr));
+   memento.setSharedPointer("module2", module2);
 
     return memento;
 }

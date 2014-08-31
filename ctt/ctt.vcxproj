@@ -538,7 +538,9 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GlobalContext.cpp" />
-    <ClCompile Include="GPUHelper.cpp" />
+    <ClCompile Include="GPUSurfaceCompactor.cpp" />
+    <ClCompile Include="GPUSurfacePainter.cpp" />
+    <ClCompile Include="GPUSurfaceShader.cpp" />
     <ClCompile Include="GreenHistogram.cpp" />
     <ClCompile Include="GreyscaleFilter.cpp" />
     <ClCompile Include="HeatmapOverlay.cpp" />
@@ -592,6 +594,7 @@
     <ClCompile Include="TimelineInterval.cpp" />
     <ClCompile Include="TimeshiftFilter.cpp" />
     <ClCompile Include="UIntegerInterval.cpp" />
+    <ClCompile Include="VertexAttribute.cpp" />
     <ClCompile Include="Video.cpp" />
     <ClCompile Include="VideoAddedOperation.cpp" />
     <ClCompile Include="VideoAnalysingWidget.cpp" />
@@ -854,24 +857,6 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_PRINTSUPPORT_LIB  "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtPrintSupport"</Command>
     </CustomBuild>
-    <CustomBuild Include="FilterListView.h">
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing FilterListView.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_PRINTSUPPORT_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtPrintSupport"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing FilterListView.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DDEBUG_EXCEPTION_PRINT_ON_CALL -DQT_PRINTSUPPORT_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtPrintSupport"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing FilterListView.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_PRINTSUPPORT_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtPrintSupport"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing FilterListView.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_PRINTSUPPORT_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtPrintSupport"</Command>
-    </CustomBuild>
     <ClInclude Include="FilterMovedOperation.h" />
     <ClInclude Include="FilterParam.h" />
     <ClInclude Include="FilterParamChangedOperation.h" />
@@ -919,7 +904,9 @@
     </CustomBuild>
     <ClInclude Include="GeneratedFiles\ui_ctt.h" />
     <ClInclude Include="GlobalContext.h" />
-    <ClInclude Include="GPUHelper.h" />
+    <ClInclude Include="GPUSurfaceCompactor.h" />
+    <ClInclude Include="GPUSurfacePainter.h" />
+    <ClInclude Include="GPUSurfaceShader.h" />
     <ClInclude Include="GreenHistogram.h" />
     <CustomBuild Include="GreyscaleFilter.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
@@ -1402,6 +1389,7 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_PRINTSUPPORT_LIB  "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtPrintSupport"</Command>
     </CustomBuild>
     <ClInclude Include="TimelineInterval.h" />
+    <ClInclude Include="VertexAttribute.h" />
     <ClInclude Include="Video.h" />
     <ClInclude Include="VideoAddedOperation.h" />
     <CustomBuild Include="VideoAnalysingWidget.h">
@@ -1567,9 +1555,11 @@
     <None Include="Shader\Conversion\YUV420toRGBsdtv.fs" />
     <None Include="Shader\Conversion\YUV422toRGBsdtv.fs" />
     <None Include="Shader\Conversion\YUV444toRGBsdtv.fs" />
+    <None Include="Shader\Default\Default.vs" />
     <None Include="Shader\Filter\1DBlur.fs" />
     <None Include="Shader\Filter\Greyscale.fs" />
     <None Include="Shader\Filter\Mix.fs" />
+    <None Include="Shader\Filter\Noise.fs" />
     <None Include="Shader\Filter\RGBChannel.fs" />
     <None Include="Shader\Filter\Rescale.fs" />
     <None Include="Shader\Histogram\blueHistogramGrid.fs" />
@@ -1580,6 +1570,9 @@
     <None Include="Shader\Histogram\luminanceHistogramGrid.fs" />
     <None Include="Shader\Histogram\redHistogramGrid.fs" />
     <None Include="Shader\Histogram\saturationHistogramGrid.fs" />
+    <None Include="Shader\Overlay\heatmap.fs" />
+    <None Include="Shader\Overlay\Macroblock.fs" />
+    <None Include="Shader\Overlay\Macroblock.vs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Images\big_buck_bunny_01337.png" />

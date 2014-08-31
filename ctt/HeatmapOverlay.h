@@ -43,7 +43,6 @@ public:
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
     virtual QString getName() const Q_DECL_OVERRIDE { return QCoreApplication::translate("Filter", kFilterID); }
-    virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
     virtual QList<const ::model::Module*> getUsesList() const Q_DECL_OVERRIDE;
 	virtual ::model::saveable::Memento getMemento() const;
 	virtual void restore(::model::saveable::Memento memento);
@@ -51,7 +50,28 @@ public:
     static Saveable::SaveableType getSaveableType() { return Saveable::heatmapOverlay; }
 
 private:
-    ::model::difference::PixelDiff::uptr data;
+    //::model::difference::PixelDiff::sptr data;
+
+    class Heatmap : public ::model::Module {
+        public:
+            typedef QScopedPointer<Heatmap> uptr;
+            typedef QSharedPointer<Heatmap> sptr;
+            typedef QWeakPointer<Heatmap> wptr;
+
+            Heatmap(::model::difference::PixelDiff::sptr difference);
+            ~Heatmap();
+            virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
+            static ::model::saveable::Saveable::SaveableType getSaveableType() { return Saveable::heatmapOverlay_heatmap; }
+            virtual QList<const ::model::Module*> getUsesList() const Q_DECL_OVERRIDE;
+            virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
+            virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
+            virtual QSize getResolution() const Q_DECL_OVERRIDE;
+            virtual unsigned int getFrameCount() const Q_DECL_OVERRIDE;
+        private:
+            ::model::difference::PixelDiff::sptr difference;
+    };
+
+    Heatmap::sptr heatmap;
 };
 
 }  // namespace overlay

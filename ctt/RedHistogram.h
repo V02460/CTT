@@ -26,7 +26,7 @@ public:
      *
      * @param frame Image source for the histogram calculation
      */
-    explicit RedHistogram(const Surface &frame);
+    explicit RedHistogram(Surface::sptr frame);
 
     //virtual float getValue(unsigned int i) const Q_DECL_OVERRIDE;
     virtual HistogramType getType() const Q_DECL_OVERRIDE;

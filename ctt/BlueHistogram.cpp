@@ -4,7 +4,7 @@ namespace model {
 namespace frame {
 namespace histogram {
 
-BlueHistogram::BlueHistogram(const Frame &frame) {
+BlueHistogram::BlueHistogram(Surface::sptr frame) {
     init(frame);
 }
 

@@ -6,10 +6,11 @@
 #include "NotImplementedException.h"
 #include "Histogram.h"
 
+namespace view {
+
 using ::exception::NotImplementedException;
 using ::model::frame::histogram::Histogram;
-
-namespace view {
+using ::model::frame::Frame;
 
 HistogramWidget::HistogramWidget(::model::player::VideoScrubber::sptr scrubber, QWidget *parent) : QWidget(parent), scrubber(scrubber) {
 	scrubber->subscribe(this);
@@ -47,7 +48,7 @@ void HistogramWidget::next() {
 
 void HistogramWidget::update() {
 	Histogram::HistogramType type = Histogram::stringToType(currentHistogramType);
-	Histogram::sptr histogram = scrubber->getCurrentFrame()->getHistogram(type);
+    Histogram::sptr histogram = Frame::getHistogram(scrubber->getCurrentFrame(), type);
 
 	QVector<double> keys = QVector<double>();
 	QVector<double> values = QVector<double>();
