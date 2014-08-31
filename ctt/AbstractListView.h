@@ -9,6 +9,7 @@
 #include "Observer.h"
 #include "Observable.h"
 #include "AbstractListViewItem.h"
+#include "FilteredVideo.h"
 
 namespace view {
 
@@ -25,6 +26,8 @@ public:
     typedef QSharedPointer<AbstractListView> sptr;
     typedef QWeakPointer<AbstractListView> wptr;
 
+	virtual void setVideo(::model::filter::FilteredVideo::sptr video);
+	virtual void removeVideo();
 signals:
 	void elementRemoved(int id);
 

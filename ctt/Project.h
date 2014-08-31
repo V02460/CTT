@@ -30,7 +30,7 @@ public:
      *
      * @return SaveableList<FileVideo> the list of all base videos the project uses.
      */
-	::model::saveable::SaveableList<::model::video::FileVideo>::sptr getBaseVideoList() const;
+	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr getBaseVideoList() const;
 
     /**
      * Returns the List of all FilteredVideos the Project uses in the first view, i.e. the editing view.
@@ -83,7 +83,7 @@ private:
 
 	static Project::uptr instance;
 
-    ::model::saveable::SaveableList<::model::video::FileVideo>::sptr baseVideoList;
+    ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr baseVideoList;
 	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList1;
 	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList2;
 	::model::saveable::SaveableList<::model::player::Player>::sptr playerList1;

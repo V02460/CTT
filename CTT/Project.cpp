@@ -15,14 +15,14 @@ using ::exception::NotImplementedException;
 using ::view::ViewState;
 using ::view::ViewType;
 
-Project::Project() : baseVideoList(new SaveableList<FileVideo>()),
+Project::Project() : baseVideoList(new SaveableList<FilteredVideo>()),
 	                 videoList1(new SaveableList<FilteredVideo>()),
 	                 videoList2(new SaveableList<FilteredVideo>()),
 	                 playerList1(new SaveableList<Player>()),
 	                 player2(new Player(24)),
 	                 diffList(new SaveableList<FrameDiff>()) {}
 
-SaveableList<FileVideo>::sptr Project::getBaseVideoList() const {
+SaveableList<FilteredVideo>::sptr Project::getBaseVideoList() const {
 	return baseVideoList;
 }
 
@@ -47,7 +47,7 @@ SaveableList<FrameDiff>::sptr Project::getDiffList() const {
 }
 
 void Project::clear() {
-	baseVideoList->restore(SaveableList<FileVideo>().getMemento());
+	baseVideoList->restore(SaveableList<FilteredVideo>().getMemento());
 	videoList1->restore(SaveableList<FilteredVideo>().getMemento());
 	videoList2->restore(SaveableList<FilteredVideo>().getMemento());
 	playerList1->restore(SaveableList<Player>().getMemento());

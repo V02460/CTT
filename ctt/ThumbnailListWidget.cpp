@@ -11,11 +11,12 @@ namespace view {
 using ::model::saveable::SaveableList;
 using ::model::filter::FilteredVideo;
 using ::model::video::YUVType;
+using ::controller::VideoListController;
 
-ThumbnailListWidget::ThumbnailListWidget(SaveableList<FilteredVideo>::sptr filteredVideos, int selectableCount,
-	bool isHorizontal, QWidget *parent) : QScrollArea(parent), macroblockFilePath(""), isInUpdateRequest(false),
-	activatedButtons(), thumbnailList(), filteredVideos(filteredVideos), selectableCount(selectableCount),
-	isHorizontal(isHorizontal) {
+ThumbnailListWidget::ThumbnailListWidget(SaveableList<FilteredVideo>::sptr filteredVideos,
+	int selectableCount, bool isHorizontal, QWidget *parent) : QScrollArea(parent), macroblockFilePath(""),
+	isInUpdateRequest(false), activatedButtons(), thumbnailList(), filteredVideos(filteredVideos), 
+	selectableCount(selectableCount), isHorizontal(isHorizontal) {
 
 	if (!filteredVideos.isNull()) {
 		filteredVideos->subscribe(this);
@@ -66,12 +67,14 @@ void ThumbnailListWidget::setupOpenVideoDialog() {
 
 	widthSpinBox = new QSpinBox(openVideoDialog);
 	widthSpinBox->setMinimum(1);
+	widthSpinBox->setMaximum(5000);
 	QLabel *widthLabel = new QLabel(tr("VIDEO_WIDTH"));
 	dialogMainLayout->addWidget(widthLabel, 0, 0);
 	dialogMainLayout->addWidget(widthSpinBox, 0, 1);
 
 	heightSpinBox = new QSpinBox(openVideoDialog);
 	heightSpinBox->setMinimum(1);
+	heightSpinBox->setMaximum(5000);
 	QLabel *heightLabel = new QLabel(tr("VIDEO_HEIGHT"));
 	dialogMainLayout->addWidget(heightLabel, 0, 2);
 	dialogMainLayout->addWidget(heightSpinBox, 0, 3);
@@ -88,6 +91,7 @@ void ThumbnailListWidget::setupOpenVideoDialog() {
 	fpsSpinBox = new QDoubleSpinBox(openVideoDialog);
 	fpsSpinBox->setSuffix(tr(" FPS"));
 	fpsSpinBox->setMinimum(1);
+	fpsSpinBox->setMaximum(1000);
 	fpsSpinBox->setValue(24);
 	QLabel *fpsLabel = new QLabel(tr("VIDEO_FPS"));
 	dialogMainLayout->addWidget(fpsLabel, 2, 0);
@@ -96,7 +100,8 @@ void ThumbnailListWidget::setupOpenVideoDialog() {
 	lengthSpinBox = new QSpinBox(openVideoDialog);
 	lengthSpinBox->setSuffix(tr(" FRAMES"));
 	lengthSpinBox->setMinimum(1);
-	lengthSpinBox->setValue(2);
+	lengthSpinBox->setMaximum(1000000);
+	lengthSpinBox->setValue(5);
 	QLabel *lengthLabel = new QLabel(tr("VIDEO_LENGTH"));
 	dialogMainLayout->addWidget(lengthLabel, 2, 2);
 	dialogMainLayout->addWidget(lengthSpinBox, 2, 3);
@@ -221,12 +226,19 @@ const int ThumbnailListWidget::getSelectableCount() {
 }
 
 void ThumbnailListWidget::subscribe(::controller::VideoListController::sptr observer) {
-	QObject::connect(this, SIGNAL(videoAdded(QString)), observer.data(), SLOT(addVideo(QString)));
+	QObject::connect(this, SIGNAL(videoAdded(QString, QString, int, int, double, model::video::YUVType, unsigned int)),
+		observer.data(), SLOT(addVideo(QString, QString, int, int, double, model::video::YUVType, unsigned int)));
+	QObject::connect(this, SIGNAL(videoAdded(QString, int, int, double, model::video::YUVType, unsigned int)),
+		observer.data(), SLOT(addVideo(QString, int, int, double, model::video::YUVType, unsigned int)));
 	QObject::connect(this, SIGNAL(videoRemoved(int)), observer.data(), SLOT(removeVideo(int)));
+	videoListController = observer;
 }
 
 void ThumbnailListWidget::unsubscribe(const ::controller::VideoListController &observer) {
-	QObject::disconnect(this, SIGNAL(videoAdded(QString)), &observer, SLOT(addVideo(QString)));
+	QObject::connect(this, SIGNAL(videoAdded(QString, QString, int, int, double, model::video::YUVType, unsigned int)),
+		&observer, SLOT(addVideo(QString, QString, int, int, double, model::video::YUVType, unsigned int)));
+	QObject::connect(this, SIGNAL(videoAdded(QString, int, int, double, model::video::YUVType, unsigned int)),
+		&observer, SLOT(addVideo(QString, int, int, double, model::video::YUVType, unsigned int)));
 	QObject::disconnect(this, SIGNAL(videoRemoved(int)), &observer, SLOT(removeVideo(int)));
 }
 

@@ -17,13 +17,14 @@ namespace controller {
 /**
  * The DifferenceController manages requests to manipulate the list of difference functions.
  */
-class DifferenceController : public QObject, public ::model::Observer {
+class DifferenceController : public QObject {
     Q_OBJECT
 public:
     typedef QScopedPointer<DifferenceController> uptr;
     typedef QSharedPointer<DifferenceController> sptr;
     typedef QWeakPointer<DifferenceController> wptr;
 
+	DifferenceController(::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr diffList);
 public slots:
 
     /**
@@ -42,7 +43,7 @@ void diffInserted(QString id, model::video::Video::sptr video1, model::video::Vi
      */
     void diffRemoved(int pos);
 private:
-    ::model::saveable::SaveableList<::model::saveable::Saveable> diffList;
+    ::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr diffList;
 };
 
 }  // namespace controller

@@ -5,8 +5,9 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 
-#include "VideoListOperation.h"
+#include "Operation.h"
 #include "Video.h"
+#include "FilteredVideo.h"
 #include "SaveableList.h"
 
 namespace controller {
@@ -15,7 +16,7 @@ namespace operation {
 /**
  * The VideoAddedOperation is providing functionality for doing and undoing adding a Video to a VideoList.
  */
-class VideoAddedOperation : public VideoListOperation {
+class VideoAddedOperation : public Operation {
 public:
     typedef QScopedPointer<VideoAddedOperation> uptr;
     typedef QSharedPointer<VideoAddedOperation> sptr;
@@ -27,8 +28,8 @@ public:
      * @param video The video which should be added to a list of videos.
      * @param videoList The list to which a certain video should be added.
      */
-    VideoAddedOperation(::model::video::Video::sptr video,
-                        ::model::saveable::SaveableList<::model::video::Video>::sptr videoList);
+    VideoAddedOperation(::model::filter::FilteredVideo::sptr video,
+                        ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList);
 
     /**
      * Manages requests to add a Video to a VideoList.
@@ -41,7 +42,10 @@ public:
     void undoOperation();
 
 private:
-	::model::video::Video::sptr video;
+	::model::filter::FilteredVideo::sptr video;
+	int index;
+	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList;
+	::model::saveable::Memento memento;
 
 };
 

@@ -1,21 +1,23 @@
 #include "VideoRemovedOperation.h"
 
+#include "FilteredVideo.h"
+
 namespace controller {
 namespace operation {
 
 using ::model::saveable::SaveableList;
-using ::model::video::Video;
+using ::model::filter::FilteredVideo;
 
-VideoRemovedOperation::VideoRemovedOperation(int index, SaveableList<Video> videoList) {
+VideoRemovedOperation::VideoRemovedOperation(int index, SaveableList<FilteredVideo>::sptr videoList) : index(index), video(videoList->get(index)), videoList(videoList){
 
 }
 
 void VideoRemovedOperation::doOperation() {
-
+	videoList->remove(index);
 }
 
 void VideoRemovedOperation::undoOperation() {
-
+	videoList->insert(index, video);
 }
 
 }  // namespace operation

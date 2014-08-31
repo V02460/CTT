@@ -64,7 +64,7 @@ private:
     QPushButton *btnNextFrame; /**< The button to go to the next frame */
     QPushButton *btnPreviousFrame; /**< The button to go to the previous frame */
     QPushButton *btnDefaultFPS; /**< The button to change back to the default frame rate */
-    QSpinBox *spinboxFPS; /**< The spin box to change the frame rate */
+    QDoubleSpinBox *spinboxFPS; /**< The spin box to change the frame rate */
 	QSlider *sliderCurrentFrame;
 
 	::controller::PlayerController::sptr playerController;

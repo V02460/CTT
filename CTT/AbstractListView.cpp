@@ -6,6 +6,8 @@
 
 #include "ListedPushButton.h"
 
+using ::model::filter::FilteredVideo;
+
 namespace view {
 
 AbstractListView::AbstractListView(QWidget *parent) : items(), QTreeWidget(parent) {
@@ -52,5 +54,9 @@ void AbstractListView::setupUi() {
 void AbstractListView::buttonRemoveClicked(bool checked, int id) {
 	emit elementRemoved(id);
 }
+
+void AbstractListView::setVideo(FilteredVideo::sptr) {}
+
+void AbstractListView::removeVideo() {}
 
 }  // namespace view

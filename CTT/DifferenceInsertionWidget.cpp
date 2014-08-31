@@ -4,6 +4,8 @@
 
 using ::controller::DifferenceController;
 using ::model::difference::DifferenceFactory;
+using ::model::filter::FilteredVideo;
+using ::model::video::Video;
 
 namespace view {
 	DifferenceInsertionWidget::DifferenceInsertionWidget(DifferenceController::sptr differenceController,
@@ -26,7 +28,13 @@ namespace view {
 		}
 	}
 	
-	void DifferenceInsertionWidget::listedPushButtonClicked(bool checked, int id) {
+	void DifferenceInsertionWidget::listedButtonClicked(bool checked, int id) {
+		QList<FilteredVideo::sptr> selectedVideos = orderingWidget->getVideos(2);
 
+		if (selectedVideos.size() == 2) {
+			emit inserted(DifferenceFactory::getAllFrameDiffIDs().at(id), selectedVideos.value(0).dynamicCast<Video>(), selectedVideos.value(1).dynamicCast<Video>());
+		} else if(selectedVideos.size() != 0) {
+			QMessageBox::warning(this, tr("DIFFERENCE_INSERTION_FAILED_TITLE"), tr("DIFFERENCE_INSERTION_FAILED"));
+		}
 	}
 }

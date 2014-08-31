@@ -4,10 +4,11 @@
 #include "InsertionWidget.h"
 #include "DifferenceController.h"
 #include "AnalysingOrderingWidget.h"
+#include "Video.h"
 
 namespace view {
-class DifferenceInsertionWidget : public InsertionWidget
-{
+class DifferenceInsertionWidget : public InsertionWidget {
+	Q_OBJECT
 public:
 	typedef QScopedPointer<DifferenceInsertionWidget> uptr;
 	typedef QSharedPointer<DifferenceInsertionWidget> sptr;
@@ -20,7 +21,7 @@ signals:
 	void inserted(QString id, ::model::video::Video::sptr video1, ::model::video::Video::sptr video2);
 
 private slots:
-	void listedPushButtonClicked(bool checked, int id);
+	void listedButtonClicked(bool checked, int id);
 
 private:
 	void generateButtons();

@@ -1,12 +1,16 @@
 #include "PlayerController.h"
-#include "NotImplementedException.h"
+#include "Operation.h"
+#include "OperationList.h"
+#include "FPSChangingOperation.h"
 
 #include "NotImplementedException.h"
 
 namespace controller {
 
 	using ::model::player::Player;
-	using ::exception::NotImplementedException;
+	using ::controller::operation::Operation;
+	using ::controller::operation::OperationList;
+	using ::controller::operation::FPSChangingOperation;
 
 	PlayerController::PlayerController() {
 		setPlayer(player);
@@ -30,20 +34,17 @@ namespace controller {
 	}
 
 	void PlayerController::setToDefaultFPS() {
-		int defaultFPS = player->getDefaultFPS();
-		player->setFPS(defaultFPS);
+		double defaultFPS = player->getDefaultFPS();
+		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
+			new FPSChangingOperation(defaultFPS, player)));
+	}
+
+	void PlayerController::setFPS(double fps) {
+		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
+			new FPSChangingOperation(fps, player)));
 	}
 
 	void PlayerController::setPlayer(Player::sptr player) {
 		this->player = player;
 	}
-
-	void PlayerController::setFPS(int fps) {
-		//TODO implement
-	}
-
-	void PlayerController::update() {
-		throw new NotImplementedException();
-	}
-
 }  // namespace controller

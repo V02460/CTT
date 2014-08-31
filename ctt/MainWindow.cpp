@@ -18,7 +18,7 @@ namespace view {
 	MainWindow::MainWindow() {
 		Project *project = Project::getInstance();
 
-		VideoListController::sptr analysingListController = VideoListController::sptr(new VideoListController(project->getVideoList2().dynamicCast<SaveableList<Video>>()));
+		VideoListController::sptr analysingListController = VideoListController::sptr(new VideoListController(project->getVideoList2()));
 
 		ProcessingWidget *processingView = new ProcessingWidget(project->getPlayerList1(), project->getVideoList1(), project->getBaseVideoList(), analysingListController, this);
 
