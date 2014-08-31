@@ -39,6 +39,7 @@ protected:
     virtual ~Overlay();
 
     ::model::filter::Filter &getMixFilter() const;
+
 private:
     ::model::filter::MixFilter::uptr mixFilter;
 };

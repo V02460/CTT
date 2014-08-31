@@ -4,15 +4,11 @@ namespace model {
 namespace filter {
 namespace overlay {
 
-    using ::model::saveable::Saveable;
+using ::model::saveable::Saveable;
 
-Overlay::Overlay(Module::sptr predecessor) :Filter(predecessor) {
+Overlay::Overlay(Module::sptr predecessor) :Filter(predecessor) {}
 
-}
-
-Overlay::~Overlay() {
-
-}
+Overlay::~Overlay() {}
 
 Saveable::SaveableType Overlay::getSaveableType() {
     return SaveableType::overlay;

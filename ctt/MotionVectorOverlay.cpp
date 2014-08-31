@@ -2,6 +2,8 @@
 
 #include "NotImplementedException.h"
 
+// TODO bitte saveable dinge bei implementierung beachten
+
 namespace model {
 namespace filter {
 namespace overlay {
@@ -24,12 +26,16 @@ model::frame::Frame::sptr MotionVectorOverlay::getFrame(unsigned int frameNumber
     throw new NotImplementedException();
 }
 
-QList<const ::model::Module*> MotionVectorOverlay::getUsesList() const {
-    throw new NotImplementedException();
+void MotionVectorOverlay::restore(::model::saveable::Memento memento) {
+	throw new NotImplementedException();
 }
 
-bool MotionVectorOverlay::uses(const ::model::Module &module) const {
-    throw new NotImplementedException();
+QList<const Module*> MotionVectorOverlay::getUsesList() const {
+	throw new NotImplementedException();
+}
+
+Saveable::sptr MotionVectorOverlay::getDummy() {
+	throw new IllegalArgumentException();
 }
 
 }  // namespace overlay

@@ -45,7 +45,9 @@ public:
     virtual QString getName() const Q_DECL_OVERRIDE { return QCoreApplication::translate("Filter", kFilterID); }
     virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
     virtual QList<const ::model::Module*> getUsesList() const Q_DECL_OVERRIDE;
-    virtual bool uses(const ::model::Module &module) const Q_DECL_OVERRIDE;
+	virtual ::model::saveable::Memento getMemento() const;
+	virtual void restore(::model::saveable::Memento memento);
+	static Saveable::sptr getDummy();
     static Saveable::SaveableType getSaveableType() { return Saveable::heatmapOverlay; }
 
 private:

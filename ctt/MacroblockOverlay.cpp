@@ -2,6 +2,8 @@
 
 #include "NotImplementedException.h"
 
+// TODO bitte bei implementierung saveable dinge beachten
+
 namespace model {
 namespace filter {
 namespace overlay {
@@ -28,12 +30,16 @@ Saveable::SaveableType MacroblockOverlay::getSaveableType() {
     return SaveableType::macroblockOverlay;
 }
 
-QList<const ::model::Module*> MacroblockOverlay::getUsesList() const {
-    throw new NotImplementedException();
+void MacroblockOverlay::restore(::model::saveable::Memento memento) {
+	throw new NotImplementedException();
 }
 
-bool MacroblockOverlay::uses(const ::model::Module &module) const {
-    throw new NotImplementedException();
+QList<const Module*> MacroblockOverlay::getUsesList() const {
+	throw new NotImplementedException();
+}
+
+Saveable::sptr MacroblockOverlay::getDummy() {
+	throw new IllegalArgumentException();
 }
 
 }  // namespace overlay
