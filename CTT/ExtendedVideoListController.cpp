@@ -65,7 +65,7 @@ namespace controller {
 	}
 
 	void ExtendedVideoListController::addVideo(FilteredVideo::sptr video) {
-		for (int i = 0; i < videoList->getSize; i++) {
+		for (int i = 0; i < videoList->getSize(); i++) {
 			if (videoList->get(i)->getBaseVideo() == video) return;
 		}
 		

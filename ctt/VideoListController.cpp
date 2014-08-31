@@ -57,7 +57,7 @@ void VideoListController::addVideo(QString pathToVideoFile, QString pathToMetada
 }
 
 void VideoListController::addVideo(FilteredVideo::sptr video) {
-	for (int i = 0; i < videoList->getSize; i++) {
+	for (int i = 0; i < videoList->getSize(); i++) {
 		if (videoList->get(i)->getBaseVideo() == video) return;
 	}
 	FilteredVideo::sptr filteredVideo(new FilteredVideo(video));
