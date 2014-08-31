@@ -16,7 +16,16 @@ unsigned int FrameDiff::getFrameCount() const {
 	if (isDummy()) {
 		throw new AccessToDummyException();
 	}
+
     return qMin(video1->getFrameCount(), video2->getFrameCount());
+}
+
+Video::sptr FrameDiff::getVideo1() {
+    return video1;
+}
+
+Video::sptr FrameDiff::getVideo2() {
+    return video2;
 }
 
 Memento FrameDiff::getMemento() const {
