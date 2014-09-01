@@ -336,6 +336,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_HSLPixelDiffTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="InvertFilterTest.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_InvertFilterTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_InvertFilterTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -418,6 +427,9 @@
     </CustomBuild>
     <CustomBuild Include="HSLPixelDiffTest.h">
       <Filter>Header Files\Model\Difference</Filter>
+    </CustomBuild>
+    <CustomBuild Include="InvertFilterTest.h">
+      <Filter>Header Files\Model\Filter</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

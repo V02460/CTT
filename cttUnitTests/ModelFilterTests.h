@@ -13,6 +13,7 @@
 #include "NoiseFilterTest.h"
 #include "TimeshiftFilterTest.h"
 #include "RGBChannelFilterTest.h"
+#include "InvertFilterTest.h"
 
 #include "FilteredVideoTest.h"
 
@@ -32,6 +33,7 @@ static TestResult test(int argc, char *argv[]) {
     NoiseFilterTest noiseFilterTest;
     TimeshiftFilterTest timeshiftFilterTest;
     RGBChannelFilterTest rgbChannelFilterTest;
+    InvertFilterTest invertFilterTest;
 
     FilteredVideoTest filteredVideoTest;
 
@@ -43,6 +45,7 @@ static TestResult test(int argc, char *argv[]) {
       << TestResult("NoiseFilterTest", QTest::qExec(&noiseFilterTest, argc, argv))
       << TestResult("TimeshiftFilterTest", QTest::qExec(&timeshiftFilterTest, argc, argv))
       << TestResult("RGBChannelFilterTest", QTest::qExec(&rgbChannelFilterTest, argc, argv))
+      << TestResult("InvertFilterTest", QTest::qExec(&invertFilterTest, argc, argv))
 
       << TestResult("FilteredVideoTest", QTest::qExec(&filteredVideoTest, argc, argv));
 
