@@ -17,12 +17,15 @@ ExtendedVideoAddedOperation::ExtendedVideoAddedOperation(SaveableList<Player>::s
 														 FilteredVideo::sptr video2,
 														 SaveableList<FilteredVideo>::sptr videoList,
 														 SaveableList<FilteredVideo>::sptr filteredVideos)
-		: video1(video1),
+	    : playerList(playerList),
+		  video1(video1),
 		  video2(video2),
 		  videoList(videoList),
 		  filteredVideos(filteredVideos),
 		  index(videoList->getSize()),
-		  playerList(playerList) {}
+		  playerListMemento(playerList->getMemento()),
+		  videoListMemento(videoList->getMemento()),
+		  filteredVideosMemento(filteredVideos->getMemento()) {}
 
 void ExtendedVideoAddedOperation::doOperation() {
 	double fps = video1->getMetadata().getFPS();
@@ -37,13 +40,15 @@ void ExtendedVideoAddedOperation::doOperation() {
 	player->addScrubber(scrub2, 1);
 
 	playerList->insert(index, QSharedPointer<Player>(player));
-
 }
 
 void ExtendedVideoAddedOperation::undoOperation() {
-	videoList->remove(index);
-	filteredVideos->remove(index);
-	playerList->remove(index);
+	videoList->restore(videoListMemento);
+	filteredVideos->restore(filteredVideosMemento);
+	playerList->restore(playerListMemento);
+	videoList->changed();
+	filteredVideos->changed();
+	playerList->changed();
 }
 
 }  // namespace operation

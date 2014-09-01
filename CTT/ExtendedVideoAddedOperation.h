@@ -50,7 +50,9 @@ private:
 	int index;
 	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList;
 	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos;
-	::model::saveable::Memento memento;
+	::model::saveable::Memento playerListMemento;
+	::model::saveable::Memento videoListMemento;
+	::model::saveable::Memento filteredVideosMemento;
 
 };
 

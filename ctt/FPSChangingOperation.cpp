@@ -6,17 +6,17 @@ namespace operation {
 
 	using ::model::player::Player;
 
-	FPSChangingOperation::FPSChangingOperation(double newFPS, Player::sptr player) : newFPS(newFPS), oldFPS(player->getFPS()), 
-		player(player) {
-
-	}
+	FPSChangingOperation::FPSChangingOperation(double newFPS, Player::sptr player) : newFPS(newFPS),
+																					 player(player),
+																					 memento(player->getMemento()) {}
 
 	void FPSChangingOperation::doOperation() {
 		player->setFPS(newFPS);
 	}
 
 	void FPSChangingOperation::undoOperation() {
-		player->setFPS(oldFPS);
+		player->restore(memento);
+		player->changed();
 	}
 
 }  // namespace operation

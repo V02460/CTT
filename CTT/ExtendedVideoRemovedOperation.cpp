@@ -12,10 +12,10 @@ ExtendedVideoRemovedOperation::ExtendedVideoRemovedOperation(int index,
 			                                                 SaveableList<FilteredVideo>::sptr videoList,
 															 SaveableList<FilteredVideo>::sptr filteredVideos)
 		: index(index),
-		  video1(videoList->get(index)),
-		  video2(filteredVideos->get(index)),
 		  videoList(videoList),
-		  filteredVideos(filteredVideos) {}
+		  filteredVideos(filteredVideos),
+		  videoListMemento(videoList->getMemento()),
+		  filteredVideosMemento(filteredVideos->getMemento()) {}
 
 void ExtendedVideoRemovedOperation::doOperation() {
 	videoList->remove(index);
@@ -23,8 +23,10 @@ void ExtendedVideoRemovedOperation::doOperation() {
 }
 
 void ExtendedVideoRemovedOperation::undoOperation() {
-	videoList->insert(index, video1);
-	filteredVideos->insert(index, video2);
+	videoList->restore(videoListMemento);
+	filteredVideos->restore(filteredVideosMemento);
+	videoList->changed();
+	filteredVideos->changed();
 }
 
 }  // namespace operation

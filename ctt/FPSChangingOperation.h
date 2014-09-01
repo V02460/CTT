@@ -37,10 +37,11 @@ public:
      * Manages requests to undo changing the FPS with which a video is displayed.
      */
     void undoOperation();
+
 private:
-    double oldFPS;
     double newFPS;
 	::model::player::Player::sptr player;
+	::model::saveable::Memento memento;
 };
 
 }  // namespace operation
