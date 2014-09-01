@@ -115,6 +115,15 @@
     <Filter Include="Test Structure\View">
       <UniqueIdentifier>{5e6fc042-f6b0-4d8f-b40e-cfc162a06b9b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Model\Difference">
+      <UniqueIdentifier>{ef6acc78-8eb5-4bc9-8ff2-d7dc52c79fa9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Difference">
+      <UniqueIdentifier>{b13cb12a-dd18-48f3-b01d-c1129c9b21e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Structure\Model\Difference">
+      <UniqueIdentifier>{9998622c-f62d-4e43-a5c2-0655ebc2c80c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_FrameTest.cpp">
@@ -191,9 +200,6 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_VideoTest.cpp">
       <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_VideoTest.cpp">
-        <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_BlurFilterTest.cpp">
       <Filter>Generated Files\Release</Filter>
@@ -309,6 +315,27 @@
     <ClCompile Include="ModelTests.h">
       <Filter>Test Structure\Model</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MementoTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="HSLPixelDiffTest.cpp">
+      <Filter>Source Files\Model\Difference</Filter>
+    </ClCompile>
+    <ClCompile Include="YUVPixelDiffTest.cpp">
+      <Filter>Source Files\Model\Difference</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_YUVPixelDiffTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_YUVPixelDiffTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_HSLPixelDiffTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_HSLPixelDiffTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -383,6 +410,15 @@
     <CustomBuild Include="MacroblockOverlayTest.h">
       <Filter>Header Files\Model\Filter\Overlay</Filter>
     </CustomBuild>
+    <CustomBuild Include="FilteredVideoTest.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="YUVPixelDiffTest.h">
+      <Filter>Header Files\Model\Difference</Filter>
+    </CustomBuild>
+    <CustomBuild Include="HSLPixelDiffTest.h">
+      <Filter>Header Files\Model\Difference</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CustomTestingMacros.h">
@@ -417,6 +453,9 @@
     </ClInclude>
     <ClInclude Include="ModelFilterTests.h">
       <Filter>Test Structure\Model\Filter</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelDifferenceTests.h">
+      <Filter>Test Structure\Model\Difference</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

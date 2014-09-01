@@ -7,11 +7,11 @@ namespace view {
 using ::exception::NotImplementedException;
 
 void ZoomFunctions::setZoomFactor(double zoomFactor) {
-    throw new NotImplementedException();
+    throw NotImplementedException();
 }
 
 double ZoomFunctions::getZoomFactor() const {
-    throw new NotImplementedException();
+    throw NotImplementedException();
 }
 
 }  // namespace view

@@ -29,7 +29,7 @@ namespace controller {
 			return;
 		}
 	}
-	throw new exception::IllegalArgumentException("The given ID does not match any Difference Function.");
+	throw exception::IllegalArgumentException("The given ID does not match any Difference Function.");
 }
 
 void DifferenceController::diffRemoved(int pos) {
@@ -37,7 +37,7 @@ void DifferenceController::diffRemoved(int pos) {
 		diffList->remove(pos);
 		return;
 	}
-	else throw new exception::IllegalArgumentException("There is no Difference Function at the position one is to be removed.");
+	else throw exception::IllegalArgumentException("There is no Difference Function at the position one is to be removed.");
 }
 
 }  // namespace controller

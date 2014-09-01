@@ -40,6 +40,29 @@ public:
      */
     unsigned int getFrameCount() const;
 
+    /**
+     * Returns the name of the FrameDiff.
+     *
+     * @return the name of the FrameDiff
+     */
+    virtual QString getName() const = 0;
+
+    /**
+     * Returns the first video of the FrameDiff.
+     *
+     * @return the first video
+     */
+    ::model::video::Video::sptr getVideo1();
+
+    /**
+     * Returns the second video of the FrameDiff.
+     *
+     * @return the second video
+     */
+    ::model::video::Video::sptr getVideo2();
+
+    virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
+    virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
     static Saveable::SaveableType getSaveableType();
 
 protected:

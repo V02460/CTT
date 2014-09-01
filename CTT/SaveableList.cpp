@@ -46,10 +46,10 @@ template <class T> const QString SaveableList<T>::ELEMENT = "element";
 template <class T>
 void SaveableList<T>::insert(int index, typename T::sptr element) {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	if (index < 0 || getSize() < index) {
-		throw new IllegalArgumentException("Out of saveable list bounds");
+		throw IllegalArgumentException("Out of saveable list bounds");
 	}
 	list.insert(index, element);
 	changed();
@@ -58,10 +58,10 @@ void SaveableList<T>::insert(int index, typename T::sptr element) {
 template <class T>
 typename T::sptr SaveableList<T>::remove(int index) {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	if (index < 0 || getSize() < index) {
-		throw new IllegalArgumentException("Out of saveable list bounds");
+		throw IllegalArgumentException("Out of saveable list bounds");
 	}
 	T::sptr element = get(index);
 	list.removeAt(index);
@@ -72,10 +72,10 @@ typename T::sptr SaveableList<T>::remove(int index) {
 template <class T>
 const typename T::sptr SaveableList<T>::get(int index) const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	if (index < 0 || index > getSize() - 1) {
-		throw new IllegalArgumentException("Out of saveable list bounds");
+		throw IllegalArgumentException("Out of saveable list bounds");
 	}
 	return list[index];
 }
@@ -83,7 +83,7 @@ const typename T::sptr SaveableList<T>::get(int index) const {
 template <class T>
 const int SaveableList<T>::getSize() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return list.size();
 }
@@ -102,7 +102,7 @@ void SaveableList<T>::clear() {
 template <class T>
 Memento SaveableList<T>::getMemento() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	Memento memento;
 	int size = getSize();

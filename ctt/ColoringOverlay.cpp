@@ -22,19 +22,19 @@ ColoringOverlay::~ColoringOverlay() {
 }
 
 Memento ColoringOverlay::getMemento() const {
-	throw new NotImplementedException();
+	throw NotImplementedException();
 }
 
 void ColoringOverlay::restore(::model::saveable::Memento memento) {
-	throw new NotImplementedException();
+	throw NotImplementedException();
 }
 
 QList<const Module*> ColoringOverlay::getUsesList() const {
-	throw new NotImplementedException();
+	throw NotImplementedException();
 }
 
 Saveable::sptr ColoringOverlay::getDummy() {
-	throw new NotImplementedException();
+	throw NotImplementedException();
 }
 
 }  // namespace overlay

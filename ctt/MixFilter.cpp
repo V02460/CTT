@@ -20,7 +20,7 @@ const QString MixFilter::kParamMixRatioStr = QT_TR_NOOP("filter_mix_param_mixRat
 
 MixFilter::MixFilter(Module::sptr module1, Module::sptr module2) : Filter(module1), module2(module2) {
     if (module1->getResolution() != module2->getResolution()) {
-        throw new IllegalArgumentException("Resolution of the two Modules does not match.");
+        throw IllegalArgumentException("Resolution of the two Modules does not match.");
     }
 
     newParameter(kParamMixRatioStr, 0.5f);
@@ -35,7 +35,7 @@ MixFilter::~MixFilter() {
 
 Frame::sptr MixFilter::getFrame(unsigned int frameNumber) const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
      Frame::sptr frame1 = getPredecessor()->getFrame(frameNumber);
      Frame::sptr frame2 = module2->getFrame(frameNumber);
@@ -55,7 +55,7 @@ Frame::sptr MixFilter::getFrame(unsigned int frameNumber) const {
 
 Memento MixFilter::getMemento() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
     Memento memento = Filter::getMemento();
     
@@ -75,7 +75,7 @@ void MixFilter::restore(Memento memento) {
 
 QList<const Module*> MixFilter::getUsesList() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return QList<const Module*>() << this
 		                          << module2.data(); // TODO

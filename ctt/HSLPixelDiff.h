@@ -5,7 +5,7 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 
-#include "PixelDiff.h"
+#include "AveragePixelDiff.h"
 #include "Video.h"
 #include "Memento.h"
 
@@ -16,11 +16,13 @@ namespace difference {
  * Calculates the distances in the HSL color space between frames for every pair of corresponding pixels, and is able to
  * normalize the resulting matrix if required.
  */
-class HSLPixelDiff : public PixelDiff {
+class HSLPixelDiff : public AveragePixelDiff {
 public:
     typedef QScopedPointer<HSLPixelDiff> uptr;
     typedef QSharedPointer<HSLPixelDiff> sptr;
     typedef QWeakPointer<HSLPixelDiff> wptr;
+
+    static const QByteArray kDiffID;
 
     /**
      * Creates a new HSLPixelDiff comparing the two submitted videos.
@@ -34,15 +36,22 @@ public:
     /**
      * Destroys the HSLPixelDiff.
      */
-    ~HSLPixelDiff();
+    virtual ~HSLPixelDiff();
 
     virtual Surface::sptr getPixelDiff(unsigned int frameNr) const Q_DECL_OVERRIDE;
-    virtual double getDiff(unsigned int frameNr) const Q_DECL_OVERRIDE;
+    virtual QString getName() const Q_DECL_OVERRIDE { return QCoreApplication::translate("FrameDiff", kDiffID); }
 
     virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
     virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
     static Saveable::sptr getDummy();
-    static Saveable::SaveableType getSaveableType();
+
+    static Saveable::SaveableType getSaveableType() { return Saveable::hSLPixelDiff; }
+
+protected:
+    /**
+     * Creates a dummy HSLPixelDiff.
+     */
+    HSLPixelDiff();
 };
 
 }  // namespace difference

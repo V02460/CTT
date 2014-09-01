@@ -58,12 +58,12 @@ Filter::sptr FilterFactory::createFilter(QString id, Module::sptr predecessor) {
     if (id == TimeshiftFilter::kFilterID) { return TimeshiftFilter::sptr(new TimeshiftFilter(predecessor)); }
 
     if (id == HeatmapOverlay::kFilterID) {
-        throw new IllegalArgumentException("HeatmapOverlay needs a PixelDiff to get created.");
+        throw IllegalArgumentException("HeatmapOverlay needs a PixelDiff to get created.");
     }
     if (id == MacroblockOverlay::kFilterID) { return MacroblockOverlay::sptr(new MacroblockOverlay(predecessor)); }
     if (id == MotionVectorOverlay::kFilterID) { return MotionVectorOverlay::sptr(new MotionVectorOverlay(predecessor)); }
 
-    throw new IllegalArgumentException("There is no filter with this id to create.");
+    throw IllegalArgumentException("There is no filter with this id to create.");
 }
 
 Filter::sptr FilterFactory::createFilter(QString id, Module::sptr predecessor, PixelDiff::sptr pixelDiff) {

@@ -24,12 +24,12 @@ FFmpegDataVideo::FFmpegDataVideo(QString path, QSharedPointer<QOpenGLContext> co
 
 	if (avformat_open_input(&videoFormatContext, rawPath.constData(), NULL, NULL) < 0)
 	{
-		throw new IOException("FFmpeg couldn't open the file at \"" + path + "\".");
+		throw IOException("FFmpeg couldn't open the file at \"" + path + "\".");
 	}
 
 	if (avformat_find_stream_info(videoFormatContext, NULL) < 0)
 	{
-		throw new FFmpegException("FFmpeg couldn't find stream information in the file at \"" + path + "\".");
+		throw FFmpegException("FFmpeg couldn't find stream information in the file at \"" + path + "\".");
 	}
 
 	for (unsigned int i = 0; i < videoFormatContext->nb_streams; i++)
@@ -42,7 +42,7 @@ FFmpegDataVideo::FFmpegDataVideo(QString path, QSharedPointer<QOpenGLContext> co
 
 	if (videoStreamNr == -1)
 	{
-		throw new FFmpegException("FFmpeg couldn't find a video stream in the file at \"" + path + "\".");
+		throw FFmpegException("FFmpeg couldn't find a video stream in the file at \"" + path + "\".");
 	}
 
 	codecContext = videoFormatContext->streams[videoStreamNr]->codec;
@@ -50,14 +50,14 @@ FFmpegDataVideo::FFmpegDataVideo(QString path, QSharedPointer<QOpenGLContext> co
 	vCodec = avcodec_find_decoder(codecContext->codec_id);
 	if (vCodec == NULL) 
 	{
-		throw new FFmpegException("FFmpeg couldn't find the codec necessary for decoding a video stream in the file at \"" + path + "\".");
+		throw FFmpegException("FFmpeg couldn't find the codec necessary for decoding a video stream in the file at \"" + path + "\".");
 	}
 
 	//this function isn't thread safe, apparently... does it matter?
 	//it says in the comments to avcodec_open2 that the context has to be allocated, bit it is already, isn't it?
 	if (avcodec_open2(codecContext, vCodec, NULL) < 0)
 	{
-		throw new FFmpegException("FFmpeg couldn't open the codec necessary to decode a video stream in the file at \"" + path + "\".");
+		throw FFmpegException("FFmpeg couldn't open the codec necessary to decode a video stream in the file at \"" + path + "\".");
 	}
 
 	//TODO ztdztd find this out somehow :(
@@ -68,7 +68,7 @@ VideoMetadata FFmpegDataVideo::getMetadata() const {
 
 	if (isDummy())
 	{
-		throw new IllegalStateException("Tried to request metadata from a dummy ffmpeg video");
+		throw IllegalStateException("Tried to request metadata from a dummy ffmpeg video");
 	}
 
 	//Testen, das ist extrem geraten bisher!!!! duration ist glaub noch in sekunden oder sowas ähnlichem
@@ -80,12 +80,12 @@ model::frame::Frame::sptr FFmpegDataVideo::getFrame(unsigned int frameNumber) co
 
 	if (isDummy())
 	{
-		throw new IllegalStateException("Tried to request a frame from a dummy ffmpeg video");
+		throw IllegalStateException("Tried to request a frame from a dummy ffmpeg video");
 	}
 
 	if (frameNumber >= getMetadata().getLength())
 	{
-		throw new IllegalArgumentException("Tried to request the frame with the number " + QString::number(frameNumber) + " from a video having only  " + QString::number(getMetadata().getLength()) + " frames.");
+		throw IllegalArgumentException("Tried to request the frame with the number " + QString::number(frameNumber) + " from a video having only  " + QString::number(getMetadata().getLength()) + " frames.");
 	}
 
 
@@ -110,12 +110,12 @@ model::frame::Frame::sptr FFmpegDataVideo::getFrame(unsigned int frameNumber) co
 	//TODO keine ahnung ob das tut... und was es tut... ACHTUNG, anscheinend müssen da noch irgendwelche internen buffer geflusht werden damit das tut! man wird selbst irgendwie buffern müssen denk ich
 	if (avformat_seek_file(videoFormatContext, videoStreamNr, frameNumber, frameNumber, frameNumber, AVSEEK_FLAG_FRAME) < 0)
 	{
-		throw new FFmpegException("FFmpeg couldn't find the requested frame with the number " + QString::number(frameNumber) + " in the video stream.");
+		throw FFmpegException("FFmpeg couldn't find the requested frame with the number " + QString::number(frameNumber) + " in the video stream.");
 	}
 
 	if (av_read_frame(videoFormatContext, &packet) < 0)
 	{
-		throw new FFmpegException("FFmpeg couldn't read the frame with the number " + QString::number(frameNumber) + " in the video stream .");
+		throw FFmpegException("FFmpeg couldn't read the frame with the number " + QString::number(frameNumber) + " in the video stream .");
 	}
 
 // 	if (packet.stream_index != videoStreamNr)
@@ -125,12 +125,12 @@ model::frame::Frame::sptr FFmpegDataVideo::getFrame(unsigned int frameNumber) co
 
 	if (avcodec_decode_video2(codecContext, frame, &decodingSuccessfull, &packet) < 0)
 	{
-		throw new FFmpegException("FFmpeg couldn't decode the frame with the number " + QString::number(frameNumber) + " in the video stream .");
+		throw FFmpegException("FFmpeg couldn't decode the frame with the number " + QString::number(frameNumber) + " in the video stream .");
 	}
 
 	if (decodingSuccessfull == 0)
 	{
-		throw new FFmpegException("FFmpeg couldn't decode the frame with the number " + QString::number(frameNumber) + " in the video stream .");
+		throw FFmpegException("FFmpeg couldn't decode the frame with the number " + QString::number(frameNumber) + " in the video stream .");
 	}
 
 	//TODO jdwfi the following sws stuff is for conversion to rgb ppm format, this could of course be done on the gpu to be faster, but I don't know yet what the original data looks like
@@ -185,21 +185,21 @@ FFmpegDataVideo::~FFmpegDataVideo()
 
 void FFmpegDataVideo::restore(::model::saveable::Memento memento)
 {
-	throw new NotImplementedException;
+	throw NotImplementedException();
 }
 
 unsigned int FFmpegDataVideo::getFrameCount() const
 {
 	if (isDummy())
 	{
-		throw new IllegalStateException("Tried to request the frame count of a dummy ffmpeg video");
+		throw IllegalStateException("Tried to request the frame count of a dummy ffmpeg video");
 	}
 	return length;
 }
 
 ::model::saveable::Memento FFmpegDataVideo::getMemento() const
 {
-	throw new NotImplementedException;
+	throw NotImplementedException();
 }
 
 }  // namespace video

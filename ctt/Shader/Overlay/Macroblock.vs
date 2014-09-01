@@ -2,7 +2,7 @@
 
 attribute vec2 aPosition;
 attribute vec4 aColor;
-attribute vec3 aTexcrd;
+attribute vec2 aTexcrd;
 
 varying vec2 texcrd;
 varying vec4 color;

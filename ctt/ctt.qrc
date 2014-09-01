@@ -20,5 +20,12 @@
         <file>Shader/Filter/Noise.fs</file>
         <file>Shader/Filter/RGBChannel.fs</file>
         <file>Shader/Default/Default.vs</file>
+        <file>Shader/Diff/HSLPixelDiff.fs</file>
+        <file>Shader/Diff/RGBPixelDiff.fs</file>
+        <file>Shader/Diff/YUVPixelDiff.fs</file>
+        <file>Shader/CompactAverage.fs</file>
+        <file>Shader/Overlay/partitions.png</file>
+        <file>Shader/Overlay/Macroblock.vs</file>
+        <file>Shader/Overlay/Macroblock.fs</file>
     </qresource>
 </RCC>

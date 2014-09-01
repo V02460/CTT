@@ -23,21 +23,26 @@ void MacroblockOverlayTest::initTestCase() {
 
     testContext->makeCurrent(&surface);
 
-    video.reset(new YUVDataVideo("Resources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv",
-        QSize(352, 288),
-        24,
-        YUVType::YUV420,
-        testContext));
+    video.reset(new YUVDataVideo("Resources/Videos/YUV420/raftingNEW_352x288_113.yuv",
+                                 "Resources/Videos/YUV420/ModeGrid_raf_512my.dat",
+                                 QSize(352, 288),
+                                 24,
+                                 YUVType::YUV420,
+                                 testContext));
+
+    noMetadataVideo.reset(new YUVDataVideo("Resources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv",
+                                           QSize(352, 288),
+                                           24,
+                                           YUVType::YUV420,
+                                           testContext));
+}
+
+void MacroblockOverlayTest::testRun() {
+    MacroblockOverlay macroblockOverlay(video);
+    macroblockOverlay.getFrame(7);
 }
 
 void MacroblockOverlayTest::noMetadata() {
-    MacroblockOverlay macroblockOverlay(video);
+    MacroblockOverlay macroblockOverlay(noMetadataVideo);
     QEXPECT_EXCEPTION(macroblockOverlay.getFrame(9), IllegalStateException);
 }
-
-// void MacroblockOverlayTest::wrongParams() {
-//     MacroblockOverlay macroblockOverlay(video);
-//     QEXPECT_EXCEPTION(macroblockOverlay.setParam(FilterParam("not right", "at all")), IllegalArgumentException);
-//     QEXPECT_EXCEPTION(macroblockOverlay.setParam(FilterParam("a bit off", 1.0)), IllegalArgumentException);
-//     macroblockOverlay.getFrame(9);
-// }

@@ -18,27 +18,27 @@ MotionVectorOverlay::MotionVectorOverlay(Module::sptr predecessor)
         : Overlay(predecessor
         , Module::sptr()
         , 0.5) {
-    throw new NotImplementedException();
+    throw NotImplementedException();
 }
 
 MotionVectorOverlay::~MotionVectorOverlay () {
-    throw new NotImplementedException();
+    throw NotImplementedException();
 }
 
 model::frame::Frame::sptr MotionVectorOverlay::getFrame(unsigned int frameNumber) const {
-    throw new NotImplementedException();
+    throw NotImplementedException();
 }
 
 void MotionVectorOverlay::restore(::model::saveable::Memento memento) {
-	throw new NotImplementedException();
+	throw NotImplementedException();
 }
 
 QList<const Module*> MotionVectorOverlay::getUsesList() const {
-	throw new NotImplementedException();
+	throw NotImplementedException();
 }
 
 Saveable::sptr MotionVectorOverlay::getDummy() {
-	throw new IllegalArgumentException();
+	throw IllegalArgumentException();
 }
 
 }  // namespace overlay

@@ -83,7 +83,7 @@ bool Saveable::isDummy() const {
 }
 
 Saveable::sptr Saveable::getDummy() {
-    throw new NotImplementedException();
+    throw NotImplementedException();
 }
 
 Saveable::SaveableType Saveable::getSaveableType() {
@@ -96,7 +96,7 @@ const Saveable::SaveableType Saveable::stringToSaveableType(QString string) {
 			return static_cast<SaveableType>(i);
 		}
 	}
-	throw new IllegalArgumentException(string + " is not a saveable class type.");
+	throw IllegalArgumentException(string + " is not a saveable class type.");
 }
 
 }  // namespace savable

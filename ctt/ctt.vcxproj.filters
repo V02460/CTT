@@ -44,33 +44,6 @@
     <Filter Include="Header Files\Exception">
       <UniqueIdentifier>{29754dee-53d1-4b53-acd4-a18834a29c00}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Model">
-      <UniqueIdentifier>{4dedc1ce-bc59-4b6d-8c0d-8fd7f8640c77}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Filter">
-      <UniqueIdentifier>{89b90527-2e07-4a3d-86e1-84bc0a051451}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Filter\Overlay">
-      <UniqueIdentifier>{71353827-90d5-4f70-96c6-ae7e64a24645}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Frame">
-      <UniqueIdentifier>{85cc062b-59d4-4b6d-b5dc-0e456cfc5205}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Frame\Histogram">
-      <UniqueIdentifier>{1ff31363-c06c-436e-b47b-7d65993e62e9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Video">
-      <UniqueIdentifier>{5671bac6-9ae7-4c3a-ab77-fa7b3deafedb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Difference">
-      <UniqueIdentifier>{bcb2145a-a009-4132-aeae-de5d3bb1b16b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Saveable">
-      <UniqueIdentifier>{25594692-751f-4db9-99fc-f8df7825e7ef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Player">
-      <UniqueIdentifier>{10a7901b-c1a8-4e9a-994b-43c11d4f69ab}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Helper">
       <UniqueIdentifier>{e30c80ac-f317-4573-a9a5-e7d2291aa5c5}</UniqueIdentifier>
     </Filter>
@@ -125,16 +98,19 @@
       <ParseFiles>false</ParseFiles>
     </Filter>
     <Filter Include="Shader Files">
-      <UniqueIdentifier>{b4efe5b9-f6e3-40ed-a91d-96eb0ce90098}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shader Files\Filter">
-      <UniqueIdentifier>{02d86d30-8e67-41c5-8a3f-80d72c3f3d4d}</UniqueIdentifier>
+      <UniqueIdentifier>{ba79908a-6c73-41f6-9197-b595d2228533}</UniqueIdentifier>
     </Filter>
     <Filter Include="Shader Files\Conversion">
-      <UniqueIdentifier>{e3bf623a-629a-43a0-837b-ec2dcfa694a3}</UniqueIdentifier>
+      <UniqueIdentifier>{3afce15e-df25-4871-aab7-0f4c87799362}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Filter">
+      <UniqueIdentifier>{41dd7b24-f8d4-40d4-a613-5ead97ab7934}</UniqueIdentifier>
     </Filter>
     <Filter Include="Shader Files\Histogram">
-      <UniqueIdentifier>{2087191a-8e1e-4305-9da7-390d9c25ea18}</UniqueIdentifier>
+      <UniqueIdentifier>{a3800756-33c5-47e1-8753-98cbd4d2c1d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Diff">
+      <UniqueIdentifier>{4fab2534-a35d-45a9-af8e-9d902c8a8809}</UniqueIdentifier>
     </Filter>
     <Filter Include="Shader Files\Overlay">
       <UniqueIdentifier>{8fee5fd8-1fe7-4e77-9424-8bb8e6627595}</UniqueIdentifier>
@@ -144,6 +120,33 @@
     </Filter>
     <Filter Include="Source Files\Exception">
       <UniqueIdentifier>{af2fafcf-877f-4afc-97b9-c30448ac2a77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model">
+      <UniqueIdentifier>{4dedc1ce-bc59-4b6d-8c0d-8fd7f8640c77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Filter">
+      <UniqueIdentifier>{89b90527-2e07-4a3d-86e1-84bc0a051451}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Filter\Overlay">
+      <UniqueIdentifier>{71353827-90d5-4f70-96c6-ae7e64a24645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Frame">
+      <UniqueIdentifier>{85cc062b-59d4-4b6d-b5dc-0e456cfc5205}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Frame\Histogram">
+      <UniqueIdentifier>{1ff31363-c06c-436e-b47b-7d65993e62e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Video">
+      <UniqueIdentifier>{5671bac6-9ae7-4c3a-ab77-fa7b3deafedb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Difference">
+      <UniqueIdentifier>{bcb2145a-a009-4132-aeae-de5d3bb1b16b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Saveable">
+      <UniqueIdentifier>{25594692-751f-4db9-99fc-f8df7825e7ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Player">
+      <UniqueIdentifier>{10a7901b-c1a8-4e9a-994b-43c11d4f69ab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -636,9 +639,6 @@
     <ClCompile Include="qcustomplot.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
-    <ClCompile Include="AnalysingOrderingWidget.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
     <ClCompile Include="GlobalContext.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
@@ -785,6 +785,9 @@
     </ClCompile>
     <ClCompile Include="FilterTimelineItem.cpp">
       <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="AveragePixelDiff.cpp">
+      <Filter>Source Files\Model\Difference</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1042,9 +1045,6 @@
     <ClInclude Include="YUVDataVideo.h">
       <Filter>Header Files\Model\Video</Filter>
     </ClInclude>
-    <ClInclude Include="YUVPixelDiff.h">
-      <Filter>Header Files\Model\Difference</Filter>
-    </ClInclude>
     <ClInclude Include="ViewType.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
@@ -1144,9 +1144,6 @@
     <ClInclude Include="GlobalContext.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="AnalysingOrderingWidget.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
     <ClInclude Include="FileNotFoundException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
@@ -1176,6 +1173,12 @@
     </ClInclude>
     <ClInclude Include="ExtendedVideoAddedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="AveragePixelDiff.h">
+      <Filter>Header Files\Model\Difference</Filter>
+    </ClInclude>
+    <ClInclude Include="YUVPixelDiff.h">
+      <Filter>Header Files\Model\Difference</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1248,17 +1251,29 @@
     <None Include="Shader\Filter\RGBChannel.fs">
       <Filter>Shader Files\Filter</Filter>
     </None>
-    <None Include="..\cttApp\ctt_de.ts">
-      <Filter>Lokalisierungs Dateien</Filter>
-    </None>
-    <None Include="..\cttApp\ctt_en.ts">
-      <Filter>Lokalisierungs Dateien</Filter>
-    </None>
     <None Include="Shader\Overlay\Macroblock.fs">
       <Filter>Shader Files\Overlay</Filter>
     </None>
     <None Include="Shader\Overlay\Macroblock.vs">
       <Filter>Shader Files\Overlay</Filter>
+    </None>
+    <None Include="Shader\CompactAverage.fs">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="Shader\Diff\HSLPixelDiff.fs">
+      <Filter>Shader Files\Diff</Filter>
+    </None>
+    <None Include="Shader\Diff\RGBPixelDiff.fs">
+      <Filter>Shader Files\Diff</Filter>
+    </None>
+    <None Include="Shader\Diff\YUVPixelDiff.fs">
+      <Filter>Shader Files\Diff</Filter>
+    </None>
+    <None Include="..\cttApp\ctt_de.ts">
+      <Filter>Lokalisierungs Dateien</Filter>
+    </None>
+    <None Include="..\cttApp\ctt_en.ts">
+      <Filter>Lokalisierungs Dateien</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

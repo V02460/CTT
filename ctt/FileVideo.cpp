@@ -20,7 +20,7 @@ FileVideo::FileVideo(QString path, QSharedPointer<QOpenGLContext> context)
 {
 	if (!videoFile.exists())
 	{
-		throw new FileNotFoundException("The video file at \"" + path + "\" doesn't exist");
+		throw FileNotFoundException("The video file at \"" + path + "\" doesn't exist");
 	}
 }
 
@@ -28,14 +28,14 @@ FileVideo::FileVideo() {}
 
 QString FileVideo::getPath() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return pathToVideoFile;
 }
 
 QList<const Module*> FileVideo::getUsesList() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	QList<const Module*> uses;
 	uses.append(this);
@@ -45,14 +45,14 @@ QList<const Module*> FileVideo::getUsesList() const {
 
 bool FileVideo::uses(const Module &module) const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return (this == &module);
 }
 
 QSharedPointer<QOpenGLContext> FileVideo::getContext() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return context;
 }

@@ -37,7 +37,7 @@ RescaleFilter::~RescaleFilter() {}
 
 model::frame::Frame::sptr RescaleFilter::getFrame(unsigned int frameNumber) const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
     Frame::sptr sourceFrame = getPredecessor()->getFrame(frameNumber);
 
@@ -59,7 +59,7 @@ model::frame::Frame::sptr RescaleFilter::getFrame(unsigned int frameNumber) cons
 
 Memento RescaleFilter::getMemento() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
     Memento memento = Filter::getMemento();
 
@@ -83,7 +83,7 @@ void RescaleFilter::restore(Memento memento) {
 
 QList<const Module*> RescaleFilter::getUsesList() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return QList<const Module*>() << this;
 }
