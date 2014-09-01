@@ -8,7 +8,6 @@
 #include <QStackedLayout>
 
 #include "Observer.h"
-#include "ExtendedTimeline.h"
 #include "AbstractListView.h"
 #include "InsertionWidget.h"
 #include "ZoomFunctions.h"
@@ -17,6 +16,8 @@
 #include "FilterController.h"
 #include "DifferenceController.h"
 #include "AnalysingOrderingWidget.h"
+#include "AbstractTimeline.h"
+#include "ViewType.h"
 
 namespace view {
 
@@ -33,7 +34,7 @@ public:
 	MainControlWidget(::controller::FilterController::sptr filterController, QWidget *parent = 0);
 
 	MainControlWidget(::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr differences,
-		AnalysingOrderingWidget::sptr orderingWidget, QWidget *parent = 0);
+		::model::player::Player::sptr player, AnalysingOrderingWidget::sptr orderingWidget, QWidget *parent = 0);
 
 	void setPlayer(::model::player::Player::sptr player);
 	void setVideo(::model::filter::FilteredVideo::sptr video);
@@ -44,7 +45,7 @@ public:
 
 public slots:
     /**
-     * Hides the ExtendedTimeline widget and shows the insertion widget, as long as the button is active.
+     * Hides the timeline widget and shows the insertion widget, as long as the button is active.
      * Does the opposite as soon as the button is inactive.
      *
      * @param active Is true, when btnInsert is active, and false otherwise.
@@ -56,7 +57,7 @@ private:
 	void setupUi(ViewType viewType);
 
     QPushButton *btnInsert; /**< The toggle button that indicates whether insertion mode is active or not */
-    ExtendedTimeline *timeline; /**< The ExtendedTimeline showing the currently relevant information */
+    AbstractTimeline *timeline; /**< The timeline showing the currently relevant information */
     InsertionWidget *insertionWidget; /**< The InsertionWidget to insert filters or differences */
     ZoomFunctions *zoomBar; /**< The zoom funtionality */
     PlayerFunctions *playerFunctions; /** The funtionality to control the video player */

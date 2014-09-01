@@ -81,7 +81,7 @@ void XMLSaver::writeBaseElements() {
 	for (elementID = 0; elementID < length; elementID++) {
 		out->writeStartElement(ELEMENT);
 		Saveable::sptr element = pointerList[elementID];
-		Saveable::SaveableType type = element->getSaveableType();
+		Saveable::SaveableType type = element->saveableType();
 		out->writeAttribute(CLASS, Saveable::SAVEABLE_TYPE_STRINGS[type]);
 		if (type == Saveable::SaveableType::saveableList) {
 			SaveableList<Saveable>::sptr list = element.staticCast<SaveableList<Saveable>>();
@@ -124,7 +124,7 @@ void XMLSaver::writeElements() {
 	for (; elementID < pointerList.length(); elementID++) {
 		out->writeStartElement(ELEMENT);
 		Saveable::sptr element = pointerList[elementID];
-		Saveable::SaveableType type = element->getSaveableType();
+		Saveable::SaveableType type = element->saveableType();
 		out->writeAttribute(CLASS, Saveable::SAVEABLE_TYPE_STRINGS[type]);
 		if (type = Saveable::SaveableType::saveableList) {
 			SaveableList<Saveable>::sptr list = element.staticCast<SaveableList<Saveable>>();

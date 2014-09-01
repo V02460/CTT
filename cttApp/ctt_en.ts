@@ -230,6 +230,46 @@
     </message>
 </context>
 <context>
+    <name>view::FrameMetadataWidget</name>
+    <message>
+        <location filename="../ctt/FrameMetadataWidget.cpp" line="31"/>
+        <source>FPS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ctt/FrameMetadataWidget.cpp" line="32"/>
+        <source>FRAMECOUNT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ctt/FrameMetadataWidget.cpp" line="36"/>
+        <source>VIDEO_SIZE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ctt/FrameMetadataWidget.cpp" line="38"/>
+        <location filename="../ctt/FrameMetadataWidget.cpp" line="40"/>
+        <source>METADATA_START</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ctt/FrameMetadataWidget.cpp" line="38"/>
+        <location filename="../ctt/FrameMetadataWidget.cpp" line="40"/>
+        <source>NOT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ctt/FrameMetadataWidget.cpp" line="39"/>
+        <source>METABLOCK_END</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ctt/FrameMetadataWidget.cpp" line="41"/>
+        <source>MOTIONVECTOR_END</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>view::HistogramWidget</name>
     <message>
         <location filename="../ctt/HistogramWidget.cpp" line="30"/>

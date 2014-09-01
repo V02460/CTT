@@ -17,7 +17,7 @@ namespace controller {
 /**
  * The ProjectController manages requests to initialize, save or load a Project.
  */
-class MainController : public QObject, public ::model::Observer {
+class MainController : public QObject {
     Q_OBJECT
 
 public:
@@ -58,6 +58,8 @@ public slots:
      */
     void newProject();
 
+signals:
+	void requestSavePath();
 private:
     QString currentSavePath;
     project::SaveFileType currentSaveFileType;
