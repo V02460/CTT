@@ -121,7 +121,7 @@ void PlayerFunctions::update() {
 	setPlayButton(!player->isPlaying());
 	setEnabledAll(player->scrubberCount() != 0);
 
-	sliderCurrentFrame->setMaximum(static_cast<int>(player->getVideoLength()));
+	sliderCurrentFrame->setMaximum(static_cast<int>(player->getVideoLength() - 1));
 	sliderCurrentFrame->setValue(static_cast<int>(player->getCurrentFrameNumber()));
 	sliderCurrentFrame->setTickInterval(static_cast<int>(player->getVideoLength()) / 10);
 
@@ -132,7 +132,7 @@ void PlayerFunctions::subscribe(::controller::PlayerController::sptr observer) {
 	QObject::connect(this, SIGNAL(togglePlay()), observer.data(), SLOT(playPause()));
 	QObject::connect(btnNextFrame, SIGNAL(clicked()), observer.data(), SLOT(nextFrame()));
 	QObject::connect(btnPreviousFrame, SIGNAL(clicked()), observer.data(), SLOT(previousFrame()));
-	QObject::connect(sliderCurrentFrame, SIGNAL(sliderMoved(int)), observer.data(), SLOT(currentFrameChanged(int)));
+	QObject::connect(sliderCurrentFrame, SIGNAL(valueChanged(int)), observer.data(), SLOT(currentFrameChanged(int)));
 	QObject::connect(btnDefaultFPS, SIGNAL(clicked()), observer.data(), SLOT(setToDefaultFPS()));
 	QObject::connect(spinboxFPS, SIGNAL(valueChanged(double)), observer.data(), SLOT(setFPS(double)));
 	QObject::connect(this, SIGNAL(playerChanged(::model::player::Player::sptr)), observer.data(),

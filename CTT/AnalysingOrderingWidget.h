@@ -4,13 +4,18 @@
 #include <QWidget>
 #include <QDialog>
 #include <QPushButton>
+#include <QDialogButtonBox>
 
 #include "SaveableList.h"
 #include "FilteredVideo.h"
 #include "Player.h"
-#include "VideoAnalysingWidget.h"
 #include "Observer.h"
 #include "ThumbnailListWidget.h"
+
+//#include "VideoAnalysingWidget.h"
+namespace view {
+	class VideoAnalysingWidget;
+}  // namespace view 
 
 namespace view {
 
@@ -42,7 +47,7 @@ private:
     void setupUi();
 
     ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos;
-    QList<VideoAnalysingWidget::sptr> analysingWidget;
+    QList<QSharedPointer<VideoAnalysingWidget>> analysingWidget;
     QList<ListedPushButton::sptr> dialogButtons;
     ::model::player::Player::sptr player;
     ThumbnailListWidget::sptr thumbnails;

@@ -2,6 +2,8 @@
 
 #include "VideoScrubber.h"
 #include "OverlayController.h"
+#include "VideoAnalysingWidget.h"
+
 
 using ::model::saveable::SaveableList;
 using ::model::filter::FilteredVideo;
@@ -37,7 +39,12 @@ void AnalysingOrderingWidget::update() {
     for (int i = 0; i < filteredVideos->getSize(); i++) {
         VideoScrubber::sptr scrubber(new VideoScrubber(filteredVideos->get(i)));
         OverlayController::sptr overlayController(new OverlayController(filteredVideos->get(i)));
-        analysingWidget.insert(i, VideoAnalysingWidget::sptr(new VideoAnalysingWidget(overlayController, scrubber)));
+		VideoAnalysingWidget::sptr widget(new VideoAnalysingWidget(overlayController, scrubber, this));
+        analysingWidget.insert(i, widget);
+		QObject::connect(widget.data(), SIGNAL(overlayAdded(QString)), overlayController.data(), SLOT(insertOverlay(QString)));
+		QObject::connect(widget.data(), SIGNAL(overlayAdded(QString, FilteredVideo::sptr, FilteredVideo::sptr)),
+			overlayController.data(), SLOT(insertOverLayWithPixelDiff(QString, FilteredVideo::sptr, FilteredVideo::sptr)));
+		QObject::connect(widget.data(), SIGNAL(overlayRemoved(int)), overlayController.data(), SLOT(removeOverlay(int)));
 
         ListedPushButton::sptr dialogButton(new ListedPushButton(i, filteredVideos->get(i), videoSelectionDialog));
         dialogButtons.insert(i, dialogButton);

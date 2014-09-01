@@ -7,6 +7,11 @@
 #include "FilterFactory.h"
 #include "HeatmapOverlay.h"
 
+//#include "AnalysingOrderingWidget.h"
+namespace view {
+//	class AnalysingOrderingWidget;
+}  // namespace view
+
 namespace view {
 
 using ::exception::NotImplementedException;
@@ -15,9 +20,10 @@ using ::model::player::VideoScrubber;
 using ::model::filter::FilterFactory;
 using ::model::video::Video;
 using ::model::filter::overlay::HeatmapOverlay;
+using ::model::filter::FilteredVideo;
 
 VideoAnalysingWidget::VideoAnalysingWidget(OverlayController::sptr overlayController, VideoScrubber::sptr scrubber,
-	QWidget *parent) : QWidget(parent) {
+	AnalysingOrderingWidget* orderingWidget) : QWidget(), orderingWidget(orderingWidget) {
 	histWidget = new HistogramWidget(scrubber, this);
 	videoWidget = new VideoWidget(scrubber);
 	metadataWidget = new FrameMetadataWidget(scrubber, this);
@@ -59,8 +65,10 @@ void VideoAnalysingWidget::comboboxOverlayCurrentIndexChanged(int index) {
 		QString overlayId = FilterFactory::getAllOverlayIDs().at(index - 1);
 
 		if (overlayId == HeatmapOverlay::kFilterID) {
-			//TODO Request video for difference
-			emit overlayAdded(overlayId, Video::sptr());
+			QList<FilteredVideo::sptr> video = orderingWidget->getVideos(1);
+			if (video.size() == 1) {
+				emit overlayAdded(overlayId, videoWidget->getScrubber()->getVideo().dynamicCast<FilteredVideo>(), video.value(0));
+			}
 		} else {
 			emit overlayAdded(overlayId);
 		}

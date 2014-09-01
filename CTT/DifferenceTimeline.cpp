@@ -42,17 +42,12 @@ namespace view {
 	void DifferenceTimeline::updateDifferences() {
 		graphPlot->clearGraphs();
 
-		double yMax = 0;
-
 		for (int i = 0; i < differences->getSize(); i++) {
 			QVector<double> x = QVector<double>();
 			QVector<double> y = QVector<double>();
 			for (int j = 0; j < static_cast<int>(differences->get(i)->getFrameCount()); j++) {
 				x[j] = j;
-				y[j] = differences->get(i)->getDiff(j);
-				if (y[j] > yMax) {
-					yMax = y[j];
-				}
+				y[j] = qBound(0.0, differences->get(i)->getDiff(j), 1.0);
 			}
 			graphPlot->addGraph(graphPlot->xAxis, graphPlot->yAxis);
 			graphPlot->graph(i)->setPen(QPen(ViewState::getColorFromIndex(i)));
@@ -61,7 +56,7 @@ namespace view {
 		}
 
 		graphPlot->xAxis->setRange(0, player->getVideoLength() - 1);
-		graphPlot->yAxis->setRange(0, yMax);
+		graphPlot->yAxis->setRange(0, 1);
 
 		graphPlot->replot();
 	}
