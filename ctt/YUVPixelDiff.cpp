@@ -17,6 +17,8 @@ using ::helper::GPUSurfaceCompactor;
 using ::helper::getNewSizeDefault;
 using ::exception::AccessToDummyException;
 
+const QByteArray YUVPixelDiff::kDiffID = QT_TRANSLATE_NOOP("PixelDiff", "pixeldiff_yuv");
+
 YUVPixelDiff::YUVPixelDiff(Video::sptr video1, Video::sptr video2) : AveragePixelDiff(video1, video2) {
 }
 

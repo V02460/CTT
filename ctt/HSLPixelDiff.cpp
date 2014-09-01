@@ -13,6 +13,8 @@ using ::helper::GPUSurfaceShader;
 using ::exception::NotImplementedException;
 using ::exception::AccessToDummyException;
 
+const QByteArray HSLPixelDiff::kDiffID = QT_TRANSLATE_NOOP("PixelDiff", "pixeldiff_hsl");
+
 HSLPixelDiff::HSLPixelDiff(Video::sptr video1, Video::sptr video2) : AveragePixelDiff(video1, video2) {
 }
 

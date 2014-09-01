@@ -22,6 +22,8 @@ public:
     typedef QSharedPointer<EarthMoversHistogramDiff> sptr;
     typedef QWeakPointer<EarthMoversHistogramDiff> wptr;
 
+    static const QMap<::model::frame::histogram::Histogram::HistogramType, QByteArray> kDiffIDs;
+
     /**
      * Creates a new EarthMoversHistogramDiff using the histograms of the submitted type to calculate earth mover's
      * distances between frames of the two submitted videos.
@@ -36,19 +38,21 @@ public:
 
     virtual ~EarthMoversHistogramDiff();
 
-    virtual double getDiff(unsigned int frameNr) const;
+    virtual QString getName() const Q_DECL_OVERRIDE;
+
+    virtual double getDiff(unsigned int frameNr) const Q_DECL_OVERRIDE;
 
 	virtual model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
 	virtual void restore(model::saveable::Memento memento) Q_DECL_OVERRIDE;
 	static Saveable::sptr getDummy();
-    static Saveable::SaveableType getSaveableType();
+    static Saveable::SaveableType getSaveableType() { return Saveable::earthMoversHistogramDiff; }
 
 private:
 	Q_DISABLE_COPY(EarthMoversHistogramDiff)
 
-	static const QString VIDEO1;
-	static const QString VIDEO2;
-	static const QString TYPE;
+	static const QString kVideo1Str;
+	static const QString kVideo2Str;
+	static const QString kTypeStr;
 
     EarthMoversHistogramDiff();
 

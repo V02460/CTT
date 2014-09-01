@@ -41,6 +41,13 @@ public:
     unsigned int getFrameCount() const;
 
     /**
+     * Returns the name of the FrameDiff.
+     *
+     * @return the name of the FrameDiff
+     */
+    virtual QString getName() const = 0;
+
+    /**
      * Returns the first video of the FrameDiff.
      *
      * @return the first video
