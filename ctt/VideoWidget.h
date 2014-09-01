@@ -40,7 +40,7 @@ public:
      *
      * @return The VideoScrubber which holds the current frame.
      */
-    const ::model::player::VideoScrubber &getScrubber() const;
+    const ::model::player::VideoScrubber::sptr getScrubber() const;
 
 	virtual void resizeEvent(QResizeEvent *ev) Q_DECL_OVERRIDE;
 

@@ -25,7 +25,6 @@ using ::model::filter::MixFilter;
 using ::model::filter::NoiseFilter;
 using ::model::filter::overlay::HeatmapOverlay;
 using ::model::filter::overlay::MacroblockOverlay;
-using ::model::filter::overlay::MacropartionOverlay;
 using ::model::filter::overlay::MotionVectorOverlay;
 using ::model::filter::RescaleFilter;
 using ::model::filter::RGBChannelFilter;
@@ -38,7 +37,7 @@ using ::model::UIntegerInterval;
 using ::model::player::VideoScrubber;
 using ::view::ViewState;
 using ::model::saveable::SaveableList;
-
+using ::view::ViewType;
 using ::model::difference::FrameDiff;
 using ::model::difference::PixelDiff;
 using ::model::Module;
@@ -50,24 +49,44 @@ using ::model::video::FileVideo;
 
 XMLLoader::XMLLoader() {}
 
-void XMLLoader::restore(QDir path) {
-	openFile(path);
-	createMaps();
-	restore();
-}
-
-void XMLLoader::openFile(QDir path) {
-	QFile file(path.absolutePath());
+void XMLLoader::restore(QString path) {
+	QFile file(path);
 	if (!file.open(QIODevice::ReadOnly)) {
-		throw new IOException("File " + path.absolutePath() + " could not be opened.");
+		throw new IOException("File " + path + " could not be opened.");
 	}
 	xml = new QXmlStreamReader(&file);
 	if (!xml->readNextStartElement()) { // TODO more to skip?
 		throw new ParseException("Document to restore from is empty.");
 	}
-	if (xml->qualifiedName() != XMLSaver::ELEMENTS) {
-		throw new ParseException("Tag <" + XMLSaver::ELEMENTS + "> expected.");
+	if (xml->qualifiedName() == XMLSaver::ELEMENTS) {
+		createMaps();
+		if (xml->qualifiedName() != XMLSaver::VIEW) {
+			throw new ParseException("Tag <" + XMLSaver::VIEW + "> expected.");
+		}
+		loadView();
+	} else if (xml->qualifiedName() == XMLSaver::VIEW) {
+		loadView();
+		if (xml->qualifiedName() != XMLSaver::ELEMENTS) {
+			throw new ParseException("Tag <" + XMLSaver::ELEMENTS + "> expected.");
+		}
+		createMaps();
+	} else {
+		throw new ParseException("Tag <" + XMLSaver::ELEMENTS + "> or <" + XMLSaver::VIEW + "> expected.");
 	}
+	restore();
+}
+
+void XMLLoader::loadView() {
+	QXmlStreamAttributes attributes = xml->attributes();
+	if (!attributes.hasAttribute(XMLSaver::STATE)) {
+		throw new ParseException("Attribute " + XMLSaver::STATE + " expected.");
+	}
+	bool valid = false;
+	int state = attributes.value(XMLSaver::STATE).toInt(&valid);
+	if (!valid) {
+		throw new ParseException("Incorrect value for " + XMLSaver::STATE);
+	}
+	ViewState::getInstance()->changeView(static_cast<ViewType>(state));
 }
 
 void XMLLoader::createMaps() {
@@ -106,22 +125,6 @@ void XMLLoader::createMaps() {
 				pointerMap.insert(id, project->getPlayer2()); break;
 			case XMLSaver::BaseSaveableType::DiffList:
 				pointerMap.insert(id, project->getDiffList()); break;
-			case XMLSaver::BaseSaveableType::View:
-				while (xml->readNext() != QXmlStreamReader::EndElement) { // TODO check
-					if (xml->qualifiedName() == XMLSaver::VARIABLE) {
-						QXmlStreamAttributes variableAttributes = xml->attributes();
-						if (!variableAttributes.hasAttribute(XMLSaver::NAME)) {
-							throw new ParseException("Attribute " + XMLSaver::NAME + " expected.");
-						}
-						if (!variableAttributes.hasAttribute(XMLSaver::VALUE)) {
-							throw new ParseException("Attribute " + XMLSaver::VALUE + " expected.");
-						}
-						viewMemento.setString(variableAttributes.value(XMLSaver::NAME).toString(),
-					              variableAttributes.value(XMLSaver::NAME).toString());
-					} else {
-						throw new ParseException("ViewState can only save Variables.");
-					}
-				} continue;
 			default: throw new NotImplementedException("Unknown base savable type."); break;
 			}
 		} else {
@@ -134,7 +137,7 @@ void XMLLoader::createMaps() {
 			switch (saveableType) {
 			default:
 				throw new ParseException(attributes.value(XMLSaver::CLASS).toString()
-					+ " can not be instanciated.");
+					+ " can not be instantiated.");
 				break;
 			case Saveable::SaveableType::filterIntervalList: dummy = FilterIntervalList::getDummy(); break;
 			case Saveable::SaveableType::earthMoversHistogramDiff: dummy = EarthMoversHistogramDiff::getDummy(); break;
@@ -147,7 +150,6 @@ void XMLLoader::createMaps() {
 			case Saveable::SaveableType::noiseFilter: dummy = NoiseFilter::getDummy(); break;
 			case Saveable::SaveableType::heatmapOverlay: dummy = HeatmapOverlay::getDummy(); break;
 			case Saveable::SaveableType::macroblockOverlay: dummy = MacroblockOverlay::getDummy(); break;
-			case Saveable::SaveableType::makropartitionOverlay: dummy = MacropartionOverlay::getDummy(); break;
 			case Saveable::SaveableType::motionVektorOverlay: dummy = MotionVectorOverlay::getDummy(); break;
 			case Saveable::SaveableType::rescaleFilter: dummy = RescaleFilter::getDummy(); break;
 			case Saveable::SaveableType::rGBChannelFilter: dummy = RGBChannelFilter::getDummy(); break;
@@ -158,7 +160,6 @@ void XMLLoader::createMaps() {
 			case Saveable::SaveableType::player: dummy = Player::getDummy(); break;
 			case Saveable::SaveableType::uIntegerInterval: dummy = UIntegerInterval::getDummy(); break;
 			case Saveable::SaveableType::videoScrubber: dummy = VideoScrubber::getDummy(); break;
-			case Saveable::SaveableType::viewState: continue;
 			case Saveable::SaveableType::saveableList:
 				if (!attributes.hasAttribute(XMLSaver::TEMPLATE_TYPE)) {
 					throw new ParseException("Attribute " + XMLSaver::TEMPLATE_TYPE + " expected.");
@@ -184,7 +185,6 @@ void XMLLoader::createMaps() {
 				case Saveable::SaveableType::coloringOverlay: dummy = SaveableList<ColoringOverlay>::getDummy(); break;
 				case Saveable::SaveableType::heatmapOverlay: dummy = SaveableList<HeatmapOverlay>::getDummy(); break;
 				case Saveable::SaveableType::macroblockOverlay: dummy = SaveableList<MacroblockOverlay>::getDummy(); break;
-				case Saveable::SaveableType::makropartitionOverlay: dummy = SaveableList<MacropartionOverlay>::getDummy(); break;
 				case Saveable::SaveableType::motionVektorOverlay: dummy = SaveableList<MotionVectorOverlay>::getDummy(); break;
 				case Saveable::SaveableType::rescaleFilter: dummy = SaveableList<RescaleFilter>::getDummy(); break;
 				case Saveable::SaveableType::rGBChannelFilter: dummy = SaveableList<RGBChannelFilter>::getDummy(); break;
@@ -197,8 +197,8 @@ void XMLLoader::createMaps() {
 				case Saveable::SaveableType::player: dummy = SaveableList<Player>::getDummy(); break;
 				case Saveable::SaveableType::uIntegerInterval: dummy = SaveableList<UIntegerInterval>::getDummy(); break;
 				case Saveable::SaveableType::videoScrubber: dummy = SaveableList<VideoScrubber>::getDummy(); break;
-				case Saveable::SaveableType::viewState: dummy = SaveableList<ViewState>::getDummy(); break;
 				case Saveable::SaveableType::saveableList:
+					// TODO really?
 					throw new ParseException("A saveable list may not contain another saveable list.");
 					break;
 				default: throw new NotImplementedException("Unknown saveable type."); break;
@@ -262,8 +262,7 @@ void XMLLoader::restore() {
 		}
 		element->restore(memento);
 	}
-	ViewState::getInstance()->restore(viewMemento);
-	changed();
+	Project::getInstance()->changed();
 }
 
 XMLLoader *XMLLoader::getInstance() {

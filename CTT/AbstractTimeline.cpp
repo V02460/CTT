@@ -7,7 +7,7 @@ using ::exception::NotImplementedException;
 namespace view {
 
 void AbstractTimeline::update() {
-	throw new NotImplementedException();
+	throw NotImplementedException();
 }
 
 }  // namespace view

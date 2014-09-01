@@ -3,13 +3,15 @@
 #include "NotImplementedException.h"
 #include "YUVType.h"
 #include "IOException.h"
-#include "GPUHelper.h"
+#include "GPUSurfaceShader.h"
+
+#include <QFile>
 
 namespace model {
 namespace video {
 
 using ::exception::NotImplementedException;
-using ::exception::IllegalStateException;
+using ::exception::AccessToDummyException;
 using ::exception::IOException;
 using ::model::saveable::Saveable;
 
@@ -18,10 +20,9 @@ using model::filter::FilterParam;
 
 model::filter::RescaleFilter::uptr Video::rescaler;
 
-void Video::save(QString path, VideoFileType type) const
-{
+void Video::save(QString path, VideoFileType type) const {
 	if (isDummy()) {
-		throw new IllegalStateException("Tried to save a dummy video.");
+		throw AccessToDummyException();
 	}
 
 	QFile videoFile(path);
@@ -32,7 +33,7 @@ void Video::save(QString path, VideoFileType type) const
 	}
 
 	if (!videoFile.open(QIODevice::WriteOnly)) {
-		throw new IOException("Can't open the file at \"" + path + "\".");
+		throw IOException("Can't open the file at \"" + path + "\".");
 	}
 
 	QDataStream stream(&videoFile);
@@ -47,30 +48,33 @@ void Video::save(QString path, VideoFileType type) const
 // 		break;
 // 	case YUV422:
 // 		if ((getResolution().width() % 2) != 0) {
-// 			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV422 format.");
+// 			throw IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV422 format.");
 // 		}
 // 		bytesPerFrame = 2 * getResolution().width() * getResolution().height();
 // 		break;
 // 	case YUV420:
 // 		if ((getResolution().width() % 2) != 0) {
-// 			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
+// 			throw IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
 // 		}
 // 		if ((getResolution().height() % 2) != 0) {
-// 			throw new IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
+// 			throw IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
 // 		}
 // 		bytesPerFrame = (3 * getResolution().width() * getResolution().height()) / 2;
 // 		break;
 // 	}
 
-	helper::GPUHelper myHelper(":/Shader/Conversion/RGBtoYUV444sdtv.fs", getContext());
+	helper::GPUSurfaceShader myHelper(":/Shader/Conversion/RGBtoYUV444sdtv.fs", getContext());
 	for (unsigned int i = 0; i < getFrameCount(); i++)
 	{
-		videoFile.write(myHelper.run(*getFrame(i))->getRawRGBA().left(bytesPerFrame));
+        myHelper.setSourceTexture(getFrame(i));
+        Surface::sptr frame = myHelper.run();
+
+		videoFile.write(frame->getRawRGBA().left(bytesPerFrame));
 	}
 
 	if (!videoFile.flush())
 	{
-		throw new IOException("Can't flush the file at \"" + path + "\".");
+		throw IOException("Can't flush the file at \"" + path + "\".");
 	}
 	
 	videoFile.close();
@@ -86,16 +90,15 @@ void Video::save(QString path, VideoFileType type) const
 		rescaler->setPreviousModule(video);
 	}
 
-	FilterParam param(model::filter::RescaleFilter::kParamNewSize, size);
+	FilterParam::sptr param(new FilterParam(model::filter::RescaleFilter::kParamNewSize, size));
 	rescaler->setParam(param);
 
 	return rescaler->getFrame(frameNumber);
 }
 
-QSize Video::getResolution() const
-{
+QSize Video::getResolution() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Tried to request the resolution of a dummy video.");
+		throw AccessToDummyException();
 	}
 	return getMetadata().getSize();
 }

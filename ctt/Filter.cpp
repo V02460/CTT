@@ -14,107 +14,97 @@ using ::exception::AccessToDummyException;
 using ::exception::IllegalArgumentException;
 using ::exception::IllegalStateException;
 
-Filter::Filter(Module::sptr predecessor) : predecessor(predecessor), parameters(), intervals() {
-}
+Filter::Filter(Module::sptr predecessor) : predecessor(predecessor), parameters(), intervals() {}
 
-Filter::~Filter() {
-}
+Filter::~Filter() {}
 
-QList<FilterParam> Filter::getParams() const {
+QList<FilterParam::sptr> Filter::getParams() const {
     if (isDummy()) {
-        throw new AccessToDummyException();
+        throw AccessToDummyException();
     }
-
     return parameters.values();
 }
 
-void Filter::setParam(FilterParam parameter) {
+void Filter::setParam(FilterParam::sptr parameter) {
     if (isDummy()) {
-        throw new AccessToDummyException();
+        throw AccessToDummyException();
     }
-    if (!parameters.contains(parameter.getName())) {
-        throw new IllegalArgumentException("Parameter '" + parameter.getName() + "' must exist in Filter to be set.");
+    if (!parameters.contains(parameter->getName())) {
+        throw IllegalArgumentException("Parameter '" + parameter->getName() + "' must exist in Filter to be set.");
     }
-
-    QVariant oldValue = parameters.value(parameter.getName(), parameter).getValue();
-    QVariant newValue = parameter.getValue();
-
+    QVariant oldValue = parameters.value(parameter->getName(), parameter)->getValue();
+    QVariant newValue = parameter->getValue();
     if (newValue.type() != oldValue.type()) {
-        throw new IllegalArgumentException("Variable type of FilterParam does not match stored type.");
+        throw IllegalArgumentException("Variable type of FilterParam does not match stored type.");
     }
-
-    parameters.insert(parameter.getName(), parameter);
+    parameters.insert(parameter->getName(), parameter);
 }
 
 void Filter::setPreviousModule(Module::sptr predecessor) {
     if (isDummy()) {
-        throw new AccessToDummyException();
+        throw AccessToDummyException();
     }
     if (predecessor.isNull()) {
-        throw new IllegalArgumentException("Predecessor must not be null.");
+        throw IllegalArgumentException("Predecessor must not be null.");
     }
-
     this->predecessor = predecessor;
 }
 
-void Filter::activate(UIntegerInterval interval) {
+void Filter::activate(UIntegerInterval::sptr interval) {
     if (isDummy()) {
-        throw new AccessToDummyException();
+        throw AccessToDummyException();
     }
-
-    intervals.activate(interval);
+    intervals->activate(interval);
 }
 
-void Filter::deactivate(UIntegerInterval interval) {
+void Filter::deactivate(UIntegerInterval::sptr interval) {
     if (isDummy()) {
-        throw new AccessToDummyException();
+        throw AccessToDummyException();
     }
-
-    intervals.deactivate(interval);
+    intervals->deactivate(interval);
 }
 
-QList<UIntegerInterval> Filter::getListOfActiveIntervals() {
+QList<UIntegerInterval::sptr> Filter::getListOfActiveIntervals() {
     if (isDummy()) {
-        throw new AccessToDummyException();
+        throw AccessToDummyException();
     }
-
-    return intervals.getIntervalList();
+    return intervals->getIntervalList();
 }
 
 unsigned int Filter::getFrameCount() const {
     if (isDummy()) {
-        throw new AccessToDummyException();
+        throw AccessToDummyException();
     }
-
     return predecessor->getFrameCount();
 }
 
 Module *Filter::getPredecessor() const {
     if (isDummy()) {
-        throw new AccessToDummyException();
+        throw AccessToDummyException();
     }
-
     return predecessor.data();
 }
 
-QSize Filter::getResolution() const
-{
+QSize Filter::getResolution() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Tried to request the resolution of a dummy Filter.");
+		throw AccessToDummyException();
 	}
-
 	return predecessor->getResolution();
 }
 
 Memento Filter::getMemento() const {
-    Memento memento;
+	if (isDummy()) {
+		throw AccessToDummyException();
+	}
+	Memento memento;
     memento.setSharedPointer("predecessor", predecessor);
+	memento.setSharedPointer("intervals", intervals);
     return memento;
 }
 
-// TODO isDummyFlag = false ... nicht mehr zu restoren?
 void Filter::restore(Memento memento) {
     predecessor = memento.getSharedPointer("predecessor").dynamicCast<Module>();
+	intervals = memento.getSharedPointer("intervals").dynamicCast<FilterIntervalList>();
 }
 
 }  // namespace filter

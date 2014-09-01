@@ -5,7 +5,8 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 
-#include "VideoListOperation.h"
+#include "FilteredVideo.h"
+#include "Operation.h"
 #include "SaveableList.h"
 
 namespace controller {
@@ -14,7 +15,7 @@ namespace operation {
 /**
  * The VideoRemovedOperation is providing functionality for doing and undoing removing a Video from a VideoList.
  */
-class VideoRemovedOperation : public VideoListOperation {
+class VideoRemovedOperation : public Operation {
 public:
     typedef QScopedPointer<VideoRemovedOperation> uptr;
     typedef QSharedPointer<VideoRemovedOperation> sptr;
@@ -26,7 +27,7 @@ public:
      * @param index The index of a video which should be removed from the list of videos.
      * @param videoList The list from which a certain video should be removed.
      */
-    VideoRemovedOperation(int index, ::model::saveable::SaveableList<::model::video::Video> videoList);
+    VideoRemovedOperation(int index, ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList);
 
     /**
      * Manages requests to remove a Video from a VideoList.
@@ -37,6 +38,11 @@ public:
      * Manages requests to undo removing a Video from a VideoList.
      */
     void undoOperation();
+
+private:
+	int index;
+	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList;
+	::model::saveable::Memento memento;
 };
 
 }  // namespace operation

@@ -85,7 +85,9 @@ public:
 		overlay,
 		coloringOverlay,
 		heatmapOverlay,
+        heatmapOverlay_heatmap,
 		macroblockOverlay,
+        macroblockOverlay_macroblocks,
 		makropartitionOverlay,
 		motionVektorOverlay,
 		rescaleFilter,
@@ -99,8 +101,7 @@ public:
 		player,
 		saveableList,
 		uIntegerInterval,
-		videoScrubber,
-		viewState
+		videoScrubber
 	};
 
 	/** A string representation for the Saveable class. */
@@ -167,8 +168,6 @@ public:
 	static const QString U_INTEGER_INTERVAL;
 	/** A string representation for the VideoScrubber class. */
 	static const QString VIDEO_SCRUBBER;
-	/** A string representation for the ViewState class. */
-	static const QString VIEW_STATE;
 
 	/**
 	 * A list of string representations for saveable classes.
@@ -229,13 +228,12 @@ protected:
 22		|  |  |> TimeshiftFilter
 23		|  |> Video
 24		|     |> FileVideo
-25		|     |  |> FFmpegDataVideo
-26		|     |  |> YUVDataVideo
-27		|     |> FilteredVideo
-28		|> Player
-29		|> SaveableList
-30		|> UIntegerInterval
-31		|> VideoScrubber
-32		|> ViewState
+25		|     |  |> YUVDataVideo
+26		|     |> FilteredVideo
+27		|> Player
+28		|> SaveableList
+29		|> UIntegerInterval
+30		|> VideoScrubber
+31		|> ViewState
 
 */

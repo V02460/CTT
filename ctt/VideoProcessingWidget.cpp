@@ -21,15 +21,15 @@ VideoProcessingWidget::VideoProcessingWidget(::model::player::VideoScrubber::spt
 
 void VideoProcessingWidget::checkboxUseForAnalysisValueChanged(int state) {
 	if (state = Qt::Checked) {
-		emit videoForAnalysingAdded(videoWidget->getScrubber().getVideo());
+		emit videoForAnalysingAdded(videoWidget->getScrubber()->getVideo());
 	} else if (state = Qt::Unchecked) {
-		emit videoForAnalysingRemoved(*videoWidget->getScrubber().getVideo().data());
+		emit videoForAnalysingRemoved(*videoWidget->getScrubber()->getVideo().data());
 	}
 }
 
 void VideoProcessingWidget::btnSaveVideoClicked() {
 	QString saveFileName = QFileDialog::getSaveFileName(this, tr("SAVE_VIDEO_DIALOG"));
-	model::video::VideoSaver::writeToFile(videoWidget->getScrubber().getVideo(), saveFileName, model::video::VideoFileType::YUV);
+	model::video::VideoSaver::writeToFile(videoWidget->getScrubber()->getVideo(), saveFileName, model::video::VideoFileType::YUV);
 }
 
 void VideoProcessingWidget::setupUi() {

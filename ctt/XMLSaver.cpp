@@ -26,6 +26,8 @@ const QString XMLSaver::TYPE = "type";
 const QString XMLSaver::TEMPLATE_TYPE = "template";
 const QString XMLSaver::NAME = "name";
 const QString XMLSaver::VALUE = "value";
+const QString XMLSaver::VIEW = "view";
+const QString XMLSaver::STATE = "state";
 
 const QList<QString> XMLSaver::BASE_ELEMENT_NAMES = QList<QString>()
 	<< "baseVideoList"
@@ -33,10 +35,9 @@ const QList<QString> XMLSaver::BASE_ELEMENT_NAMES = QList<QString>()
 	<< "videoList2"
 	<< "playerList1"
 	<< "player2"
-	<< "diffList"
-	<< "view";
+	<< "diffList";
 
-void XMLSaver::save(QDir path) {
+void XMLSaver::save(QString path) {
 	initDocument(path);
 	mapBasePointer();
 	writeBaseElements();
@@ -50,13 +51,13 @@ XMLSaver::BaseSaveableType XMLSaver::stringToBaseSaveableType(QString string) {
 			return static_cast<BaseSaveableType>(i);
 		}
 	}
-	throw new IllegalArgumentException(string + " is not a base saveable type.");
+	throw IllegalArgumentException(string + " is not a base saveable type.");
 }
 
-void XMLSaver::initDocument(QDir path) {
-	QFile file(path.absolutePath());
+void XMLSaver::initDocument(QString path) {
+	QFile file(path);
 	if (!file.open(QIODevice::WriteOnly)) {
-		throw new IOException("File " + path.absolutePath() + " could not be opened.");
+		throw IOException("File " + path + " could not be opened.");
 	}
 	out = new QXmlStreamWriter(&file);
 	out->setAutoFormatting(true);
@@ -135,16 +136,6 @@ void XMLSaver::writeElements() {
 	}
 }
 
-void XMLSaver::writeSingeltons() {
-	out->writeStartElement(ELEMENT);
-	ViewState *view = ViewState::getInstance();
-	out->writeAttribute(CLASS, Saveable::SAVEABLE_TYPE_STRINGS[view->getSaveableType()]);
-	out->writeAttribute(ID, QString::number(elementID++)); // TODO ++ should work
-	out->writeAttribute(TYPE, BASE_ELEMENT_NAMES[view->getSaveableType()]);
-	writeMemento(view->getMemento());
-	out->writeEndElement();
-}
-
 XMLSaver *XMLSaver::getInstance() {
 	if (instance.isNull()) {
 		instance.reset(new XMLSaver());
@@ -153,6 +144,9 @@ XMLSaver *XMLSaver::getInstance() {
 }
 
 void XMLSaver::endDocument() {
+	out->writeEndElement();
+	out->writeEmptyElement(VIEW);
+	out->writeAttribute(STATE, QString::number(ViewState::getInstance()->getCurrentViewType()));
 	out->writeEndDocument();
 }
 

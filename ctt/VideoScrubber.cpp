@@ -15,27 +15,25 @@ using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
 using ::exception::IllegalArgumentException;
-using ::exception::IllegalStateException;
+using ::exception::AccessToDummyException;
 
 const QString VideoScrubber::videoStringId("video");
 const QString VideoScrubber::lastFrameNumberStringId("framenr");
 
-VideoScrubber::VideoScrubber(video::Video::sptr video): video(video), lastFrameNumber(0) {
+VideoScrubber::VideoScrubber(video::Video::sptr video) : Observable() ,video(video), lastFrameNumber(0) {
 	if (video->isDummy()) {
-		throw new IllegalArgumentException("Tried to use a dummy Video to create a VideoScrubber");
+		throw IllegalArgumentException("Tried to use a dummy Video to create a VideoScrubber");
 	}
 	waitingForFrame = true;
 	currentFrame = video->getFrame(0);
 	waitingForFrame = false;
 }
 
-VideoScrubber::~VideoScrubber() {
+VideoScrubber::~VideoScrubber() {}
 
-}
-
-VideoScrubber::VideoScrubber(video::Video::sptr video, unsigned int frameNumber) {
+VideoScrubber::VideoScrubber(video::Video::sptr video, unsigned int frameNumber) : Observable() {
 	if (video->isDummy()) {
-		throw new IllegalArgumentException("Tried to use a dummy Video to create a VideoScrubber");
+		throw IllegalArgumentException("Tried to use a dummy Video to create a VideoScrubber");
 	}
 	waitingForFrame = true;
 	currentFrame = video->getFrame(frameNumber);
@@ -49,25 +47,22 @@ VideoScrubber::VideoScrubber()
 
 VideoMetadata VideoScrubber::getVideoMetadata() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Requested VideoMetadata from dummy VideoScrubber.");
+		throw AccessToDummyException();
 	}
-
 	return video->getMetadata();
 }
 
 Video::sptr VideoScrubber::getVideo() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Requested Video from dummy VideoScrubber.");
+		throw AccessToDummyException();
 	}
-
 	return video;
 }
 
-Frame::sptr VideoScrubber::getCurrentFrame() const{
+Frame::sptr VideoScrubber::getCurrentFrame() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Requested Frame from dummy VideoScrubber.");
+		throw AccessToDummyException();
 	}
-
 	if (currentFrame.isNull())
 	{
 		return video->getFrame(lastFrameNumber);
@@ -78,17 +73,15 @@ Frame::sptr VideoScrubber::getCurrentFrame() const{
 
 bool VideoScrubber::isWaitingForFrame() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Asked dummy VideoScrubber whether it's waiting for a Frame.");
+		throw AccessToDummyException();
 	}
-
 	return waitingForFrame;
 }
 
 void VideoScrubber::jumpToFrameNr(unsigned int frameNumber) {
 	if (isDummy()) {
-		throw new IllegalStateException("Requested a frame jump from dummy VideoScrubber.");
+		throw AccessToDummyException();
 	}
-
 	if (!isWaitingForFrame())
 	{
 		waitingForFrame = true;
@@ -100,9 +93,8 @@ void VideoScrubber::jumpToFrameNr(unsigned int frameNumber) {
 
 Memento VideoScrubber::getMemento() const {
 	if (isDummy()) {
-		throw new exception::IllegalStateException("Requested a memento from a dummy VideoScrubber.");
+		throw AccessToDummyException();
 	}
-
 	Memento memento;
 	memento.setSharedPointer(videoStringId, video);
 	memento.setUInt(lastFrameNumberStringId, lastFrameNumber);
@@ -114,7 +106,7 @@ void VideoScrubber::restore(Memento memento) {
 
 	if (video.isNull())
 	{
-		throw new IllegalArgumentException("Unable to restore, pointer received from Memento could'nt be cast to the right type.");
+		throw IllegalArgumentException("Unable to restore, pointer received from Memento could'nt be cast to the right type.");
 	}
 
 	lastFrameNumber = memento.getUInt(lastFrameNumberStringId);

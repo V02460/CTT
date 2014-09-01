@@ -6,6 +6,9 @@
 #include <QWeakPointer>
 
 #include "AbstractListView.h"
+#include "SaveableList.h"
+#include "FrameDiff.h"
+#include "DifferenceController.h"
 
 namespace view {
 
@@ -19,6 +22,13 @@ public:
     typedef QSharedPointer<DifferenceListView> sptr;
     typedef QWeakPointer<DifferenceListView> wptr;
 
+	DifferenceListView(::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr differences
+		, QWidget *parent = 0);
+
+	virtual void update() Q_DECL_OVERRIDE;
+
+private:
+	::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr differences;
 };
 
 }  // namespace view

@@ -35,7 +35,7 @@ QSize FrameMetadata::getSize() const {
 
 QVector<QVector<MacroblockType>> FrameMetadata::getMbType() const {
     if (!hasMbType()) {
-        throw new IllegalStateException("FrameMetadata object has no macroblock type information.");
+        throw IllegalStateException("FrameMetadata object has no macroblock type information.");
     }
 
     return mbTypes;
@@ -44,7 +44,7 @@ QVector<QVector<MacroblockType>> FrameMetadata::getMbType() const {
 
 QVector<QVector<QVector2D>> FrameMetadata::getMbMotionvectors() const {
     if (!hasMbMotionvectors()) {
-        throw new IllegalStateException("FrameMetadata object has no motion vector information.");
+        throw IllegalStateException("FrameMetadata object has no motion vector information.");
     }
 
     return mbMotionvectors;

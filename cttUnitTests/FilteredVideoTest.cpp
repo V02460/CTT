@@ -41,7 +41,7 @@ void FilteredVideoTest::filterOperations()
 	FilteredVideo testVideo(baseVideo);
 
 	QVERIFY(testVideo.getContext() == baseVideo->getContext());
-	QCOMPARE(testVideo.getFilterCount(), (unsigned int)0);
+	QCOMPARE(testVideo.getFilterCount(), 0U);
 	QVERIFY(testVideo.getFilterList().isEmpty());
 	QVERIFY(testVideo.getBaseVideo() == baseVideo);
 	QVERIFY(testVideo.getUsesList().contains(baseVideo.data()));
@@ -59,25 +59,25 @@ void FilteredVideoTest::filterOperations()
 	QEXPECT_EXCEPTION(testVideo.addFilter(filter0, 4), IllegalArgumentException);
 
 	testVideo.addFilter(filter0, 0);
-	QCOMPARE(testVideo.getFilterCount(), (unsigned int)1);
+	QCOMPARE(testVideo.getFilterCount(), 1U);
 	QVERIFY(testVideo.getFilterList().at(0) == filter0);
 
 	GreyscaleFilter::sptr filter1(new GreyscaleFilter(predecessorVideo));
 	testVideo.addFilter(filter1, 0);
-	QCOMPARE(testVideo.getFilterCount(), (unsigned int)2);
+	QCOMPARE(testVideo.getFilterCount(), 2U);
 	QVERIFY(testVideo.getFilterList().at(0) == filter1);
 	QVERIFY(testVideo.getFilterList().at(1) == filter0);
 
 	GreyscaleFilter::sptr filter2(new GreyscaleFilter(predecessorVideo));
 	testVideo.addFilter(filter2, 2);
-	QCOMPARE(testVideo.getFilterCount(), (unsigned int)3);
+	QCOMPARE(testVideo.getFilterCount(), 3U);
 	QVERIFY(testVideo.getFilterList().at(0) == filter1);
 	QVERIFY(testVideo.getFilterList().at(1) == filter0);
 	QVERIFY(testVideo.getFilterList().at(2) == filter2);
 
 	GreyscaleFilter::sptr filter3(new GreyscaleFilter(predecessorVideo));
 	testVideo.addFilter(filter3, 2);
-	QCOMPARE(testVideo.getFilterCount(), (unsigned int)4);
+	QCOMPARE(testVideo.getFilterCount(), 4U);
 	QVERIFY(testVideo.getFilterList().at(0) == filter1);
 	QVERIFY(testVideo.getFilterList().at(1) == filter0);
 	QVERIFY(testVideo.getFilterList().at(2) == filter3);
@@ -92,22 +92,22 @@ void FilteredVideoTest::filterOperations()
 	QVERIFY(testVideo.uses(*filter3));
 
 	testVideo.removeFilter(2);
-	QCOMPARE(testVideo.getFilterCount(), (unsigned int)3);
+	QCOMPARE(testVideo.getFilterCount(), 3U);
 	QVERIFY(testVideo.getFilterList().at(0) == filter1);
 	QVERIFY(testVideo.getFilterList().at(1) == filter0);
 	QVERIFY(testVideo.getFilterList().at(2) == filter2);
 
 	testVideo.removeFilter(2);
-	QCOMPARE(testVideo.getFilterCount(), (unsigned int)2);
+	QCOMPARE(testVideo.getFilterCount(), 2U);
 	QVERIFY(testVideo.getFilterList().at(0) == filter1);
 	QVERIFY(testVideo.getFilterList().at(1) == filter0);
 
 	testVideo.removeFilter(0);
-	QCOMPARE(testVideo.getFilterCount(), (unsigned int)1);
+	QCOMPARE(testVideo.getFilterCount(), 1U);
 	QVERIFY(testVideo.getFilterList().at(0) == filter0);
 
 	testVideo.removeFilter(0);
-	QCOMPARE(testVideo.getFilterCount(), (unsigned int)0);
+	QCOMPARE(testVideo.getFilterCount(), 0U);
 
 }
 
@@ -140,7 +140,7 @@ void FilteredVideoTest::saveRestore()
 	dummy->restore(memento);
 	QVERIFY(dummy->getContext() == baseVideo->getContext());
 	QVERIFY(dummy->getBaseVideo() == baseVideo);
-	QCOMPARE(dummy->getFilterCount(), (unsigned int)4);
+	QCOMPARE(dummy->getFilterCount(), 4U);
 	QVERIFY(dummy->getFilterList().at(0) == filter1);
 	QVERIFY(dummy->getFilterList().at(1) == filter0);
 	QVERIFY(dummy->getFilterList().at(2) == filter3);
@@ -150,7 +150,7 @@ void FilteredVideoTest::saveRestore()
 	testVideoPointer->restore(memento);
 	QVERIFY(testVideoPointer->getContext() == baseVideo->getContext());
 	QVERIFY(testVideoPointer->getBaseVideo() == baseVideo);
-	QCOMPARE(testVideoPointer->getFilterCount(), (unsigned int)4);
+	QCOMPARE(testVideoPointer->getFilterCount(), 4U);
 	QVERIFY(testVideoPointer->getFilterList().at(0) == filter1);
 	QVERIFY(testVideoPointer->getFilterList().at(1) == filter0);
 	QVERIFY(testVideoPointer->getFilterList().at(2) == filter3);

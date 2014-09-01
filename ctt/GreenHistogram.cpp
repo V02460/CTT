@@ -8,7 +8,7 @@ namespace histogram {
 
 using ::exception::OpenGLException;
 
-GreenHistogram::GreenHistogram(const Surface &frame) {
+GreenHistogram::GreenHistogram(Surface::sptr frame) {
     init(frame);
 }
 

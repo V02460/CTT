@@ -4,6 +4,8 @@
 #include <QOffscreenSurface>
 #include <QOpenGLContext>
 #include <QMessageBox>
+#include <QTranslator>
+#include <QLibraryInfo>
 
 #include "MockDisplayHelper.h"
 #include "YUVDataVideo.h"
@@ -12,7 +14,6 @@
 #include "BlueHistogram.h"
 #include "Surface.h"
 #include "RuntimeException.h"
-#include "GPUHelper.h"
 #include "VideoWidget.h"
 #include "ThumbnailListWidgetTest.h"
 #include "ListedPushButtonTest.h"
@@ -22,12 +23,15 @@
 #include "FilteredVideo.h"
 #include "Player.h"
 #include "VideoScrubber.h"
+#include "MainWindow.h"
+#include "GPUSurfaceShader.h"
+#include "YUVType.h"
 
 using ::helper::MockDisplayHelper;
 using ::model::frame::Frame;
 using ::model::frame::histogram::BlueHistogram;
 using ::model::Surface;
-using ::helper::GPUHelper;
+using ::helper::GPUSurfaceShader;
 using ::exception::RuntimeException;
 using ::controller::project::Project;
 using ::controller::VideoListController;
@@ -45,7 +49,17 @@ int main(int argc, char *argv[])
 	//view::VideoWidget *videoWidget;
 	//ThumbnailListWidgetTest *thumbnailListWidgetTest;
 	//ListedPushButtonTest *listedPushButtonTest;
-	view::ProcessingWidget *processingWidget;
+	//view::ProcessingWidget *processingWidget;
+	view::MainWindow *mainWindow;
+
+    QTranslator qtTranslator;
+    qtTranslator.load("qt_" + QLocale::system().name(),
+                      QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    a.installTranslator(&qtTranslator);
+
+    QTranslator cttTranslator;
+    cttTranslator.load("ctt_" + QLocale::system().name());
+    a.installTranslator(&cttTranslator);
 
 	//TODO wieder einkommentieren
     //try {
@@ -81,7 +95,7 @@ int main(int argc, char *argv[])
 		//thumbnailListWidgetTest->show();
 
 		Project *testProject = Project::getInstance();
-		VideoListController::sptr analysingVideosController =
+		/*VideoListController::sptr analysingVideosController =
 			VideoListController::sptr(new VideoListController(testProject->getVideoList2().dynamicCast<SaveableList<Video>>()));
 
 		YUVDataVideo::sptr testVideoOne = YUVDataVideo::sptr(new YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext));
@@ -109,20 +123,16 @@ int main(int argc, char *argv[])
 		Player::sptr testPlayerTwo = Player::sptr(new Player(24));
 		testPlayerTwo->addScrubber(testVideoScrubberTwo);
 		testPlayerTwo->addScrubber(testFilteredVideoScrubberTwo);
-		testProject->getPlayerList1()->insert(1, testPlayerTwo);
+		testProject->getPlayerList1()->insert(1, testPlayerTwo);*/
 
 
-		processingWidget = new view::ProcessingWidget(testProject->getPlayerList1(), testProject->getVideoList1(),
-			testProject->getBaseVideoList(), analysingVideosController);
-		processingWidget->show();
+		//(processingWidget = new view::ProcessingWidget(testProject->getPlayerList1(), testProject->getVideoList1(),
+		//	testProject->getBaseVideoList(), analysingVideosController);
+		//processingWidget->show();
+
+		mainWindow = new view::MainWindow();
+		mainWindow->show();
     /*}
-
-		//model::video::FFmpegDataVideo testVideo("Resources/Videos/mp4/mp4test.mp4", testContext);
-
-		testVideo.save("Resources/Videos/YUV444/XXXSAVEDVIDEOsquirrel-720x576-444P.yuv", model::video::VideoFileType::YUV);
-		MockDisplayHelper::showImage(testVideo.getFrame(10)->getFramebufferObject()->toImage());
-		       
-    }
 
     catch (RuntimeException *e) {
 //         QMessageBox msgBox;

@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QCoreApplication>
 
 #include "Filter.h"
 #include "Frame.h"
@@ -17,10 +18,14 @@ namespace filter {
  * Provides a blurred version of the predecessors frame.
  */
 class BlurFilter : public Filter {
+    Q_OBJECT
+
 public:
     typedef QScopedPointer<BlurFilter> uptr;
     typedef QSharedPointer<BlurFilter> sptr;
     typedef QWeakPointer<BlurFilter> wptr;
+
+    static const QByteArray kFilterID;
 
     /**
      * Creates a new BlurFilter object with a given previous module.
@@ -35,17 +40,19 @@ public:
     virtual ~BlurFilter();
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
-    virtual QString getName() const Q_DECL_OVERRIDE { return "filter_blur"; }
+    virtual QString getName() const Q_DECL_OVERRIDE { return QCoreApplication::translate("Filter", kFilterID); }
     virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
     
     virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
     virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
     virtual QList<const Module*> getUsesList() const Q_DECL_OVERRIDE;
-    virtual bool uses(const Module &module) const Q_DECL_OVERRIDE;
+	static Saveable::sptr getDummy();
     static Saveable::SaveableType getSaveableType() { return Saveable::blurFilter; }
 
 private:
     static const QString kParamRadiusStr;
+
+	BlurFilter();
 };
 
 }  // namespace filter

@@ -8,24 +8,9 @@ using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
 
-Memento ViewState::getMemento() const {
-    throw new NotImplementedException();
-}
-
-void ViewState::restore(Memento memento) {
-    throw new NotImplementedException();
-}
-
-Saveable::sptr ViewState::getDummy() {
-    throw new NotImplementedException();
-}
-
 void ViewState::changeView(ViewType newView) {
-    throw new NotImplementedException();
-}
-
-Saveable::SaveableType ViewState::getSaveableType() {
-    return SaveableType::viewState;
+	currentView = newView;
+	changed();
 }
 
 ViewState* ViewState::getInstance() {
@@ -44,7 +29,12 @@ void ViewState::changeVideoDisplayPolicy() {
 	throw new NotImplementedException();
 }
 
-ViewState::ViewState() : currentView(ViewType::PROCESSING_VIEW){}
+ViewType ViewState::getCurrentViewType() {
+	return currentView;
+}
+
+ViewState::ViewState() : Observable(), currentView(ViewType::PROCESSING_VIEW) {}
 
 ViewState::uptr ViewState::instance;
+
 }  // namespace view

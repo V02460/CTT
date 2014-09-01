@@ -18,6 +18,8 @@ namespace model {
 		 */
 		ABXTest(Video::sptr a, Video::sptr b);
 
+		~ABXTest();
+
 		/**
 		 * Resets the results of the ABXTest (i.e. as if it was newly created).
 		 */

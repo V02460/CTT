@@ -18,7 +18,7 @@ namespace view {
  * The PlayerFunctions only provides the needed intractable components and maps the signals emitted by these to a
  * PlayerController.
  */
-class PlayerFunctions : public QWidget, public::model::Observable, public ::model::Observer {
+class PlayerFunctions : public QWidget, public ::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<PlayerFunctions> uptr;
@@ -64,7 +64,7 @@ private:
     QPushButton *btnNextFrame; /**< The button to go to the next frame */
     QPushButton *btnPreviousFrame; /**< The button to go to the previous frame */
     QPushButton *btnDefaultFPS; /**< The button to change back to the default frame rate */
-    QSpinBox *spinboxFPS; /**< The spin box to change the frame rate */
+    QDoubleSpinBox *spinboxFPS; /**< The spin box to change the frame rate */
 	QSlider *sliderCurrentFrame;
 
 	::controller::PlayerController::sptr playerController;

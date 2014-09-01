@@ -5,6 +5,7 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 
+#include "Player.h"
 #include "Operation.h"
 
 namespace controller {
@@ -25,7 +26,7 @@ public:
      *
      * @param fps The FPS with which a video is displayed.
      */
-    FPSChangingOperation(double fps);
+    FPSChangingOperation(double newFPS, ::model::player::Player::sptr player);
 
     /**
      * Manages requests to change the FPS with which a video is displayed.
@@ -36,9 +37,11 @@ public:
      * Manages requests to undo changing the FPS with which a video is displayed.
      */
     void undoOperation();
+
 private:
-    double oldFPS;
     double newFPS;
+	::model::player::Player::sptr player;
+	::model::saveable::Memento memento;
 };
 
 }  // namespace operation

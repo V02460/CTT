@@ -50,7 +50,7 @@ void FilterController::setVideo(FilteredVideo::sptr newVideo) {
 }
 
 void FilterController::update() {
-	throw new NotImplementedException();
+	throw NotImplementedException();
 }
 
 }  // namespace controller

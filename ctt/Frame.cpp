@@ -24,19 +24,19 @@ Frame::Frame(QSharedPointer<QOpenGLContext> context, QImage image, FrameMetadata
         , metadata(metadata) {
 
     if (image.size().isEmpty()) {
-        throw new IllegalArgumentException("Tried to create a frame from an image of size "
+        throw IllegalArgumentException("Tried to create a frame from an image of size "
                                            + QString::number(image.size().width()) + "*"
                                            + QString::number(image.size().height())
                                            + " but sizes of 0 are not allowed.");
     }
     if (metadata.getSize().isEmpty()) {
-        throw new IllegalArgumentException("Tried to create a frame with metadata describing a frame of size "
+        throw IllegalArgumentException("Tried to create a frame with metadata describing a frame of size "
                                            + QString::number(metadata.getSize().width()) + "*"
                                            + QString::number(metadata.getSize().height())
                                            + " but sizes of 0 are not allowed.");
     }
     if (image.size() != metadata.getSize()) {
-        throw new IllegalArgumentException("Tried to create a frame from an image of size " 
+        throw IllegalArgumentException("Tried to create a frame from an image of size " 
                                            + QString::number(image.size().width()) + "*"
                                            + QString::number(image.size().height())
                                            + " but the submitted metadata specified a size of "
@@ -53,7 +53,7 @@ Frame::Frame(QSharedPointer<QOpenGLContext> context, QImage image)
     , metadata(FrameMetadata(image.size())) {
 
     if (image.size().isEmpty()) {
-        throw new IllegalArgumentException("Tried to create a frame from an image of size "
+        throw IllegalArgumentException("Tried to create a frame from an image of size "
                                            + QString::number(image.size().width()) + "*"
                                            + QString::number(image.size().height())
                                            + " but sizes of 0 are not allowed.");
@@ -67,7 +67,7 @@ Frame::Frame(QSharedPointer<QOpenGLContext> context, FrameMetadata metadata)
         : Surface(context, metadata.getSize())
         , metadata(metadata) {
     if (metadata.getSize().isEmpty()) {
-        throw new IllegalArgumentException("Tried to create a frame with metadata describing a frame of size "
+        throw IllegalArgumentException("Tried to create a frame with metadata describing a frame of size "
                                            + QString::number(metadata.getSize().width()) + "*"
                                            + QString::number(metadata.getSize().height())
                                            + " but sizes of 0 are not allowed.");
@@ -78,35 +78,35 @@ FrameMetadata Frame::getMetadata() const {
     return metadata;
 }
 
-Histogram::sptr Frame::getHistogram(Histogram::HistogramType type) const {
+Histogram::sptr Frame::getHistogram(Frame::sptr frame, Histogram::HistogramType type) {
     switch (type)
     {
     case Histogram::Red:
-        return Histogram::sptr(new RedHistogram(*this));
+        return Histogram::sptr(new RedHistogram(frame));
     case Histogram::Green:
-        return Histogram::sptr(new GreenHistogram(*this));
+        return Histogram::sptr(new GreenHistogram(frame));
     case Histogram::Blue:
-        return Histogram::sptr(new BlueHistogram(*this));
+        return Histogram::sptr(new BlueHistogram(frame));
     case Histogram::Luminance:
-        return Histogram::sptr(new LuminanceHistogram(*this));
+        return Histogram::sptr(new LuminanceHistogram(frame));
     case Histogram::Hue:
-        return Histogram::sptr(new HueHistogram(*this));
+        return Histogram::sptr(new HueHistogram(frame));
     case Histogram::Saturation:
-        return Histogram::sptr(new SaturationHistogram(*this));
+        return Histogram::sptr(new SaturationHistogram(frame));
     default:
-        throw new IllegalArgumentException("Unsupported histogram type " + QString(type) + ".");
+        throw IllegalArgumentException("Unsupported histogram type " + QString(type) + ".");
     }
 }
 
 Frame::Frame(Surface::sptr surface, FrameMetadata metadata) : Surface(*surface.data()), metadata(metadata) {
     if (metadata.getSize().isEmpty()) {
-        throw new IllegalArgumentException("Tried to create a frame with metadata describing a frame of size "
+        throw IllegalArgumentException("Tried to create a frame with metadata describing a frame of size "
                                            + QString::number(metadata.getSize().width()) + "*"
                                            + QString::number(metadata.getSize().height())
                                            + " but sizes of 0 are not allowed.");
     }
     if (getSize() != metadata.getSize()) {
-        throw new IllegalArgumentException("Tried to create a frame from an image of size "
+        throw IllegalArgumentException("Tried to create a frame from an image of size "
                                            + QString::number(getSize().width()) + "*"
                                            + QString::number(getSize().height())
                                            + " but the submitted metadata specified a size of "

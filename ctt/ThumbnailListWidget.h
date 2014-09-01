@@ -8,7 +8,10 @@
 #include <QScrollArea>
 #include <QPushButton>
 #include <QList>
-#include <QDir>
+#include <QDialog>
+#include <QComboBox>
+#include <QSpinBox>
+#include <QLabel>
 
 #include "Observer.h"
 #include "FilteredVideo.h"
@@ -21,7 +24,7 @@ namespace view {
  * The TumbnailListWidget displays a set of videos by its thumbnails and provides the interactable components to set
  * one or more videos active, to add videos to and to remove videos from the program.
  */
-class ThumbnailListWidget : public QScrollArea, public::model::Observer, public ::model::Observable {
+class ThumbnailListWidget : public QScrollArea, public::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<ThumbnailListWidget> uptr;
@@ -38,8 +41,13 @@ public:
 	 * @param isHorizontal Defines whether to use a QHBoxLayout (on true) or a QVBoxLayout (on false).
 	 * @param parent The parent widget.
      */
-    ThumbnailListWidget(::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos,
-                        int selectableCount, bool isHorizontal = false, QWidget *parent = 0);
+    ThumbnailListWidget(::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos
+		, int selectableCount, bool isHorizontal = false
+		, QWidget *parent = 0);
+
+	const QList<int> getActiveIndices();
+
+	const int getSelectableCount();
 
 	virtual void update() Q_DECL_OVERRIDE;
 
@@ -48,6 +56,7 @@ public:
 	void unsubscribe(const ::controller::VideoListController &observer);
 public slots:
 	void btnAddVideoClicked(bool checked);
+	void btnAddMacroblockFileClicked(bool checked);
 	void listedButtonToggled(bool checked, int id);
 	void listedButtonRemoved(bool checked, int id);
 signals:
@@ -56,7 +65,9 @@ signals:
      *
      * @param path The file path that leads to the video file.
      */
-    void videoAdded(QString path);
+	void videoAdded(QString path, QString macroblockPath, int width, int height, double fps, model::video::YUVType type, unsigned int length);
+
+	void videoAdded(QString path, int width, int height, double fps, model::video::YUVType type, unsigned int length);
 
     /**
      * This signal is emitted when an existing video is removed from the program.
@@ -75,13 +86,25 @@ private:
 	int selectableCount;
 	bool isHorizontal;
 	QBoxLayout *thumbnailListLayout;
+	bool isInUpdateRequest;
+
+	QDialog *openVideoDialog;
+	QSpinBox *widthSpinBox;
+	QSpinBox *heightSpinBox;
+	QComboBox *yuvType;
+	QSpinBox *lengthSpinBox;
+	QDoubleSpinBox *fpsSpinBox;
+	QLabel *macroblockFileLabel;
+	QString macroblockFilePath;
 
     /**
      * The list of filteredVideo which is needed for the thumbnail generation.
      */
-    ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos;
+	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos;
+	::controller::VideoListController::sptr videoListController;
 
 	void setupUi();
+	void setupOpenVideoDialog();
 };
 
 }  // namespace view

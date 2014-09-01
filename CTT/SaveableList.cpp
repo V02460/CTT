@@ -21,7 +21,6 @@
 #include "ColoringOverlay.h"
 #include "HeatmapOverlay.h"
 #include "MacroblockOverlay.h"
-#include "MacropartitionOverlay.h"
 #include "MotionVectorOverlay.h"
 #include "RescaleFilter.h"
 #include "RGBChannelFilter.h"
@@ -35,11 +34,10 @@
 namespace model {
 namespace saveable {
 
-using ::exception::NotImplementedException;
-using ::exception::IllegalStateException;
+using ::exception::AccessToDummyException;
 
 template <class T>
-SaveableList<T>::SaveableList() : list() {}
+SaveableList<T>::SaveableList() : Observable(), list() {}
 
 template <class T> const QString SaveableList<T>::SIZE = "size";
 template <class T> const QString SaveableList<T>::TEMPLATE = "template";
@@ -48,10 +46,10 @@ template <class T> const QString SaveableList<T>::ELEMENT = "element";
 template <class T>
 void SaveableList<T>::insert(int index, typename T::sptr element) {
 	if (isDummy()) {
-		throw new IllegalStateException("Called method at dummy class.");
+		throw AccessToDummyException();
 	}
 	if (index < 0 || getSize() < index) {
-		throw new IllegalArgumentException("Out of saveable list bounds");
+		throw IllegalArgumentException("Out of saveable list bounds");
 	}
 	list.insert(index, element);
 	changed();
@@ -60,10 +58,10 @@ void SaveableList<T>::insert(int index, typename T::sptr element) {
 template <class T>
 typename T::sptr SaveableList<T>::remove(int index) {
 	if (isDummy()) {
-		throw new IllegalStateException("Called method at dummy class.");
+		throw AccessToDummyException();
 	}
 	if (index < 0 || getSize() < index) {
-		throw new IllegalArgumentException("Out of saveable list bounds");
+		throw IllegalArgumentException("Out of saveable list bounds");
 	}
 	T::sptr element = get(index);
 	list.removeAt(index);
@@ -74,10 +72,10 @@ typename T::sptr SaveableList<T>::remove(int index) {
 template <class T>
 const typename T::sptr SaveableList<T>::get(int index) const {
 	if (isDummy()) {
-		throw new IllegalStateException("Called method at dummy class.");
+		throw AccessToDummyException();
 	}
 	if (index < 0 || index > getSize() - 1) {
-		throw new IllegalArgumentException("Out of saveable list bounds");
+		throw IllegalArgumentException("Out of saveable list bounds");
 	}
 	return list[index];
 }
@@ -85,7 +83,7 @@ const typename T::sptr SaveableList<T>::get(int index) const {
 template <class T>
 const int SaveableList<T>::getSize() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Called method at dummy class.");
+		throw AccessToDummyException();
 	}
 	return list.size();
 }
@@ -96,9 +94,15 @@ const ::model::saveable::Saveable::SaveableType SaveableList<T>::getTemplateType
 }
 
 template <class T>
+void SaveableList<T>::clear() {
+	list.clear();
+	changed();
+}
+
+template <class T>
 Memento SaveableList<T>::getMemento() const {
 	if (isDummy()) {
-		throw new IllegalStateException("Called method at dummy class.");
+		throw AccessToDummyException();
 	}
 	Memento memento;
 	int size = getSize();
@@ -155,7 +159,6 @@ template class SaveableList<model::filter::overlay::Overlay>;
 template class SaveableList<model::filter::overlay::ColoringOverlay>;
 template class SaveableList<model::filter::overlay::HeatmapOverlay>;
 template class SaveableList<model::filter::overlay::MacroblockOverlay>;
-template class SaveableList<model::filter::overlay::MacropartionOverlay>;
 template class SaveableList<model::filter::overlay::MotionVectorOverlay>;
 template class SaveableList<model::filter::RescaleFilter>;
 template class SaveableList<model::filter::RGBChannelFilter>;
@@ -168,7 +171,6 @@ template class SaveableList<model::filter::FilteredVideo>;
 template class SaveableList<model::player::Player>;
 template class SaveableList<model::UIntegerInterval>;
 template class SaveableList<model::player::VideoScrubber>;
-template class SaveableList<view::ViewState>;
 
 }  // namespace saveable
 }  // namespace model

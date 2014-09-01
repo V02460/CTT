@@ -34,14 +34,14 @@ void RGBChannelFilterTest::testRun() {
 
 void RGBChannelFilterTest::wrongParams() {
     RGBChannelFilter rgbChannelFilter(video);
-    QEXPECT_EXCEPTION(rgbChannelFilter.setParam(FilterParam("not right", "at all")), IllegalArgumentException);
-    QEXPECT_EXCEPTION(rgbChannelFilter.setParam(FilterParam("a bit off", 1.0)), IllegalArgumentException);
-    QEXPECT_EXCEPTION(rgbChannelFilter.setParam(FilterParam(RGBChannelFilter::kParamRedStr, 7.f)), IllegalArgumentException);
+	QEXPECT_EXCEPTION(rgbChannelFilter.setParam(FilterParam::sptr(new FilterParam("not right", "at all"))), IllegalArgumentException);
+	QEXPECT_EXCEPTION(rgbChannelFilter.setParam(FilterParam::sptr(new FilterParam("a bit off", 1.0))), IllegalArgumentException);
+	QEXPECT_EXCEPTION(rgbChannelFilter.setParam(FilterParam::sptr(new FilterParam(RGBChannelFilter::kParamRedStr, 7.f))), IllegalArgumentException);
     rgbChannelFilter.getFrame(9);
-    rgbChannelFilter.setParam(FilterParam(RGBChannelFilter::kParamRedStr, 20));
+	rgbChannelFilter.setParam(FilterParam::sptr(new FilterParam(RGBChannelFilter::kParamRedStr, 20)));
     rgbChannelFilter.getFrame(5);
-    rgbChannelFilter.setParam(FilterParam(RGBChannelFilter::kParamGreenStr, -10));
+	rgbChannelFilter.setParam(FilterParam::sptr(new FilterParam(RGBChannelFilter::kParamGreenStr, -10)));
     rgbChannelFilter.getFrame(2);
-    rgbChannelFilter.setParam(FilterParam(RGBChannelFilter::kParamBlueStr, 300));
+	rgbChannelFilter.setParam(FilterParam::sptr(new FilterParam(RGBChannelFilter::kParamBlueStr, 300)));
     rgbChannelFilter.getFrame(3);
 }

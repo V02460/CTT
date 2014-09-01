@@ -4,13 +4,15 @@
 #include <QMenu>
 
 namespace view {
-	ListedPushButton::ListedPushButton(int id, model::filter::FilteredVideo::sptr video, QWidget *parent) : QToolButton(parent) {
-		init(id);
-		
-		this->video = video;
-		if (video.data() != 0) {
-			video->subscribe(this);
 
+	ListedPushButton::ListedPushButton(int id,
+		                               model::filter::FilteredVideo::sptr video,
+									   QWidget *parent) : QToolButton(parent),
+									                      video(video),
+														  id(id) {
+		init();
+		if (!video.isNull()) {
+			video->subscribe(this);
 			setThumbnail();
 		} else {
 			setText(tr("NO_VIDEO_SPECIFIED") + " ID: " + QString::number(id));
@@ -20,25 +22,21 @@ namespace view {
 		setSizePolicy(sizePolicy);
 		setMinimumSize(QSize(80, 45));
 		setCheckable(true);
-		//setFlat(true);
+		// TODO setFlat(true);
 
-		QMenu *buttonMenu = new QMenu();
-		QAction* removeAction = buttonMenu->addAction("Entfernen");
-		QObject::connect(removeAction, SIGNAL(toggled(bool)), this, SLOT(removeToggled(bool)));
-
+		QMenu *buttonMenu = new QMenu(this);
+		QObject::connect(buttonMenu->addAction(tr("REMOVE")), SIGNAL(toggled(bool)), this, SLOT(removeToggled(bool)));
 		setMenu(buttonMenu);
 		setPopupMode(QToolButton::MenuButtonPopup);
 	}
 
-	ListedPushButton::ListedPushButton(int id, QWidget *parent) : QToolButton(parent) {
-		init(id);
+	ListedPushButton::ListedPushButton(int id, QWidget *parent) : QToolButton(parent), id(id) {
+		init();
 	}
 
-	void ListedPushButton::init(int id) {
+	void ListedPushButton::init() {
 		QObject::connect(this, SIGNAL(toggled(bool)), this, SLOT(buttonToggled(bool)));
 		QObject::connect(this, SIGNAL(clicked(bool)), this, SLOT(buttonClicked(bool)));
-
-		this->id = id;
 	}
 
 	void ListedPushButton::update() {

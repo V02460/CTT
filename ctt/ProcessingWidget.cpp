@@ -1,7 +1,9 @@
 #include "ProcessingWidget.h"
+#include "NotImplementedException.h"
 
 #include <QSplitter>
 #include "FilterController.h"
+#include "ExtendedVideoListController.h"
 
 using ::model::saveable::SaveableList;
 using ::model::player::Player;
@@ -9,12 +11,13 @@ using ::model::video::FileVideo;
 using ::model::filter::FilteredVideo;
 using ::controller::VideoListController;
 using ::controller::FilterController;
+using ::controller::ExtendedVideoListController;
 
 namespace view {
 
 ProcessingWidget::ProcessingWidget(SaveableList<Player>::sptr players,
 	SaveableList<FilteredVideo>::sptr filteredVideos,
-	SaveableList<FileVideo>::sptr baseVideos,
+	SaveableList<FilteredVideo>::sptr baseVideos,
 	VideoListController::sptr analysingVideosController, QWidget *parent) : QWidget(parent) {
 	this->analysingVideosController = analysingVideosController;
 
@@ -27,15 +30,14 @@ ProcessingWidget::ProcessingWidget(SaveableList<Player>::sptr players,
 	playerWidgetsLayout = new QStackedLayout();
 
 	thumbnailWidget = new ThumbnailListWidget(filteredVideos, 1, false);
-	//TODO subscribe ExtendedVideoListController to thumbnailWidget
+	ExtendedVideoListController::sptr evlc(new ExtendedVideoListController(baseVideos, filteredVideos, players));
+	thumbnailWidget->subscribe(evlc);
 	QObject::connect(thumbnailWidget, SIGNAL(buttonActivated(int)), this, SLOT(videoActivated(int)));
 	QObject::connect(thumbnailWidget, SIGNAL(buttonDeactivated(int)), this, SLOT(videoDeactivated(int)));
 	QObject::connect(thumbnailWidget, SIGNAL(buttonReplaced(int, int)), this, SLOT(videoReplaced(int, int)));
 
 	filterController = FilterController::sptr(new FilterController(FilteredVideo::sptr()));
 	mainControlWidget = new MainControlWidget(filterController);
-	QObject::connect(this, SIGNAL(videoChanged(::model::filter::FilteredVideo::sptr)),
-		filterController.data(), SLOT(setVideo(::model::filter::FilteredVideo::sptr)));
 
 	playerWidgetsLayout->addWidget(new QWidget());
 
@@ -91,7 +93,7 @@ void ProcessingWidget::videoActivated(int id) {
 	//id + 1, da an Stelle 0 ein leeres Widget sitzt
 	playerWidgetsLayout->setCurrentIndex(id + 1);
 	mainControlWidget->setPlayer(players->get(id));
-	emit videoChanged(filteredVideos->get(id));
+	mainControlWidget->setVideo(filteredVideos->get(id));
 }
 
 void ProcessingWidget::videoReplaced(int oldId, int newId) {
@@ -103,7 +105,7 @@ void ProcessingWidget::videoDeactivated(int id) {
 }
 
 void ProcessingWidget::btnChangeViewClicked(bool active) {
-
+	ViewState::getInstance()->changeView(ViewType::ANALYSING_VIEW);
 }
 
 void ProcessingWidget::update() {
@@ -121,6 +123,7 @@ void ProcessingWidget::update() {
 
 	playerWidgetsLayout->setCurrentIndex(0);
 	mainControlWidget->removePlayer();
+	mainControlWidget->removeVideo();
 }
 
 }// namespace view

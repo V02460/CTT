@@ -42,13 +42,10 @@ public:
      * @return any the name of the parameter
      */
     QString getName() const;
-
     
 private:
-	/** The name of the parameter. */
-    QString name;
-	/** The stored value. */
-    QVariant value;
+    QString name; /**<  The name of the parameter. */
+    QVariant value; /**<  The stored value. */
 };
 
 }  // namespace filter

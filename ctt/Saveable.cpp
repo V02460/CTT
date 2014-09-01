@@ -41,7 +41,6 @@ const QString Saveable::PLAYER = "Player";
 const QString Saveable::SAVEABLE_LIST = "SaveableList";
 const QString Saveable::U_INTEGER_INTERVAL = "UIntegerInterval";
 const QString Saveable::VIDEO_SCRUBBER = "VideoScrubber";
-const QString Saveable::VIEW_STATE = "ViewState";
 
 const QList<QString> Saveable::SAVEABLE_TYPE_STRINGS = QList<QString>()
 	<< SAVEABLE
@@ -75,15 +74,14 @@ const QList<QString> Saveable::SAVEABLE_TYPE_STRINGS = QList<QString>()
 	<< PLAYER
 	<< SAVEABLE_LIST
 	<< U_INTEGER_INTERVAL
-	<< VIDEO_SCRUBBER
-	<< VIEW_STATE;
+	<< VIDEO_SCRUBBER;
 
 bool Saveable::isDummy() const {
 	return isDummyFlag;
 }
 
 Saveable::sptr Saveable::getDummy() {
-    throw new NotImplementedException();
+    throw NotImplementedException();
 }
 
 Saveable::SaveableType Saveable::getSaveableType() {
@@ -96,7 +94,7 @@ const Saveable::SaveableType Saveable::stringToSaveableType(QString string) {
 			return static_cast<SaveableType>(i);
 		}
 	}
-	throw new IllegalArgumentException(string + " is not a saveable class type.");
+	throw IllegalArgumentException(string + " is not a saveable class type.");
 }
 
 }  // namespace savable

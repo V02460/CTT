@@ -1,7 +1,5 @@
 #include "TimeshiftFilter.h"
 
-#include "MathHelper.h"
-
 #include "NotImplementedException.h"
 
 namespace model {
@@ -10,25 +8,33 @@ namespace filter {
 using ::model::frame::Frame;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
-using ::helper::clamp;
+using ::exception::AccessToDummyException;
 using ::exception::NotImplementedException;
 
-const QString TimeshiftFilter::kParamShiftStr = "filter_timeshift_param_shift";
+const QByteArray TimeshiftFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_timeshift");
+
+const QString TimeshiftFilter::kParamShiftStr = QT_TR_NOOP("filter_timeshift_param_shift");
 
 TimeshiftFilter::TimeshiftFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamShiftStr, 0);
 }
 
-TimeshiftFilter::~TimeshiftFilter() {
+TimeshiftFilter::TimeshiftFilter() {
+	isDummyFlag = true;
 }
 
+TimeshiftFilter::~TimeshiftFilter() {}
+
 model::frame::Frame::sptr TimeshiftFilter::getFrame(unsigned int frameNumber) const {
+	if (isDummy()) {
+		throw AccessToDummyException();
+	}
     int shift = getParamValue<int>(kParamShiftStr);
 
     Module *predecessor = getPredecessor();
 
-    unsigned int newFrameNumber = clamp(static_cast<int>(frameNumber)+shift,
-                                        0,
+    unsigned int newFrameNumber = qBound(0,
+                                         static_cast<int>(frameNumber) + shift,
                                         static_cast<int>(predecessor->getFrameCount()) - 1);
     
 
@@ -36,23 +42,26 @@ model::frame::Frame::sptr TimeshiftFilter::getFrame(unsigned int frameNumber) co
 }
 
 Memento TimeshiftFilter::getMemento() const {
-    throw new NotImplementedException();
+	if (isDummy()) {
+		throw AccessToDummyException();
+	}
+	return Filter::getMemento();
 }
 
 void TimeshiftFilter::restore(Memento memento) {
-    throw new NotImplementedException();
+	if (isDummy()) {
+		throw AccessToDummyException();
+}
+	Filter::restore(memento);
+	isDummyFlag = false;
 }
 
 QList<const Module*> TimeshiftFilter::getUsesList() const {
-    throw new NotImplementedException();
-}
-
-bool TimeshiftFilter::uses(const ::model::Module &module) const {
-    throw new NotImplementedException();
+	return QList<const Module*>() << this;
 }
 
 Saveable::sptr TimeshiftFilter::getDummy() {
-    throw new NotImplementedException();
+	return TimeshiftFilter::sptr(new TimeshiftFilter());
 }
 
 }  // namespace filter

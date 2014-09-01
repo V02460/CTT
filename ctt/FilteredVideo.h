@@ -75,7 +75,6 @@ public:
     virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
 	virtual QList<const Module*> getUsesList() const;
 	virtual unsigned int getFrameCount() const;
-	virtual bool uses(const model::Module &module) const;
 	virtual model::video::VideoMetadata getMetadata() const;
 	virtual QSharedPointer<QOpenGLContext> getContext() const;
 

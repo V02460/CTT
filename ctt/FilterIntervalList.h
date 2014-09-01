@@ -43,7 +43,7 @@ public:
      * @param interval this Interval is made an active interval.
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    void activate(UIntegerInterval interval);
+    void activate(UIntegerInterval::sptr interval);
 
     /**
      * Makes the submitted Interval an inactive Interval.
@@ -51,7 +51,7 @@ public:
      * @param interval this Interval is made an inactive interval.
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    void deactivate(UIntegerInterval interval);
+    void deactivate(UIntegerInterval::sptr interval);
 
     /**
      * Returns a list of all the active Intervals.
@@ -59,7 +59,7 @@ public:
      * @return List<IntegerInterval> a list of all the active Intervals
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    QList<UIntegerInterval> getIntervalList() const;
+    QList<UIntegerInterval::sptr> getIntervalList() const;
 
     virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
     virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
@@ -67,7 +67,7 @@ public:
     static Saveable::SaveableType getSaveableType();
 
 private:
-    QList<UIntegerInterval> intervals; /**< The list of active Intervals*/
+    QList<UIntegerInterval::sptr> intervals;
 };
 
 }  // namespace model

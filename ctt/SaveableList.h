@@ -61,6 +61,8 @@ public:
 	 */
 	const ::model::saveable::Saveable::SaveableType getTemplateType();
 
+	void clear();
+
     virtual Memento getMemento() const Q_DECL_OVERRIDE;
     virtual void restore(Memento memento) Q_DECL_OVERRIDE;
 	static Saveable::sptr getDummy();

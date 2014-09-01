@@ -4,14 +4,22 @@
 #include <QFrame>
 #include <QScrollArea>
 #include <QSplitter>
+
 #include "FilterInsertionWidget.h"
 #include "FilterListView.h"
+#include "DifferenceInsertionWidget.h"
+#include "DifferenceListView.h"
+#include "DifferenceController.h"
 #include "NotImplementedException.h"
 
 using ::controller::FilterController;
 using ::controller::DifferenceController;
 using ::model::player::Player;
+using ::model::saveable::SaveableList;
+using ::model::difference::FrameDiff;
+using ::controller::DifferenceController;
 using ::exception::NotImplementedException;
+using ::model::filter::FilteredVideo;
 
 namespace view {
 
@@ -24,8 +32,13 @@ MainControlWidget::MainControlWidget(FilterController::sptr filterController,
 	setupUi(ViewType::PROCESSING_VIEW);
 }
 
-MainControlWidget::MainControlWidget(DifferenceController::sptr filterController,
-	QWidget *parent) : QWidget(parent){
+MainControlWidget::MainControlWidget(SaveableList<FrameDiff>::sptr differences, AnalysingOrderingWidget::sptr orderingWidget,
+	QWidget *parent) : QWidget(parent) {
+	DifferenceController::sptr differenceController = DifferenceController::sptr(new DifferenceController(differences));
+	insertionWidget = new DifferenceInsertionWidget(differenceController, orderingWidget, this);
+	playerFunctions = new PlayerFunctions(this);
+	listView = new DifferenceListView(differences, this);
+
 	setupUi(ViewType::ANALYSING_VIEW);
 }
 
@@ -106,16 +119,24 @@ void MainControlWidget::btnInsertClicked(bool active) {
 
 void MainControlWidget::setPlayer(Player::sptr player) {
 	playerFunctions->setPlayer(player);
+}
+
+void MainControlWidget::setVideo(FilteredVideo::sptr video) {
+	listView->setVideo(video);
 	btnInsert->setEnabled(true);
 }
 
 void MainControlWidget::removePlayer() {
 	playerFunctions->removePlayer();
+}
+
+void MainControlWidget::removeVideo() {
+	listView->removeVideo();
 	btnInsert->setEnabled(false);
 }
 
 void MainControlWidget::update() {
-	throw new NotImplementedException();
+	throw NotImplementedException();
 }
 
 }  // namespace view

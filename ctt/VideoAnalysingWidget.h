@@ -8,6 +8,7 @@
 #include <QComboBox>
 #include <QString>
 
+#include "OverlayController.h"
 #include "VideoWidget.h"
 #include "HistogramWidget.h"
 #include "FrameMetadataWidget.h"
@@ -24,13 +25,10 @@ public:
     typedef QSharedPointer<VideoAnalysingWidget> sptr;
     typedef QWeakPointer<VideoAnalysingWidget> wptr;
 
-    /**
-     * Returns the identifier string of the currently chosen overlay.
-     *
-     * @return The identifier string of the currentyl chosen overlay as defined in the OverlayFactory.
-     */
-    QString getOverlay() const;
+	VideoAnalysingWidget(::controller::OverlayController::sptr overlayController,
+		::model::player::VideoScrubber::sptr scrubber, QWidget *parent = 0);
 
+	::model::player::VideoScrubber::sptr getVideoScrubber();
 public slots:
     /**
      * This method is called when the user changes the currently selected overly via the overlay combobox.
@@ -44,12 +42,19 @@ signals:
     /**
      * This signal is emitted as soon as the currently selected overlay changes.
      */
-    void overlayChanged();
+	void overlayAdded(QString id);
+
+	void overlayAdded(QString id, ::model::video::Video::sptr diffVideo);
+
+	void overlayRemoved(int index);
 private:
-    QComboBox comboboxOverlay; /**< The combobox to choose the active overlay */
-    VideoWidget videoWidget; /**< The VideoWidget where the video actually is displayed */
-    HistogramWidget histWidget; /**< The HistogramWidget which shows the histograms for the current frame */
-    FrameMetadataWidget metadataWidget;/**< The FrameMetadataWidget which displays the metadate for the current frame */
+	void setupUi();
+
+	::controller::OverlayController::sptr overlayController;
+    QComboBox *comboboxOverlay; /**< The combobox to choose the active overlay */
+    VideoWidget *videoWidget; /**< The VideoWidget where the video actually is displayed */
+    HistogramWidget *histWidget; /**< The HistogramWidget which shows the histograms for the current frame */
+    FrameMetadataWidget *metadataWidget;/**< The FrameMetadataWidget which displays the metadate for the current frame */
 };
 
 }  // namespace view

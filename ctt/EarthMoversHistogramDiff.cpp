@@ -4,34 +4,55 @@ namespace model {
 namespace difference {
 
 using ::model::frame::histogram::Histogram;
+using ::model::frame::Frame;
 using ::model::video::Video;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
+using ::exception::AccessToDummyException;
 
-const QString EarthMoversHistogramDiff::VIDEO1 = "video1";
-const QString EarthMoversHistogramDiff::VIDEO2 = "video2";
-const QString EarthMoversHistogramDiff::TYPE = "type";
+const QString EarthMoversHistogramDiff::kVideo1Str = "video1";
+const QString EarthMoversHistogramDiff::kVideo2Str = "video2";
+const QString EarthMoversHistogramDiff::kTypeStr = "type";
+
+static QMap<Histogram::HistogramType, QByteArray> initDiffIDMap() {
+    QMap<Histogram::HistogramType, QByteArray> diffIDs;
+    diffIDs.insert(Histogram::Red, QT_TRANSLATE_NOOP("FrameDiff", "framediff_earthmoverhistogram_red"));
+    diffIDs.insert(Histogram::Green, QT_TRANSLATE_NOOP("FrameDiff", "framediff_earthmoverhistogram_green"));
+    diffIDs.insert(Histogram::Blue, QT_TRANSLATE_NOOP("FrameDiff", "framediff_earthmoverhistogram_blue"));
+    diffIDs.insert(Histogram::Hue, QT_TRANSLATE_NOOP("FrameDiff", "framediff_earthmoverhistogram_hue"));
+    diffIDs.insert(Histogram::Saturation, QT_TRANSLATE_NOOP("FrameDiff", "framediff_earthmoverhistogram_saturation"));
+    diffIDs.insert(Histogram::Luminance, QT_TRANSLATE_NOOP("FrameDiff", "framediff_earthmoverhistogram_luminance"));
+    return diffIDs;
+}
+const QMap<Histogram::HistogramType, QByteArray> EarthMoversHistogramDiff::kDiffIDs = initDiffIDMap();
 
 EarthMoversHistogramDiff::EarthMoversHistogramDiff(Histogram::HistogramType type,
                                                    Video::sptr video1,
-                                                   Video::sptr video2)
-        : FrameDiff(video1, video2), type(type) {}
+                                                   Video::sptr video2) : FrameDiff(video1, video2),
+												                         type(type) {}
 
-EarthMoversHistogramDiff::~EarthMoversHistogramDiff() {}
+EarthMoversHistogramDiff::~EarthMoversHistogramDiff() {
+}
+
+QString EarthMoversHistogramDiff::getName() const {
+    return QCoreApplication::translate("FrameDiff", kDiffIDs[type]);
+}
 
 double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
+	if (isDummy()) {
+		throw AccessToDummyException();
+	}
 	if (frameNr > getFrameCount()) {
-		throw new IllegalArgumentException("One or both videos have less then " + QString::number(frameNr)
+		throw IllegalArgumentException("One or both videos have less then " + QString::number(frameNr)
 			                               + " frames.");
 	}
-	Histogram::sptr a = video1->getFrame(frameNr)->getHistogram(type);
-	Histogram::sptr b = video2->getFrame(frameNr)->getHistogram(type);
-	float d[Histogram::kSize + 1];
+    Histogram::sptr a = Frame::getHistogram(video1->getFrame(frameNr), type);
+    Histogram::sptr b = Frame::getHistogram(video2->getFrame(frameNr), type);
+    float d[Histogram::kSize + 1];
 	d[0] = 0;
 	double sum = 0;
 	for (int i = 0; i < Histogram::kSize; i++) {
-		// TODO replace getValue
-		//d[i + 1] = a->getValue(i) - b->getValue(i) + d[i];
+		d[i + 1] = a->getValue(i) - b->getValue(i) + d[i];
 		sum += std::abs(d[i + 1]);
     }
 
@@ -40,32 +61,29 @@ double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
 
 
 Memento EarthMoversHistogramDiff::getMemento() const {
+	if (isDummy()) {
+		throw AccessToDummyException();
+	}
 	Memento memento;
-	memento.setSharedPointer(VIDEO1, video1);
-	memento.setSharedPointer(VIDEO2, video2);
-	memento.setString(TYPE, Histogram::HISTOGRAM_TYPE_STRINGS[type]);
+	memento.setSharedPointer(kVideo1Str, video1);
+	memento.setSharedPointer(kVideo2Str, video2);
+	memento.setString(kTypeStr, Histogram::HISTOGRAM_TYPE_STRINGS[type]);
 	return memento;
 }
 
 void EarthMoversHistogramDiff::restore(Memento memento) {
-	video1 = memento.getSharedPointer(VIDEO1).dynamicCast<Video>();
-	video2 = memento.getSharedPointer(VIDEO2).dynamicCast<Video>();
-	type = Histogram::stringToType(memento.getString(TYPE));
+	video1 = memento.getSharedPointer(kVideo1Str).dynamicCast<Video>();
+	video2 = memento.getSharedPointer(kVideo2Str).dynamicCast<Video>();
+	type = Histogram::stringToType(memento.getString(kTypeStr));
 	isDummyFlag = false;
 }
 
 Saveable::sptr EarthMoversHistogramDiff::getDummy() {
-	EarthMoversHistogramDiff *dummy = new EarthMoversHistogramDiff();
-	dummy->isDummyFlag = true;
-	EarthMoversHistogramDiff::sptr dummyPointer = QSharedPointer<EarthMoversHistogramDiff>(dummy);
-	return dummyPointer;
-}
-
-Saveable::SaveableType EarthMoversHistogramDiff::getSaveableType() {
-    return SaveableType::earthMoversHistogramDiff;
+	return EarthMoversHistogramDiff::sptr(new EarthMoversHistogramDiff());
 }
 
 EarthMoversHistogramDiff::EarthMoversHistogramDiff() {
+    isDummyFlag = true;
 }
 
 }  // namespace difference

@@ -34,7 +34,9 @@ void BlurFilterTest::testRun() {
 
 void BlurFilterTest::wrongParams() {
     BlurFilter blurFilter(video);
-    QEXPECT_EXCEPTION(blurFilter.setParam(FilterParam("not right", "at all")), IllegalArgumentException);
-    QEXPECT_EXCEPTION(blurFilter.setParam(FilterParam("a bit off", 1.0)), IllegalArgumentException);
+    QEXPECT_EXCEPTION(blurFilter.setParam(FilterParam::sptr(new FilterParam("not right", "at all"))),
+		              IllegalArgumentException);
+	QEXPECT_EXCEPTION(blurFilter.setParam(FilterParam::sptr(new FilterParam("a bit off", 1.0))),
+		              IllegalArgumentException);
     blurFilter.getFrame(9);
 }

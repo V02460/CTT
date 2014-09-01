@@ -6,26 +6,36 @@ namespace controller {
 
 using project::SaveFileType;
 using project::Project;
-using ::exception::NotImplementedException;
+using project::ProjectSaver;
+using project::XMLSaver;
+using project::XMLLoader;
+using operation::OperationList;
 
-Project &MainController::getProject() const {
-    throw new NotImplementedException();
-}
+MainController::MainController() : currentSavePath(/* TODO standart path here */), currentSaveFileType(SaveFileType::XML) {}
 
 void MainController::saveClicked() {
-    throw new NotImplementedException();
+	if (currentSavePath == "") {
+		// TODO set current save path
+	}
+	saveAsClicked(currentSavePath, currentSaveFileType);
 }
 
-void MainController::saveAsClicked(QDir path, SaveFileType fileType) {
-    throw new NotImplementedException();
+void MainController::saveAsClicked(QString path, SaveFileType fileType) {
+	if (OperationList::getInstance()->hasSaveableChanges()) {
+		switch (fileType) {
+		case SaveFileType::XML: XMLSaver::getInstance()->save(path); break;
+		default: throw IllegalArgumentException("No saver for given file type exists."); break;
+		}
+	}
 }
 
-void MainController::loadClicked(QDir path) {
-    throw new NotImplementedException();
+void MainController::loadClicked(QString path) {
+    // TODO check file for type
+	XMLLoader::getInstance()->restore(path);
 }
 
 void MainController::newProject() {
-    throw new NotImplementedException();
+	Project::getInstance()->clear();
 }
 
 }  // namespace controller

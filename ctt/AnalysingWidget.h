@@ -7,9 +7,11 @@
 #include <QList>
 
 #include "Player.h"
+#include "FrameDiff.h"
 #include "ThumbnailListWidget.h"
 #include "VideoAnalysingWidget.h"
 #include "MainControlWidget.h"
+#include "AnalysingOrderingWidget.h"
 
 namespace view {
 
@@ -23,11 +25,17 @@ public:
     typedef QSharedPointer<AnalysingWidget> sptr;
     typedef QWeakPointer<AnalysingWidget> wptr;
 
+	AnalysingWidget(::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos,
+		::model::player::Player::sptr player, ::controller::VideoListController::sptr videoListController,
+		::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr differences, QWidget *parent = 0);
+
 private:
-    ::model::player::Player player; /**< The player which plays all activated videos */
-    QList<VideoAnalysingWidget> analysingWidgets; /**< The AnalysingWidgets which actually display videos and their metadata */
-    ThumbnailListWidget thumbnailWidget; /**< The ThumbnalListWidget to choose the active videos and to add new videos */
-    MainControlWidget mainControlWidget;/**< The MainControlWidget which provides the player functionalities */
+	void setupUi();
+
+    //QList<VideoAnalysingWidget> analysingWidgets; /**< The AnalysingWidgets which actually display videos and their metadata */
+    ThumbnailListWidget::sptr thumbnailWidget; /**< The ThumbnalListWidget to choose the active videos and to add new videos */
+	AnalysingOrderingWidget::sptr videoDisplay;
+    MainControlWidget *mainControlWidget;/**< The MainControlWidget which provides the player functionalities */
 };
 
 }  // namespace view

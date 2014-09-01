@@ -1,5 +1,8 @@
 #include "YUVPixelDiff.h"
 
+#include "GPUSurfaceShader.h"
+#include "GPUSurfaceCompactor.h"
+
 #include "NotImplementedException.h"
 
 namespace model {
@@ -9,37 +12,59 @@ using ::model::video::Video;
 using ::exception::NotImplementedException;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
+using ::helper::GPUSurfaceShader;
+using ::helper::GPUSurfaceCompactor;
+using ::helper::getNewSizeDefault;
+using ::exception::AccessToDummyException;
 
-YUVPixelDiff::YUVPixelDiff(Video::sptr video1, Video::sptr video2) : PixelDiff(video1, video2) {
-    throw new NotImplementedException();
+const QByteArray YUVPixelDiff::kDiffID = QT_TRANSLATE_NOOP("PixelDiff", "pixeldiff_yuv");
+
+YUVPixelDiff::YUVPixelDiff(Video::sptr video1, Video::sptr video2) : AveragePixelDiff(video1, video2) {
 }
 
 YUVPixelDiff::~YUVPixelDiff() {
-    throw new NotImplementedException();
 }
 
-Surface YUVPixelDiff::getPixelDiff(unsigned int frameNr) const {
-    throw new NotImplementedException();
-}
+Surface::sptr YUVPixelDiff::getPixelDiff(unsigned int frameNr) const {
+	if (isDummy()) {
+		throw AccessToDummyException();
+	}
+    if (frameNr >= getFrameCount()) {
+        throw IllegalArgumentException("Requested frame number " +
+                                       QString::number(frameNr) +
+                                       " where only " +
+                                       QString::number(getFrameCount()) +
+                                       " frames exist.");
+    }
 
-double YUVPixelDiff::getDiff(unsigned int frameNr) const {
-    throw new NotImplementedException();
+    Surface::sptr frame1 = video1->getFrame(frameNr);
+    Surface::sptr frame2 = video2->getFrame(frameNr);
+
+    GPUSurfaceShader gpuHelper(":/Shader/Diff/YUVPixelDiff.fs", frame1);
+
+    gpuHelper.setValue("sourceTexture2", frame2);
+
+    return Surface::sptr(gpuHelper.run());
 }
 
 Memento YUVPixelDiff::getMemento() const {
-    throw new NotImplementedException();
+	if (isDummy()) {
+		throw AccessToDummyException();
+	}
+
+    return PixelDiff::getMemento();
 }
 
 void YUVPixelDiff::restore(::model::saveable::Memento memento) {
-    throw new NotImplementedException();
+    PixelDiff::restore(memento);
 }
 
 Saveable::sptr YUVPixelDiff::getDummy() {
-    throw new NotImplementedException();
+    return YUVPixelDiff::sptr(new YUVPixelDiff());
 }
 
-Saveable::SaveableType YUVPixelDiff::getSaveableType() {
-    return SaveableType::yUVPixelDiff;
+YUVPixelDiff::YUVPixelDiff() : AveragePixelDiff() {
+    isDummyFlag = true;
 }
 
 }  // namespace difference

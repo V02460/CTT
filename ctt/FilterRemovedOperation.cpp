@@ -14,6 +14,7 @@ void FilterRemovedOperation::doOperation() {
 
 void FilterRemovedOperation::undoOperation() {
 	filteredVideo->restore(memento);
+	filteredVideo->changed();
 }
 
 }  // namespace operation

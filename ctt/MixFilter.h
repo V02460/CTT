@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QCoreApplication>
 
 #include "Filter.h"
 #include "Frame.h"
@@ -17,10 +18,14 @@ namespace filter {
  * Provides a new version of the predecessors frame which has been mixed with another texture.
  */
 class MixFilter : public Filter {
+    Q_OBJECT
+
 public:
     typedef QScopedPointer<MixFilter> uptr;
     typedef QSharedPointer<MixFilter> sptr;
     typedef QWeakPointer<MixFilter> wptr;
+
+    static const QByteArray kFilterID;
 
     static const QString kParamMixRatioStr;
 
@@ -39,17 +44,19 @@ public:
     virtual ~MixFilter();
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; }
-    virtual QString getName() const Q_DECL_OVERRIDE { return "filter_mix"; };
-	virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const;
+    virtual QString getName() const Q_DECL_OVERRIDE { return QCoreApplication::translate("Filter", kFilterID); }
+	virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
 	
     virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
     virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
     virtual QList<const Module*> getUsesList() const Q_DECL_OVERRIDE;
-    virtual bool uses(const Module &module) const Q_DECL_OVERRIDE;
+	static Saveable::sptr getDummy();
     static Saveable::SaveableType getSaveableType() { return Saveable::mixFilter; }
 
 private:
     ::model::Module::sptr module2;
+
+	MixFilter();
 };
 
 }  // namespace filter
