@@ -47,7 +47,8 @@ public:
     virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
     virtual QList<const Module*> getUsesList() const Q_DECL_OVERRIDE;
 	static Saveable::sptr getDummy();
-    static Saveable::SaveableType getSaveableType() { return Saveable::blurFilter; }
+	static Saveable::SaveableType getSaveableType() { return Saveable::blurFilter; }
+	virtual SaveableType saveableType();
 
 private:
     static const QString kParamRadiusStr;

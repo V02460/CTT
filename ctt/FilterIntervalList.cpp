@@ -25,6 +25,9 @@ bool FilterIntervalList::isActive(unsigned int frameNumber) const {
 	return false;
 }
 
+Saveable::SaveableType FilterIntervalList::saveableType() {
+	return getSaveableType();
+}
 
 void FilterIntervalList::activate(UIntegerInterval::sptr newInterval) {
 	if (isDummy()) {

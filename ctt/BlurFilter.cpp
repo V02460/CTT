@@ -29,6 +29,10 @@ BlurFilter::BlurFilter() {
 
 BlurFilter::~BlurFilter() {}
 
+Saveable::SaveableType BlurFilter::saveableType() {
+	return getSaveableType();
+}
+
 model::frame::Frame::sptr BlurFilter::getFrame(unsigned int frameNumber) const {
 	if (isDummy()) {
 		throw AccessToDummyException();

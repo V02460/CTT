@@ -64,6 +64,10 @@ FFmpegDataVideo::FFmpegDataVideo(QString path, QSharedPointer<QOpenGLContext> co
 	length = 100;// videoFormatContext->duration *;
 }
 
+Saveable::SaveableType FFmpegDataVideo::saveableType() {
+	return getSaveableType();
+}
+
 VideoMetadata FFmpegDataVideo::getMetadata() const {
 
 	if (isDummy())

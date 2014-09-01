@@ -51,7 +51,8 @@ public:
     virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
     virtual QList<const Module*> getUsesList() const Q_DECL_OVERRIDE;
 	static Saveable::sptr getDummy();
-    static Saveable::SaveableType getSaveableType() { return Saveable::mixFilter; }
+	static Saveable::SaveableType getSaveableType() { return Saveable::mixFilter; }
+	virtual SaveableType saveableType();
 
 private:
     ::model::Module::sptr module2;

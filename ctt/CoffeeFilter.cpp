@@ -23,6 +23,10 @@ CoffeeFilter::CoffeeFilter() {
 	isDummyFlag = true;
 }
 
+Saveable::SaveableType CoffeeFilter::saveableType() {
+	return getSaveableType();
+}
+
 CoffeeFilter::~CoffeeFilter() {}
 
 model::frame::Frame::sptr CoffeeFilter::getFrame(unsigned int frameNumber) const {

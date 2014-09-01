@@ -34,6 +34,10 @@ unsigned int UIntegerInterval::getStart() const{
 	return start;
 }
 
+Saveable::SaveableType UIntegerInterval::saveableType() {
+	return getSaveableType();
+}
+
 unsigned int UIntegerInterval::getEnd() const {
 	if (isDummy()) {
 		throw AccessToDummyException();

@@ -70,6 +70,11 @@ typename T::sptr SaveableList<T>::remove(int index) {
 }
 
 template <class T>
+Saveable::SaveableType SaveableList<T>::saveableType() {
+	return getSaveableType();
+}
+
+template <class T>
 const typename T::sptr SaveableList<T>::get(int index) const {
 	if (isDummy()) {
 		throw AccessToDummyException();

@@ -37,6 +37,10 @@ QList<const Module*> MotionVectorOverlay::getUsesList() const {
 	throw NotImplementedException();
 }
 
+Saveable::SaveableType MotionVectorOverlay::saveableType() {
+	return getSaveableType();
+}
+
 Saveable::sptr MotionVectorOverlay::getDummy() {
 	throw IllegalArgumentException();
 }

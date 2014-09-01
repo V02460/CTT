@@ -45,7 +45,8 @@ public:
     virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
     static Saveable::sptr getDummy();
 
-    static Saveable::SaveableType getSaveableType() { return Saveable::hSLPixelDiff; }
+	static Saveable::SaveableType getSaveableType() { return Saveable::hSLPixelDiff; }
+	virtual SaveableType saveableType();
 
 protected:
     /**

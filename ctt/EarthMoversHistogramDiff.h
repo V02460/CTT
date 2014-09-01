@@ -45,7 +45,8 @@ public:
 	virtual model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
 	virtual void restore(model::saveable::Memento memento) Q_DECL_OVERRIDE;
 	static Saveable::sptr getDummy();
-    static Saveable::SaveableType getSaveableType() { return Saveable::earthMoversHistogramDiff; }
+	static Saveable::SaveableType getSaveableType() { return Saveable::earthMoversHistogramDiff; }
+	virtual SaveableType saveableType();
 
 private:
 	Q_DISABLE_COPY(EarthMoversHistogramDiff)

@@ -38,6 +38,10 @@ QString EarthMoversHistogramDiff::getName() const {
     return QCoreApplication::translate("FrameDiff", kDiffIDs[type]);
 }
 
+Saveable::SaveableType EarthMoversHistogramDiff::saveableType() {
+	return getSaveableType();
+}
+
 double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
 	if (isDummy()) {
 		throw AccessToDummyException();

@@ -34,6 +34,10 @@ Frame::sptr GreyscaleFilter::getFrame(unsigned int frameNumber) const {
     return Frame::sptr(new Frame(targetSurface, frame->getMetadata()));
 }
 
+Saveable::SaveableType GreyscaleFilter::saveableType() {
+	return getSaveableType();
+}
+
 Memento GreyscaleFilter::getMemento() const {
 	if (isDummy()) {
 		throw AccessToDummyException();

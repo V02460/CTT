@@ -206,7 +206,7 @@
 <context>
     <name>view::AnalysingOrderingWidget</name>
     <message>
-        <location filename="../ctt/AnalysingOrderingWidget.cpp" line="91"/>
+        <location filename="../ctt/AnalysingOrderingWidget.cpp" line="84"/>
         <source>VIDEOS_TO_SELECT</source>
         <translation>Videos auswählen</translation>
     </message>
@@ -222,6 +222,46 @@
         <location filename="../ctt/DifferenceInsertionWidget.cpp" line="37"/>
         <source>DIFFERENCE_INSERTION_FAILED</source>
         <translation>Einfügen der Abstandsfunktion ist fehlgeschlagen</translation>
+    </message>
+</context>
+<context>
+    <name>view::FrameMetadataWidget</name>
+    <message>
+        <location filename="../ctt/FrameMetadataWidget.cpp" line="31"/>
+        <source>FPS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ctt/FrameMetadataWidget.cpp" line="32"/>
+        <source>FRAMECOUNT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ctt/FrameMetadataWidget.cpp" line="36"/>
+        <source>VIDEO_SIZE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ctt/FrameMetadataWidget.cpp" line="38"/>
+        <location filename="../ctt/FrameMetadataWidget.cpp" line="40"/>
+        <source>METADATA_START</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ctt/FrameMetadataWidget.cpp" line="38"/>
+        <location filename="../ctt/FrameMetadataWidget.cpp" line="40"/>
+        <source>NOT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ctt/FrameMetadataWidget.cpp" line="39"/>
+        <source>METABLOCK_END</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ctt/FrameMetadataWidget.cpp" line="41"/>
+        <source>MOTIONVECTOR_END</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

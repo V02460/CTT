@@ -47,7 +47,8 @@ public:
 	virtual ::model::saveable::Memento getMemento() const;
 	virtual void restore(::model::saveable::Memento memento);
 	static Saveable::sptr getDummy();
-    static Saveable::SaveableType getSaveableType() { return Saveable::heatmapOverlay; }
+	static Saveable::SaveableType getSaveableType() { return Saveable::heatmapOverlay; }
+	virtual SaveableType saveableType();
 
 private:
     //::model::difference::PixelDiff::sptr data;
@@ -66,7 +67,8 @@ private:
             virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
             virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
             virtual QSize getResolution() const Q_DECL_OVERRIDE;
-            virtual unsigned int getFrameCount() const Q_DECL_OVERRIDE;
+			virtual unsigned int getFrameCount() const Q_DECL_OVERRIDE;
+			virtual SaveableType saveableType();
         private:
             ::model::difference::PixelDiff::sptr difference;
     };

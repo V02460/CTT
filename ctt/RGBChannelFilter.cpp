@@ -32,6 +32,10 @@ RGBChannelFilter::RGBChannelFilter() {
 
 RGBChannelFilter::~RGBChannelFilter() {}
 
+Saveable::SaveableType RGBChannelFilter::saveableType() {
+	return getSaveableType();
+}
+
 model::frame::Frame::sptr RGBChannelFilter::getFrame(unsigned int frameNumber) const {
 	if (isDummy()) {
 		throw AccessToDummyException();

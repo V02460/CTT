@@ -67,6 +67,7 @@ public:
 	 *
 	 * This enum must be similar in quantity and order to the SAVEABLE_TYPE_STRINGS list. 
 	 */
+	// TODO broken
 	enum SaveableType {
 		saveable,
 		filterIntervalList,
@@ -191,6 +192,8 @@ public:
 	 */
 	static SaveableType getSaveableType();
 
+	virtual SaveableType saveableType() = 0;
+
 protected:
 	bool isDummyFlag = false;
 };
@@ -221,19 +224,17 @@ protected:
 15		|  |  |  |> ColoringOverlay
 16		|  |  |  |  |> HeatmapOverlay
 17		|  |  |  |  |> MacroblockOverlay
-18		|  |  |  |> MakropartitionOverlay
-19		|  |  |  |> MotionVektorOverlay
-20		|  |  |> RescaleFilter
-21		|  |  |> RGBChannelFilter
-22		|  |  |> TimeshiftFilter
-23		|  |> Video
-24		|     |> FileVideo
-25		|     |  |> YUVDataVideo
-26		|     |> FilteredVideo
-27		|> Player
-28		|> SaveableList
-29		|> UIntegerInterval
-30		|> VideoScrubber
-31		|> ViewState
+18		|  |  |  |> MotionVektorOverlay
+19		|  |  |> RescaleFilter
+20		|  |  |> RGBChannelFilter
+21		|  |  |> TimeshiftFilter
+22		|  |> Video
+23		|     |> FileVideo
+24		|     |  |> YUVDataVideo
+25		|     |> FilteredVideo
+26		|> Player
+27		|> SaveableList
+28		|> UIntegerInterval
+29		|> VideoScrubber
 
 */

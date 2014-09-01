@@ -93,7 +93,8 @@ public:
     ::model::saveable::Memento VideoScrubber::getMemento() const;
     void VideoScrubber::restore(::model::saveable::Memento memento);
 	static ::model::saveable::Saveable::sptr VideoScrubber::getDummy();
-    static Saveable::SaveableType getSaveableType();
+	static Saveable::SaveableType getSaveableType();
+	virtual SaveableType saveableType();
 
 
 public slots:

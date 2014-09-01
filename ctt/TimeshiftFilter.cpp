@@ -41,6 +41,10 @@ model::frame::Frame::sptr TimeshiftFilter::getFrame(unsigned int frameNumber) co
     return predecessor->getFrame(newFrameNumber);
 }
 
+Saveable::SaveableType TimeshiftFilter::saveableType() {
+	return getSaveableType();
+}
+
 Memento TimeshiftFilter::getMemento() const {
 	if (isDummy()) {
 		throw AccessToDummyException();

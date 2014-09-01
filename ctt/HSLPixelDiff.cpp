@@ -43,6 +43,10 @@ Surface::sptr HSLPixelDiff::getPixelDiff(unsigned int frameNr) const {
     return Surface::sptr(gpuHelper.run());
 }
 
+Saveable::SaveableType HSLPixelDiff::saveableType() {
+	return getSaveableType();
+}
+
 Memento HSLPixelDiff::getMemento() const {
 	if (isDummy()) {
 		throw AccessToDummyException();

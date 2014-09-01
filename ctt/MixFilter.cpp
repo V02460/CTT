@@ -30,6 +30,10 @@ MixFilter::MixFilter() {
 	isDummyFlag = true;
 }
 
+Saveable::SaveableType MixFilter::saveableType() {
+	return getSaveableType();
+}
+
 MixFilter::~MixFilter() {
 }
 

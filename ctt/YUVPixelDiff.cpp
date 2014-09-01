@@ -25,6 +25,10 @@ YUVPixelDiff::YUVPixelDiff(Video::sptr video1, Video::sptr video2) : AveragePixe
 YUVPixelDiff::~YUVPixelDiff() {
 }
 
+Saveable::SaveableType YUVPixelDiff::saveableType() {
+	return getSaveableType();
+}
+
 Surface::sptr YUVPixelDiff::getPixelDiff(unsigned int frameNr) const {
 	if (isDummy()) {
 		throw AccessToDummyException();

@@ -100,6 +100,10 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile,
 	isDummyFlag = false;
 }
 
+Saveable::SaveableType YUVDataVideo::saveableType() {
+	return getSaveableType();
+}
+
 YUVDataVideo::YUVDataVideo(QString pathToVideoFile,
                            QString pathToMetadataFile,
                            QSize resolution,

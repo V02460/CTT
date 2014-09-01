@@ -41,6 +41,10 @@ QList<const Module*> HeatmapOverlay::getUsesList() const {
                 << heatmap.data();
 }
 
+Saveable::SaveableType HeatmapOverlay::saveableType() {
+	return getSaveableType();
+}
+
 Memento HeatmapOverlay::getMemento() const {
     throw NotImplementedException();
 }
@@ -57,6 +61,10 @@ Frame::sptr HeatmapOverlay::Heatmap::getFrame(unsigned int frameNumber) const {
     Surface::sptr heatmapSurface = gpuHelper.run();
 
     return Frame::sptr(new Frame(heatmapSurface, FrameMetadata(pixelDiff->getSize())));
+}
+
+Saveable::SaveableType HeatmapOverlay::Heatmap::saveableType() {
+	return Saveable::heatmapOverlay_heatmap;
 }
 
 Memento HeatmapOverlay::Heatmap::getMemento() const {

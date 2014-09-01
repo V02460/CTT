@@ -34,8 +34,16 @@ QList<const ::model::Module*> MacroblockOverlay::getUsesList() const {
     return list << this;
 }
 
+Saveable::SaveableType MacroblockOverlay::Macroblocks::saveableType() {
+	return Saveable::macroblockOverlay_macroblocks;
+}
+
 Memento MacroblockOverlay::getMemento() const {
     throw NotImplementedException();
+}
+
+Saveable::SaveableType MacroblockOverlay::saveableType() {
+	return getSaveableType();
 }
 
 void MacroblockOverlay::restore(Memento memento) {

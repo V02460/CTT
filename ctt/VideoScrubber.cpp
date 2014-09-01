@@ -40,6 +40,10 @@ VideoScrubber::VideoScrubber(video::Video::sptr video, unsigned int frameNumber)
 	waitingForFrame = false;
 }
 
+Saveable::SaveableType VideoScrubber::saveableType() {
+	return getSaveableType();
+}
+
 VideoScrubber::VideoScrubber()
 {
 	isDummyFlag = true;

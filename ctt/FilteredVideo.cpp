@@ -61,6 +61,10 @@ void FilteredVideo::addFilter(Filter::sptr filter, unsigned int pos) {
 	filters.insert(pos, filter);
 }
 
+Saveable::SaveableType FilteredVideo::saveableType() {
+	return getSaveableType();
+}
+
 Filter::sptr FilteredVideo::removeFilter(unsigned int pos) {
 	if (isDummy()) {
 		throw AccessToDummyException();

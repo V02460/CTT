@@ -33,6 +33,10 @@ RescaleFilter::RescaleFilter() {
 	isDummyFlag = true;
 }
 
+Saveable::SaveableType RescaleFilter::saveableType() {
+	return getSaveableType();
+}
+
 RescaleFilter::~RescaleFilter() {}
 
 model::frame::Frame::sptr RescaleFilter::getFrame(unsigned int frameNumber) const {

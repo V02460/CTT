@@ -44,6 +44,10 @@ model::frame::Frame::sptr NoiseFilter::getFrame(unsigned int frameNumber) const 
     return Frame::sptr(new Frame(targetSurface, frame->getMetadata()));
 }
 
+Saveable::SaveableType NoiseFilter::saveableType() {
+	return getSaveableType();
+}
+
 Memento NoiseFilter::getMemento() const {
 	if (isDummy()) {
 		throw AccessToDummyException();

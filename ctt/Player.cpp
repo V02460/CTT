@@ -60,6 +60,10 @@ void Player::play() {
 	timer.start(1000 / fps);
 }
 
+Saveable::SaveableType Player::saveableType() {
+	return getSaveableType();
+}
+
 void Player::pause() {
 	if (isDummy()) {
 		throw AccessToDummyException();
