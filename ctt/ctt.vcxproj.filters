@@ -783,6 +783,12 @@
     <ClCompile Include="AveragePixelDiff.cpp">
       <Filter>Source Files\Model\Difference</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AnalysingOrderingWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AnalysingOrderingWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -931,6 +937,9 @@
     </CustomBuild>
     <CustomBuild Include="FilterListView.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="AnalysingOrderingWidget.h">
+      <Filter>Header Files\View</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -1135,9 +1144,6 @@
     <ClInclude Include="GlobalContext.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="AnalysingOrderingWidget.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
     <ClInclude Include="FileNotFoundException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
@@ -1242,12 +1248,6 @@
     <None Include="Shader\Filter\RGBChannel.fs">
       <Filter>Shader Files\Filter</Filter>
     </None>
-    <None Include="..\cttApp\ctt_de.ts">
-      <Filter>Lokalisierungs Dateien</Filter>
-    </None>
-    <None Include="..\cttApp\ctt_en.ts">
-      <Filter>Lokalisierungs Dateien</Filter>
-    </None>
     <None Include="Shader\Overlay\Macroblock.fs">
       <Filter>Shader Files\Overlay</Filter>
     </None>
@@ -1265,6 +1265,12 @@
     </None>
     <None Include="Shader\Diff\YUVPixelDiff.fs">
       <Filter>Shader Files\Diff</Filter>
+    </None>
+    <None Include="..\cttApp\ctt_de.ts">
+      <Filter>Lokalisierungs Dateien</Filter>
+    </None>
+    <None Include="..\cttApp\ctt_en.ts">
+      <Filter>Lokalisierungs Dateien</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

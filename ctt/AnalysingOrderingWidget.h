@@ -1,5 +1,5 @@
-#ifndef _ANALYSINGORDERINGWIDGET
-#define _ANALYSINGORDERINGWIDGET
+#ifndef _ANALYSINGORDERINGWIDGET_H
+#define _ANALYSINGORDERINGWIDGET_H
 
 #include <QWidget>
 #include <QDialog>
@@ -13,45 +13,50 @@
 #include "ThumbnailListWidget.h"
 
 namespace view {
-	class AnalysingOrderingWidget : public QWidget, public ::model::Observer {
-	public:
-		typedef QScopedPointer<AnalysingOrderingWidget> uptr;
-		typedef QSharedPointer<AnalysingOrderingWidget> sptr;
-		typedef QWeakPointer<AnalysingOrderingWidget> wptr;
 
-		AnalysingOrderingWidget(::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos,
-			::model::player::Player::sptr player, ThumbnailListWidget::sptr thumbnails, QWidget *parent = 0);
+class AnalysingOrderingWidget : public QWidget, public ::model::Observer {
+    Q_OBJECT
+public:
+    typedef QScopedPointer<AnalysingOrderingWidget> uptr;
+    typedef QSharedPointer<AnalysingOrderingWidget> sptr;
+    typedef QWeakPointer<AnalysingOrderingWidget> wptr;
 
-		virtual void update() Q_DECL_OVERRIDE;
+    AnalysingOrderingWidget(::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos,
+                            ::model::player::Player::sptr player,
+                            ThumbnailListWidget::sptr thumbnails,
+                            QWidget *parent = 0);
 
-		QList<::model::filter::FilteredVideo::sptr> getVideos(int selectableCount);
+    virtual void update() Q_DECL_OVERRIDE;
 
-	public slots:
-		void videoActivated(int id);
-		void videoReplaced(int oldId, int newId);
-		void videoDeactivated(int id);
+    QList<::model::filter::FilteredVideo::sptr> getVideos(int selectableCount);
 
-		void dialogButtonToggled(bool checked, int id);
+    public slots:
+    void videoActivated(int id);
+    void videoReplaced(int oldId, int newId);
+    void videoDeactivated(int id);
 
-	private:
-		void setupDialog();
-		void setupUi();
+    void dialogButtonToggled(bool checked, int id);
 
-		::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos;
-		QList<VideoAnalysingWidget::sptr> analysingWidget;
-		QList<ListedPushButton::sptr> dialogButtons;
-		::model::player::Player::sptr player;
-		ThumbnailListWidget::sptr thumbnails;
+private:
+    void setupDialog();
+    void setupUi();
 
-		QScopedPointer<QGridLayout> widgetLayout;
+    ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos;
+    QList<VideoAnalysingWidget::sptr> analysingWidget;
+    QList<ListedPushButton::sptr> dialogButtons;
+    ::model::player::Player::sptr player;
+    ThumbnailListWidget::sptr thumbnails;
 
-		QDialog *videoSelectionDialog;
-		QPushButton *dialogAcceptButton;
-		QDialogButtonBox *dialogButtonBox;
-		QScopedPointer<QGridLayout> dialogLayout;
-		QList<int> activeDialogButtonIds;
-		int selectableDialogButtons;
-	};
-}
+    QScopedPointer<QGridLayout> widgetLayout;
 
-#endif
+    QDialog *videoSelectionDialog;
+    QPushButton *dialogAcceptButton;
+    QDialogButtonBox *dialogButtonBox;
+    QScopedPointer<QGridLayout> dialogLayout;
+    QList<int> activeDialogButtonIds;
+    int selectableDialogButtons;
+};
+
+}  // namespace view
+
+#endif  //_ANALYSINGORDERINGWIDGET_H
