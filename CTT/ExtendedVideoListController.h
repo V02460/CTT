@@ -20,6 +20,7 @@ namespace controller {
 	public slots:
 		void addVideo(QString path);
 		void addVideo(QString path, int width, int height, double fps, model::video::YUVType type, unsigned int length);
+		void addVideo(QString pathToVideoFile, QString pathToMetadataFile, int width, int height, double fps, model::video::YUVType type, unsigned int length);
 		void addVideo(model::filter::FilteredVideo::sptr video);
 		void removeVideo(int index);
 		void removeVideo(const model::filter::FilteredVideo &video);
