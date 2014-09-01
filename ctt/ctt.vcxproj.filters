@@ -570,9 +570,6 @@
     <ClCompile Include="FilterInsertionWidget.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
-    <ClCompile Include="FilterListViewElement.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
     <ClCompile Include="VideoSaver.cpp">
       <Filter>Source Files\Model\Video</Filter>
     </ClCompile>
@@ -789,6 +786,15 @@
     <ClCompile Include="AveragePixelDiff.cpp">
       <Filter>Source Files\Model\Difference</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AnalysingOrderingWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AnalysingOrderingWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="AnalysingOrderingWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -942,6 +948,9 @@
       <Filter>Header Files\View</Filter>
     </CustomBuild>
     <CustomBuild Include="FilterTimeline.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="AnalysingOrderingWidget.h">
       <Filter>Header Files\View</Filter>
     </CustomBuild>
   </ItemGroup>
@@ -1149,9 +1158,6 @@
     </ClInclude>
     <ClInclude Include="ExtendedVideoListController.h">
       <Filter>Header Files\Controller</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterListViewElement.h">
-      <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="YUVType.h">
       <Filter>Header Files\Model\Video</Filter>
