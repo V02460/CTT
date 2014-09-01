@@ -87,7 +87,7 @@ namespace controller {
 					new ExtendedVideoRemovedOperation(i, videoList, filteredVideos)));
 				return;
 			}
-			throw new exception::IllegalArgumentException("The Video which is to be removed is not part of this VideoList.");
+			throw exception::IllegalArgumentException("The Video which is to be removed is not part of this VideoList.");
 		}
 	}
 

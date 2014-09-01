@@ -125,16 +125,19 @@
       <ParseFiles>false</ParseFiles>
     </Filter>
     <Filter Include="Shader Files">
-      <UniqueIdentifier>{b4efe5b9-f6e3-40ed-a91d-96eb0ce90098}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shader Files\Filter">
-      <UniqueIdentifier>{02d86d30-8e67-41c5-8a3f-80d72c3f3d4d}</UniqueIdentifier>
+      <UniqueIdentifier>{ba79908a-6c73-41f6-9197-b595d2228533}</UniqueIdentifier>
     </Filter>
     <Filter Include="Shader Files\Conversion">
-      <UniqueIdentifier>{e3bf623a-629a-43a0-837b-ec2dcfa694a3}</UniqueIdentifier>
+      <UniqueIdentifier>{3afce15e-df25-4871-aab7-0f4c87799362}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Filter">
+      <UniqueIdentifier>{41dd7b24-f8d4-40d4-a613-5ead97ab7934}</UniqueIdentifier>
     </Filter>
     <Filter Include="Shader Files\Histogram">
-      <UniqueIdentifier>{2087191a-8e1e-4305-9da7-390d9c25ea18}</UniqueIdentifier>
+      <UniqueIdentifier>{a3800756-33c5-47e1-8753-98cbd4d2c1d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Diff">
+      <UniqueIdentifier>{4fab2534-a35d-45a9-af8e-9d902c8a8809}</UniqueIdentifier>
     </Filter>
     <Filter Include="Shader Files\Overlay">
       <UniqueIdentifier>{8fee5fd8-1fe7-4e77-9424-8bb8e6627595}</UniqueIdentifier>
@@ -777,6 +780,15 @@
     <ClCompile Include="ExtendedVideoRemovedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
+    <ClCompile Include="AveragePixelDiff.cpp">
+      <Filter>Source Files\Model\Difference</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AnalysingOrderingWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AnalysingOrderingWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -926,6 +938,9 @@
     <CustomBuild Include="FilterListView.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="AnalysingOrderingWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnalysingWidget.h">
@@ -1026,9 +1041,6 @@
     </ClInclude>
     <ClInclude Include="YUVDataVideo.h">
       <Filter>Header Files\Model\Video</Filter>
-    </ClInclude>
-    <ClInclude Include="YUVPixelDiff.h">
-      <Filter>Header Files\Model\Difference</Filter>
     </ClInclude>
     <ClInclude Include="ViewType.h">
       <Filter>Header Files\View</Filter>
@@ -1132,9 +1144,6 @@
     <ClInclude Include="GlobalContext.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="AnalysingOrderingWidget.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
     <ClInclude Include="FileNotFoundException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
@@ -1164,6 +1173,9 @@
     </ClInclude>
     <ClInclude Include="ExtendedVideoAddedOperation.h">
       <Filter>Header Files\Controller\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="AveragePixelDiff.h">
+      <Filter>Header Files\Model\Difference</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1236,17 +1248,29 @@
     <None Include="Shader\Filter\RGBChannel.fs">
       <Filter>Shader Files\Filter</Filter>
     </None>
-    <None Include="..\cttApp\ctt_de.ts">
-      <Filter>Lokalisierungs Dateien</Filter>
-    </None>
-    <None Include="..\cttApp\ctt_en.ts">
-      <Filter>Lokalisierungs Dateien</Filter>
-    </None>
     <None Include="Shader\Overlay\Macroblock.fs">
       <Filter>Shader Files\Overlay</Filter>
     </None>
     <None Include="Shader\Overlay\Macroblock.vs">
       <Filter>Shader Files\Overlay</Filter>
+    </None>
+    <None Include="Shader\CompactAverage.fs">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="Shader\Diff\HSLPixelDiff.fs">
+      <Filter>Shader Files\Diff</Filter>
+    </None>
+    <None Include="Shader\Diff\RGBPixelDiff.fs">
+      <Filter>Shader Files\Diff</Filter>
+    </None>
+    <None Include="Shader\Diff\YUVPixelDiff.fs">
+      <Filter>Shader Files\Diff</Filter>
+    </None>
+    <None Include="..\cttApp\ctt_de.ts">
+      <Filter>Lokalisierungs Dateien</Filter>
+    </None>
+    <None Include="..\cttApp\ctt_en.ts">
+      <Filter>Lokalisierungs Dateien</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -1274,5 +1298,8 @@
     <None Include="Shader\Default\Default.vs">
       <Filter>Shader Files\Default</Filter>
     </None>
+    <Image Include="Shader\Overlay\partitions.png">
+      <Filter>Shader Files\Overlay</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -16,6 +16,8 @@ typedef QSharedPointer<QOpenGLFramebufferObject> QOpenGLFramebufferObject_sptr;
 typedef QSharedPointer<QOpenGLShader> QOpenGLShader_sptr;
 typedef QSharedPointer<QOpenGLContext> QOpenGLContext_sptr;
 
+QSize getNewSizeDefault(QSize size);
+
 class GPUSurfaceCompactor : public GPUSurfaceShader {
 public:
     typedef QScopedPointer<GPUSurfaceCompactor> uptr;

@@ -121,7 +121,7 @@ protected:
     template <class T>
     void newParameter(QString name, T initValue) {
         if (isDummy()) {
-            throw new ::exception::AccessToDummyException();
+            throw ::exception::AccessToDummyException();
         }
 		parameters.insert(name, FilterParam::sptr(new FilterParam(name, initValue)));
     }
@@ -129,7 +129,7 @@ protected:
     template <class T>
     T getParamValue(QString key, T defaultValue = T()) const {
         if (isDummy()) {
-            throw new ::exception::AccessToDummyException();
+            throw ::exception::AccessToDummyException();
         }
         FilterParam::sptr param = parameters.value(key, FilterParam::sptr(new FilterParam(key, defaultValue)));
         return param->getValue().value<T>();

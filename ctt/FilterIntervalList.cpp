@@ -15,7 +15,7 @@ FilterIntervalList::FilterIntervalList() : intervals() {}
 
 bool FilterIntervalList::isActive(unsigned int frameNumber) const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	for each (UIntegerInterval::sptr interval in intervals) {
 		if (interval->contains(frameNumber)) {
@@ -28,7 +28,7 @@ bool FilterIntervalList::isActive(unsigned int frameNumber) const {
 
 void FilterIntervalList::activate(UIntegerInterval::sptr newInterval) {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	for each (UIntegerInterval::sptr interval in intervals) {
 		if (newInterval->canMergeWith(*interval)) {
@@ -43,26 +43,26 @@ void FilterIntervalList::activate(UIntegerInterval::sptr newInterval) {
 
 void FilterIntervalList::deactivate(UIntegerInterval::sptr toDelete) {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	// TODO is that what should happen?
 	// TODO works?
 	if (!intervals.removeOne(toDelete)) {
-		throw new IllegalArgumentException("[" + QString::number(toDelete->getStart()) + ", " + toDelete->getEnd() +
+		throw IllegalArgumentException("[" + QString::number(toDelete->getStart()) + ", " + toDelete->getEnd() +
 			                               "] is not in the list.");
 	}
 }
 
 QList<UIntegerInterval::sptr> FilterIntervalList::getIntervalList() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return intervals;
 }
 
 Memento FilterIntervalList::getMemento() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	Memento memento;
 	memento.setInt("length", intervals.length());

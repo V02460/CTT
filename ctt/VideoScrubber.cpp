@@ -22,7 +22,7 @@ const QString VideoScrubber::lastFrameNumberStringId("framenr");
 
 VideoScrubber::VideoScrubber(video::Video::sptr video) : Observable() ,video(video), lastFrameNumber(0) {
 	if (video->isDummy()) {
-		throw new IllegalArgumentException("Tried to use a dummy Video to create a VideoScrubber");
+		throw IllegalArgumentException("Tried to use a dummy Video to create a VideoScrubber");
 	}
 	waitingForFrame = true;
 	currentFrame = video->getFrame(0);
@@ -33,7 +33,7 @@ VideoScrubber::~VideoScrubber() {}
 
 VideoScrubber::VideoScrubber(video::Video::sptr video, unsigned int frameNumber) : Observable() {
 	if (video->isDummy()) {
-		throw new IllegalArgumentException("Tried to use a dummy Video to create a VideoScrubber");
+		throw IllegalArgumentException("Tried to use a dummy Video to create a VideoScrubber");
 	}
 	waitingForFrame = true;
 	currentFrame = video->getFrame(frameNumber);
@@ -47,21 +47,21 @@ VideoScrubber::VideoScrubber()
 
 VideoMetadata VideoScrubber::getVideoMetadata() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return video->getMetadata();
 }
 
 Video::sptr VideoScrubber::getVideo() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return video;
 }
 
 Frame::sptr VideoScrubber::getCurrentFrame() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	if (currentFrame.isNull())
 	{
@@ -73,14 +73,14 @@ Frame::sptr VideoScrubber::getCurrentFrame() const {
 
 bool VideoScrubber::isWaitingForFrame() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return waitingForFrame;
 }
 
 void VideoScrubber::jumpToFrameNr(unsigned int frameNumber) {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	if (!isWaitingForFrame())
 	{
@@ -93,7 +93,7 @@ void VideoScrubber::jumpToFrameNr(unsigned int frameNumber) {
 
 Memento VideoScrubber::getMemento() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	Memento memento;
 	memento.setSharedPointer(videoStringId, video);
@@ -106,7 +106,7 @@ void VideoScrubber::restore(Memento memento) {
 
 	if (video.isNull())
 	{
-		throw new IllegalArgumentException("Unable to restore, pointer received from Memento could'nt be cast to the right type.");
+		throw IllegalArgumentException("Unable to restore, pointer received from Memento could'nt be cast to the right type.");
 	}
 
 	lastFrameNumber = memento.getUInt(lastFrameNumberStringId);

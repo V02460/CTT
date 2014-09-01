@@ -45,7 +45,7 @@ void FilterListViewItem::setupUi() {
 }
 
 void FilterListViewItem::update() {
-	throw new NotImplementedException();
+	throw NotImplementedException();
 }
 
 }  // namespace view

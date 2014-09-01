@@ -23,9 +23,9 @@ class HistogramTest : public QObject {
     Q_OBJECT
 
 private slots:
-//     void initTestCase();
-//     void histogramTypes();
-    // TODO: test get value
+    void initTestCase();
+    void histogramTypes();
+    void getValues();
 
 private:
     QSharedPointer<QOpenGLContext> testContext;

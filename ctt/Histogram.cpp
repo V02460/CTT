@@ -49,7 +49,7 @@ Histogram::Histogram() {
 
 float Histogram::getValue(unsigned int idx) const {
     if (idx >= kSize) {
-        throw new IllegalArgumentException("Out of bounds index " + QString::number(idx) + ".");
+        throw IllegalArgumentException("Out of bounds index " + QString::number(idx) + ".");
     }
 
     if (values.isEmpty()) {
@@ -58,7 +58,7 @@ float Histogram::getValue(unsigned int idx) const {
         // TODO: use PBO to prevent GPU pipeline flush
         QByteArray rawValues = histogramData->getRawRGBA();
 
-        for (unsigned int i = 0; i < 16; i++) {
+        for (unsigned int i = 0; i < kSize; i++) {
 
             // decode the floats stored in the RGBA8888 format
             char r = rawValues[4 * i    ];
@@ -87,7 +87,7 @@ const Histogram::HistogramType Histogram::stringToType(QString string) {
 		}
 	}
 
-	throw new IllegalArgumentException(string + " is not a histogram type.");
+	throw IllegalArgumentException(string + " is not a histogram type.");
 }
 
 void Histogram::init(Surface::sptr frame) {

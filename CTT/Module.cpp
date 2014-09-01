@@ -7,7 +7,7 @@ using ::exception::AccessToDummyException;
 
 bool Module::uses(const Module &module) const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
     return getUsesList().contains(&module);
 }

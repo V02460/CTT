@@ -26,7 +26,7 @@ FilteredVideo::FilteredVideo() {
 
 void FilteredVideo::addFilter(Filter::sptr filter, unsigned int pos) {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	QList<const Module*> usesList(getUsesList());
 
@@ -34,13 +34,13 @@ void FilteredVideo::addFilter(Filter::sptr filter, unsigned int pos) {
 	{
 		if (filter->uses(*module))
 		{
-			throw new IllegalArgumentException("Tried to add a filter to a FilteredVideo using modules already used by the filtered video.");
+			throw IllegalArgumentException("Tried to add a filter to a FilteredVideo using modules already used by the filtered video.");
 		}
 	}
 
 	if (pos > static_cast<unsigned int>(filters.count()))
 	{
-		throw new IllegalArgumentException("Can not insert a Filter into a FilteredVideo with " + QString::number(filters.count())
+		throw IllegalArgumentException("Can not insert a Filter into a FilteredVideo with " + QString::number(filters.count())
 			+ " Filters at position " + QString::number(pos) + ".");
 	}
 
@@ -63,11 +63,11 @@ void FilteredVideo::addFilter(Filter::sptr filter, unsigned int pos) {
 
 Filter::sptr FilteredVideo::removeFilter(unsigned int pos) {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	if (pos >= static_cast<unsigned int>(filters.count()))
 	{
-		throw new IllegalArgumentException("Can not remove a Filter from a FilteredVideo with " + QString::number(filters.count())
+		throw IllegalArgumentException("Can not remove a Filter from a FilteredVideo with " + QString::number(filters.count())
 			+ " Filters from position " + QString::number(pos) + ".");
 	}
 
@@ -89,21 +89,21 @@ Filter::sptr FilteredVideo::removeFilter(unsigned int pos) {
 
 unsigned int FilteredVideo::getFilterCount() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return filters.count();
 }
 
 QList<Filter::sptr> FilteredVideo::getFilterList() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return filters;
 }
 
 model::frame::Frame::sptr FilteredVideo::getFrame(unsigned int frameNumber) const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	if (filters.empty())
 	{
@@ -115,7 +115,7 @@ model::frame::Frame::sptr FilteredVideo::getFrame(unsigned int frameNumber) cons
 
 Memento FilteredVideo::getMemento() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	Memento memento;
 
@@ -149,7 +149,7 @@ Saveable::sptr FilteredVideo::getDummy() {
 
 QList<const Module*> FilteredVideo::getUsesList() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	QList<const Module*> result;
 	result.append(this);
@@ -163,7 +163,7 @@ QList<const Module*> FilteredVideo::getUsesList() const {
 
 unsigned int FilteredVideo::getFrameCount() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	if (filters.isEmpty())
 	{
@@ -177,7 +177,7 @@ unsigned int FilteredVideo::getFrameCount() const {
 
 model::video::VideoMetadata FilteredVideo::getMetadata() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	if (filters.isEmpty())
 	{
@@ -198,14 +198,14 @@ Saveable::SaveableType FilteredVideo::getSaveableType() {
 
 Video::sptr FilteredVideo::getBaseVideo() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return baseVideo;
 }
 
 QSharedPointer<QOpenGLContext> FilteredVideo::getContext() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return baseVideo->getContext();
 }

@@ -27,7 +27,7 @@ TimeshiftFilter::~TimeshiftFilter() {}
 
 model::frame::Frame::sptr TimeshiftFilter::getFrame(unsigned int frameNumber) const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
     int shift = getParamValue<int>(kParamShiftStr);
 
@@ -43,14 +43,14 @@ model::frame::Frame::sptr TimeshiftFilter::getFrame(unsigned int frameNumber) co
 
 Memento TimeshiftFilter::getMemento() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return Filter::getMemento();
 }
 
 void TimeshiftFilter::restore(Memento memento) {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 }
 	Filter::restore(memento);
 	isDummyFlag = false;

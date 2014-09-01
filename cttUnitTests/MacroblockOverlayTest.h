@@ -14,8 +14,7 @@ public:
 
     private slots:
     void initTestCase();
-    // TODO: create a succeeding test
-    //void testRun();
+    void testRun();
     void noMetadata();
     //void wrongParams();
 
@@ -23,6 +22,7 @@ private:
     QSharedPointer<QOpenGLContext> testContext;
     QOffscreenSurface surface;
     ::model::video::YUVDataVideo::sptr video;
+    ::model::video::YUVDataVideo::sptr noMetadataVideo;
 };
 
 #endif  //_MACROBLOCKOVERLAYTEST_H

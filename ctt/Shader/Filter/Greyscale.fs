@@ -9,5 +9,5 @@ varying vec2 texcrd;
 void main() {
     vec4 color = texture2D(_sourceTexture, texcrd);
     float greyValue = dot(color.rgb, vec3(0.2126f, 0.7152f, 0.0722f));
-	gl_FragColor = vec4(vec3(greyValue), color.a);
+	gl_FragColor = vec4(vec3(greyValue), 1.f);
 }

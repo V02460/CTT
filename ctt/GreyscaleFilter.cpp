@@ -23,7 +23,7 @@ GreyscaleFilter::~GreyscaleFilter() {}
 
 Frame::sptr GreyscaleFilter::getFrame(unsigned int frameNumber) const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
     Frame::sptr frame = getPredecessor()->getFrame(frameNumber);
 
@@ -36,7 +36,7 @@ Frame::sptr GreyscaleFilter::getFrame(unsigned int frameNumber) const {
 
 Memento GreyscaleFilter::getMemento() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
     return Filter::getMemento();
 }
@@ -48,7 +48,7 @@ void GreyscaleFilter::restore(Memento memento) {
 
 QList<const Module*> GreyscaleFilter::getUsesList() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
     return QList<const Module*>() << this;
 }

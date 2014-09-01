@@ -12,7 +12,7 @@ using ::exception::AccessToDummyException;
 
 UIntegerInterval::UIntegerInterval(unsigned int start, unsigned int end) : start(start), end(end) {
 	if (start > end) {
-		throw new IllegalArgumentException("start > end");
+		throw IllegalArgumentException("start > end");
 	}
 }
 
@@ -22,58 +22,58 @@ UIntegerInterval::UIntegerInterval() {
 
 bool UIntegerInterval::contains(unsigned int x) const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return (start <= x && x <= end);
 }
 
 unsigned int UIntegerInterval::getStart() const{
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return start;
 }
 
 unsigned int UIntegerInterval::getEnd() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return end;
 }
 
 void UIntegerInterval::setStart(unsigned int newStart) {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	if (newStart > end) {
-		throw new IllegalArgumentException("start > end");
+		throw IllegalArgumentException("start > end");
 	}
 	start = newStart;
 }
 
 void UIntegerInterval::setEnd(unsigned int newEnd) {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	if (start > newEnd) {
-		throw new IllegalArgumentException("start > end");
+		throw IllegalArgumentException("start > end");
 	}
 	end = newEnd;
 }
 
 bool UIntegerInterval::canMergeWith(const UIntegerInterval &interval) const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	return (!(interval.getEnd() < start || end < interval.getStart()));
 }
 
 void UIntegerInterval::mergeWith(const UIntegerInterval &interval) {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	if (!canMergeWith(interval)) {
-		throw new IllegalArgumentException("Intervals can't merge.");
+		throw IllegalArgumentException("Intervals can't merge.");
 	}
 	setStart(std::min(start, interval.getStart()));
 	setEnd(std::max(end, interval.getEnd()));
@@ -81,7 +81,7 @@ void UIntegerInterval::mergeWith(const UIntegerInterval &interval) {
 
 Memento UIntegerInterval::getMemento() const {
 	if (isDummy()) {
-		throw new AccessToDummyException();
+		throw AccessToDummyException();
 	}
 	Memento memento;
     memento.setInt("intervalStart", start);
@@ -93,7 +93,7 @@ void UIntegerInterval::restore(::model::saveable::Memento memento) {
 	setStart(memento.getInt("intervalStart"));
 	setEnd(memento.getInt("intervalEnd"));
 	if (start > end) {
-		throw new IllegalArgumentException("start > end");
+		throw IllegalArgumentException("start > end");
 	}
 	isDummyFlag = false;
 }
