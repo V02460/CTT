@@ -3,6 +3,7 @@
 
 #include "AbstractListViewItem.h"
 #include "FrameDiff.h"
+#include "Player.h"
 
 namespace view {
 	class DifferenceListViewItem : public AbstractListViewItem {
@@ -12,9 +13,16 @@ namespace view {
 		typedef QSharedPointer<DifferenceListViewItem> sptr;
 		typedef QWeakPointer<DifferenceListViewItem> wptr;
 
-		DifferenceListViewItem(::model::difference::FrameDiff::sptr diff, QWidget *parent = 0);
+		DifferenceListViewItem(::model::difference::FrameDiff::sptr diff, ::model::player::Player::sptr player, QWidget *parent = 0);
 
 		virtual QString getIdentifier() const Q_DECL_OVERRIDE;
+		virtual void update() Q_DECL_OVERRIDE;
+
+		private:
+			::model::difference::FrameDiff::sptr diff;
+			::model::player::Player::sptr player;
+
+			bool initialized;
 	};
 }
 
