@@ -8,6 +8,7 @@
 #include "RescaleFilter.h"
 #include "RGBChannelFilter.h"
 #include "TimeshiftFilter.h"
+#include "InvertFilter.h"
 
 #include "HeatmapOverlay.h"
 #include "MacroblockOverlay.h"
@@ -35,7 +36,8 @@ QList<QByteArray> FilterFactory::getAllNonOverlayFilterIDs() {
         << NoiseFilter::kFilterID
         << RescaleFilter::kFilterID
         << RGBChannelFilter::kFilterID
-        << TimeshiftFilter::kFilterID;
+        << TimeshiftFilter::kFilterID
+        << InvertFilter::kFilterID;
 }
 
 QList<QByteArray> FilterFactory::getAllOverlayIDs() {
@@ -56,6 +58,7 @@ Filter::sptr FilterFactory::createFilter(QString id, Module::sptr predecessor) {
     if (id == RescaleFilter::kFilterID) { return RescaleFilter::sptr(new RescaleFilter(predecessor)); }
     if (id == RGBChannelFilter::kFilterID) { return RGBChannelFilter::sptr(new RGBChannelFilter(predecessor)); }
     if (id == TimeshiftFilter::kFilterID) { return TimeshiftFilter::sptr(new TimeshiftFilter(predecessor)); }
+    if (id == InvertFilter::kFilterID) { return InvertFilter::sptr(new InvertFilter(predecessor)); }
 
     if (id == HeatmapOverlay::kFilterID) {
         throw IllegalArgumentException("HeatmapOverlay needs a PixelDiff to get created.");

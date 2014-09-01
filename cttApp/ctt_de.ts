@@ -6,7 +6,7 @@
     <message>
         <location filename="../ctt/BlurFilter.cpp" line="18"/>
         <source>filter_blur</source>
-        <translation type="unfinished">Weichzeichnen</translation>
+        <translation>Weichzeichnen</translation>
     </message>
     <message>
         <location filename="../ctt/CoffeeFilter.cpp" line="18"/>
@@ -42,6 +42,11 @@
         <location filename="../ctt/TimeshiftFilter.cpp" line="14"/>
         <source>filter_timeshift</source>
         <translation>Zeitsprung</translation>
+    </message>
+    <message>
+        <location filename="../ctt/InvertFilter.cpp" line="18"/>
+        <source>filter_invert</source>
+        <translation>Farben invertieren</translation>
     </message>
 </context>
 <context>
@@ -206,7 +211,7 @@
 <context>
     <name>view::AnalysingOrderingWidget</name>
     <message>
-        <location filename="../ctt/AnalysingOrderingWidget.cpp" line="91"/>
+        <location filename="../ctt/AnalysingOrderingWidget.cpp" line="84"/>
         <source>VIDEOS_TO_SELECT</source>
         <translation>Videos auswählen</translation>
     </message>
@@ -423,7 +428,7 @@
     <message>
         <location filename="../ctt/ThumbnailListWidget.cpp" line="101"/>
         <source> FRAMES</source>
-        <translation type="unfinished"> Frames</translation>
+        <translation> Frames</translation>
     </message>
     <message>
         <location filename="../ctt/ThumbnailListWidget.cpp" line="105"/>

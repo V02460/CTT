@@ -43,6 +43,11 @@
         <source>filter_timeshift</source>
         <translation>Timeshift</translation>
     </message>
+    <message>
+        <location filename="../ctt/InvertFilter.cpp" line="18"/>
+        <source>filter_invert</source>
+        <translation>Invert colors</translation>
+    </message>
 </context>
 <context>
     <name>FrameDiff</name>
@@ -206,7 +211,7 @@
 <context>
     <name>view::AnalysingOrderingWidget</name>
     <message>
-        <location filename="../ctt/AnalysingOrderingWidget.cpp" line="91"/>
+        <location filename="../ctt/AnalysingOrderingWidget.cpp" line="84"/>
         <source>VIDEOS_TO_SELECT</source>
         <translation>Select Videos</translation>
     </message>
