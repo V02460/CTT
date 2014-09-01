@@ -38,17 +38,15 @@ public:
      */
     void unsubscribe(const Observer *observer);
 
+	/**
+	 * this calls the update routine on all Observers observing this Observable.
+	 */
+	void changed();
+
 protected:
 	QList<Observer*> observers;
 
 	Observable() : observers() {}
-
-    /**
-     * this calls the update routine on all Observers observing this Observable.
-     *
-     */
-    void changed();
-
 };
 
 }  // namespace model

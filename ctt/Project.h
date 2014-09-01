@@ -18,7 +18,7 @@ namespace project {
 /**
  * The project contains all savable objects that already exist in an empty project.
  */
-class Project : public ::model::Observable {
+class Project {
 
 public:
     typedef QScopedPointer<Project> uptr;
@@ -69,7 +69,7 @@ public:
 
 	void clear();
 
-	void everythingChanged();
+	void changed();
 
 	/**
 	 * Returns the one instance this class can have.

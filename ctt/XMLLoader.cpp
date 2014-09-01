@@ -262,7 +262,7 @@ void XMLLoader::restore() {
 		}
 		element->restore(memento);
 	}
-	Project::getInstance()->everythingChanged();
+	Project::getInstance()->changed();
 }
 
 XMLLoader *XMLLoader::getInstance() {
