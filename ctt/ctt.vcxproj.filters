@@ -1298,5 +1298,8 @@
     <None Include="Shader\Default\Default.vs">
       <Filter>Shader Files\Default</Filter>
     </None>
+    <Image Include="Shader\Overlay\partitions.png">
+      <Filter>Shader Files\Overlay</Filter>
+    </Image>
   </ItemGroup>
 </Project>
