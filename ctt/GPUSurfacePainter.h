@@ -6,6 +6,7 @@
 #include <QOpenGLShaderProgram>
 #include <QSize>
 #include <QOpenGLFunctions>
+#include <QColor>
 
 #include "Surface.h"
 #include "VertexAttribute.h"
@@ -64,6 +65,8 @@ public:
      * Executes the set up operations by executing the shader.
      */
     virtual ::model::Surface::sptr run();
+
+    void fill(QColor color);
 protected:
     QSharedPointer<QOpenGLContext> getContext();
     ::model::Surface::sptr getTargetTexture();

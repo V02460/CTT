@@ -28,5 +28,7 @@
         <file>Shader/Overlay/Macroblock.vs</file>
         <file>Shader/Overlay/Macroblock.fs</file>
         <file>Shader/Filter/Invert.fs</file>
+        <file>Shader/VideoWidget/VideoWidget.fs</file>
+        <file>Shader/VideoWidget/VideoWidget.vs</file>
     </qresource>
 </RCC>

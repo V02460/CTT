@@ -9,6 +9,7 @@
 #include "Observer.h"
 #include "VideoScrubber.h"
 #include "Surface.h"
+#include "VertexAttribute.h"
 
 namespace view {
 
@@ -16,7 +17,7 @@ namespace view {
  * The VideoWidget is responsible for showing a concrete video frame.
  * Therefore it registers itself at a VideoScrubber and displays the frame provided by it.
  */
-	class VideoWidget : public QWindow, public QOpenGLFunctions, ::model::Observer {
+	class VideoWidget : public QWindow, public ::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<VideoWidget> uptr;
@@ -30,9 +31,6 @@ public:
      * @param scrubber The VideoScrubber to register at and which provided the video frames.
      */
 	VideoWidget(::model::player::VideoScrubber::sptr scrubber, QWindow *parent = 0);
-
-	//TODO Testkonstruktor entfernen
-	VideoWidget(::model::frame::Frame::sptr renderedFrame, QWindow *parent = 0);
 
     /**
      * Returns the VideoScrubber at which the VideoWidget is registered and where the VideoWidget receives its frames
@@ -49,13 +47,11 @@ public:
 	virtual void update() Q_DECL_OVERRIDE;
 
 private:
-	void initialize();
-
 	void render();
 
-	void adjustViewportCoordinates();
+	//void adjustViewportCoordinates();
 
-    void getVertexPosition(GLfloat *vertices) const;
+    void getVertexPosition(::helper::VertexAttribute *attribute) const;
 
     ::model::player::VideoScrubber::sptr scrubber; /**< The scrubber at which the VideoWidget is registered */
 
@@ -66,9 +62,8 @@ private:
 
     bool isInitialized;
 
-	//TODO Testattribute rausnehmen
-	bool isInSingelFrameTest;
-	model::frame::Frame::sptr testFrame;
+    ::helper::VertexAttribute::sptr positionAttribute;
+    ::helper::VertexAttribute::sptr texcrdAttribute;
 };
 
 }  // namespace view

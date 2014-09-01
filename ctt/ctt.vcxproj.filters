@@ -148,6 +148,9 @@
     <Filter Include="Source Files\Exception">
       <UniqueIdentifier>{af2fafcf-877f-4afc-97b9-c30448ac2a77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader Files\ViedeoWidget">
+      <UniqueIdentifier>{adf42392-1d2e-4a12-aec1-ac1cdbd7e207}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_ctt.cpp">
@@ -1292,6 +1295,12 @@
     </None>
     <None Include="Shader\Filter\Invert.fs">
       <Filter>Shader Files\Filter</Filter>
+    </None>
+    <None Include="Shader\VideoWidget\VideoWidget.fs">
+      <Filter>Shader Files\ViedeoWidget</Filter>
+    </None>
+    <None Include="Shader\VideoWidget\VideoWidget.vs">
+      <Filter>Shader Files\ViedeoWidget</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

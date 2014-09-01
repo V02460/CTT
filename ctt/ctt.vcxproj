@@ -1633,6 +1633,8 @@
     <None Include="Shader\Overlay\heatmap.fs" />
     <None Include="Shader\Overlay\Macroblock.fs" />
     <None Include="Shader\Overlay\Macroblock.vs" />
+    <None Include="Shader\VideoWidget\VideoWidget.fs" />
+    <None Include="Shader\VideoWidget\VideoWidget.vs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Images\big_buck_bunny_01337.png" />
