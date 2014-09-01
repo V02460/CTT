@@ -5,7 +5,7 @@
 
 #include "ModelTests.h"
 // #include "ViewTests.h"
-// #include "ControllerTests.h"
+ #include "ControllerTests.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,9 +13,9 @@ int main(int argc, char *argv[])
 
     TestResult r("");
 
-    r << model::test(argc, argv);
+    r << model::test(argc, argv)
       //<< view::test(argc, argv)
-      //<< controller::test(argc, argv);
+      << controller::test(argc, argv);
 
     r.print("");
 

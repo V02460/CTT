@@ -124,6 +124,12 @@
     <Filter Include="Test Structure\Model\Difference">
       <UniqueIdentifier>{9998622c-f62d-4e43-a5c2-0655ebc2c80c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Test Structure\Controller">
+      <UniqueIdentifier>{440aaa00-927e-4551-8e70-9cc4605fb1e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controller">
+      <UniqueIdentifier>{87adc9d1-f15c-4050-9620-8d8846d8fe3f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_FrameTest.cpp">
@@ -336,6 +342,21 @@
     <ClCompile Include="GeneratedFiles\Release\moc_HSLPixelDiffTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="VideoListControllerTest.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoListControllerTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoListControllerTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="ExtendedVideoListControllerTest.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ExtendedVideoListControllerTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -419,6 +440,12 @@
     <CustomBuild Include="HSLPixelDiffTest.h">
       <Filter>Header Files\Model\Difference</Filter>
     </CustomBuild>
+    <CustomBuild Include="VideoListControllerTest.h">
+      <Filter>Header Files\Controller</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ExtendedVideoListControllerTest.h">
+      <Filter>Header Files\Controller</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CustomTestingMacros.h">
@@ -456,6 +483,9 @@
     </ClInclude>
     <ClInclude Include="ModelDifferenceTests.h">
       <Filter>Test Structure\Model\Difference</Filter>
+    </ClInclude>
+    <ClInclude Include="ControllerTests.h">
+      <Filter>Test Structure\Controller</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
