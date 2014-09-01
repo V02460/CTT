@@ -24,8 +24,8 @@ public:
 		               ::controller::FilterController::sptr filterController,
 					   QWidget *parent);
 
-	virtual QString getIdentifier() const Q_DECL_OVERRIDE;
-	virtual void update();
+	virtual QLabel* getIdentifier() const Q_DECL_OVERRIDE;
+	virtual void update() Q_DECL_OVERRIDE;
 
 public slots:
 	void changeFilterParam(::model::filter::FilterParam::sptr newParam);
@@ -44,6 +44,8 @@ private:
 
 	::model::filter::Filter::sptr filter;
 	QList<FilterParamItem::sptr> filterParams;
+
+	QLabel* identifierLabel;
 };
 
 } // namespace view

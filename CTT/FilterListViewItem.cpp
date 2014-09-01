@@ -14,6 +14,7 @@ FilterListViewItem::FilterListViewItem(Filter::sptr filter,
 									   QWidget *parent) : AbstractListViewItem(parent),
 									                      filter(filter),
 									                      filterParams() {
+	identifierLabel = new QLabel(filter->getName());
 	setColumnCount(2);
 	setRowCount(filter->getParams().size());
 	for each (FilterParam::sptr param in filter->getParams()) {
@@ -29,8 +30,8 @@ FilterListViewItem::FilterListViewItem(Filter::sptr filter,
 	setupUi();
 }
 
-QString FilterListViewItem::getIdentifier() const {
-	return filter->getName();
+QLabel* FilterListViewItem::getIdentifier() const {
+	return identifierLabel;
 }
 
 void FilterListViewItem::changeFilterParam(FilterParam::sptr newParam) {

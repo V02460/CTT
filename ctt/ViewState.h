@@ -5,6 +5,7 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 #include <QObject>
+#include <QColor>
 
 #include "ViewType.h"
 #include "VideoDisplayPolicy.h"
@@ -29,6 +30,8 @@ public:
 	static ViewState* getInstance();
 	const VideoDisplayPolicy* getCurrentVideoDisplayPolicy();
 	ViewType getCurrentViewType();
+
+	static QColor getColorFromIndex(int index);
 
 public slots:
     /**

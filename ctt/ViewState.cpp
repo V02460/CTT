@@ -33,8 +33,18 @@ ViewType ViewState::getCurrentViewType() {
 	return currentView;
 }
 
-ViewState::ViewState() : Observable(), currentView(ViewType::PROCESSING_VIEW) {}
+QColor ViewState::getColorFromIndex(int index) {
+	int hueStep = (index * 10);
+	int hue = hueStep % 360;
+	int saturationStep = ((hueStep / 360) * 16);
+	int saturation = 255 - (saturationStep % 256);
+	int valueStep = (saturationStep / 256) * 16;
+	int value = 255 - ((valueStep % 256));
+
+	return QColor::fromHsv(hue , saturation, value);
+}
+
+ViewState::ViewState() : currentView(ViewType::PROCESSING_VIEW){}
 
 ViewState::uptr ViewState::instance;
-
 }  // namespace view

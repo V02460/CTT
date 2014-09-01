@@ -44,33 +44,6 @@
     <Filter Include="Header Files\Exception">
       <UniqueIdentifier>{29754dee-53d1-4b53-acd4-a18834a29c00}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Model">
-      <UniqueIdentifier>{4dedc1ce-bc59-4b6d-8c0d-8fd7f8640c77}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Filter">
-      <UniqueIdentifier>{89b90527-2e07-4a3d-86e1-84bc0a051451}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Filter\Overlay">
-      <UniqueIdentifier>{71353827-90d5-4f70-96c6-ae7e64a24645}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Frame">
-      <UniqueIdentifier>{85cc062b-59d4-4b6d-b5dc-0e456cfc5205}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Frame\Histogram">
-      <UniqueIdentifier>{1ff31363-c06c-436e-b47b-7d65993e62e9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Video">
-      <UniqueIdentifier>{5671bac6-9ae7-4c3a-ab77-fa7b3deafedb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Difference">
-      <UniqueIdentifier>{bcb2145a-a009-4132-aeae-de5d3bb1b16b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Saveable">
-      <UniqueIdentifier>{25594692-751f-4db9-99fc-f8df7825e7ef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Player">
-      <UniqueIdentifier>{10a7901b-c1a8-4e9a-994b-43c11d4f69ab}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Helper">
       <UniqueIdentifier>{e30c80ac-f317-4573-a9a5-e7d2291aa5c5}</UniqueIdentifier>
     </Filter>
@@ -148,6 +121,33 @@
     <Filter Include="Source Files\Exception">
       <UniqueIdentifier>{af2fafcf-877f-4afc-97b9-c30448ac2a77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Model">
+      <UniqueIdentifier>{4dedc1ce-bc59-4b6d-8c0d-8fd7f8640c77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Filter">
+      <UniqueIdentifier>{89b90527-2e07-4a3d-86e1-84bc0a051451}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Filter\Overlay">
+      <UniqueIdentifier>{71353827-90d5-4f70-96c6-ae7e64a24645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Frame">
+      <UniqueIdentifier>{85cc062b-59d4-4b6d-b5dc-0e456cfc5205}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Frame\Histogram">
+      <UniqueIdentifier>{1ff31363-c06c-436e-b47b-7d65993e62e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Video">
+      <UniqueIdentifier>{5671bac6-9ae7-4c3a-ab77-fa7b3deafedb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Difference">
+      <UniqueIdentifier>{bcb2145a-a009-4132-aeae-de5d3bb1b16b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Saveable">
+      <UniqueIdentifier>{25594692-751f-4db9-99fc-f8df7825e7ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Player">
+      <UniqueIdentifier>{10a7901b-c1a8-4e9a-994b-43c11d4f69ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_ctt.cpp">
@@ -202,12 +202,6 @@
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_OverlayController.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_ExtendedTimeline.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_ExtendedTimeline.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_MainControlWidget.cpp">
@@ -435,9 +429,6 @@
     <ClCompile Include="DifferenceTimeline.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
-    <ClCompile Include="ExtendedTimeline.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
     <ClCompile Include="FilterListView.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
@@ -579,9 +570,6 @@
     <ClCompile Include="FilterInsertionWidget.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
-    <ClCompile Include="FilterListViewElement.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
     <ClCompile Include="VideoSaver.cpp">
       <Filter>Source Files\Model\Video</Filter>
     </ClCompile>
@@ -646,9 +634,6 @@
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="qcustomplot.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="AnalysingOrderingWidget.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
     <ClCompile Include="GlobalContext.cpp">
@@ -780,6 +765,24 @@
     <ClCompile Include="ExtendedVideoRemovedOperation.cpp">
       <Filter>Source Files\Controller\Operation</Filter>
     </ClCompile>
+    <ClCompile Include="DifferenceListViewItem.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DifferenceListViewItem.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DifferenceListViewItem.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilterTimelineItem.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FilterTimelineItem.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterTimelineItem.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
     <ClCompile Include="AveragePixelDiff.cpp">
       <Filter>Source Files\Model\Difference</Filter>
     </ClCompile>
@@ -787,6 +790,15 @@
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_AnalysingOrderingWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="AnalysingOrderingWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilterTimeline.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FilterTimeline.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
@@ -826,9 +838,6 @@
     </CustomBuild>
     <CustomBuild Include="Observable.h">
       <Filter>Header Files\Model</Filter>
-    </CustomBuild>
-    <CustomBuild Include="ExtendedTimeline.h">
-      <Filter>Header Files\View</Filter>
     </CustomBuild>
     <CustomBuild Include="MainControlWidget.h">
       <Filter>Header Files\View</Filter>
@@ -938,7 +947,19 @@
     <CustomBuild Include="FilterListView.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="DifferenceListViewItem.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilterTimelineItem.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
     <CustomBuild Include="AnalysingOrderingWidget.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="AbstractTimeline.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilterTimeline.h">
       <Filter>Header Files\View</Filter>
     </CustomBuild>
   </ItemGroup>
@@ -1060,16 +1081,10 @@
     <ClInclude Include="FilterIntervalList.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="AbstractTimeline.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
     <ClInclude Include="DifferenceListView.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="DifferenceTimeline.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterTimeline.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="TimelineInterval.h">
@@ -1150,9 +1165,6 @@
     <ClInclude Include="ExtendedVideoListController.h">
       <Filter>Header Files\Controller</Filter>
     </ClInclude>
-    <ClInclude Include="FilterListViewElement.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
     <ClInclude Include="YUVType.h">
       <Filter>Header Files\Model\Video</Filter>
     </ClInclude>
@@ -1175,6 +1187,9 @@
       <Filter>Header Files\Controller\Operation</Filter>
     </ClInclude>
     <ClInclude Include="AveragePixelDiff.h">
+      <Filter>Header Files\Model\Difference</Filter>
+    </ClInclude>
+    <ClInclude Include="YUVPixelDiff.h">
       <Filter>Header Files\Model\Difference</Filter>
     </ClInclude>
   </ItemGroup>

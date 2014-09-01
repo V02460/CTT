@@ -29,7 +29,14 @@ namespace controller {
 		player->previousFrame();
 	}
 
-	void PlayerController::currentFrameChanged(int frameNumber) {
+	void PlayerController::currentFrameChanged(unsigned int frameNumber) {
+		if (frameNumber >= player->getVideoLength()) {
+			throw IllegalArgumentException("Frame number" +
+										   QString::number(frameNumber) +
+										   "was requested but only " +
+										   QString::number(player->getVideoLength()) +
+										   "are available.");
+		}
 		player->jumpToFrameNr(static_cast<unsigned int>(frameNumber));
 	}
 

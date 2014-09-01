@@ -12,6 +12,7 @@
 #include "VideoWidget.h"
 #include "HistogramWidget.h"
 #include "FrameMetadataWidget.h"
+#include "AnalysingOrderingWidget.h"
 
 namespace view {
 /**
@@ -26,7 +27,7 @@ public:
     typedef QWeakPointer<VideoAnalysingWidget> wptr;
 
 	VideoAnalysingWidget(::controller::OverlayController::sptr overlayController,
-		::model::player::VideoScrubber::sptr scrubber, QWidget *parent = 0);
+		::model::player::VideoScrubber::sptr scrubber, AnalysingOrderingWidget *orderingWidget);
 
 	::model::player::VideoScrubber::sptr getVideoScrubber();
 public slots:
@@ -44,13 +45,14 @@ signals:
      */
 	void overlayAdded(QString id);
 
-	void overlayAdded(QString id, ::model::video::Video::sptr diffVideo);
+	void overlayAdded(QString id, ::model::filter::FilteredVideo::sptr video1, ::model::filter::FilteredVideo::sptr video2);
 
 	void overlayRemoved(int index);
 private:
 	void setupUi();
 
 	::controller::OverlayController::sptr overlayController;
+	AnalysingOrderingWidget *orderingWidget;
     QComboBox *comboboxOverlay; /**< The combobox to choose the active overlay */
     VideoWidget *videoWidget; /**< The VideoWidget where the video actually is displayed */
     HistogramWidget *histWidget; /**< The HistogramWidget which shows the histograms for the current frame */

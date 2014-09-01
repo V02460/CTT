@@ -4,52 +4,41 @@
 #include "VideoScrubber.h"
 
 namespace controller {
-namespace operation {
+	namespace operation {
 
-using ::model::video::Video;
-using ::model::saveable::SaveableList;
-using ::model::filter::FilteredVideo;
-using ::model::player::Player;
-using ::model::player::VideoScrubber;
+		using ::model::video::Video;
+		using ::model::saveable::SaveableList;
+		using ::model::filter::FilteredVideo;
+		using ::model::player::Player;
+		using ::model::player::VideoScrubber;
 
-ExtendedVideoAddedOperation::ExtendedVideoAddedOperation(SaveableList<Player>::sptr playerList,
-			                                             FilteredVideo::sptr video1,
-														 FilteredVideo::sptr video2,
-														 SaveableList<FilteredVideo>::sptr videoList,
-														 SaveableList<FilteredVideo>::sptr filteredVideos)
-	    : playerList(playerList),
-		  video1(video1),
-		  video2(video2),
-		  videoList(videoList),
-		  filteredVideos(filteredVideos),
-		  index(videoList->getSize()),
-		  playerListMemento(playerList->getMemento()),
-		  videoListMemento(videoList->getMemento()),
-		  filteredVideosMemento(filteredVideos->getMemento()) {}
+		ExtendedVideoAddedOperation::ExtendedVideoAddedOperation(SaveableList<Player>::sptr playerList, FilteredVideo::sptr video1, FilteredVideo::sptr video2, 
+			SaveableList<FilteredVideo>::sptr videoList, SaveableList<FilteredVideo>::sptr filteredVideos) : video1(video1), 
+			video2(video2), videoList(videoList), filteredVideos(filteredVideos), index(videoList->getSize()){
 
-void ExtendedVideoAddedOperation::doOperation() {
-	double fps = video1->getMetadata().getFPS();
+		}
 
-	videoList->insert(index, video1);
-	filteredVideos->insert(index, video2);	
+		void ExtendedVideoAddedOperation::doOperation() {
+			double fps = video1->getMetadata().getFPS();
 
-	VideoScrubber::sptr scrub1(new VideoScrubber(video1));
-	VideoScrubber::sptr scrub2(new VideoScrubber(video2));
-	Player *player = new Player(fps);
-	player->addScrubber(scrub1, 0);
-	player->addScrubber(scrub2, 1);
+			videoList->insert(index, video1);
+			filteredVideos->insert(index, video2);	
 
-	playerList->insert(index, QSharedPointer<Player>(player));
-}
+			VideoScrubber::sptr scrub1(new VideoScrubber(video1));
+			VideoScrubber::sptr scrub2(new VideoScrubber(video2));
+			Player player(fps);
+			player.addScrubber(scrub1, 0);
+			player.addScrubber(scrub2, 1);
 
-void ExtendedVideoAddedOperation::undoOperation() {
-	videoList->restore(videoListMemento);
-	filteredVideos->restore(filteredVideosMemento);
-	playerList->restore(playerListMemento);
-	videoList->changed();
-	filteredVideos->changed();
-	playerList->changed();
-}
+			playerList->insert(index, QSharedPointer<Player>(&player));
 
-}  // namespace operation
+		}
+
+		void ExtendedVideoAddedOperation::undoOperation() {
+			videoList->remove(index);
+			filteredVideos->remove(index);
+			playerList->remove(index);
+		}
+
+	}  // namespace operation
 }  // namespace controller

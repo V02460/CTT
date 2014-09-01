@@ -4,6 +4,7 @@
 #include <QSplitter>
 #include "FilterController.h"
 #include "ExtendedVideoListController.h"
+#include "ViewState.h"
 
 using ::model::saveable::SaveableList;
 using ::model::player::Player;
