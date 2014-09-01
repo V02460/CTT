@@ -4,6 +4,7 @@
 #include "TestResult.h"
 
 #include "VideoListControllerTest.h"
+#include "ExtendedVideoListControllerTest.h"
 
 //#include "ModelFilterTests.h"
 
@@ -13,9 +14,10 @@ static TestResult test(int argc, char *argv[]) {
     TestResult r("controller");
 
 	VideoListControllerTest videoListControllerTest;
+	ExtendedVideoListControllerTest extendedVideoListControllerTest;
 
-	r << TestResult("VideoListControllerTest", QTest::qExec(&videoListControllerTest, argc, argv));
-
+	r << TestResult("VideoListControllerTest", QTest::qExec(&videoListControllerTest, argc, argv))
+      << TestResult("ExtendedVideoListControllerTest", QTest::qExec(&extendedVideoListControllerTest, argc, argv));
     //r << filter::test(argc, argv);
 
     return r;
