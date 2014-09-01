@@ -795,6 +795,12 @@
     <ClCompile Include="AnalysingOrderingWidget.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilterTimeline.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FilterTimeline.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -947,10 +953,13 @@
     <CustomBuild Include="FilterTimelineItem.h">
       <Filter>Header Files\View</Filter>
     </CustomBuild>
-    <CustomBuild Include="FilterTimeline.h">
+    <CustomBuild Include="AnalysingOrderingWidget.h">
       <Filter>Header Files\View</Filter>
     </CustomBuild>
-    <CustomBuild Include="AnalysingOrderingWidget.h">
+    <CustomBuild Include="AbstractTimeline.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilterTimeline.h">
       <Filter>Header Files\View</Filter>
     </CustomBuild>
   </ItemGroup>
@@ -1071,9 +1080,6 @@
     </ClInclude>
     <ClInclude Include="FilterIntervalList.h">
       <Filter>Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="AbstractTimeline.h">
-      <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="DifferenceListView.h">
       <Filter>Header Files\View</Filter>

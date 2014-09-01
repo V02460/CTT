@@ -15,12 +15,15 @@ MainController::MainController() : currentSavePath(/* TODO standart path here */
 
 void MainController::saveClicked() {
 	if (currentSavePath == "") {
-		// TODO set current save path
+		emit requestSavePath();
+	} else {
+		saveAsClicked(currentSavePath, currentSaveFileType);
 	}
-	saveAsClicked(currentSavePath, currentSaveFileType);
 }
 
 void MainController::saveAsClicked(QString path, SaveFileType fileType) {
+	currentSavePath = path;
+
 	if (OperationList::getInstance()->hasSaveableChanges()) {
 		switch (fileType) {
 		case SaveFileType::XML: XMLSaver::getInstance()->save(path); break;

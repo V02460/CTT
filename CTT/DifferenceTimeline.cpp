@@ -39,7 +39,7 @@ namespace view {
 
 	void DifferenceTimeline::updateDifferences() {
 		for (int i = 0; i < differences->getSize(); i++) {
-			for (int j = 0; j < differences->get(i)->getFrameCount(); j++) {
+			for (int j = 0; j < static_cast<int>(differences->get(i)->getFrameCount()); j++) {
 
 			}
 		}
