@@ -80,6 +80,7 @@ public:
 		blurFilter,
 		coffeeFilter,
 		greyscaleFilter,
+        invertFilter,
 		mixFilter,
 		noiseFilter,
 		overlay,

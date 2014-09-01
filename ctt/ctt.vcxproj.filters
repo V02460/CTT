@@ -792,6 +792,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_AnalysingOrderingWidget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="InvertFilter.cpp">
+      <Filter>Source Files\Model\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_InvertFilter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_InvertFilter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -943,6 +952,9 @@
     </CustomBuild>
     <CustomBuild Include="AnalysingOrderingWidget.h">
       <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="InvertFilter.h">
+      <Filter>Header Files\Model\Filter</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -1277,6 +1289,9 @@
     </None>
     <None Include="..\cttApp\ctt_en.ts">
       <Filter>Lokalisierungs Dateien</Filter>
+    </None>
+    <None Include="Shader\Filter\Invert.fs">
+      <Filter>Shader Files\Filter</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

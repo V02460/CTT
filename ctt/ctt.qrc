@@ -27,5 +27,6 @@
         <file>Shader/Overlay/partitions.png</file>
         <file>Shader/Overlay/Macroblock.vs</file>
         <file>Shader/Overlay/Macroblock.fs</file>
+        <file>Shader/Filter/Invert.fs</file>
     </qresource>
 </RCC>
