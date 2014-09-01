@@ -25,7 +25,7 @@ public:
 					   QWidget *parent);
 
 	virtual QString getIdentifier() const Q_DECL_OVERRIDE;
-	virtual void update();
+	virtual void update() Q_DECL_OVERRIDE;
 
 public slots:
 	void changeFilterParam(::model::filter::FilterParam::sptr newParam);
