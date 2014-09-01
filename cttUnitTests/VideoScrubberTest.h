@@ -2,7 +2,6 @@
 #define _VIDEOSRUBBERTEST_H
 
 #include <QtTest/QtTest>
-#include "QOffscreenSurface"
 
 class VideoScrubberTest : public QObject 
 {
@@ -16,7 +15,6 @@ private slots:
 	void saveRestore();
 
 private:
-	QOffscreenSurface surface;
 	QSharedPointer<QOpenGLContext> testContext;
 };
 

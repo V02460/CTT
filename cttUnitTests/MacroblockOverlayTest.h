@@ -3,7 +3,6 @@
 
 #include <QtTest/QtTest>
 #include <QObject>
-#include <QOffscreenSurface>
 #include "YUVDataVideo.h"
 
 class MacroblockOverlayTest : public QObject {
@@ -20,7 +19,6 @@ public:
 
 private:
     QSharedPointer<QOpenGLContext> testContext;
-    QOffscreenSurface surface;
     ::model::video::YUVDataVideo::sptr video;
     ::model::video::YUVDataVideo::sptr noMetadataVideo;
 };

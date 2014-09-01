@@ -2,18 +2,22 @@
 
 #include "CustomTestingMacros.h"
 #include "VideoMetadata.h"
-#include "IllegalArgumentException.h"
-#include "FileNotFoundException.h"
 #include "YUVDataVideo.h"
 #include "Frame.h"
-#include "..\CTT\GlobalContext.h"
-#include "..\ctt\MacroblockType.h"
-#include "..\CTT\OpenGLException.h"
+#include "GlobalContext.h"
+#include "MacroblockType.h"
+#include "GlobalContext.h"
 
-using namespace model::video;
-using namespace exception;
+#include "OpenGLException.h"
+#include "IllegalArgumentException.h"
+#include "FileNotFoundException.h"
+
 using model::frame::Frame;
 using model::frame::MacroblockType;
+using model::video::YUVDataVideo;
+using model::video::VideoMetadata;
+using model::GlobalContext;
+using exception::FileNotFoundException;
 
 
 void YUVDataVideoTest::dummyTest()
@@ -47,10 +51,7 @@ void YUVDataVideoTest::test444()
 
 void YUVDataVideoTest::init()
 {
-	surface.create();
-	testContext.reset(new QOpenGLContext());
-	testContext->create();
-	testContext->makeCurrent(&surface);
+	testContext = GlobalContext::get();
 }
 
 void YUVDataVideoTest::test422()

@@ -2,7 +2,6 @@
 #include "..\CTT\Player.h"
 #include <QtTest/QtTest>
 #include <QObject>
-#include <QOffscreenSurface>
 #include <Qtest>
 
 using model::player::Player;
@@ -21,7 +20,6 @@ class PlayerTest :
 	void saveRestore();
 
 private:
-	QOffscreenSurface surface;
 	QSharedPointer<QOpenGLContext> testContext;
 
 };

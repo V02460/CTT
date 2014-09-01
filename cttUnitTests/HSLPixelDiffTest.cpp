@@ -1,19 +1,16 @@
 #include "HSLPixelDiffTest.h"
 
 #include "HSLPixelDiff.h"
+#include "GlobalContext.h"
 
 namespace model {
 namespace difference {
 
 using model::video::YUVDataVideo;
+using model::GlobalContext;
 
 void HSLPixelDiffTest::initTestCase() {
-    testContext.reset(new QOpenGLContext());
-    testContext->create();
-
-    surface.create();
-
-    testContext->makeCurrent(&surface);
+    testContext = GlobalContext::get();
 
     video1.reset(new YUVDataVideo("Resources/Videos/YUV422/squirrel-720x576-422P.yuv",
         QSize(720, 576),

@@ -3,7 +3,6 @@
 
 #include <QtTest/QtTest>
 #include <QObject>
-#include <QOffscreenSurface>
 #include "YUVDataVideo.h"
 
 class MixFilterTest : public QObject {
@@ -20,7 +19,6 @@ public:
 
 private:
     QSharedPointer<QOpenGLContext> testContext;
-    QOffscreenSurface surface;
     ::model::video::YUVDataVideo::sptr video1;
     ::model::video::YUVDataVideo::sptr video2;
 };

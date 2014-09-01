@@ -436,9 +436,6 @@
     <ClInclude Include="CustomTestingMacros.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TestResult.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ModelFrameTests.h">
       <Filter>Test Structure\Model\Frame</Filter>
     </ClInclude>
@@ -468,6 +465,9 @@
     </ClInclude>
     <ClInclude Include="ModelDifferenceTests.h">
       <Filter>Test Structure\Model\Difference</Filter>
+    </ClInclude>
+    <ClInclude Include="TestResult.h">
+      <Filter>Test Structure</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

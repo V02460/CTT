@@ -2,7 +2,6 @@
 #define _FILTEREDVIDEOTEST_H
 
 #include <QtTest/QtTest>
-#include <qoffscreensurface.h>
 
 class FilteredVideoTest : public QObject
 {
@@ -15,7 +14,6 @@ private slots:
 	void saveRestore();
 
 private:
-	QOffscreenSurface surface;
 	QSharedPointer<QOpenGLContext> testContext;
 };
 

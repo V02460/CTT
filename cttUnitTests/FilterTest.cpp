@@ -1,17 +1,16 @@
 #include "FilterTest.h"
 
-#include "../ctt/Frame.h"
+#include "Frame.h"
+#include "GlobalContext.h"
 
 namespace model {
 namespace filter {
 
 using ::model::frame::Frame;
+using ::model::GlobalContext;
 
 void FilterTest::initTestCase() {
-    surface.create();
-    testContext = QSharedPointer<QOpenGLContext>(new QOpenGLContext());
-    testContext->create();
-    QVERIFY2(testContext->makeCurrent(&surface), "Couldn't initialize OGL Context.");
+    testContext = GlobalContext::get();
 
     testImage.load(":/cttUnitTests/BigBuckBunny.png");
 

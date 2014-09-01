@@ -1,14 +1,14 @@
 #include "FileVideoTest.h"
+
 #include "CustomTestingMacros.h"
-#include "..\CTT\YUVDataVideo.h"
-#include "qoffscreensurface.h"
+#include "YUVDataVideo.h"
+#include "GlobalContext.h"
+
+using ::model::GlobalContext;
 
 void FileVideoTest::initTestCase()
 {
-	surface.create();
-	testContext = QSharedPointer<QOpenGLContext>(new QOpenGLContext());
-	testContext->create();
-	QVERIFY2(testContext->makeCurrent(&surface), "Couldn't initialize OGL Context.");
+	testContext = GlobalContext::get();
 }
 
 void FileVideoTest::test()

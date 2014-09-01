@@ -1,7 +1,6 @@
 #include <QObject>
 #include <QtTest/QtTest>
-#include <qoffscreensurface.h>
-#include <qopenglcontext.h>
+#include <QOpenGLContext>
 
 
 class YUVDataVideoTest : public QObject {
@@ -20,6 +19,5 @@ class YUVDataVideoTest : public QObject {
 //	void macroBlockMetadata(); 
 
 private:
-	QOffscreenSurface surface;
 	QSharedPointer<QOpenGLContext> testContext;
 };

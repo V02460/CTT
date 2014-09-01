@@ -1,17 +1,19 @@
 #include "FrameTest.h"
 
-#include <QOffscreenSurface>
 #include <QDebug>
 
 #include "Frame.h"
 #include "CustomTestingMacros.h"
+#include "GlobalContext.h"
+
 #include "IllegalArgumentException.h"
 
-using namespace model::frame;
-using namespace exception;
+using model::frame::Frame;
+using model::frame::FrameMetadata;
+using model::GlobalContext;
+using exception::IllegalArgumentException;
 
-void FrameTest::withoutImageInvalid()
-{
+void FrameTest::withoutImageInvalid() {
 	QSize testSize(10, 0);
 	FrameMetadata testMetadata(testSize);
 	QEXPECT_EXCEPTION(Frame testframe(testContext, testMetadata), IllegalArgumentException);
@@ -21,8 +23,7 @@ void FrameTest::withoutImageInvalid()
 	QEXPECT_EXCEPTION(Frame testframe(testContext, testMetadata2), IllegalArgumentException);	
 }
 
-void FrameTest::withImageInvalid()
-{
+void FrameTest::withImageInvalid() {
 	QImage testImage(":/cttUnitTests/BigBuckBunny.png");
 
 	if (testImage.isNull()) {
@@ -47,11 +48,8 @@ void FrameTest::withImageInvalid()
 
 void FrameTest::initTestCase()
 {
-	surface.create();
-	testContext = QSharedPointer<QOpenGLContext>(new QOpenGLContext());
-	testContext->create();
-	QVERIFY2(testContext->makeCurrent(&surface), "Couldn't initialize OGL Context.");
-
+    testContext = GlobalContext::get();
+	
 	testImage.load(":/cttUnitTests/BigBuckBunny.png");
 
 	if (testImage.isNull()) {

@@ -4,18 +4,15 @@
 
 #include "InvertFilter.h"
 #include "FilterParam.h"
+#include "GlobalContext.h"
 
 using model::filter::InvertFilter;
 using model::video::YUVDataVideo;
 using model::filter::FilterParam;
+using model::GlobalContext;
 
 void InvertFilterTest::initTestCase() {
-    testContext.reset(new QOpenGLContext());
-    testContext->create();
-
-    surface.create();
-
-    testContext->makeCurrent(&surface);
+    testContext = GlobalContext::get();
 
     video.reset(new YUVDataVideo("Resources/Videos/YUV422/squirrel-720x576-422P.yuv",
         QSize(720, 576),
