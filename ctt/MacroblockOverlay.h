@@ -68,6 +68,7 @@ private:
 
     private:
         QColor getMacroblockColor(::model::frame::MacroblockType type) const;
+        QRectF getPartitionTextureCoordinates(::model::frame::MacroblockType type) const;
 
         void buildBuffers(QVector<QVector<::model::frame::MacroblockType>> mbTypes) const;
 
@@ -77,9 +78,14 @@ private:
 
         // buffer builder functionality
         void startBuilder() const;
+        // position
         void append(QPointF position) const;
         void append(QRectF quad) const;
+        // color
         void append(QColor color, unsigned int count = 1) const;
+        // texture coordinates
+        void appendTexcrd(QPointF texcrd) const;
+        void appendQuadCoordinates(QRectF texcrd) const;
         void indexRestart() const;
 
         mutable bool doIndexRestartPosition;
@@ -87,6 +93,7 @@ private:
         mutable bool doIndexRestartTexcrd;
         mutable QPointF lastPosition;
         mutable QColor lastColor;
+        mutable QPointF lastTexcrd;
     };
 };
 

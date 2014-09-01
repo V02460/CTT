@@ -49,7 +49,8 @@ bool MacroblockOverlay::uses(const ::model::Module &module) const {
 MacroblockOverlay::Macroblocks::Macroblocks(Module::sptr predecessor)
     : Filter(predecessor)
     , doIndexRestartPosition(false)
-    , doIndexRestartColor(false) {
+    , doIndexRestartColor(false)
+    , doIndexRestartTexcrd(false) {
 
     positionAttribute.reset(new VertexAttribute(0, 0));
     colorAttribute.reset(new VertexAttribute(0, 0));
@@ -64,6 +65,8 @@ QColor MacroblockOverlay::Macroblocks::getMacroblockColor(MacroblockType type) c
 
     switch (type) {
         case MacroblockType::INTER_SKIP:
+            blockColor.setRgb(0, 0, 128);
+            break;
         case MacroblockType::INTER_16X16:
         case MacroblockType::INTER_16X8:
         case MacroblockType::INTER_8X16:
@@ -91,6 +94,39 @@ QColor MacroblockOverlay::Macroblocks::getMacroblockColor(MacroblockType type) c
     return blockColor;
 }
 
+QRectF MacroblockOverlay::Macroblocks::getPartitionTextureCoordinates(MacroblockType type) const {
+    // coordinates reference 'Shader/Overlay/partitions.png'
+
+    switch (type) {
+        case MacroblockType::INTER_SKIP:
+        case MacroblockType::INTER_16X16:
+        case MacroblockType::INTRA_16X16:
+        // these can't be displayed on a 16x16 grid:
+        case MacroblockType::INTER_8X4:
+        case MacroblockType::INTER_4X8:
+        case MacroblockType::INTER_4X4:
+        case MacroblockType::INTER_8X8_OR_BELOW:
+        case MacroblockType::INTRA_4X4:
+        case MacroblockType::INTRA_PCM:
+            // no image
+            return QRectF(0, 0.5, 0.5, 0.5); // top left
+        case MacroblockType::INTER_16X8:
+            // horizontal line
+            return QRectF(0, 0, 0.5, 0.5); // bottom left
+        case MacroblockType::INTER_8X16:
+            // vertical line
+            return QRectF(0.5, 0.5, 0.5, 0.5); // top right
+        case MacroblockType::INTER_8X8:
+        case MacroblockType::INTRA_8X8:
+            // cross
+            return QRectF(0.5, 0, 0.5, 0.5); // bottom right
+        case MacroblockType::UNKNOWN:
+        default:
+            // invalid values
+            throw IllegalStateException("An unknown macroblock type was passed.");
+    }
+}
+
 void MacroblockOverlay::Macroblocks::startBuilder() const {
     doIndexRestartPosition = false;
     doIndexRestartColor = false;
@@ -112,6 +148,8 @@ void MacroblockOverlay::Macroblocks::append(QPointF position) const {
         append(position);
     }
 
+    lastPosition = position;
+
     *positionAttribute << position.x()
                        << position.y();
 }
@@ -124,6 +162,8 @@ void MacroblockOverlay::Macroblocks::append(QColor color, unsigned int count) co
         append(color);
     }
 
+    lastColor = color;
+
     for (unsigned int i = 0; i < count; i++) {
         *colorAttribute << color.redF()
                         << color.greenF()
@@ -131,9 +171,31 @@ void MacroblockOverlay::Macroblocks::append(QColor color, unsigned int count) co
     }
 }
 
+void MacroblockOverlay::Macroblocks::appendTexcrd(QPointF texcrd) const {
+    // to isolate from the last row add the last vertex of the old and the first vertex of the new row again
+    if (doIndexRestartTexcrd) {
+        doIndexRestartTexcrd = false;
+        appendTexcrd(lastTexcrd);
+        appendTexcrd(texcrd);
+    }
+
+    lastTexcrd = texcrd;
+
+    *texcrdAttribute << texcrd.x()
+                     << texcrd.y();
+}
+
+void MacroblockOverlay::Macroblocks::appendQuadCoordinates(QRectF texcrd) const {
+    appendTexcrd(texcrd.topLeft());
+    appendTexcrd(texcrd.bottomLeft());
+    appendTexcrd(texcrd.topRight());
+    appendTexcrd(texcrd.bottomRight());
+}
+
 void MacroblockOverlay::Macroblocks::indexRestart() const {
     doIndexRestartPosition = true;
     doIndexRestartColor = true;
+    doIndexRestartTexcrd = true;
 }
 
 void MacroblockOverlay::Macroblocks::buildBuffers(QVector<QVector<MacroblockType>> mbTypes) const {
@@ -159,12 +221,18 @@ void MacroblockOverlay::Macroblocks::buildBuffers(QVector<QVector<MacroblockType
         for (int x = 0; x < mbDimensions.width(); x++) {
             MacroblockType mbType = row[x];
 
+            // color
             QColor color = getMacroblockColor(mbType);
             append(color, 4);
 
+            // position
             QPointF topLeft(x * relativeMbSize.width(),
                             y * relativeMbSize.height());
             append(QRectF(topLeft, relativeMbSize));
+
+            // texture coordinates
+            QRectF texcrdQuad = getPartitionTextureCoordinates(mbType);
+            appendQuadCoordinates(texcrdQuad);
 
             indexRestart();
         }
@@ -191,6 +259,8 @@ Frame::sptr MacroblockOverlay::Macroblocks::getFrame(unsigned int frameNumber) c
     painter.setValue("aPosition", positionAttribute);
     painter.setValue("aColor", colorAttribute);
     painter.setValue("aTexcrd", texcrdAttribute);
+
+    painter.setTargetTexture(Surface::sptr(new Surface(sourceFrame->getContext(), sourceFrame->getSize())));
 
     return Frame::sptr(new Frame(painter.run(), metadata));
 }

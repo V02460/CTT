@@ -34,7 +34,11 @@ const QString YUVDataVideo::yuvTypeStringId = "yuvtype";
 
 QVector<QRgb> YUVDataVideo::colorTable;
 
-YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QSize resolution, double framerate, YUVType type, QSharedPointer<QOpenGLContext> context)
+YUVDataVideo::YUVDataVideo(QString pathToVideoFile,
+                           QSize resolution,
+                           double framerate,
+                           YUVType type,
+                           QSharedPointer<QOpenGLContext> context)
 	: FileVideo(pathToVideoFile, context)
 	, metadata(resolution, framerate, 1)
 	, pixelsPerFrame(resolution.height() * resolution.width())
@@ -49,16 +53,19 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QSize resolution, double fra
 		break;
 	case YUV422:
 		if ((resolution.width() % 2) != 0) {
-			throw IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV422 format.");
+			throw IllegalArgumentException(
+                "A video with an uneven number of pixels horizontally mustn't be in the YUV422 format.");
 		}
 		chromaSize = pixelsPerFrame / 2;
 		break;
 	case YUV420:
 		if ((resolution.width() % 2) != 0) {
-			throw IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
+			throw IllegalArgumentException(
+                "A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
 		}
 		if ((resolution.height() % 2) != 0) {
-			throw IllegalArgumentException("A video with an uneven number of pixels vertically mustn't be in the YUV420 format.");
+			throw IllegalArgumentException(
+                "A video with an uneven number of pixels vertically mustn't be in the YUV420 format.");
 		}
 		chromaSize = pixelsPerFrame / 4;
 		break;
@@ -93,7 +100,12 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QSize resolution, double fra
 	isDummyFlag = false;
 }
 
-YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, QSize resolution, double framerate, YUVType type, QSharedPointer<QOpenGLContext> context)
+YUVDataVideo::YUVDataVideo(QString pathToVideoFile,
+                           QString pathToMetadataFile,
+                           QSize resolution,
+                           double framerate,
+                           YUVType type,
+                           QSharedPointer<QOpenGLContext> context)
 	: YUVDataVideo(pathToVideoFile, resolution, framerate, type, context)
 
 {
@@ -107,13 +119,18 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, 
 
 	if (((resolution.height() % 16) != 0) || ((resolution.width() % 16) != 0))
 	{
-		throw IllegalArgumentException("The video of the submitted resolution " + QString::number(resolution.width()) + "x" 
-			+ QString::number(resolution.height()) + "can't be divided into 16x16 pixel macroblocks, that means the metadata file containing macroblockmetadata can't make sense");
+		throw IllegalArgumentException(
+            "The video of the submitted resolution " +
+            QString::number(resolution.width()) + "x" + QString::number(resolution.height()) + 
+            "can't be divided into 16x16 pixel macroblocks, "
+            "that means the metadata file containing macroblockmetadata can't make sense");
 	}
 
 	if (((pixelsPerFrame / 256) * metadata.getLength()) != metadataFile.size())
 	{
-		throw IllegalArgumentException("The metadata file at the submitted location doesn't contain information about the exact number of macroblocks in the videofile (assuming 16x16p macroblocks and 1 byte of metadata per macroblock).");
+		throw IllegalArgumentException(
+            "The metadata file at the submitted location doesn't contain information about the exact number of "
+            "macroblocks in the videofile (assuming 16x16p macroblocks and 1 byte of metadata per macroblock).");
 	}
 
 	hasMetadataFile = true;
@@ -158,7 +175,10 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 	QScopedPointer<QByteArray> uChannel;
 	QScopedPointer<QByteArray> vChannel;
 
-	QImage yImage(reinterpret_cast<const uchar*>(yChannel.constData()), getMetadata().getSize().width(), getMetadata().getSize().height(), QImage::Format_Indexed8);
+	QImage yImage(reinterpret_cast<const uchar*>(yChannel.constData()),
+                  getMetadata().getSize().width(),
+                  getMetadata().getSize().height(),
+                  QImage::Format_Indexed8);
 
 	QScopedPointer<QImage> uImage;
 	QScopedPointer<QImage> vImage;
@@ -168,20 +188,38 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 	case YUV444:
 		uChannel.reset(new QByteArray(rawFrame.mid(pixelsPerFrame, pixelsPerFrame)));
 		vChannel.reset(new QByteArray(rawFrame.mid(2 * pixelsPerFrame, pixelsPerFrame)));
-		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel->constData()), getMetadata().getSize().width(), getMetadata().getSize().height(), QImage::Format_Indexed8));
-		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel->constData()), getMetadata().getSize().width(), getMetadata().getSize().height(), QImage::Format_Indexed8));
+		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel->constData()),
+                                getMetadata().getSize().width(),
+                                getMetadata().getSize().height(),
+                                QImage::Format_Indexed8));
+		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel->constData()),
+                                getMetadata().getSize().width(),
+                                getMetadata().getSize().height(),
+                                QImage::Format_Indexed8));
 		break;
 	case YUV422:
 		uChannel.reset(new QByteArray(rawFrame.mid(pixelsPerFrame, pixelsPerFrame / 2)));
 		vChannel.reset(new QByteArray(rawFrame.mid(pixelsPerFrame + (pixelsPerFrame / 2), pixelsPerFrame / 2)));
-		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel->constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height(), QImage::Format_Indexed8));
-		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel->constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height(), QImage::Format_Indexed8));
+		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel->constData()),
+                                getMetadata().getSize().width() / 2,
+                                getMetadata().getSize().height(),
+                                QImage::Format_Indexed8));
+		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel->constData()),
+                                getMetadata().getSize().width() / 2,
+                                getMetadata().getSize().height(),
+                                QImage::Format_Indexed8));
 		break;
 	case YUV420:
 		uChannel.reset(new QByteArray(rawFrame.mid(pixelsPerFrame, pixelsPerFrame / 4)));
 		vChannel.reset(new QByteArray(rawFrame.mid(pixelsPerFrame + (pixelsPerFrame / 4), pixelsPerFrame / 4)));
-		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel->constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height() / 2, QImage::Format_Indexed8));
-		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel->constData()), getMetadata().getSize().width() / 2, getMetadata().getSize().height() / 2, QImage::Format_Indexed8));
+		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel->constData()),
+                                getMetadata().getSize().width() / 2,
+                                getMetadata().getSize().height() / 2,
+                                QImage::Format_Indexed8));
+		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel->constData()),
+                                getMetadata().getSize().width() / 2,
+                                getMetadata().getSize().height() / 2,
+                                QImage::Format_Indexed8));
 		break;
 	default:
 		throw IllegalStateException("YUV type not supported.");
@@ -226,14 +264,18 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 
 	if (hasMetadataFile)
 	{
-		QByteArray rawMetadata = metadataBuffer.mid((frameNumber - firstFrameInMemory) * (pixelsPerFrame / 256), (pixelsPerFrame / 256));
+        QByteArray rawMetadata = metadataBuffer.mid((pixelsPerFrame / 256) * (frameNumber - firstFrameInMemory),
+                                                    (pixelsPerFrame / 256));
+
 		QVector<QVector<MacroblockType>> macroblockTypes(metadata.getSize().height() / 16);
 
 		for (QVector<QVector<MacroblockType>>::iterator i = macroblockTypes.begin(); i != macroblockTypes.end(); i++)
 		{
 			i->resize(metadata.getSize().width() / 16);
 		}
-		//TODO WICHTIG sicherstellen dass das hier in der richtigen reihenfolge läuft, und nicht irgendwie gespiegelt zu den bildaten oder sowas, und das ganze testen natürlich, damit kein out of bounds zeug oder so läuft
+		//TODO WICHTIG sicherstellen dass das hier in der richtigen reihenfolge läuft
+        //             und nicht irgendwie gespiegelt zu den bildaten oder sowas, und das ganze testen natürlich,
+        //             damit kein out of bounds zeug oder so läuft
 		for (unsigned int i = 0; i < (pixelsPerFrame / 256); i++)
 		{
 			int x = i / (metadata.getSize().width() / 16);
@@ -374,16 +416,19 @@ void YUVDataVideo::restore(Memento memento) {
 		break;
 	case YUV422:
 		if ((resolution.width() % 2) != 0) {
-			throw IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV422 format.");
+			throw IllegalArgumentException(
+                "A video with an uneven number of pixels horizontally mustn't be in the YUV422 format.");
 		}
 		chromaSize = pixelsPerFrame / 2;
 		break;
 	case YUV420:
 		if ((resolution.width() % 2) != 0) {
-			throw IllegalArgumentException("A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
+			throw IllegalArgumentException(
+                "A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
 		}
 		if ((resolution.height() % 2) != 0) {
-			throw IllegalArgumentException("A video with an uneven number of pixels vertically mustn't be in the YUV420 format.");
+			throw IllegalArgumentException(
+                "A video with an uneven number of pixels vertically mustn't be in the YUV420 format.");
 		}
 		chromaSize = pixelsPerFrame / 4;
 		break;
@@ -430,13 +475,18 @@ void YUVDataVideo::restore(Memento memento) {
 
 		if (((resolution.height() % 16) != 0) || ((resolution.width() % 16) != 0))
 		{
-			throw IllegalArgumentException("The video of the submitted resolution " + QString::number(resolution.width()) + "x"
-				+ QString::number(resolution.height()) + "can't be divided into 16x16 pixel macroblocks, that means the metadata file containing macroblockmetadata can't make sense");
+			throw IllegalArgumentException(
+                "The video of the submitted resolution " +
+                QString::number(resolution.width()) + "x" + QString::number(resolution.height()) +
+                "can't be divided into 16x16 pixel macroblocks, "
+                "that means the metadata file containing macroblockmetadata can't make sense");
 		}
 
 		if (((pixelsPerFrame / 256) * metadata.getLength()) != metadataFile.size())
 		{
-			throw IllegalArgumentException("The metadata file at the submitted location doesn't contain information about the exact number of macroblocks in the videofile (assuming 16x16p macroblocks and 1 byte of metadata per macroblock).");
+			throw IllegalArgumentException(
+                "The metadata file at the submitted location doesn't contain information about the exact number of "
+                "macroblocks in the videofile (assuming 16x16p macroblocks and 1 byte of metadata per macroblock).");
 		}
 
 		loadMetadata(0);
@@ -458,7 +508,9 @@ void YUVDataVideo::loadVideodata(unsigned int startFrame) const {
 		throw IOException("Couldn't open the video file at \"" + pathToVideoFile + "\".");
 	}
 	if (!videoFile.seek(bytesPerFrame * startFrame)) {
-		throw IOException("Couldn't seek to " + QString::number(bytesPerFrame * startFrame) + " in the video file at \"" + pathToVideoFile + "\".");
+		throw IOException("Couldn't seek to " +
+                          QString::number(bytesPerFrame * startFrame) +
+                          " in the video file at \"" + pathToVideoFile + "\".");
 	}
 
 	unsigned int framesToLoad = numberOfFramesInMemory;
@@ -482,7 +534,9 @@ void YUVDataVideo::loadMetadata(unsigned int startFrame) const {
 		throw IOException("Couldn't open the metadata file at \"" + pathToMetadataFile + "\".");
 	}
 	if (!metadataFile.seek((pixelsPerFrame / 256) * startFrame)) {
-		throw IOException("Couldn't seek to " + QString::number((pixelsPerFrame / 256) * startFrame) + " in the metadata file at \"" + pathToVideoFile + "\".");
+		throw IOException("Couldn't seek to " +
+                          QString::number((pixelsPerFrame / 256) * startFrame) +
+                          " in the metadata file at \"" + pathToVideoFile + "\".");
 	}
 
 	unsigned int framesToLoad = numberOfFramesInMemory;

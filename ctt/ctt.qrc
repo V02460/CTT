@@ -24,5 +24,8 @@
         <file>Shader/Diff/RGBPixelDiff.fs</file>
         <file>Shader/Diff/YUVPixelDiff.fs</file>
         <file>Shader/CompactAverage.fs</file>
+        <file>Shader/Overlay/partitions.png</file>
+        <file>Shader/Overlay/Macroblock.vs</file>
+        <file>Shader/Overlay/Macroblock.fs</file>
     </qresource>
 </RCC>
