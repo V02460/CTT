@@ -42,7 +42,7 @@ public slots:
      * @param path The path to where the Project should be saved.
      * @param fileType The type of file as which the Project should be saved.
      */
-    void saveAsClicked(QString path, project::SaveFileType fileType);
+    void saveAsClicked(QString path, ::controller::project::SaveFileType fileType);
 
     /**
      * Initiates loading an existing Project from a specified location.

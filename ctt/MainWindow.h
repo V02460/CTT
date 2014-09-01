@@ -39,6 +39,9 @@ public slots:
 
 	void menuLoad();
 	void menuSave();
+
+	void menuUndo();
+	void menuRedo();
 signals:
     /**
      * This signal is emitted when the view state is changed.

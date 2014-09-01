@@ -10,6 +10,7 @@
 #include "ViewState.h"
 #include "Video.h"
 #include "SaveFileType.h"
+#include "OperationList.h"
 
 using ::controller::project::Project;
 using ::controller::VideoListController;
@@ -17,6 +18,7 @@ using ::model::saveable::SaveableList;
 using ::model::video::Video;
 using ::controller::MainController;
 using ::controller::project::SaveFileType;
+using ::controller::operation::OperationList;
 
 namespace view {
 	MainWindow::MainWindow() {
@@ -29,6 +31,7 @@ namespace view {
 		AnalysingWidget *analysingView = new AnalysingWidget(project->getVideoList2(), project->getPlayer2(), analysingListController, project->getDiffList(), this);
 
 		centralWidgetLayout = new QStackedLayout();
+		centralWidgetLayout->setContentsMargins(0, 0, 0, 0);
 		centralWidgetLayout->addWidget(processingView);
 		centralWidgetLayout->addWidget(analysingView);
 
@@ -55,7 +58,7 @@ namespace view {
 
 		QAction *loadProject = new QAction(tr("MENUENTRY_LOAD_PROJECT"), file);
 		QObject::connect(loadProject, SIGNAL(triggered(bool)), this, SLOT(menuLoad()));
-		QObject::connect(this, SIGNAL(loadProject(QString)), mainController.data(), SLOT(loadClicked()));
+		QObject::connect(this, SIGNAL(loadProject(QString)), mainController.data(), SLOT(loadClicked(QString)));
 		file->addAction(loadProject);
 
 		file->addSeparator();
@@ -69,16 +72,18 @@ namespace view {
 		QObject::connect(saveProjectAs, SIGNAL(triggered(bool)), this, SLOT(menuSave()));
 		QObject::connect(mainController.data(), SIGNAL(requestSavePath()), this, SLOT(menuSave()));
 		QObject::connect(this, SIGNAL(saveProjectAs(QString, ::controller::project::SaveFileType)), mainController.data(),
-			SLOT(saveAsClicked(QString, project::SaveFileType)));
+			SLOT(saveAsClicked(QString, ::controller::project::SaveFileType)));
 		file->addAction(saveProjectAs);
 
 
 		QMenu *edit = menu->addMenu(tr("MENU_EDIT"));
 
 		QAction *undo = new QAction(tr("MENUENTRY_UNDO"), edit);
+		QObject::connect(undo, SIGNAL(triggered()), this, SLOT(menuUndo()));
 		edit->addAction(undo);
 
 		QAction *redo = new QAction(tr("MENUENTRY_REDO"), edit);
+		QObject::connect(redo, SIGNAL(triggered()), this, SLOT(menuRedo()));
 		edit->addAction(redo);
 
 
@@ -145,6 +150,23 @@ namespace view {
 			}
 
 			emit saveProjectAs(path, SaveFileType::XML);
+		}
+	}
+
+	void MainWindow::menuUndo() {
+		try {
+			OperationList::getInstance()->undoOperation();
+		} catch (IllegalArgumentException e) {
+			//Ignoriere Excpetion und tue nichts
+		}
+	}
+
+	void MainWindow::menuRedo() {
+		try {
+			OperationList::getInstance()->redoOperation();
+		}
+		catch (IllegalArgumentException e) {
+			//Ignoriere Excpetion und tue nichts
 		}
 	}
 }  // namespace view
