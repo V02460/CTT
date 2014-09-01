@@ -32,11 +32,11 @@ void ExtendedVideoAddedOperation::doOperation() {
 
 	VideoScrubber::sptr scrub1(new VideoScrubber(video1));
 	VideoScrubber::sptr scrub2(new VideoScrubber(video2));
-	Player player(fps);
-	player.addScrubber(scrub1, 0);
-	player.addScrubber(scrub2, 1);
+	Player *player = new Player(fps);
+	player->addScrubber(scrub1, 0);
+	player->addScrubber(scrub2, 1);
 
-	playerList->insert(index, QSharedPointer<Player>(&player));
+	playerList->insert(index, QSharedPointer<Player>(player));
 
 }
 
