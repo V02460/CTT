@@ -58,6 +58,8 @@ public slots:
      */
     void newProject();
 
+signals:
+	void requestSavePath();
 private:
     QString currentSavePath;
     project::SaveFileType currentSaveFileType;

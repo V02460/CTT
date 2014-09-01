@@ -37,6 +37,8 @@ public slots:
 	void menuToProcessing();
 	void menuToAnalysing();
 
+	void menuLoad();
+	void menuSave();
 signals:
     /**
      * This signal is emitted when the view state is changed.
@@ -44,6 +46,9 @@ signals:
      * @param newView The identifier of the view state that should be set as active.
      */
     void menuItemViewStateChanged(ViewType newView);
+
+	void loadProject(QString path);
+	void saveProjectAs(QString path, ::controller::project::SaveFileType type);
 
 private:
 	void setupUi();

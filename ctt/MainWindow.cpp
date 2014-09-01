@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 
 #include <QMenu>
+#include <QFileDialog>
 
 #include "Project.h"
 #include "ProcessingWidget.h"
@@ -8,12 +9,14 @@
 #include "VideoListController.h"
 #include "ViewState.h"
 #include "Video.h"
+#include "SaveFileType.h"
 
 using ::controller::project::Project;
 using ::controller::VideoListController;
 using ::model::saveable::SaveableList;
 using ::model::video::Video;
 using ::controller::MainController;
+using ::controller::project::SaveFileType;
 
 namespace view {
 	MainWindow::MainWindow() {
@@ -47,17 +50,26 @@ namespace view {
 		QMenu *file = menu->addMenu(tr("MENU_FILE"));
 		
 		QAction *newProject = new QAction(tr("MENUENTRY_NEW_PROJECT"), file);
+		QObject::connect(newProject, SIGNAL(triggered(bool)), mainController.data(), SLOT(newProject()));
 		file->addAction(newProject);
 
 		QAction *loadProject = new QAction(tr("MENUENTRY_LOAD_PROJECT"), file);
+		QObject::connect(loadProject, SIGNAL(triggered(bool)), this, SLOT(menuLoad()));
+		QObject::connect(this, SIGNAL(loadProject(QString)), mainController.data(), SLOT(loadClicked()));
 		file->addAction(loadProject);
 
 		file->addSeparator();
 
 		QAction *saveProject = new QAction(tr("MENUENTRY_SAVE_PROJECT"), file);
+		QObject::connect(saveProject, SIGNAL(triggered(bool)), mainController.data(), SLOT(saveClicked()));
+
 		file->addAction(saveProject);
 
 		QAction *saveProjectAs = new QAction(tr("MENUENTRY_SAVE_PROJECT_AS"), file);
+		QObject::connect(saveProjectAs, SIGNAL(triggered(bool)), this, SLOT(menuSave()));
+		QObject::connect(mainController.data(), SIGNAL(requestSavePath()), this, SLOT(menuSave()));
+		QObject::connect(this, SIGNAL(saveProjectAs(QString, ::controller::project::SaveFileType)), mainController.data(),
+			SLOT(saveAsClicked(QString, project::SaveFileType)));
 		file->addAction(saveProjectAs);
 
 
@@ -114,5 +126,25 @@ namespace view {
 
 	void MainWindow::menuToAnalysing() {
 		ViewState::getInstance()->changeView(ViewType::ANALYSING_VIEW);
+	}
+
+	void MainWindow::menuLoad() {
+		QString path = QFileDialog::getOpenFileName(this, tr("LOAD_PROJECT"), "", tr("XML_FILTES *.xml"));
+
+		if (path != "") {
+			emit loadProject(path);
+		}
+	}
+
+	void MainWindow::menuSave() {
+		QString path = QFileDialog::getSaveFileName(this, tr("SAVE_PROJECT"), "", tr("XML_FILES *.xml"));
+
+		if (path != "") {
+			if (!path.endsWith(".xml")) {
+				path.append(".xml");
+			}
+
+			emit saveProjectAs(path, SaveFileType::XML);
+		}
 	}
 }  // namespace view
