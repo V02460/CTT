@@ -5,6 +5,7 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 #include <QTableWidget>
+#include <QLabel>
 
 #include "Observer.h"
 
@@ -19,7 +20,7 @@ public:
 
 	AbstractListViewItem(QWidget *parent) : QTableWidget(parent) {}
 
-	virtual QString getIdentifier() const = 0;
+	virtual QLabel* getIdentifier() const = 0;
 };
 
 }  // namespace view

@@ -33,13 +33,15 @@ MainControlWidget::MainControlWidget(FilterController::sptr filterController,
 	setupUi(ViewType::PROCESSING_VIEW);
 }
 
-MainControlWidget::MainControlWidget(SaveableList<FrameDiff>::sptr differences, AnalysingOrderingWidget::sptr orderingWidget,
+MainControlWidget::MainControlWidget(SaveableList<FrameDiff>::sptr differences, Player::sptr player, AnalysingOrderingWidget::sptr orderingWidget,
 	QWidget *parent) : QWidget(parent) {
 	DifferenceController::sptr differenceController = DifferenceController::sptr(new DifferenceController(differences));
 	insertionWidget = new DifferenceInsertionWidget(differenceController, orderingWidget, this);
 	playerFunctions = new PlayerFunctions(this);
-	listView = new DifferenceListView(differences, this);
-	timeline = new DifferenceTimeline(differences, this);
+	listView = new DifferenceListView(differences, player, this);
+	timeline = new DifferenceTimeline(differences, player, this);
+
+	setPlayer(player);
 
 	setupUi(ViewType::ANALYSING_VIEW);
 }

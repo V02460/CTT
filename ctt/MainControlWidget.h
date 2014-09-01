@@ -34,7 +34,7 @@ public:
 	MainControlWidget(::controller::FilterController::sptr filterController, QWidget *parent = 0);
 
 	MainControlWidget(::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr differences,
-		AnalysingOrderingWidget::sptr orderingWidget, QWidget *parent = 0);
+		::model::player::Player::sptr player, AnalysingOrderingWidget::sptr orderingWidget, QWidget *parent = 0);
 
 	void setPlayer(::model::player::Player::sptr player);
 	void setVideo(::model::filter::FilteredVideo::sptr video);

@@ -16,6 +16,7 @@
 #include "ViewState.h"
 #include "ProcessingWidget.h"
 #include "AnalysingWidget.h"
+#include "MainController.h"
 
 namespace view {
 /**
@@ -51,6 +52,8 @@ private:
 	QAction *toProcessingView;
 	QAction *toAnalysingView;
 	QStackedLayout *centralWidgetLayout;
+
+	::controller::MainController::sptr mainController;
 };
 
 }  // namespace view

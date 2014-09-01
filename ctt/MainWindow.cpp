@@ -13,6 +13,7 @@ using ::controller::project::Project;
 using ::controller::VideoListController;
 using ::model::saveable::SaveableList;
 using ::model::video::Video;
+using ::controller::MainController;
 
 namespace view {
 	MainWindow::MainWindow() {
@@ -29,6 +30,8 @@ namespace view {
 		centralWidgetLayout->addWidget(analysingView);
 
 		ViewState::getInstance()->subscribe(this);
+
+		mainController = MainController::sptr(new MainController());
 
 		setupUi();
 

@@ -1,6 +1,7 @@
 #include "DifferenceListView.h"
 
 #include "DifferenceListViewItem.h"
+#include "ViewState.h"
 
 using ::model::saveable::SaveableList;
 using ::model::difference::FrameDiff;
@@ -17,7 +18,7 @@ namespace view {
 	void DifferenceListView::update() {
 		removeAllItems();
 		for (int i = 0; i < differences->getSize(); i++) {
-			items.append(new DifferenceListViewItem(differences->get(i), player, this));
+			items.append(new DifferenceListViewItem(differences->get(i), ViewState::getColorFromIndex(i), player, this));
 		}
 		setupUi();
 	}

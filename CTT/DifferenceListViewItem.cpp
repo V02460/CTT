@@ -6,16 +6,21 @@ using ::model::difference::FrameDiff;
 using ::model::player::Player;
 
 namespace view {
-	DifferenceListViewItem::DifferenceListViewItem(FrameDiff::sptr diff, Player::sptr player, QWidget *parent) : AbstractListViewItem(parent), diff(diff), player(player), initialized(false) {
+	DifferenceListViewItem::DifferenceListViewItem(FrameDiff::sptr diff, Player::sptr player, QColor diffColor, QWidget *parent) : AbstractListViewItem(parent), diff(diff), player(player), initialized(false) {
 		if (!player.isNull()) {
 			player->subscribe(this);
 		}
 
+		identifierLabel = new QLabel(diff->getName());
+		QPalette labelPalette = identifierLabel->palette();
+		labelPalette.setColor(QPalette::WindowText, diffColor);
+		identifierLabel->setPalette(labelPalette);
+
 		update();
 	}
 
-	QString DifferenceListViewItem::getIdentifier() const {
-		return diff->getName();
+	QLabel* DifferenceListViewItem::getIdentifier() const {
+		return identifierLabel;
 	}
 
 	void DifferenceListViewItem::update() {
