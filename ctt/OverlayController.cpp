@@ -7,6 +7,8 @@
 #include "FilterRemovedOperation.h"
 #include "FilterMovedOperation.h"
 #include "FilterFactory.h"
+#include "DifferenceFactory.h"
+#include "PixelDiff.h"
 
 
 namespace controller {
@@ -19,6 +21,8 @@ namespace controller {
 	using ::controller::operation::FilterRemovedOperation;
 	using ::controller::operation::FilterMovedOperation;
 	using ::model::filter::FilterFactory;
+	using ::model::difference::DifferenceFactory;
+	using ::model::difference::PixelDiff;
 
 	OverlayController::OverlayController(FilteredVideo::sptr video) : currentVideo(video){
 
@@ -34,6 +38,21 @@ namespace controller {
 		}
 		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
 			new FilterAddedOperation(FilterFactory::createFilter(id, module), currentVideo)));
+	}
+
+	void OverlayController::insertOverlayWithPixelDiff(QString id, FilteredVideo::sptr video1, FilteredVideo::sptr video2) {
+		Module::sptr module;
+		if (currentVideo->getFilterCount() == 0) {
+			module = currentVideo->getBaseVideo();
+		}
+		else {
+			module = currentVideo->getFilterList().back();
+		}
+
+		PixelDiff::sptr diff = DifferenceFactory::createPixelDiff(id, video1, video2);
+
+		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
+			new FilterAddedOperation(FilterFactory::createFilter(id, module, diff), currentVideo)));
 	}
 
 	void OverlayController::moveOverlay(int oldPos, int newPos) {

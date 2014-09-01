@@ -31,6 +31,8 @@ namespace controller {
 		*/
 		OverlayController(::model::filter::FilteredVideo::sptr video);
 
+	public slots:
+
 		/**
 		* Initiates the insertion of an overlay to the list of overlays which can be used for analyzing.
 		* Is called when a notification is received that an overlay should be inserted.
@@ -38,6 +40,14 @@ namespace controller {
 		* @param id The ID of the overlay which is to be inserted.
 		*/
 		void insertOverlay(QString id);
+
+		/**
+		* Initiates the insertion of an overlay to the list of overlays which can be used for analyzing.
+		* Is called when a notification is received that an overlay should be inserted.
+		*
+		* @param id The ID of the overlay which is to be inserted.
+		*/
+		void insertOverlayWithPixelDiff(QString id, ::model::filter::FilteredVideo::sptr video1, ::model::filter::FilteredVideo::sptr video2);
 
 		/**
 		* Initiates moving a overlay to a specified position in the video's list of overlays.
