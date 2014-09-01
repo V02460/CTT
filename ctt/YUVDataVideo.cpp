@@ -169,6 +169,9 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 		load(frameNumber);
 	}
 
+    // BIG TODO: eliminate this awful hack
+    GlobalContext::get();
+
 	QByteArray rawFrame(videoBuffer.mid((frameNumber - firstFrameInMemory) * bytesPerFrame, bytesPerFrame));
 
 	QByteArray yChannel(rawFrame.left(pixelsPerFrame));
@@ -365,8 +368,9 @@ void YUVDataVideo::load(unsigned int startFrame) const
 
 bool YUVDataVideo::hasFrameInBuffer(unsigned int frameNr) const
 {
-	return ((frameNr >= firstFrameInMemory) & (frameNr < (firstFrameInMemory + numberOfFramesInMemory))) 
-		& (frameNr < metadata.getLength());
+	return (frameNr >= firstFrameInMemory) & 
+           (frameNr < (firstFrameInMemory + numberOfFramesInMemory)) &
+		    (frameNr < metadata.getLength());
 }
 
 Memento YUVDataVideo::getMemento() const {
