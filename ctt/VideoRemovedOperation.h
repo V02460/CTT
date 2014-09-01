@@ -40,9 +40,9 @@ public:
     void undoOperation();
 
 private:
-	::model::filter::FilteredVideo::sptr video;
 	int index;
 	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList;
+	::model::saveable::Memento memento;
 };
 
 }  // namespace operation

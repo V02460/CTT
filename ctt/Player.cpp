@@ -23,7 +23,7 @@ const QString Player::loopEndBStringId("loopB");
 const QString Player::frameNumberStringId("frameNr");
 
 
-Player::Player(double fps): fps(fps), loop(0, 0), currentFrameNumber(0), looping(false), playing(false) {
+Player::Player(double fps): Observable(), fps(fps), loop(0, 0), currentFrameNumber(0), looping(false), playing(false) {
 	if (!(fps > 0)) {
 		throw IllegalArgumentException("Tried to create a player with a playback speed not greater than zero.)");
 	}
@@ -33,7 +33,7 @@ Player::Player(double fps): fps(fps), loop(0, 0), currentFrameNumber(0), looping
 }
 
 
-Player::Player() : loop(0, 1)
+Player::Player() : Observable(), loop(0, 1)
 {
 	isDummyFlag = true;
 	currentFrameNumber = 0;

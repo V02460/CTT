@@ -20,7 +20,7 @@ using ::exception::AccessToDummyException;
 const QString VideoScrubber::videoStringId("video");
 const QString VideoScrubber::lastFrameNumberStringId("framenr");
 
-VideoScrubber::VideoScrubber(video::Video::sptr video): video(video), lastFrameNumber(0) {
+VideoScrubber::VideoScrubber(video::Video::sptr video) : Observable() ,video(video), lastFrameNumber(0) {
 	if (video->isDummy()) {
 		throw IllegalArgumentException("Tried to use a dummy Video to create a VideoScrubber");
 	}
@@ -31,7 +31,7 @@ VideoScrubber::VideoScrubber(video::Video::sptr video): video(video), lastFrameN
 
 VideoScrubber::~VideoScrubber() {}
 
-VideoScrubber::VideoScrubber(video::Video::sptr video, unsigned int frameNumber) {
+VideoScrubber::VideoScrubber(video::Video::sptr video, unsigned int frameNumber) : Observable() {
 	if (video->isDummy()) {
 		throw IllegalArgumentException("Tried to use a dummy Video to create a VideoScrubber");
 	}

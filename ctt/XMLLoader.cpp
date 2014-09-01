@@ -37,7 +37,7 @@ using ::model::UIntegerInterval;
 using ::model::player::VideoScrubber;
 using ::view::ViewState;
 using ::model::saveable::SaveableList;
-
+using ::view::ViewType;
 using ::model::difference::FrameDiff;
 using ::model::difference::PixelDiff;
 using ::model::Module;
@@ -50,43 +50,63 @@ using ::model::video::FileVideo;
 XMLLoader::XMLLoader() {}
 
 void XMLLoader::restore(QString path) {
-	openFile(path);
-	createMaps();
-	restore();
-}
-
-void XMLLoader::openFile(QString path) {
 	QFile file(path);
 	if (!file.open(QIODevice::ReadOnly)) {
-		throw IOException("File " + path + " could not be opened.");
+		throw new IOException("File " + path + " could not be opened.");
 	}
 	xml = new QXmlStreamReader(&file);
 	if (!xml->readNextStartElement()) { // TODO more to skip?
-		throw ParseException("Document to restore from is empty.");
+		throw new ParseException("Document to restore from is empty.");
 	}
-	if (xml->qualifiedName() != XMLSaver::ELEMENTS) {
-		throw ParseException("Tag <" + XMLSaver::ELEMENTS + "> expected.");
+	if (xml->qualifiedName() == XMLSaver::ELEMENTS) {
+		createMaps();
+		if (xml->qualifiedName() != XMLSaver::VIEW) {
+			throw new ParseException("Tag <" + XMLSaver::VIEW + "> expected.");
+		}
+		loadView();
+	} else if (xml->qualifiedName() == XMLSaver::VIEW) {
+		loadView();
+		if (xml->qualifiedName() != XMLSaver::ELEMENTS) {
+			throw new ParseException("Tag <" + XMLSaver::ELEMENTS + "> expected.");
+		}
+		createMaps();
+	} else {
+		throw new ParseException("Tag <" + XMLSaver::ELEMENTS + "> or <" + XMLSaver::VIEW + "> expected.");
 	}
+	restore();
+}
+
+void XMLLoader::loadView() {
+	QXmlStreamAttributes attributes = xml->attributes();
+	if (!attributes.hasAttribute(XMLSaver::STATE)) {
+		throw new ParseException("Attribute " + XMLSaver::STATE + " expected.");
+	}
+	bool valid = false;
+	int state = attributes.value(XMLSaver::STATE).toInt(&valid);
+	if (!valid) {
+		throw new ParseException("Incorrect value for " + XMLSaver::STATE);
+	}
+	ViewState::getInstance()->changeView(static_cast<ViewType>(state));
 }
 
 void XMLLoader::createMaps() {
 	Project *project = Project::getInstance();
 	while (xml->readNextStartElement()) {
 		if (xml->qualifiedName() != XMLSaver::ELEMENT) {
-			throw ParseException("Tag <" + XMLSaver::ELEMENT + "> expected.");
+			throw new ParseException("Tag <" + XMLSaver::ELEMENT + "> expected.");
 		}
 		QXmlStreamAttributes attributes = xml->attributes();
 		if (!attributes.hasAttribute(XMLSaver::ID)) {
-			throw ParseException("Attribute " + XMLSaver::ID + " expected.");
+			throw new ParseException("Attribute " + XMLSaver::ID + " expected.");
 		}
 		bool valid = false;
 		int id = attributes.value(XMLSaver::ID).toInt(&valid);
 		if (!valid) {
-			throw ParseException(attributes.value(XMLSaver::ID).toString()
+			throw new ParseException(attributes.value(XMLSaver::ID).toString()
 				                     + "is not a valid ID. IDs must be integer.");
 		}
 		if (pointerMap.contains(id)) {
-			throw ParseException("Multiple elements with key " + QString::number(id) + " exist.");
+			throw new ParseException("Multiple elements with key " + QString::number(id) + " exist.");
 		}
 		if (attributes.hasAttribute(XMLSaver::TYPE)) {
 			XMLSaver::BaseSaveableType baseType =
@@ -105,34 +125,18 @@ void XMLLoader::createMaps() {
 				pointerMap.insert(id, project->getPlayer2()); break;
 			case XMLSaver::BaseSaveableType::DiffList:
 				pointerMap.insert(id, project->getDiffList()); break;
-			case XMLSaver::BaseSaveableType::View:
-				while (xml->readNext() != QXmlStreamReader::EndElement) { // TODO check
-					if (xml->qualifiedName() == XMLSaver::VARIABLE) {
-						QXmlStreamAttributes variableAttributes = xml->attributes();
-						if (!variableAttributes.hasAttribute(XMLSaver::NAME)) {
-							throw ParseException("Attribute " + XMLSaver::NAME + " expected.");
-						}
-						if (!variableAttributes.hasAttribute(XMLSaver::VALUE)) {
-							throw ParseException("Attribute " + XMLSaver::VALUE + " expected.");
-						}
-						viewMemento.setString(variableAttributes.value(XMLSaver::NAME).toString(),
-					              variableAttributes.value(XMLSaver::NAME).toString());
-					} else {
-						throw ParseException("ViewState can only save Variables.");
-					}
-				} continue;
-			default: throw NotImplementedException("Unknown base savable type."); break;
+			default: throw new NotImplementedException("Unknown base savable type."); break;
 			}
 		} else {
 			if (!attributes.hasAttribute(XMLSaver::CLASS)) {
-				throw ParseException("Attribute " + XMLSaver::CLASS + " expected.");
+				throw new ParseException("Attribute " + XMLSaver::CLASS + " expected.");
 			}
 			Saveable::SaveableType saveableType =
 				Saveable::stringToSaveableType(attributes.value(XMLSaver::CLASS).toString());
 			Saveable::sptr dummy;
 			switch (saveableType) {
 			default:
-				throw ParseException(attributes.value(XMLSaver::CLASS).toString()
+				throw new ParseException(attributes.value(XMLSaver::CLASS).toString()
 					+ " can not be instantiated.");
 				break;
 			case Saveable::SaveableType::filterIntervalList: dummy = FilterIntervalList::getDummy(); break;
@@ -156,10 +160,9 @@ void XMLLoader::createMaps() {
 			case Saveable::SaveableType::player: dummy = Player::getDummy(); break;
 			case Saveable::SaveableType::uIntegerInterval: dummy = UIntegerInterval::getDummy(); break;
 			case Saveable::SaveableType::videoScrubber: dummy = VideoScrubber::getDummy(); break;
-			case Saveable::SaveableType::viewState: continue;
 			case Saveable::SaveableType::saveableList:
 				if (!attributes.hasAttribute(XMLSaver::TEMPLATE_TYPE)) {
-					throw ParseException("Attribute " + XMLSaver::TEMPLATE_TYPE + " expected.");
+					throw new ParseException("Attribute " + XMLSaver::TEMPLATE_TYPE + " expected.");
 				}
 				Saveable::SaveableType templateType =
 					Saveable::stringToSaveableType(attributes.value(XMLSaver::CLASS).toString());
@@ -194,11 +197,11 @@ void XMLLoader::createMaps() {
 				case Saveable::SaveableType::player: dummy = SaveableList<Player>::getDummy(); break;
 				case Saveable::SaveableType::uIntegerInterval: dummy = SaveableList<UIntegerInterval>::getDummy(); break;
 				case Saveable::SaveableType::videoScrubber: dummy = SaveableList<VideoScrubber>::getDummy(); break;
-				case Saveable::SaveableType::viewState: dummy = SaveableList<ViewState>::getDummy(); break;
 				case Saveable::SaveableType::saveableList:
-					throw ParseException("A saveable list may not contain another saveable list.");
+					// TODO really?
+					throw new ParseException("A saveable list may not contain another saveable list.");
 					break;
-				default: throw NotImplementedException("Unknown saveable type."); break;
+				default: throw new NotImplementedException("Unknown saveable type."); break;
 				}
 				break;
 			}
@@ -210,32 +213,32 @@ void XMLLoader::createMaps() {
 			if (xml->qualifiedName() == XMLSaver::VARIABLE) {
 				QXmlStreamAttributes variableAttributes = xml->attributes();
 				if (!variableAttributes.hasAttribute(XMLSaver::NAME)) {
-					throw ParseException("Attribute " + XMLSaver::NAME + " expected.");
+					throw new ParseException("Attribute " + XMLSaver::NAME + " expected.");
 				}
 				if (!variableAttributes.hasAttribute(XMLSaver::VALUE)) {
-					throw ParseException("Attribute " + XMLSaver::VALUE + " expected.");
+					throw new ParseException("Attribute " + XMLSaver::VALUE + " expected.");
 				}
 				memento.setString(variableAttributes.value(XMLSaver::NAME).toString(),
 					              variableAttributes.value(XMLSaver::NAME).toString());
 			} else if (xml->qualifiedName() == XMLSaver::POINTER) {
 				QXmlStreamAttributes pointerAttributes = xml->attributes();
 				if (!pointerAttributes.hasAttribute(XMLSaver::NAME)) {
-					throw ParseException("Attribute " + XMLSaver::NAME + " expected.");
+					throw new ParseException("Attribute " + XMLSaver::NAME + " expected.");
 				}
 				if (!pointerAttributes.hasAttribute(XMLSaver::ID)) {
-					throw ParseException("Attribute " + XMLSaver::ID + " expected.");
+					throw new ParseException("Attribute " + XMLSaver::ID + " expected.");
 				}
 				bool valid;
 				int pointerId = pointerAttributes.value(XMLSaver::ID).toInt(&valid);
 				if (!valid) {
-					throw ParseException(pointerAttributes.value(XMLSaver::ID).toString()
+					throw new ParseException(pointerAttributes.value(XMLSaver::ID).toString()
 						                     + "is not a valid ID. IDs must be integer.");
 				}
 				idMap.insert(pointerAttributes.value(XMLSaver::NAME).toString(),
 					         pointerId);
 			} else {
-				throw ParseException("Tag <" + XMLSaver::VARIABLE + "> or <" + XMLSaver::POINTER
-					                     + "or end tag </" + XMLSaver::ELEMENT + "> expected.");
+				throw new ParseException("Tag <" + XMLSaver::VARIABLE + "> or <" + XMLSaver::POINTER
+					                     + "or endtag </" + XMLSaver::ELEMENT + "> expected.");
 			}
 		}
 		mementoMap.insert(id, memento);
@@ -253,14 +256,13 @@ void XMLLoader::restore() {
 			QString key = pointerMapKeys[j];
 			int id = mementoPointerMap.value(key);
 			if (!pointerMap.contains(id)) {
-				throw ParseException("No id " + QString::number(id) + " found.");
+				throw new ParseException("No id " + QString::number(id) + " found.");
 			}
 			memento.setSharedPointer(key, pointerMap.value(id));
 		}
 		element->restore(memento);
 	}
-	ViewState::getInstance()->restore(viewMemento);
-	Project::getInstance()->everythingChanged();
+	Project::getInstance()->changed();
 }
 
 XMLLoader *XMLLoader::getInstance() {

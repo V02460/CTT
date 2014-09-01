@@ -15,6 +15,7 @@ void FilterParamChangedOperation::doOperation() {
 
 void FilterParamChangedOperation::undoOperation() {
 	filter->restore(memento);
+	filter->changed();
 }
 
 }  // namespace operation

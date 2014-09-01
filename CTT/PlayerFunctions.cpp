@@ -82,13 +82,12 @@ void PlayerFunctions::setPlayButton(bool isPlayButton) {
 
 void PlayerFunctions::setPlayer(::model::player::Player::sptr player) {
 	if (!player.isNull()) {
-		//this->player->unsubscribe(*this);
-
+		if (!this->player.isNull()) {
+			this->player->unsubscribe(this);
+		}
 		this->player = player;
 		emit playerChanged(this->player);
-	
 		player->subscribe(this);
-
 		update();
 	} else {
 		qDebug() << "Error in PlayerFunctions! Player to be set was empty.";

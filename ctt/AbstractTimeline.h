@@ -15,7 +15,7 @@ namespace view {
  * It stands basically for some kind of diagram over the frames of a video
  * and displays some kind of data that is concretized in the specific implementations.
  */
-class AbstractTimeline : public ::model::Observer , public ::model::Observable , public QWidget {
+class AbstractTimeline : public ::model::Observer, public QWidget {
 public:
     typedef QScopedPointer<AbstractTimeline> uptr;
     typedef QSharedPointer<AbstractTimeline> sptr;

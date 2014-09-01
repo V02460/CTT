@@ -41,11 +41,11 @@ namespace controller {
 			void undoOperation();
 
 		private:
-			::model::filter::FilteredVideo::sptr video1;
-			::model::filter::FilteredVideo::sptr video2;
 			int index;
 			::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList;
 			::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos;
+			::model::saveable::Memento videoListMemento;
+			::model::saveable::Memento filteredVideosMemento;
 
 		};
 

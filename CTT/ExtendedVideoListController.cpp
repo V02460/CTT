@@ -33,11 +33,10 @@ namespace controller {
 
 	void ExtendedVideoListController::addVideo(QString path) {
 
-		QOpenGLContext context(GlobalContext::get().data());
-		FFmpegDataVideo ffmpegVideo(path, QSharedPointer<QOpenGLContext>(&context));
+		FFmpegDataVideo *ffmpegVideo = new FFmpegDataVideo(path, GlobalContext::get());
 
-		FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<FFmpegDataVideo>(&ffmpegVideo)));
-		FilteredVideo::sptr filteredVideo(new FilteredVideo(QSharedPointer<FFmpegDataVideo>(&ffmpegVideo)));
+		FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<FFmpegDataVideo>(ffmpegVideo)));
+		FilteredVideo::sptr filteredVideo(new FilteredVideo(QSharedPointer<FFmpegDataVideo>(ffmpegVideo)));
 
 		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
 			new ExtendedVideoAddedOperation(playerList, video, filteredVideo, videoList, filteredVideos)));
@@ -45,21 +44,35 @@ namespace controller {
 	}
 
 	void ExtendedVideoListController::addVideo(QString path, int width, int height, double fps, model::video::YUVType type, unsigned int length) {
-		QOpenGLContext context(GlobalContext::get().data());
-		QSize resolution(QSize(width, height));
-		YUVDataVideo yuvVideo(path, resolution, fps, type, QSharedPointer<QOpenGLContext>(&context));
+		YUVDataVideo *yuvVideo = new YUVDataVideo(path, QSize(width, height), fps, type, GlobalContext::get());
 
-		FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(&yuvVideo)));		
-		FilteredVideo::sptr filteredVideo(new FilteredVideo(QSharedPointer<YUVDataVideo>(&yuvVideo)));
+		FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(yuvVideo)));
+		FilteredVideo::sptr filteredVideo(new FilteredVideo(QSharedPointer<YUVDataVideo>(yuvVideo)));
+
+		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
+			new ExtendedVideoAddedOperation(playerList, video, filteredVideo, videoList, filteredVideos)));
+	}
+
+	void ExtendedVideoListController::addVideo(QString pathToVideoFile, QString pathToMetadataFile, int width, int height, double fps, model::video::YUVType type, unsigned int length) {
+		YUVDataVideo *yuvVideo = new YUVDataVideo(pathToVideoFile, pathToMetadataFile, QSize(width, height), fps, type, GlobalContext::get());
+
+		FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(yuvVideo)));
+		FilteredVideo::sptr filteredVideo(new FilteredVideo(QSharedPointer<YUVDataVideo>(yuvVideo)));
+
 
 		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
 			new ExtendedVideoAddedOperation(playerList, video, filteredVideo, videoList, filteredVideos)));
 	}
 
 	void ExtendedVideoListController::addVideo(FilteredVideo::sptr video) {
-		FilteredVideo::sptr filteredVideo(new FilteredVideo(video));
+		for (int i = 0; i < videoList->getSize(); i++) {
+			if (videoList->get(i)->getBaseVideo() == video) return;
+		}
+		
+		FilteredVideo::sptr video1(new FilteredVideo(video));
+		FilteredVideo::sptr video2(new FilteredVideo(video));
 		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
-			new ExtendedVideoAddedOperation(playerList, video, filteredVideo, videoList, filteredVideos)));
+			new ExtendedVideoAddedOperation(playerList, video1, video2, videoList, filteredVideos)));
 	}
 
 	void ExtendedVideoListController::removeVideo(int index) {

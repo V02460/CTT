@@ -18,7 +18,7 @@ namespace view {
  * The PlayerFunctions only provides the needed intractable components and maps the signals emitted by these to a
  * PlayerController.
  */
-class PlayerFunctions : public QWidget, public::model::Observable, public ::model::Observer {
+class PlayerFunctions : public QWidget, public ::model::Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<PlayerFunctions> uptr;

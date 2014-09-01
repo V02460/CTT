@@ -29,29 +29,30 @@ VideoListController::VideoListController(SaveableList<FilteredVideo>::sptr video
 }
 
 void VideoListController::addVideo(QString path) {
-	QOpenGLContext context(GlobalContext::get().data());
-	FFmpegDataVideo ffmpegVideo(path, QSharedPointer<QOpenGLContext>(&context));	
-
-	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<FFmpegDataVideo>(&ffmpegVideo)));
-	
+	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<FFmpegDataVideo>(new FFmpegDataVideo(path, GlobalContext::get()))));
 	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
 		new VideoAddedOperation(video, videoList)));
 }
 
 void VideoListController::addVideo(QString path, int width, int height, double fps, YUVType type, unsigned int length) {
-	QOpenGLContext context(GlobalContext::get().data());
-	QSize resolution(QSize(width, height));
-	YUVDataVideo yuvVideo(path, resolution, fps, type, QSharedPointer<QOpenGLContext>(&context));
+	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(new YUVDataVideo(path, QSize(width, height), fps, type, GlobalContext::get()))));
+	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
+		new VideoAddedOperation(video, videoList)));
+}
 
-	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(&yuvVideo)));
-
+void VideoListController::addVideo(QString pathToVideoFile, QString pathToMetadataFile, int width, int height, double fps, YUVType type, unsigned int length) {
+	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(new YUVDataVideo(pathToVideoFile, pathToMetadataFile, QSize(width, height), fps, type, GlobalContext::get()))));
 	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
 		new VideoAddedOperation(video, videoList)));
 }
 
 void VideoListController::addVideo(FilteredVideo::sptr video) {
+	for (int i = 0; i < videoList->getSize(); i++) {
+		if (videoList->get(i)->getBaseVideo() == video) return;
+	}
+	FilteredVideo::sptr filteredVideo(new FilteredVideo(video));
 	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
-		new VideoAddedOperation(video, videoList)));
+		new VideoAddedOperation(filteredVideo, videoList)));
 }
 
 void VideoListController::removeVideo(int index) {	

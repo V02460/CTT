@@ -37,7 +37,7 @@ namespace saveable {
 using ::exception::AccessToDummyException;
 
 template <class T>
-SaveableList<T>::SaveableList() : list() {}
+SaveableList<T>::SaveableList() : Observable(), list() {}
 
 template <class T> const QString SaveableList<T>::SIZE = "size";
 template <class T> const QString SaveableList<T>::TEMPLATE = "template";
@@ -171,7 +171,6 @@ template class SaveableList<model::filter::FilteredVideo>;
 template class SaveableList<model::player::Player>;
 template class SaveableList<model::UIntegerInterval>;
 template class SaveableList<model::player::VideoScrubber>;
-template class SaveableList<view::ViewState>;
 
 }  // namespace saveable
 }  // namespace model

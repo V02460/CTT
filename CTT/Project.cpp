@@ -54,11 +54,16 @@ void Project::clear() {
 	player2->restore(Player(24).getMemento());
 	diffList->restore(SaveableList<FrameDiff>().getMemento());
 	ViewState::getInstance()->changeView(ViewType::PROCESSING_VIEW);
-	everythingChanged();
+	changed();
 }
 
-void Project::everythingChanged() {
-	changed();
+void Project::changed() {
+	baseVideoList->changed();
+	videoList1->changed();
+	videoList2->changed();
+	playerList1->changed();
+	player2->changed();
+	diffList->changed();
 }
 
 Project *Project::getInstance() {
