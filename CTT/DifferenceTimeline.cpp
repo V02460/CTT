@@ -2,6 +2,8 @@
 
 #include <QHBoxLayout>
 
+#include "ViewState.h"
+
 using ::model::saveable::SaveableList;
 using ::model::difference::FrameDiff;
 using ::model::player::Player;
@@ -38,10 +40,29 @@ namespace view {
 	}
 
 	void DifferenceTimeline::updateDifferences() {
-		for (int i = 0; i < differences->getSize(); i++) {
-			for (int j = 0; j < static_cast<int>(differences->get(i)->getFrameCount()); j++) {
+		graphPlot->clearGraphs();
 
+		double yMax = 0;
+
+		for (int i = 0; i < differences->getSize(); i++) {
+			QVector<double> x = QVector<double>();
+			QVector<double> y = QVector<double>();
+			for (int j = 0; j < static_cast<int>(differences->get(i)->getFrameCount()); j++) {
+				x[j] = j;
+				y[j] = differences->get(i)->getDiff(j);
+				if (y[j] > yMax) {
+					yMax = y[j];
+				}
 			}
+			graphPlot->addGraph(graphPlot->xAxis, graphPlot->yAxis);
+			graphPlot->graph(i)->setPen(QPen(ViewState::getColorFromIndex(i)));
+			graphPlot->graph(i)->setLineStyle(QCPGraph::lsLine);
+			graphPlot->graph(i)->setData(x, y);
 		}
+
+		graphPlot->xAxis->setRange(0, player->getVideoLength() - 1);
+		graphPlot->yAxis->setRange(0, yMax);
+
+		graphPlot->replot();
 	}
 }  // namespace view
