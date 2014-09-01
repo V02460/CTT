@@ -49,6 +49,11 @@ public:
 	static const QString NAME;
 	/** Name of the value attribute. */
 	static const QString VALUE;
+	/** Name of the view tag. */
+	static const QString VIEW;
+	/** Name of the state attribute. */
+	static const QString STATE;
+
 
 	/** Splitter used for class attributes of SavableList. */
 	static const QString SPLITTER;
@@ -57,7 +62,7 @@ public:
 	 * Labels for the different base elements to save.
 	 *
 	 * This enum must be similar in quantity and order to the BASE_ELEMENT_NAMES and
-	 * BASE_ELEMENT_TYPE_STRINGS lists and the stringToBaseSaveableType function.
+	 * BASE_ELEMENT_CLASS_STRINGS lists and the stringToBaseSaveableType function.
 	 */
 	enum BaseSaveableType {
 		BaseVideoList,
@@ -65,8 +70,7 @@ public:
 		VideoList2,
 		PlayerList1,
 		Player2,
-		DiffList,
-		View
+		DiffList
 	};
 
 	/**
@@ -76,12 +80,12 @@ public:
 	 */
 	static const QList<QString> BASE_ELEMENT_NAMES;
 
-	/**
+	/* TODO properly remove ^ doc
 	 * A list of base element class strings.
 	 *
 	 * This list must be similar in quantity and order to the BaseSaveableType enum.
-	 */
-	static const QList<QString> BASE_ELEMENT_CLASS_STRINGS;
+	 *
+	static const QList<QString> BASE_ELEMENT_CLASS_STRINGS;*/
 
 	/**
 	 * Returns the BaseSavableType to the given string.

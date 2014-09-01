@@ -8,26 +8,9 @@ using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
 using ::exception::NotImplementedException;
 
-Memento ViewState::getMemento() const {
-    throw new NotImplementedException();
-}
-
-void ViewState::restore(Memento memento) {
-    throw new NotImplementedException();
-}
-
-Saveable::sptr ViewState::getDummy() {
-	// TODO absprachebedarf!
-    throw new NotImplementedException();
-}
-
 void ViewState::changeView(ViewType newView) {
 	currentView = newView;
 	changed();
-}
-
-Saveable::SaveableType ViewState::getSaveableType() {
-    return SaveableType::viewState;
 }
 
 ViewState* ViewState::getInstance() {

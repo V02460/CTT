@@ -37,7 +37,7 @@ using ::model::UIntegerInterval;
 using ::model::player::VideoScrubber;
 using ::view::ViewState;
 using ::model::saveable::SaveableList;
-
+using ::view::ViewType;
 using ::model::difference::FrameDiff;
 using ::model::difference::PixelDiff;
 using ::model::Module;
@@ -50,12 +50,6 @@ using ::model::video::FileVideo;
 XMLLoader::XMLLoader() {}
 
 void XMLLoader::restore(QString path) {
-	openFile(path);
-	createMaps();
-	restore();
-}
-
-void XMLLoader::openFile(QString path) {
 	QFile file(path);
 	if (!file.open(QIODevice::ReadOnly)) {
 		throw new IOException("File " + path + " could not be opened.");
@@ -64,9 +58,35 @@ void XMLLoader::openFile(QString path) {
 	if (!xml->readNextStartElement()) { // TODO more to skip?
 		throw new ParseException("Document to restore from is empty.");
 	}
-	if (xml->qualifiedName() != XMLSaver::ELEMENTS) {
-		throw new ParseException("Tag <" + XMLSaver::ELEMENTS + "> expected.");
+	if (xml->qualifiedName() == XMLSaver::ELEMENTS) {
+		createMaps();
+		if (xml->qualifiedName() != XMLSaver::VIEW) {
+			throw new ParseException("Tag <" + XMLSaver::VIEW + "> expected.");
+		}
+		loadView();
+	} else if (xml->qualifiedName() == XMLSaver::VIEW) {
+		loadView();
+		if (xml->qualifiedName() != XMLSaver::ELEMENTS) {
+			throw new ParseException("Tag <" + XMLSaver::ELEMENTS + "> expected.");
+		}
+		createMaps();
+	} else {
+		throw new ParseException("Tag <" + XMLSaver::ELEMENTS + "> or <" + XMLSaver::VIEW + "> expected.");
 	}
+	restore();
+}
+
+void XMLLoader::loadView() {
+	QXmlStreamAttributes attributes = xml->attributes();
+	if (!attributes.hasAttribute(XMLSaver::STATE)) {
+		throw new ParseException("Attribute " + XMLSaver::STATE + " expected.");
+	}
+	bool valid = false;
+	int state = attributes.value(XMLSaver::STATE).toInt(&valid);
+	if (!valid) {
+		throw new ParseException("Incorrect value for " + XMLSaver::STATE);
+	}
+	ViewState::getInstance()->changeView(static_cast<ViewType>(state));
 }
 
 void XMLLoader::createMaps() {
@@ -105,22 +125,6 @@ void XMLLoader::createMaps() {
 				pointerMap.insert(id, project->getPlayer2()); break;
 			case XMLSaver::BaseSaveableType::DiffList:
 				pointerMap.insert(id, project->getDiffList()); break;
-			case XMLSaver::BaseSaveableType::View:
-				while (xml->readNext() != QXmlStreamReader::EndElement) { // TODO check
-					if (xml->qualifiedName() == XMLSaver::VARIABLE) {
-						QXmlStreamAttributes variableAttributes = xml->attributes();
-						if (!variableAttributes.hasAttribute(XMLSaver::NAME)) {
-							throw new ParseException("Attribute " + XMLSaver::NAME + " expected.");
-						}
-						if (!variableAttributes.hasAttribute(XMLSaver::VALUE)) {
-							throw new ParseException("Attribute " + XMLSaver::VALUE + " expected.");
-						}
-						viewMemento.setString(variableAttributes.value(XMLSaver::NAME).toString(),
-					              variableAttributes.value(XMLSaver::NAME).toString());
-					} else {
-						throw new ParseException("ViewState can only save Variables.");
-					}
-				} continue;
 			default: throw new NotImplementedException("Unknown base savable type."); break;
 			}
 		} else {
@@ -156,7 +160,6 @@ void XMLLoader::createMaps() {
 			case Saveable::SaveableType::player: dummy = Player::getDummy(); break;
 			case Saveable::SaveableType::uIntegerInterval: dummy = UIntegerInterval::getDummy(); break;
 			case Saveable::SaveableType::videoScrubber: dummy = VideoScrubber::getDummy(); break;
-			case Saveable::SaveableType::viewState: continue;
 			case Saveable::SaveableType::saveableList:
 				if (!attributes.hasAttribute(XMLSaver::TEMPLATE_TYPE)) {
 					throw new ParseException("Attribute " + XMLSaver::TEMPLATE_TYPE + " expected.");
@@ -194,8 +197,8 @@ void XMLLoader::createMaps() {
 				case Saveable::SaveableType::player: dummy = SaveableList<Player>::getDummy(); break;
 				case Saveable::SaveableType::uIntegerInterval: dummy = SaveableList<UIntegerInterval>::getDummy(); break;
 				case Saveable::SaveableType::videoScrubber: dummy = SaveableList<VideoScrubber>::getDummy(); break;
-				case Saveable::SaveableType::viewState: dummy = SaveableList<ViewState>::getDummy(); break;
 				case Saveable::SaveableType::saveableList:
+					// TODO really?
 					throw new ParseException("A saveable list may not contain another saveable list.");
 					break;
 				default: throw new NotImplementedException("Unknown saveable type."); break;
@@ -259,7 +262,6 @@ void XMLLoader::restore() {
 		}
 		element->restore(memento);
 	}
-	ViewState::getInstance()->restore(viewMemento);
 	Project::getInstance()->everythingChanged();
 }
 

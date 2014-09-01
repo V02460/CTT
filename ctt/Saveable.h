@@ -101,8 +101,7 @@ public:
 		player,
 		saveableList,
 		uIntegerInterval,
-		videoScrubber,
-		viewState
+		videoScrubber
 	};
 
 	/** A string representation for the Saveable class. */
@@ -169,8 +168,6 @@ public:
 	static const QString U_INTEGER_INTERVAL;
 	/** A string representation for the VideoScrubber class. */
 	static const QString VIDEO_SCRUBBER;
-	/** A string representation for the ViewState class. */
-	static const QString VIEW_STATE;
 
 	/**
 	 * A list of string representations for saveable classes.
