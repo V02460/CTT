@@ -2,6 +2,7 @@
 #define _DIFFERENCELISTVIEWITEM_H
 
 #include "AbstractListViewItem.h"
+#include "FrameDiff.h"
 
 namespace view {
 	class DifferenceListViewItem : public AbstractListViewItem {
@@ -11,8 +12,9 @@ namespace view {
 		typedef QSharedPointer<DifferenceListViewItem> sptr;
 		typedef QWeakPointer<DifferenceListViewItem> wptr;
 
+		DifferenceListViewItem(::model::difference::FrameDiff::sptr diff, QWidget *parent = 0);
 
-
+		virtual QString getIdentifier() const Q_DECL_OVERRIDE;
 	};
 }
 

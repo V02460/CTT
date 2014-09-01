@@ -201,12 +201,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_OverlayController.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_ExtendedTimeline.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_ExtendedTimeline.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_MainControlWidget.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -430,9 +424,6 @@
       <Filter>Source Files\View</Filter>
     </ClCompile>
     <ClCompile Include="DifferenceTimeline.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="ExtendedTimeline.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
     <ClCompile Include="FilterListView.cpp">
@@ -780,6 +771,21 @@
     <ClCompile Include="DifferenceListViewItem.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DifferenceListViewItem.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DifferenceListViewItem.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FilterTimelineItem.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FilterTimelineItem.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterTimelineItem.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -817,9 +823,6 @@
     </CustomBuild>
     <CustomBuild Include="Observable.h">
       <Filter>Header Files\Model</Filter>
-    </CustomBuild>
-    <CustomBuild Include="ExtendedTimeline.h">
-      <Filter>Header Files\View</Filter>
     </CustomBuild>
     <CustomBuild Include="MainControlWidget.h">
       <Filter>Header Files\View</Filter>
@@ -928,6 +931,15 @@
     </CustomBuild>
     <CustomBuild Include="FilterListView.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DifferenceListViewItem.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilterTimelineItem.h">
+      <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FilterTimeline.h">
+      <Filter>Header Files\View</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -1058,9 +1070,6 @@
       <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="DifferenceTimeline.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterTimeline.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="TimelineInterval.h">

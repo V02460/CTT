@@ -9,6 +9,7 @@
 #include "FilterListView.h"
 #include "DifferenceInsertionWidget.h"
 #include "DifferenceListView.h"
+#include "DifferenceTimeline.h"
 #include "DifferenceController.h"
 #include "NotImplementedException.h"
 
@@ -38,6 +39,7 @@ MainControlWidget::MainControlWidget(SaveableList<FrameDiff>::sptr differences, 
 	insertionWidget = new DifferenceInsertionWidget(differenceController, orderingWidget, this);
 	playerFunctions = new PlayerFunctions(this);
 	listView = new DifferenceListView(differences, this);
+	timeline = new DifferenceTimeline(differences, this);
 
 	setupUi(ViewType::ANALYSING_VIEW);
 }
@@ -84,8 +86,13 @@ void MainControlWidget::setupUi(ViewType viewType) {
 	rightWidgetLayout->addWidget(playerFunctions->getFrameSlider());
 
 	rightDisplayWidgetLayout = new QStackedLayout();
-	//Platzhalter für die Timelines
-	rightDisplayWidgetLayout->addWidget(new QWidget());
+	if (viewType == ViewType::PROCESSING_VIEW) {
+		//TODO Noch die FilterTimeline einbauen
+		rightDisplayWidgetLayout->addWidget(new QWidget());
+	}
+	else if (viewType == ViewType::ANALYSING_VIEW) {
+		rightDisplayWidgetLayout->addWidget(timeline);
+	}
 
 	QScrollArea *insertionScrollArea = new QScrollArea();
 	insertionScrollArea->setAccessibleName("MainControlWidget->insertionScrollArea");

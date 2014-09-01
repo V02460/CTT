@@ -6,6 +6,9 @@
 #include <QWeakPointer>
 
 #include "AbstractTimeline.h"
+#include "SaveableList.h"
+#include "FrameDiff.h"
+#include "qcustomplot.h"
 
 namespace view {
 
@@ -19,6 +22,13 @@ public:
     typedef QSharedPointer<DifferenceTimeline> sptr;
     typedef QWeakPointer<DifferenceTimeline> wptr;
 
+	DifferenceTimeline(::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr differences, QWidget *parent = 0);
+
+	virtual void update() Q_DECL_OVERRIDE;
+private:
+	void setupUi();
+
+	::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr differences;
 };
 
 }  // namespace view
