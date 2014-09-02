@@ -38,15 +38,15 @@ void ExtendedVideoListControllerTest::testRun() {
 	FilteredVideo::sptr filteredVideo(new FilteredVideo(video1));
 	ExtendedVideoListController videoListController(videoList1, videoList2, playerList);
 
-	//videoListController.addVideo(filteredVideo);
+	videoListController.addVideo(filteredVideo);
 	QVERIFY2(videoList1->getSize() == 1, "Wrong number of videos in the videoList.");
 	QVERIFY2(videoList1->get(0)->getBaseVideo() == filteredVideo, "The video in the videoList is not equal to the video that has been added.");
 
-	//videoListController.addVideo("Resources/Videos/YUV422/squirrel-720x576-422P.yuv", 720, 576, 24, YUVType::YUV422, video1->getFrameCount() + 1);
+	videoListController.addVideo("Resources/Videos/YUV422/squirrel-720x576-422P.yuv", 720, 576, 24, YUVType::YUV422);
 	QVERIFY2(videoList1->getSize() == 2, "Wrong number of videos in the videoList.");
 	//QVERIFY2(videoList->get(1)->getBaseVideo() == video, "The video in the videoList is not equal to the video that has been added.");
 
-	//videoListController.addVideo("Resources/Videos/YUV420/raftingNEW_352x288_113.yuv","Resources/Videos/YUV420/ModeGrid_raf_512my.dat", 352, 288, 24, YUVType::YUV420, video2->getFrameCount() + 1);
+	videoListController.addVideo("Resources/Videos/YUV420/raftingNEW_352x288_113.yuv","Resources/Videos/YUV420/ModeGrid_raf_512my.dat", 352, 288, 24, YUVType::YUV420);
 	QVERIFY2(videoList1->getSize() == 3, "Wrong number of videos in the videoList.");
 
 	videoListController.removeVideo(2);
