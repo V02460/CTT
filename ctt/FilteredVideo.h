@@ -10,6 +10,7 @@
 #include "Filter.h"
 #include "Frame.h"
 #include "Memento.h"
+#include "Observer.h"
 
 namespace model {
 namespace filter {
@@ -18,7 +19,7 @@ namespace filter {
  * Represents a Video with a filter pipeline modifying its frames.
  *
  */
-class FilteredVideo : public ::model::video::Video {
+class FilteredVideo : public ::model::video::Video, public Observer {
 public:
     typedef QScopedPointer<FilteredVideo> uptr;
     typedef QSharedPointer<FilteredVideo> sptr;
@@ -31,6 +32,8 @@ public:
      * @param baseVideo this Video will be used as base video
      */
     explicit FilteredVideo(::model::video::Video::sptr baseVideo);
+
+	~FilteredVideo();
 
     /**
      * Ads the submitted Filter to the filter pipeline at the submitted position.
@@ -83,6 +86,8 @@ public:
 	static Saveable::sptr getDummy();
 	static Saveable::SaveableType getSaveableType();
 	virtual SaveableType saveableType() const Q_DECL_OVERRIDE { return getSaveableType(); }
+
+	virtual void update();
 
 private:
     /**

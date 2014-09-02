@@ -18,7 +18,9 @@ const QString FilteredVideo::baseVideoStringId = "baseVideo";
 const QString FilteredVideo::filtersStringId = "filters";
 const QString FilteredVideo::numberOfFiltersStringId = "numberOfFilters";
 
-FilteredVideo::FilteredVideo(Video::sptr baseVideo) : baseVideo(baseVideo) {}
+FilteredVideo::FilteredVideo(Video::sptr baseVideo) : baseVideo(baseVideo) {
+	baseVideo->subscribe(this);
+}
 
 FilteredVideo::FilteredVideo() {
 	isDummyFlag = true;
@@ -60,6 +62,7 @@ void FilteredVideo::addFilter(Filter::sptr filter, unsigned int pos) {
 
 	filters.insert(pos, filter);
 
+	filter->subscribe(this);
 	changed();
 }
 
@@ -83,7 +86,7 @@ Filter::sptr FilteredVideo::removeFilter(unsigned int pos) {
 	}
 
 	Filter::sptr result(filters[pos]);
-
+	result->unsubscribe(this);
 	filters.removeAt(pos);
 	
 	changed();
@@ -141,6 +144,7 @@ void FilteredVideo::restore(Memento memento) {
 	for (unsigned int i = 0; i < memento.getUInt(numberOfFiltersStringId); i++)
 	{
 		filters.append(memento.getSharedPointer(filtersStringId + QString::number(i)).dynamicCast<Filter>());
+		filters[i]->subscribe(this);
 	}
 
 	isDummyFlag = false;
@@ -211,6 +215,22 @@ QSharedPointer<QOpenGLContext> FilteredVideo::getContext() const {
 		throw AccessToDummyException();
 	}
 	return baseVideo->getContext();
+}
+
+void FilteredVideo::update()
+{
+	if (isDummy()) {
+		throw AccessToDummyException();
+	}
+	changed();
+}
+
+FilteredVideo::~FilteredVideo()
+{
+	baseVideo->unsubscribe(this);
+	for each (Filter::sptr filter in filters) {
+		filter->unsubscribe(this);
+	}
 }
 
 }  // namespace filter

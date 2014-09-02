@@ -12,6 +12,7 @@
 #include "Video.h"
 #include "VideoMetadata.h"
 #include "Memento.h"
+#include "Observer.h"
 
 namespace model {
 namespace player {
@@ -21,7 +22,7 @@ namespace player {
  * It makes this frame available to other objects and notifies them via Qt's signal and slot mechanism when this frame
  * is replaced.
  */
-class VideoScrubber : public QObject, public Observable, public ::model::saveable::Saveable {
+class VideoScrubber : public QObject, public Observable, public ::model::saveable::Saveable, public Observer {
     Q_OBJECT
 public:
     typedef QScopedPointer<VideoScrubber> uptr;
@@ -122,6 +123,8 @@ private:
 	 * Constructor for a dummy VideoScrubber.
 	 */
 	VideoScrubber();
+
+	virtual void update();
 
     friend inline bool operator==(VideoScrubber &lhs, VideoScrubber &rhs);
 };

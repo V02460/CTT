@@ -27,9 +27,13 @@ VideoScrubber::VideoScrubber(video::Video::sptr video) : Observable() ,video(vid
 	waitingForFrame = true;
 	currentFrame = video->getFrame(0);
 	waitingForFrame = false;
+
+	video->subscribe(this);
 }
 
-VideoScrubber::~VideoScrubber() {}
+VideoScrubber::~VideoScrubber() {
+	video->unsubscribe(this);
+}
 
 VideoScrubber::VideoScrubber(video::Video::sptr video, unsigned int frameNumber) : Observable() {
 	if (video->isDummy()) {
@@ -87,6 +91,7 @@ void VideoScrubber::jumpToFrameNr(unsigned int frameNumber) {
 		waitingForFrame = true;
 		currentFrame = video->getFrame(frameNumber);
 		waitingForFrame = false;
+		lastFrameNumber = frameNumber;
 		changed();
 	}
 }
@@ -124,6 +129,11 @@ Saveable::SaveableType VideoScrubber::getSaveableType() {
 unsigned int VideoScrubber::getFrameCount() const
 {
 	return video->getFrameCount();
+}
+
+void VideoScrubber::update()
+{
+	jumpToFrameNr(lastFrameNumber);
 }
 
 inline bool operator==(VideoScrubber &lhs, VideoScrubber &rhs) { return lhs.video == rhs.video; }
