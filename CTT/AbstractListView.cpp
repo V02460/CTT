@@ -14,7 +14,8 @@ namespace view {
 	AbstractListView::AbstractListView(QWidget *parent) : QTreeWidget(parent), items() {
 	setIndentation(0);
 	setItemsExpandable(true);
-	setRootIsDecorated(true);
+	//setRootIsDecorated(true);
+	//invisibleRootItem()->setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicatorWhenChildless);
 	header()->setVisible(false);
 	header()->setSectionResizeMode(QHeaderView::Stretch);
 }
@@ -54,6 +55,10 @@ void AbstractListView::setupUi() {
 		childItem->setExpanded(false);
 		items[i]->setMaximumHeight(items[i]->getHeight());
 		setItemWidget(childItem, 0, items[i]);
+	}
+
+	if (topLevelItemCount() > 0) {
+		topLevelItem(0)->setExpanded(true);
 	}
 }
 

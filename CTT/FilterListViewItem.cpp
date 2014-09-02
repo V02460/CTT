@@ -42,7 +42,7 @@ void FilterListViewItem::setupUi() {
 		setCellWidget(i, 0, filterParams[i]->getNameLabel());
 		setCellWidget(i, 1, filterParams[i]->getInteractibleComponent());
 
-		setHeight(getHeight() + filterParams[i]->getInteractibleComponent()->height());
+		setHeight(getHeight() + filterParams[i]->getInteractibleComponent()->height() + 3);
 	}
 }
 

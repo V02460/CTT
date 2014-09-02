@@ -65,17 +65,32 @@ void FilterParamItem::boolStateChanged(int newValue) {
 		} else if (Qt::Checked) {
 			param = FilterParam::sptr(new FilterParam(param->getName(), QVariant(true)));
 		}
+
 		emit filterParamChanged(param);
 	}
 }
 
 void FilterParamItem::intValueChanged(int newValue) {
-	param = FilterParam::sptr(new FilterParam(param->getName(), QVariant(newValue)));
+	if (param->getValue().type() == QVariant::Int) {
+		param = FilterParam::sptr(new FilterParam(param->getName(), QVariant(newValue)));
+	} else {
+		if (newValue < 0) {
+			newValue = 0;
+		}
+
+		param = FilterParam::sptr(new FilterParam(param->getName(), QVariant(static_cast<unsigned int>(newValue))));
+	}
+
 	emit filterParamChanged(param);
 }
 
 void FilterParamItem::doubleValueChanged(double newValue) {
-	param = FilterParam::sptr(new FilterParam(param->getName(), QVariant(newValue)));
+	if (param->getValue().type() == QVariant::Double) {
+		param = FilterParam::sptr(new FilterParam(param->getName(), QVariant(newValue)));
+	} else {
+		param = FilterParam::sptr(new FilterParam(param->getName(), QVariant(static_cast<float>(newValue))));
+	}
+
 	emit filterParamChanged(param);
 }
 
