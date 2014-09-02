@@ -813,6 +813,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_InvertFilter.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="AbstractListViewItem.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">

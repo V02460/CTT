@@ -79,8 +79,10 @@ void PlayerFunctions::setPlayButton(bool isPlayButton) {
 		btnPreviousFrame->setEnabled(true);
 	} else {
 		btnPlayPause->setText(tr("PAUSE"));
-		btnNextFrame->setEnabled(false);
-		btnPreviousFrame->setEnabled(false);
+		if (player->scrubberCount() != 0) {
+			btnNextFrame->setEnabled(false);
+			btnPreviousFrame->setEnabled(false);
+		}
 	}
 
 	this->isPlayButton = isPlayButton;
@@ -124,9 +126,11 @@ void PlayerFunctions::btnPlayPauseClicked(bool checked) {
 }
 
 void PlayerFunctions::update() {
-	setPlayButton(!player->isPlaying());
 	setEnabledAll(player->scrubberCount() != 0);
+	setPlayButton(!player->isPlaying());
 
+	//Prevent call at PlayerController during update
+	bool oldState = sliderCurrentFrame->blockSignals(true);
 	if (player->getVideoLength() != 0) {
 		sliderCurrentFrame->setMaximum(static_cast<int>(player->getVideoLength() - 1));
 	}
@@ -139,6 +143,8 @@ void PlayerFunctions::update() {
 	} catch (IllegalArgumentException e) {
 		//Do nothing because the exception is expected
 	}
+	sliderCurrentFrame->blockSignals(oldState);
+
 	sliderCurrentFrame->setTickInterval(static_cast<int>(player->getVideoLength()) / 10);
 
 	spinboxFPS->setValue(player->getFPS());

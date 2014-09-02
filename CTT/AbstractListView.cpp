@@ -3,6 +3,7 @@
 #include <QTreeWidgetItem>
 #include <QBoxLayout>
 #include <QLabel>
+#include <QHeaderView>
 
 #include "ListedPushButton.h"
 
@@ -12,8 +13,10 @@ namespace view {
 
 	AbstractListView::AbstractListView(QWidget *parent) : QTreeWidget(parent), items() {
 	setIndentation(0);
-	// TODO setItemsExpandable(true);
+	setItemsExpandable(true);
 	setRootIsDecorated(true);
+	header()->setVisible(false);
+	header()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void AbstractListView::removeAllItems() {
@@ -31,12 +34,12 @@ void AbstractListView::setupUi() {
 		QHBoxLayout *itemWidgetLayout = new QHBoxLayout(this);
 
 		QLabel *identifierLabel = items[i]->getIdentifier();
-		identifierLabel->setParent(this);
+		identifierLabel->setParent(itemWidget);
 		itemWidgetLayout->addWidget(identifierLabel);
 		itemWidgetLayout->addStretch();
 
 		// TODO Add icon
-		ListedPushButton *removeButton = new ListedPushButton(i, this);
+		ListedPushButton *removeButton = new ListedPushButton(i, itemWidget);
 		removeButton->setText(tr("REMOVE"));
 		itemWidgetLayout->addWidget(removeButton);
 		QObject::connect(removeButton, SIGNAL(clicked(bool, int)), this, SLOT(buttonRemoveClicked(bool, int)));
@@ -45,9 +48,11 @@ void AbstractListView::setupUi() {
 		setItemWidget(item, 0, itemWidget);
 
 		// Create and set child
-		QTreeWidgetItem *childItem = new QTreeWidgetItem(this);
-		childItem->setDisabled(true);
+		QTreeWidgetItem *childItem = new QTreeWidgetItem(item);
 		item->addChild(childItem);
+		//childItem->setDisabled(true);
+		childItem->setExpanded(false);
+		items[i]->setMaximumHeight(items[i]->getHeight());
 		setItemWidget(childItem, 0, items[i]);
 	}
 }
