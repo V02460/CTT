@@ -136,7 +136,7 @@ namespace model {
 		void distributeVideos();
 		bool identify(bool xIsAandYisB);
 
-		unsigned long binomialCoefficient(unsigned long n, unsigned long k);
+		unsigned long long binomialCoefficient(unsigned long n, unsigned long k);
 
 		Video::sptr a;
 		Video::sptr b;

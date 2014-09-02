@@ -193,7 +193,7 @@ double model::ABXTest::getGuessingChance()
 		throw new AccessToDummyException("Tried to get the guessing chance from a dummy ABXTest.");
 	}
 
-	unsigned long sum = 0;
+	unsigned long long sum = 0;
 	for (unsigned int k = successfulTries; k <= tries; k++)
 	{
 		sum += binomialCoefficient(tries, k);
@@ -202,10 +202,10 @@ double model::ABXTest::getGuessingChance()
 	return sum * qPow(0.5, tries);
 }
 
-unsigned long model::ABXTest::binomialCoefficient(unsigned long n, unsigned long k)
+unsigned long long model::ABXTest::binomialCoefficient(unsigned long n, unsigned long k)
 {
-	unsigned long i;
-	unsigned long b;
+	unsigned long long i;
+	unsigned long long b;
 	if (0 == k || n == k) {
 		return 1;
 	}
@@ -223,7 +223,7 @@ unsigned long model::ABXTest::binomialCoefficient(unsigned long n, unsigned long
 		b *= (n - (k - i));
 		if (b < 0)
 		{
-			//overflow
+			//overflow?
 			return -1;
 		}
 		b /= i;
