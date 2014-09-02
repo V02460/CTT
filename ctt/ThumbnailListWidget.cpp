@@ -3,7 +3,7 @@
 #include <QFileDialog>
 #include <QDialogButtonBox>
 #include <QMessageBox>
-
+#include <QRegExp>
 #include "YUVType.h"
 #include "FileNotFoundException.h"
 #include "IOException.h"
@@ -198,6 +198,32 @@ void ThumbnailListWidget::btnAddVideoClicked(bool checked) {
 	if (videoPath != "") {
 		QFileInfo fileInfo = QFileInfo(videoPath);
 		openVideoDialog->setWindowTitle(tr("MORE_VIDEO_INFORMATION") + ": " + fileInfo.baseName());
+
+		if (fileInfo.baseName().contains("444"))
+		{
+			yuvType->setCurrentIndex(0);
+		}
+		if (fileInfo.baseName().contains("422"))
+		{
+			yuvType->setCurrentIndex(1);
+		}
+		if (fileInfo.baseName().contains("420"))
+		{
+			yuvType->setCurrentIndex(2);
+		}
+
+		QRegExp resolutionStringRegEx("((\\d+)x(\\d+))");
+
+		if (fileInfo.baseName().contains(resolutionStringRegEx))
+		{
+			
+			resolutionStringRegEx.indexIn(fileInfo.baseName());
+			QStringList widthAndHeight = resolutionStringRegEx.capturedTexts()[0].split("x");
+
+			widthSpinBox->setValue(widthAndHeight[0].toInt());
+			heightSpinBox->setValue(widthAndHeight[1].toInt());
+		}
+
 		if (openVideoDialog->exec() == QDialog::Accepted) {
 			YUVType videoType;
 
