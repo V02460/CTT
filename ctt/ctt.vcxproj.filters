@@ -279,9 +279,6 @@
     <ClCompile Include="FilterIntervalList.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="Observer.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="Surface.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
@@ -827,6 +824,9 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_ABXController.cpp">
       <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractListViewItem.cpp">
+      <Filter>Source Files\View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

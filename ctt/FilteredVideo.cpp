@@ -227,6 +227,10 @@ void FilteredVideo::update()
 
 FilteredVideo::~FilteredVideo()
 {
+    if (isDummy()) {
+        return;
+    }
+
 	baseVideo->unsubscribe(this);
 	for each (Filter::sptr filter in filters) {
 		filter->unsubscribe(this);

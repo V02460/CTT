@@ -19,7 +19,7 @@ public:
     typedef QSharedPointer<Observer> sptr;
     typedef QWeakPointer<Observer> wptr;
 
-    virtual ~Observer();
+    virtual ~Observer() = 0 {};
 
     /**
      * This method is meant to be used to notify the Observer of changes of the state of the Object it observes.

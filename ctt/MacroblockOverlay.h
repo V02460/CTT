@@ -36,14 +36,13 @@ public:
     explicit MacroblockOverlay(Module::sptr predecessor);
 
     /**
-     * MacroblockOverlay destructor.
+     * Destroys the MacroblockOverlay.
      */
     virtual ~MacroblockOverlay();
 
     virtual bool supportsIntervals() const Q_DECL_OVERRIDE{ return true; }
     virtual QString getName() const Q_DECL_OVERRIDE { return QCoreApplication::translate("Filter", kFilterID); }
     virtual QList<const Module*> getUsesList() const Q_DECL_OVERRIDE;
-    virtual bool uses(const Module &module) const Q_DECL_OVERRIDE;
     ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
     void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
     static ::model::saveable::Saveable::SaveableType getSaveableType() { return Saveable::macroblockOverlay; }
@@ -51,6 +50,16 @@ public:
     static Saveable::sptr getDummy();
 
 private:
+    static const float kBlockAlpha;
+
+    /**
+     * Creates a dummy MacroblockOverlay.
+     */
+    MacroblockOverlay();
+
+    /**
+     * Renders the macroblock view.
+     */
     class Macroblocks : public Filter, public QOpenGLFunctions {
     public:
         typedef QScopedPointer<Macroblocks> uptr;
@@ -96,6 +105,8 @@ private:
         mutable QPointF lastPosition;
         mutable QColor lastColor;
         mutable QPointF lastTexcrd;
+
+        Surface::sptr partitionMap;
     };
 };
 

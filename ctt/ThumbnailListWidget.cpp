@@ -46,10 +46,15 @@ void ThumbnailListWidget::setupUi() {
 	if (isHorizontal) {
 		thumbnailListLayout = new QHBoxLayout();
 		thumbnailListLayout->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+		setMinimumHeight(ListedPushButton::MINIMUM_SIZE.height() + 20);
 	} else {
 		thumbnailListLayout = new QVBoxLayout();
 		thumbnailListLayout->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
+		setMinimumWidth(ListedPushButton::MINIMUM_SIZE.width() + 20);
 	}
+	thumbnailListLayout->setContentsMargins(5, 5, 5, 5);
+	setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+
 	QWidget *scrollWidget = new QWidget(this);
 	scrollWidget->setAccessibleName("ThumbnailListWidget->scrollWidget");
 	scrollWidget->setLayout(thumbnailListLayout);
@@ -139,12 +144,6 @@ void ThumbnailListWidget::update() {
 
 	thumbnailListLayout->removeWidget(btnAddVideo);
 
-	//To remove the stretch at the end of the layout
-	QLayoutItem *child = thumbnailListLayout->takeAt(0);
-	if (child != 0) {
-		delete child;
-	}
-
 	//Repopulate the ThumbnailListWidget
 	for (int i = 0; i < filteredVideos->getSize(); i++) {
 		ListedPushButton::sptr addedButton =
@@ -156,7 +155,6 @@ void ThumbnailListWidget::update() {
 	}
 
 	thumbnailListLayout->addWidget(btnAddVideo);
-	thumbnailListLayout->addStretch();
 
 	isInUpdateRequest = false;
 }

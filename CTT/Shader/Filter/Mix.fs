@@ -12,5 +12,9 @@ varying vec2 texcrd;
 void main() {
     vec4 color1 = texture2D(_sourceTexture, texcrd);
     vec4 color2 = texture2D(sourceTexture2, texcrd);
-	gl_FragColor = mix(color1, color2, mixRatio);
+
+    // Not actually a mix filter - more a overlay filter
+    float alpha = mixRatio * color2.a;
+	gl_FragColor.rgb = mix(color1.rgb, color2.rgb, alpha);
+	gl_FragColor.a = alpha + (1 - alpha) * color1.a;
 }

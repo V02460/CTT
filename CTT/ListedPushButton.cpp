@@ -20,7 +20,7 @@ namespace view {
 
 		QSizePolicy sizePolicy = QSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 		setSizePolicy(sizePolicy);
-		setMinimumSize(QSize(80, 45));
+		setMinimumSize(QSize(160, 90));
 		setCheckable(true);
 		// TODO setFlat(true);
 
@@ -80,5 +80,7 @@ namespace view {
 			setIconSize(QSize(width() - border, (width() - border) * (1 / iconRatio)));
 		}
 	}
+
+	const QSize ListedPushButton::MINIMUM_SIZE = QSize(160, 90);
 
 } // namespace view

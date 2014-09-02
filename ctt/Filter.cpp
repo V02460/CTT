@@ -32,12 +32,16 @@ void Filter::setParam(FilterParam::sptr parameter) {
     if (!parameters.contains(parameter->getName())) {
         throw IllegalArgumentException("Parameter '" + parameter->getName() + "' must exist in Filter to be set.");
     }
+
     QVariant oldValue = parameters.value(parameter->getName(), parameter)->getValue();
     QVariant newValue = parameter->getValue();
+    
     if (newValue.type() != oldValue.type()) {
         throw IllegalArgumentException("Variable type of FilterParam does not match stored type.");
     }
+
     parameters.insert(parameter->getName(), parameter);
+    changed();
 }
 
 void Filter::setPreviousModule(Module::sptr predecessor) {
@@ -85,6 +89,10 @@ Module *Filter::getPredecessor() const {
     return predecessor.data();
 }
 
+Filter::Filter() {
+    isDummyFlag = true;
+}
+
 QSize Filter::getResolution() const {
 	if (isDummy()) {
 		throw AccessToDummyException();
@@ -105,6 +113,10 @@ Memento Filter::getMemento() const {
 void Filter::restore(Memento memento) {
     predecessor = memento.getSharedPointer("predecessor").dynamicCast<Module>();
 	intervals = memento.getSharedPointer("intervals").dynamicCast<FilterIntervalList>();
+}
+
+QList<const Module*> Filter::getUsesList() const {
+    return Module::getUsesList();
 }
 
 }  // namespace filter
