@@ -32,6 +32,7 @@ VideoScrubber::VideoScrubber(video::Video::sptr video) : Observable() ,video(vid
 }
 
 VideoScrubber::~VideoScrubber() {
+	
 	video->unsubscribe(this);
 }
 

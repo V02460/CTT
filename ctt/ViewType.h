@@ -10,7 +10,8 @@ enum ViewType {
     /*The identifier for the analysing view.*/
     ANALYSING_VIEW,
     /*The identifier for the processing view.*/
-    PROCESSING_VIEW
+    PROCESSING_VIEW,
+	ABX_VIEW
 };
 
 }  // namespace view

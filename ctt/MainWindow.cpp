@@ -11,6 +11,9 @@
 #include "Video.h"
 #include "SaveFileType.h"
 #include "OperationList.h"
+#include "ABXTestWidget.h"
+#include "GlobalContext.h"
+#include "YUVDataVideo.h"
 
 using ::controller::project::Project;
 using ::controller::VideoListController;
@@ -19,6 +22,8 @@ using ::model::video::Video;
 using ::controller::MainController;
 using ::controller::project::SaveFileType;
 using ::controller::operation::OperationList;
+using ::model::video::YUVDataVideo;
+using  ::model::GlobalContext;
 
 namespace view {
 	MainWindow::MainWindow() {
@@ -30,10 +35,17 @@ namespace view {
 
 		AnalysingWidget *analysingView = new AnalysingWidget(project->getVideoList2(), project->getPlayer2(), analysingListController, project->getDiffList(), this);
 
+		//TODO jztdiztd remove test stuff, add real support for abx
+		YUVDataVideo::sptr testVideo(new YUVDataVideo("resources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, GlobalContext::get()));
+		YUVDataVideo::sptr testVideo2(new YUVDataVideo("resources/Videos/YUV420/raftingNEW_352x288_113.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, GlobalContext::get()));
+		ABXController::sptr aBXController(new ABXController(testVideo, testVideo2));
+		ABXTestWidget *aBXView = new ABXTestWidget(aBXController, this);
+
 		centralWidgetLayout = new QStackedLayout();
 		centralWidgetLayout->setContentsMargins(0, 0, 0, 0);
 		centralWidgetLayout->addWidget(processingView);
 		centralWidgetLayout->addWidget(analysingView);
+		centralWidgetLayout->addWidget(aBXView);
 
 		ViewState::getInstance()->subscribe(this);
 
@@ -101,6 +113,9 @@ namespace view {
 		QObject::connect(toAnalysingView, SIGNAL(triggered()), this, SLOT(menuToAnalysing()));
 		view->addAction(toAnalysingView);
 
+		toABXView = new QAction(tr("MENUENTRY_TO_ABX"), view);
+		QObject::connect(toABXView, SIGNAL(triggered()), this, SLOT(menuToABX()));
+		view->addAction(toABXView);
 
 		QMenu *help = menu->addMenu(tr("MENU_HELP"));
 
@@ -121,10 +136,19 @@ namespace view {
 			centralWidgetLayout->setCurrentIndex(0);
 			toProcessingView->setVisible(false);
 			toAnalysingView->setVisible(true);
+			toABXView->setVisible(true);
 		} else if (currentType == ViewType::ANALYSING_VIEW) {
 			centralWidgetLayout->setCurrentIndex(1);
 			toProcessingView->setVisible(true);
 			toAnalysingView->setVisible(false);
+			toABXView->setVisible(true);
+		}
+		else if (currentType == ViewType::ABX_VIEW)
+		{
+			centralWidgetLayout->setCurrentIndex(2);
+			toProcessingView->setVisible(true);
+			toAnalysingView->setVisible(true);
+			toABXView->setVisible(false);
 		}
 		
 	}
@@ -173,4 +197,10 @@ namespace view {
 			//Ignoriere Excpetion und tue nichts
 		}
 	}
+
+	void MainWindow::menuToABX()
+	{
+		ViewState::getInstance()->changeView(ABX_VIEW);
+	}
+
 }  // namespace view

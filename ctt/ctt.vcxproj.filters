@@ -816,6 +816,18 @@
     <ClCompile Include="GeneratedFiles\Release\moc_InvertFilter.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="ABXController.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="ABXTestWidget.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ABXController.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ABXController.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctt.h">
@@ -979,6 +991,9 @@
     </CustomBuild>
     <CustomBuild Include="InvertFilter.h">
       <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ABXController.h">
+      <Filter>Header Files\Controller</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -1212,6 +1227,9 @@
     </ClInclude>
     <ClInclude Include="ABXTest.h">
       <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ABXTestWidget.h">
+      <Filter>Header Files\View</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

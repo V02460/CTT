@@ -38,6 +38,7 @@ public:
 public slots:
 	void menuToProcessing();
 	void menuToAnalysing();
+	void menuToABX();
 
 	void menuLoad();
 	void menuSave();
@@ -61,6 +62,7 @@ private:
     QMenuBar *menu; /**< The menu bar which holds all menu items */
 	QAction *toProcessingView;
 	QAction *toAnalysingView;
+	QAction *toABXView;
 	QStackedLayout *centralWidgetLayout;
 
 	::controller::MainController::sptr mainController;
