@@ -24,6 +24,8 @@ public:
 		               ::controller::FilterController::sptr filterController,
 					   QWidget *parent);
 
+	~FilterListViewItem();
+
 	virtual QLabel* getIdentifier() const Q_DECL_OVERRIDE;
 	virtual void update() Q_DECL_OVERRIDE;
 
