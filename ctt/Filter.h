@@ -115,6 +115,7 @@ public:
     virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
     virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
     static Saveable::SaveableType getSaveableType() { return Saveable::filter; }
+    virtual QList<const Module*> getUsesList() const Q_DECL_OVERRIDE;
 
 protected:
 

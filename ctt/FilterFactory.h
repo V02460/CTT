@@ -57,6 +57,8 @@ public:
     */
     static Filter::sptr createFilter(QString id, Module::sptr predecessor, ::model::difference::PixelDiff::sptr pixelDiff);
 private:
+    Q_DISABLE_COPY(FilterFactory);
+
     FilterFactory() {}
 };
 

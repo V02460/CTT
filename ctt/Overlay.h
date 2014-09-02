@@ -26,24 +26,34 @@ public:
     static Saveable::SaveableType getSaveableType();
 
     virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
+    virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
+    virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
+    virtual QList<const Module*> getUsesList() const Q_DECL_OVERRIDE;
 
 protected:
     /**
-    * Constructs a Overlay which works on predecessor.
-    *
-    * @param predecessor The Module Overlay is receiving its Frames from.
-    * @param overlay The image which is put on top
-    * @param overlayAlpha The transparency of the overlay
-    */
-    explicit Overlay(Module::sptr predecessor, Module::sptr overlay, float overlayAlpha);
+     * Constructs a Overlay which works on predecessor.
+     *
+     * @param predecessor The Module Overlay is receiving its Frames from.
+     * @param overlay The image which is put on top
+     * @param overlayAlpha The transparency of the overlay
+     */
+    Overlay(Module::sptr predecessor, Module::sptr overlay, float overlayAlpha);
 
     /**
-    * Overlay destructor.
-    */
+     * Creates a dummy Overlay.
+     */
+    Overlay();
+
+    /**
+     * Overlay destructor.
+     */
     virtual ~Overlay();
 
 private:
-    ::model::filter::MixFilter mixFilter;
+
+    // TODO: change to blend filter (=> proper alpha)
+    ::model::filter::MixFilter::sptr mixFilter;
 };
 
 }  // namespace overlay
