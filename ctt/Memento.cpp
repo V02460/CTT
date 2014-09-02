@@ -40,6 +40,7 @@ int Memento::getInt(QString name) const {
 		throw IllegalArgumentException("There is no variable with name " + name + " in this memento.");
 	}
 	bool valid;
+	QString valueString = variableMap.value(name);
 	int value = variableMap.value(name).toInt(&valid);
 	if (!valid) {
 		throw IllegalArgumentException("The variable with name " + name + " in this memento is not an integer.");

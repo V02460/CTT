@@ -66,9 +66,13 @@ private:
 	QMap<int, ::model::saveable::Memento> mementoMap;
 	QMap<int, QMap<QString, int>> mementoIdMap;
 
+	void readElements();
 	void loadView();
-	void createMaps();
+	void readMemento(int id);
 	void restore();
+
+	QXmlStreamReader::TokenType type;
+	QString string;
 };
 
 }  // namespace project
