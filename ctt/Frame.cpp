@@ -22,7 +22,10 @@ using ::exception::IllegalArgumentException;
 Frame::Frame(QSharedPointer<QOpenGLContext> context, QImage image, FrameMetadata metadata)
         : Surface(context, image.size())
         , metadata(metadata) {
-
+    
+    if (image.isNull()) {
+        throw IllegalArgumentException("Image is null.");
+    }
     if (image.size().isEmpty()) {
         throw IllegalArgumentException("Tried to create a frame from an image of size "
                                            + QString::number(image.size().width()) + "*"
@@ -52,11 +55,15 @@ Frame::Frame(QSharedPointer<QOpenGLContext> context, QImage image)
     : Surface(context, image.size())
     , metadata(FrameMetadata(image.size())) {
 
+    if (image.isNull()) {
+        throw IllegalArgumentException("Image is null.");
+    }
+
     if (image.size().isEmpty()) {
-        throw IllegalArgumentException("Tried to create a frame from an image of size "
-                                           + QString::number(image.size().width()) + "*"
-                                           + QString::number(image.size().height())
-                                           + " but sizes of 0 are not allowed.");
+        throw IllegalArgumentException("Tried to create a frame from an image of size " +
+                                       QString::number(image.size().width()) + "*" +
+                                       QString::number(image.size().height()) +
+                                       " but sizes of 0 are not allowed.");
     }
 
     getTexture()->setData(image.mirrored(), QOpenGLTexture::DontGenerateMipMaps);
@@ -67,10 +74,10 @@ Frame::Frame(QSharedPointer<QOpenGLContext> context, FrameMetadata metadata)
         : Surface(context, metadata.getSize())
         , metadata(metadata) {
     if (metadata.getSize().isEmpty()) {
-        throw IllegalArgumentException("Tried to create a frame with metadata describing a frame of size "
-                                           + QString::number(metadata.getSize().width()) + "*"
-                                           + QString::number(metadata.getSize().height())
-                                           + " but sizes of 0 are not allowed.");
+        throw IllegalArgumentException("Tried to create a frame with metadata describing a frame of size " +
+                                       QString::number(metadata.getSize().width()) + "*" +
+                                       QString::number(metadata.getSize().height()) +
+                                       " but sizes of 0 are not allowed.");
     }
 }
 

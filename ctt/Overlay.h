@@ -52,6 +52,7 @@ protected:
 
 private:
 
+    // TODO: change to blend filter (=> proper alpha)
     ::model::filter::MixFilter::sptr mixFilter;
 };
 

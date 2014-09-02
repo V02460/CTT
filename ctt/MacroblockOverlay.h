@@ -50,6 +50,8 @@ public:
     static Saveable::sptr getDummy();
 
 private:
+    static const float kBlockAlpha;
+
     /**
      * Creates a dummy MacroblockOverlay.
      */
@@ -103,6 +105,8 @@ private:
         mutable QPointF lastPosition;
         mutable QColor lastColor;
         mutable QPointF lastTexcrd;
+
+        Surface::sptr partitionMap;
     };
 };
 
