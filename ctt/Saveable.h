@@ -101,7 +101,8 @@ public:
 		player,
 		saveableList,
 		uIntegerInterval,
-		videoScrubber
+		videoScrubber,
+		aBXTest
 	};
 
 	/** A string representation for the Saveable class. */

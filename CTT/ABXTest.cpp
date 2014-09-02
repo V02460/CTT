@@ -4,16 +4,29 @@
 
 using model::ABXTest;
 using model::video::Video;
+using exception::AccessToDummyException;
+
+const QString ABXTest::videoAStringID("videoA");
+const QString ABXTest::videoBStringID("videoB");
+const QString ABXTest::xIsAStringId("xIsA");
+const QString ABXTest::lastTryWasSuccessfulStringId("lastTrySuccessfull");
+const QString ABXTest::triesStringId("tries");
+const QString ABXTest::successfulTriesStringId("successfullTries");
 
 model::ABXTest::ABXTest(Video::sptr a, Video::sptr b) :
 a(a),
 b(b),
-lastTryWasSuccessfull(false),
+lastTryWasSuccessful(false),
 tries(0),
-successfullTries(0)
+successfulTries(0)
 {
 	qsrand((uint)QTime::currentTime().msec());
 	distributeVideos();
+}
+
+model::ABXTest::ABXTest()
+{
+	isDummyFlag = true;
 }
 
 void model::ABXTest::distributeVideos()
@@ -37,14 +50,22 @@ void model::ABXTest::distributeVideos()
 
 void model::ABXTest::reset()
 {
-	lastTryWasSuccessfull = false;
+	if (isDummy())
+	{
+		throw new AccessToDummyException("Tried to reset a dummy ABXTest.");
+	}
+	lastTryWasSuccessful = false;
 	tries = 0;
-	successfullTries = 0;
+	successfulTries = 0;
 	distributeVideos();
 }
 
 void model::ABXTest::reset(Video::sptr newA, Video::sptr newB)
 {
+	if (isDummy())
+	{
+		throw new AccessToDummyException("Tried to reset a dummy ABXTest.");
+	}
 	a = newA;
 	b = newB;
 	reset();
@@ -52,26 +73,46 @@ void model::ABXTest::reset(Video::sptr newA, Video::sptr newB)
 
 Video::sptr model::ABXTest::getVideoA()
 {
+	if (isDummy())
+	{
+		throw new AccessToDummyException("Tried to get a video from a dummy ABXTest.");
+	}
 	return a;
 }
 
 Video::sptr model::ABXTest::getVideoB()
 {
+	if (isDummy())
+	{
+		throw new AccessToDummyException("Tried to get a video from a dummy ABXTest.");
+	}
 	return b;
 }
 
 Video::sptr model::ABXTest::getVideoX()
 {
+	if (isDummy())
+	{
+		throw new AccessToDummyException("Tried to get a video from a dummy ABXTest.");
+	}
 	return x;
 }
 
 Video::sptr model::ABXTest::getVideoY()
 {
+	if (isDummy())
+	{
+		throw new AccessToDummyException("Tried to get a video from a dummy ABXTest.");
+	}
 	return y;
 }
 
 bool model::ABXTest::identifyXasA()
 {
+	if (isDummy())
+	{
+		throw new AccessToDummyException("Tried to use a dummy ABXTest.");
+	}
 	return identify(true);
 }
 
@@ -82,13 +123,13 @@ bool model::ABXTest::identify(bool xIsAandYisB)
 
 	if (xIsAandYisB == xIsA)
 	{
-		successfullTries++;
-		lastTryWasSuccessfull = true;
+		successfulTries++;
+		lastTryWasSuccessful = true;
 		result = true;
 	}
 	else
 	{
-		lastTryWasSuccessfull = false;
+		lastTryWasSuccessful = false;
 		result = false;
 	}
 	distributeVideos();
@@ -97,33 +138,58 @@ bool model::ABXTest::identify(bool xIsAandYisB)
 
 bool model::ABXTest::identifyXasB()
 {
-	return identify(true);
+	if (isDummy())
+	{
+		throw new AccessToDummyException("Tried to use a dummy ABXTest.");
+	}
+	return identify(false);
 }
 
-bool model::ABXTest::wasLastTrySuccessfull()
+bool model::ABXTest::wasLastTrySuccessful()
 {
-	return lastTryWasSuccessfull;
+	if (isDummy())
+	{
+		throw new AccessToDummyException("Tried to ask a dummy ABXTest whether the last try was successful.");
+	}
+	return lastTryWasSuccessful;
 }
 
 unsigned int model::ABXTest::getNumberOfTotalTries()
 {
+	if (isDummy())
+	{
+		throw new AccessToDummyException("Tried to get the number of tries from a dummy ABXTest.");
+	}
 	return tries;
 }
 
-unsigned int model::ABXTest::getNumberOfSuccessfullTries()
+unsigned int model::ABXTest::getNumberOfSuccessfulTries()
 {
-	return successfullTries;
+	if (isDummy())
+	{
+		throw new AccessToDummyException("Tried to get the number of successful tries from a dummy ABXTest.");
+	}
+	return successfulTries;
 }
 
 unsigned int model::ABXTest::getNumberOfFailedTries()
 {
-	return getNumberOfTotalTries() - getNumberOfSuccessfullTries();
+	if (isDummy())
+	{
+		throw new AccessToDummyException("Tried to get the number of failed tries from a dummy ABXTest.");
+	}
+	return getNumberOfTotalTries() - getNumberOfSuccessfulTries();
 }
 
 double model::ABXTest::getGuessingChance()
 {
+	if (isDummy())
+	{
+		throw new AccessToDummyException("Tried to get the guessing chance from a dummy ABXTest.");
+	}
+
 	unsigned long sum = 0;
-	for (unsigned int k = successfullTries; k <= tries; k++)
+	for (unsigned int k = successfulTries; k <= tries; k++)
 	{
 		sum += binomialCoefficient(tries, k);
 	}
@@ -160,6 +226,53 @@ unsigned long model::ABXTest::binomialCoefficient(unsigned long n, unsigned long
 	return b;
 }
 
+model::saveable::Saveable::sptr ABXTest::getDummy()
+{
+	return Saveable::sptr(new ABXTest());
+}
+
+model::saveable::Memento ABXTest::getMemento() const
+{
+	if (isDummy())
+	{
+		throw new AccessToDummyException("Tried to get a memento from a dummy ABXTest.");
+	}
+
+	Memento memento;
+	memento.setSharedPointer(videoAStringID, a);
+	memento.setSharedPointer(videoBStringID, b);
+	memento.setBool(xIsAStringId, xIsA);
+	memento.setBool(lastTryWasSuccessfulStringId, lastTryWasSuccessful);
+	memento.setUInt(triesStringId, tries);
+	memento.setUInt(successfulTriesStringId, successfulTries);
+	return memento;
+}
+
+void model::ABXTest::restore(Memento memento)
+{
+	a = memento.getSharedPointer(videoAStringID).dynamicCast<Video>();
+	b = memento.getSharedPointer(videoBStringID).dynamicCast<Video>();
+	xIsA = memento.getBool(xIsAStringId);
+	if (xIsA)
+	{
+		x = a;
+		y = b;
+	}
+	else
+	{
+		x = b;
+		y = a;
+	}
+	lastTryWasSuccessful = memento.getBool(lastTryWasSuccessfulStringId);
+	tries = memento.getUInt(triesStringId);
+	successfulTries = memento.getUInt(successfulTriesStringId);
+	isDummyFlag = false;
+}
+
+model::saveable::Saveable::SaveableType ABXTest::getSaveableType()
+{
+	return model::saveable::Saveable::aBXTest;
+}
 
 
 ABXTest::~ABXTest()

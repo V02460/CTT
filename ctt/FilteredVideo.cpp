@@ -59,6 +59,8 @@ void FilteredVideo::addFilter(Filter::sptr filter, unsigned int pos) {
 	}
 
 	filters.insert(pos, filter);
+
+	changed();
 }
 
 Filter::sptr FilteredVideo::removeFilter(unsigned int pos) {
@@ -84,6 +86,7 @@ Filter::sptr FilteredVideo::removeFilter(unsigned int pos) {
 
 	filters.removeAt(pos);
 	
+	changed();
 	return result;
 }
 

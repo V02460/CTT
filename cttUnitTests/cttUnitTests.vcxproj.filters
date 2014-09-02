@@ -336,6 +336,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_HSLPixelDiffTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="ABXTesttest.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ABXTesttest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ABXTesttest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -418,6 +427,9 @@
     </CustomBuild>
     <CustomBuild Include="HSLPixelDiffTest.h">
       <Filter>Header Files\Model\Difference</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ABXTesttest.h">
+      <Filter>Generated Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

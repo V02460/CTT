@@ -1,16 +1,26 @@
 #pragma once
 #include "Observable.h"
 #include "Video.h"
+#include <qobject.h>
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
+
 namespace model {
 
 	using model::video::Video;
+	using model::saveable::Memento;
 	/**
 	 * Implements an ABX and ABXY Test for the comparison of 2 videos.
 	 */
 	class ABXTest :
-		public Observable
+		public Observable, public saveable::Saveable
 	{
 	public:
+		typedef QScopedPointer<ABXTest> uptr;
+		typedef QSharedPointer<ABXTest> sptr;
+		typedef QWeakPointer<ABXTest> wptr;
+
 		/**
 		 * Creates a new ABXTest for the comparison of the two submitted Videos a and b.
 		 * @param a source A
@@ -72,7 +82,7 @@ namespace model {
 		 * Returns whether the last guess was correct.
 		 * @return true only if the last guess was correct
 		 */
-		bool wasLastTrySuccessfull();
+		bool wasLastTrySuccessful();
 
 		/**
 		 * Returns the number of completed testing rounds since the creation or the last reset of the ABXTest.
@@ -81,10 +91,10 @@ namespace model {
 		unsigned int getNumberOfTotalTries();
 
 		/**
-		 * Returns the number of successfull guesses since the creation or the last reset of the ABXTest.
-		 * @return the number of successfull guesses
+		 * Returns the number of successful guesses since the creation or the last reset of the ABXTest.
+		 * @return the number of successful guesses
 		 */
-		unsigned int getNumberOfSuccessfullTries();
+		unsigned int getNumberOfSuccessfulTries();
 
 		/**
 		 * Returns the number of failed guesses since the creation or the last reset of the ABXTest.
@@ -93,12 +103,35 @@ namespace model {
 		unsigned int getNumberOfFailedTries();
 
 		/**
-		 * Calculates and returns the probability that the current test results can be achieved without perceiving a difference in the sources, but only by indiscriminate guessing.
-		 * @return the probability that the current test results can be achieved without perceiving a difference in the sources
+		 * Calculates and returns the probability that the current test results or better results can be achieved without perceiving a difference in the sources, but only by indiscriminate guessing.
+		 * @return the probability that the current test results or better results can be achieved without perceiving a difference in the sources
 		 */
 		double getGuessingChance();
 
+
+
+		virtual Memento getMemento() const;
+
+		virtual void restore(Memento memento);
+
+		static model::saveable::Saveable::sptr getDummy();
+
+		static Saveable::SaveableType getSaveableType();
+
 	private:
+		/**
+		 * Creates a dummy ABXTest.
+		 */
+		ABXTest();
+
+		const static QString videoAStringID;
+		const static QString videoBStringID;
+		const static QString xIsAStringId;
+		const static QString lastTryWasSuccessfulStringId;
+		const static QString triesStringId;
+		const static QString successfulTriesStringId;
+
+
 		void distributeVideos();
 		bool identify(bool xIsAandYisB);
 
@@ -110,10 +143,10 @@ namespace model {
 		Video::sptr y;
 
 		bool xIsA;
-		bool lastTryWasSuccessfull;
+		bool lastTryWasSuccessful;
 
 		unsigned int tries;
-		unsigned int successfullTries;
+		unsigned int successfulTries;
 	};
 
 }
