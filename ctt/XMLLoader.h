@@ -28,7 +28,6 @@
 #include "RescaleFilter.h"
 #include "RGBChannelFilter.h"
 #include "TimeshiftFilter.h"
-#include "FFmpegDataVideo.h"
 #include "YUVDataVideo.h"
 #include "ViewState.h"
 #include "Observable.h"

@@ -25,7 +25,6 @@
 #include "RescaleFilter.h"
 #include "RGBChannelFilter.h"
 #include "TimeshiftFilter.h"
-#include "FFmpegDataVideo.h"
 #include "YUVDataVideo.h"
 #include "FilteredVideo.h"
 #include "SaveableList.h"
@@ -170,7 +169,6 @@ template class SaveableList<model::filter::RGBChannelFilter>;
 template class SaveableList<model::filter::TimeshiftFilter>;
 template class SaveableList<model::video::Video>;
 template class SaveableList<model::video::FileVideo>;
-template class SaveableList<model::video::FFmpegDataVideo>;
 template class SaveableList<model::video::YUVDataVideo>;
 template class SaveableList<model::filter::FilteredVideo>;
 template class SaveableList<model::player::Player>;

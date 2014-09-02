@@ -30,7 +30,6 @@ using ::model::filter::overlay::MotionVectorOverlay;
 using ::model::filter::RescaleFilter;
 using ::model::filter::RGBChannelFilter;
 using ::model::filter::TimeshiftFilter;
-using ::model::video::FFmpegDataVideo;
 using ::model::video::YUVDataVideo;
 using ::model::filter::FilteredVideo;
 using ::model::player::Player;
@@ -147,7 +146,6 @@ void XMLLoader::readElements() {
 			case Saveable::SaveableType::rescaleFilter: dummy = RescaleFilter::getDummy(); break;
 			case Saveable::SaveableType::rGBChannelFilter: dummy = RGBChannelFilter::getDummy(); break;
 			case Saveable::SaveableType::timeshiftFilter: dummy = TimeshiftFilter::getDummy(); break;
-			case Saveable::SaveableType::fFmpegDataVideo: dummy = FFmpegDataVideo::getDummy(); break;
 			case Saveable::SaveableType::yUVDataVideo: dummy = YUVDataVideo::getDummy(); break;
 			case Saveable::SaveableType::filteredVideo: dummy = FilteredVideo::getDummy(); break;
 			case Saveable::SaveableType::player: dummy = Player::getDummy(); break;
@@ -184,7 +182,6 @@ void XMLLoader::readElements() {
 				case Saveable::SaveableType::timeshiftFilter: dummy = SaveableList<TimeshiftFilter>::getDummy(); break;
 				case Saveable::SaveableType::video: dummy = SaveableList<Video>::getDummy(); break;
 				case Saveable::SaveableType::fileVideo: dummy = SaveableList<FileVideo>::getDummy(); break;
-				case Saveable::SaveableType::fFmpegDataVideo: dummy = SaveableList<FFmpegDataVideo>::getDummy(); break;
 				case Saveable::SaveableType::yUVDataVideo: dummy = SaveableList<YUVDataVideo>::getDummy(); break;
 				case Saveable::SaveableType::filteredVideo: dummy = SaveableList<FilteredVideo>::getDummy(); break;
 				case Saveable::SaveableType::player: dummy = SaveableList<Player>::getDummy(); break;

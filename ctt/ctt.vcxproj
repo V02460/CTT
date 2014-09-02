@@ -175,7 +175,6 @@
     <ClCompile Include="ExtendedVideoAddedOperation.cpp" />
     <ClCompile Include="ExtendedVideoListController.cpp" />
     <ClCompile Include="ExtendedVideoRemovedOperation.cpp" />
-    <ClCompile Include="FFmpegDataVideo.cpp" />
     <ClCompile Include="FFmpegException.cpp" />
     <ClCompile Include="FileNotFoundException.cpp" />
     <ClCompile Include="FileVideo.cpp" />
@@ -883,7 +882,6 @@
     <ClInclude Include="ExtendedVideoAddedOperation.h" />
     <ClInclude Include="ExtendedVideoListController.h" />
     <ClInclude Include="ExtendedVideoRemovedOperation.h" />
-    <ClInclude Include="FFmpegDataVideo.h" />
     <ClInclude Include="FFmpegException.h" />
     <ClInclude Include="FileNotFoundException.h" />
     <ClInclude Include="FileVideo.h" />

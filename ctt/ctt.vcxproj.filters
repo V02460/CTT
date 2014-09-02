@@ -339,9 +339,6 @@
     <ClCompile Include="Overlay.cpp">
       <Filter>Source Files\Model\Filter\Overlay</Filter>
     </ClCompile>
-    <ClCompile Include="FFmpegDataVideo.cpp">
-      <Filter>Source Files\Model\Video</Filter>
-    </ClCompile>
     <ClCompile Include="FileVideo.cpp">
       <Filter>Source Files\Model\Video</Filter>
     </ClCompile>
@@ -1020,9 +1017,6 @@
     </ClInclude>
     <ClInclude Include="EarthMoversHistogramDiff.h">
       <Filter>Header Files\Model\Difference</Filter>
-    </ClInclude>
-    <ClInclude Include="FFmpegDataVideo.h">
-      <Filter>Header Files\Model\Video</Filter>
     </ClInclude>
     <ClInclude Include="Filter.h">
       <Filter>Header Files\Model\Filter</Filter>

@@ -1,5 +1,4 @@
 #include "ExtendedVideoListController.h"
-#include "FFmpegDataVideo.h"
 #include "YUVDataVideo.h"
 
 #include "GlobalContext.h"
@@ -18,7 +17,6 @@ using ::model::saveable::SaveableList;
 using ::model::video::Video;
 using ::model::filter::FilteredVideo;
 using ::model::player::Player;
-using ::model::video::FFmpegDataVideo;
 using ::model::video::YUVDataVideo;
 using ::model::GlobalContext;
 using ::controller::operation::Operation;
@@ -34,17 +32,17 @@ ExtendedVideoListController::ExtendedVideoListController(SaveableList<FilteredVi
         , playerList(playerList) {
 }
 
-void ExtendedVideoListController::addVideo(QString path) {
-
-    FFmpegDataVideo::sptr ffmpegVideo(new FFmpegDataVideo(path, GlobalContext::get()));
-
-    FilteredVideo::sptr video(new FilteredVideo(ffmpegVideo));
-    FilteredVideo::sptr filteredVideo(new FilteredVideo(ffmpegVideo));
-
-    OperationList::getInstance()->doOperation(
-        Operation::sptr(new ExtendedVideoAddedOperation(playerList,  video, filteredVideo, videoList, filteredVideos)));
-
-}
+// void ExtendedVideoListController::addVideo(QString path) {
+// 
+//     FFmpegDataVideo::sptr ffmpegVideo(new FFmpegDataVideo(path, GlobalContext::get()));
+// 
+//     FilteredVideo::sptr video(new FilteredVideo(ffmpegVideo));
+//     FilteredVideo::sptr filteredVideo(new FilteredVideo(ffmpegVideo));
+// 
+//     OperationList::getInstance()->doOperation(
+//         Operation::sptr(new ExtendedVideoAddedOperation(playerList,  video, filteredVideo, videoList, filteredVideos)));
+// 
+// }
 
 void ExtendedVideoListController::addVideo(QString path,
                                            int width,

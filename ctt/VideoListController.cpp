@@ -1,5 +1,4 @@
 #include "VideoListController.h"
-#include "FFmpegDataVideo.h"
 #include "YUVDataVideo.h"
 #include "FilteredVideo.h"
 #include "GlobalContext.h"
@@ -16,7 +15,6 @@ namespace controller {
 using ::model::saveable::SaveableList;
 using ::model::video::Video;
 using ::model::filter::FilteredVideo;
-using ::model::video::FFmpegDataVideo;
 using ::model::video::YUVDataVideo;
 using ::model::GlobalContext;
 using ::controller::operation::OperationList;
@@ -27,11 +25,11 @@ using ::controller::operation::VideoRemovedOperation;
 VideoListController::VideoListController(SaveableList<FilteredVideo>::sptr videoList) : videoList(videoList) {
 }
 
-void VideoListController::addVideo(QString path) {
-	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<FFmpegDataVideo>(new FFmpegDataVideo(path, GlobalContext::get()))));
-	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
-		new VideoAddedOperation(video, videoList)));
-}
+// void VideoListController::addVideo(QString path) {
+// 	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<FFmpegDataVideo>(new FFmpegDataVideo(path, GlobalContext::get()))));
+// 	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
+// 		new VideoAddedOperation(video, videoList)));
+// }
 
 void VideoListController::addVideo(QString path, int width, int height, double fps, YUVType type) {
 	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(new YUVDataVideo(path, QSize(width, height), fps, type, GlobalContext::get()))));

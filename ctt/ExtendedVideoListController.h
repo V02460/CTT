@@ -19,7 +19,7 @@ public:
                                 ::model::saveable::SaveableList<::model::player::Player>::sptr playerList);
 
 public slots:
-    virtual void addVideo(QString path) Q_DECL_OVERRIDE;
+  //  virtual void addVideo(QString path) Q_DECL_OVERRIDE;
     virtual void addVideo(QString path,
                           int width,
                           int height,
