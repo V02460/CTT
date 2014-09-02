@@ -24,6 +24,10 @@ HistogramWidget::HistogramWidget(::model::player::VideoScrubber::sptr scrubber, 
 	update();
 }
 
+HistogramWidget::~HistogramWidget() {
+	scrubber->unsubscribe(this);
+}
+
 void HistogramWidget::setupUi() {
 	QVBoxLayout *layout = new QVBoxLayout();
 

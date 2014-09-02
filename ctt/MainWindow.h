@@ -31,6 +31,8 @@ public:
 
 	MainWindow();
 
+	~MainWindow();
+
 	virtual void update() Q_DECL_OVERRIDE;
 
 public slots:

@@ -32,6 +32,8 @@ public:
      */
 	VideoWidget(::model::player::VideoScrubber::sptr scrubber, QWindow *parent = 0);
 
+	~VideoWidget();
+
     /**
      * Returns the VideoScrubber at which the VideoWidget is registered and where the VideoWidget receives its frames
      * from.

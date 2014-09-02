@@ -28,6 +28,8 @@ public:
 
 	FilterTimeline(::controller::FilterController::sptr filterController, QWidget *parent = 0);
 
+	~FilterTimeline();
+
 	virtual void update() Q_DECL_OVERRIDE;
 
 public slots:

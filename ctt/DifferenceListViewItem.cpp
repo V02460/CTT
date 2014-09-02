@@ -19,6 +19,10 @@ namespace view {
 		update();
 	}
 
+	DifferenceListViewItem::~DifferenceListViewItem() {
+		player->unsubscribe(this);
+	}
+
 	QLabel* DifferenceListViewItem::getIdentifier() const {
 		return identifierLabel;
 	}

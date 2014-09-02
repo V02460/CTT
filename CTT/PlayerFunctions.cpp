@@ -16,6 +16,12 @@ PlayerFunctions::PlayerFunctions( QWidget *parent) : QWidget(parent) {
 	subscribe(controller::PlayerController::sptr(new controller::PlayerController()));
 }
 
+PlayerFunctions::~PlayerFunctions() {
+	if (!player.isNull()) {
+		player->unsubscribe(this);
+	}
+}
+
 void PlayerFunctions::setupUi() {
 	setAccessibleName("PlayerFunctions");
 	QHBoxLayout *layout = new QHBoxLayout();

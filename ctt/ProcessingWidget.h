@@ -37,6 +37,8 @@ public:
 		::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr baseVideos, 
 		::controller::VideoListController::sptr analysingVideosController, QWidget *parent = 0);
 
+	~ProcessingWidget();
+
 	virtual void update() Q_DECL_OVERRIDE;
 
 public slots:

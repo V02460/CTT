@@ -30,6 +30,7 @@ void PlayerWidget::setupUi() {
 
 	layout->addWidget(inputVideo);
 	layout->addWidget(filteredVideo);
+	inputVideo->setMinimumSize(filteredVideo->minimumSize());
 
 	layout->setStretch(0, 1);
 	layout->setStretch(1, 1);

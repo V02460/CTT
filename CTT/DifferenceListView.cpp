@@ -15,6 +15,10 @@ namespace view {
 		update();
 	}
 
+	DifferenceListView::~DifferenceListView() {
+		differences->unsubscribe(this);
+	}
+
 	void DifferenceListView::update() {
 		removeAllItems();
 		for (int i = 0; i < differences->getSize(); i++) {

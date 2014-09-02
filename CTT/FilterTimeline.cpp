@@ -32,6 +32,12 @@ namespace view {
 		setupUi();
 	}
 
+	FilterTimeline::~FilterTimeline() {
+		if (!filter.isNull()) {
+			filter->unsubscribe(this);
+		}
+	}
+
 	void FilterTimeline::update() {
 		intervalTable->clear();
 		intervalTable->setRowCount(0);

@@ -44,6 +44,10 @@ namespace view {
 		update();
 	}
 
+	MainWindow::~MainWindow() {
+		ViewState::getInstance()->unsubscribe(this);
+	}
+
 	void MainWindow::setupUi() {
 		QWidget *centralWidget = new QWidget(this);
 		centralWidget->setLayout(centralWidgetLayout);

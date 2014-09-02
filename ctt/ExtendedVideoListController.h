@@ -19,26 +19,24 @@ public:
                                 ::model::saveable::SaveableList<::model::player::Player>::sptr playerList);
 
 public slots:
-    virtual void addVideo(QString path);
+    virtual void addVideo(QString path) Q_DECL_OVERRIDE;
     virtual void addVideo(QString path,
                           int width,
                           int height,
                           double fps,
-                          ::model::video::YUVType type,
-                          unsigned int length);
+                          ::model::video::YUVType type) Q_DECL_OVERRIDE;
 
     virtual void addVideo(QString path,
                           QString macrobockPath,
                           int width,
                           int height,
                           double fps,
-                          ::model::video::YUVType type,
-                          unsigned int length);
+                          ::model::video::YUVType type) Q_DECL_OVERRIDE;
 
-    virtual void addVideo(::model::filter::FilteredVideo::sptr video);
+    virtual void addVideo(::model::video::Video::sptr video) Q_DECL_OVERRIDE;
 
-    virtual void removeVideo(int index);
-    virtual void removeVideo(const ::model::filter::FilteredVideo &video);
+    virtual void removeVideo(int index) Q_DECL_OVERRIDE;
+    virtual void removeVideo(const ::model::video::Video &video) Q_DECL_OVERRIDE;
 
 private:
     ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos;

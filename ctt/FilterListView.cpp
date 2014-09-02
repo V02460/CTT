@@ -21,6 +21,12 @@ FilterListView::FilterListView(FilterController::sptr filterController,
 	setSelectionMode(QAbstractItemView::SingleSelection);
 }
 
+FilterListView::~FilterListView() {
+	if (!video.isNull()) {
+		video->unsubscribe(this);
+	}
+}
+
 void FilterListView::setVideo(FilteredVideo::sptr newVideo) {
 	removeVideo();
 	video = newVideo;

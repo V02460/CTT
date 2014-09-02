@@ -27,6 +27,10 @@ AnalysingOrderingWidget::AnalysingOrderingWidget(SaveableList<FilteredVideo>::sp
     update();
 }
 
+AnalysingOrderingWidget::~AnalysingOrderingWidget() {
+	filteredVideos->unsubscribe(this);
+}
+
 void AnalysingOrderingWidget::update() {
     for (int i = 0; i < analysingWidget.size(); i++) {
         analysingWidget.at(i)->comboboxOverlayCurrentIndexChanged(0);

@@ -15,6 +15,8 @@ namespace view {
 
 		DifferenceListViewItem(::model::difference::FrameDiff::sptr diff, ::model::player::Player::sptr player, QColor labelColor, QWidget *parent = 0);
 
+		~DifferenceListViewItem();
+
 		virtual QLabel* getIdentifier() const Q_DECL_OVERRIDE;
 		virtual void update() Q_DECL_OVERRIDE;
 

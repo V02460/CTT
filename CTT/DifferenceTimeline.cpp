@@ -20,6 +20,11 @@ namespace view {
 		update();
 	}
 
+	DifferenceTimeline::~DifferenceTimeline() {
+		differences->unsubscribe(this);
+		player->unsubscribe(this);
+	}
+
 	void DifferenceTimeline::update() {
 		if (currentFrameNumber != player->getCurrentFrameNumber()) {
 			//TODO range anpassen

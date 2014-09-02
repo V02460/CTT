@@ -29,6 +29,8 @@ public:
 
 	FilterListView(::controller::FilterController::sptr filterController, QWidget *parent);
 
+	~FilterListView();
+
 	virtual void update() Q_DECL_OVERRIDE;
 
 	virtual void setVideo(::model::filter::FilteredVideo::sptr newVideo) Q_DECL_OVERRIDE;

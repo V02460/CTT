@@ -50,8 +50,7 @@ void ExtendedVideoListController::addVideo(QString path,
                                            int width,
                                            int height,
                                            double fps,
-                                           YUVType type,
-                                           unsigned int length) {
+                                           YUVType type) {
 
     YUVDataVideo::sptr yuvVideo(new YUVDataVideo(path, QSize(width, height), fps, type, GlobalContext::get()));
 
@@ -67,8 +66,7 @@ void ExtendedVideoListController::addVideo(QString pathToVideoFile,
                                            int width,
                                            int height,
                                            double fps,
-                                           YUVType type,
-                                           unsigned int length) {
+                                           YUVType type) {
 
     YUVDataVideo::sptr yuvVideo(new YUVDataVideo(pathToVideoFile,
                                                  pathToMetadataFile,
@@ -85,7 +83,7 @@ void ExtendedVideoListController::addVideo(QString pathToVideoFile,
         Operation::sptr(new ExtendedVideoAddedOperation(playerList, video, filteredVideo, videoList, filteredVideos)));
 }
 
-void ExtendedVideoListController::addVideo(FilteredVideo::sptr video) {
+void ExtendedVideoListController::addVideo(Video::sptr video) {
     // don't add a video twice
     for (int i = 0; i < videoList->getSize(); i++) {
         if (videoList->get(i)->getBaseVideo() == video) {
@@ -105,9 +103,9 @@ void ExtendedVideoListController::removeVideo(int index) {
         Operation::sptr(new ExtendedVideoRemovedOperation(index, videoList, filteredVideos)));
 }
 
-void ExtendedVideoListController::removeVideo(const FilteredVideo &baseVideo) {
+void ExtendedVideoListController::removeVideo(const Video &baseVideo) {
     for (int i = 0; i < videoList->getSize(); i++) {
-        if (&baseVideo == videoList->get(i).data()) {
+        if (&baseVideo == videoList->get(i)->getBaseVideo().data()) {
             OperationList::getInstance()->doOperation(
             Operation::sptr(new ExtendedVideoRemovedOperation(i, videoList, filteredVideos)));
             return;

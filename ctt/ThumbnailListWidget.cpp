@@ -20,7 +20,7 @@ using ::exception::IOException;
 
 ThumbnailListWidget::ThumbnailListWidget(SaveableList<FilteredVideo>::sptr filteredVideos,
 	int selectableCount, bool isHorizontal, QWidget *parent) : QScrollArea(parent), macroblockFilePath(""),
-	isInUpdateRequest(false), activatedButtons(), thumbnailList(), filteredVideos(filteredVideos), 
+	isInUpdateRequest(false), activatedButtons(), thumbnailList(), backupThumbnailList(), filteredVideos(filteredVideos), 
 	selectableCount(selectableCount), isHorizontal(isHorizontal) {
 
 	if (!filteredVideos.isNull()) {
@@ -35,6 +35,10 @@ ThumbnailListWidget::ThumbnailListWidget(SaveableList<FilteredVideo>::sptr filte
 	}
 
 	setupUi();
+}
+
+ThumbnailListWidget::~ThumbnailListWidget() {
+	filteredVideos->unsubscribe(this);
 }
 
 void ThumbnailListWidget::setupUi() {
@@ -89,8 +93,8 @@ void ThumbnailListWidget::setupOpenVideoDialog() {
 	yuvType->addItem(tr("YUV420"));
 	yuvType->setCurrentIndex(0);
 	QLabel *yuvTypeLabel = new QLabel(tr("VIDEO_YUV_TYPE"));
-	dialogMainLayout->addWidget(yuvTypeLabel, 1, 1);
-	dialogMainLayout->addWidget(yuvType, 1, 2);
+	dialogMainLayout->addWidget(yuvTypeLabel, 1, 0);
+	dialogMainLayout->addWidget(yuvType, 1, 1);
 
 	fpsSpinBox = new QDoubleSpinBox(openVideoDialog);
 	fpsSpinBox->setSuffix(tr(" FPS"));
@@ -98,26 +102,17 @@ void ThumbnailListWidget::setupOpenVideoDialog() {
 	fpsSpinBox->setMaximum(1000);
 	fpsSpinBox->setValue(24);
 	QLabel *fpsLabel = new QLabel(tr("VIDEO_FPS"));
-	dialogMainLayout->addWidget(fpsLabel, 2, 0);
-	dialogMainLayout->addWidget(fpsSpinBox, 2, 1);
-
-	lengthSpinBox = new QSpinBox(openVideoDialog);
-	lengthSpinBox->setSuffix(tr(" FRAMES"));
-	lengthSpinBox->setMinimum(1);
-	lengthSpinBox->setMaximum(1000000);
-	lengthSpinBox->setValue(5);
-	QLabel *lengthLabel = new QLabel(tr("VIDEO_LENGTH"));
-	dialogMainLayout->addWidget(lengthLabel, 2, 2);
-	dialogMainLayout->addWidget(lengthSpinBox, 2, 3);
+	dialogMainLayout->addWidget(fpsLabel, 1, 2);
+	dialogMainLayout->addWidget(fpsSpinBox, 1, 3);
 
 	macroblockFileLabel = new QLabel(tr("NO_MACROOBLOCK_FILE_CHOSEN"));
 	QPushButton *macroblockFile = new QPushButton(tr("ADD_MACROBLOCK_FILE"));
 	QObject::connect(macroblockFile, SIGNAL(clicked(bool)), this, SLOT(btnAddMacroblockFileClicked(bool)));
-	dialogMainLayout->addWidget(macroblockFileLabel, 3, 0, 1, 3);
-	dialogMainLayout->addWidget(macroblockFile, 3, 3);
+	dialogMainLayout->addWidget(macroblockFileLabel, 2, 0, 1, 3);
+	dialogMainLayout->addWidget(macroblockFile, 2, 3);
 
 	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, openVideoDialog);
-	dialogMainLayout->addWidget(buttonBox, 4, 0);
+	dialogMainLayout->addWidget(buttonBox, 3, 0);
 	QObject::connect(buttonBox, SIGNAL(accepted()), openVideoDialog, SLOT(accept()));
 	QObject::connect(buttonBox, SIGNAL(rejected()), openVideoDialog, SLOT(reject()));
 
@@ -129,13 +124,18 @@ void ThumbnailListWidget::update() {
 	//Remove all contents of the ThumbnailListWidget
 	isInUpdateRequest = true;
 
-	//Remove and delete all ListedPushButtons of this widget
+	//Remove all ListedPushButtons of this widget
 	for each (ListedPushButton::sptr btn in thumbnailList) {
 		thumbnailListLayout->removeWidget(btn.data());
-		thumbnailList.removeOne(btn);
+		btn->hide();
 		btn->setChecked(false);
 		QObject::disconnect(btn.data(), SIGNAL(toggled(bool, int)), this, SLOT(listedButtonToggled(bool, int)));
+		QObject::disconnect(btn.data(), SIGNAL(removed(bool, int)), this, SLOT(listedButtonRemoved(bool, int)));
 	}
+	//Delete all ListedPushButtons from the previous update
+	backupThumbnailList.clear();
+	//Mark all ListedPushButtons for deletion
+	backupThumbnailList.swap(thumbnailList);
 
 	thumbnailListLayout->removeWidget(btnAddVideo);
 
@@ -152,6 +152,7 @@ void ThumbnailListWidget::update() {
 		thumbnailList.insert(i, addedButton);
 		thumbnailListLayout->addWidget(addedButton.data());
 		QObject::connect(addedButton.data(), SIGNAL(toggled(bool, int)), this, SLOT(listedButtonToggled(bool, int)));
+		QObject::connect(addedButton.data(), SIGNAL(removed(bool, int)), this, SLOT(listedButtonRemoved(bool, int)));
 	}
 
 	thumbnailListLayout->addWidget(btnAddVideo);
@@ -210,11 +211,11 @@ void ThumbnailListWidget::btnAddVideoClicked(bool checked) {
 			try {
 				if (macroblockFilePath != "") {
 					emit videoAdded(videoPath, macroblockFileLabel->text(), widthSpinBox->value(), heightSpinBox->value(),
-						fpsSpinBox->value(), videoType, static_cast<unsigned int>(lengthSpinBox->value()));
+						fpsSpinBox->value(), videoType);
 				}
 				else {
 					emit videoAdded(videoPath, widthSpinBox->value(), heightSpinBox->value(), fpsSpinBox->value(),
-						videoType, static_cast<unsigned int>(lengthSpinBox->value()));
+						videoType);
 				}
 			} catch (IllegalArgumentException e) {
 				QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_ADDING_FAILED_ILLEGEAL_ARGUMENT_TITLE"), tr("VIDEO_ADDING_FAILED_ILLEGAL_ARGUMENT_DETAILS"), QMessageBox::Ok, this);
@@ -252,19 +253,19 @@ const int ThumbnailListWidget::getSelectableCount() {
 }
 
 void ThumbnailListWidget::subscribe(::controller::VideoListController::sptr observer) {
-	QObject::connect(this, SIGNAL(videoAdded(QString, QString, int, int, double, model::video::YUVType, unsigned int)),
-		observer.data(), SLOT(addVideo(QString, QString, int, int, double, model::video::YUVType, unsigned int)));
-	QObject::connect(this, SIGNAL(videoAdded(QString, int, int, double, model::video::YUVType, unsigned int)),
-		observer.data(), SLOT(addVideo(QString, int, int, double, model::video::YUVType, unsigned int)));
+	QObject::connect(this, SIGNAL(videoAdded(QString, QString, int, int, double, model::video::YUVType)),
+		observer.data(), SLOT(addVideo(QString, QString, int, int, double, model::video::YUVType)));
+	QObject::connect(this, SIGNAL(videoAdded(QString, int, int, double, model::video::YUVType)),
+		observer.data(), SLOT(addVideo(QString, int, int, double, model::video::YUVType)));
 	QObject::connect(this, SIGNAL(videoRemoved(int)), observer.data(), SLOT(removeVideo(int)));
 	videoListController = observer;
 }
 
 void ThumbnailListWidget::unsubscribe(const ::controller::VideoListController &observer) {
-	QObject::connect(this, SIGNAL(videoAdded(QString, QString, int, int, double, model::video::YUVType, unsigned int)),
-		&observer, SLOT(addVideo(QString, QString, int, int, double, model::video::YUVType, unsigned int)));
-	QObject::connect(this, SIGNAL(videoAdded(QString, int, int, double, model::video::YUVType, unsigned int)),
-		&observer, SLOT(addVideo(QString, int, int, double, model::video::YUVType, unsigned int)));
+	QObject::connect(this, SIGNAL(videoAdded(QString, QString, int, int, double, model::video::YUVType)),
+		&observer, SLOT(addVideo(QString, QString, int, int, double, model::video::YUVType)));
+	QObject::connect(this, SIGNAL(videoAdded(QString, int, int, double, model::video::YUVType)),
+		&observer, SLOT(addVideo(QString, int, int, double, model::video::YUVType)));
 	QObject::disconnect(this, SIGNAL(videoRemoved(int)), &observer, SLOT(removeVideo(int)));
 }
 

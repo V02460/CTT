@@ -28,13 +28,16 @@ VideoWidget::VideoWidget(VideoScrubber::sptr scrubber, QWindow *parent)
         , texcrdAttribute(new VertexAttribute(4, 2)) {
 
 	if (scrubber.isNull()) {
-        throw new IllegalArgumentException("Error in VideoWidget! Scrubber was empty.");
+        throw IllegalArgumentException("Error in VideoWidget! Scrubber was empty.");
     }
 
     setSurfaceType(QWindow::OpenGLSurface);
 	this->scrubber->subscribe(this);
 }
 
+VideoWidget::~VideoWidget() {
+	scrubber->unsubscribe(this);
+}
 const VideoScrubber::sptr VideoWidget::getScrubber() const {
 	return this->scrubber;
 }

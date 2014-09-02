@@ -25,6 +25,8 @@ public:
 
 	DifferenceTimeline(::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr differences, ::model::player::Player::sptr player, QWidget *parent = 0);
 
+	~DifferenceTimeline();
+
 	virtual void update() Q_DECL_OVERRIDE;
 private:
 	void updateDifferences();

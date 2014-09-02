@@ -31,6 +31,8 @@ public:
                             ThumbnailListWidget::sptr thumbnails,
                             QWidget *parent = 0);
 
+	~AnalysingOrderingWidget();
+
     virtual void update() Q_DECL_OVERRIDE;
 
     QList<::model::filter::FilteredVideo::sptr> getVideos(int selectableCount);

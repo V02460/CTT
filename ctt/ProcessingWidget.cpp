@@ -47,6 +47,10 @@ ProcessingWidget::ProcessingWidget(SaveableList<Player>::sptr players,
 	setupUi();
 }
 
+ProcessingWidget::~ProcessingWidget() {
+	players->unsubscribe(this);
+}
+
 void ProcessingWidget::setupUi() {
 	setAccessibleName("ProcessingWidget");
 	QSplitter *verticalSplitter = new QSplitter(Qt::Vertical, this);

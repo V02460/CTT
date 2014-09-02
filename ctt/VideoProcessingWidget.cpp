@@ -44,16 +44,20 @@ void VideoProcessingWidget::setupUi() {
 	QObject::connect(checkboxUseForAnalysis, SIGNAL(stateChanged(int)), this, SLOT(checkboxUseForAnalysisValueChanged(int)));
 	lowerLayout->addWidget(checkboxUseForAnalysis);
 
-	if (showSaveButton) {
-		btnSaveVideo = new QPushButton(this);
-		btnSaveVideo->setText(tr("SAVE_VIDEO"));
-		QObject::connect(btnSaveVideo, SIGNAL(clicked()), this, SLOT(btnSaveVideoClicked()));
-		lowerLayout->addWidget(btnSaveVideo);
+	btnSaveVideo = new QPushButton(this);
+	btnSaveVideo->setText(tr("SAVE_VIDEO"));
+	QObject::connect(btnSaveVideo, SIGNAL(clicked()), this, SLOT(btnSaveVideoClicked()));
+	lowerLayout->addWidget(btnSaveVideo);
+
+	if (!showSaveButton) {
+		btnSaveVideo->setEnabled(false);
 	}
 
 	mainLayout->addLayout(lowerLayout);
 
 	setLayout(mainLayout);
+
+	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 }
 
 void VideoProcessingWidget::subscribe(::controller::VideoListController::sptr observer) {
