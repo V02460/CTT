@@ -136,6 +136,8 @@ private:
 
 	static QVector<QRgb> colorTable;
 
+	void init(QSize resolution, double framerate);
+	void initMetadata(QString pathToMetadataFile, QSize resolution);
 };
 
 }  // namespace video
