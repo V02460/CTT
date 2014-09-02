@@ -24,8 +24,7 @@ using ::controller::operation::Operation;
 using ::controller::operation::VideoAddedOperation;
 using ::controller::operation::VideoRemovedOperation;
 
-VideoListController::VideoListController(SaveableList<FilteredVideo>::sptr videoList): videoList(videoList) {
-
+VideoListController::VideoListController(SaveableList<FilteredVideo>::sptr videoList) : videoList(videoList) {
 }
 
 void VideoListController::addVideo(QString path) {

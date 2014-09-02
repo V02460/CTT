@@ -124,6 +124,9 @@
     <Filter Include="Test Structure\Model\Difference">
       <UniqueIdentifier>{9998622c-f62d-4e43-a5c2-0655ebc2c80c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Controller">
+      <UniqueIdentifier>{3fdfd221-af9c-4836-ad36-b59043c51b00}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_FrameTest.cpp">
@@ -345,6 +348,24 @@
     <ClCompile Include="GeneratedFiles\Release\moc_InvertFilterTest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="VideoListControllerTest.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ExtendedVideoListControllerTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ExtendedVideoListControllerTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="ExtendedVideoListControllerTest.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoListControllerTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoListControllerTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -430,6 +451,12 @@
     </CustomBuild>
     <CustomBuild Include="InvertFilterTest.h">
       <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ExtendedVideoListControllerTest.h">
+      <Filter>Header Files\Controller</Filter>
+    </CustomBuild>
+    <CustomBuild Include="VideoListControllerTest.h">
+      <Filter>Header Files\Controller</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
