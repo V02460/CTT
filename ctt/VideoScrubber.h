@@ -38,11 +38,6 @@ public:
     explicit VideoScrubber(::model::video::Video::sptr video);
 
     /**
-     * Destructor of VideoScrubber.
-     */
-    ~VideoScrubber();
-
-    /**
      * Creates a new VideoScrubber for the submitted video, initially holding the frame with the submitted number.
      *
      * @param video video the scrubber will use this video to get frames
@@ -51,6 +46,11 @@ public:
      *     submitted number
      */
     VideoScrubber(::model::video::Video::sptr video, unsigned int frameNumber);
+
+    /**
+     * Destructor of VideoScrubber.
+     */
+    ~VideoScrubber();
 
     /**
      * Gets the metadata of the Video this VideoScrubber is associated with.

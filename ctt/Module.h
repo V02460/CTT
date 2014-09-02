@@ -16,7 +16,7 @@ namespace model {
 /**
  * An object able to provide specific frames from a sequentially numbered set of frames.
  */
-class Module : public saveable::Saveable , public model::Observable {
+class Module : public saveable::Saveable , public Observable {
 public:
     typedef QScopedPointer<Module> uptr;
     typedef QSharedPointer<Module> sptr;
@@ -31,7 +31,7 @@ public:
      * @throws IllegalStateException if the the method was called on a dummy
 	 * @throws FFmpegException if ffmpeg is used to get the frame and something goes wrong
      */
-    virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const = 0;
+    virtual frame::Frame::sptr getFrame(unsigned int frameNumber) const = 0;
 
     /**
      * Gets a list of all Modules this Module uses directly or indirectly to create its frames, including this module
@@ -58,7 +58,7 @@ public:
      * @return bool true only if the submitted module is this module, or used by this module directly or indirectly
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual bool uses(const model::Module &module) const;
+    virtual bool uses(const Module &module) const;
 
 	/**
 	 * Returns the size of the frames this module provides.
@@ -67,7 +67,7 @@ public:
 	 */
 	virtual QSize getResolution() const = 0;
 
-    static ::model::saveable::Saveable::SaveableType getSaveableType();
+    static saveable::Saveable::SaveableType getSaveableType();
 };
 
 }  // namespace model

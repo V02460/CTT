@@ -602,7 +602,6 @@
     <ClCompile Include="NoScalePolicy.cpp" />
     <ClCompile Include="NotImplementedException.cpp" />
     <ClCompile Include="Observable.cpp" />
-    <ClCompile Include="Observer.cpp" />
     <ClCompile Include="OpenGLException.cpp" />
     <ClCompile Include="OperationList.cpp" />
     <ClCompile Include="Overlay.cpp" />

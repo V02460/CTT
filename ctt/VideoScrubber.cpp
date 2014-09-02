@@ -31,21 +31,29 @@ VideoScrubber::VideoScrubber(video::Video::sptr video) : Observable() ,video(vid
 	video->subscribe(this);
 }
 
-VideoScrubber::~VideoScrubber() {
-	video->unsubscribe(this);
-}
-
-VideoScrubber::VideoScrubber(video::Video::sptr video, unsigned int frameNumber) : Observable() {
+VideoScrubber::VideoScrubber(video::Video::sptr video, unsigned int frameNumber) : Observable(),
+                                                                                   video(video),
+                                                                                   lastFrameNumber(0) {
 	if (video->isDummy()) {
 		throw IllegalArgumentException("Tried to use a dummy Video to create a VideoScrubber");
 	}
+
 	waitingForFrame = true;
 	currentFrame = video->getFrame(frameNumber);
 	waitingForFrame = false;
 }
 
-VideoScrubber::VideoScrubber()
-{
+VideoScrubber::~VideoScrubber() {
+    if (isDummy()) {
+        return;
+    }
+    if (!video.isNull()) {
+        video->unsubscribe(this);
+    }
+}
+
+
+VideoScrubber::VideoScrubber() {
 	isDummyFlag = true;
 }
 
@@ -111,7 +119,8 @@ void VideoScrubber::restore(Memento memento) {
 
 	if (video.isNull())
 	{
-		throw IllegalArgumentException("Unable to restore, pointer received from Memento could'nt be cast to the right type.");
+		throw IllegalArgumentException(
+            "Unable to restore, pointer received from Memento couldn't be cast to the right type.");
 	}
 
 	lastFrameNumber = memento.getUInt(lastFrameNumberStringId);
