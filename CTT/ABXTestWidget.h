@@ -18,6 +18,7 @@ namespace view {
 		public QWidget, public ::model::Observer
 
 	{
+		Q_OBJECT
 	public:
 		typedef QScopedPointer<ABXTestWidget> uptr;
 		typedef QSharedPointer<ABXTestWidget> sptr;
