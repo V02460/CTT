@@ -45,6 +45,8 @@ public:
 		, int selectableCount, bool isHorizontal = false
 		, QWidget *parent = 0);
 
+	~ThumbnailListWidget();
+
 	const QList<int> getActiveIndices();
 
 	const int getSelectableCount();
@@ -65,9 +67,9 @@ signals:
      *
      * @param path The file path that leads to the video file.
      */
-	void videoAdded(QString path, QString macroblockPath, int width, int height, double fps, model::video::YUVType type, unsigned int length);
+	void videoAdded(QString path, QString macroblockPath, int width, int height, double fps, model::video::YUVType type);
 
-	void videoAdded(QString path, int width, int height, double fps, model::video::YUVType type, unsigned int length);
+	void videoAdded(QString path, int width, int height, double fps, model::video::YUVType type);
 
     /**
      * This signal is emitted when an existing video is removed from the program.
@@ -81,6 +83,7 @@ signals:
 	void buttonDeactivated(int id);
 private:
     QList<ListedPushButton::sptr> thumbnailList; /**< The list of buttons with the thumbnails of the specific videos as icons */
+	QList<ListedPushButton::sptr> backupThumbnailList; /**<This list is needed to avoid an error resulting from the clear of the thumbnailList */
     QPushButton *btnAddVideo; /**< The button to add a new video */
 	QList<int> activatedButtons;
 	int selectableCount;

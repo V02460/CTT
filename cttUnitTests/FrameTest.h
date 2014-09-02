@@ -3,7 +3,6 @@
 
 #include <QtTest/QtTest>
 #include <QObject>
-#include <QOffscreenSurface>
 #include <Qtest>
 
 class FrameTest : public QObject {
@@ -18,7 +17,6 @@ private slots:
 
 private:
 	QSharedPointer<QOpenGLContext> testContext;
-	QOffscreenSurface surface;
 	QImage testImage;
 };
 

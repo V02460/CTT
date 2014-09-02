@@ -84,7 +84,8 @@ public:
 
 	virtual void restore(Memento memento);
 
-    static Saveable::SaveableType getSaveableType();
+	static Saveable::SaveableType getSaveableType();
+	virtual SaveableType saveableType() const Q_DECL_OVERRIDE { return getSaveableType(); }
 
 private:
 

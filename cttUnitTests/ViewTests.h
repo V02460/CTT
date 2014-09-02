@@ -1,32 +1,19 @@
 #ifndef _VIEWTESTS_H
 #define _VIEWTESTS_H
 
-#include "VideoWidgetTest.h"
-#include "Frame.h"
-#include <QApplication>
+#include "TestResult.h"
 
 namespace view {
-static TestResult test(int argc, char *argv[], QApplication *a) {
+
+static TestResult test(int argc, char *argv[]) {
 	TestResult r("view");
 
-	/*VideoWidgetTest mainWindow = VideoWidgetTest();
-	mainWindow.show();*/
-	QImage testImage = QImage(":/cttUnitTests/BigBuckBunny.png");
-	QOffscreenSurface surface;
-	surface.create();
-	QSharedPointer<QOpenGLContext> testContext = QSharedPointer<QOpenGLContext>(new QOpenGLContext());
-	testContext->create();
-	testContext->makeCurrent(&surface);
-	testImage.load(":/cttUnitTests/BigBuckBunny.png");
-
-	model::frame::Frame testFrame(testContext, testImage);
-
-	VideoWidget testVideoWidget = VideoWidget(&testFrame);
-	testVideoWidget.show();
-	a->exec();
+    // TODO:
+    // r << qTest();
 
 	return r;
 }
+
 } //namespace view
 
 #endif 

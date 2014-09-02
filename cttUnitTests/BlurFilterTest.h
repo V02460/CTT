@@ -3,7 +3,6 @@
 
 #include <QtTest/QtTest>
 #include <QObject>
-#include <QOffscreenSurface>
 #include "YUVDataVideo.h"
 
 class BlurFilterTest : public QObject {
@@ -19,7 +18,6 @@ private slots:
 
 private:
     QSharedPointer<QOpenGLContext> testContext;
-    QOffscreenSurface surface;
     ::model::video::YUVDataVideo::sptr video;
 };
 

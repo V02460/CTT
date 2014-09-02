@@ -52,6 +52,7 @@ public:
 	virtual unsigned int getFrameCount() const;
 	virtual ::model::saveable::Memento getMemento() const;
 	virtual void restore(::model::saveable::Memento memento);
+	virtual SaveableType saveableType() const Q_DECL_OVERRIDE { return getSaveableType(); }
 
 private:
 	//Information about the videoFile

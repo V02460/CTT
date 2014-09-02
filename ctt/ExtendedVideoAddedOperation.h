@@ -23,24 +23,30 @@ public:
 	typedef QSharedPointer<ExtendedVideoAddedOperation> sptr;
 	typedef QWeakPointer<ExtendedVideoAddedOperation> wptr;
 
+    // TODO:
 	/**
-	* Constructs an Operation that is responsible for adding a specified Video to a VideoList.
-	*
-	* @param video The video which should be added to a list of videos.
-	* @param videoList The list to which a certain video should be added.
-	* @param filteredVideos Another list to which a certain video should be added.
-	*/
-	ExtendedVideoAddedOperation(model::saveable::SaveableList<model::player::Player>::sptr playerList, ::model::filter::FilteredVideo::sptr video1, ::model::filter::FilteredVideo::sptr video2,
-		::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList, ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos);
+     * Constructs an Operation that is responsible for adding a specified Video to two two video lists.
+     *
+     * @param playerList 
+     * @param video1 
+     * @param video2
+     * @param videoList 
+     * @param filteredVideos
+     */
+	ExtendedVideoAddedOperation(::model::saveable::SaveableList<::model::player::Player>::sptr playerList,
+                                ::model::filter::FilteredVideo::sptr video1,
+                                ::model::filter::FilteredVideo::sptr video2,
+		                        ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList,
+                                ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos);
 
-	/**
-	* Manages requests to add a Video to two VideoLists.
-	*/
+    /**
+     * Manages requests to add a Video to two VideoLists.
+     */
 	void doOperation();
 
-	/**
-	* Manages requests to undo adding a Video to two VideoLists.
-	*/
+    /**
+     * Manages requests to undo adding a Video to two VideoLists.
+     */
 	void undoOperation();
 
 private:
@@ -50,9 +56,7 @@ private:
 	int index;
 	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList;
 	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos;
-	::model::saveable::Memento playerListMemento;
-	::model::saveable::Memento videoListMemento;
-	::model::saveable::Memento filteredVideosMemento;
+	::model::saveable::Memento memento;
 
 };
 

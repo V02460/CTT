@@ -12,12 +12,12 @@ varying vec2 texcrd;
 void main() {
 
 	vec4 color = vec4(0.f);
-	float step = 1 / radius;
 
-	for (float i = 0; i < 1; i += step) {
-		color += texture2D(_sourceTexture, texcrd + i*direction);
-		color += texture2D(_sourceTexture, texcrd - i*direction);
+	vec2 step = normalize(direction) / _sourceSize;
 
+	for (float i = 0; i < radius; i++) {
+		color += texture2D(_sourceTexture, texcrd + i * step);
+		color += texture2D(_sourceTexture, texcrd - i * step);
 	}
 
 	color /= 2*radius;

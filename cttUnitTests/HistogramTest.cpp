@@ -1,6 +1,7 @@
 #include "HistogramTest.h"
 
 #include "Frame.h"
+#include "GlobalContext.h"
 
 #include "IllegalArgumentException.h"
 
@@ -8,13 +9,11 @@ namespace model {
 namespace frame {
 namespace histogram {
 
+using ::model::GlobalContext;
 using ::exception::IllegalArgumentException;
 
 void HistogramTest::initTestCase() {
-    surface.create();
-    testContext = QSharedPointer<QOpenGLContext>(new QOpenGLContext());
-    testContext->create();
-    QVERIFY2(testContext->makeCurrent(&surface), "Couldn't initialize OGL Context.");
+    testContext = GlobalContext::get();
 
     testImage.load(":/cttUnitTests/BigBuckBunny.png");
 

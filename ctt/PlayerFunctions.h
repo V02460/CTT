@@ -27,6 +27,8 @@ public:
 
 	PlayerFunctions(QWidget *parent = 0);
 
+	~PlayerFunctions();
+
 	QSlider* getFrameSlider();
 
 	void setPlayer(::model::player::Player::sptr player);

@@ -32,6 +32,7 @@ public:
      */
     HistogramWidget(::model::player::VideoScrubber::sptr scrubber, QWidget *parent = 0);
 
+	~HistogramWidget();
 
 	virtual void update() Q_DECL_OVERRIDE;
 

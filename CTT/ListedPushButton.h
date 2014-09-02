@@ -29,6 +29,8 @@ public:
 	 *	@param parent The parent widget.
 	 */
 	ListedPushButton(int id, model::filter::FilteredVideo::sptr video, QWidget *parent = 0);
+
+	~ListedPushButton();
 	
 	/**
 	 *	Creates a new ListedPushButton with an id for later identification and a parent wigdet.

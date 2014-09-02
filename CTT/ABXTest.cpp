@@ -3,6 +3,7 @@
 #include <qmath.h>
 
 using model::ABXTest;
+using model::saveable::Saveable;
 using model::video::Video;
 using exception::AccessToDummyException;
 
@@ -47,6 +48,10 @@ void model::ABXTest::distributeVideos()
 	changed();
 }
 
+Saveable::SaveableType ABXTest::getSaveableType()
+{
+	return model::saveable::Saveable::aBXTest;
+}
 
 void model::ABXTest::reset()
 {
@@ -267,11 +272,6 @@ void model::ABXTest::restore(Memento memento)
 	tries = memento.getUInt(triesStringId);
 	successfulTries = memento.getUInt(successfulTriesStringId);
 	isDummyFlag = false;
-}
-
-model::saveable::Saveable::SaveableType ABXTest::getSaveableType()
-{
-	return model::saveable::Saveable::aBXTest;
 }
 
 

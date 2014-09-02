@@ -1,5 +1,7 @@
 #include "DifferenceInsertionWidget.h"
 
+#include <QMessageBox>
+
 #include "DifferenceFactory.h"
 
 using ::controller::DifferenceController;

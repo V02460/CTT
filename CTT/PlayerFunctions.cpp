@@ -16,6 +16,12 @@ PlayerFunctions::PlayerFunctions( QWidget *parent) : QWidget(parent) {
 	subscribe(controller::PlayerController::sptr(new controller::PlayerController()));
 }
 
+PlayerFunctions::~PlayerFunctions() {
+	if (!player.isNull()) {
+		player->unsubscribe(this);
+	}
+}
+
 void PlayerFunctions::setupUi() {
 	setAccessibleName("PlayerFunctions");
 	QHBoxLayout *layout = new QHBoxLayout();
@@ -121,8 +127,18 @@ void PlayerFunctions::update() {
 	setPlayButton(!player->isPlaying());
 	setEnabledAll(player->scrubberCount() != 0);
 
-	sliderCurrentFrame->setMaximum(static_cast<int>(player->getVideoLength()));
-	sliderCurrentFrame->setValue(static_cast<int>(player->getCurrentFrameNumber()));
+	if (player->getVideoLength() != 0) {
+		sliderCurrentFrame->setMaximum(static_cast<int>(player->getVideoLength() - 1));
+	}
+	else {
+		sliderCurrentFrame->setMaximum(0);
+	}
+
+	try {
+	    sliderCurrentFrame->setValue(static_cast<int>(player->getCurrentFrameNumber()));
+	} catch (IllegalArgumentException e) {
+		//Do nothing because the exception is expected
+	}
 	sliderCurrentFrame->setTickInterval(static_cast<int>(player->getVideoLength()) / 10);
 
 	spinboxFPS->setValue(player->getFPS());
@@ -132,7 +148,7 @@ void PlayerFunctions::subscribe(::controller::PlayerController::sptr observer) {
 	QObject::connect(this, SIGNAL(togglePlay()), observer.data(), SLOT(playPause()));
 	QObject::connect(btnNextFrame, SIGNAL(clicked()), observer.data(), SLOT(nextFrame()));
 	QObject::connect(btnPreviousFrame, SIGNAL(clicked()), observer.data(), SLOT(previousFrame()));
-	QObject::connect(sliderCurrentFrame, SIGNAL(sliderMoved(int)), observer.data(), SLOT(currentFrameChanged(int)));
+	QObject::connect(sliderCurrentFrame, SIGNAL(valueChanged(int)), observer.data(), SLOT(currentFrameChanged(int)));
 	QObject::connect(btnDefaultFPS, SIGNAL(clicked()), observer.data(), SLOT(setToDefaultFPS()));
 	QObject::connect(spinboxFPS, SIGNAL(valueChanged(double)), observer.data(), SLOT(setFPS(double)));
 	QObject::connect(this, SIGNAL(playerChanged(::model::player::Player::sptr)), observer.data(),
@@ -147,7 +163,7 @@ void PlayerFunctions::unsubscribe(const ::controller::PlayerController &observer
 	QObject::disconnect(this, SIGNAL(togglePlay()), &observer, SLOT(playPause()));
 	QObject::disconnect(btnNextFrame, SIGNAL(clicked()), &observer, SLOT(nextFrame()));
 	QObject::disconnect(btnPreviousFrame, SIGNAL(clicked()), &observer, SLOT(previousFrame()));
-	QObject::disconnect(sliderCurrentFrame, SIGNAL(sliderMoved(int)), &observer, SLOT(currentFrameChanged(int)));
+	QObject::disconnect(sliderCurrentFrame, SIGNAL(valueChanged(int)), &observer, SLOT(currentFrameChanged(int)));
 	QObject::disconnect(btnDefaultFPS, SIGNAL(clicked()), &observer, SLOT(setToDefaultFPS()));
 	QObject::disconnect(spinboxFPS, SIGNAL(valueChanged(double)), &observer, SLOT(setFPS(double)));
 	QObject::disconnect(this, SIGNAL(playerChanged(::model::player::Player::sptr)), &observer,

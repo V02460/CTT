@@ -25,7 +25,6 @@ bool FilterIntervalList::isActive(unsigned int frameNumber) const {
 	return false;
 }
 
-
 void FilterIntervalList::activate(UIntegerInterval::sptr newInterval) {
 	if (isDummy()) {
 		throw AccessToDummyException();

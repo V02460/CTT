@@ -110,13 +110,14 @@ namespace model {
 
 
 
-		virtual Memento getMemento() const;
+		virtual Memento getMemento() const Q_DECL_OVERRIDE;
 
-		virtual void restore(Memento memento);
+		virtual void restore(Memento memento) Q_DECL_OVERRIDE;
 
 		static model::saveable::Saveable::sptr getDummy();
 
 		static Saveable::SaveableType getSaveableType();
+		virtual SaveableType saveableType() const Q_DECL_OVERRIDE{ return getSaveableType(); }
 
 	private:
 		/**

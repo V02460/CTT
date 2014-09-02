@@ -17,7 +17,7 @@ namespace controller {
 /**
  * The ProjectController manages requests to initialize, save or load a Project.
  */
-class MainController : public QObject, public ::model::Observer {
+class MainController : public QObject {
     Q_OBJECT
 
 public:
@@ -42,7 +42,7 @@ public slots:
      * @param path The path to where the Project should be saved.
      * @param fileType The type of file as which the Project should be saved.
      */
-    void saveAsClicked(QString path, project::SaveFileType fileType);
+    void saveAsClicked(QString path, ::controller::project::SaveFileType fileType);
 
     /**
      * Initiates loading an existing Project from a specified location.
@@ -58,6 +58,8 @@ public slots:
      */
     void newProject();
 
+signals:
+	void requestSavePath();
 private:
     QString currentSavePath;
     project::SaveFileType currentSaveFileType;

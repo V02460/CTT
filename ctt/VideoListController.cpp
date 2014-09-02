@@ -24,8 +24,7 @@ using ::controller::operation::Operation;
 using ::controller::operation::VideoAddedOperation;
 using ::controller::operation::VideoRemovedOperation;
 
-VideoListController::VideoListController(SaveableList<FilteredVideo>::sptr videoList): videoList(videoList) {
-
+VideoListController::VideoListController(SaveableList<FilteredVideo>::sptr videoList) : videoList(videoList) {
 }
 
 void VideoListController::addVideo(QString path) {
@@ -34,19 +33,19 @@ void VideoListController::addVideo(QString path) {
 		new VideoAddedOperation(video, videoList)));
 }
 
-void VideoListController::addVideo(QString path, int width, int height, double fps, YUVType type, unsigned int length) {
+void VideoListController::addVideo(QString path, int width, int height, double fps, YUVType type) {
 	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(new YUVDataVideo(path, QSize(width, height), fps, type, GlobalContext::get()))));
 	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
 		new VideoAddedOperation(video, videoList)));
 }
 
-void VideoListController::addVideo(QString pathToVideoFile, QString pathToMetadataFile, int width, int height, double fps, YUVType type, unsigned int length) {
+void VideoListController::addVideo(QString pathToVideoFile, QString pathToMetadataFile, int width, int height, double fps, YUVType type) {
 	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(new YUVDataVideo(pathToVideoFile, pathToMetadataFile, QSize(width, height), fps, type, GlobalContext::get()))));
 	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
 		new VideoAddedOperation(video, videoList)));
 }
 
-void VideoListController::addVideo(FilteredVideo::sptr video) {
+void VideoListController::addVideo(Video::sptr video) {
 	for (int i = 0; i < videoList->getSize(); i++) {
 		if (videoList->get(i)->getBaseVideo() == video) return;
 	}
@@ -63,9 +62,9 @@ void VideoListController::removeVideo(int index) {
 		new VideoRemovedOperation(index, videoList)));
 }
 
-void VideoListController::removeVideo(const FilteredVideo &video) {
+void VideoListController::removeVideo(const Video &video) {
 	for (int i = 0; i < videoList->getSize(); i++) {
-		if (&video == videoList->get(i).data()) {
+		if (&video == videoList->get(i)->getBaseVideo().data()) {
 			OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
 				new VideoRemovedOperation(i, videoList)));
 			return;

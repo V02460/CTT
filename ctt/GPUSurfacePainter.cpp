@@ -242,25 +242,49 @@ Surface::sptr GPUSurfacePainter::run() {
     if (context->shareGroup() != QOpenGLContext::currentContext()->shareGroup()) {
         throw OpenGLException("Cannot access resources in the currently bound context.");
     }
-    if (targetTexture.isNull()) {
-        throw IllegalStateException("Target texture must be set before calling run.");
-    }
+//     if (targetTexture.isNull()) {
+//         throw IllegalStateException("Target texture must be set before calling run.");
+//     }
     if (vertexAttributes.isEmpty()) {
+        throw new IllegalStateException("At least one vertex attribute must exist to render to the image.");
+    }
 
+    QOpenGLFramebufferObject *fbo = nullptr;
+
+    QSize targetSize;
+
+    // render to default screen or to texture?
+    if (targetTexture.isNull()) {
+
+        //get the target size
+        GLint viewport[4];
+        glGetIntegerv(GL_VIEWPORT, viewport);
+         targetSize = QSize(viewport[2], viewport[3]);
+
+        // render to screen
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    } else {
+
+        //get the target size
+        targetSize = targetTexture->getSize();
+
+        // enable render to texture
+        fbo = targetTexture->getFramebufferObject();
+
+        if (!fbo->isValid()) {
+            throw OpenGLException("Framebuffer object is not valid.");
+        }
+        if (!fbo->bind()) {
+            throw OpenGLException("Could not bind framebuffer object.");
+        }
     }
 
     // make target size available in the shader
-    setValue("_targetSize", targetTexture->getSize());
+    setValue("_targetSize", targetSize);
 
-    // enable render to texture
-    QOpenGLFramebufferObject *fbo = targetTexture->getFramebufferObject();
-
-    if (!fbo->isValid()) {
-        throw OpenGLException("Framebuffer object is not valid.");
-    }
-    if (!fbo->bind()) {
-        throw OpenGLException("Could not bind framebuffer object.");
-    }
+    // set the viewport to the target texture size
+    glViewport(0, 0, targetSize.width(), targetSize.height());
 
     // prepare
     if (!program->bind()) {
@@ -277,9 +301,16 @@ Surface::sptr GPUSurfacePainter::run() {
     releaseAttributeArrays();
     program->release();
 
-    fbo->release();
+    if (fbo != nullptr) {
+        fbo->release();
+    }
 
     return targetTexture;
+}
+
+void GPUSurfacePainter::fill(QColor color) {
+    glClearColor(color.redF(), color.greenF(), color.blueF(), color.alphaF());
+    glClear(GL_COLOR_BUFFER_BIT);
 }
 
 QSharedPointer<QOpenGLContext> GPUSurfacePainter::getContext() {

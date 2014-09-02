@@ -16,9 +16,9 @@ static TestResult test(int argc, char *argv[]) {
 	FileVideoTest fileVideoTest;
 	VideoTest videoTest;
 	r << TestResult("VideoMetadataTest", QTest::qExec(&videoMetadataTest, argc, argv))
-		<< TestResult("YUVDataVideoTest", QTest::qExec(&yuvDataVideotest, argc, argv))
-		<< TestResult("VideoTest", QTest::qExec(&videoTest, argc, argv))
-		<< TestResult("FileVideoTest", QTest::qExec(&fileVideoTest, argc, argv));
+      << TestResult("YUVDataVideoTest", QTest::qExec(&yuvDataVideotest, argc, argv))
+      << TestResult("VideoTest", QTest::qExec(&videoTest, argc, argv))
+      << TestResult("FileVideoTest", QTest::qExec(&fileVideoTest, argc, argv));
 
     return r;
 }

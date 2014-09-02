@@ -5,7 +5,6 @@
 
 #include <QObject>
 #include <QOpenGLContext>
-#include <QOffscreenSurface>
 
 #include "YUVDataVideo.h"
 
@@ -22,7 +21,6 @@ class HSLPixelDiffTest : public QObject {
 
 private:
     QSharedPointer<QOpenGLContext> testContext;
-    QOffscreenSurface surface;
     ::model::video::YUVDataVideo::sptr video1;
     ::model::video::YUVDataVideo::sptr video2;
 };

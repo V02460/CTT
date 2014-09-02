@@ -4,24 +4,21 @@
 
 #include "MacroblockOverlay.h"
 #include "FilterParam.h"
+#include "GlobalContext.h"
 
 #include "IllegalStateException.h"
 
 using model::filter::overlay::MacroblockOverlay;
 using model::video::YUVDataVideo;
 using model::filter::FilterParam;
+using model::GlobalContext;
 using exception::IllegalStateException;
 
 MacroblockOverlayTest::MacroblockOverlayTest() : testContext(), video() {
 }
 
 void MacroblockOverlayTest::initTestCase() {
-    testContext.reset(new QOpenGLContext());
-    testContext->create();
-
-    surface.create();
-
-    testContext->makeCurrent(&surface);
+    testContext = GlobalContext::get();
 
     video.reset(new YUVDataVideo("Resources/Videos/YUV420/raftingNEW_352x288_113.yuv",
                                  "Resources/Videos/YUV420/ModeGrid_raf_512my.dat",

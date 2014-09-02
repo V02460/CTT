@@ -1,6 +1,8 @@
 #include "YUVPixelDiffTest.h"
 
 #include "YUVPixelDiff.h"
+#include "GlobalContext.h"
+
 #include "IllegalArgumentException.h"
 
 namespace model {
@@ -8,14 +10,10 @@ namespace difference {
 
 using ::model::video::YUVDataVideo;
 using ::exception::IllegalArgumentException;
+using ::model::GlobalContext;
 
 void YUVPixelDiffTest::initTestCase() {
-    testContext.reset(new QOpenGLContext());
-    testContext->create();
-
-    surface.create();
-
-    testContext->makeCurrent(&surface);
+    testContext = GlobalContext::get();
 
     video1.reset(new YUVDataVideo("Resources/Videos/YUV422/squirrel-720x576-422P.yuv",
         QSize(720, 576),

@@ -4,21 +4,18 @@
 
 #include "TimeshiftFilter.h"
 #include "FilterParam.h"
+#include "GlobalContext.h"
 
 using model::filter::TimeshiftFilter;
 using model::video::YUVDataVideo;
 using model::filter::FilterParam;
+using model::GlobalContext;
 
 TimeshiftFilterTest::TimeshiftFilterTest() : testContext(), video() {
 }
 
 void TimeshiftFilterTest::initTestCase() {
-    testContext.reset(new QOpenGLContext());
-    testContext->create();
-
-    surface.create();
-
-    testContext->makeCurrent(&surface);
+    testContext = GlobalContext::get();
 
     video.reset(new YUVDataVideo("Resources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv",
         QSize(352, 288),

@@ -16,6 +16,7 @@
 #include "ViewState.h"
 #include "ProcessingWidget.h"
 #include "AnalysingWidget.h"
+#include "MainController.h"
 
 namespace view {
 /**
@@ -30,12 +31,19 @@ public:
 
 	MainWindow();
 
+	~MainWindow();
+
 	virtual void update() Q_DECL_OVERRIDE;
 
 public slots:
 	void menuToProcessing();
 	void menuToAnalysing();
 
+	void menuLoad();
+	void menuSave();
+
+	void menuUndo();
+	void menuRedo();
 signals:
     /**
      * This signal is emitted when the view state is changed.
@@ -44,6 +52,9 @@ signals:
      */
     void menuItemViewStateChanged(ViewType newView);
 
+	void loadProject(QString path);
+	void saveProjectAs(QString path, ::controller::project::SaveFileType type);
+
 private:
 	void setupUi();
 
@@ -51,6 +62,8 @@ private:
 	QAction *toProcessingView;
 	QAction *toAnalysingView;
 	QStackedLayout *centralWidgetLayout;
+
+	::controller::MainController::sptr mainController;
 };
 
 }  // namespace view

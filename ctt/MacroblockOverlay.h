@@ -46,7 +46,8 @@ public:
     virtual bool uses(const Module &module) const Q_DECL_OVERRIDE;
     ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
     void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
-    static Saveable::SaveableType getSaveableType() { return Saveable::macroblockOverlay; }
+    static ::model::saveable::Saveable::SaveableType getSaveableType() { return Saveable::macroblockOverlay; }
+    virtual ::model::saveable::Saveable::SaveableType saveableType() const Q_DECL_OVERRIDE{return getSaveableType();}
     static Saveable::sptr getDummy();
 
 private:
@@ -62,7 +63,8 @@ private:
         static ::model::saveable::Saveable::SaveableType getSaveableType() { return Saveable::macroblockOverlay_macroblocks; }
         virtual QList<const Module*> getUsesList() const Q_DECL_OVERRIDE;
         virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
-        virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
+		virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
+		virtual SaveableType saveableType() const Q_DECL_OVERRIDE { return getSaveableType(); }
         virtual QString getName() const Q_DECL_OVERRIDE { return "filter_macroblockoverlay_macroblocks"; }
         virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; };
 

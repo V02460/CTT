@@ -1,5 +1,4 @@
 #include <QtTest/QtTest>
-#include <QOffscreenSurface>
 
 class VideoTest : public QObject
 {
@@ -10,6 +9,5 @@ class VideoTest : public QObject
 	void test();
 
 private:
-	QOffscreenSurface surface;
 	QSharedPointer<QOpenGLContext> testContext;
 };

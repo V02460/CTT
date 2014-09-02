@@ -4,21 +4,18 @@
 
 #include "RescaleFilter.h"
 #include "FilterParam.h"
+#include "GlobalContext.h"
 
 using model::filter::RescaleFilter;
 using model::video::YUVDataVideo;
 using model::filter::FilterParam;
+using model::GlobalContext;
 
 RescaleFilterTest::RescaleFilterTest() : testContext(), video() {
 }
 
 void RescaleFilterTest::initTestCase() {
-    testContext.reset(new QOpenGLContext());
-    testContext->create();
-
-    surface.create();
-
-    testContext->makeCurrent(&surface);
+    testContext = GlobalContext::get();
 
     video.reset(new YUVDataVideo("Resources/Videos/YUV444/squirrel-720x576-444P.yuv",
         QSize(720, 576),

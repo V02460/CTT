@@ -30,7 +30,16 @@ namespace controller {
 	}
 
 	void PlayerController::currentFrameChanged(int frameNumber) {
-		player->jumpToFrameNr(static_cast<unsigned int>(frameNumber));
+		unsigned int unsignedFrameNumber = static_cast<unsigned int>(frameNumber);
+
+		if (unsignedFrameNumber >= player->getVideoLength()) {
+			throw IllegalArgumentException("Frame number" +
+										   QString::number(unsignedFrameNumber) +
+										   "was requested but only " +
+										   QString::number(player->getVideoLength()) +
+										   "are available.");
+		}
+		player->jumpToFrameNr(unsignedFrameNumber);
 	}
 
 	void PlayerController::setToDefaultFPS() {

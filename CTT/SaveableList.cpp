@@ -36,12 +36,12 @@ namespace saveable {
 
 using ::exception::AccessToDummyException;
 
-template <class T>
-SaveableList<T>::SaveableList() : Observable(), list() {}
-
 template <class T> const QString SaveableList<T>::SIZE = "size";
 template <class T> const QString SaveableList<T>::TEMPLATE = "template";
 template <class T> const QString SaveableList<T>::ELEMENT = "element";
+
+template <class T>
+SaveableList<T>::SaveableList() : Observable(), list() {}
 
 template <class T>
 void SaveableList<T>::insert(int index, typename T::sptr element) {
@@ -67,6 +67,11 @@ typename T::sptr SaveableList<T>::remove(int index) {
 	list.removeAt(index);
 	changed();
 	return element;
+}
+
+template <class T>
+Saveable::SaveableType SaveableList<T>::saveableType() const {
+	return getSaveableType();
 }
 
 template <class T>

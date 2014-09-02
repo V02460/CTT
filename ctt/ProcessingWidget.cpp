@@ -4,6 +4,7 @@
 #include <QSplitter>
 #include "FilterController.h"
 #include "ExtendedVideoListController.h"
+#include "ViewState.h"
 
 using ::model::saveable::SaveableList;
 using ::model::player::Player;
@@ -46,6 +47,10 @@ ProcessingWidget::ProcessingWidget(SaveableList<Player>::sptr players,
 	setupUi();
 }
 
+ProcessingWidget::~ProcessingWidget() {
+	players->unsubscribe(this);
+}
+
 void ProcessingWidget::setupUi() {
 	setAccessibleName("ProcessingWidget");
 	QSplitter *verticalSplitter = new QSplitter(Qt::Vertical, this);
@@ -76,6 +81,10 @@ void ProcessingWidget::setupUi() {
 
 	horizontalSplitter->addWidget(upperLeftWidget);
 	horizontalSplitter->addWidget(upperRightWidget);
+	horizontalSplitter->setChildrenCollapsible(false);
+	//TODO Herausfinden warum das nicht klappt
+	horizontalSplitter->setStretchFactor(0, 1);
+	horizontalSplitter->setStretchFactor(1, 4);
 
 	QHBoxLayout *upperLayout = new QHBoxLayout();
 	upperLayout->addWidget(horizontalSplitter);
@@ -83,6 +92,8 @@ void ProcessingWidget::setupUi() {
 
 	verticalSplitter->addWidget(upperWidget);
 	verticalSplitter->addWidget(mainControlWidget);
+	verticalSplitter->setStretchFactor(0, 4);
+	verticalSplitter->setStretchFactor(1, 1);
 
 	QVBoxLayout *layout = new QVBoxLayout();
 	layout->addWidget(verticalSplitter);

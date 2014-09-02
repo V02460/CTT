@@ -21,7 +21,7 @@ namespace view {
 		QObject::connect(thumbnailWidget.data(), SIGNAL(buttonDeactivated(int)), videoDisplay.data(), SLOT(videoDeactivated(int)));
 		QObject::connect(thumbnailWidget.data(), SIGNAL(buttonReplaced(int, int)), videoDisplay.data(), SLOT(videoReplaced(int, int)));
 
-		mainControlWidget = new MainControlWidget(differences, videoDisplay, this);
+		mainControlWidget = new MainControlWidget(differences, player, videoDisplay, this);
 		mainControlWidget->setPlayer(player);
 
 		setupUi();

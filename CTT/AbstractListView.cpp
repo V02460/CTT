@@ -30,7 +30,8 @@ void AbstractListView::setupUi() {
 		QWidget *itemWidget = new QWidget(this);
 		QHBoxLayout *itemWidgetLayout = new QHBoxLayout(this);
 
-		QLabel *identifierLabel = new QLabel(items[i]->getIdentifier(), this);
+		QLabel *identifierLabel = items[i]->getIdentifier();
+		identifierLabel->setParent(this);
 		itemWidgetLayout->addWidget(identifierLabel);
 		itemWidgetLayout->addStretch();
 

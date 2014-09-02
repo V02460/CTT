@@ -16,6 +16,15 @@ FilterListView::FilterListView(FilterController::sptr filterController,
 	QObject::connect(this, SIGNAL(elementRemoved(int)), filterController.data(), SLOT(removeFilter(int)));
 	QObject::connect(this, SIGNAL(videoChanged(::model::filter::FilteredVideo::sptr)),
 		             filterController.data(), SLOT(setVideo(::model::filter::FilteredVideo::sptr)));
+
+	QObject::connect(this, SIGNAL(itemSelectionChanged()), this, SLOT(filterSelectionChanged()));
+	setSelectionMode(QAbstractItemView::SingleSelection);
+}
+
+FilterListView::~FilterListView() {
+	if (!video.isNull()) {
+		video->unsubscribe(this);
+	}
 }
 
 void FilterListView::setVideo(FilteredVideo::sptr newVideo) {
@@ -41,6 +50,16 @@ void FilterListView::update() {
 		items.append(new FilterListViewItem(filter, filterController, this));
 	}
 	setupUi();
+}
+
+void FilterListView::filterSelectionChanged() {
+	QList<QTreeWidgetItem*> selected = selectedItems();
+
+	int selectedFilterIndex = indexOfTopLevelItem(selected.at(0));
+
+	if (selectedFilterIndex != -1 && static_cast<int>(video->getFilterCount()) > selectedFilterIndex) {
+		emit selectedFilterChanged(video->getFilterList().value(selectedFilterIndex));
+	}
 }
 
 }  // namespace view

@@ -65,7 +65,7 @@ public:
 	/**
 	 * Labels for the different saveables.
 	 *
-	 * This enum must be similar in quantity and order to the SAVEABLE_TYPE_STRINGS list. 
+	 * When updating this enum please also update the SAVEABLE_TYPE_STRINGS map by updating the initSTS() method.
 	 */
 	enum SaveableType {
 		saveable,
@@ -80,6 +80,7 @@ public:
 		blurFilter,
 		coffeeFilter,
 		greyscaleFilter,
+        invertFilter,
 		mixFilter,
 		noiseFilter,
 		overlay,
@@ -105,77 +106,12 @@ public:
 		aBXTest
 	};
 
-	/** A string representation for the Saveable class. */
-	static const QString SAVEABLE;
-	/** A string representation for the FilterIntervalList class. */
-	static const QString FILTER_INTERVAL_LIST;
-	/** A string representation for the FrameDiff class. */
-	static const QString FRAME_DIFF;
-	/** A string representation for the EarthMoversHistogramDiff class. */
-	static const QString EARTH_MOVERS_HISTOGRAM_DIFF;
-	/** A string representation for the PixelDiff class. */
-	static const QString PIXEL_DIFF;
-	/** A string representation for the HSLPixelDiff class. */
-	static const QString HSL_PIXEL_DIFF;
-	/** A string representation for the YUVPixelDiff class. */
-	static const QString YUV_PIXEL_DIFF;
-	/** A string representation for the Module class. */
-	static const QString MODULE;
-	/** A string representation for the Filter class. */
-	static const QString FILTER;
-	/** A string representation for the BlurFilter class. */
-	static const QString BLUR_FILTER;
-	/** A string representation for the CoffeeFilter class. */
-	static const QString COFFEE_FILTER;
-	/** A string representation for the GreyscaleFilter class. */
-	static const QString GREYSCALE_FILTER;
-	/** A string representation for the MixFilter class. */
-	static const QString MIX_FILTER;
-	/** A string representation for the NoiseFilter class. */
-	static const QString NOISE_FILTER;
-	/** A string representation for the Overlay class. */
-	static const QString OVERLAY;
-	/** A string representation for the ColoringOverlay class. */
-	static const QString COLORING_OVERLAY;
-	/** A string representation for the HeatmapOverlay class. */
-	static const QString HEATMAP_OVERLAY;
-	/** A string representation for the MacroblockOverlay class. */
-	static const QString MACROBLOCK_OVERLAY;
-	/** A string representation for the MakropartitionOverlay class. */
-	static const QString MAKROPARTITION_OVERLAY;
-	/** A string representation for the MotionVektorOverlay class. */
-	static const QString MOTION_VEKTOR_OVERLAY;
-	/** A string representation for the RescaleFilter class. */
-	static const QString RESCALE_FILTER;
-	/** A string representation for the RGBChannelFilter class. */
-	static const QString RGB_CHANNEL_FILTER;
-	/** A string representation for the TimeshiftFilter class. */
-	static const QString TIMESHIFT_FILTER;
-	/** A string representation for the Video class. */
-	static const QString VIDEO;
-	/** A string representation for the FileVideo class. */
-	static const QString FILE_VIDEO;
-	/** A string representation for the FFmpegDataVideo class. */
-	static const QString FFMPEG_DATA_VIDEO;
-	/** A string representation for the YUVDataVideo class. */
-	static const QString YUV_DATA_VIDEO;
-	/** A string representation for the FilteredVideo class. */
-	static const QString FILTERED_VIDEO;
-	/** A string representation for the Player class. */
-	static const QString PLAYER;
-	/** A string representation for the SaveableList class. */
-	static const QString SAVEABLE_LIST;
-	/** A string representation for the UIntegerInterval class. */
-	static const QString U_INTEGER_INTERVAL;
-	/** A string representation for the VideoScrubber class. */
-	static const QString VIDEO_SCRUBBER;
-
 	/**
 	 * A list of string representations for saveable classes.
 	 *
 	 * This list must be similar in quantity and order to the SavableType enum. 
 	 */
-	static const QList<QString> SAVEABLE_TYPE_STRINGS;
+	static const QMap<SaveableType, QString> SAVEABLE_TYPE_STRINGS;
 
 	/**
 	 * Returns the type represented by the given string.
@@ -192,8 +128,13 @@ public:
 	 */
 	static SaveableType getSaveableType();
 
+	virtual SaveableType saveableType() const = 0;
+
 protected:
 	bool isDummyFlag = false;
+
+private:
+	static const QMap<SaveableType, QString> initSTS();
 };
 
 }  // namespace savable
@@ -222,19 +163,17 @@ protected:
 15		|  |  |  |> ColoringOverlay
 16		|  |  |  |  |> HeatmapOverlay
 17		|  |  |  |  |> MacroblockOverlay
-18		|  |  |  |> MakropartitionOverlay
-19		|  |  |  |> MotionVektorOverlay
-20		|  |  |> RescaleFilter
-21		|  |  |> RGBChannelFilter
-22		|  |  |> TimeshiftFilter
-23		|  |> Video
-24		|     |> FileVideo
-25		|     |  |> YUVDataVideo
-26		|     |> FilteredVideo
-27		|> Player
-28		|> SaveableList
-29		|> UIntegerInterval
-30		|> VideoScrubber
-31		|> ViewState
+18		|  |  |  |> MotionVektorOverlay
+19		|  |  |> RescaleFilter
+20		|  |  |> RGBChannelFilter
+21		|  |  |> TimeshiftFilter
+22		|  |> Video
+23		|     |> FileVideo
+24		|     |  |> YUVDataVideo
+25		|     |> FilteredVideo
+26		|> Player
+27		|> SaveableList
+28		|> UIntegerInterval
+29		|> VideoScrubber
 
 */

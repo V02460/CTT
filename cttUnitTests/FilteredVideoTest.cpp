@@ -1,26 +1,23 @@
 #include "FilteredVideoTest.h"
 
-#include <QOffscreenSurface>
 #include "CustomTestingMacros.h"
 #include "YUVDataVideo.h"
 #include "FilteredVideo.h"
 #include "GreyscaleFilter.h"
 #include "Memento.h"
+#include "GlobalContext.h"
+
 #include "IllegalStateException.h"
 
-using exception::IllegalArgumentException;
 using model::video::YUVDataVideo;
 using model::filter::FilteredVideo;
 using model::filter::GreyscaleFilter;
-
+using model::GlobalContext;
+using exception::IllegalArgumentException;
 
 void FilteredVideoTest::initTestCase()
 {
-	surface.create();
-
-	testContext = QSharedPointer<QOpenGLContext>(new QOpenGLContext());
-	testContext->create();
-	QVERIFY2(testContext->makeCurrent(&surface), "Couldn't initialize OGL Context.");
+    testContext = GlobalContext::get();
 }
 
 void FilteredVideoTest::dummyTest()

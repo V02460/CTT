@@ -1,17 +1,20 @@
 #include "PlayerTest.h"
-#include "..\CTT\YUVDataVideo.h"
-#include "..\CTT\VideoScrubber.h"
-#include "..\CTT\IllegalArgumentException.h"
+
+#include "YUVDataVideo.h"
+#include "VideoScrubber.h"
 #include "CustomTestingMacros.h"
-#include "..\CTT\UIntegerInterval.h"
+#include "UIntegerInterval.h"
+#include "GlobalContext.h"
+
+#include "IllegalArgumentException.h"
 
 using model::video::YUVDataVideo;
 using model::player::Player;
 using model::player::VideoScrubber;
+using model::GlobalContext;
 using exception::IllegalArgumentException;
 
-void PlayerTest::emptyPlayer()
-{
+void PlayerTest::emptyPlayer() {
 	Player test(10);
 
 	QVERIFY(!test.isPlaying());
@@ -32,8 +35,7 @@ void PlayerTest::emptyPlayer()
 	QCOMPARE(test.getFPS(), 20.0);
 }
 
-void PlayerTest::playingAndLooping()
-{
+void PlayerTest::playingAndLooping() {
 	model::video::YUVDataVideo *testVideo = new model::video::YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
 	YUVDataVideo::sptr videoPointer(testVideo);
 	VideoScrubber::sptr testScrubber(new VideoScrubber(videoPointer));
@@ -162,22 +164,16 @@ void PlayerTest::scrubberOperations()
 	QEXPECT_EXCEPTION(testPlayer.addScrubber(testScrubber, 10), IllegalArgumentException);
 }
 
-void PlayerTest::initTestCase()
-{
-	surface.create();
-	testContext = QSharedPointer<QOpenGLContext>(new QOpenGLContext());
-	testContext->create();
-	QVERIFY2(testContext->makeCurrent(&surface), "Couldn't initialize OGL Context.");
+void PlayerTest::initTestCase() {
+	testContext = GlobalContext::get();
 }
 
-void PlayerTest::testDummy()
-{
+void PlayerTest::testDummy() {
 	model::saveable::Saveable::sptr dummy = Player::getDummy();
 	QVERIFY(dummy->isDummy());
 }
 
-void PlayerTest::saveRestore()
-{
+void PlayerTest::saveRestore() {
 
 		model::video::YUVDataVideo *testVideo = new model::video::YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
 		YUVDataVideo::sptr videoPointer(testVideo);
