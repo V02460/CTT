@@ -18,9 +18,19 @@ public:
 	typedef QSharedPointer<AbstractListViewItem> sptr;
 	typedef QWeakPointer<AbstractListViewItem> wptr;
 
-	AbstractListViewItem(QWidget *parent) : QTableWidget(parent) {}
+	AbstractListViewItem(QWidget *parent);
 
 	virtual QLabel* getIdentifier() const = 0;
+
+	const int getHeight();
+
+protected:
+	void setHeight(int height);
+
+private:
+	void setupUi();
+
+	int forcedHeight;
 };
 
 }  // namespace view

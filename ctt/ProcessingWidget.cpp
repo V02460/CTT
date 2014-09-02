@@ -92,7 +92,7 @@ void ProcessingWidget::setupUi() {
 
 	verticalSplitter->addWidget(upperWidget);
 	verticalSplitter->addWidget(mainControlWidget);
-	verticalSplitter->setStretchFactor(0, 4);
+	verticalSplitter->setStretchFactor(0, 3);
 	verticalSplitter->setStretchFactor(1, 1);
 
 	QVBoxLayout *layout = new QVBoxLayout();

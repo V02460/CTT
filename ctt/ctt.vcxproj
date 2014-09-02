@@ -149,6 +149,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AbstractListView.cpp" />
+    <ClCompile Include="AbstractListViewItem.cpp" />
     <ClCompile Include="AbstractTimeline.cpp" />
     <ClCompile Include="ABXTest.cpp" />
     <ClCompile Include="AccessToDummyException.cpp" />

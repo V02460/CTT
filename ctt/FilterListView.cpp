@@ -18,7 +18,7 @@ FilterListView::FilterListView(FilterController::sptr filterController,
 		             filterController.data(), SLOT(setVideo(::model::filter::FilteredVideo::sptr)));
 
 	QObject::connect(this, SIGNAL(itemSelectionChanged()), this, SLOT(filterSelectionChanged()));
-	setSelectionMode(QAbstractItemView::SingleSelection);
+	setSelectionMode(QAbstractItemView::NoSelection);
 }
 
 FilterListView::~FilterListView() {
@@ -53,13 +53,14 @@ void FilterListView::update() {
 }
 
 void FilterListView::filterSelectionChanged() {
-	QList<QTreeWidgetItem*> selected = selectedItems();
+	//TODO bessere alternative überlegen
+	/*QList<QTreeWidgetItem*> selected = selectedItems();
 
 	int selectedFilterIndex = indexOfTopLevelItem(selected.at(0));
 
 	if (selectedFilterIndex != -1 && static_cast<int>(video->getFilterCount()) > selectedFilterIndex) {
 		emit selectedFilterChanged(video->getFilterList().value(selectedFilterIndex));
-	}
+	}*/
 }
 
 }  // namespace view
