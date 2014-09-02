@@ -251,18 +251,23 @@ Surface::sptr GPUSurfacePainter::run() {
 
     QOpenGLFramebufferObject *fbo = nullptr;
 
+    QSize targetSize;
+
     // render to default screen or to texture?
     if (targetTexture.isNull()) {
-        // make target size available in the shader
+
+        //get the target size
         GLint viewport[4];
         glGetIntegerv(GL_VIEWPORT, viewport);
-        setValue("_targetSize", QVector2D(viewport[2], viewport[3]));
+         targetSize = QSize(viewport[2], viewport[3]);
 
         // render to screen
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
     } else {
-        // make target size available in the shader
-        setValue("_targetSize", targetTexture->getSize());
+
+        //get the target size
+        targetSize = targetTexture->getSize();
 
         // enable render to texture
         fbo = targetTexture->getFramebufferObject();
@@ -274,6 +279,12 @@ Surface::sptr GPUSurfacePainter::run() {
             throw OpenGLException("Could not bind framebuffer object.");
         }
     }
+
+    // make target size available in the shader
+    setValue("_targetSize", targetSize);
+
+    // set the viewport to the target texture size
+    glViewport(0, 0, targetSize.width(), targetSize.height());
 
     // prepare
     if (!program->bind()) {
