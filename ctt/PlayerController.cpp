@@ -40,6 +40,7 @@ namespace controller {
 										   "are available.");
 		}
 		player->jumpToFrameNr(unsignedFrameNumber);
+		player->pause();
 	}
 
 	void PlayerController::setToDefaultFPS() {
@@ -49,8 +50,10 @@ namespace controller {
 	}
 
 	void PlayerController::setFPS(double fps) {
-		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
-			new FPSChangingOperation(fps, player)));
+		if (fps > 0) {
+			OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
+				new FPSChangingOperation(fps, player)));
+		}
 	}
 
 	void PlayerController::setPlayer(Player::sptr player) {
