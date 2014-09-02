@@ -233,10 +233,6 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 	uImage->setColorTable(colorTable);
 	vImage->setColorTable(colorTable);
 
-	yImage.save("C:/Users/Jonas/Downloads/ytestpic.bmp", "BMP");
-	uImage->save("C:/Users/Jonas/Downloads/utestpic.bmp", "BMP");
-	vImage->save("C:/Users/Jonas/Downloads/vtestpic.bmp", "BMP");
-
     Surface::sptr yFrame(new Frame(context, yImage));
 	Surface::sptr uFrame(new Frame(context, *uImage));
     Surface::sptr vFrame(new Frame(context, *vImage));
