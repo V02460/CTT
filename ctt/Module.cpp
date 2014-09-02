@@ -12,6 +12,10 @@ bool Module::uses(const Module &module) const {
     return getUsesList().contains(&module);
 }
 
+QList<const Module*> Module::getUsesList() const {
+    return QList<const Module*>() << this;
+}
+
 Saveable::SaveableType Module::getSaveableType() {
 	return Saveable::module;
 }

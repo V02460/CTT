@@ -29,21 +29,21 @@ MacroblockOverlay::~MacroblockOverlay() {
 }
 
 QList<const ::model::Module*> MacroblockOverlay::getUsesList() const {
-    QList<const Module*> list;
+    QList<const Module*> list = ColoringOverlay::getUsesList();
 
-    return list << this;
+    return list;
 }
 
 Memento MacroblockOverlay::getMemento() const {
-    throw NotImplementedException();
+    return ColoringOverlay::getMemento();
 }
 
 void MacroblockOverlay::restore(Memento memento) {
-    throw NotImplementedException();
+    ColoringOverlay::restore(memento);
 }
 
-bool MacroblockOverlay::uses(const ::model::Module &module) const {
-    throw NotImplementedException();
+MacroblockOverlay::MacroblockOverlay() : ColoringOverlay() {
+    isDummyFlag = true;
 }
 
 MacroblockOverlay::Macroblocks::Macroblocks(Module::sptr predecessor)
@@ -65,7 +65,7 @@ QColor MacroblockOverlay::Macroblocks::getMacroblockColor(MacroblockType type) c
 
     switch (type) {
         case MacroblockType::INTER_SKIP:
-            blockColor.setRgb(0, 0, 128);
+            blockColor.setRgb(0, 0, 0, 0);
             break;
         case MacroblockType::INTER_16X16:
         case MacroblockType::INTER_16X8:
@@ -76,14 +76,14 @@ QColor MacroblockOverlay::Macroblocks::getMacroblockColor(MacroblockType type) c
         case MacroblockType::INTER_4X4:
         case MacroblockType::INTER_8X8_OR_BELOW:
             // inter block
-            blockColor.setRgb(128, 0, 0);
+            blockColor.setRgb(0, 128, 0);
             break;
         case MacroblockType::INTRA_4X4:
         case MacroblockType::INTRA_16X16:
         case MacroblockType::INTRA_8X8:
         case MacroblockType::INTRA_PCM:
             // intra block
-            blockColor.setRgb(0, 128, 0);
+            blockColor.setRgb(128, 0, 0);
             break;
         case MacroblockType::UNKNOWN:
         default:
@@ -203,8 +203,8 @@ void MacroblockOverlay::Macroblocks::buildBuffers(QVector<QVector<MacroblockType
 
     QSize mbDimensions(mbTypes[0].size(), mbTypes.size());
 
-    QSizeF relativeMbSize(1.f / mbDimensions.width(),
-                          1.f / mbDimensions.height());
+    QSizeF relativeMbSize(2.f / mbDimensions.width(),
+                          2.f / mbDimensions.height());
     
     // every quad needs 6 vertices except the first and last which need only 5
     const unsigned int vertexCnt = mbDimensions.width() * mbDimensions.height() * 6 - 2;
@@ -225,9 +225,9 @@ void MacroblockOverlay::Macroblocks::buildBuffers(QVector<QVector<MacroblockType
             QColor color = getMacroblockColor(mbType);
             append(color, 4);
 
-            // position
-            QPointF topLeft(x * relativeMbSize.width(),
-                            y * relativeMbSize.height());
+            // position (mirror y for OpengGL)
+            QPointF topLeft(  x * relativeMbSize.width() - 1,
+                            -(y * relativeMbSize.height() - 1));
             append(QRectF(topLeft, relativeMbSize));
 
             // texture coordinates
@@ -274,11 +274,11 @@ void MacroblockOverlay::Macroblocks::restore(::model::saveable::Memento memento)
 }
 
 QList<const Module*> MacroblockOverlay::Macroblocks::getUsesList() const {
-    throw IllegalArgumentException();
+    return Filter::getUsesList();
 }
 
 Saveable::sptr MacroblockOverlay::getDummy() {
-	throw IllegalArgumentException();
+    return Saveable::sptr(new MacroblockOverlay());
 }
 
 }  // namespace overlay

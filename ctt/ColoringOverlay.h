@@ -45,7 +45,23 @@ protected:
      * @param overlay The module which content is rendered above the predecessor
      * @param overlayAlpha The transparency of the overlay
      */
-    explicit ColoringOverlay(Module::sptr predecessor, Module::sptr overlay, float overlayAlpha);
+    ColoringOverlay(Module::sptr predecessor, Module::sptr overlay, float overlayAlpha);
+
+    /**
+     * Creates a dummy ColoringOverlay.
+     */
+    ColoringOverlay();
+
+private:
+    /**
+     * Helper constructor to retrieve a handle to the created greyscale filter.
+     */
+    ColoringOverlay(Module::sptr greyscaleFilter,
+                    Module::sptr predecessor,
+                    Module::sptr overlay,
+                    float overlayAlpha);
+
+    Module::sptr greyscaleFilter;
 };
 
 

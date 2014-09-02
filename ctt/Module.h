@@ -41,7 +41,7 @@ public:
      *     including this module itself
      * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual QList<const Module*> getUsesList() const = 0;
+    virtual QList<const Module*> getUsesList() const;
 
     /**
      * Gets the number of frames the module can return.

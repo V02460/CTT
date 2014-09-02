@@ -107,5 +107,9 @@ void Filter::restore(Memento memento) {
 	intervals = memento.getSharedPointer("intervals").dynamicCast<FilterIntervalList>();
 }
 
+QList<const Module*> Filter::getUsesList() const {
+    return Module::getUsesList();
+}
+
 }  // namespace filter
 }  // namespace model
