@@ -20,6 +20,8 @@ public:
 	typedef QSharedPointer<ListedPushButton> sptr;
 	typedef QWeakPointer<ListedPushButton> wptr;
 
+	static QSize const MINIMUM_SIZE;
+
 	/**
 	 *	Creates a new ListedPushButton with an id for later identification, a video for thethumbnail generation and a
 	 *	parent wigdet.
