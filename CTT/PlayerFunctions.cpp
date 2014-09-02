@@ -121,8 +121,18 @@ void PlayerFunctions::update() {
 	setPlayButton(!player->isPlaying());
 	setEnabledAll(player->scrubberCount() != 0);
 
-	sliderCurrentFrame->setMaximum(static_cast<int>(player->getVideoLength() - 1));
-	sliderCurrentFrame->setValue(static_cast<int>(player->getCurrentFrameNumber()));
+	if (player->getVideoLength() != 0) {
+		sliderCurrentFrame->setMaximum(static_cast<int>(player->getVideoLength() - 1));
+	}
+	else {
+		sliderCurrentFrame->setMaximum(0);
+	}
+
+	try {
+	    sliderCurrentFrame->setValue(static_cast<int>(player->getCurrentFrameNumber()));
+	} catch (IllegalArgumentException e) {
+		//Do nothing because the exception is expected
+	}
 	sliderCurrentFrame->setTickInterval(static_cast<int>(player->getVideoLength()) / 10);
 
 	spinboxFPS->setValue(player->getFPS());
@@ -147,7 +157,7 @@ void PlayerFunctions::unsubscribe(const ::controller::PlayerController &observer
 	QObject::disconnect(this, SIGNAL(togglePlay()), &observer, SLOT(playPause()));
 	QObject::disconnect(btnNextFrame, SIGNAL(clicked()), &observer, SLOT(nextFrame()));
 	QObject::disconnect(btnPreviousFrame, SIGNAL(clicked()), &observer, SLOT(previousFrame()));
-	QObject::disconnect(sliderCurrentFrame, SIGNAL(sliderMoved(int)), &observer, SLOT(currentFrameChanged(int)));
+	QObject::disconnect(sliderCurrentFrame, SIGNAL(valueChanged(int)), &observer, SLOT(currentFrameChanged(int)));
 	QObject::disconnect(btnDefaultFPS, SIGNAL(clicked()), &observer, SLOT(setToDefaultFPS()));
 	QObject::disconnect(spinboxFPS, SIGNAL(valueChanged(double)), &observer, SLOT(setFPS(double)));
 	QObject::disconnect(this, SIGNAL(playerChanged(::model::player::Player::sptr)), &observer,

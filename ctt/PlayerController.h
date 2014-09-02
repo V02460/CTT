@@ -51,7 +51,7 @@ public slots:
      *
      * @param frameNumber The number of the frame which is to be the current frame.
      */
-    void currentFrameChanged(unsigned int frameNumber);
+    void currentFrameChanged(int frameNumber);
 
     /**
      * Is notified when the player is requested to set its FPS to the video's default and initiates setting the player's

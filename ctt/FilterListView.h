@@ -34,6 +34,7 @@ public:
 	virtual void setVideo(::model::filter::FilteredVideo::sptr newVideo) Q_DECL_OVERRIDE;
 	virtual void removeVideo() Q_DECL_OVERRIDE;
 
+public slots:
 	void filterSelectionChanged();
 
 signals:

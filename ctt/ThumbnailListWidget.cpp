@@ -2,8 +2,11 @@
 
 #include <QFileDialog>
 #include <QDialogButtonBox>
+#include <QMessageBox>
 
 #include "YUVType.h"
+#include "FileNotFoundException.h"
+#include "IOException.h"
 
 
 namespace view {
@@ -12,6 +15,8 @@ using ::model::saveable::SaveableList;
 using ::model::filter::FilteredVideo;
 using ::model::video::YUVType;
 using ::controller::VideoListController;
+using ::exception::FileNotFoundException;
+using ::exception::IOException;
 
 ThumbnailListWidget::ThumbnailListWidget(SaveableList<FilteredVideo>::sptr filteredVideos,
 	int selectableCount, bool isHorizontal, QWidget *parent) : QScrollArea(parent), macroblockFilePath(""),
@@ -61,7 +66,6 @@ void ThumbnailListWidget::setupUi() {
 
 void ThumbnailListWidget::setupOpenVideoDialog() {
 	openVideoDialog = new QDialog(this, Qt::Dialog | Qt::WindowTitleHint | Qt::WindowSystemMenuHint);
-	openVideoDialog->setWindowTitle(tr("MORE_VIDEO_INFORMATION"));
 
 	QGridLayout *dialogMainLayout = new QGridLayout();
 
@@ -118,6 +122,7 @@ void ThumbnailListWidget::setupOpenVideoDialog() {
 	QObject::connect(buttonBox, SIGNAL(rejected()), openVideoDialog, SLOT(reject()));
 
 	openVideoDialog->setLayout(dialogMainLayout);
+	openVideoDialog->layout()->setSizeConstraint(QLayout::SetFixedSize);
 }
 
 void ThumbnailListWidget::update() {
@@ -134,8 +139,13 @@ void ThumbnailListWidget::update() {
 
 	thumbnailListLayout->removeWidget(btnAddVideo);
 
+	//To remove the stretch at the end of the layout
+	QLayoutItem *child = thumbnailListLayout->takeAt(0);
+	if (child != 0) {
+		delete child;
+	}
+
 	//Repopulate the ThumbnailListWidget
-	//TODO ggf auf unsigned int umschreiben
 	for (int i = 0; i < filteredVideos->getSize(); i++) {
 		ListedPushButton::sptr addedButton =
 			ListedPushButton::sptr(new ListedPushButton(i, filteredVideos->get(i), this));
@@ -145,11 +155,7 @@ void ThumbnailListWidget::update() {
 	}
 
 	thumbnailListLayout->addWidget(btnAddVideo);
-	//TODO muss bei der dynamischen neuerstellung ggf. angepasst werden
 	thumbnailListLayout->addStretch();
-
-	//TODO activatedButton entweder leeren oder die buttons anpassen
-	adjustSize();
 
 	isInUpdateRequest = false;
 }
@@ -189,6 +195,8 @@ void ThumbnailListWidget::listedButtonRemoved(bool checked, int id) {
 void ThumbnailListWidget::btnAddVideoClicked(bool checked) {
 	QString videoPath = QFileDialog::getOpenFileName(0, tr("OPEN_VIDEO"), "", tr("YUV_FILES (*.yuv)"));
 	if (videoPath != "") {
+		QFileInfo fileInfo = QFileInfo(videoPath);
+		openVideoDialog->setWindowTitle(tr("MORE_VIDEO_INFORMATION") + ": " + fileInfo.baseName());
 		if (openVideoDialog->exec() == QDialog::Accepted) {
 			YUVType videoType;
 
@@ -199,12 +207,30 @@ void ThumbnailListWidget::btnAddVideoClicked(bool checked) {
 			default: break;
 			}
 
-			if (macroblockFilePath != "") {
-				emit videoAdded(videoPath, macroblockFileLabel->text(), widthSpinBox->value(), heightSpinBox->value(),
-					fpsSpinBox->value(), videoType, static_cast<unsigned int>(lengthSpinBox->value()));
-			} else {
-				emit videoAdded(videoPath, widthSpinBox->value(), heightSpinBox->value(), fpsSpinBox->value(),
-					videoType, static_cast<unsigned int>(lengthSpinBox->value()));
+			try {
+				if (macroblockFilePath != "") {
+					emit videoAdded(videoPath, macroblockFileLabel->text(), widthSpinBox->value(), heightSpinBox->value(),
+						fpsSpinBox->value(), videoType, static_cast<unsigned int>(lengthSpinBox->value()));
+				}
+				else {
+					emit videoAdded(videoPath, widthSpinBox->value(), heightSpinBox->value(), fpsSpinBox->value(),
+						videoType, static_cast<unsigned int>(lengthSpinBox->value()));
+				}
+			} catch (IllegalArgumentException e) {
+				QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_ADDING_FAILED_ILLEGEAL_ARGUMENT_TITLE"), tr("VIDEO_ADDING_FAILED_ILLEGAL_ARGUMENT_DETAILS"), QMessageBox::Ok, this);
+				errorBox.setDetailedText(e.getName() + "\n" + e.getMsg());
+
+				errorBox.exec();
+			} catch (FileNotFoundException e) {
+				QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_ADDING_FAILED_FILE_NOT_FOUND_TITLE"), tr("VIDEO_ADDING_FAILED_FILE_NOT_FOUND_DETAILS"), QMessageBox::Ok, this);
+				errorBox.setDetailedText(e.getName() + "\n" + e.getMsg());
+
+				errorBox.exec();
+			} catch (IOException e) {
+				QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_ADDING_FAILED_IO_TITLE"), tr("VIDEO_ADDING_FAILED_IO_DETAILS"), QMessageBox::Ok, this);
+				errorBox.setDetailedText(e.getName() + "\n" + e.getMsg());
+
+				errorBox.exec();
 			}
 		}
 	}
