@@ -138,7 +138,10 @@ protected:
 
     Module *getPredecessor() const;
 
-	Filter() {}
+    /**
+     * Creates a dummy Filter;
+     */
+	Filter();
 
 private:
     Q_DISABLE_COPY(Filter)

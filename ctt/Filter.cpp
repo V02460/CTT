@@ -32,12 +32,16 @@ void Filter::setParam(FilterParam::sptr parameter) {
     if (!parameters.contains(parameter->getName())) {
         throw IllegalArgumentException("Parameter '" + parameter->getName() + "' must exist in Filter to be set.");
     }
+
     QVariant oldValue = parameters.value(parameter->getName(), parameter)->getValue();
     QVariant newValue = parameter->getValue();
+    
     if (newValue.type() != oldValue.type()) {
         throw IllegalArgumentException("Variable type of FilterParam does not match stored type.");
     }
+
     parameters.insert(parameter->getName(), parameter);
+    changed();
 }
 
 void Filter::setPreviousModule(Module::sptr predecessor) {
@@ -83,6 +87,10 @@ Module *Filter::getPredecessor() const {
         throw AccessToDummyException();
     }
     return predecessor.data();
+}
+
+Filter::Filter() {
+    isDummyFlag = true;
 }
 
 QSize Filter::getResolution() const {
