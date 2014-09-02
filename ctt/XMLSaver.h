@@ -78,7 +78,7 @@ public:
 	 *
 	 * This list must be similar in quantity and order to the BaseSaveableType enum.
 	 */
-	static const QList<QString> BASE_ELEMENT_NAMES;
+	static const QMap<BaseSaveableType, QString> BASE_ELEMENT_NAMES;
 
 	/* TODO properly remove ^ doc
 	 * A list of base element class strings.
@@ -120,6 +120,8 @@ private:
 	void writeElements();
 	void writeSingeltons();
 	void endDocument();
+
+	static const QMap<BaseSaveableType, QString> initBEN();
 };
 
 }  // namespace project
