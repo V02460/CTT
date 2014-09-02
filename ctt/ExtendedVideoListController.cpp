@@ -100,14 +100,14 @@ void ExtendedVideoListController::addVideo(Video::sptr video) {
 
 void ExtendedVideoListController::removeVideo(int index) {
     OperationList::getInstance()->doOperation(
-        Operation::sptr(new ExtendedVideoRemovedOperation(index, videoList, filteredVideos)));
+        Operation::sptr(new ExtendedVideoRemovedOperation(index, videoList, filteredVideos, playerList)));
 }
 
 void ExtendedVideoListController::removeVideo(const Video &baseVideo) {
     for (int i = 0; i < videoList->getSize(); i++) {
         if (&baseVideo == videoList->get(i)->getBaseVideo().data()) {
             OperationList::getInstance()->doOperation(
-            Operation::sptr(new ExtendedVideoRemovedOperation(i, videoList, filteredVideos)));
+				Operation::sptr(new ExtendedVideoRemovedOperation(i, videoList, filteredVideos, playerList)));
             return;
         }
     }

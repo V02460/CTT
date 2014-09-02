@@ -8,6 +8,7 @@
 #include "FilteredVideo.h"
 #include "Operation.h"
 #include "SaveableList.h"
+#include "Player.h"
 
 namespace controller {
 	namespace operation {
@@ -28,7 +29,10 @@ namespace controller {
 			* @param videoList The list from which a certain video should be removed.
 			* @param filteredVideos Another list from which a certain video should be removed.
 			*/
-			ExtendedVideoRemovedOperation(int index, ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList, ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos);
+			ExtendedVideoRemovedOperation(int index, 
+											::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList, 
+											::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos,
+											::model::saveable::SaveableList<::model::player::Player>::sptr playerList);
 
 			/**
 			* Manages requests to remove a Video from two VideoLists.
@@ -44,8 +48,10 @@ namespace controller {
 			int index;
 			::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr videoList;
 			::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos;
+			::model::saveable::SaveableList<model::player::Player>::sptr playerList;
 			::model::saveable::Memento videoListMemento;
 			::model::saveable::Memento filteredVideosMemento;
+			::model::saveable::Memento playerListMemento;
 
 		};
 
