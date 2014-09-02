@@ -26,11 +26,12 @@ public:
 
 	virtual void save(QString path);
 
+	static const QString SPACE;
 	/** String to tell not to change the XML File. */
 	static const QString DO_NOT_CHANGE;
 
 	/** Name of the elements tag. */
-	static const QString ELEMENTS;
+	static const QString PROJECT;
 	/** Name of the element tag. */
 	static const QString ELEMENT;
 	/** Name of the variable tag. */
@@ -109,6 +110,7 @@ private:
 
 	static XMLSaver::uptr instance;
 
+	QFile *file;
 	QXmlStreamWriter *out;
 	QList<::model::saveable::Saveable::sptr> pointerList;
 	int elementID;
