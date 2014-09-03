@@ -46,7 +46,7 @@ QList<QByteArray> FilterFactory::getAllOverlayIDs() {
     return list
         << HeatmapOverlay::kFilterID
         << MacroblockOverlay::kFilterID
-        << MotionVectorOverlay::kFilterID;
+        /*<< MotionVectorOverlay::kFilterID*/;
 }
 
 Filter::sptr FilterFactory::createFilter(QString id, Module::sptr predecessor) {

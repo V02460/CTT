@@ -23,10 +23,15 @@ using ::model::filter::overlay::HeatmapOverlay;
 using ::model::filter::FilteredVideo;
 
 VideoAnalysingWidget::VideoAnalysingWidget(OverlayController::sptr overlayController, VideoScrubber::sptr scrubber,
-	AnalysingOrderingWidget* orderingWidget) : QWidget(), orderingWidget(orderingWidget) {
+	AnalysingOrderingWidget* orderingWidget) : QWidget(), orderingWidget(orderingWidget), overlayController(overlayController) {
 	histWidget = new HistogramWidget(scrubber, this);
 	videoWidget = new VideoWidget(scrubber);
 	metadataWidget = new FrameMetadataWidget(scrubber, this);
+
+	QObject::connect(this, SIGNAL(overlayAdded(QString)), overlayController.data(), SLOT(insertOverlay(QString)));
+	QObject::connect(this, SIGNAL(overlayAdded(QString, ::model::filter::FilteredVideo::sptr, ::model::filter::FilteredVideo::sptr)),
+		overlayController.data(), SLOT(insertOverlayWithPixelDiff(QString, ::model::filter::FilteredVideo::sptr, ::model::filter::FilteredVideo::sptr)));
+	QObject::connect(this, SIGNAL(overlayRemoved(int)), overlayController.data(), SLOT(removeOverlay(int)));
 
 	setupUi();
 }

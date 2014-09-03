@@ -33,6 +33,9 @@ namespace view {
 		verticalSplitter->addWidget(thumbnailWidget.data());
 		verticalSplitter->addWidget(videoDisplay.data());
 		verticalSplitter->addWidget(mainControlWidget);
+		verticalSplitter->setStretchFactor(0, 1);
+		verticalSplitter->setStretchFactor(1, 5);
+		verticalSplitter->setStretchFactor(2, 2);
 
 		QVBoxLayout *layout = new QVBoxLayout();
 		layout->addWidget(verticalSplitter);
