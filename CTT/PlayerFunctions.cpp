@@ -70,6 +70,7 @@ void PlayerFunctions::setupUi() {
 	btnDefaultFPS->setText(tr("DEFAULT_FPS"));
 
 	setLayout(layout);
+	setEnabledAll(false);
 }
 
 void PlayerFunctions::setPlayButton(bool isPlayButton) {
@@ -147,7 +148,9 @@ void PlayerFunctions::update() {
 
 	sliderCurrentFrame->setTickInterval(static_cast<int>(player->getVideoLength()) / 10);
 
+	oldState = spinboxFPS->blockSignals(true);
 	spinboxFPS->setValue(player->getFPS());
+	spinboxFPS->blockSignals(oldState);
 }
 
 void PlayerFunctions::subscribe(::controller::PlayerController::sptr observer) {

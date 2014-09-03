@@ -46,8 +46,8 @@ void AnalysingOrderingWidget::update() {
 		VideoAnalysingWidget::sptr widget(new VideoAnalysingWidget(overlayController, scrubber, this));
         analysingWidget.insert(i, widget);
 		QObject::connect(widget.data(), SIGNAL(overlayAdded(QString)), overlayController.data(), SLOT(insertOverlay(QString)));
-		QObject::connect(widget.data(), SIGNAL(overlayAdded(QString, FilteredVideo::sptr, FilteredVideo::sptr)),
-			overlayController.data(), SLOT(insertOverLayWithPixelDiff(QString, FilteredVideo::sptr, FilteredVideo::sptr)));
+		QObject::connect(widget.data(), SIGNAL(overlayAdded(QString, ::model::filter::FilteredVideo::sptr, ::model::filter::FilteredVideo::sptr)),
+			overlayController.data(), SLOT(insertOverlayWithPixelDiff(QString, ::model::filter::FilteredVideo::sptr, ::model::filter::FilteredVideo::sptr)));
 		QObject::connect(widget.data(), SIGNAL(overlayRemoved(int)), overlayController.data(), SLOT(removeOverlay(int)));
 
         ListedPushButton::sptr dialogButton(new ListedPushButton(i, filteredVideos->get(i), videoSelectionDialog));
@@ -80,6 +80,7 @@ void AnalysingOrderingWidget::setupUi() {
         int id = activatedButtons.at(i);
 
         widgetLayout->addWidget(analysingWidget.at(id).data(), row, column);
+		player->addScrubber(analysingWidget.at(id)->getVideoScrubber());
         dialogLayout->addWidget(dialogButtons.at(id).data(), row, column);
     }
 

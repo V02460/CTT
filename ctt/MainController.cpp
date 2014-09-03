@@ -24,11 +24,9 @@ void MainController::saveClicked() {
 void MainController::saveAsClicked(QString path, SaveFileType fileType) {
 	currentSavePath = path;
 
-	if (OperationList::getInstance()->hasSaveableChanges()) {
-		switch (fileType) {
-		case SaveFileType::XML: XMLSaver::getInstance()->save(path); break;
-		default: throw IllegalArgumentException("No saver for given file type exists."); break;
-		}
+	switch (fileType) {
+	case SaveFileType::XML: XMLSaver::getInstance()->save(path); break;
+	default: throw IllegalArgumentException("No saver for given file type exists."); break;
 	}
 }
 

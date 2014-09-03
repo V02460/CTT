@@ -18,6 +18,10 @@ HistogramWidget::HistogramWidget(::model::player::VideoScrubber::sptr scrubber, 
 	histogramPlot = new QCustomPlot();
 	histogramBars = new QCPBars(histogramPlot->xAxis, histogramPlot->yAxis);
 	histogramPlot->addPlottable(histogramBars);
+	histogramPlot->xAxis->setRange(0, 255);
+	histogramPlot->yAxis->setRange(0, 0.3);
+	histogramPlot->xAxis->setVisible(false);
+	histogramPlot->yAxis->setVisible(false);
 
 	setupUi();
 

@@ -70,7 +70,9 @@ void VideoWidget::exposeEvent(QExposeEvent *ev) {
 // }
 
 void VideoWidget::update() {
-	render();
+	if (isExposed()) {
+		render();
+	}
 }
 
 void VideoWidget::getVertexPosition(VertexAttribute *attribute) const {

@@ -29,7 +29,13 @@ namespace view {
 		if (currentFrameNumber != player->getCurrentFrameNumber()) {
 			//TODO range anpassen
 		} else if (frameCount != player->getVideoLength()) {
-			//TODO range anpassen
+			if (player->getVideoLength() != 0) {
+				graphPlot->xAxis->setRange(0, player->getVideoLength());
+			} else {
+				graphPlot->xAxis->setRange(0, 1);
+			}
+
+			graphPlot->replot();
 		} else {
 			updateDifferences();
 		}
@@ -60,7 +66,11 @@ namespace view {
 			graphPlot->graph(i)->setData(x, y);
 		}
 
-		graphPlot->xAxis->setRange(0, player->getVideoLength() - 1);
+		if (player->getVideoLength() != 0) {
+			graphPlot->xAxis->setRange(0, player->getVideoLength() - 1);
+		} else {
+			graphPlot->xAxis->setRange(0, 1);
+		}
 		graphPlot->yAxis->setRange(0, 1);
 
 		graphPlot->replot();
