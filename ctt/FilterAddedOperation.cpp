@@ -10,7 +10,6 @@ FilterAddedOperation::FilterAddedOperation(Filter::sptr filter, FilteredVideo::s
 	: filter(filter), filteredVideo(filteredVideo), memento(filteredVideo->getMemento()) {}
 
 void FilterAddedOperation::doOperation() {
-	// TODO off by one check
 	filteredVideo->addFilter(filter, filteredVideo->getFilterCount());
 }
 

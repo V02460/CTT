@@ -42,7 +42,7 @@ void OperationList::redoOperation() {
 
 void OperationList::markLastSavedState() {
 	lastSavedOperation = currentOperation;
-	// TODO changed();
+	changed();
 }
 
 bool OperationList::hasSaveableChanges() const {
