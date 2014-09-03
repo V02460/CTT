@@ -28,6 +28,7 @@ void OperationList::undoOperation() {
 	}
 	currentOperation--;
 	operations[currentOperation]->undoOperation();
+	changed();
 }
 
 void OperationList::redoOperation() {
@@ -36,10 +37,12 @@ void OperationList::redoOperation() {
 	}
 	operations[currentOperation]->doOperation();
 	currentOperation++;
+	changed();
 }
 
 void OperationList::markLastSavedState() {
 	lastSavedOperation = currentOperation;
+	// TODO changed();
 }
 
 bool OperationList::hasSaveableChanges() const {
