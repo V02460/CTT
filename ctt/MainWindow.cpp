@@ -73,6 +73,7 @@ namespace view {
 		file->addAction(newProject);
 
 		QAction *loadProject = new QAction(tr("MENUENTRY_LOAD_PROJECT"), file);
+		loadProject->setEnabled(false);
 		QObject::connect(loadProject, SIGNAL(triggered(bool)), this, SLOT(menuLoad()));
 		QObject::connect(this, SIGNAL(loadProject(QString)), mainController.data(), SLOT(loadClicked(QString)));
 		file->addAction(loadProject);
@@ -80,11 +81,13 @@ namespace view {
 		file->addSeparator();
 
 		QAction *saveProject = new QAction(tr("MENUENTRY_SAVE_PROJECT"), file);
+		saveProject->setEnabled(false);
 		QObject::connect(saveProject, SIGNAL(triggered(bool)), mainController.data(), SLOT(saveClicked()));
 
 		file->addAction(saveProject);
 
 		QAction *saveProjectAs = new QAction(tr("MENUENTRY_SAVE_PROJECT_AS"), file);
+		saveProjectAs->setEnabled(false);
 		QObject::connect(saveProjectAs, SIGNAL(triggered(bool)), this, SLOT(menuSave()));
 		QObject::connect(mainController.data(), SIGNAL(requestSavePath()), this, SLOT(menuSave()));
 		QObject::connect(this, SIGNAL(saveProjectAs(QString, ::controller::project::SaveFileType)), mainController.data(),
@@ -94,11 +97,13 @@ namespace view {
 
 		QMenu *edit = menu->addMenu(tr("MENU_EDIT"));
 
-		QAction *undo = new QAction(tr("MENUENTRY_UNDO"), edit);
+		undo = new QAction(tr("MENUENTRY_UNDO"), edit);
+		undo->setEnabled(OperationList::getInstance()->canUndo());
 		QObject::connect(undo, SIGNAL(triggered()), this, SLOT(menuUndo()));
 		edit->addAction(undo);
 
-		QAction *redo = new QAction(tr("MENUENTRY_REDO"), edit);
+		redo = new QAction(tr("MENUENTRY_REDO"), edit);
+		redo->setEnabled(OperationList::getInstance()->canRedo());
 		QObject::connect(redo, SIGNAL(triggered()), this, SLOT(menuRedo()));
 		edit->addAction(redo);
 
@@ -133,6 +138,10 @@ namespace view {
 	void MainWindow::update() {
 		ViewType currentType = ViewState::getInstance()->getCurrentViewType();
 
+		undo->setEnabled(OperationList::getInstance()->canUndo());
+
+		redo->setEnabled(OperationList::getInstance()->canRedo());
+
 		if (currentType == ViewType::PROCESSING_VIEW) {
 			centralWidgetLayout->setCurrentIndex(0);
 			toProcessingView->setVisible(false);
@@ -163,7 +172,7 @@ namespace view {
 	}
 
 	void MainWindow::menuLoad() {
-		QString path = QFileDialog::getOpenFileName(this, tr("LOAD_PROJECT"), "", tr("XML_FILTES *.xml"));
+		QString path = QFileDialog::getOpenFileName(this, tr("LOAD_PROJECT"), "", tr("CTT_FILES *.ctt"));
 
 		if (path != "") {
 			emit loadProject(path);
@@ -171,7 +180,7 @@ namespace view {
 	}
 
 	void MainWindow::menuSave() {
-		QString path = QFileDialog::getSaveFileName(this, tr("SAVE_PROJECT"), "", tr("XML_FILES *.xml"));
+		QString path = QFileDialog::getSaveFileName(this, tr("SAVE_PROJECT"), "", tr("CTT_FILES *.ctt"));
 
 		if (path != "") {
 			if (!path.endsWith(".xml")) {

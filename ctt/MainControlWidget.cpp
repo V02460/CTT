@@ -66,7 +66,7 @@ void MainControlWidget::setupUi(ViewType viewType) {
 		btnInsert->setEnabled(false);
 	} else if (viewType == ViewType::ANALYSING_VIEW) {
 		btnInsert->setText(tr("INSERT_DIFFERENCE"));
-		btnInsert->setEnabled(true);
+		btnInsert->setEnabled(false);
 	}
 	btnInsert->setCheckable(true);
 	QObject::connect(btnInsert, SIGNAL(clicked(bool)), this, SLOT(btnInsertClicked(bool)));

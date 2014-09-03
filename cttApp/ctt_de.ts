@@ -241,7 +241,7 @@
 <context>
     <name>view::AnalysingOrderingWidget</name>
     <message>
-        <location filename="../CTT/AnalysingOrderingWidget.cpp" line="109"/>
+        <location filename="../CTT/AnalysingOrderingWidget.cpp" line="116"/>
         <source>VIDEOS_TO_SELECT</source>
         <translation>Videos auswählen</translation>
     </message>
@@ -367,79 +367,75 @@
         <translation>Projekt laden</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="82"/>
+        <location filename="../CTT/MainWindow.cpp" line="83"/>
         <source>MENUENTRY_SAVE_PROJECT</source>
         <translation>Project speichern</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="87"/>
+        <location filename="../CTT/MainWindow.cpp" line="89"/>
         <source>MENUENTRY_SAVE_PROJECT_AS</source>
         <translation>Projekt speichern unter...</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="95"/>
+        <location filename="../CTT/MainWindow.cpp" line="98"/>
         <source>MENU_EDIT</source>
         <translation>Bearbeiten</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="97"/>
+        <location filename="../CTT/MainWindow.cpp" line="100"/>
         <source>MENUENTRY_UNDO</source>
         <translation>Rückgängig</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="101"/>
+        <location filename="../CTT/MainWindow.cpp" line="105"/>
         <source>MENUENTRY_REDO</source>
         <translation>Wiederholen</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="106"/>
+        <location filename="../CTT/MainWindow.cpp" line="111"/>
         <source>MENU_VIEW</source>
         <translation>Ansicht</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="108"/>
+        <location filename="../CTT/MainWindow.cpp" line="113"/>
         <source>MENUENTRY_TO_PROCESSING</source>
         <translation>Bearbeitungsansicht</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="112"/>
+        <location filename="../CTT/MainWindow.cpp" line="117"/>
         <source>MENUENTRY_TO_ANALYSING</source>
         <translation>Analyseansicht</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="116"/>
+        <location filename="../CTT/MainWindow.cpp" line="121"/>
         <source>MENUENTRY_TO_ABX</source>
         <translation>ABX Test</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="120"/>
+        <location filename="../CTT/MainWindow.cpp" line="125"/>
         <source>MENU_HELP</source>
         <translation>Hilfe</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="122"/>
+        <location filename="../CTT/MainWindow.cpp" line="127"/>
         <source>MENUENTRY_ABOUT</source>
         <translation>Über CTT</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="166"/>
+        <location filename="../CTT/MainWindow.cpp" line="175"/>
         <source>LOAD_PROJECT</source>
         <translation>Project laden</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="166"/>
-        <source>XML_FILTES *.xml</source>
-        <translation type="unfinished"></translation>
+        <location filename="../CTT/MainWindow.cpp" line="175"/>
+        <location filename="../CTT/MainWindow.cpp" line="183"/>
+        <source>CTT_FILES *.ctt</source>
+        <translation>CTT-Dateien *.ctt</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="174"/>
+        <location filename="../CTT/MainWindow.cpp" line="183"/>
         <source>SAVE_PROJECT</source>
         <translation>Projekt speichern</translation>
-    </message>
-    <message>
-        <location filename="../CTT/MainWindow.cpp" line="174"/>
-        <source>XML_FILES *.xml</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -455,23 +451,23 @@
         <translation>Nächstes Bild</translation>
     </message>
     <message>
-        <location filename="../CTT/PlayerFunctions.cpp" line="68"/>
+        <location filename="../CTT/PlayerFunctions.cpp" line="69"/>
         <source>RESET_TO_DEFAULT_FPS</source>
         <translation>Wiedergabegeschwindigkeit zurücksetzen</translation>
     </message>
     <message>
-        <location filename="../CTT/PlayerFunctions.cpp" line="70"/>
+        <location filename="../CTT/PlayerFunctions.cpp" line="71"/>
         <source>DEFAULT_FPS</source>
         <translation>Ursprüngliche Wiedergabegeschwindigkeit</translation>
     </message>
     <message>
-        <location filename="../CTT/PlayerFunctions.cpp" line="78"/>
+        <location filename="../CTT/PlayerFunctions.cpp" line="79"/>
         <source>PLAY</source>
         <translatorcomment>Hier hat sich das englische Wort eingebürgert, vielleicht stattdessen &quot;Abspielen&quot;</translatorcomment>
         <translation>Play</translation>
     </message>
     <message>
-        <location filename="../CTT/PlayerFunctions.cpp" line="82"/>
+        <location filename="../CTT/PlayerFunctions.cpp" line="83"/>
         <source>PAUSE</source>
         <translation>Pause</translation>
     </message>
@@ -568,32 +564,32 @@
     <message>
         <location filename="../CTT/ThumbnailListWidget.cpp" line="255"/>
         <source>VIDEO_ADDING_FAILED_ILLEGEAL_ARGUMENT_TITLE</source>
-        <translation type="unfinished"></translation>
+        <translation>Video Hinzufügen fehlgeschlagen</translation>
     </message>
     <message>
         <location filename="../CTT/ThumbnailListWidget.cpp" line="255"/>
         <source>VIDEO_ADDING_FAILED_ILLEGAL_ARGUMENT_DETAILS</source>
-        <translation type="unfinished"></translation>
+        <translation>Beim Hinzufügen des Videos wurde ein falscher Parameter ausgewählt. Siehe &quot;Details&quot; für nähere Beschreibung</translation>
     </message>
     <message>
         <location filename="../CTT/ThumbnailListWidget.cpp" line="260"/>
         <source>VIDEO_ADDING_FAILED_FILE_NOT_FOUND_TITLE</source>
-        <translation type="unfinished"></translation>
+        <translation>Video Hinzufügen fehlgeschlagen</translation>
     </message>
     <message>
         <location filename="../CTT/ThumbnailListWidget.cpp" line="260"/>
         <source>VIDEO_ADDING_FAILED_FILE_NOT_FOUND_DETAILS</source>
-        <translation type="unfinished"></translation>
+        <translation>Die ausgewählte Datei konnte nicht gefunden werden. Siehe &quot;Details&quot; für nähere Beschreibung</translation>
     </message>
     <message>
         <location filename="../CTT/ThumbnailListWidget.cpp" line="265"/>
         <source>VIDEO_ADDING_FAILED_IO_TITLE</source>
-        <translation type="unfinished"></translation>
+        <translation>Video Hinzufügen fehlgeschlagen</translation>
     </message>
     <message>
         <location filename="../CTT/ThumbnailListWidget.cpp" line="265"/>
         <source>VIDEO_ADDING_FAILED_IO_DETAILS</source>
-        <translation type="unfinished"></translation>
+        <translation>Eingabe-/Ausgabefehler beim lesen des Videos. Siehe &quot;Details&quot; für nähere Beschreibung</translation>
     </message>
     <message>
         <location filename="../CTT/ThumbnailListWidget.cpp" line="275"/>
@@ -608,7 +604,7 @@
 <context>
     <name>view::VideoAnalysingWidget</name>
     <message>
-        <location filename="../CTT/VideoAnalysingWidget.cpp" line="42"/>
+        <location filename="../CTT/VideoAnalysingWidget.cpp" line="51"/>
         <source>NO_OVERLAY</source>
         <translation>Kein Overlay</translation>
     </message>
@@ -621,12 +617,17 @@
         <translation>Video speichern</translation>
     </message>
     <message>
-        <location filename="../CTT/VideoProcessingWidget.cpp" line="43"/>
+        <location filename="../CTT/VideoProcessingWidget.cpp" line="31"/>
+        <source>YUV_FILES *.yuv</source>
+        <translation>YUV-Dateien *.yuv</translation>
+    </message>
+    <message>
+        <location filename="../CTT/VideoProcessingWidget.cpp" line="46"/>
         <source>USE_VIDEO_FOR_ANALYSIS</source>
         <translation>Video in die Analyseansicht übernehmen</translation>
     </message>
     <message>
-        <location filename="../CTT/VideoProcessingWidget.cpp" line="48"/>
+        <location filename="../CTT/VideoProcessingWidget.cpp" line="51"/>
         <source>SAVE_VIDEO</source>
         <translation>Video speichern</translation>
     </message>

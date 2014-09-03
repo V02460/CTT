@@ -63,6 +63,8 @@ private:
 	QAction *toProcessingView;
 	QAction *toAnalysingView;
 	QAction *toABXView;
+	QAction *undo;
+	QAction *redo;
 	QStackedLayout *centralWidgetLayout;
 
 	::controller::MainController::sptr mainController;

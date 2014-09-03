@@ -34,7 +34,7 @@ QList<QByteArray> FilterFactory::getAllNonOverlayFilterIDs() {
         << GreyscaleFilter::kFilterID
         //<< MixFilter::kFilterID
         << NoiseFilter::kFilterID
-        << RescaleFilter::kFilterID
+        //<< RescaleFilter::kFilterID
         << RGBChannelFilter::kFilterID
         << TimeshiftFilter::kFilterID
         << InvertFilter::kFilterID;
@@ -44,7 +44,7 @@ QList<QByteArray> FilterFactory::getAllOverlayIDs() {
     QList<QByteArray> list;
 
     return list
-        << HeatmapOverlay::kFilterID
+        //<< HeatmapOverlay::kFilterID
         << MacroblockOverlay::kFilterID
         /*<< MotionVectorOverlay::kFilterID*/;
 }

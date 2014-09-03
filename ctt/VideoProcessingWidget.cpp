@@ -28,8 +28,11 @@ void VideoProcessingWidget::checkboxUseForAnalysisValueChanged(int state) {
 }
 
 void VideoProcessingWidget::btnSaveVideoClicked() {
-	QString saveFileName = QFileDialog::getSaveFileName(this, tr("SAVE_VIDEO_DIALOG"));
-	model::video::VideoSaver::writeToFile(videoWidget->getScrubber()->getVideo(), saveFileName, model::video::VideoFileType::YUV);
+	QString saveFileName = QFileDialog::getSaveFileName(this, tr("SAVE_VIDEO_DIALOG"), "", tr("YUV_FILES *.yuv"));
+	if (!saveFileName.endsWith(".yuv")) {
+		saveFileName.append(".yuv");
+	}
+	videoWidget->getScrubber()->getVideo()->save(saveFileName, model::video::VideoFileType::YUV);
 }
 
 void VideoProcessingWidget::setupUi() {
