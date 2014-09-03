@@ -118,9 +118,9 @@ private:
 	*/
 	bool hasFrameInBuffer(unsigned int frameNr) const;
 
-	static const unsigned int numberOfFramesInMemory = 30; /**< The size of the buffer in frames*/
+	static const unsigned int kNumberOfFramesInMemory = 30; /**< The size of the buffer in frames*/
 
-	mutable QList<Surface::sptr> videoBuffer; /**< The buffer for the video data*/
+	mutable QVector<Surface::sptr> videoBuffer; /**< The buffer for the video data*/
 	mutable QByteArray metadataBuffer; /**< The buffer for the metadata*/
 	mutable unsigned int firstFrameInMemory; /**< The number of the first frame in the buffer*/
 

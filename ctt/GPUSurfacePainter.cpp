@@ -81,6 +81,7 @@ void GPUSurfacePainter::setValue(QString name, Surface::sptr texture) {
         int textureIndex = textures.indexOf(textureNames.value(name));
 
         textures[textureIndex] = texture;
+        textureNames.insert(name, texture);
 
     } else { // new texture
 
@@ -113,8 +114,8 @@ void GPUSurfacePainter::setValue(QString name, Surface::sptr texture) {
         program->release();
 
         // save the texture to be able to bind it when 'run' is called
-        // It's ugly we just keep the handle, but a shared pointer gave us problems in the hierarchy...
         textures.append(texture);
+        textureNames.insert(name, texture);
     }
 }
 
@@ -319,7 +320,7 @@ void GPUSurfacePainter::fill(QColor color) {
 
 QSharedPointer<QOpenGLContext> GPUSurfacePainter::getContext() {
     return context;
-        }
+}
 
 inline void GPUSurfacePainter::bindTextures() {
     unsigned int textureCnt = textures.size();

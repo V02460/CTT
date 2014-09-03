@@ -37,10 +37,11 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile,
                            double framerate,
                            YUVType type,
                            QSharedPointer<QOpenGLContext> context)
-	: FileVideo(pathToVideoFile, context)
+	: FileVideo(pathToVideoFile, GlobalContext::get())
 	, metadata(resolution, framerate, 1)
 	, pixelsPerFrame(resolution.height() * resolution.width())
 	, type(type)
+    , videoBuffer(kNumberOfFramesInMemory)
 {
 	hasMetadataFile = false;
 
@@ -152,12 +153,12 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 			+ " from a YUVDataVideo with only " + QString::number(getFrameCount()) + " frames.");
 	}
 
+    // BIG TODO: eliminate this awful hack
+    GlobalContext::get();
+
 	if (!hasFrameInBuffer(frameNumber)) {
 		load(frameNumber);
 	}
-
-    // BIG TODO: eliminate this awful hack
-    GlobalContext::get();
 
 	Frame::sptr result;
 
@@ -265,7 +266,7 @@ void YUVDataVideo::load(unsigned int startFrame) const
 bool YUVDataVideo::hasFrameInBuffer(unsigned int frameNr) const
 {
 	return (frameNr >= firstFrameInMemory) & 
-           (frameNr < (firstFrameInMemory + numberOfFramesInMemory)) &
+           (frameNr < (firstFrameInMemory + kNumberOfFramesInMemory)) &
 		    (frameNr < metadata.getLength());
 }
 
@@ -349,6 +350,9 @@ void YUVDataVideo::restore(Memento memento) {
 	metadata = VideoMetadata(resolution, memento.getDouble(framerateStringId), length);
 
 	isDummyFlag = false;
+
+    videoBuffer.resize(kNumberOfFramesInMemory);
+
 	load(0);
 
 	hasMetadataFile = memento.getBool(hasMetadataFileStringId);
@@ -402,17 +406,22 @@ void YUVDataVideo::loadVideodata(unsigned int startFrame) const {
                           " in the video file at \"" + pathToVideoFile + "\".");
 	}
 
-	unsigned int framesToLoad = numberOfFramesInMemory;
+    GlobalContext::get();
 
-	if (getFrameCount() < (startFrame + numberOfFramesInMemory))
-	{
+	unsigned int framesToLoad = kNumberOfFramesInMemory;
+
+	if (getFrameCount() < (startFrame + kNumberOfFramesInMemory)) {
 		framesToLoad = getFrameCount() - startFrame;
 	}
 
-	for (int i = 0; i < framesToLoad; i++)
-	{
+	for (unsigned int i = 0; i < framesToLoad; i++) {
 		char *yGPUBuffer;
-		Surface::sptr yChannel(new Surface(context, getResolution(), &yGPUBuffer));
+        Surface::sptr yChannel(new Surface(context,
+                                           getResolution(),
+                                           reinterpret_cast<void**>(&yGPUBuffer),
+                                           QOpenGLTexture::UInt8,
+                                           QOpenGLTexture::Red,
+                                           QOpenGLTexture::R8_UNorm));
 		videoFile.read(yGPUBuffer, pixelsPerFrame);
 
 		char *uGPUBuffer;
@@ -423,21 +432,55 @@ void YUVDataVideo::loadVideodata(unsigned int startFrame) const {
 		switch (type)
 		{
 		case YUV444:
-			uChannel.reset(new Surface(context, getResolution(), &uGPUBuffer, QOpenGLTexture::UInt8, QOpenGLTexture::Red, QOpenGLTexture::R8_UNorm));
+			uChannel.reset(new Surface(context,
+                                       getResolution(),
+                                       reinterpret_cast<void**>(&uGPUBuffer),
+                                       QOpenGLTexture::UInt8,
+                                       QOpenGLTexture::Red,
+                                       QOpenGLTexture::R8_UNorm));
 			videoFile.read(uGPUBuffer, pixelsPerFrame);
-			vChannel.reset(new Surface(context, getResolution(), &uGPUBuffer, QOpenGLTexture::UInt8, QOpenGLTexture::Red, QOpenGLTexture::R8_UNorm));
+
+			vChannel.reset(new Surface(context,
+                                       getResolution(),
+                                       reinterpret_cast<void**>(&vGPUBuffer),
+                                       QOpenGLTexture::UInt8,
+                                       QOpenGLTexture::Red,
+                                       QOpenGLTexture::R8_UNorm));
 			videoFile.read(vGPUBuffer, pixelsPerFrame);
 			break;
 		case YUV422:
-			uChannel.reset(new Surface(context, QSize(getResolution().width() / 2, getResolution().height()), &uGPUBuffer, QOpenGLTexture::UInt8, QOpenGLTexture::Red, QOpenGLTexture::R8_UNorm));
+			uChannel.reset(new Surface(context,
+                                       QSize(getResolution().width() / 2, getResolution().height()),
+                                       reinterpret_cast<void**>(&uGPUBuffer),
+                                       QOpenGLTexture::UInt8,
+                                       QOpenGLTexture::Red,
+                                       QOpenGLTexture::R8_UNorm));
 			videoFile.read(uGPUBuffer, pixelsPerFrame/2);
-			vChannel.reset(new Surface(context, QSize(getResolution().width() / 2, getResolution().height()), &vGPUBuffer, QOpenGLTexture::UInt8, QOpenGLTexture::Red, QOpenGLTexture::R8_UNorm));
+
+			vChannel.reset(new Surface(context,
+                                       QSize(getResolution().width() / 2, getResolution().height()),
+                                       reinterpret_cast<void**>(&vGPUBuffer),
+                                       QOpenGLTexture::UInt8,
+                                       QOpenGLTexture::Red,
+                                       QOpenGLTexture::R8_UNorm));
 			videoFile.read(vGPUBuffer, pixelsPerFrame/2);
+
 			break;
 		case YUV420:
-			uChannel.reset(new Surface(context, QSize(getResolution().width() / 2, getResolution().height() / 2), &uGPUBuffer, QOpenGLTexture::UInt8, QOpenGLTexture::Red, QOpenGLTexture::R8_UNorm));
+			uChannel.reset(new Surface(context,
+                                       QSize(getResolution().width() / 2, getResolution().height() / 2),
+                                       reinterpret_cast<void**>(&uGPUBuffer),
+                                       QOpenGLTexture::UInt8,
+                                       QOpenGLTexture::Red,
+                                       QOpenGLTexture::R8_UNorm));
 			videoFile.read(uGPUBuffer, pixelsPerFrame / 4);
-			vChannel.reset(new Surface(context, QSize(getResolution().width() / 2, getResolution().height() / 2), &vGPUBuffer, QOpenGLTexture::UInt8, QOpenGLTexture::Red, QOpenGLTexture::R8_UNorm));
+
+			vChannel.reset(new Surface(context,
+                                       QSize(getResolution().width() / 2, getResolution().height() / 2),
+                                       reinterpret_cast<void**>(&vGPUBuffer),
+                                       QOpenGLTexture::UInt8,
+                                       QOpenGLTexture::Red,
+                                       QOpenGLTexture::R8_UNorm));
 			videoFile.read(vGPUBuffer, pixelsPerFrame / 4);
 			break;
 		default:
@@ -445,31 +488,37 @@ void YUVDataVideo::loadVideodata(unsigned int startFrame) const {
 			break;
 		}
 
-		yChannel->finishedTxtureUpload();
-		uChannel->finishedTextureUpload();
-		vChannel->finishedTextureUpload();
+		yChannel->finishTextureUpload();
+        uChannel->finishTextureUpload();
+        vChannel->finishTextureUpload();
 
 		GPUSurfaceShader::uptr converter;
 		switch (type)
 		{
 		case YUV444:
-			converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV444toRGBsdtv.fs", yChannel));
+			//converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV444toRGBsdtv.fs", yChannel));
 			break;
 		case YUV422:
-			converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV422toRGBsdtv.fs", yChannel));
+			//converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV422toRGBsdtv.fs", yChannel));
 			break;
 		case YUV420:
-			converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV420toRGBsdtv.fs", yChannel));
+			//converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV420toRGBsdtv.fs", yChannel));
 			break;
 		default:
 			throw IllegalStateException("YUV type not supported.");
 			break;
 		}
 
-		converter->setValue("uChannel", uChannel);
-		converter->setValue("vChannel", uChannel);
+        converter.reset(new GPUSurfaceShader(":/Shader/Filter/Rescale.fs", yChannel));
 
-		videoBuffer[i] = converter->run(getMetadata().getSize());
+		//converter->setValue("uChannel", uChannel);
+		//converter->setValue("vChannel", uChannel);
+
+        Surface::sptr loadedFrame = converter->run(getMetadata().getSize());
+
+        loadedFrame->getFramebufferObject()->toImage().save("E:/Projects/Encoder Analyzer/CTT/image.png");
+
+        videoBuffer[i] = loadedFrame;
 	}
 
 	videoFile.close();
@@ -489,9 +538,9 @@ void YUVDataVideo::loadMetadata(unsigned int startFrame) const {
                           " in the metadata file at \"" + pathToVideoFile + "\".");
 	}
 
-	unsigned int framesToLoad = numberOfFramesInMemory;
+	unsigned int framesToLoad = kNumberOfFramesInMemory;
 
-	if (getFrameCount() < (startFrame + numberOfFramesInMemory))
+	if (getFrameCount() < (startFrame + kNumberOfFramesInMemory))
 	{
 		framesToLoad = getFrameCount() - startFrame;
 	}

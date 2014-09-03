@@ -5,6 +5,7 @@
 
 #include "IllegalStateException.h"
 #include "NotImplementedException.h"
+#include "IllegalArgumentException.h"
 
 namespace model {
     
@@ -12,6 +13,7 @@ using ::helper::GPUSurfaceShader;
 using ::exception::IllegalStateException;
 using ::exception::OpenGLException;
 using ::exception::NotImplementedException;
+using ::exception::IllegalArgumentException;
 
 typedef QSharedPointer<QOpenGLContext> QOpenGLContext_sptr;
 
@@ -44,7 +46,7 @@ Surface::Surface(QOpenGLContext_sptr context,
     if (!pixelUnpackBuffer->create()) {
         throw OpenGLException("Could not create pixel unpack buffer.");
     }
-    if (pixelUnpackBuffer->bind()) {
+    if (!pixelUnpackBuffer->bind()) {
         throw OpenGLException("Could not bind pixel unpack buffer.");
     }
 
@@ -64,7 +66,11 @@ void Surface::finishTextureUpload() {
         throw new IllegalStateException("No texture upload in progress. Call to this function is not needed.");
     }
 
-    if (pixelUnpackBuffer->unmap()) {
+    if (!pixelUnpackBuffer->bind()) {
+        throw OpenGLException("Could not bind pixel unpack buffer.");
+    }
+
+    if (!pixelUnpackBuffer->unmap()) {
         throw OpenGLException("Unmapping of pixel unpack buffer failed.");
     }
 
@@ -72,8 +78,14 @@ void Surface::finishTextureUpload() {
 
     initTexture(textureFormat);
 
-    pixelUnpackBuffer->bind();
+    texture->bind();
+
+    initializeOpenGLFunctions();
+
     texture->setData(rawDataPixelFormat, rawDataPixelType, static_cast<void*>(0));
+    //glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, size.width(), size.height(), 0,
+    //                GL_R8, GL_UNSIGNED_BYTE, NULL);
+    texture->setMinMagFilters(QOpenGLTexture::Nearest, QOpenGLTexture::Nearest);
 
     pixelUnpackBuffer->release();
 }
@@ -157,7 +169,12 @@ Surface::Surface(const Surface &surface)
         : context(surface.context)
         , framebuffer(surface.framebuffer.take())
         , texture(surface.texture.take())
-        , size(surface.size) {
+        , size(surface.size)
+        , isCurrentlyMapped(surface.isCurrentlyMapped)
+        , textureFormat(surface.textureFormat) {
+    if (surface.isCurrentlyMapped) {
+        throw IllegalArgumentException("Must not create a new Surface while mapping an OpenGL buffer.");
+    }
 }
 
 QOpenGLTexture *Surface::getTexture() const {

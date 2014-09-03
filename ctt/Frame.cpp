@@ -48,7 +48,7 @@ Frame::Frame(QSharedPointer<QOpenGLContext> context, QImage image, FrameMetadata
     }
     
     getTexture()->setData(image.mirrored(), QOpenGLTexture::DontGenerateMipMaps);
-    getTexture()->setMinMagFilters(QOpenGLTexture::NearestMipMapNearest, QOpenGLTexture::NearestMipMapNearest);
+    getTexture()->setMinMagFilters(QOpenGLTexture::Nearest, QOpenGLTexture::Nearest);
 }
 
 Frame::Frame(QSharedPointer<QOpenGLContext> context, QImage image)
