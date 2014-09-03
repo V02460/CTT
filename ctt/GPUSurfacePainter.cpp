@@ -44,11 +44,15 @@ void GPUSurfacePainter::initShaderProgram(QString vertexShaderFile, QString frag
         program.reset(new QOpenGLShaderProgram());
 
         if (!program->addShaderFromSourceFile(QOpenGLShader::Vertex, vertexShaderFile)) {
-            throw OpenGLException("Adding of vertex shader failed. Log message: " + program->log());
+            throw OpenGLException("Adding of vertex shader '" +
+                                  vertexShaderFile +
+                                  "' failed. Log message: " + program->log());
         }
 
         if (!program->addShaderFromSourceFile(QOpenGLShader::Fragment, fragmentShaderFile)) {
-            throw OpenGLException("Adding of fragment shader failed. Log message: " + program->log());
+            throw OpenGLException("Adding of fragment shader '" +
+                                  fragmentShaderFile +
+                                  " failed. Log message: " + program->log());
         }
 
         if (!program->link()) {

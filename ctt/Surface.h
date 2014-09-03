@@ -10,6 +10,7 @@
 #include <QOpenGLContext>
 #include <QOpenGLShader>
 #include <QOpenGLFunctions>
+#include <QOpenGLBuffer>
 
 //#include "GPUSurfaceShader.h"
 namespace helper {
@@ -37,6 +38,22 @@ public:
     Surface(QSharedPointer<QOpenGLContext> context, QSize size);
 
     /**
+     * Creates a new Surface from the submitted context in the given size.
+     *
+     * @param glContext an OpenGL context, from which the texture is accessible
+     * @param size The size of the new Surface
+     * @param pixelUnpackBufferPtr pointer to GPU owned buffer which is used for texture creation
+     * @param pixelType type of pixel data provided in the raw data
+     * @param TODO
+     */
+    Surface(QSharedPointer<QOpenGLContext> context,
+            QSize size,
+            void **pixelUnpackBufferPtr,
+            QOpenGLTexture::PixelType pixelType,
+            QOpenGLTexture::PixelFormat pixelFormat,
+            QOpenGLTexture::TextureFormat textureFormat);
+
+    /**
      * Returns the size of this surface object.
      *
      * @return QSize The size of the contained image.
@@ -53,7 +70,7 @@ public:
     GLuint getTextureHandle() const;
 
     /**
-     * Returns the context in which the texture is accessible.
+     * Returns the context in which the texture is accessible.2
      *
      * @return QOpenGLContext a QOpenGLContext in which the texture is accessible
      */
@@ -81,6 +98,13 @@ public:
      */
     QByteArray getRawRGBA();
 
+    /**
+     * Tells the Surface writing to the pixel unpack buffer is completed
+     * (only necessary when calling corresponding constructor).
+     * The texture will be created and is free to use after this function is called
+     */
+    void finishTextureUpload();
+
 protected:
     /**
      * Takes over arguments and leaves the old Surface crippled and bleeding on the floor.
@@ -105,6 +129,14 @@ private:
     QSize size;
 
     void initTexture() const;
+    void initTexture(QOpenGLTexture::TextureFormat format) const;
+
+    bool isCurrentlyMapped;
+
+    QScopedPointer<QOpenGLBuffer> pixelUnpackBuffer;
+    QOpenGLTexture::PixelFormat rawDataPixelFormat;
+    QOpenGLTexture::PixelType rawDataPixelType;
+    QOpenGLTexture::TextureFormat textureFormat;
 };
 
 }  // namespace model
