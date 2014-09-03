@@ -32,8 +32,6 @@ const QString YUVDataVideo::metadataPathStringId = "metaPath";
 const QString YUVDataVideo::framerateStringId = "framerate";
 const QString YUVDataVideo::yuvTypeStringId = "yuvtype";
 
-QVector<QRgb> YUVDataVideo::colorTable;
-
 YUVDataVideo::YUVDataVideo(QString pathToVideoFile,
                            QSize resolution,
                            double framerate,
@@ -85,17 +83,6 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile,
 	metadata = VideoMetadata(resolution, framerate, length);
 
 	load(0);
-
-	if (YUVDataVideo::colorTable.isEmpty())
-	{
-		YUVDataVideo::colorTable.resize(256);
-		QColor color;
-		for (int i = 0; i < 256; i++)
-		{
-			color.setRgb(i, i, i);
-			YUVDataVideo::colorTable[i] = color.rgb();
-		}
-	}
 
 	isDummyFlag = false;
 }
@@ -172,93 +159,6 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
     // BIG TODO: eliminate this awful hack
     GlobalContext::get();
 
-	QByteArray rawFrame(videoBuffer.mid((frameNumber - firstFrameInMemory) * bytesPerFrame, bytesPerFrame));
-
-	QByteArray yChannel(rawFrame.left(pixelsPerFrame));
-	QScopedPointer<QByteArray> uChannel;
-	QScopedPointer<QByteArray> vChannel;
-
-	QImage yImage(reinterpret_cast<const uchar*>(yChannel.constData()),
-                  getMetadata().getSize().width(),
-                  getMetadata().getSize().height(),
-                  QImage::Format_Indexed8);
-
-	QScopedPointer<QImage> uImage;
-	QScopedPointer<QImage> vImage;
-
-	switch (type)
-	{
-	case YUV444:
-		uChannel.reset(new QByteArray(rawFrame.mid(pixelsPerFrame, pixelsPerFrame)));
-		vChannel.reset(new QByteArray(rawFrame.mid(2 * pixelsPerFrame, pixelsPerFrame)));
-		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel->constData()),
-                                getMetadata().getSize().width(),
-                                getMetadata().getSize().height(),
-                                QImage::Format_Indexed8));
-		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel->constData()),
-                                getMetadata().getSize().width(),
-                                getMetadata().getSize().height(),
-                                QImage::Format_Indexed8));
-		break;
-	case YUV422:
-		uChannel.reset(new QByteArray(rawFrame.mid(pixelsPerFrame, pixelsPerFrame / 2)));
-		vChannel.reset(new QByteArray(rawFrame.mid(pixelsPerFrame + (pixelsPerFrame / 2), pixelsPerFrame / 2)));
-		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel->constData()),
-                                getMetadata().getSize().width() / 2,
-                                getMetadata().getSize().height(),
-                                QImage::Format_Indexed8));
-		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel->constData()),
-                                getMetadata().getSize().width() / 2,
-                                getMetadata().getSize().height(),
-                                QImage::Format_Indexed8));
-		break;
-	case YUV420:
-		uChannel.reset(new QByteArray(rawFrame.mid(pixelsPerFrame, pixelsPerFrame / 4)));
-		vChannel.reset(new QByteArray(rawFrame.mid(pixelsPerFrame + (pixelsPerFrame / 4), pixelsPerFrame / 4)));
-		uImage.reset(new QImage(reinterpret_cast<const uchar*>(uChannel->constData()),
-                                getMetadata().getSize().width() / 2,
-                                getMetadata().getSize().height() / 2,
-                                QImage::Format_Indexed8));
-		vImage.reset(new QImage(reinterpret_cast<const uchar*>(vChannel->constData()),
-                                getMetadata().getSize().width() / 2,
-                                getMetadata().getSize().height() / 2,
-                                QImage::Format_Indexed8));
-		break;
-	default:
-		throw IllegalStateException("YUV type not supported.");
-		break;
-	}
-
-	yImage.setColorTable(colorTable);
-	uImage->setColorTable(colorTable);
-	vImage->setColorTable(colorTable);
-
-    Surface::sptr yFrame(new Frame(context, yImage));
-	Surface::sptr uFrame(new Frame(context, *uImage));
-    Surface::sptr vFrame(new Frame(context, *vImage));
-
-	GPUSurfaceShader::uptr myHelper;
-	switch (type)
-	{
-	case YUV444:
-        myHelper.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV444toRGBsdtv.fs", yFrame));
-		break;
-	case YUV422:
-        myHelper.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV422toRGBsdtv.fs", yFrame));
-		break;
-	case YUV420:
-        myHelper.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV420toRGBsdtv.fs", yFrame));
-		break;
-	default:
-		throw IllegalStateException("YUV type not supported.");
-		break;
-	}
-
-	myHelper->setValue("uChannel", uFrame);
-	myHelper->setValue("vChannel", vFrame);
-
-	Surface::sptr resultSurface = myHelper->run(getMetadata().getSize());
-
 	Frame::sptr result;
 
 	if (hasMetadataFile)
@@ -326,12 +226,12 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 			}
 		}
 		FrameMetadata resultMetadata(getMetadata().getSize(), macroblockTypes);
-		result.reset(new Frame(resultSurface, resultMetadata));
+		result.reset(new Frame(videoBuffer[frameNumber - firstFrameInMemory], resultMetadata));
 	}
 	else
 	{
 		FrameMetadata resultMetadata(getMetadata().getSize());
-		result.reset(new Frame(resultSurface, resultMetadata));
+		result.reset(new Frame(videoBuffer[frameNumber - firstFrameInMemory], resultMetadata));
 	}
 
 	return result;
@@ -451,17 +351,6 @@ void YUVDataVideo::restore(Memento memento) {
 	isDummyFlag = false;
 	load(0);
 
-	if (YUVDataVideo::colorTable.isEmpty())
-	{
-		YUVDataVideo::colorTable.resize(256);
-		QColor color;
-		for (int i = 0; i < 256; i++)
-		{
-			color.setRgb(i, i, i);
-			YUVDataVideo::colorTable[i] = color.rgb();
-		}
-	}
-
 	hasMetadataFile = memento.getBool(hasMetadataFileStringId);
 	if (hasMetadataFile)
 	{
@@ -520,7 +409,68 @@ void YUVDataVideo::loadVideodata(unsigned int startFrame) const {
 		framesToLoad = getFrameCount() - startFrame;
 	}
 
-	videoBuffer = videoFile.read(numberOfFramesInMemory * bytesPerFrame);
+	for (int i = 0; i < framesToLoad; i++)
+	{
+		char *yGPUBuffer;
+		Surface::sptr yChannel(new Surface(context, getResolution(), &yGPUBuffer));
+		videoFile.read(yGPUBuffer, pixelsPerFrame);
+
+		char *uGPUBuffer;
+		Surface::sptr uChannel;
+		char *vGPUBuffer;
+		Surface::sptr vChannel;
+
+		switch (type)
+		{
+		case YUV444:
+			uChannel.reset(new Surface(context, getResolution(), &uGPUBuffer, QOpenGLTexture::UInt8, QOpenGLTexture::Red, QOpenGLTexture::R8_UNorm));
+			videoFile.read(uGPUBuffer, pixelsPerFrame);
+			vChannel.reset(new Surface(context, getResolution(), &uGPUBuffer, QOpenGLTexture::UInt8, QOpenGLTexture::Red, QOpenGLTexture::R8_UNorm));
+			videoFile.read(vGPUBuffer, pixelsPerFrame);
+			break;
+		case YUV422:
+			uChannel.reset(new Surface(context, QSize(getResolution().width() / 2, getResolution().height()), &uGPUBuffer, QOpenGLTexture::UInt8, QOpenGLTexture::Red, QOpenGLTexture::R8_UNorm));
+			videoFile.read(uGPUBuffer, pixelsPerFrame/2);
+			vChannel.reset(new Surface(context, QSize(getResolution().width() / 2, getResolution().height()), &vGPUBuffer, QOpenGLTexture::UInt8, QOpenGLTexture::Red, QOpenGLTexture::R8_UNorm));
+			videoFile.read(vGPUBuffer, pixelsPerFrame/2);
+			break;
+		case YUV420:
+			uChannel.reset(new Surface(context, QSize(getResolution().width() / 2, getResolution().height() / 2), &uGPUBuffer, QOpenGLTexture::UInt8, QOpenGLTexture::Red, QOpenGLTexture::R8_UNorm));
+			videoFile.read(uGPUBuffer, pixelsPerFrame / 4);
+			vChannel.reset(new Surface(context, QSize(getResolution().width() / 2, getResolution().height() / 2), &vGPUBuffer, QOpenGLTexture::UInt8, QOpenGLTexture::Red, QOpenGLTexture::R8_UNorm));
+			videoFile.read(vGPUBuffer, pixelsPerFrame / 4);
+			break;
+		default:
+			throw IllegalStateException("YUV type not supported.");
+			break;
+		}
+
+		yChannel->finishedTxtureUpload();
+		uChannel->finishedTextureUpload();
+		vChannel->finishedTextureUpload();
+
+		GPUSurfaceShader::uptr converter;
+		switch (type)
+		{
+		case YUV444:
+			converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV444toRGBsdtv.fs", yChannel));
+			break;
+		case YUV422:
+			converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV422toRGBsdtv.fs", yChannel));
+			break;
+		case YUV420:
+			converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV420toRGBsdtv.fs", yChannel));
+			break;
+		default:
+			throw IllegalStateException("YUV type not supported.");
+			break;
+		}
+
+		converter->setValue("uChannel", uChannel);
+		converter->setValue("vChannel", uChannel);
+
+		videoBuffer[i] = converter->run(getMetadata().getSize());
+	}
 
 	videoFile.close();
 }

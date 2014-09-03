@@ -120,7 +120,7 @@ private:
 
 	static const unsigned int numberOfFramesInMemory = 30; /**< The size of the buffer in frames*/
 
-	mutable QByteArray videoBuffer; /**< The buffer for the video data*/
+	mutable QList<Surface::sptr> videoBuffer; /**< The buffer for the video data*/
 	mutable QByteArray metadataBuffer; /**< The buffer for the metadata*/
 	mutable unsigned int firstFrameInMemory; /**< The number of the first frame in the buffer*/
 
@@ -133,8 +133,6 @@ private:
 
 	bool hasMetadataFile; /**< Whether the video has a metadata file*/
 	QString pathToMetadataFile; /**< The metadata file of the YUV video */
-
-	static QVector<QRgb> colorTable;
 
 };
 
