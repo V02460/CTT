@@ -43,6 +43,13 @@ public:
 private:
 	/** The scrubber at which the FrameMetadataWidget is registered. */
     ::model::player::VideoScrubber::sptr scrubber;
+
+	QLabel *fpsWidget;
+	QLabel *framecountWidget;
+	QLabel *sizeWidget;
+	QLabel *blockWidget;
+	QLabel *vectorWidget;
+	QList<QSharedPointer<QLabel>> moreMetadata;
 };
 
 }  // namespace view

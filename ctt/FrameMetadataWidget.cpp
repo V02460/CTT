@@ -10,10 +10,22 @@ using ::model::player::VideoScrubber;
 using ::model::video::VideoMetadata;
 using ::model::frame::FrameMetadata;
 
-FrameMetadataWidget::FrameMetadataWidget(VideoScrubber::sptr scrubber, QWidget *parent) : scrubber(scrubber),
-																						  QWidget(parent) {
+FrameMetadataWidget::FrameMetadataWidget(VideoScrubber::sptr scrubber, QWidget *parent) : QWidget(parent),
+                                                                                          scrubber(scrubber),
+																						  fpsWidget(new QLabel(this)),
+																						  framecountWidget(new QLabel(this)),
+																						  sizeWidget(new QLabel(this)),
+																						  blockWidget(new QLabel(this)),
+																						  vectorWidget(new QLabel(this)),
+																						  moreMetadata() {
 	scrubber->subscribe(this);
-	update();
+	QBoxLayout *layout = new QBoxLayout(QBoxLayout::Direction::TopToBottom, this);
+	layout->addWidget(fpsWidget);
+	layout->addWidget(framecountWidget);
+	layout->addWidget(sizeWidget);
+	layout->addWidget(blockWidget);
+	layout->addWidget(vectorWidget);
+	setLayout(layout);
 }
 
 FrameMetadataWidget::~FrameMetadataWidget() {
@@ -21,25 +33,22 @@ FrameMetadataWidget::~FrameMetadataWidget() {
 }
 
 void FrameMetadataWidget::update() {
-	// TODO may cause problems
-	if (layout() != nullptr) {
-		delete layout();
-	}
 	VideoMetadata video = scrubber->getVideoMetadata();
 	FrameMetadata frame = scrubber->getCurrentFrame()->getMetadata();
-	QBoxLayout *layout = new QBoxLayout(QBoxLayout::Direction::TopToBottom, this);
-	layout->addWidget(new QLabel(tr("FPS") + QString::number(video.getFPS()), this));
-	layout->addWidget(new QLabel(tr("FRAMECOUNT") + QString::number(video.getLength()), this));
-	for each (QString key in video.getAdditionalMetadata().keys()) {
-		layout->addWidget(new QLabel(key + ": " + video.getData(key), this));
+	fpsWidget->setText(tr("FPS") + QString::number(video.getFPS()));
+	framecountWidget->setText(tr("FRAMECOUNT") + QString::number(video.getLength()));
+	sizeWidget->setText(tr("VIDEO_SIZE") + QString::number(frame.getSize().width()) + "x" + frame.getSize().height());
+	blockWidget->setText(tr("HAS_BLOCK") + (frame.hasMbType() ? tr("YES") : tr("NO")));
+	vectorWidget->setText(tr("HAS_VECTRO") + (frame.hasMbMotionvectors() ? tr("YES") : tr("NO")));
+	for (int i = 0; i < moreMetadata.length(); i++) {
+		layout()->removeWidget(moreMetadata[i].data());
 	}
-	layout->addWidget(new QLabel(tr("VIDEO_SIZE") + QString::number(frame.getSize().width()) + "x"
-		                         + frame.getSize().height(), this));
-	layout->addWidget(new QLabel(tr("METADATA_START") + (frame.hasMbType() ? "" : tr("NOT"))
-		                         + tr("METABLOCK_END"), this));
-	layout->addWidget(new QLabel(tr("METADATA_START") + (frame.hasMbMotionvectors() ? "" : tr("NOT"))
-		                         + tr("MOTIONVECTOR_END"), this));
-	setLayout(layout);
+	moreMetadata.clear();
+	for each (QString key in video.getAdditionalMetadata().keys()) {
+		QLabel *metadata = new QLabel(key + ": " + video.getAdditionalMetadata().value(key));
+		moreMetadata.append(QSharedPointer<QLabel>(metadata));
+		layout()->addWidget(metadata);
+	}
 }
 
 }  // namespace view
