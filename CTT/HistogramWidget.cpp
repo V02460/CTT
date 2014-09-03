@@ -15,13 +15,19 @@ using ::model::frame::Frame;
 HistogramWidget::HistogramWidget(::model::player::VideoScrubber::sptr scrubber, QWidget *parent) : QWidget(parent), scrubber(scrubber) {
 	scrubber->subscribe(this);
 	currentHistogramType = Histogram::HISTOGRAM_TYPE_STRINGS.at(0);
+
 	histogramPlot = new QCustomPlot();
-	histogramBars = new QCPBars(histogramPlot->xAxis, histogramPlot->yAxis);
-	histogramPlot->addPlottable(histogramBars);
+	histogramPlot->plotLayout()->insertRow(0);
+	histogramPlot->axisRect()->setAutoMargins(QCP::msNone);
+	histogramPlot->axisRect()->setMargins(QMargins(0, 0, 0, 0));
 	histogramPlot->xAxis->setRange(0, 255);
-	histogramPlot->yAxis->setRange(0, 0.3);
+	histogramPlot->yAxis->setRange(0, 0.015);
 	histogramPlot->xAxis->setVisible(false);
 	histogramPlot->yAxis->setVisible(false);
+
+	histogramBars = new QCPBars(histogramPlot->xAxis, histogramPlot->yAxis);
+	histogramBars->setPen(QPen(Qt::black));
+	histogramPlot->addPlottable(histogramBars);
 
 	setupUi();
 
@@ -49,8 +55,6 @@ void HistogramWidget::next() {
 	int index = Histogram::HISTOGRAM_TYPE_STRINGS.indexOf(currentHistogramType);
 	currentHistogramType = Histogram::HISTOGRAM_TYPE_STRINGS.at((index + 1) % Histogram::HISTOGRAM_TYPE_STRINGS.size());
 
-	histogramBars->setName(currentHistogramType);
-
 	update();
 }
 
@@ -68,6 +72,11 @@ void HistogramWidget::update() {
 
 	histogramBars->clearData();
 	histogramBars->setData(keys, values);
+
+	histogramBars->setName(currentHistogramType);
+	QCPLayoutElement *oldTitle = histogramPlot->plotLayout()->element(0, 0);
+	histogramPlot->plotLayout()->remove(oldTitle);
+	histogramPlot->plotLayout()->addElement(0, 0, new QCPPlotTitle(histogramPlot, currentHistogramType));
 
 	histogramPlot->replot();
 }

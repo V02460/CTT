@@ -1,5 +1,7 @@
 #include "AnalysingOrderingWidget.h"
 
+#include <QSpacerItem>
+
 #include "VideoScrubber.h"
 #include "OverlayController.h"
 #include "VideoAnalysingWidget.h"
@@ -35,6 +37,8 @@ void AnalysingOrderingWidget::update() {
     for (int i = 0; i < analysingWidget.size(); i++) {
         analysingWidget.at(i)->comboboxOverlayCurrentIndexChanged(0);
         QObject::disconnect(dialogButtons.at(i).data(), SIGNAL(toggled(bool, int)), this, SLOT(dialogButtonToggled(bool, int)));
+		widgetLayout->removeWidget(analysingWidget.at(i).data());
+		dialogLayout->removeWidget(dialogButtons.at(i).data());
     }
 
     analysingWidget.clear();
@@ -63,6 +67,8 @@ void AnalysingOrderingWidget::setupDialog() {
 
     dialogButtonBox = new QDialogButtonBox(QDialogButtonBox::Cancel, videoSelectionDialog);
     dialogAcceptButton = dialogButtonBox->addButton(QDialogButtonBox::Ok);
+	QObject::connect(dialogButtonBox, SIGNAL(accepted()), videoSelectionDialog, SLOT(accept()));
+	QObject::connect(dialogButtonBox, SIGNAL(rejected()), videoSelectionDialog, SLOT(reject()));
     dialogAcceptButton->setEnabled(false);
 }
 
@@ -75,7 +81,7 @@ void AnalysingOrderingWidget::setupUi() {
     QList<int> activatedButtons = thumbnails->getActiveIndices();
 
     for (int i = 0; i < activatedButtons.size(); i++) {
-        int row = i / columnCount;
+		int row = i / columnCount;
         int column = i % columnCount;
         int id = activatedButtons.at(i);
 
@@ -116,11 +122,13 @@ void AnalysingOrderingWidget::videoActivated(int id) {
 }
 
 void AnalysingOrderingWidget::videoReplaced(int oldId, int newId) {
-    setupUi();
+	videoDeactivated(oldId);
 }
 
 void AnalysingOrderingWidget::videoDeactivated(int id) {
-    setupUi();
+	widgetLayout->removeWidget(analysingWidget.at(id).data());
+	dialogLayout->removeWidget(dialogButtons.at(id).data());
+	setupUi();
 }
 
 void AnalysingOrderingWidget::dialogButtonToggled(bool checked, int id) {

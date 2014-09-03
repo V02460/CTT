@@ -64,10 +64,10 @@ void PlayerFunctions::setupUi() {
 	btnDefaultFPS = new QPushButton(this);
 	btnDefaultFPS->setAccessibleName("PlayerFunctions->btnDefaultFPS");
 	btnDefaultFPS->setMinimumSize(10, 30);
-	btnDefaultFPS->setSizePolicy(buttonSizePolicy);
+	btnDefaultFPS->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	btnDefaultFPS->setToolTip(tr("RESET_TO_DEFAULT_FPS"));
 	layout->addWidget(btnDefaultFPS);
-	btnDefaultFPS->setText(tr("DEFAULT_FPS"));
+	btnDefaultFPS->setToolTip(tr("DEFAULT_FPS"));
 
 	setLayout(layout);
 	setEnabledAll(false);

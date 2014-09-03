@@ -41,9 +41,9 @@ MainControlWidget::MainControlWidget(SaveableList<FrameDiff>::sptr differences, 
 	listView = new DifferenceListView(differences, player, this);
 	timeline = new DifferenceTimeline(differences, player, this);
 
-	setPlayer(player);
-
 	setupUi(ViewType::ANALYSING_VIEW);
+
+	setPlayer(player);
 }
 
 void MainControlWidget::setupUi(ViewType viewType) {
@@ -60,12 +60,13 @@ void MainControlWidget::setupUi(ViewType viewType) {
 	btnInsert = new QPushButton(leftWidget);
 	btnInsert->setAccessibleName("MainControlWidget->btnInsert");
 	btnInsert->setMinimumSize(QSize(30, 30));
-	btnInsert->setEnabled(false);
 	btnInsert->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	if (viewType == ViewType::PROCESSING_VIEW) {
 		btnInsert->setText(tr("INSERT_FILTER"));
+		btnInsert->setEnabled(false);
 	} else if (viewType == ViewType::ANALYSING_VIEW) {
 		btnInsert->setText(tr("INSERT_DIFFERENCE"));
+		btnInsert->setEnabled(true);
 	}
 	btnInsert->setCheckable(true);
 	QObject::connect(btnInsert, SIGNAL(clicked(bool)), this, SLOT(btnInsertClicked(bool)));

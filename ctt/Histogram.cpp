@@ -38,9 +38,9 @@ const QList<QString> Histogram::HISTOGRAM_TYPE_STRINGS =
     QList<QString>() << kRedStr
                      << kGreenStr
                      << kBlueStr
-                     << kHueStr
+                     /*<< kHueStr
                      << kSaturationStr
-                     << kLuminanceStr;
+                     << kLuminanceStr*/;
 
 static const QList<QString> HISTOGRAM_TYPE_STRINGS;
 
@@ -52,28 +52,38 @@ float Histogram::getValue(unsigned int idx) const {
         throw IllegalArgumentException("Out of bounds index " + QString::number(idx) + ".");
     }
 
-    if (values.isEmpty()) {
-        values.resize(kSize);
-
-        // TODO: use PBO to prevent GPU pipeline flush
-        QByteArray rawValues = histogramData->getRawRGBA();
-
-        for (unsigned int i = 0; i < kSize; i++) {
-
-            // decode the floats stored in the RGBA8888 format
-            char r = rawValues[4 * i    ];
-            char g = rawValues[4 * i + 1];
-            char b = rawValues[4 * i + 2];
-            char a = rawValues[4 * i + 3];
-                
-            values[i] = reinterpret_cast<unsigned char&>(r) / 255.f
-                      + reinterpret_cast<unsigned char&>(g) / 65025.f
-                      + reinterpret_cast<unsigned char&>(b) / 16581375.f
-                      + reinterpret_cast<unsigned char&>(a) / 4228250625.f;
-        }
-    }
+	calculateValues();
 
     return values[idx];
+}
+
+QVector<float> Histogram::getValues() const {
+	calculateValues();
+
+	return values;
+}
+
+void Histogram::calculateValues() const {
+	if (values.isEmpty()) {
+		values.resize(kSize);
+
+		// TODO: use PBO to prevent GPU pipeline flush
+		QByteArray rawValues = histogramData->getRawRGBA();
+
+		for (unsigned int i = 0; i < kSize; i++) {
+
+			// decode the floats stored in the RGBA8888 format
+			char r = rawValues[4 * i];
+			char g = rawValues[4 * i + 1];
+			char b = rawValues[4 * i + 2];
+			char a = rawValues[4 * i + 3];
+
+			values[i] = reinterpret_cast<unsigned char&>(r) / 255.f
+				+ reinterpret_cast<unsigned char&>(g) / 65025.f
+				+ reinterpret_cast<unsigned char&>(b) / 16581375.f
+				+ reinterpret_cast<unsigned char&>(a) / 4228250625.f;
+		}
+	}
 }
 
 Surface::sptr Histogram::getHistogramImage(QSize dimensions) const {

@@ -5,6 +5,7 @@
 #include <QDialog>
 #include <QPushButton>
 #include <QDialogButtonBox>
+#include <QGridLayout>
 
 #include "SaveableList.h"
 #include "FilteredVideo.h"

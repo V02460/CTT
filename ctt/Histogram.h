@@ -82,6 +82,8 @@ public:
      */
     virtual float getValue(unsigned int i) const;
 
+	QVector<float> getValues() const;
+
     Surface::sptr getHistogramImage(QSize dimensions) const;
 
     /**
@@ -149,6 +151,8 @@ private:
      * The values of the histogram stored as float array (on CPU).
      */
     mutable QVector<float> values;
+
+	void calculateValues() const;
     
 
 };
