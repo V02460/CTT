@@ -27,9 +27,10 @@ public:
     typedef QWeakPointer<VideoAnalysingWidget> wptr;
 
 	VideoAnalysingWidget(::controller::OverlayController::sptr overlayController,
-		::model::player::VideoScrubber::sptr scrubber, AnalysingOrderingWidget *orderingWidget);
+		::model::player::VideoScrubber::sptr scrubber, ::model::player::VideoScrubber::sptr historamScrubber, AnalysingOrderingWidget *orderingWidget);
 
 	::model::player::VideoScrubber::sptr getVideoScrubber();
+	::model::player::VideoScrubber::sptr getHistogramScrubber();
 public slots:
     /**
      * This method is called when the user changes the currently selected overly via the overlay combobox.
@@ -52,6 +53,7 @@ private:
 	void setupUi();
 
 	::controller::OverlayController::sptr overlayController;
+	::model::player::VideoScrubber::sptr histogramScrubber;
 	AnalysingOrderingWidget *orderingWidget;
     QComboBox *comboboxOverlay; /**< The combobox to choose the active overlay */
     VideoWidget *videoWidget; /**< The VideoWidget where the video actually is displayed */

@@ -34,11 +34,20 @@ AnalysingOrderingWidget::~AnalysingOrderingWidget() {
 }
 
 void AnalysingOrderingWidget::update() {
+	QList<int> activatedButtons = thumbnails->getActiveIndices();
+
+	for (int i = 0; i < activatedButtons.size(); i++) {
+		int id = activatedButtons[i];
+		player->removeScrubber(*analysingWidget.at(id)->getVideoScrubber());
+		player->removeScrubber(*analysingWidget.at(id)->getHistogramScrubber());
+
+		widgetLayout->removeWidget(analysingWidget.at(id).data());
+		dialogLayout->removeWidget(dialogButtons.at(i).data());
+	}
+
     for (int i = 0; i < analysingWidget.size(); i++) {
         analysingWidget.at(i)->comboboxOverlayCurrentIndexChanged(0);
         QObject::disconnect(dialogButtons.at(i).data(), SIGNAL(toggled(bool, int)), this, SLOT(dialogButtonToggled(bool, int)));
-		widgetLayout->removeWidget(analysingWidget.at(i).data());
-		dialogLayout->removeWidget(dialogButtons.at(i).data());
     }
 
     analysingWidget.clear();
@@ -46,8 +55,9 @@ void AnalysingOrderingWidget::update() {
 
     for (int i = 0; i < filteredVideos->getSize(); i++) {
         VideoScrubber::sptr scrubber(new VideoScrubber(filteredVideos->get(i)));
+		VideoScrubber::sptr histogramScrubber(new VideoScrubber(filteredVideos->get(i)->getBaseVideo()));
         OverlayController::sptr overlayController(new OverlayController(filteredVideos->get(i)));
-		VideoAnalysingWidget::sptr widget(new VideoAnalysingWidget(overlayController, scrubber, this));
+		VideoAnalysingWidget::sptr widget(new VideoAnalysingWidget(overlayController, scrubber, histogramScrubber, this));
         analysingWidget.insert(i, widget);
 
         ListedPushButton::sptr dialogButton(new ListedPushButton(i, filteredVideos->get(i), videoSelectionDialog));
@@ -83,6 +93,7 @@ void AnalysingOrderingWidget::setupUi() {
 
         widgetLayout->addWidget(analysingWidget.at(id).data(), row, column);
 		player->addScrubber(analysingWidget.at(id)->getVideoScrubber());
+		player->addScrubber(analysingWidget.at(id)->getHistogramScrubber());
         dialogLayout->addWidget(dialogButtons.at(id).data(), row, column);
     }
 

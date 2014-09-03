@@ -6,6 +6,7 @@
 #include "NotImplementedException.h"
 #include "FilterFactory.h"
 #include "HeatmapOverlay.h"
+#include "MacroblockOverlay.h"
 
 //#include "AnalysingOrderingWidget.h"
 namespace view {
@@ -21,10 +22,13 @@ using ::model::filter::FilterFactory;
 using ::model::video::Video;
 using ::model::filter::overlay::HeatmapOverlay;
 using ::model::filter::FilteredVideo;
+using ::model::filter::overlay::MacroblockOverlay;
 
-VideoAnalysingWidget::VideoAnalysingWidget(OverlayController::sptr overlayController, VideoScrubber::sptr scrubber,
-	AnalysingOrderingWidget* orderingWidget) : QWidget(), orderingWidget(orderingWidget), overlayController(overlayController) {
-	histWidget = new HistogramWidget(scrubber, this);
+VideoAnalysingWidget::VideoAnalysingWidget(OverlayController::sptr overlayController,
+	                                       VideoScrubber::sptr scrubber,
+										   VideoScrubber::sptr histogramScrubber,
+										   AnalysingOrderingWidget* orderingWidget) : QWidget(), orderingWidget(orderingWidget), overlayController(overlayController), histogramScrubber(histogramScrubber) {
+	histWidget = new HistogramWidget(histogramScrubber, this);
 	videoWidget = new VideoWidget(scrubber);
 	metadataWidget = new FrameMetadataWidget(scrubber, this);
 
@@ -47,7 +51,13 @@ void VideoAnalysingWidget::setupUi() {
 	comboboxOverlay->addItem(tr("NO_OVERLAY"));
 	QList<QByteArray> overlayIds = FilterFactory::getAllOverlayIDs();
 	for (int i = 0; i < overlayIds.size(); i++) {
-		comboboxOverlay->addItem(QCoreApplication::translate("Filter", overlayIds.at(i)));
+		if (overlayIds.at(i) == MacroblockOverlay::kFilterID) {
+			if (histogramScrubber->getVideo()->getFrame(0)->getMetadata().hasMbType()) {
+				comboboxOverlay->addItem(QCoreApplication::translate("Filter", overlayIds.at(i)));
+			}
+		} else {
+			comboboxOverlay->addItem(QCoreApplication::translate("Filter", overlayIds.at(i)));
+		}
 	}
 	comboboxOverlay->setCurrentIndex(0);
 	QObject::connect(comboboxOverlay, SIGNAL(currentIndexChanged(int)),
@@ -84,4 +94,7 @@ VideoScrubber::sptr VideoAnalysingWidget::getVideoScrubber() {
 	return videoWidget->getScrubber();
 }
 
+VideoScrubber::sptr VideoAnalysingWidget::getHistogramScrubber() {
+	return histWidget->getScrubber();
+}
 }  // namespace view

@@ -21,7 +21,7 @@ HistogramWidget::HistogramWidget(::model::player::VideoScrubber::sptr scrubber, 
 	histogramPlot->axisRect()->setAutoMargins(QCP::msNone);
 	histogramPlot->axisRect()->setMargins(QMargins(0, 0, 0, 0));
 	histogramPlot->xAxis->setRange(0, 255);
-	histogramPlot->yAxis->setRange(0, 0.015);
+	histogramPlot->yAxis->setRange(0, 0.025);
 	histogramPlot->xAxis->setVisible(false);
 	histogramPlot->yAxis->setVisible(false);
 
@@ -79,6 +79,10 @@ void HistogramWidget::update() {
 	histogramPlot->plotLayout()->addElement(0, 0, new QCPPlotTitle(histogramPlot, currentHistogramType));
 
 	histogramPlot->replot();
+}
+
+::model::player::VideoScrubber::sptr HistogramWidget::getScrubber() {
+	return scrubber;
 }
 
 }  // namespace view

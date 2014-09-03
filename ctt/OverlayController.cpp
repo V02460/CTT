@@ -9,6 +9,7 @@
 #include "FilterFactory.h"
 #include "DifferenceFactory.h"
 #include "PixelDiff.h"
+#include "HSLPixelDiff.h"
 
 
 namespace controller {
@@ -23,6 +24,7 @@ namespace controller {
 	using ::model::filter::FilterFactory;
 	using ::model::difference::DifferenceFactory;
 	using ::model::difference::PixelDiff;
+	using ::model::difference::HSLPixelDiff;
 
 	OverlayController::OverlayController(FilteredVideo::sptr video) : currentVideo(video){
 
@@ -49,7 +51,7 @@ namespace controller {
 			module = currentVideo->getFilterList().back();
 		}
 
-		PixelDiff::sptr diff = DifferenceFactory::createPixelDiff(id, video1, video2);
+		PixelDiff::sptr diff = DifferenceFactory::createPixelDiff(HSLPixelDiff::kDiffID, video1, video2);
 
 		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
 			new FilterAddedOperation(FilterFactory::createFilter(id, module, diff), currentVideo)));

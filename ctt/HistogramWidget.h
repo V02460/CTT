@@ -36,6 +36,8 @@ public:
 
 	virtual void update() Q_DECL_OVERRIDE;
 
+	::model::player::VideoScrubber::sptr getScrubber();
+
 public slots:
     /**
      * Shows the next histogram.
