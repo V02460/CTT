@@ -112,7 +112,6 @@ Memento SaveableList<T>::getMemento() const {
 	Memento memento;
 	int size = getSize();
 	memento.setInt(SIZE, size);
-    // TODO T::getDummy()
 	memento.setString(TEMPLATE, Saveable::SAVEABLE_TYPE_STRINGS[T::getSaveableType()]);
 	for (int i = 0; i < size; i++) {
 		memento.setSharedPointer(ELEMENT + QString::number(i), get(i));
@@ -125,7 +124,6 @@ void SaveableList<T>::restore(Memento memento) {
     list.clear();
 	int size = memento.getInt(SIZE);
 	for (int i = 0; i < size; i++) {
-		// TODO works?
 		list.append(memento.getSharedPointer(ELEMENT + QString::number(i)).dynamicCast<T>());
 	}
 	isDummyFlag = false;

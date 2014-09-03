@@ -5,8 +5,6 @@
 #include "NotImplementedException.h"
 #include "AccessToDummyException.h"
 
-// TODO implement
-
 namespace model {
 namespace filter {
 

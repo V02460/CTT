@@ -6,6 +6,7 @@
 #include <QWeakPointer>
 
 #include "Operation.h"
+#include "Observable.h"
 
 namespace controller {
 namespace operation {
@@ -14,7 +15,7 @@ namespace operation {
  * The OperationList contains a list with every Operation executed since the last load of the Project and the
  * functionality to do, undo and redo those Operations.
  */
-class OperationList {
+class OperationList : public ::model::Observable {
 public:
     typedef QScopedPointer<OperationList> uptr;
     typedef QSharedPointer<OperationList> sptr;
