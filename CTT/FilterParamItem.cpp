@@ -38,6 +38,7 @@ void FilterParamItem::initIntSpinbox() {
 void FilterParamItem::initDoubleSpinbox() {
 	doubleSpinbox.setMinimum(0);
 	doubleSpinbox.setValue(param->getValue().toDouble());
+	doubleSpinbox.setSingleStep(0.25);
 	QObject::connect(&doubleSpinbox, SIGNAL(valueChanged(double)), this, SLOT(doubleValueChanged(double)));
 }
 

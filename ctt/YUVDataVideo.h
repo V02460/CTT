@@ -134,6 +134,8 @@ private:
 	bool hasMetadataFile; /**< Whether the video has a metadata file*/
 	QString pathToMetadataFile; /**< The metadata file of the YUV video */
 
+	void init(QSize resolution, double framerate);
+	void initMetadata(QString pathToMetadataFile, QSize resolution);
 };
 
 }  // namespace video

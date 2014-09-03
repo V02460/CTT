@@ -112,7 +112,7 @@ void ProcessingWidget::videoReplaced(int oldId, int newId) {
 }
 
 void ProcessingWidget::videoDeactivated(int id) {
-
+	playerWidgetsLayout->setCurrentIndex(0);
 }
 
 void ProcessingWidget::btnChangeViewClicked(bool active) {

@@ -20,13 +20,19 @@ FilterListViewItem::FilterListViewItem(Filter::sptr filter,
 	horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
 	horizontalHeader()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
 	setRowCount(filter->getParams().size());
-	filter->subscribe(this);
+	//filter->subscribe(this);
 	update();
 	QObject::connect(this, SIGNAL(filterParamChanged(const ::model::filter::Filter::sptr,
 		                                             ::model::filter::FilterParam::sptr)),
 		             filterController.data(), SLOT(changeFilterParam(const ::model::filter::Filter::sptr,
 					                               ::model::filter::FilterParam::sptr)));
 	setSelectionMode(QAbstractItemView::NoSelection);
+}
+
+FilterListViewItem::~FilterListViewItem() {
+	if (!filter.isNull()) {
+		//filter->unsubscribe(this);
+	}
 }
 
 QLabel* FilterListViewItem::getIdentifier() const {

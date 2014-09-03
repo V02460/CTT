@@ -144,6 +144,13 @@ void ThumbnailListWidget::update() {
 
 	thumbnailListLayout->removeWidget(btnAddVideo);
 
+	//Remove strech at the end of the layout
+	if (thumbnailListLayout->count() > 0) {
+		QLayoutItem *childItem = thumbnailListLayout->itemAt(0);
+		thumbnailListLayout->removeItem(childItem);
+		delete childItem;
+	}
+
 	//Repopulate the ThumbnailListWidget
 	for (int i = 0; i < filteredVideos->getSize(); i++) {
 		ListedPushButton::sptr addedButton =
@@ -155,6 +162,7 @@ void ThumbnailListWidget::update() {
 	}
 
 	thumbnailListLayout->addWidget(btnAddVideo);
+	thumbnailListLayout->addStretch();
 
 	isInUpdateRequest = false;
 }
@@ -185,7 +193,9 @@ void ThumbnailListWidget::listedButtonToggled(bool checked, int id) {
 
 void ThumbnailListWidget::listedButtonRemoved(bool checked, int id) {
 	if (activatedButtons.contains(id)) {
-		thumbnailList.at(id)->setChecked(false);
+		//thumbnailList.value(id)->setChecked(false);
+		activatedButtons.removeOne(id);
+		emit buttonDeactivated(id);
 	}
 
 	emit videoRemoved(id);
