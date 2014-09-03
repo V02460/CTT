@@ -26,6 +26,7 @@ FrameMetadataWidget::FrameMetadataWidget(VideoScrubber::sptr scrubber, QWidget *
 	layout->addWidget(blockWidget);
 	layout->addWidget(vectorWidget);
 	setLayout(layout);
+	update();
 }
 
 FrameMetadataWidget::~FrameMetadataWidget() {
@@ -37,7 +38,7 @@ void FrameMetadataWidget::update() {
 	FrameMetadata frame = scrubber->getCurrentFrame()->getMetadata();
 	fpsWidget->setText(tr("FPS") + QString::number(video.getFPS()));
 	framecountWidget->setText(tr("FRAMECOUNT") + QString::number(video.getLength()));
-	sizeWidget->setText(tr("VIDEO_SIZE") + QString::number(frame.getSize().width()) + "x" + frame.getSize().height());
+	sizeWidget->setText(tr("VIDEO_SIZE") + QString::number(frame.getSize().width()) + "x" + QString::number(frame.getSize().height()));
 	blockWidget->setText(tr("HAS_BLOCK") + (frame.hasMbType() ? tr("YES") : tr("NO")));
 	vectorWidget->setText(tr("HAS_VECTRO") + (frame.hasMbMotionvectors() ? tr("YES") : tr("NO")));
 	for (int i = 0; i < moreMetadata.length(); i++) {

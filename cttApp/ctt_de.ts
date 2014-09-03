@@ -9,7 +9,7 @@
         <translation>Weichzeichnen</translation>
     </message>
     <message>
-        <location filename="../CTT/CoffeeFilter.cpp" line="18"/>
+        <location filename="../CTT/CoffeeFilter.cpp" line="16"/>
         <source>filter_coffee</source>
         <translation>Kaffeefilter</translation>
     </message>
@@ -241,7 +241,7 @@
 <context>
     <name>view::AnalysingOrderingWidget</name>
     <message>
-        <location filename="../CTT/AnalysingOrderingWidget.cpp" line="102"/>
+        <location filename="../CTT/AnalysingOrderingWidget.cpp" line="109"/>
         <source>VIDEOS_TO_SELECT</source>
         <translation>Videos auswählen</translation>
     </message>
@@ -264,7 +264,7 @@
     <message>
         <location filename="../CTT/FilterTimeline.cpp" line="24"/>
         <source>ADD_INTERVAL</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervall hinzufügen</translation>
     </message>
 </context>
 <context>
@@ -272,53 +272,53 @@
     <message>
         <location filename="../CTT/FilterTimelineItem.cpp" line="17"/>
         <source>REMOVE_INTERVAL</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervall entfernen</translation>
     </message>
 </context>
 <context>
     <name>view::FrameMetadataWidget</name>
     <message>
-        <location filename="../CTT/FrameMetadataWidget.cpp" line="31"/>
-        <source>FPS</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../CTT/FrameMetadataWidget.cpp" line="32"/>
-        <source>FRAMECOUNT</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../CTT/FrameMetadataWidget.cpp" line="36"/>
-        <source>VIDEO_SIZE</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../CTT/FrameMetadataWidget.cpp" line="38"/>
-        <location filename="../CTT/FrameMetadataWidget.cpp" line="40"/>
-        <source>METADATA_START</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../CTT/FrameMetadataWidget.cpp" line="38"/>
-        <location filename="../CTT/FrameMetadataWidget.cpp" line="40"/>
-        <source>NOT</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../CTT/FrameMetadataWidget.cpp" line="39"/>
-        <source>METABLOCK_END</source>
-        <translation type="unfinished"></translation>
+        <source>FPS</source>
+        <translation>Bilder pro Sekunde: </translation>
+    </message>
+    <message>
+        <location filename="../CTT/FrameMetadataWidget.cpp" line="40"/>
+        <source>FRAMECOUNT</source>
+        <translation>Anzahl an Bildern: </translation>
     </message>
     <message>
         <location filename="../CTT/FrameMetadataWidget.cpp" line="41"/>
-        <source>MOTIONVECTOR_END</source>
-        <translation type="unfinished"></translation>
+        <source>VIDEO_SIZE</source>
+        <translation>Videogröße: </translation>
+    </message>
+    <message>
+        <location filename="../CTT/FrameMetadataWidget.cpp" line="42"/>
+        <source>HAS_BLOCK</source>
+        <translation>Enthält Mackroblick-Typen: </translation>
+    </message>
+    <message>
+        <location filename="../CTT/FrameMetadataWidget.cpp" line="42"/>
+        <location filename="../CTT/FrameMetadataWidget.cpp" line="43"/>
+        <source>YES</source>
+        <translation>Ja</translation>
+    </message>
+    <message>
+        <location filename="../CTT/FrameMetadataWidget.cpp" line="42"/>
+        <location filename="../CTT/FrameMetadataWidget.cpp" line="43"/>
+        <source>NO</source>
+        <translation>Nein</translation>
+    </message>
+    <message>
+        <location filename="../CTT/FrameMetadataWidget.cpp" line="43"/>
+        <source>HAS_VECTRO</source>
+        <translation>Enthält Bewegungsvektoren: </translation>
     </message>
 </context>
 <context>
     <name>view::HistogramWidget</name>
     <message>
-        <location filename="../CTT/HistogramWidget.cpp" line="34"/>
+        <location filename="../CTT/HistogramWidget.cpp" line="44"/>
         <source>NEXT_HISTOGRAM</source>
         <translation>Nächstes Histogramm</translation>
     </message>
@@ -339,7 +339,7 @@
 <context>
     <name>view::MainControlWidget</name>
     <message>
-        <location filename="../CTT/MainControlWidget.cpp" line="66"/>
+        <location filename="../CTT/MainControlWidget.cpp" line="65"/>
         <source>INSERT_FILTER</source>
         <translation>Filter einfügen</translation>
     </message>
@@ -422,22 +422,22 @@
         <translation>Über CTT</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="165"/>
+        <location filename="../CTT/MainWindow.cpp" line="166"/>
         <source>LOAD_PROJECT</source>
-        <translation type="unfinished"></translation>
+        <translation>Project laden</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="165"/>
+        <location filename="../CTT/MainWindow.cpp" line="166"/>
         <source>XML_FILTES *.xml</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="173"/>
+        <location filename="../CTT/MainWindow.cpp" line="174"/>
         <source>SAVE_PROJECT</source>
-        <translation type="unfinished"></translation>
+        <translation>Projekt speichern</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="173"/>
+        <location filename="../CTT/MainWindow.cpp" line="174"/>
         <source>XML_FILES *.xml</source>
         <translation type="unfinished"></translation>
     </message>
@@ -465,13 +465,13 @@
         <translation>Ursprüngliche Wiedergabegeschwindigkeit</translation>
     </message>
     <message>
-        <location filename="../CTT/PlayerFunctions.cpp" line="77"/>
+        <location filename="../CTT/PlayerFunctions.cpp" line="78"/>
         <source>PLAY</source>
         <translatorcomment>Hier hat sich das englische Wort eingebürgert, vielleicht stattdessen &quot;Abspielen&quot;</translatorcomment>
         <translation>Play</translation>
     </message>
     <message>
-        <location filename="../CTT/PlayerFunctions.cpp" line="81"/>
+        <location filename="../CTT/PlayerFunctions.cpp" line="82"/>
         <source>PAUSE</source>
         <translation>Pause</translation>
     </message>
@@ -492,7 +492,7 @@
         <translation>Video hinzufügen</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="198"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="208"/>
         <source>MORE_VIDEO_INFORMATION</source>
         <translation>Zusätzliche Videoinformationen</translation>
     </message>
@@ -555,48 +555,48 @@
         <translation>Metadaten-Datei hinzufügen</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="195"/>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="265"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="205"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="275"/>
         <source>OPEN_VIDEO</source>
         <translation>Video öffnen</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="195"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="205"/>
         <source>YUV_FILES (*.yuv)</source>
         <translation>YUV-Dateien (*.yuv)</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="245"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="255"/>
         <source>VIDEO_ADDING_FAILED_ILLEGEAL_ARGUMENT_TITLE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="245"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="255"/>
         <source>VIDEO_ADDING_FAILED_ILLEGAL_ARGUMENT_DETAILS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="250"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="260"/>
         <source>VIDEO_ADDING_FAILED_FILE_NOT_FOUND_TITLE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="250"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="260"/>
         <source>VIDEO_ADDING_FAILED_FILE_NOT_FOUND_DETAILS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="255"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="265"/>
         <source>VIDEO_ADDING_FAILED_IO_TITLE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="255"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="265"/>
         <source>VIDEO_ADDING_FAILED_IO_DETAILS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="265"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="275"/>
         <source>DAT_FILES (*.dat)</source>
         <translation>DAT-Dateien (*.dat)</translation>
     </message>
