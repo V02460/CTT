@@ -44,103 +44,22 @@ using ::model::player::VideoScrubber;
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    //ctt mainWindow;
-	//view::VideoWidget *videoWidget;
-	//ThumbnailListWidgetTest *thumbnailListWidgetTest;
-	//ListedPushButtonTest *listedPushButtonTest;
-	//view::ProcessingWidget *processingWidget;
-	view::MainWindow *mainWindow;
+	QApplication a(argc, argv);
+	ctt mainWindow;
+	try {
+		mainWindow.show();
 
-    QTranslator qtTranslator;
-    qtTranslator.load("qt_" + QLocale::system().name(),
-                      QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    a.installTranslator(&qtTranslator);
+		//model::video::YUVDataVideo testVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, model::GlobalContext::get());
+		model::video::FFmpegDataVideo testVideo("resources/Videos/mp4/Wildes Holz(720p_H.264-AAC).mp4", model::GlobalContext::get());
 
-    QTranslator cttTranslator;
-    cttTranslator.load("ctt_" + QLocale::system().name());
-    a.installTranslator(&cttTranslator);
+		qDebug() << (QString::number(testVideo.getMetadata().getSize().width()) + "*" + QString::number(testVideo.getMetadata().getSize().height()));
+		qDebug() << QString::number(testVideo.getMetadata().getFPS());
+		qDebug() << testVideo.getMetadata().getLength();
 
-	//TODO wieder einkommentieren
-    //try {
-        //mainWindow.show();
-
-        QOffscreenSurface surface;
-        surface.create();
-
-        QSharedPointer<QOpenGLContext> testContext(new QOpenGLContext());
-        testContext->create();
-        if (!testContext->makeCurrent(&surface)) {
-            return 1;
-        }
-
-        QImage image(":/cttApp/SmallBuckBunny.png");
-        if (image.isNull()) {
-            return 1;
-        }
-
-        //Frame::sptr frame(new Frame(testContext, image));
-        //BlueHistogram histogram(*frame.data());
-
-        /*Surface::sptr histogramImage = histogram.getHistogramImage();
-        MockDisplayHelper::showImage(histogramImage->getFramebufferObject()->toImage());*/
-
-		//videoWidget = new view::VideoWidget(frame);
-		//videoWidget->show();
-
-		//listedPushButtonTest = new ListedPushButtonTest();
-		//listedPushButtonTest->show();
-
-		//thumbnailListWidgetTest = new ThumbnailListWidgetTest();
-		//thumbnailListWidgetTest->show();
-
-		Project *testProject = Project::getInstance();
-		/*VideoListController::sptr analysingVideosController =
-			VideoListController::sptr(new VideoListController(testProject->getVideoList2().dynamicCast<SaveableList<Video>>()));
-
-		YUVDataVideo::sptr testVideoOne = YUVDataVideo::sptr(new YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext));
-		VideoScrubber::sptr testVideoScrubberOne = VideoScrubber::sptr(new VideoScrubber(testVideoOne));
-		testProject->getBaseVideoList()->insert(0, testVideoOne);
-
-		FilteredVideo::sptr testFilteredVideoOne = FilteredVideo::sptr(new FilteredVideo(testVideoOne));
-		VideoScrubber::sptr testFilteredVideoScrubberOne = VideoScrubber::sptr(new VideoScrubber(testFilteredVideoOne));
-		testProject->getVideoList1()->insert(0, testFilteredVideoOne);
-
-		Player::sptr testPlayerOne = Player::sptr(new Player(24));
-		testPlayerOne->addScrubber(testVideoScrubberOne);
-		testPlayerOne->addScrubber(testFilteredVideoScrubberOne);
-		testProject->getPlayerList1()->insert(0, testPlayerOne);
-
-
-		YUVDataVideo::sptr testVideoTwo = YUVDataVideo::sptr(new YUVDataVideo("resources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext));
-		VideoScrubber::sptr testVideoScrubberTwo = VideoScrubber::sptr(new VideoScrubber(testVideoTwo));
-		testProject->getBaseVideoList()->insert(1, testVideoTwo);
-
-		FilteredVideo::sptr testFilteredVideoTwo = FilteredVideo::sptr(new FilteredVideo(testVideoTwo));
-		VideoScrubber::sptr testFilteredVideoScrubberTwo = VideoScrubber::sptr(new VideoScrubber(testFilteredVideoTwo));
-		testProject->getVideoList1()->insert(1, testFilteredVideoTwo);
-
-		Player::sptr testPlayerTwo = Player::sptr(new Player(24));
-		testPlayerTwo->addScrubber(testVideoScrubberTwo);
-		testPlayerTwo->addScrubber(testFilteredVideoScrubberTwo);
-		testProject->getPlayerList1()->insert(1, testPlayerTwo);*/
-
-
-		//(processingWidget = new view::ProcessingWidget(testProject->getPlayerList1(), testProject->getVideoList1(),
-		//	testProject->getBaseVideoList(), analysingVideosController);
-		//processingWidget->show();
-
-		mainWindow = new view::MainWindow();
-		mainWindow->show();
-    /*}
-
-    catch (RuntimeException *e) {
-//         QMessageBox msgBox;
-//         msgBox.setWindowTitle(e->getName());
-//         msgBox.setText(e->getMsg());
-//         msgBox.exec();
-        qDebug() << e->getName() << e->getMsg();
-    }*/
-
-    return a.exec();
+		MockDisplayHelper::showImage(testVideo.getFrame(10)->getFramebufferObject()->toImage());
+	}
+	catch (RuntimeException *e) {
+		qDebug() << e->getName() << e->getMsg();
+	}
+	return a.exec();
 }
