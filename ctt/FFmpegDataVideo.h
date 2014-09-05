@@ -66,6 +66,8 @@ private:
 	//length in frames of the video
 	unsigned int length;
 
+	mutable int64_t frameId;
+
 };
 
 }  // namespace video

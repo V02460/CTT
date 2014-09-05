@@ -14,7 +14,7 @@ using ::exception::IOException;
 using ::exception::FFmpegException;
 using ::model::saveable::Saveable;
 
-FFmpegDataVideo::FFmpegDataVideo(QString path, QSharedPointer<QOpenGLContext> context) : FileVideo(path, context) {
+FFmpegDataVideo::FFmpegDataVideo(QString path, QSharedPointer<QOpenGLContext> context) : FileVideo(path, context), frameId(-1) {
 
 	//TODO das muss nur einmal gemacht werden, nicht unbedingt in jedem konstruktoraufruf, muss noch angepasst werden, grad bin ich ja nur am testen und spielen
 	av_register_all();
@@ -45,6 +45,7 @@ FFmpegDataVideo::FFmpegDataVideo(QString path, QSharedPointer<QOpenGLContext> co
 		throw FFmpegException("FFmpeg couldn't find a video stream in the file at \"" + path + "\".");
 	}
 
+	//TODO muss der codeccontext irgendwie allokiert werden? ne oder? wäre vermutlich avcodec_alloc_context3(NULL)
 	codecContext = videoFormatContext->streams[videoStreamNr]->codec;
 
 	vCodec = avcodec_find_decoder(codecContext->codec_id);
@@ -53,8 +54,6 @@ FFmpegDataVideo::FFmpegDataVideo(QString path, QSharedPointer<QOpenGLContext> co
 		throw FFmpegException("FFmpeg couldn't find the codec necessary for decoding a video stream in the file at \"" + path + "\".");
 	}
 
-	//this function isn't thread safe, apparently... does it matter?
-	//it says in the comments to avcodec_open2 that the context has to be allocated, bit it is already, isn't it?
 	if (avcodec_open2(codecContext, vCodec, NULL) < 0)
 	{
 		throw FFmpegException("FFmpeg couldn't open the codec necessary to decode a video stream in the file at \"" + path + "\".");
@@ -71,7 +70,7 @@ VideoMetadata FFmpegDataVideo::getMetadata() const {
 		throw IllegalStateException("Tried to request metadata from a dummy ffmpeg video");
 	}
 
-	//Testen, das ist extrem geraten bisher!!!! duration ist glaub noch in sekunden oder sowas ähnlichem
+	//TODO stimmt das mit den fps?
 	VideoMetadata metadata(QSize(codecContext->width, codecContext->height), 1 / av_q2d(codecContext->time_base), length);
  	return metadata;
 }
@@ -83,11 +82,10 @@ model::frame::Frame::sptr FFmpegDataVideo::getFrame(unsigned int frameNumber) co
 		throw IllegalStateException("Tried to request a frame from a dummy ffmpeg video");
 	}
 
-	if (frameNumber >= getMetadata().getLength())
+	if (frameNumber >= length)
 	{
 		throw IllegalArgumentException("Tried to request the frame with the number " + QString::number(frameNumber) + " from a video having only  " + QString::number(getMetadata().getLength()) + " frames.");
 	}
-
 
 	AVFrame *frame;
 	frame = av_frame_alloc();
@@ -103,37 +101,38 @@ model::frame::Frame::sptr FFmpegDataVideo::getFrame(unsigned int frameNumber) co
 
 	avpicture_fill((AVPicture *)rgbFrame, buffer, PIX_FMT_RGB24, codecContext->width, codecContext->height);
 
-	AVPacket packet;
-	av_init_packet(&packet);
-	int decodingSuccessfull;
 
-	//TODO keine ahnung ob das tut... und was es tut... ACHTUNG, anscheinend müssen da noch irgendwelche internen buffer geflusht werden damit das tut! man wird selbst irgendwie buffern müssen denk ich
-	if (avformat_seek_file(videoFormatContext, videoStreamNr, frameNumber, frameNumber, frameNumber, AVSEEK_FLAG_FRAME) < 0)
+	int decodingSuccessfull = 0;
+
+	//TODO testen, wenns mal klappt vermutlich eigenes buffering einführen... muss man die internen ffmpeg buffer irgendwie flushen?
+
+	//seek to and read frame
+	int frame_delta = frameNumber - frameId;
+	if (frame_delta < 0 || frame_delta > 5)
+		av_seek_frame(videoFormatContext, videoStreamNr,
+		frameNumber, AVSEEK_FLAG_BACKWARD);
+	while (frameId != frameNumber)
 	{
-		throw FFmpegException("FFmpeg couldn't find the requested frame with the number " + QString::number(frameNumber) + " in the video stream.");
+		//Read, maybe put this in a method
+		AVPacket packet;
+		av_init_packet(&packet);
+		while ((av_read_frame(videoFormatContext, &packet) >= 0) && !decodingSuccessfull) {
+			if (packet.stream_index == videoStreamNr) {
+				avcodec_decode_video2(codecContext, frame, &decodingSuccessfull, &packet);
+				if (decodingSuccessfull) {
+					frameId = packet.dts;
+				}
+			}
+		}
+		av_free_packet(&packet);
 	}
 
-	if (av_read_frame(videoFormatContext, &packet) < 0)
-	{
-		throw FFmpegException("FFmpeg couldn't read the frame with the number " + QString::number(frameNumber) + " in the video stream .");
-	}
-
-// 	if (packet.stream_index != videoStreamNr)
-// 	{
-// 		//TODO somethin went wrong
-// 	}
-
-	if (avcodec_decode_video2(codecContext, frame, &decodingSuccessfull, &packet) < 0)
+	if (!decodingSuccessfull)
 	{
 		throw FFmpegException("FFmpeg couldn't decode the frame with the number " + QString::number(frameNumber) + " in the video stream .");
 	}
 
-	if (decodingSuccessfull == 0)
-	{
-		throw FFmpegException("FFmpeg couldn't decode the frame with the number " + QString::number(frameNumber) + " in the video stream .");
-	}
-
-	//TODO jdwfi the following sws stuff is for conversion to rgb ppm format, this could of course be done on the gpu to be faster, but I don't know yet what the original data looks like
+	//TODO jdwfi the following sws stuff is for conversion to rgb format, this could of course be done on the gpu to be faster, but I don't know yet what the original data looks like, probably simple yuv
 	SwsContext *swsContext =
 		sws_getContext
 		(
@@ -164,7 +163,6 @@ model::frame::Frame::sptr FFmpegDataVideo::getFrame(unsigned int frameNumber) co
 
 	Frame::sptr result(new Frame(context, rgbImage));
 
-	av_free_packet(&packet);
 	av_free(buffer);
 	av_free(rgbFrame);
 	av_free(frame);
@@ -178,7 +176,6 @@ Saveable::SaveableType FFmpegDataVideo::getSaveableType() {
 
 FFmpegDataVideo::~FFmpegDataVideo()
 {
-	//TODO useizf close the codec itself? how?
 	avcodec_close(codecContext);
 	avformat_close_input(&videoFormatContext);
 }
