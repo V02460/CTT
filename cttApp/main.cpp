@@ -26,6 +26,7 @@
 #include "MainWindow.h"
 #include "GPUSurfaceShader.h"
 #include "YUVType.h"
+#include "..\ctt\GlobalContext.h"
 
 using ::helper::MockDisplayHelper;
 using ::model::frame::Frame;
