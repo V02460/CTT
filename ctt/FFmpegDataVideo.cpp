@@ -14,7 +14,8 @@ using ::exception::IOException;
 using ::exception::FFmpegException;
 using ::model::saveable::Saveable;
 
-FFmpegDataVideo::FFmpegDataVideo(QString path, QSharedPointer<QOpenGLContext> context) : FileVideo(path, context), frameId(-1) {
+//TODO uziuf wie frameid initialisieren?
+FFmpegDataVideo::FFmpegDataVideo(QString path, QSharedPointer<QOpenGLContext> context) : FileVideo(path, context), frameId(0) {
 
 	//TODO das muss nur einmal gemacht werden, nicht unbedingt in jedem konstruktoraufruf, muss noch angepasst werden, grad bin ich ja nur am testen und spielen
 	av_register_all();
@@ -60,7 +61,7 @@ FFmpegDataVideo::FFmpegDataVideo(QString path, QSharedPointer<QOpenGLContext> co
 	}
 
 	//TODO ztdztd find this out somehow :(
-	length = 100;// videoFormatContext->duration *;
+	length = 5000;// videoFormatContext->duration *;
 }
 
 VideoMetadata FFmpegDataVideo::getMetadata() const {
@@ -70,7 +71,7 @@ VideoMetadata FFmpegDataVideo::getMetadata() const {
 		throw IllegalStateException("Tried to request metadata from a dummy ffmpeg video");
 	}
 
-	//TODO stimmt das mit den fps?
+	//TODO fps stimmen so nicht
 	VideoMetadata metadata(QSize(codecContext->width, codecContext->height), 1 / av_q2d(codecContext->time_base), length);
  	return metadata;
 }
@@ -109,8 +110,10 @@ model::frame::Frame::sptr FFmpegDataVideo::getFrame(unsigned int frameNumber) co
 	//seek to and read frame
 	int frame_delta = frameNumber - frameId;
 	if (frame_delta < 0 || frame_delta > 5)
-		av_seek_frame(videoFormatContext, videoStreamNr,
-		frameNumber, AVSEEK_FLAG_BACKWARD);
+		if (av_seek_frame(videoFormatContext, videoStreamNr, frameNumber, AVSEEK_FLAG_BACKWARD) < 0)
+		{
+			throw new FFmpegException("Unable to seek to the requested location in the video.");
+		}
 	while (frameId != frameNumber)
 	{
 		//Read, maybe put this in a method
