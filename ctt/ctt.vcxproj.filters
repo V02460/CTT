@@ -207,9 +207,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_OverlayController.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_MainControlWidget.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_HistogramWidget.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -813,11 +810,14 @@
     <ClCompile Include="GeneratedFiles\Release\moc_InvertFilter.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="ABXController.cpp">
-      <Filter>Source Files\Controller</Filter>
-    </ClCompile>
-    <ClCompile Include="ABXTestWidget.cpp">
+    <ClCompile Include="AbstractListViewItem.cpp">
       <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MainControlWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MainControlWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_ABXController.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -825,14 +825,17 @@
     <ClCompile Include="GeneratedFiles\Release\moc_ABXController.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="AbstractListViewItem.cpp">
-      <Filter>Source Files\View</Filter>
+    <ClCompile Include="ABXController.cpp">
+      <Filter>Source Files\Controller</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_ABXTestWidget.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_ABXTestWidget.cpp">
       <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="ABXTestWidget.cpp">
+      <Filter>Source Files\View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -871,9 +874,6 @@
     </CustomBuild>
     <CustomBuild Include="Observable.h">
       <Filter>Header Files\Model</Filter>
-    </CustomBuild>
-    <CustomBuild Include="MainControlWidget.h">
-      <Filter>Header Files\View</Filter>
     </CustomBuild>
     <CustomBuild Include="HistogramWidget.h">
       <Filter>Header Files\View</Filter>
@@ -997,6 +997,9 @@
     </CustomBuild>
     <CustomBuild Include="InvertFilter.h">
       <Filter>Header Files\Model\Filter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MainControlWidget.h">
+      <Filter>Header Files\View</Filter>
     </CustomBuild>
     <CustomBuild Include="ABXController.h">
       <Filter>Header Files\Controller</Filter>
