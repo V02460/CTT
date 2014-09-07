@@ -496,27 +496,27 @@ void YUVDataVideo::loadVideodata(unsigned int startFrame) const {
 		switch (type)
 		{
 		case YUV444:
-			//converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV444toRGBsdtv.fs", yChannel));
+			converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV444toRGBsdtv.fs", yChannel));
 			break;
 		case YUV422:
-			//converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV422toRGBsdtv.fs", yChannel));
+			converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV422toRGBsdtv.fs", yChannel));
 			break;
 		case YUV420:
-			//converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV420toRGBsdtv.fs", yChannel));
+			converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV420toRGBsdtv.fs", yChannel));
 			break;
 		default:
 			throw IllegalStateException("YUV type not supported.");
 			break;
 		}
 
-        converter.reset(new GPUSurfaceShader(":/Shader/Filter/Rescale.fs", yChannel));
+		converter->setValue("uChannel", uChannel);
+		converter->setValue("vChannel", vChannel);
 
-		//converter->setValue("uChannel", uChannel);
-		//converter->setValue("vChannel", uChannel);
+        converter->invertY(true);
 
         Surface::sptr loadedFrame = converter->run(getMetadata().getSize());
 
-        loadedFrame->getFramebufferObject()->toImage().save("E:/Projects/Encoder Analyzer/CTT/image.png");
+        //loadedFrame->getFramebufferObject()->toImage().save("E:/Projects/Encoder Analyzer/CTT/image.png");
 
         videoBuffer[i] = loadedFrame;
 	}

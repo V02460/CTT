@@ -22,25 +22,25 @@ Surface::Surface(QOpenGLContext_sptr context, QSize size)
         , size(size)
         , framebuffer(nullptr)
         , isCurrentlyMapped(false)
-        , textureFormat(QOpenGLTexture::RGBA8_UNorm) {
+        , internalTextureFormat(QOpenGLTexture::RGBA8_UNorm) {
 }
 
 Surface::Surface(QOpenGLContext_sptr context,
                  QSize size,
                  void **pixelUnpackBufferPtr,
-                 QOpenGLTexture::PixelType pixelType,
-                 QOpenGLTexture::PixelFormat pixelFormat,
-                 QOpenGLTexture::TextureFormat textureFormat)
+                 QOpenGLTexture::PixelType sourcePixelType,
+                 QOpenGLTexture::PixelFormat sourcePixelFormat,
+                 QOpenGLTexture::TextureFormat internalTextureFormat)
         : context(context)
         , size(size)
         , framebuffer(nullptr)
         , pixelUnpackBuffer(new QOpenGLBuffer(QOpenGLBuffer::PixelUnpackBuffer))
         , isCurrentlyMapped(true)
-        , rawDataPixelType(pixelType)
-        , rawDataPixelFormat(pixelFormat)
-        , textureFormat(textureFormat) {
+        , sourcePixelType(sourcePixelType)
+        , sourcePixelFormat(sourcePixelFormat)
+        , internalTextureFormat(internalTextureFormat) {
 
-    if (pixelType != QOpenGLTexture::UInt8) {
+    if (sourcePixelType != QOpenGLTexture::UInt8) {
         throw NotImplementedException("Only pixel type UInt8 is currently supported.");
     }
     if (!pixelUnpackBuffer->create()) {
@@ -76,18 +76,23 @@ void Surface::finishTextureUpload() {
 
     isCurrentlyMapped = false;
 
-    initTexture(textureFormat);
-
-    texture->bind();
-
     initializeOpenGLFunctions();
 
-    texture->setData(rawDataPixelFormat, rawDataPixelType, static_cast<void*>(0));
-    //glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, size.width(), size.height(), 0,
-    //                GL_R8, GL_UNSIGNED_BYTE, NULL);
-    texture->setMinMagFilters(QOpenGLTexture::Nearest, QOpenGLTexture::Nearest);
+    initTexture(internalTextureFormat);
+    texture->bind();
+    
+    // texture->allocateStorage sucks!
+    glTexImage2D(GL_TEXTURE_2D,
+                 0,
+                 texture->format(),
+                 texture->width(),
+                 texture->height(),
+                 0,
+                 sourcePixelFormat,
+                 sourcePixelType,
+                 0);
 
-    pixelUnpackBuffer->release();
+    pixelUnpackBuffer->destroy();// TODO: is destroying the right thing to do?
 }
 
 QSize Surface::getSize() const {
@@ -171,7 +176,7 @@ Surface::Surface(const Surface &surface)
         , texture(surface.texture.take())
         , size(surface.size)
         , isCurrentlyMapped(surface.isCurrentlyMapped)
-        , textureFormat(surface.textureFormat) {
+        , internalTextureFormat(surface.internalTextureFormat) {
     if (surface.isCurrentlyMapped) {
         throw IllegalArgumentException("Must not create a new Surface while mapping an OpenGL buffer.");
     }
@@ -196,10 +201,12 @@ void Surface::initTexture(QOpenGLTexture::TextureFormat format) const {
 
     texture.reset(new QOpenGLTexture(QOpenGLTexture::Target2D));
     texture->setSize(size.width(), size.height());
+    texture->setMinMagFilters(QOpenGLTexture::Nearest, QOpenGLTexture::Nearest);
+    texture->setFormat(format);
 }
 
 void Surface::initTexture() const {
-    return initTexture(QOpenGLTexture::RGBA8_UNorm);
+    initTexture(QOpenGLTexture::RGBA8_UNorm);
 }
 
 }  // namespace model

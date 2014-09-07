@@ -49,9 +49,9 @@ public:
     Surface(QSharedPointer<QOpenGLContext> context,
             QSize size,
             void **pixelUnpackBufferPtr,
-            QOpenGLTexture::PixelType pixelType,
-            QOpenGLTexture::PixelFormat pixelFormat,
-            QOpenGLTexture::TextureFormat textureFormat);
+            QOpenGLTexture::PixelType sourcePixelType,
+            QOpenGLTexture::PixelFormat sourcePixelFormat,
+            QOpenGLTexture::TextureFormat internalTextureFormat);
 
     /**
      * Returns the size of this surface object.
@@ -134,9 +134,9 @@ private:
     bool isCurrentlyMapped;
 
     QScopedPointer<QOpenGLBuffer> pixelUnpackBuffer;
-    QOpenGLTexture::PixelFormat rawDataPixelFormat;
-    QOpenGLTexture::PixelType rawDataPixelType;
-    QOpenGLTexture::TextureFormat textureFormat;
+    QOpenGLTexture::PixelFormat sourcePixelFormat;
+    QOpenGLTexture::PixelType sourcePixelType;
+    QOpenGLTexture::TextureFormat internalTextureFormat;
 };
 
 }  // namespace model
