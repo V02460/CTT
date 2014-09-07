@@ -70,6 +70,13 @@ public:
      */
     void setSourceTexture(::model::Surface::sptr sourceTexture);
 
+    /**
+     * Controls if y-axis of the texture is inverted.
+     *
+     * @param invert set to true if texture should be mirrored on its y-axis
+     */
+    void invertY(bool invert);
+
 protected:
     /**
     * Returns the source texture.
@@ -90,9 +97,15 @@ private:
 
     ::model::Surface::sptr applyShader();
 
+    void setPositionAttribute();
+    void setTexcrdAttribute();
+
     VertexAttribute::sptr positionAttribute;
+    VertexAttribute::sptr texcrdAttribute;
 
     ::model::Surface::sptr sourceTexture;
+
+    bool invert = false;
 };
 
 }  // namespace helper
