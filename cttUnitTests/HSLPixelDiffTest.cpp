@@ -8,6 +8,7 @@ namespace difference {
 
 using model::video::YUVDataVideo;
 using model::GlobalContext;
+using model::video::YUVType;
 
 void HSLPixelDiffTest::initTestCase() {
     testContext = GlobalContext::get();

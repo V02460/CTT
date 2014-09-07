@@ -12,6 +12,7 @@ using model::filter::overlay::MacroblockOverlay;
 using model::video::YUVDataVideo;
 using model::filter::FilterParam;
 using model::GlobalContext;
+using model::video::YUVType;
 using exception::IllegalStateException;
 
 MacroblockOverlayTest::MacroblockOverlayTest() : testContext(), video() {

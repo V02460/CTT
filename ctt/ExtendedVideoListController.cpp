@@ -20,6 +20,7 @@ using ::model::filter::FilteredVideo;
 using ::model::player::Player;
 using ::model::video::FFmpegDataVideo;
 using ::model::video::YUVDataVideo;
+using ::model::video::YUVType;
 using ::model::GlobalContext;
 using ::controller::operation::Operation;
 using ::controller::operation::OperationList;

@@ -10,6 +10,7 @@ using model::filter::BlurFilter;
 using model::video::YUVDataVideo;
 using model::filter::FilterParam;
 using model::GlobalContext;
+using model::video::YUVType;
 
 BlurFilterTest::BlurFilterTest() : testContext(), video() {
 }

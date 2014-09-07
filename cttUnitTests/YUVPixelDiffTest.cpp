@@ -11,6 +11,8 @@ namespace difference {
 using ::model::video::YUVDataVideo;
 using ::exception::IllegalArgumentException;
 using ::model::GlobalContext;
+using ::model::video::YUVType;
+
 
 void YUVPixelDiffTest::initTestCase() {
     testContext = GlobalContext::get();

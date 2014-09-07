@@ -10,6 +10,7 @@ using model::filter::NoiseFilter;
 using model::video::YUVDataVideo;
 using model::filter::FilterParam;
 using model::GlobalContext;
+using model::video::YUVType;
 
 NoiseFilterTest::NoiseFilterTest() : testContext(), video() {
 }

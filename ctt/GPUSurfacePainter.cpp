@@ -44,11 +44,15 @@ void GPUSurfacePainter::initShaderProgram(QString vertexShaderFile, QString frag
         program.reset(new QOpenGLShaderProgram());
 
         if (!program->addShaderFromSourceFile(QOpenGLShader::Vertex, vertexShaderFile)) {
-            throw OpenGLException("Adding of vertex shader failed. Log message: " + program->log());
+            throw OpenGLException("Adding of vertex shader '" +
+                                  vertexShaderFile +
+                                  "' failed. Log message: " + program->log());
         }
 
         if (!program->addShaderFromSourceFile(QOpenGLShader::Fragment, fragmentShaderFile)) {
-            throw OpenGLException("Adding of fragment shader failed. Log message: " + program->log());
+            throw OpenGLException("Adding of fragment shader '" +
+                                  fragmentShaderFile +
+                                  " failed. Log message: " + program->log());
         }
 
         if (!program->link()) {
@@ -77,6 +81,7 @@ void GPUSurfacePainter::setValue(QString name, Surface::sptr texture) {
         int textureIndex = textures.indexOf(textureNames.value(name));
 
         textures[textureIndex] = texture;
+        textureNames.insert(name, texture);
 
     } else { // new texture
 
@@ -109,8 +114,8 @@ void GPUSurfacePainter::setValue(QString name, Surface::sptr texture) {
         program->release();
 
         // save the texture to be able to bind it when 'run' is called
-        // It's ugly we just keep the handle, but a shared pointer gave us problems in the hierarchy...
         textures.append(texture);
+        textureNames.insert(name, texture);
     }
 }
 
@@ -315,7 +320,7 @@ void GPUSurfacePainter::fill(QColor color) {
 
 QSharedPointer<QOpenGLContext> GPUSurfacePainter::getContext() {
     return context;
-        }
+}
 
 inline void GPUSurfacePainter::bindTextures() {
     unsigned int textureCnt = textures.size();

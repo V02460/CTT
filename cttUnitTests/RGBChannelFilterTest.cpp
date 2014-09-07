@@ -10,6 +10,7 @@ using model::filter::RGBChannelFilter;
 using model::video::YUVDataVideo;
 using model::filter::FilterParam;
 using model::GlobalContext;
+using model::video::YUVType;
 
 RGBChannelFilterTest::RGBChannelFilterTest() : testContext(), video() {
 }

@@ -29,13 +29,11 @@ GPUSurfaceShader::GPUSurfaceShader(QString fragmentShaderFile,
                             fragmentShaderFile,
                             context)
         , sourceTexture()
-        , positionAttribute(new VertexAttribute(4, 2)) {
+        , positionAttribute(new VertexAttribute(4, 2))
+        , texcrdAttribute(new VertexAttribute(4, 2)) {
 
-    // vertex coordinates for a screen filling quad
-    *positionAttribute << -1.f <<  1.f
-                       <<  1.f <<  1.f
-                       << -1.f << -1.f
-                       <<  1.f << -1.f;
+    setPositionAttribute();
+    setTexcrdAttribute();
 }
 
 Surface::sptr GPUSurfaceShader::run() {
@@ -63,6 +61,7 @@ Surface::sptr GPUSurfaceShader::applyShader() {
     setValue("_sourceTexture", sourceTexture);
     setValue("_sourceSize", sourceTexture->getSize());
     setValue("_pos", positionAttribute);
+    setValue("_tex", texcrdAttribute);
 
     return GPUSurfacePainter::run();
 }
@@ -71,12 +70,34 @@ void GPUSurfaceShader::setSourceTexture(Surface::sptr sourceTexture) {
     this->sourceTexture = sourceTexture;
 }
 
+void GPUSurfaceShader::invertY(bool invert) {
+    this->invert = invert;
+    setPositionAttribute();
+}
+
 Surface::sptr GPUSurfaceShader::getSourceTexture() {
     if (sourceTexture.isNull()) {
         throw IllegalStateException("Source texture was not set.");
     }
 
     return sourceTexture;
+}
+
+void GPUSurfaceShader::setPositionAttribute() {
+    float y = invert ? -1.f : 1.f;
+
+    // vertex coordinates for a screen filling quad
+    *positionAttribute << -1.f <<  y
+                       <<  1.f <<  y
+                       << -1.f << -y
+                       <<  1.f << -y;
+}
+
+void GPUSurfaceShader::setTexcrdAttribute() {
+    *texcrdAttribute << 0.f << 1.f
+                     << 1.f << 1.f
+                     << 0.f << 0.f
+                     << 1.f << 0.f;
 }
 
 }  // namespace helper

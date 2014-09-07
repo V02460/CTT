@@ -12,6 +12,7 @@ using controller::ExtendedVideoListController;
 using model::filter::FilteredVideo;
 using model::saveable::SaveableList;
 using model::player::Player;
+using model::video::YUVType;
 
 void ExtendedVideoListControllerTest::initTestCase() {
     testContext = GlobalContext::get();

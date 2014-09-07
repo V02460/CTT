@@ -10,6 +10,7 @@ using model::filter::RescaleFilter;
 using model::video::YUVDataVideo;
 using model::filter::FilterParam;
 using model::GlobalContext;
+using model::video::YUVType;
 
 RescaleFilterTest::RescaleFilterTest() : testContext(), video() {
 }
