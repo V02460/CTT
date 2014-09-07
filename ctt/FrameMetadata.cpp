@@ -17,7 +17,7 @@ FrameMetadata::FrameMetadata(QSize size,
         : size(size)
         , hasMbTypeFlag(true)
         , hasMbMotionvectorsFlag(true)
-        , mbTypes(macroblockTypes) 
+        , mbTypes(macroblockTypes)
         , mbMotionvectors(macroblockMotionvectors) {
 }
 

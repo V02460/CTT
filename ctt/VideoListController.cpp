@@ -18,6 +18,7 @@ using ::model::video::Video;
 using ::model::filter::FilteredVideo;
 using ::model::video::FFmpegDataVideo;
 using ::model::video::YUVDataVideo;
+using ::model::video::YUVType;
 using ::model::GlobalContext;
 using ::controller::operation::OperationList;
 using ::controller::operation::Operation;

@@ -1,11 +1,12 @@
 #include "ABXTesttest.h"
-#include "..\ctt\ABXTest.h"
-#include "..\ctt\YUVDataVideo.h"
-#include "..\ctt\GlobalContext.h"
-#include "..\ctt\Video.h"
+#include "ABXTest.h"
+#include "YUVDataVideo.h"
+#include "GlobalContext.h"
+#include "Video.h"
 
 using model::ABXTest;
 using model::video::Video;
+using model::saveable::Memento;
 
 void ABXTesttest::testDummy()
 {

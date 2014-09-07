@@ -9,6 +9,7 @@ using model::video::YUVDataVideo;
 using model::filter::FilteredVideo;
 using controller::VideoListController;
 using model::GlobalContext;
+using model::video::YUVType;
 
 void VideoListControllerTest::initTestCase() {
 	testContext = GlobalContext::get();

@@ -5,6 +5,7 @@
 #include "CustomTestingMacros.h"
 #include "UIntegerInterval.h"
 #include "GlobalContext.h"
+#include "Memento.h"
 
 #include "IllegalArgumentException.h"
 
@@ -13,6 +14,7 @@ using model::player::Player;
 using model::player::VideoScrubber;
 using model::GlobalContext;
 using exception::IllegalArgumentException;
+using model::saveable::Memento;
 
 void PlayerTest::emptyPlayer() {
 	Player test(10);

@@ -10,6 +10,7 @@ using model::filter::MixFilter;
 using model::video::YUVDataVideo;
 using model::filter::FilterParam;
 using model::GlobalContext;
+using model::video::YUVType;
 
 MixFilterTest::MixFilterTest() : testContext(), video1(), video2() {
 }

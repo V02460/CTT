@@ -18,7 +18,7 @@ namespace frame {
 /**
  * Holds metadata information to be used in a Frame.
  * These include the size of the frame, motion vectors,  macroblock types and macroblock partitions.
-*/
+ */
 class FrameMetadata {
 public:
     typedef QScopedPointer<FrameMetadata> uptr;
@@ -43,14 +43,14 @@ public:
                   QVector<QVector<MacroblockType>> macroblockTypes,
                   QVector<QVector<QVector2D>> macroblockMotionvectors);
 
-	/**
-	* Creates a container holding metadata information for a Frame.
-	*
-	* @param size Size of the frame in pixel
-	* @param macroblockTypes Type identifier for every macroblock in the frame
-	*/
-	FrameMetadata(QSize size,
-		QVector<QVector<MacroblockType>> macroblockTypes);
+    /**
+     * Creates a container holding metadata information for a Frame.
+     *
+     * @param size Size of the frame in pixel
+     * @param macroblockTypes Type identifier for every macroblock in the frame
+     */
+    FrameMetadata(QSize size,
+        QVector<QVector<MacroblockType>> macroblockTypes);
 
     /**
      * Get the stored frame size.
@@ -91,12 +91,12 @@ public:
      */
     bool hasMbMotionvectors() const;
 private:
-    const QSize size;
-    const QVector<QVector<MacroblockType>> mbTypes;
-    const QVector<QVector<QVector2D>> mbMotionvectors;
+    QSize size;
+    QVector<QVector<MacroblockType>> mbTypes;
+    QVector<QVector<QVector2D>> mbMotionvectors;
 
-    const bool hasMbTypeFlag;
-    const bool hasMbMotionvectorsFlag;
+    bool hasMbTypeFlag;
+    bool hasMbMotionvectorsFlag;
 };
 
 }  // namespace frame

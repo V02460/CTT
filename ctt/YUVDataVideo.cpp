@@ -16,11 +16,12 @@ using ::model::frame::Frame;
 using ::helper::GPUSurfaceShader;
 using ::model::frame::FrameMetadata;
 using ::model::saveable::Saveable;
+using ::model::frame::MacroblockType;
+using ::model::saveable::Memento;
 using ::exception::NotImplementedException;
 using ::exception::AccessToDummyException;
 using ::exception::IllegalStateException;
 using ::exception::IllegalArgumentException;
-using ::model::frame::MacroblockType;
 using ::exception::IOException;
 using ::exception::FileNotFoundException;
 
@@ -37,13 +38,14 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile,
                            double framerate,
                            YUVType type,
                            QSharedPointer<QOpenGLContext> context)
-	: FileVideo(pathToVideoFile, GlobalContext::get())
-	, metadata(resolution, framerate, 1)
-	, pixelsPerFrame(resolution.height() * resolution.width())
-	, type(type)
-    , videoBuffer(kNumberOfFramesInMemory)
-{
-	hasMetadataFile = false;
+	    : FileVideo(pathToVideoFile, GlobalContext::get())
+	    , metadata(resolution, framerate, 1)
+	    , pixelsPerFrame(resolution.height() * resolution.width())
+	    , type(type)
+        , videoSurfaceBuffer(kNumberOfFramesInMemory)
+        , videoBuffer(kNumberOfFramesInMemory)
+        , metadataBuffer(kNumberOfFramesInMemory)
+        , hasMetadataFile(false) {
 
 	switch (type)
 	{
@@ -82,10 +84,8 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile,
 	unsigned int length = videoFile.size() / bytesPerFrame;
 
 	metadata = VideoMetadata(resolution, framerate, length);
-
-	load(0);
-
-	isDummyFlag = false;
+    
+    load(0);
 }
 
 YUVDataVideo::YUVDataVideo(QString pathToVideoFile,
@@ -94,8 +94,7 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile,
                            double framerate,
                            YUVType type,
                            QSharedPointer<QOpenGLContext> context)
-	: YUVDataVideo(pathToVideoFile, resolution, framerate, type, context)
-
+	    : YUVDataVideo(pathToVideoFile, resolution, framerate, type, context)
 {
 	this->pathToMetadataFile = pathToMetadataFile;
 	metadataFile.setFileName(pathToMetadataFile);
@@ -111,29 +110,31 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile,
             "The video of the submitted resolution " +
             QString::number(resolution.width()) + "x" + QString::number(resolution.height()) + 
             "can't be divided into 16x16 pixel macroblocks, "
-            "that means the metadata file containing macroblockmetadata can't make sense");
+            "that means the metadata file containing macroblock metadata can't make sense");
 	}
 
 	if (((pixelsPerFrame / 256) * metadata.getLength()) != metadataFile.size())
 	{
 		throw IllegalArgumentException(
             "The metadata file at the submitted location doesn't contain information about the exact number of "
-            "macroblocks in the videofile (assuming 16x16p macroblocks and 1 byte of metadata per macroblock).");
+            "macroblocks in the video file (assuming 16x16p macroblocks and 1 byte of metadata per macroblock).");
 	}
 
 	hasMetadataFile = true;
 
 	loadMetadata(0);
+
+    // implant loaded metadata to frames
+    for (unsigned int i = 0; i < getFramesToLoad(firstFrameInMemory); i++) {
+        videoBuffer[i] = Frame::sptr(new Frame(videoBuffer[i].staticCast<Surface>(), *metadataBuffer[i]));
+    }
 }
 
-YUVDataVideo::YUVDataVideo()
-	:metadata(QSize(1, 1), 1, 1)
-{
-	isDummyFlag = true;	
+YUVDataVideo::YUVDataVideo() : metadata(QSize(1, 1), 1, 1) {
+	isDummyFlag = true;
 }
 
 YUVDataVideo::~YUVDataVideo() {
-
 }
 
 VideoMetadata YUVDataVideo::getMetadata() const {
@@ -160,84 +161,8 @@ model::frame::Frame::sptr YUVDataVideo::getFrame(unsigned int frameNumber) const
 		load(frameNumber);
 	}
 
-	Frame::sptr result;
-
-	if (hasMetadataFile)
-	{
-        QByteArray rawMetadata = metadataBuffer.mid((pixelsPerFrame / 256) * (frameNumber - firstFrameInMemory),
-                                                    (pixelsPerFrame / 256));
-
-		QVector<QVector<MacroblockType>> macroblockTypes(metadata.getSize().height() / 16);
-
-		for (QVector<QVector<MacroblockType>>::iterator i = macroblockTypes.begin(); i != macroblockTypes.end(); i++)
-		{
-			i->resize(metadata.getSize().width() / 16);
-		}
-		//TODO WICHTIG sicherstellen dass das hier in der richtigen reihenfolge läuft
-        //             und nicht irgendwie gespiegelt zu den bildaten oder sowas, und das ganze testen natürlich,
-        //             damit kein out of bounds zeug oder so läuft
-		for (unsigned int i = 0; i < (pixelsPerFrame / 256); i++)
-		{
-			int x = i / (metadata.getSize().width() / 16);
-			int y = i % (metadata.getSize().width() / 16);
-
-			switch (rawMetadata[i])
-			{
-			case 0:
-				macroblockTypes[x][y] = MacroblockType::INTER_SKIP;
-				break;
-			case 1:
-				macroblockTypes[x][y] = MacroblockType::INTER_16X16;
-				break;
-			case 2:
-				macroblockTypes[x][y] = MacroblockType::INTER_16X8;
-				break;
-			case 3:
-				macroblockTypes[x][y] = MacroblockType::INTER_8X16;
-				break;
-			case 4:
-				macroblockTypes[x][y] = MacroblockType::INTER_8X8;
-				break;
-			case 5:
-				macroblockTypes[x][y] = MacroblockType::INTER_8X4;
-				break;
-			case 6:
-				macroblockTypes[x][y] = MacroblockType::INTER_4X8;
-				break;
-			case 7:
-				macroblockTypes[x][y] = MacroblockType::INTER_4X4;
-				break;
-			case 8:
-				macroblockTypes[x][y] = MacroblockType::INTER_8X8_OR_BELOW;
-				break;
-			case 9:
-				macroblockTypes[x][y] = MacroblockType::INTRA_4X4;
-				break;
-			case 10:
-				macroblockTypes[x][y] = MacroblockType::INTRA_16X16;
-				break;
-			case 13:
-				macroblockTypes[x][y] = MacroblockType::INTRA_8X8;
-				break;
-			case 14:
-				macroblockTypes[x][y] = MacroblockType::INTRA_PCM;
-				break;
-			default: 
-				macroblockTypes[x][y] = MacroblockType::UNKNOWN;
-			}
-		}
-		FrameMetadata resultMetadata(getMetadata().getSize(), macroblockTypes);
-		result.reset(new Frame(videoBuffer[frameNumber - firstFrameInMemory], resultMetadata));
-	}
-	else
-	{
-		FrameMetadata resultMetadata(getMetadata().getSize());
-		result.reset(new Frame(videoBuffer[frameNumber - firstFrameInMemory], resultMetadata));
-	}
-
-	return result;
+    return videoBuffer[frameNumber - firstFrameInMemory];
 }
-
 
 unsigned int YUVDataVideo::getFrameCount() const {
 	if (isDummy()) {
@@ -246,25 +171,23 @@ unsigned int YUVDataVideo::getFrameCount() const {
 	return metadata.getLength();
 }
 
-
-void YUVDataVideo::load(unsigned int startFrame) const
-{
-	if (startFrame >= getFrameCount())
-	{
+void YUVDataVideo::load(unsigned int startFrame) const {
+	if (startFrame >= getFrameCount()) {
 		throw IllegalArgumentException("Tried to load a frame which isn't in the file.");
 	}
 
-
 	loadVideodata(startFrame);
-	if (hasMetadataFile)
-	{
-		loadMetadata(startFrame);
-	}
+    loadMetadata(startFrame);
+
+    for (unsigned int i = 0; i < getFramesToLoad(startFrame); i++) {
+        videoBuffer[i] = Frame::sptr(new Frame(videoSurfaceBuffer[i], *metadataBuffer[i]));
+        videoSurfaceBuffer[i].reset(); // get rid of the old Surface, so we don't have an undefined state
+    }
+
 	firstFrameInMemory = startFrame;
 }
 
-bool YUVDataVideo::hasFrameInBuffer(unsigned int frameNr) const
-{
+bool YUVDataVideo::hasFrameInBuffer(unsigned int frameNr) const {
 	return (frameNr >= firstFrameInMemory) & 
            (frameNr < (firstFrameInMemory + kNumberOfFramesInMemory)) &
 		    (frameNr < metadata.getLength());
@@ -301,8 +224,7 @@ void YUVDataVideo::restore(Memento memento) {
 	pathToVideoFile = memento.getString(videoPathStringId);
 	videoFile.setFileName(pathToVideoFile);
 
-	if (!videoFile.exists())
-	{
+	if (!videoFile.exists()) {
 		throw FileNotFoundException("The video file at \"" + pathToVideoFile + "\" doesn't exist");
 	}
 
@@ -340,8 +262,7 @@ void YUVDataVideo::restore(Memento memento) {
 
 	bytesPerFrame = pixelsPerFrame + (2 * chromaSize);
 
-	if ((videoFile.size() % bytesPerFrame) != 0)
-	{
+	if ((videoFile.size() % bytesPerFrame) != 0) {
 		throw IllegalArgumentException("The size of the submitted video file (" + QString::number(videoFile.size())
 			+ " bytes) isn't a multiple of the calculated frame size (" + QString::number(bytesPerFrame) + " bytes).");
 	}
@@ -351,9 +272,9 @@ void YUVDataVideo::restore(Memento memento) {
 
 	isDummyFlag = false;
 
+    videoSurfaceBuffer.resize(kNumberOfFramesInMemory);
     videoBuffer.resize(kNumberOfFramesInMemory);
-
-	load(0);
+    metadataBuffer.resize(kNumberOfFramesInMemory);
 
 	hasMetadataFile = memento.getBool(hasMetadataFileStringId);
 	if (hasMetadataFile)
@@ -372,27 +293,25 @@ void YUVDataVideo::restore(Memento memento) {
                 "The video of the submitted resolution " +
                 QString::number(resolution.width()) + "x" + QString::number(resolution.height()) +
                 "can't be divided into 16x16 pixel macroblocks, "
-                "that means the metadata file containing macroblockmetadata can't make sense");
+                "that means the metadata file containing macroblock metadata can't make sense");
 		}
 
 		if (((pixelsPerFrame / 256) * metadata.getLength()) != metadataFile.size())
 		{
 			throw IllegalArgumentException(
                 "The metadata file at the submitted location doesn't contain information about the exact number of "
-                "macroblocks in the videofile (assuming 16x16p macroblocks and 1 byte of metadata per macroblock).");
+                "macroblocks in the video file (assuming 16x16p macroblocks and 1 byte of metadata per macroblock).");
 		}
-
-		loadMetadata(0);
 	}
 
-	
+    load(0);
 }
 
 Saveable::SaveableType YUVDataVideo::getSaveableType() {
     return Saveable::yUVDataVideo;
 }
 
-::model::saveable::Saveable::sptr YUVDataVideo::getDummy() {
+Saveable::sptr YUVDataVideo::getDummy() {
 	return YUVDataVideo::sptr(new YUVDataVideo);
 }
 
@@ -408,13 +327,7 @@ void YUVDataVideo::loadVideodata(unsigned int startFrame) const {
 
     GlobalContext::get();
 
-	unsigned int framesToLoad = kNumberOfFramesInMemory;
-
-	if (getFrameCount() < (startFrame + kNumberOfFramesInMemory)) {
-		framesToLoad = getFrameCount() - startFrame;
-	}
-
-	for (unsigned int i = 0; i < framesToLoad; i++) {
+    for (unsigned int i = 0; i < getFramesToLoad(startFrame); i++) {
 		char *yGPUBuffer;
         Surface::sptr yChannel(new Surface(context,
                                            getResolution(),
@@ -518,17 +431,23 @@ void YUVDataVideo::loadVideodata(unsigned int startFrame) const {
 
         //loadedFrame->getFramebufferObject()->toImage().save("E:/Projects/Encoder Analyzer/CTT/image.png");
 
-        videoBuffer[i] = loadedFrame;
+        videoSurfaceBuffer[i] = loadedFrame;
 	}
 
 	videoFile.close();
 }
 
 void YUVDataVideo::loadMetadata(unsigned int startFrame) const {
-	if (!hasMetadataFile)
-	{
-		throw IllegalStateException("Tried to load metadata without having a metadata file.");
+    unsigned int framesToLoad = getFramesToLoad(startFrame);
+
+	if (!hasMetadataFile) {
+        FrameMetadata::sptr defaultFrameMetadata(new FrameMetadata(metadata.getSize()));
+        for (unsigned int i = 0; i < framesToLoad; i++) {
+            metadataBuffer[i] = defaultFrameMetadata;
+        }
+        return;
 	}
+
 	if (!metadataFile.open(QIODevice::ReadOnly)) {
 		throw IOException("Couldn't open the metadata file at \"" + pathToMetadataFile + "\".");
 	}
@@ -538,16 +457,85 @@ void YUVDataVideo::loadMetadata(unsigned int startFrame) const {
                           " in the metadata file at \"" + pathToVideoFile + "\".");
 	}
 
-	unsigned int framesToLoad = kNumberOfFramesInMemory;
-
-	if (getFrameCount() < (startFrame + kNumberOfFramesInMemory))
-	{
-		framesToLoad = getFrameCount() - startFrame;
-	}
-
-	metadataBuffer = metadataFile.read(framesToLoad * (pixelsPerFrame / 256));
+    QByteArray rawMetadata = metadataFile.read(framesToLoad * (pixelsPerFrame / 256));
 
 	metadataFile.close();
+
+    // extract the metadata for every loaded frame
+    for (unsigned int j = 0; j < framesToLoad; j++) {
+
+        QByteArray rawFrameMetadata = rawMetadata.mid((pixelsPerFrame / 256) * j,
+                                                      (pixelsPerFrame / 256));
+
+        QVector<QVector<MacroblockType>> macroblockTypes(metadata.getSize().height() / 16);
+
+        // allocate space for the multidimensional array
+        for (auto i = macroblockTypes.begin(); i != macroblockTypes.end(); i++) {
+            i->resize(metadata.getSize().width() / 16);
+        }
+
+        // get the type for every macroblock in the frame
+        for (unsigned int i = 0; i < (pixelsPerFrame / 256); i++) {
+            int x = i / (metadata.getSize().width() / 16);
+            int y = i % (metadata.getSize().width() / 16);
+
+            switch (rawFrameMetadata[i]) {
+                case 0:
+                    macroblockTypes[x][y] = MacroblockType::INTER_SKIP;
+                    break;
+                case 1:
+                    macroblockTypes[x][y] = MacroblockType::INTER_16X16;
+                    break;
+                case 2:
+                    macroblockTypes[x][y] = MacroblockType::INTER_16X8;
+                    break;
+                case 3:
+                    macroblockTypes[x][y] = MacroblockType::INTER_8X16;
+                    break;
+                case 4:
+                    macroblockTypes[x][y] = MacroblockType::INTER_8X8;
+                    break;
+                case 5:
+                    macroblockTypes[x][y] = MacroblockType::INTER_8X4;
+                    break;
+                case 6:
+                    macroblockTypes[x][y] = MacroblockType::INTER_4X8;
+                    break;
+                case 7:
+                    macroblockTypes[x][y] = MacroblockType::INTER_4X4;
+                    break;
+                case 8:
+                    macroblockTypes[x][y] = MacroblockType::INTER_8X8_OR_BELOW;
+                    break;
+                case 9:
+                    macroblockTypes[x][y] = MacroblockType::INTRA_4X4;
+                    break;
+                case 10:
+                    macroblockTypes[x][y] = MacroblockType::INTRA_16X16;
+                    break;
+                case 13:
+                    macroblockTypes[x][y] = MacroblockType::INTRA_8X8;
+                    break;
+                case 14:
+                    macroblockTypes[x][y] = MacroblockType::INTRA_PCM;
+                    break;
+                default:
+                    macroblockTypes[x][y] = MacroblockType::UNKNOWN;
+            }
+        }
+
+        metadataBuffer[j] = FrameMetadata::sptr(new FrameMetadata(getMetadata().getSize(), macroblockTypes));
+    }
+}
+
+unsigned int YUVDataVideo::getFramesToLoad(unsigned int startFrame) const {
+    unsigned int framesToLoad = kNumberOfFramesInMemory;
+
+    if (getFrameCount() < (startFrame + kNumberOfFramesInMemory)) {
+        framesToLoad = getFrameCount() - startFrame;
+    }
+
+    return framesToLoad;
 }
 
 }  // namespace video

@@ -13,6 +13,7 @@ using model::GlobalContext;
 using model::saveable::Saveable;
 using model::video::YUVDataVideo;
 using exception::IllegalArgumentException;
+using model::saveable::Memento;
 
 void VideoScrubberTest::testDummy() {
  	Saveable::sptr dummy = VideoScrubber::getDummy();

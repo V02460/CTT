@@ -14,6 +14,7 @@ using model::filter::FilteredVideo;
 using model::filter::GreyscaleFilter;
 using model::GlobalContext;
 using exception::IllegalArgumentException;
+using model::saveable::Memento;
 
 void FilteredVideoTest::initTestCase()
 {

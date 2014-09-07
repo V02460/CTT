@@ -10,6 +10,7 @@ using model::filter::GreyscaleFilter;
 using model::video::YUVDataVideo;
 using model::filter::FilterParam;
 using model::GlobalContext;
+using model::video::YUVType;
 
 GreyscaleFilterTest::GreyscaleFilterTest() : testContext(), video() {
 }

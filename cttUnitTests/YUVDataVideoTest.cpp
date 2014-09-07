@@ -17,6 +17,7 @@ using model::frame::MacroblockType;
 using model::video::YUVDataVideo;
 using model::video::VideoMetadata;
 using model::GlobalContext;
+using model::saveable::Memento;
 using exception::FileNotFoundException;
 
 
