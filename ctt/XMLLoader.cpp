@@ -51,6 +51,9 @@ using ::model::video::FileVideo;
 XMLLoader::XMLLoader() {}
 
 void XMLLoader::restore(QString path) {
+	pointerMap.clear();
+	mementoIdMap.clear();
+	mementoMap.clear();
 	QFile *file = new QFile(path);
 	if (!file->open(QIODevice::ReadOnly)) {
 		throw new IOException("File " + path + " could not be opened.");
