@@ -48,6 +48,7 @@ namespace view {
 		centralWidgetLayout->addWidget(aBXView);
 
 		ViewState::getInstance()->subscribe(this);
+		OperationList::getInstance()->subscribe(this);
 
 		mainController = MainController::sptr(new MainController());
 
@@ -73,7 +74,7 @@ namespace view {
 		file->addAction(newProject);
 
 		QAction *loadProject = new QAction(tr("MENUENTRY_LOAD_PROJECT"), file);
-		loadProject->setEnabled(false);
+		loadProject->setEnabled(true);
 		QObject::connect(loadProject, SIGNAL(triggered(bool)), this, SLOT(menuLoad()));
 		QObject::connect(this, SIGNAL(loadProject(QString)), mainController.data(), SLOT(loadClicked(QString)));
 		file->addAction(loadProject);
@@ -81,13 +82,13 @@ namespace view {
 		file->addSeparator();
 
 		QAction *saveProject = new QAction(tr("MENUENTRY_SAVE_PROJECT"), file);
-		saveProject->setEnabled(false);
+		saveProject->setEnabled(true);
 		QObject::connect(saveProject, SIGNAL(triggered(bool)), mainController.data(), SLOT(saveClicked()));
 
 		file->addAction(saveProject);
 
 		QAction *saveProjectAs = new QAction(tr("MENUENTRY_SAVE_PROJECT_AS"), file);
-		saveProjectAs->setEnabled(false);
+		saveProjectAs->setEnabled(true);
 		QObject::connect(saveProjectAs, SIGNAL(triggered(bool)), this, SLOT(menuSave()));
 		QObject::connect(mainController.data(), SIGNAL(requestSavePath()), this, SLOT(menuSave()));
 		QObject::connect(this, SIGNAL(saveProjectAs(QString, ::controller::project::SaveFileType)), mainController.data(),
