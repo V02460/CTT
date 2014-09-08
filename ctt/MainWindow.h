@@ -17,6 +17,7 @@
 #include "ProcessingWidget.h"
 #include "AnalysingWidget.h"
 #include "MainController.h"
+#include "ABXController.h"
 
 namespace view {
 /**
@@ -56,8 +57,13 @@ signals:
 	void loadProject(QString path);
 	void saveProjectAs(QString path, ::controller::project::SaveFileType type);
 
+private slots:
+	void videoActivated(int id);
+	void videoDeactivated(int id);
 private:
 	void setupUi();
+	void setupDialog();
+	void initializeABXTesting();
 
     QMenuBar *menu; /**< The menu bar which holds all menu items */
 	QAction *toProcessingView;
@@ -66,8 +72,14 @@ private:
 	QAction *undo;
 	QAction *redo;
 	QStackedLayout *centralWidgetLayout;
+	QDialog *startABXTesting;
+	QPushButton *dialogAcceptButton;
+	bool abxTestingIsInitialized;
+	ThumbnailListWidget::sptr videoSelection;
 
 	::controller::MainController::sptr mainController;
+	::controller::VideoListController::sptr analysingController;
+	::controller::ABXController::sptr abxController;
 };
 
 }  // namespace view
