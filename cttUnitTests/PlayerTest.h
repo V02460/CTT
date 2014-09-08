@@ -1,17 +1,18 @@
-#pragma once
-#include "..\CTT\Player.h"
+#ifndef _PLAYERTEST_H
+#define _PLAYERTEST_H
+
+#include "Player.h"
 #include <QtTest/QtTest>
 #include <QObject>
 #include <Qtest>
 
-using model::player::Player;
+namespace model {
+namespace player {
 
-class PlayerTest :
-	public QObject
-{
+class PlayerTest : public QObject {
 	Q_OBJECT
 
-	private slots:
+private slots:
 	void initTestCase();
 	void testDummy();
 	void emptyPlayer();
@@ -24,3 +25,7 @@ private:
 
 };
 
+}  // namespace player
+}  // namespace model
+
+#endif
