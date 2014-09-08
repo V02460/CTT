@@ -5,15 +5,15 @@
 #include "GreyscaleFilter.h"
 #include "FilterParam.h"
 #include "GlobalContext.h"
+#include "AccessToDummyException.h"
 
 using model::filter::GreyscaleFilter;
 using model::video::YUVDataVideo;
 using model::filter::FilterParam;
 using model::GlobalContext;
 using model::video::YUVType;
-
-GreyscaleFilterTest::GreyscaleFilterTest() : testContext(), video() {
-}
+using model::saveable::Memento;
+using exception::AccessToDummyException;
 
 void GreyscaleFilterTest::initTestCase() {
     testContext = GlobalContext::get();
@@ -37,4 +37,19 @@ void GreyscaleFilterTest::wrongParams() {
 	QEXPECT_EXCEPTION(greyscaleFilter.setParam(FilterParam::sptr(new FilterParam("a bit off", 1.0))),
 		              IllegalArgumentException);
     greyscaleFilter.getFrame(9);
+}
+
+void GreyscaleFilterTest::memento() {
+    GreyscaleFilter testFilter(video);
+
+    Memento memento = testFilter.getMemento();
+
+    GreyscaleFilter::sptr dummyFilter = GreyscaleFilter::getDummy().dynamicCast<GreyscaleFilter>();
+    QVERIFY_EXCEPTION_THROWN(dummyFilter->getFrame(7), AccessToDummyException);
+    QVERIFY_EXCEPTION_THROWN(dummyFilter->getMemento(), AccessToDummyException);
+    QVERIFY_EXCEPTION_THROWN(dummyFilter->getUsesList(), AccessToDummyException);
+    QVERIFY2(dummyFilter->isDummy(), "Dummy tells me it's no dummy.");
+
+    dummyFilter->restore(memento);
+    dummyFilter->getFrame(6);
 }

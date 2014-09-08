@@ -39,7 +39,6 @@ Memento CoffeeFilter::getMemento() const {
 
 void CoffeeFilter::restore(Memento memento) {
 	Filter::restore(memento);
-	isDummyFlag = false;
 }
 
 QList<const Module*> CoffeeFilter::getUsesList() const {

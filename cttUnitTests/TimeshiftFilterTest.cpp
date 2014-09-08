@@ -5,12 +5,15 @@
 #include "TimeshiftFilter.h"
 #include "FilterParam.h"
 #include "GlobalContext.h"
+#include "AccessToDummyException.h"
 
 using model::filter::TimeshiftFilter;
 using model::video::YUVDataVideo;
 using model::filter::FilterParam;
 using model::GlobalContext;
 using model::video::YUVType;
+using model::saveable::Memento;
+using exception::AccessToDummyException;
 
 TimeshiftFilterTest::TimeshiftFilterTest() : testContext(), video() {
 }
@@ -43,4 +46,23 @@ void TimeshiftFilterTest::wrongParams() {
     timeshiftFilter.getFrame(3);
 	timeshiftFilter.setParam(FilterParam::sptr(new FilterParam(TimeshiftFilter::kParamShiftStr, 100)));
     timeshiftFilter.getFrame(3);
+}
+
+void TimeshiftFilterTest::memento() {
+    TimeshiftFilter testFilter(video);
+    testFilter.setParam(FilterParam::sptr(new FilterParam(TimeshiftFilter::kParamShiftStr, 2014)));
+
+    Memento memento = testFilter.getMemento();
+
+    TimeshiftFilter::sptr dummyFilter = TimeshiftFilter::getDummy().dynamicCast<TimeshiftFilter>();
+    QVERIFY_EXCEPTION_THROWN(dummyFilter->getFrame(7), AccessToDummyException);
+    QVERIFY_EXCEPTION_THROWN(dummyFilter->getMemento(), AccessToDummyException);
+    QVERIFY_EXCEPTION_THROWN(dummyFilter->getUsesList(), AccessToDummyException);
+    QVERIFY2(dummyFilter->isDummy(), "Dummy tells me it's no dummy.");
+
+    dummyFilter->restore(memento);
+
+    QCOMPARE(dummyFilter->getParamValue<int>(TimeshiftFilter::kParamShiftStr), 2014);
+
+    dummyFilter->getFrame(6);
 }

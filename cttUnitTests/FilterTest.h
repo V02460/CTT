@@ -15,7 +15,7 @@ class FilterTest : public QObject {
 
 private slots:
     void initTestCase();
-    void dummyCase();
+    void memento();
 
 private:
     QSharedPointer<QOpenGLContext> testContext;

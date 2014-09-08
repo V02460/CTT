@@ -70,10 +70,9 @@ Memento RGBChannelFilter::getMemento() const {
 void RGBChannelFilter::restore(Memento memento) {
     Filter::restore(memento);
 
-	setParam(FilterParam::sptr(new FilterParam(kParamRedStr, memento.getInt(kParamRedStr))));
-	setParam(FilterParam::sptr(new FilterParam(kParamGreenStr, memento.getInt(kParamGreenStr))));
-	setParam(FilterParam::sptr(new FilterParam(kParamBlueStr, memento.getInt(kParamBlueStr))));
-	isDummyFlag = false;
+    newParameter(kParamRedStr, memento.getInt(kParamRedStr));
+    newParameter(kParamGreenStr, memento.getInt(kParamGreenStr));
+    newParameter(kParamBlueStr, memento.getInt(kParamBlueStr));
 }
 
 QList<const Module*> RGBChannelFilter::getUsesList() const {

@@ -104,13 +104,15 @@ Memento Filter::getMemento() const {
 	if (isDummy()) {
 		throw AccessToDummyException();
 	}
-	Memento memento;
+	Memento memento = Module::getMemento();
     memento.setSharedPointer("predecessor", predecessor);
 //	memento.setSharedPointer("intervals", intervals);
     return memento;
 }
 
 void Filter::restore(Memento memento) {
+    Module::restore(memento);
+
     predecessor = memento.getSharedPointer("predecessor").dynamicCast<Module>();
 //	intervals = memento.getSharedPointer("intervals").dynamicCast<FilterIntervalList>();
 }

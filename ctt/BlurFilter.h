@@ -26,6 +26,7 @@ public:
     typedef QWeakPointer<BlurFilter> wptr;
 
     static const QByteArray kFilterID;
+    static const QString kParamRadiusStr;
 
     /**
      * Creates a new BlurFilter object with a given previous module.
@@ -51,8 +52,9 @@ public:
 	virtual SaveableType saveableType() const Q_DECL_OVERRIDE { return getSaveableType(); }
 
 private:
-    static const QString kParamRadiusStr;
-
+    /**
+     * Creates a dummy BlurFilter.
+     */
 	BlurFilter();
 };
 

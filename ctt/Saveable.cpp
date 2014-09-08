@@ -1,11 +1,13 @@
 #include "Saveable.h"
 
+#include "Memento.h"
 #include "NotImplementedException.h"
 #include "IllegalArgumentException.h"
 
 namespace model {
 namespace saveable {
 
+using ::model::saveable::Memento;
 using ::exception::NotImplementedException;
 using ::exception::IllegalArgumentException;
 
@@ -50,6 +52,14 @@ const QMap<Saveable::SaveableType, QString> Saveable::initSTS() {
 }
 
 const QMap<Saveable::SaveableType, QString> Saveable::SAVEABLE_TYPE_STRINGS = initSTS();
+
+Memento Saveable::getMemento() const {
+    return Memento();
+}
+
+void Saveable::restore(Memento memento) {
+    isDummyFlag = false;
+}
 
 bool Saveable::isDummy() const {
 	return isDummyFlag;

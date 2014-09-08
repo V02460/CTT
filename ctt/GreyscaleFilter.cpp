@@ -43,7 +43,6 @@ Memento GreyscaleFilter::getMemento() const {
 
 void GreyscaleFilter::restore(Memento memento) {
     Filter::restore(memento);
-	isDummyFlag = false;
 }
 
 QList<const Module*> GreyscaleFilter::getUsesList() const {

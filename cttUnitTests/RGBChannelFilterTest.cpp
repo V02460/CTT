@@ -11,6 +11,8 @@ using model::video::YUVDataVideo;
 using model::filter::FilterParam;
 using model::GlobalContext;
 using model::video::YUVType;
+using model::saveable::Memento;
+using exception::AccessToDummyException;
 
 RGBChannelFilterTest::RGBChannelFilterTest() : testContext(), video() {
 }
@@ -42,4 +44,27 @@ void RGBChannelFilterTest::wrongParams() {
     rgbChannelFilter.getFrame(2);
 	rgbChannelFilter.setParam(FilterParam::sptr(new FilterParam(RGBChannelFilter::kParamBlueStr, 300)));
     rgbChannelFilter.getFrame(3);
+}
+
+void RGBChannelFilterTest::memento() {
+    RGBChannelFilter testFilter(video);
+    testFilter.setParam(FilterParam::sptr(new FilterParam(RGBChannelFilter::kParamRedStr, 99)));
+    testFilter.setParam(FilterParam::sptr(new FilterParam(RGBChannelFilter::kParamGreenStr, 101)));
+    testFilter.setParam(FilterParam::sptr(new FilterParam(RGBChannelFilter::kParamBlueStr, -1)));
+
+    Memento memento = testFilter.getMemento();
+
+    RGBChannelFilter::sptr dummyFilter = RGBChannelFilter::getDummy().dynamicCast<RGBChannelFilter>();
+    QVERIFY_EXCEPTION_THROWN(dummyFilter->getFrame(7), AccessToDummyException);
+    QVERIFY_EXCEPTION_THROWN(dummyFilter->getMemento(), AccessToDummyException);
+    QVERIFY_EXCEPTION_THROWN(dummyFilter->getUsesList(), AccessToDummyException);
+    QVERIFY2(dummyFilter->isDummy(), "Dummy tells me it's no dummy.");
+
+    dummyFilter->restore(memento);
+
+    QCOMPARE(dummyFilter->getParamValue<int>(RGBChannelFilter::kParamRedStr), 99);
+    QCOMPARE(dummyFilter->getParamValue<int>(RGBChannelFilter::kParamGreenStr), 101);
+    QCOMPARE(dummyFilter->getParamValue<int>(RGBChannelFilter::kParamBlueStr), -1);
+
+    dummyFilter->getFrame(6);
 }

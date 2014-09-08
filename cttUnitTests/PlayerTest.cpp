@@ -9,12 +9,15 @@
 
 #include "IllegalArgumentException.h"
 
-using model::video::YUVDataVideo;
-using model::player::Player;
-using model::player::VideoScrubber;
-using model::GlobalContext;
-using exception::IllegalArgumentException;
-using model::saveable::Memento;
+namespace model {
+namespace player {
+
+using ::model::video::YUVDataVideo;
+using ::model::GlobalContext;
+using ::exception::IllegalArgumentException;
+using ::model::saveable::Saveable;
+using ::model::saveable::Memento;
+using ::model::video::YUVType;
 
 void PlayerTest::emptyPlayer() {
 	Player test(10);
@@ -38,7 +41,7 @@ void PlayerTest::emptyPlayer() {
 }
 
 void PlayerTest::playingAndLooping() {
-	model::video::YUVDataVideo *testVideo = new model::video::YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
+	YUVDataVideo *testVideo = new YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, YUVType::YUV444, testContext);
 	YUVDataVideo::sptr videoPointer(testVideo);
 	VideoScrubber::sptr testScrubber(new VideoScrubber(videoPointer));
 
@@ -86,7 +89,11 @@ void PlayerTest::playingAndLooping() {
 	testPlayer.nextFrame();
 	QVERIFY(!testPlayer.isPlaying());
 
-	model::UIntegerInterval testInterval(5, 10);
+    testPlayer.play();
+    testPlayer.previousFrame();
+    QVERIFY(!testPlayer.isPlaying());
+
+	UIntegerInterval testInterval(5, 10);
 	QVERIFY(!testPlayer.isLooping());
 	testPlayer.setLoop(testInterval);
 	QVERIFY(testPlayer.isLooping());
@@ -107,20 +114,20 @@ void PlayerTest::playingAndLooping() {
 	testPlayer.nextFrame();
 	QCOMPARE(testPlayer.getCurrentFrameNumber(), 11U);
 
-	model::UIntegerInterval testInterval2(0, 14);
+	UIntegerInterval testInterval2(0, 14);
 	testPlayer.setLoop(testInterval2);
 
-	model::UIntegerInterval testInterval3(0, 100);
+	UIntegerInterval testInterval3(0, 100);
 	QEXPECT_EXCEPTION(testPlayer.setLoop(testInterval3), IllegalArgumentException);
 }
 
 void PlayerTest::scrubberOperations()
 {
-	model::video::YUVDataVideo *testVideo = new model::video::YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
+	YUVDataVideo *testVideo = new YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, YUVType::YUV444, testContext);
 	YUVDataVideo::sptr videoPointer(testVideo);
 	VideoScrubber::sptr testScrubber(new VideoScrubber(videoPointer));
 
-	model::video::YUVDataVideo *testVideo2 = new model::video::YUVDataVideo("resources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext);
+	YUVDataVideo *testVideo2 = new YUVDataVideo("resources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv", QSize(352, 288), 24, YUVType::YUV420, testContext);
 	YUVDataVideo::sptr videoPointer2(testVideo2);
 	VideoScrubber::sptr testScrubber2(new VideoScrubber(videoPointer2));
 
@@ -158,7 +165,7 @@ void PlayerTest::scrubberOperations()
 	QVERIFY(!testPlayer.getScrubbers().contains(testScrubber));
 	QVERIFY(!testPlayer.controlsScrubber(*testScrubber));
 
-	model::UIntegerInterval testInterval(4, 100); 
+	UIntegerInterval testInterval(4, 100); 
 	testPlayer.setLoop(testInterval);
 	testPlayer.addScrubber(testScrubber);
 	QVERIFY(!testPlayer.isLooping());
@@ -171,25 +178,23 @@ void PlayerTest::initTestCase() {
 }
 
 void PlayerTest::testDummy() {
-	model::saveable::Saveable::sptr dummy = Player::getDummy();
+	Saveable::sptr dummy = Player::getDummy();
 	QVERIFY(dummy->isDummy());
 }
 
 void PlayerTest::saveRestore() {
 
-		model::video::YUVDataVideo *testVideo = new model::video::YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, model::video::YUVType::YUV444, testContext);
-		YUVDataVideo::sptr videoPointer(testVideo);
-		VideoScrubber::sptr testScrubber(new VideoScrubber(videoPointer));
+        YUVDataVideo::sptr testVideo(new YUVDataVideo("resources/Videos/YUV444/squirrel-720x576-444P.yuv", QSize(720, 576), 24, YUVType::YUV444, testContext));
+		VideoScrubber::sptr testScrubber(new VideoScrubber(testVideo));
 
-		model::video::YUVDataVideo *testVideo2 = new model::video::YUVDataVideo("resources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, testContext);
-		YUVDataVideo::sptr videoPointer2(testVideo2);
-		VideoScrubber::sptr testScrubber2(new VideoScrubber(videoPointer2));
+        YUVDataVideo::sptr testVideo2(new YUVDataVideo("resources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv", QSize(352, 288), 24, YUVType::YUV420, testContext));
+		VideoScrubber::sptr testScrubber2(new VideoScrubber(testVideo2));
 
 		Player testPlayer(10);
 
 		testPlayer.addScrubber(testScrubber);
 		testPlayer.addScrubber(testScrubber2);
-		model::UIntegerInterval testInterval(5, 10);
+		UIntegerInterval testInterval(5, 10);
 		testPlayer.setLoop(testInterval);
 
 		Memento memento = testPlayer.getMemento();
@@ -213,3 +218,6 @@ void PlayerTest::saveRestore() {
 		QVERIFY(testPlayer.controlsScrubber(*testScrubber));
 		QCOMPARE(testPlayer.scrubberCount(), 2U);
 }
+
+}  // namespace player
+}  // namespace model

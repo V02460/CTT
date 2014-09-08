@@ -45,18 +45,22 @@ Memento TimeshiftFilter::getMemento() const {
 	if (isDummy()) {
 		throw AccessToDummyException();
 	}
-	return Filter::getMemento();
+
+    Memento memento = Filter::getMemento();
+    memento.setInt(kParamShiftStr, getParamValue<int>(kParamShiftStr));
+	return memento;
 }
 
 void TimeshiftFilter::restore(Memento memento) {
-	if (isDummy()) {
-		throw AccessToDummyException();
-}
 	Filter::restore(memento);
-	isDummyFlag = false;
+	newParameter(kParamShiftStr, memento.getInt(kParamShiftStr));
 }
 
 QList<const Module*> TimeshiftFilter::getUsesList() const {
+    if (isDummy()) {
+        throw AccessToDummyException();
+    }
+
 	return QList<const Module*>() << this;
 }
 

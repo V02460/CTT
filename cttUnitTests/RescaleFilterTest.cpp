@@ -5,12 +5,15 @@
 #include "RescaleFilter.h"
 #include "FilterParam.h"
 #include "GlobalContext.h"
+#include "AccessToDummyException.h"
 
 using model::filter::RescaleFilter;
 using model::video::YUVDataVideo;
 using model::filter::FilterParam;
 using model::GlobalContext;
 using model::video::YUVType;
+using model::saveable::Memento;
+using exception::AccessToDummyException;
 
 RescaleFilterTest::RescaleFilterTest() : testContext(), video() {
 }
@@ -48,4 +51,23 @@ void RescaleFilterTest::wrongParams() {
     rescaleFilter.getFrame(3);
 	rescaleFilter.setParam(FilterParam::sptr(new FilterParam(RescaleFilter::kParamNewSize, QSize(-10, 5))));
     rescaleFilter.getFrame(3);
+}
+
+void RescaleFilterTest::memento() {
+    RescaleFilter testFilter(video);
+    testFilter.setParam(FilterParam::sptr(new FilterParam(RescaleFilter::kParamNewSize, QSize(314, 159))));
+
+    Memento memento = testFilter.getMemento();
+
+    RescaleFilter::sptr dummyFilter = RescaleFilter::getDummy().dynamicCast<RescaleFilter>();
+    QVERIFY_EXCEPTION_THROWN(dummyFilter->getFrame(7), AccessToDummyException);
+    QVERIFY_EXCEPTION_THROWN(dummyFilter->getMemento(), AccessToDummyException);
+    QVERIFY_EXCEPTION_THROWN(dummyFilter->getUsesList(), AccessToDummyException);
+    QVERIFY2(dummyFilter->isDummy(), "Dummy tells me it's no dummy.");
+
+    dummyFilter->restore(memento);
+
+    QCOMPARE(dummyFilter->getParamValue<QSize>(RescaleFilter::kParamNewSize), QSize(314, 159));
+
+    dummyFilter->getFrame(6);
 }

@@ -16,6 +16,7 @@ public:
     void testRun();
     void wrongParams();
     void differentSize();
+    void memento();
 
 private:
     QSharedPointer<QOpenGLContext> testContext;

@@ -8,13 +8,11 @@
 class BlurFilterTest : public QObject {
     Q_OBJECT
 
-public:
-    BlurFilterTest();
-
 private slots:
     void initTestCase();
     void testRun();
     void wrongParams();
+    void memento();
 
 private:
     QSharedPointer<QOpenGLContext> testContext;

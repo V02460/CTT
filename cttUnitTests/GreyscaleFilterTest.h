@@ -8,13 +8,11 @@
 class GreyscaleFilterTest : public QObject {
     Q_OBJECT
 
-public:
-    GreyscaleFilterTest();
-
-    private slots:
+private slots:
     void initTestCase();
     void testRun();
     void wrongParams();
+    void memento();
 
 private:
     QSharedPointer<QOpenGLContext> testContext;

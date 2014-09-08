@@ -67,6 +67,9 @@ public:
 	 */
 	virtual QSize getResolution() const = 0;
 
+    virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
+    virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
+
     static saveable::Saveable::SaveableType getSaveableType();
 };
 
