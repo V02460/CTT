@@ -54,7 +54,7 @@ void Player::play() {
 		changed();
 	}	
 
-	if (currentFrameNumber == getVideoLength()) {
+	if (currentFrameNumber == getVideoLength() - 1) {
 		jumpToFrameNr(0);
 	}
 	timer.start(1000 / fps);
