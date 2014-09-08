@@ -12,7 +12,7 @@ using ::exception::NotImplementedException;
 using ::model::frame::histogram::Histogram;
 using ::model::frame::Frame;
 
-HistogramWidget::HistogramWidget(::model::player::VideoScrubber::sptr scrubber, QWidget *parent) : QWidget(parent), scrubber(scrubber) {
+HistogramWidget::HistogramWidget(::model::player::VideoScrubber::sptr scrubber, QWidget *parent) : QWidget(parent), scrubber(scrubber), autoRecalculation(false) {
 	scrubber->subscribe(this);
 	currentHistogramType = Histogram::HISTOGRAM_TYPE_STRINGS.at(0);
 
@@ -31,7 +31,7 @@ HistogramWidget::HistogramWidget(::model::player::VideoScrubber::sptr scrubber, 
 
 	setupUi();
 
-	update();
+	recalculateHistogram();
 }
 
 HistogramWidget::~HistogramWidget() {
@@ -41,11 +41,24 @@ HistogramWidget::~HistogramWidget() {
 void HistogramWidget::setupUi() {
 	QVBoxLayout *layout = new QVBoxLayout();
 
+	QHBoxLayout *buttonLayout = new QHBoxLayout();
+
 	QPushButton *nextHistogram = new QPushButton(tr("NEXT_HISTOGRAM"));
 	nextHistogram->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 	QObject::connect(nextHistogram, SIGNAL(clicked()), this, SLOT(next()));
-	
-	layout->addWidget(nextHistogram);
+	buttonLayout->addWidget(nextHistogram);
+
+	btnAutoRecalculation = new QPushButton(tr("START_AUTO_UPDATE"));
+	btnAutoRecalculation->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+	QObject::connect(btnAutoRecalculation, SIGNAL(clicked()), this, SLOT(toggleAutoRecalculation()));
+	buttonLayout->addWidget(btnAutoRecalculation);
+
+	QPushButton *btnUpdate = new QPushButton(tr("UPDATE_HISTOGRAM"));
+	btnUpdate->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+	QObject::connect(btnUpdate, SIGNAL(clicked()), this, SLOT(recalculateHistogram()));
+	buttonLayout->addWidget(btnUpdate);
+
+	layout->addLayout(buttonLayout);
 	layout->addWidget(histogramPlot);
 
 	setLayout(layout);
@@ -55,12 +68,22 @@ void HistogramWidget::next() {
 	int index = Histogram::HISTOGRAM_TYPE_STRINGS.indexOf(currentHistogramType);
 	currentHistogramType = Histogram::HISTOGRAM_TYPE_STRINGS.at((index + 1) % Histogram::HISTOGRAM_TYPE_STRINGS.size());
 
-	update();
+	recalculateHistogram();
 }
 
 void HistogramWidget::update() {
+	if (autoRecalculation) {
+		recalculateHistogram();
+	}
+}
+
+::model::player::VideoScrubber::sptr HistogramWidget::getScrubber() {
+	return scrubber;
+}
+
+void HistogramWidget::recalculateHistogram() {
 	Histogram::HistogramType type = Histogram::stringToType(currentHistogramType);
-    Histogram::sptr histogram = Frame::getHistogram(scrubber->getCurrentFrame(), type);
+	Histogram::sptr histogram = Frame::getHistogram(scrubber->getCurrentFrame(), type);
 
 	QVector<double> keys = QVector<double>();
 	QVector<double> values = QVector<double>();
@@ -81,8 +104,14 @@ void HistogramWidget::update() {
 	histogramPlot->replot();
 }
 
-::model::player::VideoScrubber::sptr HistogramWidget::getScrubber() {
-	return scrubber;
+void HistogramWidget::toggleAutoRecalculation() {
+	if (autoRecalculation) {
+		btnAutoRecalculation->setText(tr("STOP_AUTO_UPDATE"));
+	} else {
+		btnAutoRecalculation->setText(tr("START_AUTO_UPDATE"));
+	}
+
+	autoRecalculation = !autoRecalculation;
 }
 
 }  // namespace view
