@@ -124,6 +124,7 @@ void VideoScrubber::restore(Memento memento) {
 	}
 
 	lastFrameNumber = memento.getUInt(lastFrameNumberStringId);
+	waitingForFrame = false;
 	isDummyFlag = false;
 }
 

@@ -64,7 +64,7 @@ private:
     QPushButton *btnReady; /**< The button to switch from the processing view to the analyzing view */
     ThumbnailListWidget *thumbnailWidget; /**< the list of videos in the current part of the program */
     MainControlWidget *mainControlWidget; /**< The MainControlWidget which provides the player functionality */
-    QList<PlayerWidget::sptr> *playerWidgets; /**< The different PlayerWidgets which can be set as active */
+    QList<PlayerWidget*> playerWidgets; /**< The different PlayerWidgets which can be set as active */
 	QStackedLayout *playerWidgetsLayout;
 
 	::controller::FilterController::sptr filterController;

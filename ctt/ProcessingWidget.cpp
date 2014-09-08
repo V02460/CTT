@@ -27,7 +27,6 @@ ProcessingWidget::ProcessingWidget(SaveableList<Player>::sptr players,
 
 	this->filteredVideos = filteredVideos;
 
-	playerWidgets = new QList<PlayerWidget::sptr>();
 	playerWidgetsLayout = new QStackedLayout();
 
 	thumbnailWidget = new ThumbnailListWidget(filteredVideos, 1, false);
@@ -120,16 +119,16 @@ void ProcessingWidget::btnChangeViewClicked(bool active) {
 }
 
 void ProcessingWidget::update() {
-	for each (PlayerWidget::sptr playerWidget in *playerWidgets) {
-		playerWidgetsLayout->removeWidget(playerWidget.data());
-		playerWidgets->removeOne(playerWidget);
+	for each (PlayerWidget *playerWidget in playerWidgets) {
+		playerWidgetsLayout->removeWidget(playerWidget);
+		playerWidgets.removeOne(playerWidget);
 	}
 
 	for (int i = 0; i < players->getSize(); i++) {
-		PlayerWidget::sptr playerWidget = PlayerWidget::sptr(new PlayerWidget(players->get(i), analysingVideosController, this));
+		PlayerWidget *playerWidget = new PlayerWidget(players->get(i), analysingVideosController, this);
 
-		playerWidgetsLayout->addWidget(playerWidget.data());
-		playerWidgets->append(playerWidget);
+		playerWidgetsLayout->addWidget(playerWidget);
+		playerWidgets.append(playerWidget);
 	}
 
 	playerWidgetsLayout->setCurrentIndex(0);
