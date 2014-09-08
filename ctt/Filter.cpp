@@ -106,13 +106,13 @@ Memento Filter::getMemento() const {
 	}
 	Memento memento;
     memento.setSharedPointer("predecessor", predecessor);
-	memento.setSharedPointer("intervals", intervals);
+//	memento.setSharedPointer("intervals", intervals);
     return memento;
 }
 
 void Filter::restore(Memento memento) {
     predecessor = memento.getSharedPointer("predecessor").dynamicCast<Module>();
-	intervals = memento.getSharedPointer("intervals").dynamicCast<FilterIntervalList>();
+//	intervals = memento.getSharedPointer("intervals").dynamicCast<FilterIntervalList>();
 }
 
 QList<const Module*> Filter::getUsesList() const {
