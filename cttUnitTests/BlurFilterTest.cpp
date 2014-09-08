@@ -1,19 +1,17 @@
 #include "BlurFilterTest.h"
 
-#include "CustomTestingMacros.h"
-
 #include "BlurFilter.h"
 #include "FilterParam.h"
 #include "GlobalContext.h"
+#include "Memento.h"
 
 using model::filter::BlurFilter;
 using model::video::YUVDataVideo;
 using model::filter::FilterParam;
 using model::GlobalContext;
 using model::video::YUVType;
-
-BlurFilterTest::BlurFilterTest() : testContext(), video() {
-}
+using model::saveable::Memento;
+using exception::AccessToDummyException;
 
 void BlurFilterTest::initTestCase() {
     testContext = GlobalContext::get();
@@ -32,9 +30,28 @@ void BlurFilterTest::testRun() {
 
 void BlurFilterTest::wrongParams() {
     BlurFilter blurFilter(video);
-    QEXPECT_EXCEPTION(blurFilter.setParam(FilterParam::sptr(new FilterParam("not right", "at all"))),
-		              IllegalArgumentException);
-	QEXPECT_EXCEPTION(blurFilter.setParam(FilterParam::sptr(new FilterParam("a bit off", 1.0))),
-		              IllegalArgumentException);
+    QVERIFY_EXCEPTION_THROWN(blurFilter.setParam(FilterParam::sptr(new FilterParam("not right", "at all"))),
+		                     IllegalArgumentException);
+    QVERIFY_EXCEPTION_THROWN(blurFilter.setParam(FilterParam::sptr(new FilterParam("a bit off", 1.0))),
+		                     IllegalArgumentException);
     blurFilter.getFrame(9);
+}
+
+void BlurFilterTest::memento() {
+    BlurFilter testFilter(video);
+    testFilter.setParam(FilterParam::sptr(new FilterParam(BlurFilter::kParamRadiusStr, 10.f)));
+
+    Memento memento = testFilter.getMemento();
+
+    BlurFilter::sptr dummyFilter = BlurFilter::getDummy().dynamicCast<BlurFilter>();
+    QVERIFY_EXCEPTION_THROWN(dummyFilter->getFrame(7), AccessToDummyException);
+    QVERIFY_EXCEPTION_THROWN(dummyFilter->getMemento(), AccessToDummyException);
+    QVERIFY_EXCEPTION_THROWN(dummyFilter->getUsesList(), AccessToDummyException);
+    QVERIFY2(dummyFilter->isDummy(), "Dummy tells me it's no dummy.");
+
+    dummyFilter->restore(memento);
+
+    QVERIFY2(dummyFilter->getParamValue<float>(BlurFilter::kParamRadiusStr) == 10.f, "Blur radius was not restored.");
+
+    dummyFilter->getFrame(6);
 }

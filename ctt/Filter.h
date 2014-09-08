@@ -108,6 +108,15 @@ public:
      */
     QList<UIntegerInterval::sptr> getListOfActiveIntervals();
 
+    template <class T>
+    T getParamValue(QString key, T defaultValue = T()) const {
+        if (isDummy()) {
+            throw ::exception::AccessToDummyException();
+        }
+        FilterParam::sptr param = parameters.value(key, FilterParam::sptr(new FilterParam(key, defaultValue)));
+        return param->getValue().value<T>();
+    }
+
     virtual unsigned int getFrameCount() const Q_DECL_OVERRIDE;
 
     virtual QSize getResolution() const Q_DECL_OVERRIDE;
@@ -125,15 +134,6 @@ protected:
             throw ::exception::AccessToDummyException();
         }
 		parameters.insert(name, FilterParam::sptr(new FilterParam(name, initValue)));
-    }
-
-    template <class T>
-    T getParamValue(QString key, T defaultValue = T()) const {
-        if (isDummy()) {
-            throw ::exception::AccessToDummyException();
-        }
-        FilterParam::sptr param = parameters.value(key, FilterParam::sptr(new FilterParam(key, defaultValue)));
-        return param->getValue().value<T>();
     }
 
     Module *getPredecessor() const;

@@ -37,7 +37,7 @@ public:
      * @return Memento the internal state of the object
 	 * @throws IllegalStateException if the the method was called on a dummy
      */
-    virtual Memento getMemento() const = 0;
+    virtual Memento getMemento() const;
 
     /**
      * Sets the internal state of the object to the state saved in a submitted Memento.
@@ -45,7 +45,7 @@ public:
      * @param memento this state will be restored
 	 * @throws IllegalArgumentException if the memento doesn't contain the data the object requires to restore itself
      */
-	virtual void restore(Memento memento) = 0;
+	virtual void restore(Memento memento);
 
     /**
      * Creates and returns a dummy instance of the class with the sole purpose to have a state restored from a Memento.

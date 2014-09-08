@@ -23,10 +23,6 @@ BlurFilter::BlurFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamRadiusStr, 5.f);
 }
 
-BlurFilter::BlurFilter() {
-	isDummyFlag = true;
-}
-
 BlurFilter::~BlurFilter() {}
 
 model::frame::Frame::sptr BlurFilter::getFrame(unsigned int frameNumber) const {
@@ -57,12 +53,15 @@ Memento BlurFilter::getMemento() const {
 	if (isDummy()) {
 		throw AccessToDummyException();
 	}
-    return Filter::getMemento();
+
+    Memento memento = Filter::getMemento();
+    memento.setFloat(kParamRadiusStr, getParamValue<float>(kParamRadiusStr));
+    return memento;
 }
 
 void BlurFilter::restore(Memento memento) {
 	Filter::restore(memento);
-	isDummyFlag = false;
+    newParameter(kParamRadiusStr, memento.getFloat(kParamRadiusStr));
 }
 
 QList<const Module*> BlurFilter::getUsesList() const {
@@ -74,6 +73,10 @@ QList<const Module*> BlurFilter::getUsesList() const {
 
 Saveable::sptr BlurFilter::getDummy() {
 	return BlurFilter::sptr(new BlurFilter());
+}
+
+BlurFilter::BlurFilter() {
+    isDummyFlag = true;
 }
 
 }  // namespace filter
