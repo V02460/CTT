@@ -67,10 +67,9 @@ Memento MixFilter::getMemento() const {
 
 void MixFilter::restore(Memento memento) {
     Filter::restore(memento);
-
-    setParam(FilterParam::sptr(new FilterParam(kParamMixRatioStr, memento.getFloat(kParamMixRatioStr))));
+    
+    newParameter(kParamMixRatioStr, memento.getFloat(kParamMixRatioStr));
     module2 = memento.getSharedPointer("module2").dynamicCast<Module>();
-	isDummyFlag = false;
 }
 
 QList<const Module*> MixFilter::getUsesList() const {

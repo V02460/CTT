@@ -5,12 +5,15 @@
 #include "NoiseFilter.h"
 #include "FilterParam.h"
 #include "GlobalContext.h"
+#include "AccessToDummyException.h"
 
 using model::filter::NoiseFilter;
 using model::video::YUVDataVideo;
 using model::filter::FilterParam;
 using model::GlobalContext;
 using model::video::YUVType;
+using model::saveable::Memento;
+using exception::AccessToDummyException;
 
 NoiseFilterTest::NoiseFilterTest() : testContext(), video() {
 }
@@ -43,4 +46,23 @@ void NoiseFilterTest::wrongParams() {
     noiseFilter.getFrame(2);
 	noiseFilter.setParam(FilterParam::sptr(new FilterParam(NoiseFilter::kParamIntensityStr, 42.f)));
     noiseFilter.getFrame(3);
+}
+
+void NoiseFilterTest::memento() {
+    NoiseFilter testFilter(video);
+    testFilter.setParam(FilterParam::sptr(new FilterParam(NoiseFilter::kParamIntensityStr, 0.8f)));
+
+    Memento memento = testFilter.getMemento();
+
+    NoiseFilter::sptr dummyFilter = NoiseFilter::getDummy().dynamicCast<NoiseFilter>();
+    QVERIFY_EXCEPTION_THROWN(dummyFilter->getFrame(7), AccessToDummyException);
+    QVERIFY_EXCEPTION_THROWN(dummyFilter->getMemento(), AccessToDummyException);
+    QVERIFY_EXCEPTION_THROWN(dummyFilter->getUsesList(), AccessToDummyException);
+    QVERIFY2(dummyFilter->isDummy(), "Dummy tells me it's no dummy.");
+
+    dummyFilter->restore(memento);
+
+    QVERIFY2(dummyFilter->getParamValue<float>(NoiseFilter::kParamIntensityStr) == 0.8f, "Intensity was not restored.");
+
+    dummyFilter->getFrame(6);
 }

@@ -12,6 +12,7 @@ private slots:
     void initTestCase();
     void testRun();
     void wrongParams();
+    void memento();
 
 private:
     QSharedPointer<QOpenGLContext> testContext;

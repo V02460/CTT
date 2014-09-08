@@ -45,7 +45,6 @@ Memento InvertFilter::getMemento() const {
 
 void InvertFilter::restore(Memento memento) {
     Filter::restore(memento);
-    isDummyFlag = false;
 }
 
 QList<const Module*> InvertFilter::getUsesList() const {
