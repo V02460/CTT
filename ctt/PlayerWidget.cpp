@@ -2,26 +2,27 @@
 
 #include <QHBoxLayout>
 
+namespace view {
+
 using ::model::player::Player;
 using ::model::player::VideoScrubber;
 using ::controller::VideoListController;
 
-namespace view {
+PlayerWidget::PlayerWidget(Player::sptr player, VideoListController::sptr controller, QWidget *parent)
+        : QWidget(parent) {
+	if (player.isNull()) {
+        throw IllegalArgumentException("Player must not be empty.");
+    }
+	
+    QList<VideoScrubber::sptr> scrubbers = player->getScrubbers();
+    if (scrubbers.size() != 2) {
+        throw IllegalArgumentException("Player must contain exactly two scrubbers.");
+    }
 
-PlayerWidget::PlayerWidget(Player::sptr player, VideoListController::sptr controller,
-	QWidget *parent) : QWidget(parent) {
-	if (player.data() != 0) {
-		QList<VideoScrubber::sptr> scrubbers = player->getScrubbers();
+	inputVideo = new VideoProcessingWidget(scrubbers[0], controller, false, this);
+	filteredVideo = new VideoProcessingWidget(scrubbers[1], controller, true, this);
 
-		if (scrubbers.size() == 2) {
-			inputVideo = new VideoProcessingWidget(scrubbers.at(0), controller, false, this);
-			filteredVideo = new VideoProcessingWidget(scrubbers.at(1), controller, true, this);
-
-			setupUi();
-		}
-	} else {
-		qDebug() << "Error in PlayerWidget! Player was empty.";
-	}
+	setupUi();
 }
 
 void PlayerWidget::setupUi() {
