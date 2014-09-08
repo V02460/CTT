@@ -406,6 +406,7 @@ void Player::nextFrame() {
 		jumpToFrameNr(loop.getStart());
 	} else if (hasNextFrame()) {
 		jumpToFrameNr(getCurrentFrameNumber() + 1);
+        pause();
 	} else {
 		pause();
 	}
@@ -419,6 +420,7 @@ void Player::previousFrame() {
 		jumpToFrameNr(loop.getEnd());
 	} else if (hasPreviousFrame()) {
 		jumpToFrameNr(getCurrentFrameNumber() - 1);
+        pause();
 	}
 }
 
