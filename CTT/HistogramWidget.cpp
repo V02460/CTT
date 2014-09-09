@@ -105,13 +105,13 @@ void HistogramWidget::recalculateHistogram() {
 }
 
 void HistogramWidget::toggleAutoRecalculation() {
+	autoRecalculation = !autoRecalculation;
+
 	if (autoRecalculation) {
 		btnAutoRecalculation->setText(tr("STOP_AUTO_UPDATE"));
 	} else {
 		btnAutoRecalculation->setText(tr("START_AUTO_UPDATE"));
 	}
-
-	autoRecalculation = !autoRecalculation;
 }
 
 }  // namespace view

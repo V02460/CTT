@@ -233,6 +233,9 @@ void ThumbnailListWidget::btnAddVideoClicked(bool checked) {
 			heightSpinBox->setValue(widthAndHeight[1].toInt());
 		}
 
+		macroblockFileLabel->setText(tr("NO_MACROOBLOCK_FILE_CHOSEN"));
+		macroblockFilePath = "";
+
 		if (openVideoDialog->exec() == QDialog::Accepted) {
 			YUVType videoType;
 
