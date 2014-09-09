@@ -1,6 +1,9 @@
 #include "DifferenceListViewItem.h"
 
 #include <QLabel>
+#include <QPixmap>
+#include <QBitmap>
+#include <QHeaderView>
 
 using ::model::difference::FrameDiff;
 using ::model::player::Player;
@@ -13,8 +16,13 @@ namespace view {
 
 		identifierLabel = new QLabel(diff->getName());
 		QPalette labelPalette = identifierLabel->palette();
-		labelPalette.setColor(QPalette::WindowText, diffColor);
+		labelPalette.setColor(QPalette::Text, diffColor);
 		identifierLabel->setPalette(labelPalette);
+
+		setColumnCount(2);
+		setRowCount(1);
+
+		setHeight(100);
 
 		update();
 	}
@@ -40,13 +48,15 @@ namespace view {
 			QImage video1Image = diff->getVideo1()->getFrame(currentFrame)->getFramebufferObject()->toImage();
 			QImage video2Image = diff->getVideo2()->getFrame(currentFrame)->getFramebufferObject()->toImage();
 
-			QLabel *video1Label = new QLabel(this);
-			video1Label->setPixmap(QPixmap::fromImage(video1Image));
-			setCellWidget(0, 0, video1Label);
+			QTableWidgetItem *video1Item = new QTableWidgetItem();
+			video1Item->setData(Qt::DecorationRole, QPixmap::fromImage(video1Image).scaledToHeight(getHeight()));
+			setItem(0, 0, video1Item);
 
-			QLabel *video2Label = new QLabel(this);
-			video2Label->setPixmap(QPixmap::fromImage(video2Image));
-			setCellWidget(0, 1, video2Label);
+			QTableWidgetItem *video2Item = new QTableWidgetItem();
+			video2Item->setData(Qt::DecorationRole, QPixmap::fromImage(video2Image).scaledToHeight(getHeight()));
+			setItem(0, 1, video2Item);
+
+			initialized = true;
 		}
 	}
 }

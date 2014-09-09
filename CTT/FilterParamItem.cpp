@@ -31,6 +31,7 @@ void FilterParamItem::initCheckBox() {
 
 void FilterParamItem::initIntSpinbox() {
 	intSpinbox.setMinimum(0);
+	intSpinbox.setMaximum(255);
 	intSpinbox.setValue(param->getValue().toInt());
 	QObject::connect(&intSpinbox, SIGNAL(valueChanged(int)), this, SLOT(intValueChanged(int)));
 }
