@@ -42,7 +42,9 @@ void AnalysingOrderingWidget::update() {
 		player->removeScrubber(*analysingWidget.at(id)->getHistogramScrubber());
 
 		widgetLayout->removeWidget(analysingWidget.at(id).data());
+		analysingWidget.at(id)->setParent(0);
 		dialogLayout->removeWidget(dialogButtons.at(i).data());
+		dialogButtons.at(id)->setParent(0);
 	}
 
     for (int i = 0; i < analysingWidget.size(); i++) {
@@ -60,7 +62,7 @@ void AnalysingOrderingWidget::update() {
 		VideoAnalysingWidget::sptr widget(new VideoAnalysingWidget(overlayController, scrubber, histogramScrubber, this));
         analysingWidget.insert(i, widget);
 
-        ListedPushButton::sptr dialogButton(new ListedPushButton(i, filteredVideos->get(i), videoSelectionDialog));
+        ListedPushButton::sptr dialogButton(new ListedPushButton(i, filteredVideos->get(i)));
         dialogButtons.insert(i, dialogButton);
         QObject::connect(dialogButton.data(), SIGNAL(toggled(bool, int)), this, SLOT(dialogButtonToggled(bool, int)));
     }
@@ -118,9 +120,12 @@ QList<FilteredVideo::sptr> AnalysingOrderingWidget::getVideos(int selectableCoun
     if (videoSelectionDialog->exec() == QDialog::Accepted) {
         for each (int id in activeDialogButtonIds) {
             selectedVideoList.append(filteredVideos->get(id));
-			dialogButtons.at(id)->setChecked(false);
         }
     }
+
+	for each (int id in activeDialogButtonIds) {
+		dialogButtons.at(id)->setChecked(false);
+	}
 
     return selectedVideoList;
 }
@@ -135,7 +140,9 @@ void AnalysingOrderingWidget::videoReplaced(int oldId, int newId) {
 
 void AnalysingOrderingWidget::videoDeactivated(int id) {
 	widgetLayout->removeWidget(analysingWidget.at(id).data());
+	analysingWidget.at(id)->setParent(0);
 	dialogLayout->removeWidget(dialogButtons.at(id).data());
+	dialogButtons.at(id)->setParent(0);
 	setupUi();
 }
 
@@ -143,6 +150,7 @@ void AnalysingOrderingWidget::dialogButtonToggled(bool checked, int id) {
     if (selectableDialogButtons > 0) {
         if (checked && !activeDialogButtonIds.contains(id)) {
             if (activeDialogButtonIds.size() == selectableDialogButtons) {
+				dialogButtons.at(activeDialogButtonIds.first())->setChecked(false);
                 activeDialogButtonIds.removeFirst();
             }
 
