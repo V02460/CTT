@@ -14,6 +14,7 @@
 #include "ABXTestWidget.h"
 #include "GlobalContext.h"
 #include "YUVDataVideo.h"
+#include "FilteredVideo.h"
 
 using ::controller::project::Project;
 using ::controller::VideoListController;
@@ -23,29 +24,23 @@ using ::controller::MainController;
 using ::controller::project::SaveFileType;
 using ::controller::operation::OperationList;
 using ::model::video::YUVDataVideo;
-using  ::model::GlobalContext;
+using ::model::GlobalContext;
+using ::model::filter::FilteredVideo;
 
 namespace view {
-	MainWindow::MainWindow() {
+	MainWindow::MainWindow() : abxTestingIsInitialized(false) {
 		Project *project = Project::getInstance();
 
-		VideoListController::sptr analysingListController = VideoListController::sptr(new VideoListController(project->getVideoList2()));
+		analysingController = VideoListController::sptr(new VideoListController(project->getVideoList2()));
 
-		ProcessingWidget *processingView = new ProcessingWidget(project->getPlayerList1(), project->getVideoList1(), project->getBaseVideoList(), analysingListController, this);
+		ProcessingWidget *processingView = new ProcessingWidget(project->getPlayerList1(), project->getVideoList1(), project->getBaseVideoList(), analysingController, this);
 
-		AnalysingWidget *analysingView = new AnalysingWidget(project->getVideoList2(), project->getPlayer2(), analysingListController, project->getDiffList(), this);
-
-		//TODO jztdiztd remove test stuff, add real support for abx
-		YUVDataVideo::sptr testVideo(new YUVDataVideo("resources/Videos/YUV420/waterfall_cif_420_352x288_260frames.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, GlobalContext::get()));
-		YUVDataVideo::sptr testVideo2(new YUVDataVideo("resources/Videos/YUV420/raftingNEW_352x288_113.yuv", QSize(352, 288), 24, model::video::YUVType::YUV420, GlobalContext::get()));
-		ABXController::sptr aBXController(new ABXController(testVideo, testVideo2));
-		ABXTestWidget *aBXView = new ABXTestWidget(aBXController, this);
+		AnalysingWidget *analysingView = new AnalysingWidget(project->getVideoList2(), project->getPlayer2(), analysingController, project->getDiffList(), this);
 
 		centralWidgetLayout = new QStackedLayout();
 		centralWidgetLayout->setContentsMargins(0, 0, 0, 0);
 		centralWidgetLayout->addWidget(processingView);
 		centralWidgetLayout->addWidget(analysingView);
-		centralWidgetLayout->addWidget(aBXView);
 
 		ViewState::getInstance()->subscribe(this);
 		OperationList::getInstance()->subscribe(this);
@@ -53,6 +48,7 @@ namespace view {
 		mainController = MainController::sptr(new MainController());
 
 		setupUi();
+		setupDialog();
 
 		update();
 	}
@@ -209,9 +205,70 @@ namespace view {
 		}
 	}
 
-	void MainWindow::menuToABX()
-	{
-		ViewState::getInstance()->changeView(ABX_VIEW);
+	void MainWindow::menuToABX() {
+		if (abxTestingIsInitialized) {
+			int wantsReinitialize = QMessageBox::question(this, tr("REINITIALIZE_ABX_TESTING_TITLE"),
+				tr("REINITIALIZE_ABX_TESTING_QUESTION"), QMessageBox::Yes | QMessageBox::No);
+			if (wantsReinitialize == QMessageBox::Yes) {
+				initializeABXTesting();
+			}
+		} else {
+			initializeABXTesting();
+		}
+
+		if (abxTestingIsInitialized) {
+			ViewState::getInstance()->changeView(ABX_VIEW);
+		}
+	}
+
+	void MainWindow::initializeABXTesting() {
+		if (startABXTesting->exec() == QDialog::Accepted) {
+			FilteredVideo::sptr videoA = Project::getInstance()->getVideoList2()->get(videoSelection->getActiveIndices().at(0));
+			FilteredVideo::sptr videoB = Project::getInstance()->getVideoList2()->get(videoSelection->getActiveIndices().at(1));
+
+			if (abxTestingIsInitialized) {
+				abxController->reset(videoA, videoB);
+			} else {
+				abxController = ABXController::sptr(new ABXController(videoA, videoB));
+				ABXTestWidget *abxWidget = new ABXTestWidget(abxController, this);
+				centralWidgetLayout->addWidget(abxWidget);
+				abxTestingIsInitialized = true;
+			}
+		}
+	} 
+
+	void MainWindow::setupDialog() {
+		startABXTesting = new QDialog(this, Qt::Dialog | Qt::WindowTitleHint | Qt::WindowSystemMenuHint);
+
+		QVBoxLayout *dialogLayout = new QVBoxLayout();
+
+		videoSelection = ThumbnailListWidget::sptr(new ThumbnailListWidget(Project::getInstance()->getVideoList2(), 2, true, startABXTesting));
+		videoSelection->subscribe(analysingController);
+		QObject::connect(videoSelection.data(), SIGNAL(buttonActivated(int)), this, SLOT(videoActivated(int)));
+		QObject::connect(videoSelection.data(), SIGNAL(buttonDeactivated(int)), this, SLOT(videoDeactivated(int)));
+		dialogLayout->addWidget(videoSelection.data());
+
+		QDialogButtonBox *dialogButtons = new QDialogButtonBox(QDialogButtonBox::Cancel, startABXTesting);
+		dialogAcceptButton = dialogButtons->addButton(QDialogButtonBox::Ok);
+		QObject::connect(dialogButtons, SIGNAL(accepted()), startABXTesting, SLOT(accept()));
+		QObject::connect(dialogButtons, SIGNAL(rejected()), startABXTesting, SLOT(reject()));
+		dialogAcceptButton->setEnabled(false);
+
+		dialogLayout->addWidget(dialogButtons);
+
+		startABXTesting->setLayout(dialogLayout);
+	}
+
+	void MainWindow::videoActivated(int id) {
+		if (videoSelection->getActiveIndices().size() == 2) {
+			dialogAcceptButton->setEnabled(true);
+		}
+	}
+
+	void MainWindow::videoDeactivated(int id) {
+		if (videoSelection->getActiveIndices().size() != 2) {
+			dialogAcceptButton->setEnabled(false);
+		}
 	}
 
 }  // namespace view

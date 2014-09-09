@@ -85,12 +85,18 @@ void PlayerTest::playingAndLooping() {
 	testPlayer.togglePlayPause();
 	QVERIFY(!testPlayer.isPlaying());
 
+    // TODO: Do we want this feature in the player?
+
+    // Stop playback when using nextFrame
 	testPlayer.play();
 	testPlayer.nextFrame();
+    QEXPECT_FAIL("", "This is currently done by the controller", Continue);
 	QVERIFY(!testPlayer.isPlaying());
 
+    // Stop playback when using previousFrame
     testPlayer.play();
     testPlayer.previousFrame();
+    QEXPECT_FAIL("", "This is currently done by the controller", Continue);
     QVERIFY(!testPlayer.isPlaying());
 
 	UIntegerInterval testInterval(5, 10);
