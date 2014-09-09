@@ -52,14 +52,14 @@ void AbstractListView::setupUi() {
 		QTreeWidgetItem *childItem = new QTreeWidgetItem(item);
 		item->addChild(childItem);
 		//childItem->setDisabled(true);
-		childItem->setExpanded(false);
+		//childItem->setExpanded(false);
 		items[i]->setMaximumHeight(items[i]->getHeight());
 		setItemWidget(childItem, 0, items[i]);
 	}
 
-	if (topLevelItemCount() > 0) {
+	/*if (topLevelItemCount() > 0) {
 		topLevelItem(0)->setExpanded(true);
-	}
+	}*/
 }
 
 void AbstractListView::buttonRemoveClicked(bool checked, int id) {

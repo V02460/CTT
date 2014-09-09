@@ -44,6 +44,7 @@ void VideoAnalysingWidget::setupUi() {
 	QVBoxLayout *mainLayout = new QVBoxLayout();
 
 	QWidget *videoWidgetWrapper = QWidget::createWindowContainer(videoWidget, this, Qt::Widget);
+	videoWidgetWrapper->setMinimumSize(QSize(320, 180));
 	mainLayout->addWidget(videoWidgetWrapper);
 
 	QHBoxLayout *informationLayout = new QHBoxLayout();
@@ -69,8 +70,12 @@ void VideoAnalysingWidget::setupUi() {
 	informationLayout->addWidget(metadataWidget);
 
 	mainLayout->addLayout(informationLayout);
+	mainLayout->setStretch(0, 3);
+	mainLayout->setStretch(1, 1);
 
 	setLayout(mainLayout);
+
+	setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 }
 
 void VideoAnalysingWidget::comboboxOverlayCurrentIndexChanged(int index) {

@@ -20,7 +20,7 @@ namespace view {
 
 		QSizePolicy sizePolicy = QSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 		setSizePolicy(sizePolicy);
-		setMinimumSize(QSize(160, 90));
+		setMinimumSize(ListedPushButton::MINIMUM_SIZE);
 		setCheckable(true);
 		// TODO setFlat(true);
 
