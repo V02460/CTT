@@ -15,7 +15,8 @@ namespace view {
 		differenceController(differenceController), orderingWidget(orderingWidget) {
 		generateButtons();
 		setupUi();
-		//TODO Connect an DifferenceController
+		QObject::connect(this, SIGNAL(inserted(QString, ::model::video::Video::sptr, ::model::video::Video::sptr)),
+			differenceController.data(), SLOT(diffInserted(QString, ::model::video::Video::sptr, ::model::video::Video::sptr)));
 	}
 
 	void DifferenceInsertionWidget::generateButtons() {

@@ -22,9 +22,9 @@ public:
     typedef QScopedPointer<DifferenceListView> uptr;
     typedef QSharedPointer<DifferenceListView> sptr;
     typedef QWeakPointer<DifferenceListView> wptr;
-
+	
 	DifferenceListView(::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr differences,
-		::model::player::Player::sptr player, QWidget *parent = 0);
+		::controller::DifferenceController::sptr differenceController, ::model::player::Player::sptr player, QWidget *parent = 0);
 
 	~DifferenceListView();
 
@@ -33,6 +33,7 @@ public:
 private:
 	::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr differences;
 	::model::player::Player::sptr player;
+	::controller::DifferenceController::sptr differenceController;
 };
 
 }  // namespace view

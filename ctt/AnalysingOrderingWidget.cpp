@@ -118,6 +118,7 @@ QList<FilteredVideo::sptr> AnalysingOrderingWidget::getVideos(int selectableCoun
     if (videoSelectionDialog->exec() == QDialog::Accepted) {
         for each (int id in activeDialogButtonIds) {
             selectedVideoList.append(filteredVideos->get(id));
+			dialogButtons.at(id)->setChecked(false);
         }
     }
 
