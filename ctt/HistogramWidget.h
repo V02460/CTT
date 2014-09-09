@@ -47,9 +47,10 @@ public slots:
 
 	void toggleAutoRecalculation();
 
+private slots:
+	void recalculateHistogram();
 private:
 	void setupUi();
-	void recalculateHistogram();
 
 	QString currentHistogramType;
 	QCustomPlot *histogramPlot;

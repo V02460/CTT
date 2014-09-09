@@ -209,7 +209,7 @@ namespace view {
 		if (abxTestingIsInitialized) {
 			int wantsReinitialize = QMessageBox::question(this, tr("REINITIALIZE_ABX_TESTING_TITLE"),
 				tr("REINITIALIZE_ABX_TESTING_QUESTION"), QMessageBox::Yes | QMessageBox::No);
-			if (wantsReinitialize == QMessageBox::YesRole) {
+			if (wantsReinitialize == QMessageBox::Yes) {
 				initializeABXTesting();
 			}
 		} else {
@@ -222,7 +222,7 @@ namespace view {
 	}
 
 	void MainWindow::initializeABXTesting() {
-		if (startABXTesting->exec() == QDialogButtonBox::AcceptRole && videoSelection->getActiveIndices().size() == 2) {
+		if (startABXTesting->exec() == QDialog::Accepted) {
 			FilteredVideo::sptr videoA = Project::getInstance()->getVideoList2()->get(videoSelection->getActiveIndices().at(0));
 			FilteredVideo::sptr videoB = Project::getInstance()->getVideoList2()->get(videoSelection->getActiveIndices().at(1));
 
