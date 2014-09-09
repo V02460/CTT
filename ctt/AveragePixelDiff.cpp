@@ -17,7 +17,7 @@ AveragePixelDiff::AveragePixelDiff(Video::sptr video1, Video::sptr video2) : Pix
 AveragePixelDiff::~AveragePixelDiff() {
 }
 
-double AveragePixelDiff::getDiff(unsigned int frameNr) const {
+double AveragePixelDiff::getDiff(unsigned int frameNr) {
     if (isDummy()) {
         throw AccessToDummyException();
     }

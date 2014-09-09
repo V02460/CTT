@@ -29,16 +29,16 @@ const QMap<Histogram::HistogramType, QByteArray> EarthMoversHistogramDiff::kDiff
 EarthMoversHistogramDiff::EarthMoversHistogramDiff(Histogram::HistogramType type,
                                                    Video::sptr video1,
                                                    Video::sptr video2) : FrameDiff(video1, video2),
-												                         type(type) {}
+												                         type(type),
+																		 diff() {}
 
-EarthMoversHistogramDiff::~EarthMoversHistogramDiff() {
-}
+EarthMoversHistogramDiff::~EarthMoversHistogramDiff() {}
 
 QString EarthMoversHistogramDiff::getName() const {
     return QCoreApplication::translate("FrameDiff", kDiffIDs[type]);
 }
 
-double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
+double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) {
 	if (isDummy()) {
 		throw AccessToDummyException();
 	}
@@ -46,19 +46,24 @@ double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) const {
 		throw IllegalArgumentException("One or both videos have less then " + QString::number(frameNr)
 			                               + " frames.");
 	}
-    Histogram::sptr a = Frame::getHistogram(video1->getFrame(frameNr), type);
-    Histogram::sptr b = Frame::getHistogram(video2->getFrame(frameNr), type);
-    float d[Histogram::kSize + 1];
+	if (!diff.keys().contains(frameNr)) {
+		calculateDiff(frameNr);
+	}
+	return diff.value(frameNr);
+}
+
+void EarthMoversHistogramDiff::calculateDiff(unsigned int frameNr) {
+	Histogram::sptr a = Frame::getHistogram(video1->getFrame(frameNr), type);
+	Histogram::sptr b = Frame::getHistogram(video2->getFrame(frameNr), type);
+	float d[Histogram::kSize + 1];
 	d[0] = 0;
 	double sum = 0;
 	for (int i = 0; i < Histogram::kSize; i++) {
 		d[i + 1] = a->getValue(i) - b->getValue(i) + d[i];
 		sum += std::abs(d[i + 1]);
-    }
-
-	return sum / (Histogram::kSize - 1);
+	}
+	diff.insert(frameNr, sum / (Histogram::kSize - 1));
 }
-
 
 Memento EarthMoversHistogramDiff::getMemento() const {
 	if (isDummy()) {

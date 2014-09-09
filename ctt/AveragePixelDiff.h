@@ -23,7 +23,7 @@ public:
     AveragePixelDiff(::model::video::Video::sptr video1, ::model::video::Video::sptr video2);
     ~AveragePixelDiff();
     
-    virtual double getDiff(unsigned int frameNr) const Q_DECL_OVERRIDE;
+    virtual double getDiff(unsigned int frameNr) Q_DECL_OVERRIDE;
 
 protected:
     /**
