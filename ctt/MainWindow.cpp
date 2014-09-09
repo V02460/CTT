@@ -126,7 +126,7 @@ namespace view {
 
 		setCentralWidget(centralWidget);
 
-		resize(1024, 768);
+		resize(1600, 900);
 		move(40, 40);
 
 		update();
@@ -139,23 +139,27 @@ namespace view {
 
 		redo->setEnabled(OperationList::getInstance()->canRedo());
 
+		setWindowModified(false);
+
 		if (currentType == ViewType::PROCESSING_VIEW) {
 			centralWidgetLayout->setCurrentIndex(0);
 			toProcessingView->setVisible(false);
 			toAnalysingView->setVisible(true);
 			toABXView->setVisible(true);
+			setWindowTitle(tr("CODEC_TESTING_TOOLKIT") + "[*] - " + tr("PROCESSING_VIEW"));
 		} else if (currentType == ViewType::ANALYSING_VIEW) {
 			centralWidgetLayout->setCurrentIndex(1);
 			toProcessingView->setVisible(true);
 			toAnalysingView->setVisible(false);
 			toABXView->setVisible(true);
-		}
-		else if (currentType == ViewType::ABX_VIEW)
+			setWindowTitle(tr("CODEC_TESTING_TOOLKIT") + "[*] - " + tr("ANALYSING_VIEW"));
+		} else if (currentType == ViewType::ABX_VIEW)
 		{
 			centralWidgetLayout->setCurrentIndex(2);
 			toProcessingView->setVisible(true);
 			toAnalysingView->setVisible(true);
 			toABXView->setVisible(false);
+			setWindowTitle(tr("CODEC_TESTING_TOOLKIT") + "[*] - " + tr("ABX_VIEW"));
 		}
 		
 	}
@@ -180,8 +184,8 @@ namespace view {
 		QString path = QFileDialog::getSaveFileName(this, tr("SAVE_PROJECT"), "", tr("CTT_FILES *.ctt"));
 
 		if (path != "") {
-			if (!path.endsWith(".xml")) {
-				path.append(".xml");
+			if (!path.endsWith(".ctt")) {
+				path.append(".ctt");
 			}
 
 			emit saveProjectAs(path, SaveFileType::XML);

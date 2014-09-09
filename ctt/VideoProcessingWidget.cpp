@@ -73,9 +73,12 @@ void VideoProcessingWidget::setupUi() {
 	QObject::connect(btnSaveVideo, SIGNAL(clicked()), this, SLOT(btnSaveVideoClicked()));
 	lowerLayout->addWidget(btnSaveVideo);
 
+	checkboxUseForAnalysis->setFixedHeight(btnSaveVideo->height());
+
 	if (!showSaveButton) {
 		btnSaveVideo->hide();
 	}
+	//checkboxUseForAnalysis->setMinimumHeight(btnSaveVideo->minimumHeight());
 
 	mainLayout->addLayout(lowerLayout);
 
