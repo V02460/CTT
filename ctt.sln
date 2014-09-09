@@ -15,6 +15,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cttApp", "cttApp\cttApp.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ctt", "ctt\ctt.vcxproj", "{B12702AD-ABFB-343A-A199-8E24837244A3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cttUnitTestsVS", "cttUnitTestsVS\cttUnitTestsVS.vcxproj", "{3B155041-F415-43AF-AB05-B444A7D9474F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B12702AD-ABFB-343A-A199-8E24837244A3} = {B12702AD-ABFB-343A-A199-8E24837244A3}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -61,6 +66,18 @@ Global
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|Win32.Build.0 = Release|Win32
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x64.ActiveCfg = Release|x64
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x64.Build.0 = Release|x64
+		{3B155041-F415-43AF-AB05-B444A7D9474F}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{3B155041-F415-43AF-AB05-B444A7D9474F}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{3B155041-F415-43AF-AB05-B444A7D9474F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3B155041-F415-43AF-AB05-B444A7D9474F}.Debug|Win32.Build.0 = Debug|Win32
+		{3B155041-F415-43AF-AB05-B444A7D9474F}.Debug|x64.ActiveCfg = Debug|x64
+		{3B155041-F415-43AF-AB05-B444A7D9474F}.Debug|x64.Build.0 = Debug|x64
+		{3B155041-F415-43AF-AB05-B444A7D9474F}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{3B155041-F415-43AF-AB05-B444A7D9474F}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{3B155041-F415-43AF-AB05-B444A7D9474F}.Release|Win32.ActiveCfg = Release|Win32
+		{3B155041-F415-43AF-AB05-B444A7D9474F}.Release|Win32.Build.0 = Release|Win32
+		{3B155041-F415-43AF-AB05-B444A7D9474F}.Release|x64.ActiveCfg = Release|x64
+		{3B155041-F415-43AF-AB05-B444A7D9474F}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
