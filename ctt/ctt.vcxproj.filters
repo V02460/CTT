@@ -405,9 +405,6 @@
     <ClCompile Include="Saveable.cpp">
       <Filter>Source Files\Model\Saveable</Filter>
     </ClCompile>
-    <ClCompile Include="SaveableList.cpp">
-      <Filter>Source Files\Model\Saveable</Filter>
-    </ClCompile>
     <ClCompile Include="Memento.cpp">
       <Filter>Source Files\Model\Saveable</Filter>
     </ClCompile>
@@ -1239,6 +1236,9 @@
     </ClInclude>
     <ClInclude Include="ABXTest.h">
       <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveableList_impl.h">
+      <Filter>Source Files\Model\Saveable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

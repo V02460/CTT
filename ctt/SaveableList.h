@@ -80,4 +80,6 @@ private:
 }  // namespace saveable
 }  // namespace model
 
+#include "SaveableList_impl.h"
+
 #endif  //_SAVEABLELIST_H
