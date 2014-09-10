@@ -20,7 +20,7 @@ public:
     typedef QSharedPointer<AveragePixelDiff> sptr;
     typedef QWeakPointer<AveragePixelDiff> wptr;
 
-    AveragePixelDiff(::model::video::Video::sptr video1, ::model::video::Video::sptr video2);
+    AveragePixelDiff(::model::Module::sptr module1, ::model::Module::sptr module2);
     ~AveragePixelDiff();
     
     virtual double getDiff(unsigned int frameNr) Q_DECL_OVERRIDE;

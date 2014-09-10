@@ -10,8 +10,8 @@ using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::exception::AccessToDummyException;
 
-const QString EarthMoversHistogramDiff::kVideo1Str = "video1";
-const QString EarthMoversHistogramDiff::kVideo2Str = "video2";
+const QString EarthMoversHistogramDiff::kVideo1Str = "module1";
+const QString EarthMoversHistogramDiff::kVideo2Str = "module2";
 const QString EarthMoversHistogramDiff::kTypeStr = "type";
 
 static QMap<Histogram::HistogramType, QByteArray> initDiffIDMap() {
@@ -27,8 +27,8 @@ static QMap<Histogram::HistogramType, QByteArray> initDiffIDMap() {
 const QMap<Histogram::HistogramType, QByteArray> EarthMoversHistogramDiff::kDiffIDs = initDiffIDMap();
 
 EarthMoversHistogramDiff::EarthMoversHistogramDiff(Histogram::HistogramType type,
-                                                   Video::sptr video1,
-                                                   Video::sptr video2) : FrameDiff(video1, video2),
+                                                   Video::sptr module1,
+                                                   Video::sptr module2) : FrameDiff(module1, module2),
 												                         type(type),
 																		 diff() {}
 
@@ -53,8 +53,8 @@ double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) {
 }
 
 void EarthMoversHistogramDiff::calculateDiff(unsigned int frameNr) {
-	Histogram::sptr a = Frame::getHistogram(video1->getFrame(frameNr), type);
-	Histogram::sptr b = Frame::getHistogram(video2->getFrame(frameNr), type);
+	Histogram::sptr a = Frame::getHistogram(module1->getFrame(frameNr), type);
+	Histogram::sptr b = Frame::getHistogram(module2->getFrame(frameNr), type);
 	float d[Histogram::kSize + 1];
 	d[0] = 0;
 	double sum = 0;
@@ -70,15 +70,15 @@ Memento EarthMoversHistogramDiff::getMemento() const {
 		throw AccessToDummyException();
 	}
 	Memento memento;
-	memento.setSharedPointer(kVideo1Str, video1);
-	memento.setSharedPointer(kVideo2Str, video2);
+	memento.setSharedPointer(kVideo1Str, module1);
+	memento.setSharedPointer(kVideo2Str, module2);
 	memento.setString(kTypeStr, Histogram::HISTOGRAM_TYPE_STRINGS[type]);
 	return memento;
 }
 
 void EarthMoversHistogramDiff::restore(Memento memento) {
-	video1 = memento.getSharedPointer(kVideo1Str).dynamicCast<Video>();
-	video2 = memento.getSharedPointer(kVideo2Str).dynamicCast<Video>();
+	module1 = memento.getSharedPointer(kVideo1Str).dynamicCast<Video>();
+	module2 = memento.getSharedPointer(kVideo2Str).dynamicCast<Video>();
 	type = Histogram::stringToType(memento.getString(kTypeStr));
 	isDummyFlag = false;
 }

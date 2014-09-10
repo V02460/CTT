@@ -15,7 +15,7 @@ using ::exception::AccessToDummyException;
 
 const QByteArray HSLPixelDiff::kDiffID = QT_TRANSLATE_NOOP("PixelDiff", "pixeldiff_hsl");
 
-HSLPixelDiff::HSLPixelDiff(Video::sptr video1, Video::sptr video2) : AveragePixelDiff(video1, video2) {
+HSLPixelDiff::HSLPixelDiff(Video::sptr module1, Video::sptr module2) : AveragePixelDiff(module1, module2) {
 }
 
 HSLPixelDiff::~HSLPixelDiff() {
@@ -33,8 +33,8 @@ Surface::sptr HSLPixelDiff::getPixelDiff(unsigned int frameNr) const {
                                        " frames exist.");
     }
 
-    Surface::sptr frame1 = video1->getFrame(frameNr);
-    Surface::sptr frame2 = video2->getFrame(frameNr);
+    Surface::sptr frame1 = module1->getFrame(frameNr);
+    Surface::sptr frame2 = module2->getFrame(frameNr);
 
     GPUSurfaceShader gpuHelper(":/Shader/Diff/HSLPixelDiff.fs", frame1);
 

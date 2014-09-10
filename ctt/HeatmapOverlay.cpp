@@ -20,9 +20,13 @@ using ::exception::NotImplementedException;
 
 const QByteArray HeatmapOverlay::kFilterID = QT_TR_NOOP("overlay_heatmap");
 
+HeatmapOverlay::HeatmapOverlay(Module::sptr predecessor, PixelDiff::sptr difference, Heatmap::sptr heatmap)
+        : ColoringOverlay(predecessor, heatmap, 0.5)
+        , heatmap(heatmap) {
+}
+
 HeatmapOverlay::HeatmapOverlay(Module::sptr predecessor, PixelDiff::sptr difference)
-        : heatmap(new Heatmap(difference))
-        , ColoringOverlay(predecessor, heatmap, 0.5) {
+    : HeatmapOverlay(predecessor, difference, Heatmap::sptr(new Heatmap(difference))) {
 }
 
 HeatmapOverlay::~HeatmapOverlay() {

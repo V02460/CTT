@@ -3,13 +3,10 @@
 #include "GPUSurfaceShader.h"
 #include "GPUSurfaceCompactor.h"
 
-#include "NotImplementedException.h"
-
 namespace model {
 namespace difference {
 
-using ::model::video::Video;
-using ::exception::NotImplementedException;
+using ::model::Module;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::helper::GPUSurfaceShader;
@@ -19,7 +16,7 @@ using ::exception::AccessToDummyException;
 
 const QByteArray YUVPixelDiff::kDiffID = QT_TRANSLATE_NOOP("PixelDiff", "pixeldiff_yuv");
 
-YUVPixelDiff::YUVPixelDiff(Video::sptr video1, Video::sptr video2) : AveragePixelDiff(video1, video2) {
+YUVPixelDiff::YUVPixelDiff(Module::sptr module1, Module::sptr module2) : AveragePixelDiff(module1, module2) {
 }
 
 YUVPixelDiff::~YUVPixelDiff() {
@@ -37,8 +34,8 @@ Surface::sptr YUVPixelDiff::getPixelDiff(unsigned int frameNr) const {
                                        " frames exist.");
     }
 
-    Surface::sptr frame1 = video1->getFrame(frameNr);
-    Surface::sptr frame2 = video2->getFrame(frameNr);
+    Surface::sptr frame1 = module1->getFrame(frameNr);
+    Surface::sptr frame2 = module2->getFrame(frameNr);
 
     GPUSurfaceShader gpuHelper(":/Shader/Diff/YUVPixelDiff.fs", frame1);
 

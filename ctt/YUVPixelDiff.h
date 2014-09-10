@@ -6,7 +6,7 @@
 #include <QWeakPointer>
 
 #include "AveragePixelDiff.h"
-#include "Video.h"
+#include "Module.h"
 #include "Memento.h"
 
 namespace model {
@@ -31,7 +31,7 @@ public:
      * @param video2 the second of the two videos which will be compared
      * @throws InvalidArgumentException if the submitted videos don't create their frames in the same OpenGLContext
      */
-    YUVPixelDiff(::model::video::Video::sptr video1, ::model::video::Video::sptr video2);
+    YUVPixelDiff(::model::Module::sptr module1, ::model::Module::sptr module2);
 
     /**
      * Destroys the HSLPixelDiff.

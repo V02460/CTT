@@ -45,8 +45,8 @@ namespace view {
 				currentFrame = static_cast<double>(diff->getFrameCount()) * 0.1;
 			}
 
-			QImage video1Image = diff->getVideo1()->getFrame(currentFrame)->getFramebufferObject()->toImage();
-			QImage video2Image = diff->getVideo2()->getFrame(currentFrame)->getFramebufferObject()->toImage();
+			QImage video1Image = diff->getModule1()->getFrame(currentFrame)->getFramebufferObject()->toImage();
+			QImage video2Image = diff->getModule2()->getFrame(currentFrame)->getFramebufferObject()->toImage();
 
 			QTableWidgetItem *video1Item = new QTableWidgetItem();
 			video1Item->setData(Qt::DecorationRole, QPixmap::fromImage(video1Image).scaledToHeight(getHeight()));

@@ -6,7 +6,7 @@
 #include <QWeakPointer>
 
 #include "Saveable.h"
-#include "Video.h"
+#include "Module.h"
 #include "Memento.h"
 
 namespace model {
@@ -48,18 +48,18 @@ public:
     virtual QString getName() const = 0;
 
     /**
-     * Returns the first video of the FrameDiff.
+     * Returns the first Module of the FrameDiff.
      *
-     * @return the first video
+     * @return the first Module
      */
-    ::model::video::Video::sptr getVideo1();
+    ::model::Module::sptr getModule1();
 
     /**
-     * Returns the second video of the FrameDiff.
+     * Returns the second Module of the FrameDiff.
      *
-     * @return the second video
+     * @return the second Module
      */
-    ::model::video::Video::sptr getVideo2();
+    ::model::Module::sptr getModule2();
 
     virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
     virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
@@ -69,10 +69,10 @@ protected:
     /**
     * Constructs the FrameDiff by taking two videos used to calculate their frame difference.
     *
-    * @param video1 First video used for comparison
-    * @param video2 Second video comparison
+    * @param module1 First video used for comparison
+    * @param module2 Second video comparison
     */
-    FrameDiff(::model::video::Video::sptr video1, ::model::video::Video::sptr video2);
+    FrameDiff(::model::Module::sptr module1, ::model::Module::sptr module2);
 
     /**
     * Constructs a dummy FrameDiff.
@@ -85,9 +85,9 @@ protected:
     virtual ~FrameDiff();
 
 	/** The first of the two Videos which this FrameDiff compares. */
-    ::model::video::Video::sptr video1;
+    ::model::Module::sptr module1;
 	/** The second of the two Videos which this FrameDiff compares. */
-    ::model::video::Video::sptr video2;
+    ::model::Module::sptr module2;
 
 private:
     Q_DISABLE_COPY(FrameDiff)

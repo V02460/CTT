@@ -3,11 +3,11 @@
 namespace model {
 namespace difference {
 
-using ::model::video::Video;
+using ::model::Module;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 
-PixelDiff::PixelDiff(Video::sptr video1, Video::sptr video2) : FrameDiff(video1, video2) {}
+PixelDiff::PixelDiff(Module::sptr module1, Module::sptr module2) : FrameDiff(module1, module2) {}
 
 PixelDiff::~PixelDiff() {}
 

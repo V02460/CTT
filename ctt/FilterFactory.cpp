@@ -44,7 +44,7 @@ QList<QByteArray> FilterFactory::getAllOverlayIDs() {
     QList<QByteArray> list;
 
     return list
-        //<< HeatmapOverlay::kFilterID
+        << HeatmapOverlay::kFilterID
         << MacroblockOverlay::kFilterID
         /*<< MotionVectorOverlay::kFilterID*/;
 }

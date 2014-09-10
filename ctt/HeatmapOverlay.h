@@ -51,8 +51,6 @@ public:
 	virtual SaveableType saveableType() const Q_DECL_OVERRIDE { return getSaveableType(); }
 
 private:
-    //::model::difference::PixelDiff::sptr data;
-
     class Heatmap : public ::model::Module {
         public:
             typedef QScopedPointer<Heatmap> uptr;
@@ -74,6 +72,11 @@ private:
     };
 
     Heatmap::sptr heatmap;
+
+    /**
+     * Helper constructor to enable this class to keep a reference to the Heatmap object.
+     */
+    HeatmapOverlay(Module::sptr predecessor, ::model::difference::PixelDiff::sptr difference, Heatmap::sptr heatmap);
 };
 
 }  // namespace overlay

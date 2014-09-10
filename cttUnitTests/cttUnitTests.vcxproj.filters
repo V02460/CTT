@@ -375,6 +375,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_ABXTesttest.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="HeatmapOverlayTest.cpp">
+      <Filter>Source Files\Model\Filter\Overlay</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_HeatmapOverlayTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_HeatmapOverlayTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cttUnitTests.qrc">
@@ -469,6 +478,9 @@
     </CustomBuild>
     <CustomBuild Include="ABXTesttest.h">
       <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="HeatmapOverlayTest.h">
+      <Filter>Header Files\Model\Filter\Overlay</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

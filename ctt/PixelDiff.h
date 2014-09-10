@@ -5,7 +5,7 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 #include "FrameDiff.h"
-#include "Video.h"
+#include "Module.h"
 #include "Memento.h"
 #include "Frame.h"
 
@@ -28,7 +28,7 @@ public:
      * @param video1 First Video used for comparison
      * @param video2 Second Video comparison
      */
-    PixelDiff(::model::video::Video::sptr video1, ::model::video::Video::sptr video2);
+    PixelDiff(::model::Module::sptr module1, ::model::Module::sptr module2);
 
     /**
      * PixelDiff Destructor

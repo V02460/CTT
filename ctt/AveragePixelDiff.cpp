@@ -11,7 +11,7 @@ using ::helper::GPUSurfaceCompactor;
 using ::helper::getNewSizeDefault;
 using ::exception::AccessToDummyException;
 
-AveragePixelDiff::AveragePixelDiff(Video::sptr video1, Video::sptr video2) : PixelDiff(video1, video2) {
+AveragePixelDiff::AveragePixelDiff(Module::sptr module1, Module::sptr module2) : PixelDiff(module1, module2) {
 }
 
 AveragePixelDiff::~AveragePixelDiff() {
