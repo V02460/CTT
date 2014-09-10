@@ -90,8 +90,11 @@ void Video::save(QString path, VideoFileType type) const {
 		rescaler->setPreviousModule(video);
 	}
 
-	FilterParam::sptr param(new FilterParam(model::filter::RescaleFilter::kParamNewSize, size));
-	rescaler->setParam(param);
+	FilterParam::sptr paramWidth(new FilterParam(model::filter::RescaleFilter::kParamNewSizeWidth, size.width()));
+	rescaler->setParam(paramWidth);
+
+    FilterParam::sptr paramHeight(new FilterParam(model::filter::RescaleFilter::kParamNewSizeHeight, size.height()));
+    rescaler->setParam(paramHeight);
 
 	return rescaler->getFrame(frameNumber);
 }

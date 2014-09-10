@@ -34,7 +34,7 @@ QList<QByteArray> FilterFactory::getAllNonOverlayFilterIDs() {
         << GreyscaleFilter::kFilterID
         //<< MixFilter::kFilterID
         << NoiseFilter::kFilterID
-        //<< RescaleFilter::kFilterID
+        << RescaleFilter::kFilterID
         << RGBChannelFilter::kFilterID
         << TimeshiftFilter::kFilterID
         << InvertFilter::kFilterID;

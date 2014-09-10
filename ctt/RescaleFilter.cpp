@@ -21,12 +21,13 @@ using ::exception::AccessToDummyException;
 
 const QByteArray RescaleFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_rescale");
 
-const QString RescaleFilter::kParamNewSize = QT_TR_NOOP("filter_rescale_param_newsize");
 const QString RescaleFilter::kParamNewSizeWidth = QT_TR_NOOP("filter_rescale_param_newsize_width");
 const QString RescaleFilter::kParamNewSizeHeight = QT_TR_NOOP("filter_rescale_param_newsize_height");
 
 RescaleFilter::RescaleFilter(Module::sptr predecessor) : Filter(predecessor) {
-    newParameter(kParamNewSize, predecessor->getResolution());
+    QSize resolution = predecessor->getResolution();
+    newParameter(kParamNewSizeWidth, resolution.width());
+    newParameter(kParamNewSizeHeight, resolution.height());
 }
 
 RescaleFilter::RescaleFilter() {
@@ -41,7 +42,8 @@ model::frame::Frame::sptr RescaleFilter::getFrame(unsigned int frameNumber) cons
 	}
     Frame::sptr sourceFrame = getPredecessor()->getFrame(frameNumber);
 
-    QSize newSize = getParamValue<QSize>(kParamNewSize);
+    QSize newSize(getParamValue<unsigned int>(kParamNewSizeWidth), 
+                  getParamValue<unsigned int>(kParamNewSizeHeight));
 
     if (newSize.width() < 1) {
         newSize.setWidth(1);
@@ -63,7 +65,8 @@ Memento RescaleFilter::getMemento() const {
 	}
     Memento memento = Filter::getMemento();
 
-    QSize newSize = getParamValue<QSize>(kParamNewSize);
+    QSize newSize(getParamValue<unsigned int>(kParamNewSizeWidth),
+                  getParamValue<unsigned int>(kParamNewSizeHeight));
 
     memento.setInt(kParamNewSizeWidth, newSize.width());
     memento.setInt(kParamNewSizeHeight, newSize.height());
@@ -74,10 +77,8 @@ Memento RescaleFilter::getMemento() const {
 void RescaleFilter::restore(Memento memento) {
     Filter::restore(memento);
 
-    QSize newSize;
-    newSize.setWidth(memento.getInt(kParamNewSizeWidth));
-    newSize.setHeight(memento.getInt(kParamNewSizeHeight));
-    newParameter(kParamNewSize, newSize);
+    newParameter(kParamNewSizeWidth, memento.getUInt(kParamNewSizeWidth));
+    newParameter(kParamNewSizeHeight, memento.getUInt(kParamNewSizeHeight));
 }
 
 QList<const Module*> RescaleFilter::getUsesList() const {

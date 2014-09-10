@@ -39,23 +39,25 @@ void RescaleFilterTest::wrongParams() {
     // some really wrong values
 	QEXPECT_EXCEPTION(rescaleFilter.setParam(FilterParam::sptr(new FilterParam("not right", "at all"))), IllegalArgumentException);
 	QEXPECT_EXCEPTION(rescaleFilter.setParam(FilterParam::sptr(new FilterParam("a bit off", 1.0))), IllegalArgumentException);
-	QEXPECT_EXCEPTION(rescaleFilter.setParam(FilterParam::sptr(new FilterParam(RescaleFilter::kParamNewSize, "WRONG!"))), IllegalArgumentException);
+	QEXPECT_EXCEPTION(rescaleFilter.setParam(FilterParam::sptr(new FilterParam(RescaleFilter::kParamNewSizeHeight, "WRONG!"))), IllegalArgumentException);
     rescaleFilter.getFrame(9);
 
     // test a proper value
-	rescaleFilter.setParam(FilterParam::sptr(new FilterParam(RescaleFilter::kParamNewSize, QSize(10, 500))));
+	rescaleFilter.setParam(FilterParam::sptr(new FilterParam(RescaleFilter::kParamNewSizeWidth, 10U)));
+    rescaleFilter.setParam(FilterParam::sptr(new FilterParam(RescaleFilter::kParamNewSizeHeight, 500U)));
     rescaleFilter.getFrame(14);
 
     // test some invalid values which should be handled silently by the class
-	rescaleFilter.setParam(FilterParam::sptr(new FilterParam(RescaleFilter::kParamNewSize, QSize(200, 0))));
+	rescaleFilter.setParam(FilterParam::sptr(new FilterParam(RescaleFilter::kParamNewSizeHeight, 0U)));
     rescaleFilter.getFrame(3);
-	rescaleFilter.setParam(FilterParam::sptr(new FilterParam(RescaleFilter::kParamNewSize, QSize(-10, 5))));
+	rescaleFilter.setParam(FilterParam::sptr(new FilterParam(RescaleFilter::kParamNewSizeWidth, 0U)));
     rescaleFilter.getFrame(3);
 }
 
 void RescaleFilterTest::memento() {
     RescaleFilter testFilter(video);
-    testFilter.setParam(FilterParam::sptr(new FilterParam(RescaleFilter::kParamNewSize, QSize(314, 159))));
+    testFilter.setParam(FilterParam::sptr(new FilterParam(RescaleFilter::kParamNewSizeWidth, 314U)));
+    testFilter.setParam(FilterParam::sptr(new FilterParam(RescaleFilter::kParamNewSizeHeight, 159U)));
 
     Memento memento = testFilter.getMemento();
 
@@ -67,7 +69,8 @@ void RescaleFilterTest::memento() {
 
     dummyFilter->restore(memento);
 
-    QCOMPARE(dummyFilter->getParamValue<QSize>(RescaleFilter::kParamNewSize), QSize(314, 159));
+    QCOMPARE(dummyFilter->getParamValue<unsigned int>(RescaleFilter::kParamNewSizeWidth), 314U);
+    QCOMPARE(dummyFilter->getParamValue<unsigned int>(RescaleFilter::kParamNewSizeHeight), 159U);
 
     dummyFilter->getFrame(6);
 }

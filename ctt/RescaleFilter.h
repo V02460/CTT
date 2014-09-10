@@ -26,7 +26,6 @@ public:
 
     static const QByteArray kFilterID;
 
-    static const QString kParamNewSize;
     static const QString kParamNewSizeWidth;
     static const QString kParamNewSizeHeight;
 
