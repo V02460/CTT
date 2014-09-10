@@ -46,5 +46,11 @@
     <ClCompile Include="ABXTesttest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FileVideoTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FilteredVideoTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

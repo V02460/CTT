@@ -143,6 +143,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ABXTesttest.cpp" />
+    <ClCompile Include="FileVideoTest.cpp" />
+    <ClCompile Include="FilteredVideoTest.cpp" />
     <ClCompile Include="GreyscaleFilterTest.cpp" />
     <ClCompile Include="IntegrationTest.cpp" />
     <ClCompile Include="MementoTest.cpp" />
