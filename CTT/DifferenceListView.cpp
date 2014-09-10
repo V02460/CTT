@@ -9,9 +9,12 @@ using ::controller::DifferenceController;
 using ::model::player::Player;
 
 namespace view {
-	DifferenceListView::DifferenceListView(SaveableList<FrameDiff>::sptr differences, Player::sptr player,
-		QWidget *parent) : AbstractListView(parent) , differences(differences), player(player) {
+	DifferenceListView::DifferenceListView(SaveableList<FrameDiff>::sptr differences,
+		DifferenceController::sptr differenceController, Player::sptr player, QWidget *parent) : AbstractListView(parent), 
+		differences(differences), differenceController(differenceController), player(player) {
 		differences->subscribe(this);
+
+		QObject::connect(this, SIGNAL(elementRemoved(int)), differenceController.data(), SLOT(diffRemoved(int)));
 		update();
 	}
 

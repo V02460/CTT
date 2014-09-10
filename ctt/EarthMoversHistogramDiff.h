@@ -40,7 +40,7 @@ public:
 
     virtual QString getName() const Q_DECL_OVERRIDE;
 
-    virtual double getDiff(unsigned int frameNr) const Q_DECL_OVERRIDE;
+    virtual double getDiff(unsigned int frameNr) Q_DECL_OVERRIDE;
 
 	virtual model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
 	virtual void restore(model::saveable::Memento memento) Q_DECL_OVERRIDE;
@@ -57,7 +57,10 @@ private:
 
     EarthMoversHistogramDiff();
 
+	void calculateDiff(unsigned int frameNr);
+
 	model::frame::Histogram::HistogramType type;
+	QMap<unsigned int, double> diff;
 };
 
 }  // namespace difference

@@ -33,7 +33,7 @@ public slots:
      *
      * @param id The ID of the difference function which is to be inserted.
      */
-void diffInserted(QString id, model::video::Video::sptr video1, model::video::Video::sptr video2);
+void diffInserted(QString id, ::model::video::Video::sptr video1, ::model::video::Video::sptr video2);
 
     /**
      * Initiates the removal of a difference function from the list of difference functions which is used for analyzing.

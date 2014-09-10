@@ -39,7 +39,10 @@ ProcessingWidget::ProcessingWidget(SaveableList<Player>::sptr players,
 	filterController = FilterController::sptr(new FilterController(FilteredVideo::sptr()));
 	mainControlWidget = new MainControlWidget(filterController);
 
-	playerWidgetsLayout->addWidget(new QWidget());
+	QWidget *emptyWidget = new QWidget();
+	emptyWidget->setMinimumSize(QSize(640, 180));
+	emptyWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+	playerWidgetsLayout->addWidget(emptyWidget);
 
 	update();
 
@@ -58,14 +61,12 @@ void ProcessingWidget::setupUi() {
 	QWidget *upperWidget = new QWidget(verticalSplitter);
 	upperWidget->setAccessibleName("ProcessingWidget->upperWidget");
 
-	QSplitter *horizontalSplitter = new QSplitter(Qt::Horizontal, upperWidget);
-	horizontalSplitter->setAccessibleName("ProcessingWidget->horizontalSplitter");
 
-	QWidget *upperRightWidget = new QWidget(horizontalSplitter);
+	QWidget *upperRightWidget = new QWidget(upperWidget);
 	upperRightWidget->setAccessibleName("ProcessingWidget->upperRightWidget");
 	upperRightWidget->setLayout(playerWidgetsLayout);
 
-	QWidget *upperLeftWidget = new QWidget(horizontalSplitter);
+	QWidget *upperLeftWidget = new QWidget(upperWidget);
 	upperLeftWidget->setAccessibleName("ProcessingWidget->upperLeftWidget");
 	QVBoxLayout *upperLeftLayout = new QVBoxLayout();
 
@@ -78,20 +79,14 @@ void ProcessingWidget::setupUi() {
 
 	upperLeftWidget->setLayout(upperLeftLayout);
 
-	horizontalSplitter->addWidget(upperLeftWidget);
-	horizontalSplitter->addWidget(upperRightWidget);
-	horizontalSplitter->setChildrenCollapsible(false);
-	//TODO Herausfinden warum das nicht klappt
-	horizontalSplitter->setStretchFactor(0, 1);
-	horizontalSplitter->setStretchFactor(1, 4);
-
 	QHBoxLayout *upperLayout = new QHBoxLayout();
-	upperLayout->addWidget(horizontalSplitter);
+	upperLayout->addWidget(upperLeftWidget);
+	upperLayout->addWidget(upperRightWidget);
 	upperWidget->setLayout(upperLayout);
 
 	verticalSplitter->addWidget(upperWidget);
 	verticalSplitter->addWidget(mainControlWidget);
-	verticalSplitter->setStretchFactor(0, 3);
+	verticalSplitter->setStretchFactor(0, 5);
 	verticalSplitter->setStretchFactor(1, 1);
 
 	QVBoxLayout *layout = new QVBoxLayout();

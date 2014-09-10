@@ -32,6 +32,7 @@ VideoWidget::VideoWidget(VideoScrubber::sptr scrubber, QWindow *parent)
     }
 
     setSurfaceType(QWindow::OpenGLSurface);
+	setMinimumSize(QSize(320, 180));
 	this->scrubber->subscribe(this);
 }
 

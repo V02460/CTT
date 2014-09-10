@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
     //try {
         //mainWindow.show();
 
-        QOffscreenSurface surface;
+        /*QOffscreenSurface surface;
         surface.create();
 
         QSharedPointer<QOpenGLContext> testContext(new QOpenGLContext());
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
         QImage image(":/cttApp/SmallBuckBunny.png");
         if (image.isNull()) {
             return 1;
-        }
+        }*
 
         //Frame::sptr frame(new Frame(testContext, image));
         //BlueHistogram histogram(*frame.data());

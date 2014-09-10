@@ -36,6 +36,7 @@ private:
 	::model::player::Player::sptr player;
 	int frameCount;
 	int currentFrameNumber;
+	bool wasPlaying;
 	QCustomPlot *graphPlot;
 };
 

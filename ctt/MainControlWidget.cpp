@@ -38,7 +38,7 @@ MainControlWidget::MainControlWidget(SaveableList<FrameDiff>::sptr differences, 
 	DifferenceController::sptr differenceController = DifferenceController::sptr(new DifferenceController(differences));
 	insertionWidget = new DifferenceInsertionWidget(differenceController, orderingWidget, this);
 	playerFunctions = new PlayerFunctions(this);
-	listView = new DifferenceListView(differences, player, this);
+	listView = new DifferenceListView(differences, differenceController, player, this);
 	timeline = new DifferenceTimeline(differences, player, this);
 
 	setupUi(ViewType::ANALYSING_VIEW);
@@ -66,7 +66,7 @@ void MainControlWidget::setupUi(ViewType viewType) {
 		btnInsert->setEnabled(false);
 	} else if (viewType == ViewType::ANALYSING_VIEW) {
 		btnInsert->setText(tr("INSERT_DIFFERENCE"));
-		btnInsert->setEnabled(false);
+		btnInsert->setEnabled(true);
 	}
 	btnInsert->setCheckable(true);
 	QObject::connect(btnInsert, SIGNAL(clicked(bool)), this, SLOT(btnInsertClicked(bool)));

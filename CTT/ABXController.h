@@ -25,6 +25,7 @@ namespace controller{
 
 	public slots:
 		void reset();
+		void reset(Video::sptr newA, Video::sptr newB);
 		void xIsA();
 		void xIsB();
 
