@@ -9,10 +9,7 @@
 class HeatmapOverlayTest : public QObject {
     Q_OBJECT
 
-public:
-    HeatmapOverlayTest();
-
-    private slots:
+private slots:
     void initTestCase();
     void testRun();
     //void wrongParams();

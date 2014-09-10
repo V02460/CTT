@@ -1746,7 +1746,7 @@
     <None Include="Shader\Histogram\luminanceHistogramGrid.fs" />
     <None Include="Shader\Histogram\redHistogramGrid.fs" />
     <None Include="Shader\Histogram\saturationHistogramGrid.fs" />
-    <None Include="Shader\Overlay\heatmap.fs" />
+    <None Include="Shader\Overlay\Heatmap.fs" />
     <None Include="Shader\Overlay\Macroblock.fs" />
     <None Include="Shader\Overlay\Macroblock.vs" />
     <None Include="Shader\VideoWidget\VideoWidget.fs" />

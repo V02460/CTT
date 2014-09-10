@@ -1344,6 +1344,9 @@
     <None Include="Shader\VideoWidget\VideoWidget.vs">
       <Filter>Shader Files\ViedeoWidget</Filter>
     </None>
+    <None Include="Shader\Overlay\Heatmap.fs">
+      <Filter>Shader Files\Overlay</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AccessToDummyException.h">
@@ -1364,9 +1367,6 @@
     <ClInclude Include="AbstractListViewItem.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
-    <None Include="Shader\Overlay\heatmap.fs">
-      <Filter>Shader Files\Overlay</Filter>
-    </None>
     <None Include="Shader\Default\Default.vs">
       <Filter>Shader Files\Default</Filter>
     </None>

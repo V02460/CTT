@@ -4,6 +4,7 @@
 #include "TestResult.h"
 
 #include "MacroblockOverlayTest.h"
+#include "HeatmapOverlayTest.h"
 
 namespace model {
 namespace filter {
@@ -13,8 +14,10 @@ static TestResult test(int argc, char *argv[]) {
     TestResult r("overlay");
 
     MacroblockOverlayTest macroblockOverlayTest;
+    HeatmapOverlayTest heatmapOverlayTest;
 
-    r << TestResult("MacroblockOverlayTest", QTest::qExec(&macroblockOverlayTest, argc, argv));
+    r << TestResult("MacroblockOverlayTest", QTest::qExec(&macroblockOverlayTest, argc, argv))
+      << TestResult("HeatmapOverlayTest", QTest::qExec(&heatmapOverlayTest, argc, argv));
 
     return r;
 }

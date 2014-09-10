@@ -18,7 +18,7 @@ using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::exception::NotImplementedException;
 
-const QByteArray HeatmapOverlay::kFilterID = QT_TR_NOOP("overlay_heatmap");
+const QByteArray HeatmapOverlay::kFilterID = QT_TRANSLATE_NOOP("overlay_heatmap");
 
 HeatmapOverlay::HeatmapOverlay(Module::sptr predecessor, PixelDiff::sptr difference, Heatmap::sptr heatmap)
         : ColoringOverlay(predecessor, heatmap, 0.5)
@@ -56,7 +56,7 @@ void HeatmapOverlay::restore(Memento memento) {
 Frame::sptr HeatmapOverlay::Heatmap::getFrame(unsigned int frameNumber) const {
     Surface::sptr pixelDiff = difference->getPixelDiff(frameNumber);
 
-    GPUSurfaceShader gpuHelper(":/Shader/Overlay/heatmap.fs", pixelDiff->getContext());
+    GPUSurfaceShader gpuHelper(":/Shader/Overlay/Heatmap.fs", pixelDiff->getContext());
     gpuHelper.setSourceTexture(pixelDiff);
     Surface::sptr heatmapSurface = gpuHelper.run();
 

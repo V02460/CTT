@@ -30,5 +30,6 @@
         <file>Shader/Filter/Invert.fs</file>
         <file>Shader/VideoWidget/VideoWidget.fs</file>
         <file>Shader/VideoWidget/VideoWidget.vs</file>
+        <file>Shader/Overlay/Heatmap.fs</file>
     </qresource>
 </RCC>
