@@ -22,7 +22,9 @@ QList<QString> DifferenceFactory::getAllFrameDiffIDs() {
         << EarthMoversHistogramDiff::kDiffIDs[Histogram::Blue]
         << EarthMoversHistogramDiff::kDiffIDs[Histogram::Hue]
         << EarthMoversHistogramDiff::kDiffIDs[Histogram::Saturation]
-        << EarthMoversHistogramDiff::kDiffIDs[Histogram::Luminance];
+        << EarthMoversHistogramDiff::kDiffIDs[Histogram::Luminance]
+        << HSLPixelDiff::kDiffID
+        << YUVPixelDiff::kDiffID;
 }
 
 QList<QString> DifferenceFactory::getAllPixelDiffIDs() {
@@ -54,6 +56,12 @@ FrameDiff::sptr DifferenceFactory::createFrameDiff(QString id, Video::sptr video
     }
     if (id == EarthMoversHistogramDiff::kDiffIDs[Histogram::Luminance]) {
         return EarthMoversHistogramDiff::sptr(new EarthMoversHistogramDiff(Histogram::Luminance, video1, video2));
+    }
+    if (id == HSLPixelDiff::kDiffID) {
+        return HSLPixelDiff::sptr(new HSLPixelDiff(video1, video2));
+    }
+    if (id == YUVPixelDiff::kDiffID) {
+        return YUVPixelDiff::sptr(new YUVPixelDiff(video1, video2));
     }
 
     throw IllegalArgumentException("Id does not match a FrameDiff.");
