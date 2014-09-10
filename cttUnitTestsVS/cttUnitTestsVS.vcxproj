@@ -144,6 +144,8 @@
   <ItemGroup>
     <ClCompile Include="GreyscaleFilterTest.cpp" />
     <ClCompile Include="IntegrationTest.cpp" />
+    <ClCompile Include="MementoTest.cpp" />
+    <ClCompile Include="SaveableListTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ctt\ctt.vcxproj">
