@@ -26,8 +26,8 @@ const QString RescaleFilter::kParamNewSizeHeight = QT_TR_NOOP("filter_rescale_pa
 
 RescaleFilter::RescaleFilter(Module::sptr predecessor) : Filter(predecessor) {
     QSize resolution = predecessor->getResolution();
-    newParameter(kParamNewSizeWidth, resolution.width());
-    newParameter(kParamNewSizeHeight, resolution.height());
+    newParameter(kParamNewSizeWidth, static_cast<unsigned int>(resolution.width()));
+    newParameter(kParamNewSizeHeight, static_cast<unsigned int>(resolution.height()));
 }
 
 RescaleFilter::RescaleFilter() {
