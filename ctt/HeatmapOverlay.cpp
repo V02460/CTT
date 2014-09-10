@@ -18,7 +18,7 @@ using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::exception::NotImplementedException;
 
-const QByteArray HeatmapOverlay::kFilterID = QT_TRANSLATE_NOOP("overlay_heatmap");
+const QByteArray HeatmapOverlay::kFilterID = QT_TRANSLATE_NOOP("Filter", "overlay_heatmap");
 
 HeatmapOverlay::HeatmapOverlay(Module::sptr predecessor, PixelDiff::sptr difference, Heatmap::sptr heatmap)
         : ColoringOverlay(predecessor, heatmap, 0.5)
