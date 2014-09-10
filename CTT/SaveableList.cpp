@@ -172,7 +172,7 @@ template class SaveableList<model::filter::overlay::Overlay>;
 //template class SaveableList<model::video::YUVDataVideo>;
 template class SaveableList<model::filter::FilteredVideo>;
 template class SaveableList<model::player::Player>;
-//template class SaveableList<model::UIntegerInterval>;
+template class SaveableList<model::UIntegerInterval>;
 //template class SaveableList<model::player::VideoScrubber>;
 
 }  // namespace saveable

@@ -191,7 +191,7 @@ void XMLLoader::readElements() {
 //				case Saveable::SaveableType::yUVDataVideo: dummy = SaveableList<YUVDataVideo>::getDummy(); break;
 				case Saveable::SaveableType::filteredVideo: dummy = SaveableList<FilteredVideo>::getDummy(); break;
 				case Saveable::SaveableType::player: dummy = SaveableList<Player>::getDummy(); break;
-//				case Saveable::SaveableType::uIntegerInterval: dummy = SaveableList<UIntegerInterval>::getDummy(); break;
+				case Saveable::SaveableType::uIntegerInterval: dummy = SaveableList<UIntegerInterval>::getDummy(); break;
 //				case Saveable::SaveableType::videoScrubber: dummy = SaveableList<VideoScrubber>::getDummy(); break;
 				case Saveable::SaveableType::saveableList:
 					throw new ParseException("A saveable list may not contain another saveable list.");
