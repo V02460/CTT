@@ -47,13 +47,14 @@ void ThumbnailListWidget::setupUi() {
 		thumbnailListLayout = new QHBoxLayout();
 		thumbnailListLayout->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 		setMinimumHeight(ListedPushButton::MINIMUM_SIZE.height() + 20);
+		setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
 	} else {
 		thumbnailListLayout = new QVBoxLayout();
 		thumbnailListLayout->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
 		setMinimumWidth(ListedPushButton::MINIMUM_SIZE.width() + 20);
+		setSizePolicy(QSizePolicy::Fixed, QSizePolicy::MinimumExpanding);
 	}
 	thumbnailListLayout->setContentsMargins(5, 5, 5, 5);
-	setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 
 	QWidget *scrollWidget = new QWidget(this);
 	scrollWidget->setAccessibleName("ThumbnailListWidget->scrollWidget");
@@ -231,6 +232,9 @@ void ThumbnailListWidget::btnAddVideoClicked(bool checked) {
 			widthSpinBox->setValue(widthAndHeight[0].toInt());
 			heightSpinBox->setValue(widthAndHeight[1].toInt());
 		}
+
+		macroblockFileLabel->setText(tr("NO_MACROOBLOCK_FILE_CHOSEN"));
+		macroblockFilePath = "";
 
 		if (openVideoDialog->exec() == QDialog::Accepted) {
 			YUVType videoType;

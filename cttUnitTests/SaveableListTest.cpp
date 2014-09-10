@@ -31,8 +31,6 @@ void SaveableListTest::setAndGet() {
 }
 
 void SaveableListTest::remove() {
-	//TODO: fix memory leak
-	//TIPP: SaveableList<Saveable> list; würde reichen
 	SaveableList<Saveable> list;
 	Saveable::sptr element0 = QSharedPointer<Saveable>(new UIntegerInterval(0, 10));
 	Saveable::sptr element1 = QSharedPointer<Saveable>(new UIntegerInterval(1, 11));
@@ -49,6 +47,7 @@ void SaveableListTest::outOfBounds() {
 	Saveable::sptr element = QSharedPointer<Saveable>(new UIntegerInterval(0, 1));
 	QEXPECT_EXCEPTION(list.insert(-1, element), IllegalArgumentException);
 	QEXPECT_EXCEPTION(list.insert(5, element), IllegalArgumentException);
+	QEXPECT_EXCEPTION(list.remove(2), IllegalArgumentException);
 	QEXPECT_EXCEPTION(list.get(0), IllegalArgumentException);
 }
 

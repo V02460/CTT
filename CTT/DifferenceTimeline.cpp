@@ -9,7 +9,7 @@ using ::model::difference::FrameDiff;
 using ::model::player::Player;
 
 namespace view {
-	DifferenceTimeline::DifferenceTimeline(SaveableList<FrameDiff>::sptr differences, Player::sptr player, QWidget *parent) : AbstractTimeline(parent), differences(differences), player(player) {
+	DifferenceTimeline::DifferenceTimeline(SaveableList<FrameDiff>::sptr differences, Player::sptr player, QWidget *parent) : AbstractTimeline(parent), differences(differences), player(player), wasPlaying(false), currentFrameNumber(0), frameCount(0) {
 		differences->subscribe(this);
 		player->subscribe(this);
 
@@ -28,6 +28,7 @@ namespace view {
 	void DifferenceTimeline::update() {
 		if (currentFrameNumber != player->getCurrentFrameNumber()) {
 			//TODO range anpassen
+			currentFrameNumber = player->getCurrentFrameNumber();
 		} else if (frameCount != player->getVideoLength()) {
 			if (player->getVideoLength() != 0) {
 				graphPlot->xAxis->setRange(0, player->getVideoLength());
@@ -36,6 +37,10 @@ namespace view {
 			}
 
 			graphPlot->replot();
+
+			frameCount = player->getVideoLength();
+		} else if (wasPlaying != player->isPlaying()) {
+			wasPlaying = player->isPlaying();
 		} else {
 			updateDifferences();
 		}
@@ -53,12 +58,18 @@ namespace view {
 	void DifferenceTimeline::updateDifferences() {
 		graphPlot->clearGraphs();
 
+		double maxY = 0;
+
 		for (int i = 0; i < differences->getSize(); i++) {
-			QVector<double> x = QVector<double>();
-			QVector<double> y = QVector<double>();
-			for (int j = 0; j < static_cast<int>(differences->get(i)->getFrameCount()); j++) {
+			int differenceLength = static_cast<int>(differences->get(i)->getFrameCount());
+			QVector<double> x = QVector<double>(differenceLength);
+			QVector<double> y = QVector<double>(differenceLength);
+			for (int j = 0; j < differenceLength; j++) {
 				x[j] = j;
 				y[j] = qBound(0.0, differences->get(i)->getDiff(j), 1.0);
+				if (y[j] > maxY) {
+					maxY = y[j];
+				}
 			}
 			graphPlot->addGraph(graphPlot->xAxis, graphPlot->yAxis);
 			graphPlot->graph(i)->setPen(QPen(ViewState::getColorFromIndex(i)));
@@ -71,7 +82,7 @@ namespace view {
 		} else {
 			graphPlot->xAxis->setRange(0, 1);
 		}
-		graphPlot->yAxis->setRange(0, 1);
+		graphPlot->yAxis->setRange(0, maxY * 1.1);
 
 		graphPlot->replot();
 	}

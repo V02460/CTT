@@ -45,12 +45,18 @@ public slots:
      */
     void next();
 
+	void toggleAutoRecalculation();
+
+private slots:
+	void recalculateHistogram();
 private:
 	void setupUi();
 
 	QString currentHistogramType;
 	QCustomPlot *histogramPlot;
 	QCPBars *histogramBars;
+	QPushButton *btnAutoRecalculation;
+	bool autoRecalculation;
     ::model::player::VideoScrubber::sptr scrubber /**< The scrubber at which the HistogramWidget is registered */;
 };
 

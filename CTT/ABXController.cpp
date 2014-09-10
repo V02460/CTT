@@ -24,6 +24,10 @@ void controller::ABXController::reset()
 	test->reset();
 }
 
+void controller::ABXController::reset(Video::sptr newA, Video::sptr newB) {
+	test->reset(newA, newB);
+}
+
 void controller::ABXController::xIsA()
 {
 	test->identifyXasA();

@@ -2,8 +2,14 @@
 
 #include "VideoSaver.h"
 #include "VideoFileType.h"
+#include "IOException.h"
+#include "AccessToDummyException.h"
 #include <QVBoxLayout>
 #include <QFileDialog>
+#include <QMessageBox>
+
+using ::exception::IOException;
+using ::exception::AccessToDummyException;
 
 namespace view {
 
@@ -32,7 +38,22 @@ void VideoProcessingWidget::btnSaveVideoClicked() {
 	if (!saveFileName.endsWith(".yuv")) {
 		saveFileName.append(".yuv");
 	}
-	videoWidget->getScrubber()->getVideo()->save(saveFileName, model::video::VideoFileType::YUV);
+
+	try {
+		videoWidget->getScrubber()->getVideo()->save(saveFileName, model::video::VideoFileType::YUV);
+	}
+	catch (IOException e) {
+		QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_SAVING_FAILED_IO_TITLE"), tr("VIDEO_SAVING_FAILED_IO_DETAILS"), QMessageBox::Ok, this);
+		errorBox.setDetailedText(e.getName() + "\n" + e.getMsg());
+
+		errorBox.exec();
+	}
+	catch (AccessToDummyException e) {
+		QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_SAVING_FAILED_DUMMY_TITLE"), tr("VIDEO_SAVING_FAILED_DUMMY_DETAILS"), QMessageBox::Ok, this);
+		errorBox.setDetailedText(e.getName() + "\n" + e.getMsg());
+
+		errorBox.exec();
+	}
 }
 
 void VideoProcessingWidget::setupUi() {
@@ -52,15 +73,18 @@ void VideoProcessingWidget::setupUi() {
 	QObject::connect(btnSaveVideo, SIGNAL(clicked()), this, SLOT(btnSaveVideoClicked()));
 	lowerLayout->addWidget(btnSaveVideo);
 
+	checkboxUseForAnalysis->setFixedHeight(btnSaveVideo->height());
+
 	if (!showSaveButton) {
-		btnSaveVideo->setEnabled(false);
+		btnSaveVideo->hide();
 	}
+	//checkboxUseForAnalysis->setMinimumHeight(btnSaveVideo->minimumHeight());
 
 	mainLayout->addLayout(lowerLayout);
 
 	setLayout(mainLayout);
 
-	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 }
 
 void VideoProcessingWidget::subscribe(::controller::VideoListController::sptr observer) {
