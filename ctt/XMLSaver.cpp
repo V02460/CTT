@@ -49,6 +49,7 @@ void XMLSaver::save(QString path) {
 	writeBaseElements();
 	writeElements();
 	endDocument();
+	pointerList.clear();
 }
 
 XMLSaver::BaseSaveableType XMLSaver::stringToBaseSaveableType(QString string) {
