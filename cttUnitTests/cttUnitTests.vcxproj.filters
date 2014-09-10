@@ -127,6 +127,9 @@
     <Filter Include="Header Files\Controller">
       <UniqueIdentifier>{3fdfd221-af9c-4836-ad36-b59043c51b00}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Images">
+      <UniqueIdentifier>{487c4594-37a4-4e37-a154-b3a8b38beef1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_FrameTest.cpp">
@@ -511,7 +514,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Images\big_buck_bunny_01337.png">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Images</Filter>
     </Image>
   </ItemGroup>
 </Project>
