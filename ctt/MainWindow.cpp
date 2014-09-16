@@ -33,7 +33,7 @@ namespace view {
 
 		analysingController = VideoListController::sptr(new VideoListController(project->getVideoList2()));
 
-		ProcessingWidget *processingView = new ProcessingWidget(project->getPlayerList1(), project->getVideoList1(), project->getBaseVideoList(), analysingController, this);
+		ProcessingWidget *processingView = new ProcessingWidget(project->getPlayerList1(), project->getVideoList1(), project->getBaseVideoList(), project->getVideoList2(), analysingController, this);
 
 		AnalysingWidget *analysingView = new AnalysingWidget(project->getVideoList2(), project->getPlayer2(), analysingController, project->getDiffList(), this);
 

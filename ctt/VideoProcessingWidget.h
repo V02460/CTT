@@ -12,6 +12,7 @@
 #include "VideoFileType.h"
 #include "VideoWidget.h"
 #include "VideoListController.h"
+#include "Observer.h"
 
 namespace view {
 
@@ -19,19 +20,27 @@ namespace view {
  * The VideoProcessingWidget provides the interactable components for saving a video and for using it later in the
  * analysing view as well as it holds the means to display a video.
  */
-class VideoProcessingWidget : public QWidget {
+class VideoProcessingWidget : public QWidget, public ::model::Observer {
     Q_OBJECT
+
 public:
     typedef QScopedPointer<VideoProcessingWidget> uptr;
     typedef QSharedPointer<VideoProcessingWidget> sptr;
     typedef QWeakPointer<VideoProcessingWidget> wptr;
 
 	VideoProcessingWidget(::model::player::VideoScrubber::sptr scrubber,
-		::controller::VideoListController::sptr controller, bool showSaveButton = false, QWidget *parent = 0);
+		                  ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos,
+						  ::controller::VideoListController::sptr controller,
+						  bool showSaveButton = false,
+						  QWidget *parent = 0);
+
+	~VideoProcessingWidget();
 
 	void subscribe(::controller::VideoListController::sptr observer);
 
 	void unsubscribe(const ::controller::VideoListController &observer);
+
+	virtual void update() Q_DECL_OVERRIDE;
 	
 public slots:
     /**
@@ -59,10 +68,9 @@ signals:
      * This signal is emitted when the checkbox is unchecked.
      */
     void videoForAnalysingRemoved(const ::model::video::Video &video);
+
 private:
 	void setupUi();
-
-    bool showSaveButton; /**< Indicates whether the saveButton is shown or not */
 
     /**
      * The checkbox where the user can decide to use the video for analysing or not.
@@ -73,6 +81,8 @@ private:
     VideoWidget *videoWidget; /** The video widget which actually displays the video */
 
 	::controller::VideoListController::sptr videoListController;
+	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos;
+	bool showSaveButton; /**< Indicates whether the saveButton is shown or not */
 };
 
 }  // namespace view

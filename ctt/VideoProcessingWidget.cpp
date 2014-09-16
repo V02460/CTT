@@ -10,19 +10,31 @@
 
 using ::exception::IOException;
 using ::exception::AccessToDummyException;
+using ::model::player::VideoScrubber;
+using ::controller::VideoListController;
+using ::model::saveable::SaveableList;
+using ::model::filter::FilteredVideo;
 
 namespace view {
 
-VideoProcessingWidget::VideoProcessingWidget(::model::player::VideoScrubber::sptr scrubber,
-	::controller::VideoListController::sptr controller, bool showSaveButton, QWidget *parent) : QWidget(parent) {
-	if (scrubber.data() != 0) {
+VideoProcessingWidget::VideoProcessingWidget(VideoScrubber::sptr scrubber,
+	                                         SaveableList<FilteredVideo>::sptr filteredVideos,
+	                                         VideoListController::sptr controller,
+											 bool showSaveButton, QWidget *parent) : QWidget(parent),
+											                                         filteredVideos(filteredVideos) {
+	if (!scrubber.isNull()) {
 		this->videoWidget = new VideoWidget(scrubber);
 		this->showSaveButton = showSaveButton;
 
 		setupUi();
 
 		subscribe(controller);
+		filteredVideos->subscribe(this);
 	}
+}
+
+VideoProcessingWidget::~VideoProcessingWidget() {
+	filteredVideos->unsubscribe(this);
 }
 
 void VideoProcessingWidget::checkboxUseForAnalysisValueChanged(int state) {
@@ -102,4 +114,19 @@ void VideoProcessingWidget::unsubscribe(const ::controller::VideoListController 
 	QObject::disconnect(this, SIGNAL(videoForAnalysingRemoved(const ::model::video::Video&)),
 		&observer, SLOT(removeVideo(const ::model::video::Video&)));
 }
+
+void VideoProcessingWidget::update() {
+	bool isUsedForAnalysis = false;
+	for (int i = 0; i < filteredVideos->getSize(); i++) {
+		if (filteredVideos->get(i)->getBaseVideo() == videoWidget->getScrubber()->getVideo()) {
+			isUsedForAnalysis = true;
+			break;
+		}
+	}
+
+	bool oldState = checkboxUseForAnalysis->blockSignals(true);
+	checkboxUseForAnalysis->setChecked(isUsedForAnalysis);
+	checkboxUseForAnalysis->blockSignals(oldState);
+}
+
 }  // namespace view

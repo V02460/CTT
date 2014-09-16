@@ -17,15 +17,18 @@ using ::controller::ExtendedVideoListController;
 namespace view {
 
 ProcessingWidget::ProcessingWidget(SaveableList<Player>::sptr players,
-	SaveableList<FilteredVideo>::sptr filteredVideos,
-	SaveableList<FilteredVideo>::sptr baseVideos,
-	VideoListController::sptr analysingVideosController, QWidget *parent) : QWidget(parent) {
-	this->analysingVideosController = analysingVideosController;
+	                               SaveableList<FilteredVideo>::sptr filteredVideos,
+								   SaveableList<FilteredVideo>::sptr baseVideos,
+								   SaveableList<FilteredVideo>::sptr analysingFilteredVideos,
+								   VideoListController::sptr analysingVideosController,
+								   QWidget *parent)
+		: QWidget(parent),
+		  players(players),
+		  filteredVideos(filteredVideos),
+		  analysingFilteredVideos(analysingFilteredVideos),
+		  analysingVideosController(analysingVideosController) {
 
-	this->players = players;
 	players->subscribe(this);
-
-	this->filteredVideos = filteredVideos;
 
 	playerWidgetsLayout = new QStackedLayout();
 
@@ -120,7 +123,7 @@ void ProcessingWidget::update() {
 	}
 
 	for (int i = 0; i < players->getSize(); i++) {
-		PlayerWidget *playerWidget = new PlayerWidget(players->get(i), analysingVideosController, this);
+		PlayerWidget *playerWidget = new PlayerWidget(players->get(i), analysingFilteredVideos, analysingVideosController, this);
 
 		playerWidgetsLayout->addWidget(playerWidget);
 		playerWidgets.append(playerWidget);

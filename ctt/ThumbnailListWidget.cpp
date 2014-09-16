@@ -181,13 +181,9 @@ void ThumbnailListWidget::listedButtonToggled(bool checked, int id) {
 			emit buttonReplaced(oldActiveId, id);
 		}
 	} else if (!checked && activatedButtons.contains(id)) {
-		if (activatedButtons.size() > 1) {
-			activatedButtons.removeOne(id);
-			if (!isInUpdateRequest) {
-				emit buttonDeactivated(id);
-			}
-		} else {
-			thumbnailList.at(id)->setChecked(true);
+		activatedButtons.removeOne(id);
+		if (!isInUpdateRequest) {
+			emit buttonDeactivated(id);
 		}
 	}
 }

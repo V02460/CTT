@@ -7,9 +7,13 @@ namespace view {
 using ::model::player::Player;
 using ::model::player::VideoScrubber;
 using ::controller::VideoListController;
+using ::model::saveable::SaveableList;
+using ::model::filter::FilteredVideo;
 
-PlayerWidget::PlayerWidget(Player::sptr player, VideoListController::sptr controller, QWidget *parent)
-        : QWidget(parent) {
+PlayerWidget::PlayerWidget(Player::sptr player,
+	                       SaveableList<FilteredVideo>::sptr filteredVideos,
+						   VideoListController::sptr controller, 
+						   QWidget *parent) : QWidget(parent) {
 	if (player.isNull()) {
         throw IllegalArgumentException("Player must not be empty.");
     }
@@ -19,8 +23,8 @@ PlayerWidget::PlayerWidget(Player::sptr player, VideoListController::sptr contro
         throw IllegalArgumentException("Player must contain exactly two scrubbers.");
     }
 
-	inputVideo = new VideoProcessingWidget(scrubbers[0], controller, false, this);
-	filteredVideo = new VideoProcessingWidget(scrubbers[1], controller, true, this);
+	inputVideo = new VideoProcessingWidget(scrubbers[0], filteredVideos, controller, false, this);
+	filteredVideo = new VideoProcessingWidget(scrubbers[1], filteredVideos, controller, true, this);
 
 	setupUi();
 }

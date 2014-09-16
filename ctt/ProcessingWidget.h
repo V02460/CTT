@@ -33,9 +33,11 @@ public:
      * Creates a ProcessingWidget.
      */
 	ProcessingWidget(::model::saveable::SaveableList<::model::player::Player>::sptr players,
-		::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos,
-		::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr baseVideos, 
-		::controller::VideoListController::sptr analysingVideosController, QWidget *parent = 0);
+		             ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos,
+					 ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr baseVideos,
+					 ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr analysingFilteredVideos,
+					 ::controller::VideoListController::sptr analysingVideosController,
+					 QWidget *parent = 0);
 
 	~ProcessingWidget();
 
@@ -68,6 +70,7 @@ private:
 	QStackedLayout *playerWidgetsLayout;
 
 	::controller::FilterController::sptr filterController;
+	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr analysingFilteredVideos;
 };
 
 }  // namespace view
