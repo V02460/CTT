@@ -42,6 +42,9 @@ public:
 	 */
 	ListedPushButton(int id, QWidget *parent = 0);
 
+	::model::filter::FilteredVideo::sptr getVideo();
+	void setIndex(int index);
+
 	virtual void update() Q_DECL_OVERRIDE;
 
 	virtual void resizeEvent(QResizeEvent *ev) Q_DECL_OVERRIDE;

@@ -3,10 +3,12 @@
 #include <QApplication>
 #include <QMenu>
 
+using ::model::filter::FilteredVideo;
+
 namespace view {
 
 	ListedPushButton::ListedPushButton(int id,
-		                               model::filter::FilteredVideo::sptr video,
+		                               FilteredVideo::sptr video,
 									   QWidget *parent) : QToolButton(parent),
 									                      video(video),
 														  id(id) {
@@ -15,7 +17,7 @@ namespace view {
 			video->subscribe(this);
 			setThumbnail();
 		} else {
-			setText(tr("NO_VIDEO_SPECIFIED") + " ID: " + QString::number(id));
+			setText(tr("NO_VIDEO_SPECIFIED"));
 		}
 
 		QSizePolicy sizePolicy = QSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
@@ -49,6 +51,10 @@ namespace view {
 		setThumbnail();
 	}
 
+	void ListedPushButton::setIndex(int index) {
+		id = index;
+	}
+
 	void ListedPushButton::setThumbnail() {
 		int thumbnailFrame = video->getFrameCount() * 0.09;
 		QImage iconImage = video->getFrame(thumbnailFrame)->getFramebufferObject()->toImage();
@@ -66,6 +72,10 @@ namespace view {
 
 	void ListedPushButton::removeToggled(bool checked) {
 		emit removed(checked, id);
+	}
+
+	FilteredVideo::sptr ListedPushButton::getVideo() {
+		return video;
 	}
 
 	void ListedPushButton::resizeEvent(QResizeEvent *ev) {

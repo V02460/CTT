@@ -89,7 +89,6 @@ private:
 	int selectableCount;
 	bool isHorizontal;
 	QBoxLayout *thumbnailListLayout;
-	bool isInUpdateRequest;
 
 	QDialog *openVideoDialog;
 	QSpinBox *widthSpinBox;

@@ -20,7 +20,7 @@ using ::exception::IOException;
 
 ThumbnailListWidget::ThumbnailListWidget(SaveableList<FilteredVideo>::sptr filteredVideos,
 	int selectableCount, bool isHorizontal, QWidget *parent) : QScrollArea(parent), macroblockFilePath(""),
-	isInUpdateRequest(false), activatedButtons(), thumbnailList(), backupThumbnailList(), filteredVideos(filteredVideos), 
+	activatedButtons(), thumbnailList(), backupThumbnailList(), filteredVideos(filteredVideos), 
 	selectableCount(selectableCount), isHorizontal(isHorizontal) {
 
 	if (!filteredVideos.isNull()) {
@@ -127,45 +127,42 @@ void ThumbnailListWidget::setupOpenVideoDialog() {
 }
 
 void ThumbnailListWidget::update() {
-	//Remove all contents of the ThumbnailListWidget
-	isInUpdateRequest = true;
-
-	//Remove all ListedPushButtons of this widget
-	for each (ListedPushButton::sptr btn in thumbnailList) {
-		thumbnailListLayout->removeWidget(btn.data());
-		btn->hide();
-		btn->setChecked(false);
-		QObject::disconnect(btn.data(), SIGNAL(toggled(bool, int)), this, SLOT(listedButtonToggled(bool, int)));
-		QObject::disconnect(btn.data(), SIGNAL(removed(bool, int)), this, SLOT(listedButtonRemoved(bool, int)));
-	}
-	//Delete all ListedPushButtons from the previous update
 	backupThumbnailList.clear();
-	//Mark all ListedPushButtons for deletion
-	backupThumbnailList.swap(thumbnailList);
-
-	thumbnailListLayout->removeWidget(btnAddVideo);
-
-	//Remove strech at the end of the layout
-	if (thumbnailListLayout->count() > 0) {
-		QLayoutItem *childItem = thumbnailListLayout->itemAt(0);
-		thumbnailListLayout->removeItem(childItem);
-		delete childItem;
+	for (int i = 0; i < std::min(thumbnailList.length(), filteredVideos->getSize());) {
+		ListedPushButton::sptr button = thumbnailList[i];
+		if (button->getVideo() != filteredVideos->get(i)) {
+			thumbnailListLayout->removeWidget(button.data());
+			button->hide();
+			button->setChecked(false);
+			QObject::disconnect(button.data(), SIGNAL(toggled(bool, int)),
+				                this, SLOT(listedButtonToggled(bool, int)));
+			QObject::disconnect(button.data(), SIGNAL(removed(bool, int)),
+				                this, SLOT(listedButtonRemoved(bool, int)));
+			thumbnailList.removeOne(button);
+			backupThumbnailList.append(button);
+		} else {
+			button->setIndex(i++);
+		}
 	}
-
-	//Repopulate the ThumbnailListWidget
-	for (int i = 0; i < filteredVideos->getSize(); i++) {
-		ListedPushButton::sptr addedButton =
-			ListedPushButton::sptr(new ListedPushButton(i, filteredVideos->get(i), this));
-		thumbnailList.insert(i, addedButton);
-		thumbnailListLayout->addWidget(addedButton.data());
-		QObject::connect(addedButton.data(), SIGNAL(toggled(bool, int)), this, SLOT(listedButtonToggled(bool, int)));
-		QObject::connect(addedButton.data(), SIGNAL(removed(bool, int)), this, SLOT(listedButtonRemoved(bool, int)));
+	while (thumbnailList.length() > filteredVideos->getSize()) {
+		ListedPushButton::sptr button = thumbnailList.takeLast();
+		thumbnailListLayout->removeWidget(button.data());
+		button->hide();
+		button->setChecked(false);
+		QObject::disconnect(button.data(), SIGNAL(toggled(bool, int)),
+			this, SLOT(listedButtonToggled(bool, int)));
+		QObject::disconnect(button.data(), SIGNAL(removed(bool, int)),
+			this, SLOT(listedButtonRemoved(bool, int)));
+		backupThumbnailList.append(button);
 	}
-
-	thumbnailListLayout->addWidget(btnAddVideo);
-	thumbnailListLayout->addStretch();
-
-	isInUpdateRequest = false;
+	while (thumbnailList.length() < filteredVideos->getSize()) {
+		int index = thumbnailList.length();
+		ListedPushButton::sptr button(new ListedPushButton(index, filteredVideos->get(index)));
+		thumbnailList.insert(index, button);
+		thumbnailListLayout->insertWidget(index, button.data());
+		QObject::connect(button.data(), SIGNAL(toggled(bool, int)), this, SLOT(listedButtonToggled(bool, int)));
+		QObject::connect(button.data(), SIGNAL(removed(bool, int)), this, SLOT(listedButtonRemoved(bool, int)));
+	}
 }
 
 void ThumbnailListWidget::listedButtonToggled(bool checked, int id) {
@@ -182,9 +179,7 @@ void ThumbnailListWidget::listedButtonToggled(bool checked, int id) {
 		}
 	} else if (!checked && activatedButtons.contains(id)) {
 		activatedButtons.removeOne(id);
-		if (!isInUpdateRequest) {
-			emit buttonDeactivated(id);
-		}
+		emit buttonDeactivated(id);
 	}
 }
 
