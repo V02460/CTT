@@ -122,7 +122,7 @@ private:
      */
     unsigned int getFramesToLoad(unsigned int startFrame) const;
 
-	static const unsigned int kNumberOfFramesInMemory = 30; /**< The size of the buffer in frames*/
+	static const unsigned int kNumberOfFramesInMemory = 1; /**< The size of the buffer in frames*/
 
     mutable QVector<Surface::sptr> videoSurfaceBuffer; /**< Intermediate buffer for storing frames without metadata*/
 	mutable QVector<::model::frame::Frame::sptr> videoBuffer; /**< The buffer for the video data*/
