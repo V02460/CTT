@@ -224,6 +224,18 @@ void ThumbnailListWidget::btnAddVideoClicked(bool checked) {
 			heightSpinBox->setValue(widthAndHeight[1].toInt());
 		}
 
+		QRegExp fpsStringRegEx("(\\d+,)?\\d+((fps|framespersecond)|FPS)");
+
+		if (fileInfo.baseName().contains(fpsStringRegEx))
+		{
+
+			fpsStringRegEx.indexIn(fileInfo.baseName());
+			QString fps = fpsStringRegEx.capturedTexts()[0];
+			fps.remove(QRegExp("((fps|framespersecond)|FPS)"));
+			fps.replace(",", ".");
+			fpsSpinBox->setValue(fps.toDouble());
+		}
+
 		macroblockFileLabel->setText(tr("NO_MACROOBLOCK_FILE_CHOSEN"));
 		macroblockFilePath = "";
 
