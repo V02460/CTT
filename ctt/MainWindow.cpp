@@ -243,6 +243,7 @@ namespace view {
 
 	void MainWindow::setupDialog() {
 		startABXTesting = new QDialog(this, Qt::Dialog | Qt::WindowTitleHint | Qt::WindowSystemMenuHint);
+		startABXTesting->setWindowTitle(tr("CHOOSE_ABX_VIDEOS"));
 
 		QVBoxLayout *dialogLayout = new QVBoxLayout();
 

@@ -489,6 +489,11 @@
         <source>REINITIALIZE_ABX_TESTING_QUESTION</source>
         <translation>Sollen die Videos für den ABX-Test neu gesetzt werden?</translation>
     </message>
+    <message>
+        <location filename="../ctt/MainWindow.cpp" line="246"/>
+        <source>CHOOSE_ABX_VIDEOS</source>
+        <translation>Wähle  Videos für den ABX-Test</translation>
+    </message>
 </context>
 <context>
     <name>view::PlayerFunctions</name>
