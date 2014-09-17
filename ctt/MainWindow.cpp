@@ -158,7 +158,7 @@ namespace view {
 			centralWidgetLayout->setCurrentIndex(2);
 			toProcessingView->setVisible(true);
 			toAnalysingView->setVisible(true);
-			toABXView->setVisible(false);
+			toABXView->setVisible(true);
 			setWindowTitle(tr("CODEC_TESTING_TOOLKIT") + "[*] - " + tr("ABX_VIEW"));
 		}
 		
