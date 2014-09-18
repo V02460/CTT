@@ -33,8 +33,7 @@ signals:
 
 protected:
 	AbstractListView(QWidget *parent);
-	void removeAllItems();
-	void setupUi();
+	void setupUi(QList<AbstractListViewItem*> newItems);
 
 	QList<AbstractListViewItem*> items;
 

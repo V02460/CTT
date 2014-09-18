@@ -24,6 +24,8 @@ public:
 
 	const int getHeight();
 
+	virtual bool equals(AbstractListViewItem *other) = 0;
+
 protected:
 	void setHeight(int height);
 

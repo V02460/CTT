@@ -145,7 +145,7 @@ void ThumbnailListWidget::update() {
 		}
 	}
 	while (thumbnailList.length() > filteredVideos->getSize()) {
-		ListedPushButton::sptr button = thumbnailList.takeLast();
+		ListedPushButton::sptr button = thumbnailList.takeAt(filteredVideos->getSize());
 		thumbnailListLayout->removeWidget(button.data());
 		button->hide();
 		button->setChecked(false);
@@ -259,12 +259,12 @@ void ThumbnailListWidget::btnAddVideoClicked(bool checked) {
 					emit videoAdded(videoPath, widthSpinBox->value(), heightSpinBox->value(), fpsSpinBox->value(),
 						videoType);
 				}
-			} catch (IllegalArgumentException e) {
+			} /*catch (IllegalArgumentException e) {
 				QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_ADDING_FAILED_ILLEGEAL_ARGUMENT_TITLE"), tr("VIDEO_ADDING_FAILED_ILLEGAL_ARGUMENT_DETAILS"), QMessageBox::Ok, this);
 				errorBox.setDetailedText(e.getName() + "\n" + e.getMsg());
 
 				errorBox.exec();
-			} catch (FileNotFoundException e) {
+			}*/ catch (FileNotFoundException e) {
 				QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_ADDING_FAILED_FILE_NOT_FOUND_TITLE"), tr("VIDEO_ADDING_FAILED_FILE_NOT_FOUND_DETAILS"), QMessageBox::Ok, this);
 				errorBox.setDetailedText(e.getName() + "\n" + e.getMsg());
 

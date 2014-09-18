@@ -59,4 +59,10 @@ namespace view {
 			initialized = true;
 		}
 	}
+
+	bool DifferenceListViewItem::equals(AbstractListViewItem *abstractOther) {
+		DifferenceListViewItem *other = dynamic_cast<DifferenceListViewItem*>(abstractOther);
+		if (other == nullptr) { return false; }
+		return diff == other->diff;
+	}
 }

@@ -52,6 +52,12 @@ void FilterListViewItem::setupUi() {
 	}
 }
 
+bool FilterListViewItem::equals(AbstractListViewItem *abstractOther) {
+	FilterListViewItem *other = dynamic_cast<FilterListViewItem*>(abstractOther);
+	if (other == nullptr) { return false; }
+	return filter == other->filter;
+}
+
 void FilterListViewItem::update() {
 	setHeight(0);
 

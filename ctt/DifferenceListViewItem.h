@@ -19,6 +19,7 @@ namespace view {
 
 		virtual QLabel* getIdentifier() const Q_DECL_OVERRIDE;
 		virtual void update() Q_DECL_OVERRIDE;
+		virtual bool equals(AbstractListViewItem *other) Q_DECL_OVERRIDE;
 
 		private:
 			::model::difference::FrameDiff::sptr diff;
