@@ -162,6 +162,7 @@ void ThumbnailListWidget::update() {
 		thumbnailListLayout->insertWidget(index, button.data());
 		QObject::connect(button.data(), SIGNAL(toggled(bool, int)), this, SLOT(listedButtonToggled(bool, int)));
 		QObject::connect(button.data(), SIGNAL(removed(bool, int)), this, SLOT(listedButtonRemoved(bool, int)));
+		button->setChecked(true);
 	}
 }
 
