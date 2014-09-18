@@ -14,6 +14,7 @@ using ::model::player::VideoScrubber;
 using ::controller::VideoListController;
 using ::model::saveable::SaveableList;
 using ::model::filter::FilteredVideo;
+using ::model::video::Video;
 
 namespace view {
 
@@ -47,12 +48,14 @@ void VideoProcessingWidget::checkboxUseForAnalysisValueChanged(int state) {
 
 void VideoProcessingWidget::btnSaveVideoClicked() {
 	QString saveFileName = QFileDialog::getSaveFileName(this, tr("SAVE_VIDEO_DIALOG"), "", tr("YUV_FILES *.yuv"));
-	if (!saveFileName.endsWith(".yuv")) {
-		saveFileName.append(".yuv");
+	if (saveFileName.endsWith(".yuv")) {
+		saveFileName = saveFileName.mid(0, saveFileName.length() - 4);
 	}
 
 	try {
-		videoWidget->getScrubber()->getVideo()->save(saveFileName, model::video::VideoFileType::YUV);
+		Video::sptr video = videoWidget->getScrubber()->getVideo();
+		saveFileName.append("_" + QString::number(video->getResolution().width()) + "x" + video->getResolution().height() + "_YUV444_" + video->getMetadata().getFPS() + "FPS.yuv");
+		video->save(saveFileName, model::video::VideoFileType::YUV);
 	}
 	catch (IOException e) {
 		QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_SAVING_FAILED_IO_TITLE"), tr("VIDEO_SAVING_FAILED_IO_DETAILS"), QMessageBox::Ok, this);
