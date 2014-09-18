@@ -54,7 +54,7 @@ void VideoProcessingWidget::btnSaveVideoClicked() {
 
 	try {
 		Video::sptr video = videoWidget->getScrubber()->getVideo();
-		saveFileName.append("_" + QString::number(video->getResolution().width()) + "x" + video->getResolution().height() + "_YUV444_" + video->getMetadata().getFPS() + "FPS.yuv");
+		saveFileName.append("_" + QString::number(video->getResolution().width()) + "x" + QString::number(video->getResolution().height()) + "_YUV444_" + QString::number(video->getMetadata().getFPS(), 'g', 2).replace('.', ',') + "FPS.yuv");
 		video->save(saveFileName, model::video::VideoFileType::YUV);
 	}
 	catch (IOException e) {
