@@ -32,7 +32,7 @@ ProcessingWidget::ProcessingWidget(SaveableList<Player>::sptr players,
 
 	playerWidgetsLayout = new QStackedLayout();
 
-	thumbnailWidget = new ThumbnailListWidget(filteredVideos, 1, false);
+	thumbnailWidget = new ThumbnailListWidget(filteredVideos, 1, false, true);
 	ExtendedVideoListController::sptr evlc(new ExtendedVideoListController(baseVideos, filteredVideos, players));
 	thumbnailWidget->subscribe(evlc);
 	QObject::connect(thumbnailWidget, SIGNAL(buttonActivated(int)), this, SLOT(videoActivated(int)));

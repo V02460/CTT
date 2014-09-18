@@ -19,9 +19,18 @@ using ::exception::FileNotFoundException;
 using ::exception::IOException;
 
 ThumbnailListWidget::ThumbnailListWidget(SaveableList<FilteredVideo>::sptr filteredVideos,
-	int selectableCount, bool isHorizontal, QWidget *parent) : QScrollArea(parent), macroblockFilePath(""),
-	activatedButtons(), thumbnailList(), backupThumbnailList(), filteredVideos(filteredVideos), 
-	selectableCount(selectableCount), isHorizontal(isHorizontal) {
+	                                     int selectableCount,
+										 bool isHorizontal,
+										 bool autoActivate,
+										 QWidget *parent) : QScrollArea(parent),
+										                    macroblockFilePath(""),
+															activatedButtons(),
+															thumbnailList(),
+															backupThumbnailList(),
+															filteredVideos(filteredVideos),
+															selectableCount(selectableCount),
+															isHorizontal(isHorizontal),
+															autoActivate(autoActivate) {
 
 	if (!filteredVideos.isNull()) {
 		filteredVideos->subscribe(this);
@@ -162,7 +171,7 @@ void ThumbnailListWidget::update() {
 		thumbnailListLayout->insertWidget(index, button.data());
 		QObject::connect(button.data(), SIGNAL(toggled(bool, int)), this, SLOT(listedButtonToggled(bool, int)));
 		QObject::connect(button.data(), SIGNAL(removed(bool, int)), this, SLOT(listedButtonRemoved(bool, int)));
-		button->setChecked(true);
+		if (autoActivate) { button->setChecked(true); }
 	}
 }
 

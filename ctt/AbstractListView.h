@@ -10,6 +10,7 @@
 #include "Observable.h"
 #include "AbstractListViewItem.h"
 #include "FilteredVideo.h"
+#include "ListedPushButton.h"
 
 namespace view {
 
@@ -39,6 +40,9 @@ protected:
 
 protected slots:
 	void buttonRemoveClicked(bool checked, int id);
+
+private:
+	QList<ListedPushButton::sptr> removeButtonList;
 };
 
 }  // namespace view

@@ -20,7 +20,17 @@ FilterListViewItem::FilterListViewItem(Filter::sptr filter,
 	horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
 	horizontalHeader()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
 	setRowCount(filter->getParams().size());
-	//filter->subscribe(this);
+	filter->subscribe(this);
+	for (int i = 0; i < filter->getParams().length(); i++) {
+		FilterParam::sptr param = filter->getParams()[i];
+		FilterParamItem *paramRepresentation = new FilterParamItem(param);
+		filterParams.append(FilterParamItem::sptr(paramRepresentation));
+		QObject::connect(paramRepresentation, SIGNAL(filterParamChanged(::model::filter::FilterParam::sptr)),
+			this, SLOT(changeFilterParam(::model::filter::FilterParam::sptr)));
+		setCellWidget(i, 0, filterParams[i]->getNameLabel());
+		setCellWidget(i, 1, filterParams[i]->getInteractibleComponent());
+		setHeight(getHeight() + filterParams[i]->getInteractibleComponent()->height() + 3);
+	}
 	update();
 	QObject::connect(this, SIGNAL(filterParamChanged(const ::model::filter::Filter::sptr,
 		                                             ::model::filter::FilterParam::sptr)),
@@ -31,7 +41,7 @@ FilterListViewItem::FilterListViewItem(Filter::sptr filter,
 
 FilterListViewItem::~FilterListViewItem() {
 	if (!filter.isNull()) {
-		//filter->unsubscribe(this);
+		filter->unsubscribe(this);
 	}
 }
 
@@ -45,8 +55,10 @@ void FilterListViewItem::changeFilterParam(FilterParam::sptr newParam) {
 
 void FilterListViewItem::setupUi() {
 	for (int i = 0; i < filterParams.size(); i++) {
-		setCellWidget(i, 0, filterParams[i]->getNameLabel());
-		setCellWidget(i, 1, filterParams[i]->getInteractibleComponent());
+		if (filterParams[i]->getParam() != filter->getParams()[i]) {
+			setCellWidget(i, 0, filterParams[i]->getNameLabel());
+			setCellWidget(i, 1, filterParams[i]->getInteractibleComponent());
+		}
 
 		setHeight(getHeight() + filterParams[i]->getInteractibleComponent()->height() + 3);
 	}
@@ -60,12 +72,17 @@ bool FilterListViewItem::equals(AbstractListViewItem *abstractOther) {
 
 void FilterListViewItem::update() {
 	setHeight(0);
-
-	for each (FilterParam::sptr param in filter->getParams()) {
-		FilterParamItem *paramRepresentation = new FilterParamItem(param);
-		filterParams.append(FilterParamItem::sptr(paramRepresentation));
-		QObject::connect(paramRepresentation, SIGNAL(filterParamChanged(::model::filter::FilterParam::sptr)),
-			this, SLOT(changeFilterParam(::model::filter::FilterParam::sptr)));
+	QList<FilterParam::sptr> newParams = filter->getParams();
+	for (int i = 0; i < newParams.length(); i++) {
+		try {
+			filterParams[i]->setParam(newParams[i]);
+		} catch (IllegalArgumentException e) {
+			filterParams.removeAt(i);
+			FilterParamItem *paramRepresentation = new FilterParamItem(newParams[i]);
+			filterParams.insert(i, FilterParamItem::sptr(paramRepresentation));
+			QObject::connect(paramRepresentation, SIGNAL(filterParamChanged(::model::filter::FilterParam::sptr)),
+				this, SLOT(changeFilterParam(::model::filter::FilterParam::sptr)));
+		}
 	}
 
 	setupUi();

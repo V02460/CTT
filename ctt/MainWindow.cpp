@@ -227,8 +227,8 @@ namespace view {
 
 	void MainWindow::initializeABXTesting() {
 		if (startABXTesting->exec() == QDialog::Accepted) {
-			FilteredVideo::sptr videoA = Project::getInstance()->getVideoList2()->get(videoSelection->getActiveIndices().at(0));
-			FilteredVideo::sptr videoB = Project::getInstance()->getVideoList2()->get(videoSelection->getActiveIndices().at(1));
+			Video::sptr videoA = Project::getInstance()->getVideoList2()->get(videoSelection->getActiveIndices()[0])->getBaseVideo();
+			Video::sptr videoB = Project::getInstance()->getVideoList2()->get(videoSelection->getActiveIndices()[1])->getBaseVideo();
 
 			if (abxTestingIsInitialized) {
 				abxController->reset(videoA, videoB);

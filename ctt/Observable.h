@@ -44,9 +44,11 @@ public:
 	void changed();
 
 protected:
+	Observable() : observers() {}
+
+private:
 	QList<Observer*> observers;
 
-	Observable() : observers() {}
 };
 
 }  // namespace model
