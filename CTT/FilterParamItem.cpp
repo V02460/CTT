@@ -24,6 +24,44 @@ namespace view {
 	}
 }
 
+void FilterParamItem::setParam(FilterParam::sptr newParam) {
+	if (param->getName() != newParam->getName()) {
+		throw IllegalArgumentException("Wrong parameter name.");
+	}
+	if (param->getValue().type() != newParam->getValue().type()) {
+		throw IllegalArgumentException("Wrong parameter type.");
+	}
+	param = newParam;
+
+	bool oldState;
+	switch (param->getValue().type()) {
+	case QVariant::Bool:
+		oldState = boolCheckbox.blockSignals(true);
+		boolCheckbox.setChecked(param->getValue().toBool());
+		boolCheckbox.blockSignals(oldState);
+		break;
+	case QVariant::Int:
+	case QVariant::UInt: 
+		oldState = intSpinbox.blockSignals(true);
+		intSpinbox.setValue(param->getValue().toInt());
+		intSpinbox.blockSignals(oldState);
+		break;
+	case QMetaType::Float:
+	case QVariant::Double:
+		oldState = doubleSpinbox.blockSignals(true); 
+		doubleSpinbox.setValue(param->getValue().toDouble());
+		doubleSpinbox.blockSignals(oldState);
+		break;
+	default:
+		throw IllegalArgumentException("There are only bool, integer, unsigned integer, float and double params.");
+		break;
+	}
+}
+
+FilterParam::sptr FilterParamItem::getParam() {
+	return param;
+}
+
 void FilterParamItem::initCheckBox() {
 	boolCheckbox.setChecked(param->getValue().toBool());
 	QObject::connect(&boolCheckbox, SIGNAL(stateChanged(int)), this, SLOT(boolStateChanged(int)));
@@ -31,7 +69,7 @@ void FilterParamItem::initCheckBox() {
 
 void FilterParamItem::initIntSpinbox() {
 	intSpinbox.setMinimum(0);
-	intSpinbox.setMaximum(255);
+	intSpinbox.setMaximum(5000);
 	intSpinbox.setValue(param->getValue().toInt());
 	QObject::connect(&intSpinbox, SIGNAL(valueChanged(int)), this, SLOT(intValueChanged(int)));
 }

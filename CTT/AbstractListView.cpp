@@ -24,15 +24,17 @@ void AbstractListView::setupUi(QList<AbstractListViewItem*> newItems) {
 	for (int i = 0; i < std::min(items.length(), newItems.length());) {
 		if (!items[i]->equals(newItems[i])) {
 			QTreeWidgetItem *item = takeTopLevelItem(i);
-			delete itemWidget(item, 0);
 			QList<QTreeWidgetItem*> children = item->takeChildren();
 			while (!children.isEmpty()) {
 				delete itemWidget(children.first(), 0);
 				delete children.takeFirst();
 			}
+			delete itemWidget(item, 0);
+			delete item;
 			items.removeAt(i);
+			removeButtonList.removeAt(i);
 		} else {
-			i++;
+			removeButtonList[i]->setIndex(i++);
 		}
 	}
 	while (items.length() > newItems.length()) {
@@ -44,6 +46,7 @@ void AbstractListView::setupUi(QList<AbstractListViewItem*> newItems) {
 			delete children.takeFirst();
 		}
 		items.removeAt(newItems.length());
+		removeButtonList.removeAt(newItems.length());
 	}
 	while (items.length() < newItems.length()) {
 		int index = items.length();
@@ -62,10 +65,11 @@ void AbstractListView::setupUi(QList<AbstractListViewItem*> newItems) {
 		itemWidgetLayout->addStretch();
 
 		// TODO Add icon
-		ListedPushButton *removeButton = new ListedPushButton(index, itemWidget);
+		ListedPushButton::sptr removeButton(new ListedPushButton(index));
 		removeButton->setText(tr("REMOVE"));
-		itemWidgetLayout->addWidget(removeButton);
-		QObject::connect(removeButton, SIGNAL(clicked(bool, int)), this, SLOT(buttonRemoveClicked(bool, int)));
+		itemWidgetLayout->addWidget(removeButton.data());
+		QObject::connect(removeButton.data(), SIGNAL(clicked(bool, int)), this, SLOT(buttonRemoveClicked(bool, int)));
+		removeButtonList.insert(index, removeButton);
 
 		itemWidget->setLayout(itemWidgetLayout);
 		setItemWidget(item, 0, itemWidget);

@@ -41,9 +41,11 @@ public:
 	 * @param isHorizontal Defines whether to use a QHBoxLayout (on true) or a QVBoxLayout (on false).
 	 * @param parent The parent widget.
      */
-    ThumbnailListWidget(::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos
-		, int selectableCount, bool isHorizontal = false
-		, QWidget *parent = 0);
+    ThumbnailListWidget(::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos,
+		                int selectableCount,
+						bool isHorizontal = false,
+						bool autoActivate = false,
+						QWidget *parent = 0);
 
 	~ThumbnailListWidget();
 
@@ -88,6 +90,7 @@ private:
 	QList<int> activatedButtons;
 	int selectableCount;
 	bool isHorizontal;
+	bool autoActivate;
 	QBoxLayout *thumbnailListLayout;
 
 	QDialog *openVideoDialog;

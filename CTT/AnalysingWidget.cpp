@@ -13,7 +13,7 @@ namespace view {
 	AnalysingWidget::AnalysingWidget(SaveableList<FilteredVideo>::sptr filteredVideos, Player::sptr player,
 		VideoListController::sptr videoListController, SaveableList<FrameDiff>::sptr differences, QWidget *parent)
 		: QWidget(parent) {
-		thumbnailWidget = ThumbnailListWidget::sptr(new ThumbnailListWidget(filteredVideos, 4, false, this));
+		thumbnailWidget = ThumbnailListWidget::sptr(new ThumbnailListWidget(filteredVideos, 4, false, false));
 		thumbnailWidget->subscribe(videoListController);
 
 		videoDisplay = AnalysingOrderingWidget::sptr(new AnalysingOrderingWidget(filteredVideos, player, thumbnailWidget, this));
