@@ -47,9 +47,9 @@ void VideoListController::addVideo(QString pathToVideoFile, QString pathToMetada
 }
 
 void VideoListController::addVideo(Video::sptr video) {
-	for (int i = 0; i < videoList->getSize(); i++) {
+	/*for (int i = 0; i < videoList->getSize(); i++) {
 		if (videoList->get(i)->getBaseVideo() == video) return;
-	}
+	}*/
 	FilteredVideo::sptr filteredVideo(new FilteredVideo(video));
 	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
 		new VideoAddedOperation(filteredVideo, videoList)));
@@ -70,8 +70,9 @@ void VideoListController::removeVideo(const Video &video) {
 				new VideoRemovedOperation(i, videoList)));
 			return;
 		}
-		throw exception::IllegalArgumentException("The Video which is to be removed is not part of this VideoList.");
 	}
+
+	throw exception::IllegalArgumentException("The Video which is to be removed is not part of this VideoList.");
 }
 
 }  // namespace controller

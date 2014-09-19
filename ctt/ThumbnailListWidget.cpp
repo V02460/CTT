@@ -55,12 +55,12 @@ void ThumbnailListWidget::setupUi() {
 	if (isHorizontal) {
 		thumbnailListLayout = new QHBoxLayout();
 		thumbnailListLayout->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-		setMinimumHeight(ListedPushButton::MINIMUM_SIZE.height() + 20);
+		setMinimumHeight(ListedPushButton::MINIMUM_SIZE.height() + 30);
 		setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
 	} else {
 		thumbnailListLayout = new QVBoxLayout();
 		thumbnailListLayout->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
-		setMinimumWidth(ListedPushButton::MINIMUM_SIZE.width() + 20);
+		setMinimumWidth(ListedPushButton::MINIMUM_SIZE.width() + 30);
 		setSizePolicy(QSizePolicy::Fixed, QSizePolicy::MinimumExpanding);
 	}
 	thumbnailListLayout->setContentsMargins(5, 5, 5, 5);
@@ -77,6 +77,8 @@ void ThumbnailListWidget::setupUi() {
 	btnAddVideo->setText(tr("ADD_VIDEO"));
 	thumbnailListLayout->addWidget(btnAddVideo);
 	QObject::connect(btnAddVideo, SIGNAL(clicked(bool)), this, SLOT(btnAddVideoClicked(bool)));
+
+	thumbnailListLayout->addStretch(5);
 
 	update();
 
