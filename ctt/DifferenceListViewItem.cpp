@@ -36,10 +36,9 @@ namespace view {
 	}
 
 	void DifferenceListViewItem::update() {
-		clear();
-
 		unsigned int currentFrame = player->getCurrentFrameNumber();
 		if (!initialized || currentFrame % 25 == 0) {
+			clear();
 
 			if (diff->getFrameCount() < currentFrame) {
 				currentFrame = static_cast<double>(diff->getFrameCount()) * 0.1;
