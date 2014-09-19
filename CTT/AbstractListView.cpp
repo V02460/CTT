@@ -25,13 +25,13 @@ void AbstractListView::setupUi(QList<AbstractListViewItem*> newItems) {
 		if (!items[i]->equals(newItems[i])) {
 			QTreeWidgetItem *item = takeTopLevelItem(i);
 			QList<QTreeWidgetItem*> children = item->takeChildren();
+			delete items.takeAt(i);
 			while (!children.isEmpty()) {
 				delete itemWidget(children.first(), 0);
 				delete children.takeFirst();
 			}
 			delete itemWidget(item, 0);
 			delete item;
-			items.removeAt(i);
 			removeButtonList.removeAt(i);
 		} else {
 			removeButtonList[i]->setIndex(i++);
@@ -81,6 +81,12 @@ void AbstractListView::setupUi(QList<AbstractListViewItem*> newItems) {
 		//childItem->setExpanded(true);
 		items[index]->setMaximumHeight(items[index]->getHeight());
 		setItemWidget(childItem, 0, items[index]);
+	}
+
+	for (int i = 0; i < newItems.length(); i++) {
+		if (items[i] != newItems[i]) {
+			delete newItems[i];
+		}
 	}
 }
 
