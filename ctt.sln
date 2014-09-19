@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cttUnitTests", "cttUnitTests\cttUnitTests.vcxproj", "{B04F89A4-33A5-46F0-8433-4F941540E3C2}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -13,7 +13,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cttApp", "cttApp\cttApp.vcx
 		{B12702AD-ABFB-343A-A199-8E24837244A3} = {B12702AD-ABFB-343A-A199-8E24837244A3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ctt", "ctt\ctt.vcxproj", "{B12702AD-ABFB-343A-A199-8E24837244A3}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ctt", "CTT\ctt.vcxproj", "{B12702AD-ABFB-343A-A199-8E24837244A3}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cttUnitTestsVS", "cttUnitTestsVS\cttUnitTestsVS.vcxproj", "{3B155041-F415-43AF-AB05-B444A7D9474F}"
 	ProjectSection(ProjectDependencies) = postProject
