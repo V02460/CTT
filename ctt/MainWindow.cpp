@@ -262,6 +262,8 @@ namespace view {
 		dialogLayout->addWidget(dialogButtons);
 
 		startABXTesting->setLayout(dialogLayout);
+		startABXTesting->setMinimumSize(600, ListedPushButton::MINIMUM_SIZE.height() + 70);
+		startABXTesting->setMaximumHeight(ListedPushButton::MINIMUM_SIZE.height() + 70);
 	}
 
 	void MainWindow::videoActivated(int id) {
