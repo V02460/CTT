@@ -88,6 +88,8 @@ void AbstractListView::setupUi(QList<AbstractListViewItem*> newItems) {
 			delete newItems[i];
 		}
 	}
+
+	newItems.clear();
 }
 
 /*

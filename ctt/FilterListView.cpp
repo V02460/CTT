@@ -50,6 +50,8 @@ void FilterListView::update() {
 		newItems.append(new FilterListViewItem(filter, filterController, this));
 	}
 	setupUi(newItems);
+
+	newItems.clear();
 }
 
 void FilterListView::filterSelectionChanged() {

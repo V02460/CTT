@@ -18,8 +18,8 @@ void Observable::unsubscribe(const Observer *observer) {
 }
 
 void Observable::changed() {
-	for each (Observer *observer in observers) {
-		observer->update();
+	for (int i = 0; i < observers.size(); i++) {
+		observers[i]->update();
 	}
 }
 
