@@ -130,8 +130,8 @@ private:
 	mutable unsigned int firstFrameInMemory; /**< The number of the first frame in the buffer*/
 
 	unsigned int chromaSize; /**< The size of the U and V channels of each frame of the YUV file*/
-	unsigned int pixelsPerFrame; /**< The number of pixels in each frame*/
-	unsigned int bytesPerFrame; /**< The number of bytes for each frame*/
+	unsigned long long pixelsPerFrame; /**< The number of pixels in each frame*/
+	unsigned long long bytesPerFrame; /**< The number of bytes for each frame*/
 	mutable QFile metadataFile; /**< The file the video reads its metadata from*/
 	VideoMetadata metadata; /**< The metadata of the YUV video */
 	YUVType type; /**< The YUv type of the YUV video */
