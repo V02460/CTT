@@ -66,11 +66,13 @@ namespace view {
 		QMenu *file = menu->addMenu(tr("MENU_FILE"));
 		
 		QAction *newProject = new QAction(tr("MENUENTRY_NEW_PROJECT"), file);
+		newProject->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_N));
 		QObject::connect(newProject, SIGNAL(triggered(bool)), mainController.data(), SLOT(newProject()));
 		file->addAction(newProject);
 
 		QAction *loadProject = new QAction(tr("MENUENTRY_LOAD_PROJECT"), file);
 		loadProject->setEnabled(true);
+		loadProject->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_O));
 		QObject::connect(loadProject, SIGNAL(triggered(bool)), this, SLOT(menuLoad()));
 		QObject::connect(this, SIGNAL(loadProject(QString)), mainController.data(), SLOT(loadClicked(QString)));
 		file->addAction(loadProject);
@@ -79,12 +81,14 @@ namespace view {
 
 		QAction *saveProject = new QAction(tr("MENUENTRY_SAVE_PROJECT"), file);
 		saveProject->setEnabled(true);
+		saveProject->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
 		QObject::connect(saveProject, SIGNAL(triggered(bool)), mainController.data(), SLOT(saveClicked()));
 
 		file->addAction(saveProject);
 
 		QAction *saveProjectAs = new QAction(tr("MENUENTRY_SAVE_PROJECT_AS"), file);
 		saveProjectAs->setEnabled(true);
+		saveProjectAs->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
 		QObject::connect(saveProjectAs, SIGNAL(triggered(bool)), this, SLOT(menuSave()));
 		QObject::connect(mainController.data(), SIGNAL(requestSavePath()), this, SLOT(menuSave()));
 		QObject::connect(this, SIGNAL(saveProjectAs(QString, ::controller::project::SaveFileType)), mainController.data(),
@@ -96,11 +100,13 @@ namespace view {
 
 		undo = new QAction(tr("MENUENTRY_UNDO"), edit);
 		undo->setEnabled(OperationList::getInstance()->canUndo());
+		undo->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Z));
 		QObject::connect(undo, SIGNAL(triggered()), this, SLOT(menuUndo()));
 		edit->addAction(undo);
 
 		redo = new QAction(tr("MENUENTRY_REDO"), edit);
 		redo->setEnabled(OperationList::getInstance()->canRedo());
+		redo->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Y));
 		QObject::connect(redo, SIGNAL(triggered()), this, SLOT(menuRedo()));
 		edit->addAction(redo);
 
@@ -108,14 +114,17 @@ namespace view {
 		QMenu *view = menu->addMenu(tr("MENU_VIEW"));
 
 		toProcessingView = new QAction(tr("MENUENTRY_TO_PROCESSING"), view);
+		toProcessingView->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_1));
 		QObject::connect(toProcessingView, SIGNAL(triggered()), this, SLOT(menuToProcessing()));
 		view->addAction(toProcessingView);
 
 		toAnalysingView = new QAction(tr("MENUENTRY_TO_ANALYSING"), view);
+		toAnalysingView->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_2));
 		QObject::connect(toAnalysingView, SIGNAL(triggered()), this, SLOT(menuToAnalysing()));
 		view->addAction(toAnalysingView);
 
 		toABXView = new QAction(tr("MENUENTRY_TO_ABX"), view);
+		toABXView->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_3));
 		QObject::connect(toABXView, SIGNAL(triggered()), this, SLOT(menuToABX()));
 		view->addAction(toABXView);
 
@@ -262,8 +271,9 @@ namespace view {
 		dialogLayout->addWidget(dialogButtons);
 
 		startABXTesting->setLayout(dialogLayout);
-		startABXTesting->setMinimumSize(600, ListedPushButton::MINIMUM_SIZE.height() + 70);
-		startABXTesting->setMaximumHeight(ListedPushButton::MINIMUM_SIZE.height() + 70);
+		startABXTesting->setMinimumSize(600, ListedPushButton::MINIMUM_SIZE.height() + 80);
+		startABXTesting->setMaximumHeight(ListedPushButton::MINIMUM_SIZE.height() + 80);
+		startABXTesting->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
 	}
 
 	void MainWindow::videoActivated(int id) {
