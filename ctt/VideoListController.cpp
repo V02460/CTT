@@ -34,14 +34,14 @@ void VideoListController::addVideo(QString path) {
 		new VideoAddedOperation(video, videoList)));
 }
 
-void VideoListController::addVideo(QString path, int width, int height, double fps, YUVType type) {
-	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(new YUVDataVideo(path, QSize(width, height), fps, type, GlobalContext::get()))));
+void VideoListController::addVideo(QString path, int width, int height, double fps, YUVType type, bool isHDTV) {
+	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(new YUVDataVideo(path, QSize(width, height), fps, type, isHDTV, GlobalContext::get()))));
 	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
 		new VideoAddedOperation(video, videoList)));
 }
 
-void VideoListController::addVideo(QString pathToVideoFile, QString pathToMetadataFile, int width, int height, double fps, YUVType type) {
-	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(new YUVDataVideo(pathToVideoFile, pathToMetadataFile, QSize(width, height), fps, type, GlobalContext::get()))));
+void VideoListController::addVideo(QString pathToVideoFile, QString pathToMetadataFile, int width, int height, double fps, YUVType type, bool isHDTV) {
+	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(new YUVDataVideo(pathToVideoFile, pathToMetadataFile, QSize(width, height), fps, type, isHDTV, GlobalContext::get()))));
 	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
 		new VideoAddedOperation(video, videoList)));
 }

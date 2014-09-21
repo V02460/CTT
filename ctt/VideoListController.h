@@ -47,7 +47,7 @@ public slots:
 	*
 	* @param path The path to the video which is to be added.
 	*/
-	virtual void addVideo(QString path, int width, int height, double fps, model::video::YUVType type);
+	virtual void addVideo(QString path, int width, int height, double fps, model::video::YUVType type, bool isHDTV);
 
 	/**
 	* Initiates adding a video, typically YUV with metadata provided by the user, to the VideoList.
@@ -55,7 +55,7 @@ public slots:
 	*
 	* @param path The path to the video which is to be added.
 	*/
-	virtual void addVideo(QString pathToVideoFile, QString pathToMetaDataFile, int width, int height, double fps, model::video::YUVType type);
+	virtual void addVideo(QString pathToVideoFile, QString pathToMetaDataFile, int width, int height, double fps, model::video::YUVType type, bool isHDTV);
 
 	/**
      * Initiates adding a video to the VideoList.

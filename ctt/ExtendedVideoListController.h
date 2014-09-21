@@ -24,14 +24,16 @@ public slots:
                           int width,
                           int height,
                           double fps,
-                          ::model::video::YUVType type) Q_DECL_OVERRIDE;
+                          ::model::video::YUVType type,
+						  bool isHDTV) Q_DECL_OVERRIDE;
 
     virtual void addVideo(QString path,
                           QString macrobockPath,
                           int width,
                           int height,
                           double fps,
-                          ::model::video::YUVType type) Q_DECL_OVERRIDE;
+                          ::model::video::YUVType type,
+						  bool isHDTV) Q_DECL_OVERRIDE;
 
     virtual void addVideo(::model::video::Video::sptr video) Q_DECL_OVERRIDE;
 

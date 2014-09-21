@@ -132,14 +132,18 @@ void ThumbnailListWidget::setupOpenVideoDialog() {
 	dialogMainLayout->addWidget(fpsLabel, 1, 2);
 	dialogMainLayout->addWidget(fpsSpinBox, 1, 3);
 
+	hdtv = new QCheckBox(openVideoDialog);
+	hdtv->setText(tr("USE_HDTV_YUV_TO_RGB_CONVERSION"));
+	dialogMainLayout->addWidget(hdtv, 2, 0, 1, 4);
+
 	macroblockFileLabel = new QLabel(tr("NO_MACROOBLOCK_FILE_CHOSEN"));
 	QPushButton *macroblockFile = new QPushButton(tr("ADD_MACROBLOCK_FILE"));
 	QObject::connect(macroblockFile, SIGNAL(clicked(bool)), this, SLOT(btnAddMacroblockFileClicked(bool)));
-	dialogMainLayout->addWidget(macroblockFileLabel, 2, 0, 1, 3);
-	dialogMainLayout->addWidget(macroblockFile, 2, 3);
+	dialogMainLayout->addWidget(macroblockFileLabel, 3, 0, 1, 3);
+	dialogMainLayout->addWidget(macroblockFile, 3, 3);
 
 	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, openVideoDialog);
-	dialogMainLayout->addWidget(buttonBox, 3, 0);
+	dialogMainLayout->addWidget(buttonBox, 4, 0);
 	QObject::connect(buttonBox, SIGNAL(accepted()), openVideoDialog, SLOT(accept()));
 	QObject::connect(buttonBox, SIGNAL(rejected()), openVideoDialog, SLOT(reject()));
 
@@ -258,6 +262,12 @@ void ThumbnailListWidget::btnAddVideoClicked(bool checked) {
 			fpsSpinBox->setValue(fps.toDouble());
 		}
 
+		if (fileInfo.baseName().contains(QRegExp("(hdtv|HDTV"))) {
+			hdtv->setChecked(true);
+		} else {
+			hdtv->setChecked(false);
+		}
+
 		macroblockFileLabel->setText(tr("NO_MACROOBLOCK_FILE_CHOSEN"));
 		macroblockFilePath = "";
 
@@ -274,18 +284,18 @@ void ThumbnailListWidget::btnAddVideoClicked(bool checked) {
 			try {
 				if (macroblockFilePath != "") {
 					emit videoAdded(videoPath, macroblockFileLabel->text(), widthSpinBox->value(), heightSpinBox->value(),
-						fpsSpinBox->value(), videoType);
+						fpsSpinBox->value(), videoType, hdtv->isChecked());
 				}
 				else {
 					emit videoAdded(videoPath, widthSpinBox->value(), heightSpinBox->value(), fpsSpinBox->value(),
-						videoType);
+						videoType, hdtv->isChecked());
 				}
-			} /*catch (IllegalArgumentException e) {
+			} catch (IllegalArgumentException e) {
 				QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_ADDING_FAILED_ILLEGEAL_ARGUMENT_TITLE"), tr("VIDEO_ADDING_FAILED_ILLEGAL_ARGUMENT_DETAILS"), QMessageBox::Ok, this);
 				errorBox.setDetailedText(e.getName() + "\n" + e.getMsg());
 
 				errorBox.exec();
-			}*/ catch (FileNotFoundException e) {
+			} catch (FileNotFoundException e) {
 				QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_ADDING_FAILED_FILE_NOT_FOUND_TITLE"), tr("VIDEO_ADDING_FAILED_FILE_NOT_FOUND_DETAILS"), QMessageBox::Ok, this);
 				errorBox.setDetailedText(e.getName() + "\n" + e.getMsg());
 
@@ -316,19 +326,19 @@ const int ThumbnailListWidget::getSelectableCount() {
 }
 
 void ThumbnailListWidget::subscribe(::controller::VideoListController::sptr observer) {
-	QObject::connect(this, SIGNAL(videoAdded(QString, QString, int, int, double, model::video::YUVType)),
-		observer.data(), SLOT(addVideo(QString, QString, int, int, double, model::video::YUVType)));
-	QObject::connect(this, SIGNAL(videoAdded(QString, int, int, double, model::video::YUVType)),
-		observer.data(), SLOT(addVideo(QString, int, int, double, model::video::YUVType)));
+	QObject::connect(this, SIGNAL(videoAdded(QString, QString, int, int, double, model::video::YUVType, bool)),
+		observer.data(), SLOT(addVideo(QString, QString, int, int, double, model::video::YUVType, bool)));
+	QObject::connect(this, SIGNAL(videoAdded(QString, int, int, double, model::video::YUVType, bool)),
+		observer.data(), SLOT(addVideo(QString, int, int, double, model::video::YUVType, bool)));
 	QObject::connect(this, SIGNAL(videoRemoved(int)), observer.data(), SLOT(removeVideo(int)));
 	videoListController = observer;
 }
 
 void ThumbnailListWidget::unsubscribe(const ::controller::VideoListController &observer) {
-	QObject::connect(this, SIGNAL(videoAdded(QString, QString, int, int, double, model::video::YUVType)),
-		&observer, SLOT(addVideo(QString, QString, int, int, double, model::video::YUVType)));
-	QObject::connect(this, SIGNAL(videoAdded(QString, int, int, double, model::video::YUVType)),
-		&observer, SLOT(addVideo(QString, int, int, double, model::video::YUVType)));
+	QObject::connect(this, SIGNAL(videoAdded(QString, QString, int, int, double, model::video::YUVType, bool)),
+		&observer, SLOT(addVideo(QString, QString, int, int, double, model::video::YUVType, bool)));
+	QObject::connect(this, SIGNAL(videoAdded(QString, int, int, double, model::video::YUVType, bool)),
+		&observer, SLOT(addVideo(QString, int, int, double, model::video::YUVType, bool)));
 	QObject::disconnect(this, SIGNAL(videoRemoved(int)), &observer, SLOT(removeVideo(int)));
 }
 

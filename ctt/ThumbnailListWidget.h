@@ -12,6 +12,7 @@
 #include <QComboBox>
 #include <QSpinBox>
 #include <QLabel>
+#include <QCheckBox>
 
 #include "Observer.h"
 #include "FilteredVideo.h"
@@ -69,9 +70,9 @@ signals:
      *
      * @param path The file path that leads to the video file.
      */
-	void videoAdded(QString path, QString macroblockPath, int width, int height, double fps, model::video::YUVType type);
+	void videoAdded(QString path, QString macroblockPath, int width, int height, double fps, model::video::YUVType type, bool isHDTV);
 
-	void videoAdded(QString path, int width, int height, double fps, model::video::YUVType type);
+	void videoAdded(QString path, int width, int height, double fps, model::video::YUVType type, bool isHDTV);
 
     /**
      * This signal is emitted when an existing video is removed from the program.
@@ -97,6 +98,7 @@ private:
 	QSpinBox *widthSpinBox;
 	QSpinBox *heightSpinBox;
 	QComboBox *yuvType;
+	QCheckBox *hdtv;
 	QSpinBox *lengthSpinBox;
 	QDoubleSpinBox *fpsSpinBox;
 	QLabel *macroblockFileLabel;

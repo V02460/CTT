@@ -623,53 +623,58 @@
 <context>
     <name>view::ThumbnailListWidget</name>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="84"/>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="86"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="85"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="87"/>
         <source>ADD_VIDEO</source>
         <translation>Add video</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="222"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="227"/>
         <source>MORE_VIDEO_INFORMATION</source>
         <translation>More information</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="106"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="107"/>
         <source>VIDEO_WIDTH</source>
         <translation>Width</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="113"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="114"/>
         <source>VIDEO_HEIGHT</source>
         <translation>Height</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="118"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="119"/>
         <source>YUV444</source>
         <translation>YUV444</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="119"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="120"/>
         <source>YUV422</source>
         <translation>YUV422</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="120"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="121"/>
         <source>YUV420</source>
         <translation>YUV420</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="122"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="123"/>
         <source>VIDEO_YUV_TYPE</source>
         <translation>YUV type</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="127"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="128"/>
+        <source>USE_HDTV_YUV_TO_RGB_CONVERSION</source>
+        <translation>use HDTV YUVto RGB conversion?</translation>
+    </message>
+    <message>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="132"/>
         <source> FPS</source>
         <translation>FPS</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="131"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="136"/>
         <source>VIDEO_FPS</source>
         <translation>Video FPS</translation>
     </message>
@@ -682,57 +687,59 @@
         <translation type="vanished">Length</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="135"/>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="261"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="140"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="272"/>
         <source>NO_MACROOBLOCK_FILE_CHOSEN</source>
         <translation>No metadata file chosen</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="136"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="141"/>
         <source>ADD_MACROBLOCK_FILE</source>
         <translation>Add metadata file</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="219"/>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="304"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="224"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="315"/>
         <source>OPEN_VIDEO</source>
         <translation>Open video</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="219"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="224"/>
         <source>YUV_FILES (*.yuv)</source>
         <translation>YUV video files (*.yuv)</translation>
     </message>
     <message>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="295"/>
         <source>VIDEO_ADDING_FAILED_ILLEGEAL_ARGUMENT_TITLE</source>
-        <translation type="vanished">Video Adding failed</translation>
+        <translation>Video Adding failed</translation>
     </message>
     <message>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="295"/>
         <source>VIDEO_ADDING_FAILED_ILLEGAL_ARGUMENT_DETAILS</source>
-        <translation type="vanished">A wrong argument was selected. See &quot;details&quot; for further information</translation>
+        <translation>A wrong argument was selected. See &quot;details&quot; for further information</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="289"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="300"/>
         <source>VIDEO_ADDING_FAILED_FILE_NOT_FOUND_TITLE</source>
         <translation>Video Adding failed</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="289"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="300"/>
         <source>VIDEO_ADDING_FAILED_FILE_NOT_FOUND_DETAILS</source>
         <translation>The specified file could not be found. See &quot;details&quot; for further information</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="294"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="305"/>
         <source>VIDEO_ADDING_FAILED_IO_TITLE</source>
         <translation>Video Adding failed</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="294"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="305"/>
         <source>VIDEO_ADDING_FAILED_IO_DETAILS</source>
         <translation>Input-/Output error. See &quot;details&quot; for further information</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="304"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="315"/>
         <source>DAT_FILES (*.dat)</source>
         <translation>DAT metadata files (*.dat)</translation>
     </message>
@@ -744,9 +751,14 @@
 <context>
     <name>view::VideoAnalysingWidget</name>
     <message>
-        <location filename="../CTT/VideoAnalysingWidget.cpp" line="52"/>
+        <location filename="../CTT/VideoAnalysingWidget.cpp" line="53"/>
         <source>NO_OVERLAY</source>
         <translation>No overlay</translation>
+    </message>
+    <message>
+        <location filename="../CTT/VideoAnalysingWidget.cpp" line="74"/>
+        <source>SHOW_INFORMATION</source>
+        <translation>show video information</translation>
     </message>
 </context>
 <context>
