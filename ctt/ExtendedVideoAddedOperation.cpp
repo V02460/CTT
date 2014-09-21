@@ -23,7 +23,10 @@ ExtendedVideoAddedOperation::ExtendedVideoAddedOperation(SaveableList<Player>::s
         , video2(video2)
         , videoList(videoList)
         , filteredVideos(filteredVideos)
-        , index(videoList->getSize()) {
+        , index(videoList->getSize())
+		, videoListMemento(videoList->getMemento())
+		, filteredVideosMemento(filteredVideos->getMemento())
+		, playerListMemento(playerList->getMemento()) {
 }
 
 void ExtendedVideoAddedOperation::doOperation() {
@@ -42,9 +45,12 @@ void ExtendedVideoAddedOperation::doOperation() {
 }
 
 void ExtendedVideoAddedOperation::undoOperation() {
-    videoList->remove(index);
-    filteredVideos->remove(index);
-    playerList->remove(index);
+	videoList->restore(videoListMemento);
+	filteredVideos->restore(filteredVideosMemento);
+	playerList->restore(playerListMemento);
+	playerList->changed();
+	videoList->changed();
+	filteredVideos->changed();
 }
 
 }  // namespace operation

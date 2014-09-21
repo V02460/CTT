@@ -58,6 +58,9 @@ private:
 	::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos;
 	::model::saveable::Memento memento;
 
+	::model::saveable::Memento videoListMemento;
+	::model::saveable::Memento filteredVideosMemento;
+	::model::saveable::Memento playerListMemento;
 };
 
 }  // namespace operation
