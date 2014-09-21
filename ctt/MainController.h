@@ -27,6 +27,8 @@ public:
 
 	MainController();
 
+	QString getCurrentSavePath();
+
 public slots:
 
     /**

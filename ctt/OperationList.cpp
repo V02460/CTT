@@ -57,6 +57,18 @@ bool OperationList::canRedo() const {
 	return currentOperation != operations.size();
 }
 
+void OperationList::clear() {
+	operations.clear();
+	currentOperation = 0;
+	lastSavedOperation = -1;
+
+	changed();
+}
+
+bool OperationList::isNew() const {
+	return (currentOperation == 0 && lastSavedOperation == -1);
+}
+
 OperationList *OperationList::getInstance() {
 	if (instance.isNull()) {
 		instance.reset(new OperationList());

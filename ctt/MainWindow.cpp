@@ -2,6 +2,7 @@
 
 #include <QMenu>
 #include <QFileDialog>
+#include <QMessageBox>
 
 #include "Project.h"
 #include "ProcessingWidget.h"
@@ -46,6 +47,7 @@ namespace view {
 		OperationList::getInstance()->subscribe(this);
 
 		mainController = MainController::sptr(new MainController());
+		QObject::connect(this, SIGNAL(saveProjectDirectly()), mainController.data(), SLOT(saveClicked()));
 
 		setupUi();
 		setupDialog();
@@ -66,47 +68,54 @@ namespace view {
 		QMenu *file = menu->addMenu(tr("MENU_FILE"));
 		
 		QAction *newProject = new QAction(tr("MENUENTRY_NEW_PROJECT"), file);
-		newProject->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_N));
+		newProject->setShortcut(QKeySequence::New);
 		QObject::connect(newProject, SIGNAL(triggered(bool)), mainController.data(), SLOT(newProject()));
 		file->addAction(newProject);
 
 		QAction *loadProject = new QAction(tr("MENUENTRY_LOAD_PROJECT"), file);
 		loadProject->setEnabled(true);
-		loadProject->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_O));
+		loadProject->setShortcut(QKeySequence::Open);
 		QObject::connect(loadProject, SIGNAL(triggered(bool)), this, SLOT(menuLoad()));
 		QObject::connect(this, SIGNAL(loadProject(QString)), mainController.data(), SLOT(loadClicked(QString)));
 		file->addAction(loadProject);
 
 		file->addSeparator();
 
-		QAction *saveProject = new QAction(tr("MENUENTRY_SAVE_PROJECT"), file);
-		saveProject->setEnabled(true);
-		saveProject->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
+		saveProject = new QAction(tr("MENUENTRY_SAVE_PROJECT"), file);
+		saveProject->setEnabled(OperationList::getInstance()->hasSaveableChanges());
+		saveProject->setShortcut(QKeySequence::Save);
 		QObject::connect(saveProject, SIGNAL(triggered(bool)), mainController.data(), SLOT(saveClicked()));
 
 		file->addAction(saveProject);
 
 		QAction *saveProjectAs = new QAction(tr("MENUENTRY_SAVE_PROJECT_AS"), file);
 		saveProjectAs->setEnabled(true);
-		saveProjectAs->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
+		saveProjectAs->setShortcut(QKeySequence::SaveAs);
 		QObject::connect(saveProjectAs, SIGNAL(triggered(bool)), this, SLOT(menuSave()));
 		QObject::connect(mainController.data(), SIGNAL(requestSavePath()), this, SLOT(menuSave()));
 		QObject::connect(this, SIGNAL(saveProjectAs(QString, ::controller::project::SaveFileType)), mainController.data(),
 			SLOT(saveAsClicked(QString, ::controller::project::SaveFileType)));
 		file->addAction(saveProjectAs);
 
+		file->addSeparator();
+
+		QAction *closeWindow = new QAction(tr("MENUENTRY_CLOSE_WINDOW"), file);
+		closeWindow->setShortcut(QKeySequence::Close);
+		QObject::connect(closeWindow, SIGNAL(triggered(bool)), this, SLOT(close()));
+		file->addAction(closeWindow);
+
 
 		QMenu *edit = menu->addMenu(tr("MENU_EDIT"));
 
 		undo = new QAction(tr("MENUENTRY_UNDO"), edit);
 		undo->setEnabled(OperationList::getInstance()->canUndo());
-		undo->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Z));
+		undo->setShortcut(QKeySequence::Undo);
 		QObject::connect(undo, SIGNAL(triggered()), this, SLOT(menuUndo()));
 		edit->addAction(undo);
 
 		redo = new QAction(tr("MENUENTRY_REDO"), edit);
 		redo->setEnabled(OperationList::getInstance()->canRedo());
-		redo->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Y));
+		redo->setShortcut(QKeySequence::Redo);
 		QObject::connect(redo, SIGNAL(triggered()), this, SLOT(menuRedo()));
 		edit->addAction(redo);
 
@@ -144,31 +153,44 @@ namespace view {
 	void MainWindow::update() {
 		ViewType currentType = ViewState::getInstance()->getCurrentViewType();
 
-		undo->setEnabled(OperationList::getInstance()->canUndo());
+		OperationList *operationListInstance = OperationList::getInstance();
+		QString currentSavePath = mainController->getCurrentSavePath();
+		if (currentSavePath == "") {
+			currentSavePath = tr("UNSAVED_PROJECT");
+		}
 
-		redo->setEnabled(OperationList::getInstance()->canRedo());
+		if (!operationListInstance->isNew()) {
+			saveProject->setEnabled(operationListInstance->hasSaveableChanges());
+			setWindowModified(operationListInstance->hasSaveableChanges());
+		} else {
+			saveProject->setEnabled(true);
+			setWindowModified(false);
+		}
 
-		setWindowModified(false);
+		undo->setEnabled(operationListInstance->canUndo());
+
+		redo->setEnabled(operationListInstance->canRedo());
+
 
 		if (currentType == ViewType::PROCESSING_VIEW) {
 			centralWidgetLayout->setCurrentIndex(0);
 			toProcessingView->setVisible(false);
 			toAnalysingView->setVisible(true);
 			toABXView->setVisible(true);
-			setWindowTitle(tr("CODEC_TESTING_TOOLKIT") + "[*] - " + tr("PROCESSING_VIEW"));
+			setWindowTitle(currentSavePath + "[*] - " + tr("CODEC_TESTING_TOOLKIT") + " - " + tr("PROCESSING_VIEW"));
 		} else if (currentType == ViewType::ANALYSING_VIEW) {
 			centralWidgetLayout->setCurrentIndex(1);
 			toProcessingView->setVisible(true);
 			toAnalysingView->setVisible(false);
 			toABXView->setVisible(true);
-			setWindowTitle(tr("CODEC_TESTING_TOOLKIT") + "[*] - " + tr("ANALYSING_VIEW"));
+			setWindowTitle(currentSavePath + "[*] - " + tr("CODEC_TESTING_TOOLKIT") + " - " + tr("ANALYSING_VIEW"));
 		} else if (currentType == ViewType::ABX_VIEW)
 		{
 			centralWidgetLayout->setCurrentIndex(2);
 			toProcessingView->setVisible(true);
 			toAnalysingView->setVisible(true);
 			toABXView->setVisible(true);
-			setWindowTitle(tr("CODEC_TESTING_TOOLKIT") + "[*] - " + tr("ABX_VIEW"));
+			setWindowTitle(currentSavePath + "[*] - " + tr("CODEC_TESTING_TOOLKIT") + " - " + tr("ABX_VIEW"));
 		}
 		
 	}
@@ -285,6 +307,27 @@ namespace view {
 	void MainWindow::videoDeactivated(int id) {
 		if (videoSelection->getActiveIndices().size() != 2) {
 			dialogAcceptButton->setEnabled(false);
+		}
+	}
+
+	void MainWindow::closeEvent(QCloseEvent *ev) {
+		OperationList *operationListInstance = OperationList::getInstance();
+
+		if (!operationListInstance->isNew() && operationListInstance->hasSaveableChanges()) {
+			QMessageBox saveChanges(QMessageBox::Question, tr("SAVE_CHANGES_TITLE"), tr("SAVE_CHANGES_TEXT"), QMessageBox::Save | QMessageBox::Discard | QMessageBox::Abort, this);
+			saveChanges.setEscapeButton(QMessageBox::Abort);
+			saveChanges.setDefaultButton(QMessageBox::Save);
+
+			int decision = saveChanges.exec();
+
+			switch (decision) {
+			case QMessageBox::Save: emit saveProjectDirectly(); ev->accept(); break;
+			case QMessageBox::Discard: ev->accept(); break;
+			case QMessageBox::Abort:
+			default: ev->ignore(); break;
+			}
+		} else {
+			ev->accept();
 		}
 	}
 

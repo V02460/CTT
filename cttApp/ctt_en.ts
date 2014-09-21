@@ -452,127 +452,147 @@
 <context>
     <name>view::MainWindow</name>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="66"/>
+        <location filename="../CTT/MainWindow.cpp" line="68"/>
         <source>MENU_FILE</source>
         <translation>File</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="68"/>
+        <location filename="../CTT/MainWindow.cpp" line="70"/>
         <source>MENUENTRY_NEW_PROJECT</source>
         <translation>New project</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="73"/>
+        <location filename="../CTT/MainWindow.cpp" line="75"/>
         <source>MENUENTRY_LOAD_PROJECT</source>
         <translation>Load project</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="82"/>
+        <location filename="../CTT/MainWindow.cpp" line="84"/>
         <source>MENUENTRY_SAVE_PROJECT</source>
         <translation>Save project</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="89"/>
+        <location filename="../CTT/MainWindow.cpp" line="91"/>
         <source>MENUENTRY_SAVE_PROJECT_AS</source>
         <translation>Save projec as...</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="99"/>
+        <location filename="../CTT/MainWindow.cpp" line="102"/>
+        <source>MENUENTRY_CLOSE_WINDOW</source>
+        <translation>Quit</translation>
+    </message>
+    <message>
+        <location filename="../CTT/MainWindow.cpp" line="108"/>
         <source>MENU_EDIT</source>
         <translation>Edit</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="101"/>
+        <location filename="../CTT/MainWindow.cpp" line="110"/>
         <source>MENUENTRY_UNDO</source>
         <translation>Undo</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="107"/>
+        <location filename="../CTT/MainWindow.cpp" line="116"/>
         <source>MENUENTRY_REDO</source>
         <translation>Redo</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="114"/>
+        <location filename="../CTT/MainWindow.cpp" line="123"/>
         <source>MENU_VIEW</source>
         <translation>View</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="116"/>
+        <location filename="../CTT/MainWindow.cpp" line="125"/>
         <source>MENUENTRY_TO_PROCESSING</source>
         <translation>Processing view</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="121"/>
+        <location filename="../CTT/MainWindow.cpp" line="130"/>
         <source>MENUENTRY_TO_ANALYSING</source>
         <translation>Analyse view</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="126"/>
+        <location filename="../CTT/MainWindow.cpp" line="135"/>
         <source>MENUENTRY_TO_ABX</source>
         <translation>ABX Test</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="131"/>
+        <location filename="../CTT/MainWindow.cpp" line="140"/>
         <source>MENU_HELP</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="133"/>
+        <location filename="../CTT/MainWindow.cpp" line="142"/>
         <source>MENUENTRY_ABOUT</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="158"/>
-        <location filename="../CTT/MainWindow.cpp" line="164"/>
-        <location filename="../CTT/MainWindow.cpp" line="171"/>
+        <location filename="../CTT/MainWindow.cpp" line="159"/>
+        <source>UNSAVED_PROJECT</source>
+        <translation>Unsaved Project</translation>
+    </message>
+    <message>
+        <location filename="../CTT/MainWindow.cpp" line="180"/>
+        <location filename="../CTT/MainWindow.cpp" line="186"/>
+        <location filename="../CTT/MainWindow.cpp" line="193"/>
         <source>CODEC_TESTING_TOOLKIT</source>
         <translation>Codec Testing Toolkit</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="158"/>
+        <location filename="../CTT/MainWindow.cpp" line="180"/>
         <source>PROCESSING_VIEW</source>
         <translation>Process videos</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="164"/>
+        <location filename="../CTT/MainWindow.cpp" line="186"/>
         <source>ANALYSING_VIEW</source>
         <translation>Analyse Videos</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="171"/>
+        <location filename="../CTT/MainWindow.cpp" line="193"/>
         <source>ABX_VIEW</source>
         <translation>Perform ABX test</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="185"/>
+        <location filename="../CTT/MainWindow.cpp" line="207"/>
         <source>LOAD_PROJECT</source>
         <translation>load project</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="185"/>
-        <location filename="../CTT/MainWindow.cpp" line="193"/>
+        <location filename="../CTT/MainWindow.cpp" line="207"/>
+        <location filename="../CTT/MainWindow.cpp" line="215"/>
         <source>CTT_FILES *.ctt</source>
         <translation>CTT files *.ctt</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="193"/>
+        <location filename="../CTT/MainWindow.cpp" line="215"/>
         <source>SAVE_PROJECT</source>
         <translation>save project</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="223"/>
+        <location filename="../CTT/MainWindow.cpp" line="245"/>
         <source>REINITIALIZE_ABX_TESTING_TITLE</source>
         <translation>Reinitialize ABX test</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="224"/>
+        <location filename="../CTT/MainWindow.cpp" line="246"/>
         <source>REINITIALIZE_ABX_TESTING_QUESTION</source>
         <translation>Choose new videos for the ABX test?</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="255"/>
+        <location filename="../CTT/MainWindow.cpp" line="277"/>
         <source>CHOOSE_ABX_VIDEOS</source>
         <translation>Choose videos for the ABX test</translation>
+    </message>
+    <message>
+        <location filename="../CTT/MainWindow.cpp" line="317"/>
+        <source>SAVE_CHANGES_TITLE</source>
+        <translation>Save Project?</translation>
+    </message>
+    <message>
+        <location filename="../CTT/MainWindow.cpp" line="317"/>
+        <source>SAVE_CHANGES_TEXT</source>
+        <translation>Should the existing changes be saved?</translation>
     </message>
 </context>
 <context>
@@ -623,58 +643,58 @@
 <context>
     <name>view::ThumbnailListWidget</name>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="85"/>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="87"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="84"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="86"/>
         <source>ADD_VIDEO</source>
         <translation>Add video</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="227"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="226"/>
         <source>MORE_VIDEO_INFORMATION</source>
         <translation>More information</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="107"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="106"/>
         <source>VIDEO_WIDTH</source>
         <translation>Width</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="114"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="113"/>
         <source>VIDEO_HEIGHT</source>
         <translation>Height</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="119"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="118"/>
         <source>YUV444</source>
         <translation>YUV444</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="120"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="119"/>
         <source>YUV422</source>
         <translation>YUV422</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="121"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="120"/>
         <source>YUV420</source>
         <translation>YUV420</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="123"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="122"/>
         <source>VIDEO_YUV_TYPE</source>
         <translation>YUV type</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="128"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="136"/>
         <source>USE_HDTV_YUV_TO_RGB_CONVERSION</source>
         <translation>use HDTV YUVto RGB conversion?</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="132"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="127"/>
         <source> FPS</source>
         <translation>FPS</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="136"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="131"/>
         <source>VIDEO_FPS</source>
         <translation>Video FPS</translation>
     </message>
@@ -687,59 +707,59 @@
         <translation type="vanished">Length</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="140"/>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="272"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="139"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="271"/>
         <source>NO_MACROOBLOCK_FILE_CHOSEN</source>
         <translation>No metadata file chosen</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="141"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="140"/>
         <source>ADD_MACROBLOCK_FILE</source>
         <translation>Add metadata file</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="224"/>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="315"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="223"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="314"/>
         <source>OPEN_VIDEO</source>
         <translation>Open video</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="224"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="223"/>
         <source>YUV_FILES (*.yuv)</source>
         <translation>YUV video files (*.yuv)</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="295"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="294"/>
         <source>VIDEO_ADDING_FAILED_ILLEGEAL_ARGUMENT_TITLE</source>
         <translation>Video Adding failed</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="295"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="294"/>
         <source>VIDEO_ADDING_FAILED_ILLEGAL_ARGUMENT_DETAILS</source>
         <translation>A wrong argument was selected. See &quot;details&quot; for further information</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="300"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="299"/>
         <source>VIDEO_ADDING_FAILED_FILE_NOT_FOUND_TITLE</source>
         <translation>Video Adding failed</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="300"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="299"/>
         <source>VIDEO_ADDING_FAILED_FILE_NOT_FOUND_DETAILS</source>
         <translation>The specified file could not be found. See &quot;details&quot; for further information</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="305"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="304"/>
         <source>VIDEO_ADDING_FAILED_IO_TITLE</source>
         <translation>Video Adding failed</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="305"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="304"/>
         <source>VIDEO_ADDING_FAILED_IO_DETAILS</source>
         <translation>Input-/Output error. See &quot;details&quot; for further information</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="315"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="314"/>
         <source>DAT_FILES (*.dat)</source>
         <translation>DAT metadata files (*.dat)</translation>
     </message>
