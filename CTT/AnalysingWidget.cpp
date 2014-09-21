@@ -30,15 +30,6 @@ namespace view {
 	void AnalysingWidget::setupUi() {
 		QSplitter *verticalSplitter = new QSplitter(Qt::Vertical, this);
 
-		QSplitter *horizontalSplitter = new QSplitter(Qt::Horizontal, verticalSplitter);
-
-		horizontalSplitter->addWidget(thumbnailWidget.data());
-		horizontalSplitter->addWidget(videoDisplay.data());
-
-		horizontalSplitter->setStretchFactor(0, 1);
-		horizontalSplitter->setStretchFactor(1, 4);
-		horizontalSplitter->setChildrenCollapsible(false);
-
 		QHBoxLayout *upperLayout = new QHBoxLayout();
 		upperLayout->addWidget(thumbnailWidget.data());
 		upperLayout->addWidget(videoDisplay.data());
@@ -53,7 +44,9 @@ namespace view {
 		verticalSplitter->setStretchFactor(1, 1);
 
 		QVBoxLayout *layout = new QVBoxLayout();
+		layout->setContentsMargins(0, 0, 0, 0);
 		layout->addWidget(verticalSplitter);
 		setLayout(layout);
+		setContentsMargins(0, 0, 0, 0);
 	}
 }  // namespace view

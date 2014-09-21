@@ -137,6 +137,7 @@ void MainControlWidget::setupUi(ViewType viewType) {
 	layout->addWidget(splitter);
 
 	setLayout(layout);
+	setMinimumHeight(200);
 }
 
 void MainControlWidget::btnInsertClicked(bool active) {

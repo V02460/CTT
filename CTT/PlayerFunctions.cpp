@@ -26,6 +26,7 @@ PlayerFunctions::~PlayerFunctions() {
 void PlayerFunctions::setupUi() {
 	setAccessibleName("PlayerFunctions");
 	QHBoxLayout *layout = new QHBoxLayout();
+	layout->setContentsMargins(0, 0, 0, 0);
 	buttonSize = QSize(30, 30);
 	QSizePolicy buttonSizePolicy = QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
@@ -35,6 +36,7 @@ void PlayerFunctions::setupUi() {
 	btnPlayPause->setSizePolicy(buttonSizePolicy);
 	layout->addWidget(btnPlayPause);
 	QObject::connect(btnPlayPause, SIGNAL(clicked(bool)), this, SLOT(btnPlayPauseClicked(bool)));
+	layout->addSpacing(15);
 
 	btnPreviousFrame = new QPushButton(this);
 	btnPreviousFrame->setAccessibleName("PlayerFunctions->btnPreviousFrame");

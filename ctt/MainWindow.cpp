@@ -136,7 +136,7 @@ namespace view {
 		setCentralWidget(centralWidget);
 
 		resize(1600, 900);
-		move(40, 40);
+		move(100, 100);
 
 		update();
 	}

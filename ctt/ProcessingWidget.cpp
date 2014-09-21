@@ -83,18 +83,21 @@ void ProcessingWidget::setupUi() {
 	upperLeftWidget->setLayout(upperLeftLayout);
 
 	QHBoxLayout *upperLayout = new QHBoxLayout();
+	upperLayout->setContentsMargins(0, 0, 0, 0);
 	upperLayout->addWidget(upperLeftWidget);
 	upperLayout->addWidget(upperRightWidget);
 	upperWidget->setLayout(upperLayout);
 
 	verticalSplitter->addWidget(upperWidget);
 	verticalSplitter->addWidget(mainControlWidget);
-	verticalSplitter->setStretchFactor(0, 5);
+	verticalSplitter->setStretchFactor(0, 3);
 	verticalSplitter->setStretchFactor(1, 1);
 
 	QVBoxLayout *layout = new QVBoxLayout();
+	layout->setContentsMargins(0, 0, 0, 0);
 	layout->addWidget(verticalSplitter);
 	setLayout(layout);
+	setContentsMargins(0, 0, 0, 0);
 }
 
 void ProcessingWidget::videoActivated(int id) {
