@@ -29,7 +29,7 @@ public:
 
     /**
      * Creates a new YUVDataVideo representing the YUV 4:4:4, YUV 4:2:2 or YUV 4:2:0 video at the submitted location in the file
-     * system.
+     * system. Assumes sdtv YUV colors.
      *
      * @param pathToVideoFile the path to the video file which will be loaded
      * @param pathToMetadataFile the path to the file containing the metadata for the video file (only motion vectors apparently?)
@@ -47,7 +47,7 @@ public:
 
     /**
      * Creates a new YUVDataVideo representing the YUV 4:4:4, YUV 4:2:2 or YUV 4:2:0 video at the submitted location in the file
-     * system.
+     * system. Assumes sdtv YUV colors.
      *
      * @param pathToVideoFile the path to the video file which will be loaded
      * @param resolution the resolution of the video
@@ -61,6 +61,43 @@ public:
      * @throws IllegalArgumentException if framerate isn't greater than zero
      */
 	YUVDataVideo(QString pathToVideoFile, QSize resolution, double framerate, YUVType type, QSharedPointer<QOpenGLContext> context);
+
+	/**
+	* Creates a new YUVDataVideo representing the YUV 4:4:4, YUV 4:2:2 or YUV 4:2:0 video at the submitted location in the file
+	* system.
+	*
+	* @param pathToVideoFile the path to the video file which will be loaded
+	* @param resolution the resolution of the video
+	* @param framerate the framerate of the video in fps
+	* @param type specifies the YUV type of the video, i.e. 444, 422 or 420
+	* @param isHDTV if this is true, HDTV YUV to RGB conversion is used
+	* @param context the context in which the video creates its frames
+	* @throws FileNotFoundException if the files at the submitted locations can't be found.
+	* @throws IllegalArgumentException if the file at the submitted locations isn't a valid YUV 4:4:4, YUV 4:2:2 or
+	*     YUV 4:2:0 video file
+	* @throws IllegalArgumentException if resolution has a size or width of 0
+	* @throws IllegalArgumentException if framerate isn't greater than zero
+	*/
+	YUVDataVideo(QString pathToVideoFile, QSize resolution, double framerate, YUVType type, bool isHDTV, QSharedPointer<QOpenGLContext> context);
+
+	/**
+	* Creates a new YUVDataVideo representing the YUV 4:4:4, YUV 4:2:2 or YUV 4:2:0 video at the submitted location in the file
+	* system.
+	*
+	* @param pathToVideoFile the path to the video file which will be loaded
+	* @param pathToMetadataFile the path to the file containing the metadata for the video file (only motion vectors apparently?)
+	* @param resolution the resolution of the video
+	* @param framerate the framerate of the video in fps
+	* @param type specifies the YUV type of the video, i.e. 444, 422 or 420
+	* @param isHDTV if this is true, HDTV YUV to RGB conversion is used
+	* @param context the context in which the video creates its frames
+	* @throws FileNotFoundException if the files at the submitted locations can't be found.
+	* @throws IllegalArgumentException if the files at the submitted locations aren't valid YUV 4:4:4, YUV 4:2:2 or
+	*     YUV 4:2:0 video or metadata files
+	* @throws IllegalArgumentException if resolution has a height or width of 0
+	* @throws IllegalArgumentException if framerate isn't greater than zero
+	*/
+	YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, QSize resolution, double framerate, YUVType type, bool isHDTV, QSharedPointer<QOpenGLContext> context);
 
     /**
      * Destructor of YUVDataVideo.
@@ -139,6 +176,7 @@ private:
 	bool hasMetadataFile; /**< Whether the video has a metadata file*/
 	QString pathToMetadataFile; /**< The metadata file of the YUV video */
 
+	bool isHDTV;
 };
 
 }  // namespace video
