@@ -4,6 +4,7 @@
 #include <QDialogButtonBox>
 #include <QMessageBox>
 #include <QRegExp>
+#include <QImageReader>
 #include "YUVType.h"
 #include "FileNotFoundException.h"
 #include "IOException.h"
@@ -73,8 +74,17 @@ void ThumbnailListWidget::setupUi() {
 
 	btnAddVideo = new QPushButton(this);
 	btnAddVideo->setAccessibleName("ThumbnailListWidget->btnAddVideo");
-	btnAddVideo->setMinimumSize(QSize(50, 50));
-	btnAddVideo->setText(tr("ADD_VIDEO"));
+	btnAddVideo->setMinimumSize(ListedPushButton::MINIMUM_SIZE);
+	
+	QString addVideoIconPath = "Resources/Icons/video.png";
+	if (!QImageReader::imageFormat(addVideoIconPath).isEmpty()) {
+		btnAddVideo->setIcon(QIcon(addVideoIconPath));
+		btnAddVideo->setIconSize(btnAddVideo->size()*0.80);
+	} else {
+		btnAddVideo->setText(tr("ADD_VIDEO"));
+	}
+	btnAddVideo->setToolTip(tr("ADD_VIDEO"));
+
 	thumbnailListLayout->addWidget(btnAddVideo);
 	QObject::connect(btnAddVideo, SIGNAL(clicked(bool)), this, SLOT(btnAddVideoClicked(bool)));
 

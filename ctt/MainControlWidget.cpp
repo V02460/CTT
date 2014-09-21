@@ -62,10 +62,30 @@ void MainControlWidget::setupUi(ViewType viewType) {
 	btnInsert->setMinimumSize(QSize(30, 30));
 	btnInsert->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	if (viewType == ViewType::PROCESSING_VIEW) {
-		btnInsert->setText(tr("INSERT_FILTER"));
+		QString insertFilterIconPath = "Resources/Icons/filter.png";
+		if (!QImageReader::imageFormat(insertFilterIconPath).isEmpty()) {
+			btnInsert->setMaximumSize(btnInsert->minimumSize());
+			btnInsert->setIcon(QIcon(insertFilterIconPath));
+			btnInsert->setIconSize(btnInsert->size() * 0.60);
+		}
+		else {
+			btnInsert->setText(tr("INSERT_FILTER"));
+		}
+		btnInsert->setToolTip(tr("INSERT_FILTER"));
+
 		btnInsert->setEnabled(false);
 	} else if (viewType == ViewType::ANALYSING_VIEW) {
-		btnInsert->setText(tr("INSERT_DIFFERENCE"));
+		QString insertGraphIconPath = "Resources/Icons/graph.png";
+		if (!QImageReader::imageFormat(insertGraphIconPath).isEmpty()) {
+			btnInsert->setMaximumSize(btnInsert->minimumSize());
+			btnInsert->setIcon(QIcon(insertGraphIconPath));
+			btnInsert->setIconSize(btnInsert->size() * 0.60);
+		}
+		else {
+			btnInsert->setText(tr("INSERT_DIFFERENCE"));
+		}
+		btnInsert->setToolTip(tr("INSERT_DIFFERENCE"));
+
 		btnInsert->setEnabled(true);
 	}
 	btnInsert->setCheckable(true);

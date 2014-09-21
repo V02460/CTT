@@ -1,6 +1,7 @@
 #include "PlayerFunctions.h"
 
 #include <QHBoxLayout>
+#include <QImageReader>
 #include "PlayerController.h"
 
 namespace view {
@@ -25,7 +26,7 @@ PlayerFunctions::~PlayerFunctions() {
 void PlayerFunctions::setupUi() {
 	setAccessibleName("PlayerFunctions");
 	QHBoxLayout *layout = new QHBoxLayout();
-	QSize buttonSize = QSize(30, 30);
+	buttonSize = QSize(30, 30);
 	QSizePolicy buttonSizePolicy = QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
 	btnPlayPause = new QPushButton(this);
@@ -39,15 +40,33 @@ void PlayerFunctions::setupUi() {
 	btnPreviousFrame->setAccessibleName("PlayerFunctions->btnPreviousFrame");
 	btnPreviousFrame->setMinimumSize(buttonSize);
 	btnPreviousFrame->setSizePolicy(buttonSizePolicy);
+	QString previousFrameIconPath = "Resources/Icons/previous.png";
+	if (!QImageReader::imageFormat(previousFrameIconPath).isEmpty()) {
+		btnPreviousFrame->setMaximumSize(buttonSize);
+		btnPreviousFrame->setIcon(QIcon(previousFrameIconPath));
+		btnPreviousFrame->setIconSize(btnPreviousFrame->size() * 0.60);
+	}
+	else {
+		btnPreviousFrame->setText(tr("PREVIOUS_FRAME"));
+	}
+	btnPreviousFrame->setToolTip(tr("PREVIOUS_FRAME"));
 	layout->addWidget(btnPreviousFrame);
-	btnPreviousFrame->setText(tr("PREVIOUS_FRAME"));
 
 	btnNextFrame = new QPushButton(this);
 	btnNextFrame->setAccessibleName("PlayerFunctions->btnNextFrame");
 	btnNextFrame->setMinimumSize(buttonSize);
 	btnNextFrame->setSizePolicy(buttonSizePolicy);
+	QString nextFrameIconPath = "Resources/Icons/next.png";
+	if (!QImageReader::imageFormat(nextFrameIconPath).isEmpty()) {
+		btnNextFrame->setMaximumSize(buttonSize);
+		btnNextFrame->setIcon(QIcon(nextFrameIconPath));
+		btnNextFrame->setIconSize(btnNextFrame->size() * 0.60);
+	}
+	else {
+		btnNextFrame->setText(tr("NEXT_FRAME"));
+	}
+	btnPreviousFrame->setToolTip(tr("NExT_FRAME"));
 	layout->addWidget(btnNextFrame);
-	btnNextFrame->setText(tr("NEXT_FRAME"));
 
 	//Must be after initialisation of btnNextFrame and btnPreviousFrame
 	setPlayButton(true);
@@ -76,11 +95,29 @@ void PlayerFunctions::setupUi() {
 
 void PlayerFunctions::setPlayButton(bool isPlayButton) {
 	if (isPlayButton) {
-		btnPlayPause->setText(tr("PLAY"));
+		QString playIconPath = "Resources/Icons/play.png";
+		if (!QImageReader::imageFormat(playIconPath).isEmpty()) {
+			btnPlayPause->setMaximumSize(buttonSize);
+			btnPlayPause->setIcon(QIcon(playIconPath));
+			btnPlayPause->setIconSize(btnNextFrame->size() * 0.60);
+		} else {
+			btnPlayPause->setText(tr("PLAY"));
+		}
+		btnPlayPause->setToolTip(tr("PLAY"));
+
 		btnNextFrame->setEnabled(true);
 		btnPreviousFrame->setEnabled(true);
 	} else {
-		btnPlayPause->setText(tr("PAUSE"));
+		QString pauseIconPath = "Resources/Icons/pause.png";
+		if (!QImageReader::imageFormat(pauseIconPath).isEmpty()) {
+			btnPlayPause->setMaximumSize(buttonSize);
+			btnPlayPause->setIcon(QIcon(pauseIconPath));
+			btnPlayPause->setIconSize(btnNextFrame->size() * 0.60);
+		} else {
+			btnPlayPause->setText(tr("PLAY"));
+		}
+		btnPlayPause->setToolTip(tr("PLAY"));
+
 		if (player->scrubberCount() != 0) {
 			btnNextFrame->setEnabled(false);
 			btnPreviousFrame->setEnabled(false);
