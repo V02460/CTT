@@ -17,7 +17,7 @@ using ::exception::AccessToDummyException;
 
 const QByteArray BlurFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_blur");
 
-const QString BlurFilter::kParamRadiusStr = QT_TR_NOOP("filter_blur_param_radius");
+const QByteArray BlurFilter::kParamRadiusStr = QT_TRANSLATE_NOOP("Param", "filter_blur_param_radius");
 
 BlurFilter::BlurFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamRadiusStr, 5.f);

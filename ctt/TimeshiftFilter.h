@@ -26,7 +26,7 @@ public:
 
     static const QByteArray kFilterID;
 
-    static const QString kParamShiftStr;
+    static const QByteArray kParamShiftStr;
 
     /**
      * Creates a new TimeshiftFilter object with a given previous module.

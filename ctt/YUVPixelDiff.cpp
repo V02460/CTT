@@ -14,7 +14,7 @@ using ::helper::GPUSurfaceCompactor;
 using ::helper::getNewSizeDefault;
 using ::exception::AccessToDummyException;
 
-const QByteArray YUVPixelDiff::kDiffID = QT_TRANSLATE_NOOP("PixelDiff", "pixeldiff_yuv");
+const QByteArray YUVPixelDiff::kDiffID = QT_TRANSLATE_NOOP("Diff", "pixeldiff_yuv");
 
 YUVPixelDiff::YUVPixelDiff(Module::sptr module1, Module::sptr module2) : AveragePixelDiff(module1, module2) {
 }

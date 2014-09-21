@@ -26,7 +26,7 @@ public:
 
     static const QByteArray kFilterID;
 
-    static const QString kParamIntensityStr;
+    static const QByteArray kParamIntensityStr;
 
     /**
      * Creates a new NoiseFilter object with a given previous module.

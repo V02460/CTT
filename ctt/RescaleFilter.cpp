@@ -21,8 +21,8 @@ using ::exception::AccessToDummyException;
 
 const QByteArray RescaleFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_rescale");
 
-const QString RescaleFilter::kParamNewSizeWidth = QT_TR_NOOP("filter_rescale_param_newsize_width");
-const QString RescaleFilter::kParamNewSizeHeight = QT_TR_NOOP("filter_rescale_param_newsize_height");
+const QByteArray RescaleFilter::kParamNewSizeWidth = QT_TRANSLATE_NOOP("Param", "filter_rescale_param_newsize_width");
+const QByteArray RescaleFilter::kParamNewSizeHeight = QT_TRANSLATE_NOOP("Param", "filter_rescale_param_newsize_height");
 
 RescaleFilter::RescaleFilter(Module::sptr predecessor) : Filter(predecessor) {
     QSize resolution = predecessor->getResolution();

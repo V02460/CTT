@@ -27,14 +27,14 @@ public:
      *
      * @return QList<QString> a List of all identifiers of types of FrameDiffs the Factory can create
      */
-    static QList<QString> getAllFrameDiffIDs();
+    static QList<QByteArray> getAllFrameDiffIDs();
 
     /**
     * Gets a List of all identifiers of types of PixelDiffs the Factory can create.
     *
     * @return QList<QString> a List of all identifiers of types of PixelDiffs the Factory can create
     */
-    static QList<QString> getAllPixelDiffIDs();
+    static QList<QByteArray> getAllPixelDiffIDs();
 
     /**
      * Creates and returns a FrameDiff of the type specified by the submitted id for the two submitted videos.

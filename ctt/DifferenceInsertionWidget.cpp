@@ -20,10 +20,10 @@ namespace view {
 	}
 
 	void DifferenceInsertionWidget::generateButtons() {
-		QList<QString> diffIds = DifferenceFactory::getAllFrameDiffIDs();
+		QList<QByteArray> diffIds = DifferenceFactory::getAllFrameDiffIDs();
 		for (int i = 0; i < diffIds.size(); i++) {
 			ListedPushButton *button = new ListedPushButton(i, this);
-			button->setText(diffIds.at(i));
+			button->setText(QCoreApplication::translate("Diff", diffIds.at(i)));
 			button->setMinimumSize(preferredButtonSize);
 			button->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 			insertionButtons.append(button);

@@ -1,6 +1,7 @@
 #include "FilterParamItem.h"
 
 #include "IllegalArgumentException.h"
+#include <QCoreApplication>
 
 using ::model::filter::FilterParam;
 using ::exception::IllegalArgumentException;
@@ -8,7 +9,7 @@ using ::exception::IllegalArgumentException;
 namespace view {
 
 	FilterParamItem::FilterParamItem(FilterParam::sptr param) : param(param),
-		                                                        nameLabel(param->getName()),
+		                                                        nameLabel(QCoreApplication::translate("Param", param->getName())),
 																boolCheckbox(),
 																intSpinbox(),
 																doubleSpinbox() {

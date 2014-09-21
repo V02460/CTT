@@ -15,8 +15,8 @@ using ::model::video::Video;
 using ::exception::IllegalArgumentException;
 using ::model::frame::histogram::Histogram;
 
-QList<QString> DifferenceFactory::getAllFrameDiffIDs() {
-    return QList<QString>()
+QList<QByteArray> DifferenceFactory::getAllFrameDiffIDs() {
+    return QList<QByteArray>()
         << EarthMoversHistogramDiff::kDiffIDs[Histogram::Red]
         << EarthMoversHistogramDiff::kDiffIDs[Histogram::Green]
         << EarthMoversHistogramDiff::kDiffIDs[Histogram::Blue]
@@ -27,8 +27,8 @@ QList<QString> DifferenceFactory::getAllFrameDiffIDs() {
         << YUVPixelDiff::kDiffID;
 }
 
-QList<QString> DifferenceFactory::getAllPixelDiffIDs() {
-    return QList<QString>()
+QList<QByteArray> DifferenceFactory::getAllPixelDiffIDs() {
+    return QList<QByteArray>()
         << HSLPixelDiff::kDiffID
         << YUVPixelDiff::kDiffID;
 }

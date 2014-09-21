@@ -16,12 +16,12 @@ const QString EarthMoversHistogramDiff::kTypeStr = "type";
 
 static QMap<Histogram::HistogramType, QByteArray> initDiffIDMap() {
     QMap<Histogram::HistogramType, QByteArray> diffIDs;
-    diffIDs.insert(Histogram::Red, QT_TRANSLATE_NOOP("FrameDiff", "framediff_earthmoverhistogram_red"));
-    diffIDs.insert(Histogram::Green, QT_TRANSLATE_NOOP("FrameDiff", "framediff_earthmoverhistogram_green"));
-    diffIDs.insert(Histogram::Blue, QT_TRANSLATE_NOOP("FrameDiff", "framediff_earthmoverhistogram_blue"));
-    diffIDs.insert(Histogram::Hue, QT_TRANSLATE_NOOP("FrameDiff", "framediff_earthmoverhistogram_hue"));
-    diffIDs.insert(Histogram::Saturation, QT_TRANSLATE_NOOP("FrameDiff", "framediff_earthmoverhistogram_saturation"));
-    diffIDs.insert(Histogram::Luminance, QT_TRANSLATE_NOOP("FrameDiff", "framediff_earthmoverhistogram_luminance"));
+    diffIDs.insert(Histogram::Red, QT_TRANSLATE_NOOP("Diff", "framediff_earthmoverhistogram_red"));
+    diffIDs.insert(Histogram::Green, QT_TRANSLATE_NOOP("Diff", "framediff_earthmoverhistogram_green"));
+    diffIDs.insert(Histogram::Blue, QT_TRANSLATE_NOOP("Diff", "framediff_earthmoverhistogram_blue"));
+    diffIDs.insert(Histogram::Hue, QT_TRANSLATE_NOOP("Diff", "framediff_earthmoverhistogram_hue"));
+    diffIDs.insert(Histogram::Saturation, QT_TRANSLATE_NOOP("Diff", "framediff_earthmoverhistogram_saturation"));
+    diffIDs.insert(Histogram::Luminance, QT_TRANSLATE_NOOP("Diff", "framediff_earthmoverhistogram_luminance"));
     return diffIDs;
 }
 const QMap<Histogram::HistogramType, QByteArray> EarthMoversHistogramDiff::kDiffIDs = initDiffIDMap();

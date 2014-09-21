@@ -13,7 +13,7 @@ namespace controller {
 
 	void DifferenceController::diffInserted(QString id, Video::sptr video1, Video::sptr video2) {
 	//model::difference::DifferenceFactory factory(model::difference::DifferenceFactory());
-	QList<QString> frameDiffs = model::difference::DifferenceFactory::getAllFrameDiffIDs();
+	QList<QByteArray> frameDiffs = model::difference::DifferenceFactory::getAllFrameDiffIDs();
 	for (int i = 0; i < frameDiffs.length(); i++) {
 		if (id == frameDiffs.at(i)) {			
 			model::difference::FrameDiff::sptr frameDiff = model::difference::DifferenceFactory::createFrameDiff(id, video1, video2);
@@ -21,7 +21,7 @@ namespace controller {
 			return;
 		}
 	}
-	QList<QString> pixelDiffs = model::difference::DifferenceFactory::getAllPixelDiffIDs();
+	QList<QByteArray> pixelDiffs = model::difference::DifferenceFactory::getAllPixelDiffIDs();
 	for (int i = 0; i < pixelDiffs.length(); i++) {
 		if (id == pixelDiffs.at(i)) {
 			model::difference::PixelDiff::sptr pixelDiff = model::difference::DifferenceFactory::createPixelDiff(id, video1, video2);

@@ -26,8 +26,8 @@ public:
 
     static const QByteArray kFilterID;
 
-    static const QString kParamNewSizeWidth;
-    static const QString kParamNewSizeHeight;
+    static const QByteArray kParamNewSizeWidth;
+    static const QByteArray kParamNewSizeHeight;
 
     /**
      * Creates a new RescaleFilter object with a given previous module.

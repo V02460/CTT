@@ -14,7 +14,7 @@ using ::helper::GPUSurfaceShader;
 
 const QByteArray NoiseFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_noise");
 
-const QString NoiseFilter::kParamIntensityStr = QT_TR_NOOP("filter_noise_param_intensity");
+const QByteArray NoiseFilter::kParamIntensityStr = QT_TRANSLATE_NOOP("Param", "filter_noise_param_intensity");
 
 NoiseFilter::NoiseFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamIntensityStr, 0.5f);

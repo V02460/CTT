@@ -67,7 +67,7 @@ void PlayerFunctions::setupUi() {
 	else {
 		btnNextFrame->setText(tr("NEXT_FRAME"));
 	}
-	btnPreviousFrame->setToolTip(tr("NExT_FRAME"));
+	btnNextFrame->setToolTip(tr("NEXT_FRAME"));
 	layout->addWidget(btnNextFrame);
 
 	//Must be after initialisation of btnNextFrame and btnPreviousFrame
