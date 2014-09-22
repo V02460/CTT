@@ -79,7 +79,7 @@
     <message>
         <location filename="../CTT/RGBChannelFilter.cpp" line="17"/>
         <source>filter_rgbchannel</source>
-        <translation>RGB Channel</translation>
+        <translation>RGB Kanäle</translation>
     </message>
     <message>
         <location filename="../CTT/TimeshiftFilter.cpp" line="14"/>
@@ -95,7 +95,7 @@
         <location filename="../CTT/HeatmapOverlay.cpp" line="21"/>
         <source>overlay_heatmap</source>
         <translatorcomment>Heatmap</translatorcomment>
-        <translation>Heatmap</translation>
+        <translation>Differenzheatmap</translation>
     </message>
     <message>
         <location filename="../CTT/MacroblockOverlay.cpp" line="23"/>
@@ -381,7 +381,7 @@
     <message>
         <location filename="../CTT/FrameMetadataWidget.cpp" line="42"/>
         <source>HAS_BLOCK</source>
-        <translation type="unfinished">Enthält Mackroblock-Typen: </translation>
+        <translation>Enthält Mackroblock-Typen: </translation>
     </message>
     <message>
         <location filename="../CTT/FrameMetadataWidget.cpp" line="42"/>
@@ -410,7 +410,7 @@
     </message>
     <message>
         <location filename="../CTT/HistogramWidget.cpp" line="51"/>
-        <location filename="../CTT/HistogramWidget.cpp" line="113"/>
+        <location filename="../CTT/HistogramWidget.cpp" line="119"/>
         <source>START_AUTO_UPDATE</source>
         <translation>Histogramm automatisch aktualisieren</translation>
     </message>
@@ -420,7 +420,7 @@
         <translation>Histogramm aktualisieren</translation>
     </message>
     <message>
-        <location filename="../CTT/HistogramWidget.cpp" line="111"/>
+        <location filename="../CTT/HistogramWidget.cpp" line="117"/>
         <source>STOP_AUTO_UPDATE</source>
         <translation>Histogramm nicht automatisch aktualisieren</translation>
     </message>
@@ -428,12 +428,12 @@
 <context>
     <name>view::ListedPushButton</name>
     <message>
-        <location filename="../CTT/ListedPushButton.cpp" line="20"/>
+        <location filename="../CTT/ListedPushButton.cpp" line="27"/>
         <source>NO_VIDEO_SPECIFIED</source>
         <translation>Kein Video ausgewählt</translation>
     </message>
     <message>
-        <location filename="../CTT/ListedPushButton.cpp" line="30"/>
+        <location filename="../CTT/ListedPushButton.cpp" line="37"/>
         <source>REMOVE</source>
         <translation>Entfernen</translation>
     </message>
@@ -560,7 +560,7 @@
     <message>
         <location filename="../CTT/MainWindow.cpp" line="207"/>
         <source>LOAD_PROJECT</source>
-        <translation>Project laden</translation>
+        <translation>Projekt laden</translation>
     </message>
     <message>
         <location filename="../CTT/MainWindow.cpp" line="207"/>
@@ -626,15 +626,15 @@
     <message>
         <location filename="../CTT/PlayerFunctions.cpp" line="106"/>
         <location filename="../CTT/PlayerFunctions.cpp" line="108"/>
-        <location filename="../CTT/PlayerFunctions.cpp" line="119"/>
-        <location filename="../CTT/PlayerFunctions.cpp" line="121"/>
         <source>PLAY</source>
         <translatorcomment>Hier hat sich das englische Wort eingebürgert, vielleicht stattdessen &quot;Abspielen&quot;</translatorcomment>
-        <translation>Play</translation>
+        <translation>Abspielen</translation>
     </message>
     <message>
+        <location filename="../CTT/PlayerFunctions.cpp" line="119"/>
+        <location filename="../CTT/PlayerFunctions.cpp" line="121"/>
         <source>PAUSE</source>
-        <translation type="vanished">Pause</translation>
+        <translation type="unfinished">Pausieren</translation>
     </message>
 </context>
 <context>
@@ -691,7 +691,7 @@
     <message>
         <location filename="../CTT/ThumbnailListWidget.cpp" line="136"/>
         <source>USE_HDTV_YUV_TO_RGB_CONVERSION</source>
-        <translation>HDTV YUV zu RGB Konvertierung benutzen?</translation>
+        <translation>HDTV YUV zu RGB Konvertierung benutzen</translation>
     </message>
     <message>
         <location filename="../CTT/ThumbnailListWidget.cpp" line="127"/>

@@ -116,9 +116,9 @@ void PlayerFunctions::setPlayButton(bool isPlayButton) {
 			btnPlayPause->setIcon(QIcon(pauseIconPath));
 			btnPlayPause->setIconSize(btnNextFrame->size() * 0.60);
 		} else {
-			btnPlayPause->setText(tr("PLAY"));
+			btnPlayPause->setText(tr("PAUSE"));
 		}
-		btnPlayPause->setToolTip(tr("PLAY"));
+		btnPlayPause->setToolTip(tr("PAUSE"));
 
 		if (player->scrubberCount() != 0) {
 			btnNextFrame->setEnabled(false);

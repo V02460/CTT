@@ -134,6 +134,7 @@ void MainControlWidget::setupUi(ViewType viewType) {
 	splitter->addWidget(rightWidget);
 
 	QHBoxLayout *layout = new QHBoxLayout();
+	layout->setContentsMargins(0, 0, 0, 0);
 	layout->addWidget(splitter);
 
 	setLayout(layout);

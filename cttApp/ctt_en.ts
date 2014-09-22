@@ -409,7 +409,7 @@
     </message>
     <message>
         <location filename="../CTT/HistogramWidget.cpp" line="51"/>
-        <location filename="../CTT/HistogramWidget.cpp" line="113"/>
+        <location filename="../CTT/HistogramWidget.cpp" line="119"/>
         <source>START_AUTO_UPDATE</source>
         <translation>Update histogram automatically</translation>
     </message>
@@ -419,7 +419,7 @@
         <translation>Update Histogram</translation>
     </message>
     <message>
-        <location filename="../CTT/HistogramWidget.cpp" line="111"/>
+        <location filename="../CTT/HistogramWidget.cpp" line="117"/>
         <source>STOP_AUTO_UPDATE</source>
         <translation>Don&apos;t update histogram automatically</translation>
     </message>
@@ -432,12 +432,12 @@
         <translation type="vanished">Error while transfering video</translation>
     </message>
     <message>
-        <location filename="../CTT/ListedPushButton.cpp" line="20"/>
+        <location filename="../CTT/ListedPushButton.cpp" line="27"/>
         <source>NO_VIDEO_SPECIFIED</source>
         <translation>No video specified</translation>
     </message>
     <message>
-        <location filename="../CTT/ListedPushButton.cpp" line="30"/>
+        <location filename="../CTT/ListedPushButton.cpp" line="37"/>
         <source>REMOVE</source>
         <translation>Remove</translation>
     </message>
@@ -630,14 +630,14 @@
     <message>
         <location filename="../CTT/PlayerFunctions.cpp" line="106"/>
         <location filename="../CTT/PlayerFunctions.cpp" line="108"/>
-        <location filename="../CTT/PlayerFunctions.cpp" line="119"/>
-        <location filename="../CTT/PlayerFunctions.cpp" line="121"/>
         <source>PLAY</source>
         <translation>Play</translation>
     </message>
     <message>
+        <location filename="../CTT/PlayerFunctions.cpp" line="119"/>
+        <location filename="../CTT/PlayerFunctions.cpp" line="121"/>
         <source>PAUSE</source>
-        <translation type="vanished">Pause</translation>
+        <translation>Pause</translation>
     </message>
 </context>
 <context>
