@@ -23,6 +23,10 @@ namespace view {
 	DifferenceTimeline::~DifferenceTimeline() {
 		differences->unsubscribe(this);
 		player->unsubscribe(this);
+
+		for (int i = 0; i < differences->getSize(); i++) {
+			differences->get(i)->unsubscribe(this);
+		}
 	}
 
 	void DifferenceTimeline::update() {
@@ -61,6 +65,8 @@ namespace view {
 		double maxY = 0;
 
 		for (int i = 0; i < differences->getSize(); i++) {
+			differences->get(i)->subscribe(this);
+
 			int differenceLength = static_cast<int>(differences->get(i)->getFrameCount());
 			QVector<double> x = QVector<double>(differenceLength);
 			QVector<double> y = QVector<double>(differenceLength);

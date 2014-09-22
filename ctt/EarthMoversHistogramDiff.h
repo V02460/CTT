@@ -57,10 +57,9 @@ private:
 
     EarthMoversHistogramDiff();
 
-	void calculateDiff(unsigned int frameNr);
+	virtual void calculateFrameDiff(unsigned int frameNr) Q_DECL_OVERRIDE;
 
 	model::frame::Histogram::HistogramType type;
-	QMap<unsigned int, double> diff;
 };
 
 }  // namespace difference

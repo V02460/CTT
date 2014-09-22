@@ -15,7 +15,7 @@ namespace difference {
 /**
  * A FrameDiff compares corresponding frames from two specific videos and calculates one-dimensional distances between them.
  */
-class FrameDiff : public ::model::saveable::Saveable {
+class FrameDiff : public ::model::saveable::Saveable, public ::model::Observer, public ::model::Observable {
 public:
     typedef QScopedPointer<FrameDiff> uptr;
     typedef QSharedPointer<FrameDiff> sptr;
@@ -61,6 +61,8 @@ public:
      */
     ::model::Module::sptr getModule2();
 
+	virtual void update() Q_DECL_OVERRIDE;
+
     virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
     virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
     static Saveable::SaveableType getSaveableType();
@@ -89,7 +91,11 @@ protected:
 	/** The second of the two Videos which this FrameDiff compares. */
     ::model::Module::sptr module2;
 
+	bool isCalculated;
+	QMap<unsigned int, double> diff;
+
 private:
+	virtual void calculateFrameDiff(unsigned int frameNr) = 0;
     Q_DISABLE_COPY(FrameDiff)
 };
 

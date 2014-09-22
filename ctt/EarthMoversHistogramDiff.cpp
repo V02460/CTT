@@ -29,8 +29,9 @@ const QMap<Histogram::HistogramType, QByteArray> EarthMoversHistogramDiff::kDiff
 EarthMoversHistogramDiff::EarthMoversHistogramDiff(Histogram::HistogramType type,
                                                    Video::sptr module1,
                                                    Video::sptr module2) : FrameDiff(module1, module2),
-												                         type(type),
-																		 diff() {}
+												                         type(type) {
+	update();
+}
 
 EarthMoversHistogramDiff::~EarthMoversHistogramDiff() {}
 
@@ -46,13 +47,14 @@ double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) {
 		throw IllegalArgumentException("One or both videos have less then " + QString::number(frameNr)
 			                               + " frames.");
 	}
-	if (!diff.keys().contains(frameNr)) {
-		calculateDiff(frameNr);
+	if (!isCalculated) {
+		update();
 	}
+
 	return diff.value(frameNr);
 }
 
-void EarthMoversHistogramDiff::calculateDiff(unsigned int frameNr) {
+void EarthMoversHistogramDiff::calculateFrameDiff(unsigned int frameNr) {
 	Histogram::sptr a = Frame::getHistogram(module1->getFrame(frameNr), type);
 	Histogram::sptr b = Frame::getHistogram(module2->getFrame(frameNr), type);
 	float d[Histogram::kSize + 1];

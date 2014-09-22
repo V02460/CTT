@@ -24,12 +24,14 @@ public:
     ~AveragePixelDiff();
     
     virtual double getDiff(unsigned int frameNr) Q_DECL_OVERRIDE;
-
 protected:
     /**
      * Creates a new dummy AveragePixelDiff.
      */
     AveragePixelDiff();
+
+private:
+	virtual void calculateFrameDiff(unsigned int frameNr) Q_DECL_OVERRIDE;
 };
 
 }  // namespace difference

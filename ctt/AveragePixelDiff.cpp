@@ -11,8 +11,7 @@ using ::helper::GPUSurfaceCompactor;
 using ::helper::getNewSizeDefault;
 using ::exception::AccessToDummyException;
 
-AveragePixelDiff::AveragePixelDiff(Module::sptr module1, Module::sptr module2) : PixelDiff(module1, module2) {
-}
+AveragePixelDiff::AveragePixelDiff(Module::sptr module1, Module::sptr module2) : PixelDiff(module1, module2) {}
 
 AveragePixelDiff::~AveragePixelDiff() {
 }
@@ -28,29 +27,36 @@ double AveragePixelDiff::getDiff(unsigned int frameNr) {
                                        QString::number(getFrameCount()) +
                                        " frames exist.");
     }
+	if (!isCalculated) {
+		update();
+	}
 
-    Surface::sptr pixelDiff = getPixelDiff(frameNr);
+    return diff.value(frameNr);
+}
 
-    GPUSurfaceCompactor compactor(":/Shader/CompactAverage.fs", pixelDiff, getNewSizeDefault);
-    Surface::sptr compactionResult = compactor.run(QSize(16, 16));
+void AveragePixelDiff::calculateFrameDiff(unsigned int frameNr) {
+	Surface::sptr pixelDiff = getPixelDiff(frameNr);
 
-    QByteArray rawValues = compactionResult->getRawRGBA();
+	GPUSurfaceCompactor compactor(":/Shader/CompactAverage.fs", pixelDiff, getNewSizeDefault);
+	Surface::sptr compactionResult = compactor.run(QSize(16, 16));
 
-    // unpack the 16x16 texture with a single float saved in each rgba pixel
-    float result = 0;
-    for (unsigned int i = 0; i < 256; i++) {
-        char r = rawValues[4 * i];
-        char g = rawValues[4 * i + 1];
-        char b = rawValues[4 * i + 2];
-        char a = rawValues[4 * i + 3];
+	QByteArray rawValues = compactionResult->getRawRGBA();
 
-        result += reinterpret_cast<unsigned char&>(r) / 255.f
-            + reinterpret_cast<unsigned char&>(g) / 65025.f
-            + reinterpret_cast<unsigned char&>(b) / 16581375.f
-            + reinterpret_cast<unsigned char&>(a) / 4228250625.f;
-    }
+	// unpack the 16x16 texture with a single float saved in each rgba pixel
+	float result = 0;
+	for (unsigned int i = 0; i < 256; i++) {
+		char r = rawValues[4 * i];
+		char g = rawValues[4 * i + 1];
+		char b = rawValues[4 * i + 2];
+		char a = rawValues[4 * i + 3];
 
-    return result / 256;
+		result += reinterpret_cast<unsigned char&>(r) / 255.f
+			+ reinterpret_cast<unsigned char&>(g) / 65025.f
+			+ reinterpret_cast<unsigned char&>(b) / 16581375.f
+			+ reinterpret_cast<unsigned char&>(a) / 4228250625.f;
+	}
+
+	diff.insert(frameNr, result / 256);
 }
 
 AveragePixelDiff::AveragePixelDiff() {
