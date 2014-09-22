@@ -96,6 +96,8 @@ void VideoAnalysingWidget::comboboxOverlayCurrentIndexChanged(int index) {
 			QList<FilteredVideo::sptr> video = orderingWidget->getVideos(1);
 			if (video.size() == 1) {
 				emit overlayAdded(overlayId, videoWidget->getScrubber()->getVideo().dynamicCast<FilteredVideo>(), video.value(0));
+			} else {
+				comboboxOverlay->setCurrentIndex(0);
 			}
 		} else {
 			emit overlayAdded(overlayId);
