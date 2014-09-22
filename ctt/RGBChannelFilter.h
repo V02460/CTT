@@ -26,9 +26,9 @@ public:
 
     static const QByteArray kFilterID;
 
-    static const QString kParamRedStr;
-    static const QString kParamGreenStr;
-    static const QString kParamBlueStr;
+    static const QByteArray kParamRedStr;
+    static const QByteArray kParamGreenStr;
+    static const QByteArray kParamBlueStr;
 
     /**
     * Creates a new RGBChannelFilter object with a given previous module.

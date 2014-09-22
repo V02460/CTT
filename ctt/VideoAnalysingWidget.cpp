@@ -3,7 +3,6 @@
 #include <QCoreApplication>
 #include <QBoxLayout>
 
-#include "NotImplementedException.h"
 #include "FilterFactory.h"
 #include "HeatmapOverlay.h"
 #include "MacroblockOverlay.h"
@@ -15,7 +14,6 @@ namespace view {
 
 namespace view {
 
-using ::exception::NotImplementedException;
 using ::controller::OverlayController;
 using ::model::player::VideoScrubber;
 using ::model::filter::FilterFactory;
@@ -47,6 +45,7 @@ void VideoAnalysingWidget::setupUi() {
 	videoWidgetWrapper->setMinimumSize(QSize(320, 180));
 	mainLayout->addWidget(videoWidgetWrapper);
 
+	QWidget *informationWidget = new QWidget(this);
 	QHBoxLayout *informationLayout = new QHBoxLayout();
 	comboboxOverlay = new QComboBox(this);
 	comboboxOverlay->addItem(tr("NO_OVERLAY"));
@@ -68,10 +67,19 @@ void VideoAnalysingWidget::setupUi() {
 	informationLayout->addWidget(histWidget);
 
 	informationLayout->addWidget(metadataWidget);
+	informationWidget->setLayout(informationLayout);
 
-	mainLayout->addLayout(informationLayout);
-	mainLayout->setStretch(0, 3);
-	mainLayout->setStretch(1, 1);
+	QPushButton *btnToggleInformation = new QPushButton(tr("SHOW_INFORMATION"), this);
+	btnToggleInformation->setCheckable(true);
+	btnToggleInformation->setChecked(true);
+	QObject::connect(btnToggleInformation, SIGNAL(toggled(bool)), informationWidget, SLOT(setVisible(bool)));
+
+	mainLayout->addWidget(btnToggleInformation);
+
+	mainLayout->addWidget(informationWidget);
+	mainLayout->setStretch(0, 5);
+	mainLayout->setStretch(2, 1);
+	mainLayout->setContentsMargins(0, 0, 0, 0);
 
 	setLayout(mainLayout);
 
@@ -88,6 +96,8 @@ void VideoAnalysingWidget::comboboxOverlayCurrentIndexChanged(int index) {
 			QList<FilteredVideo::sptr> video = orderingWidget->getVideos(1);
 			if (video.size() == 1) {
 				emit overlayAdded(overlayId, videoWidget->getScrubber()->getVideo().dynamicCast<FilteredVideo>(), video.value(0));
+			} else {
+				comboboxOverlay->setCurrentIndex(0);
 			}
 		} else {
 			emit overlayAdded(overlayId);

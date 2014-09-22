@@ -18,6 +18,7 @@ void VideoListControllerTest::initTestCase() {
         QSize(720, 576),
         24,
         YUVType::YUV422,
+		false,
         testContext));
 
 }
@@ -32,7 +33,7 @@ void VideoListControllerTest::testRun() {
 	QVERIFY2(videoList->getSize() == 1, "Wrong number of videos in the videoList.");
 	QVERIFY2(videoList->get(0)->getBaseVideo() == filteredVideo, "The video in the videoList is not equal to the video that has been added.");
 	
-	videoListController.addVideo("Resources/Videos/YUV422/squirrel-720x576-422P.yuv", 720, 576, 24, YUVType::YUV422);
+	videoListController.addVideo("Resources/Videos/YUV422/squirrel-720x576-422P.yuv", 720, 576, 24, YUVType::YUV422, false);
 	QVERIFY2(videoList->getSize() == 2, "Wrong number of videos in the videoList.");
 	//QVERIFY2(videoList->get(1)->getBaseVideo() == video, "The video in the videoList is not equal to the video that has been added.");
 	

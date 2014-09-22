@@ -70,6 +70,8 @@ public:
 
     virtual model::frame::Frame::sptr getFrame(unsigned int frameNumber) const = 0;
 
+	virtual QString getIdentifier() const = 0;
+
 	virtual QSize getResolution() const;
 
 	static SaveableType getSaveableType() { return Saveable::video; }

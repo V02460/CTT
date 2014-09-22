@@ -27,7 +27,7 @@ public:
      * @param name the name of the parameter
      * @param value value of the parameter
      */
-    FilterParam(QString name, QVariant value);
+    FilterParam(QByteArray name, QVariant value);
 
     /**
      * Returns the value of the parameter.
@@ -41,10 +41,10 @@ public:
      *
      * @return any the name of the parameter
      */
-    QString getName() const;
+    QByteArray getName() const;
     
 private:
-    QString name; /**<  The name of the parameter. */
+    QByteArray name; /**<  The name of the parameter. */
     QVariant value; /**<  The stored value. */
 };
 

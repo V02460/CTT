@@ -23,6 +23,9 @@ public:
 
 	FilterParamItem(::model::filter::FilterParam::sptr filterParam);
 
+	void setParam(::model::filter::FilterParam::sptr newParam);
+	::model::filter::FilterParam::sptr getParam();
+
 	QLabel* getNameLabel();
 	QWidget* getInteractibleComponent();
 

@@ -1,6 +1,5 @@
 #include "FileVideo.h"
 
-#include "NotImplementedException.h"
 #include "FileNotFoundException.h"
 
 namespace model {
@@ -8,7 +7,6 @@ namespace video {
 
 using ::model::Module;
 using ::model::saveable::Saveable;
-using ::exception::NotImplementedException;
 using ::exception::AccessToDummyException;
 using ::exception::FileNotFoundException;
 
@@ -31,6 +29,12 @@ QString FileVideo::getPath() const {
 		throw AccessToDummyException();
 	}
 	return pathToVideoFile;
+}
+
+QString FileVideo::getIdentifier() const {
+	QFileInfo fileSurro(pathToVideoFile);
+
+	return fileSurro.fileName();
 }
 
 QList<const Module*> FileVideo::getUsesList() const {

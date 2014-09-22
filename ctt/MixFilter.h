@@ -27,7 +27,7 @@ public:
 
     static const QByteArray kFilterID;
 
-    static const QString kParamMixRatioStr;
+    static const QByteArray kParamMixRatioStr;
 
     /**
     * Creates a new MixFilter object with two modules to mix.

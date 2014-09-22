@@ -23,10 +23,10 @@ namespace view {
 	}
 
 	void DifferenceListView::update() {
-		removeAllItems();
+		QList<AbstractListViewItem*> newItems;
 		for (int i = 0; i < differences->getSize(); i++) {
-			items.append(new DifferenceListViewItem(differences->get(i), player, ViewState::getColorFromIndex(i), this));
+			newItems.append(new DifferenceListViewItem(differences->get(i), player, ViewState::getColorFromIndex(i), this));
 		}
-		setupUi();
+		setupUi(newItems);
 	}
 }  // namespace view

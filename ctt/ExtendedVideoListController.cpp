@@ -51,9 +51,10 @@ void ExtendedVideoListController::addVideo(QString path,
                                            int width,
                                            int height,
                                            double fps,
-                                           YUVType type) {
+                                           YUVType type,
+										   bool isHDTV) {
 
-    YUVDataVideo::sptr yuvVideo(new YUVDataVideo(path, QSize(width, height), fps, type, GlobalContext::get()));
+    YUVDataVideo::sptr yuvVideo(new YUVDataVideo(path, QSize(width, height), fps, type, isHDTV, GlobalContext::get()));
 
     FilteredVideo::sptr video(new FilteredVideo(yuvVideo));
     FilteredVideo::sptr filteredVideo(new FilteredVideo(yuvVideo));
@@ -67,13 +68,15 @@ void ExtendedVideoListController::addVideo(QString pathToVideoFile,
                                            int width,
                                            int height,
                                            double fps,
-                                           YUVType type) {
+                                           YUVType type,
+										   bool isHDTV) {
 
     YUVDataVideo::sptr yuvVideo(new YUVDataVideo(pathToVideoFile,
                                                  pathToMetadataFile,
                                                  QSize(width, height),
                                                  fps,
                                                  type,
+												 isHDTV,
                                                  GlobalContext::get()));
 
     FilteredVideo::sptr video(new FilteredVideo(yuvVideo));

@@ -2,8 +2,6 @@
 
 #include "GPUSurfaceShader.h"
 
-#include "NotImplementedException.h"
-
 namespace model {
 namespace filter {
 
@@ -11,14 +9,13 @@ using ::model::frame::Frame;
 using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
 using ::helper::GPUSurfaceShader;
-using ::exception::NotImplementedException;
 using ::exception::AccessToDummyException;
 
 const QByteArray RGBChannelFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_rgbchannel");
 
-const QString RGBChannelFilter::kParamRedStr = QT_TR_NOOP("filter_rgbchannel_param_red");
-const QString RGBChannelFilter::kParamGreenStr = QT_TR_NOOP("filter_rgbchannel_param_green");
-const QString RGBChannelFilter::kParamBlueStr = QT_TR_NOOP("filter_rgbchannel_param_blue");
+const QByteArray RGBChannelFilter::kParamRedStr = QT_TRANSLATE_NOOP("Param", "filter_rgbchannel_param_red");
+const QByteArray RGBChannelFilter::kParamGreenStr = QT_TRANSLATE_NOOP("Param", "filter_rgbchannel_param_green");
+const QByteArray RGBChannelFilter::kParamBlueStr = QT_TRANSLATE_NOOP("Param", "filter_rgbchannel_param_blue");
 
 RGBChannelFilter::RGBChannelFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamRedStr, 100);

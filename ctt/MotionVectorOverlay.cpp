@@ -12,7 +12,7 @@ using ::model::frame::Frame;
 using ::exception::NotImplementedException;
 using ::model::saveable::Saveable;
 
-const QByteArray MotionVectorOverlay::kFilterID = QT_TR_NOOP("overlay_motionvector");
+const QByteArray MotionVectorOverlay::kFilterID = QT_TRANSLATE_NOOP("Filter", "overlay_motionvector");
 
 MotionVectorOverlay::MotionVectorOverlay(Module::sptr predecessor)
         : Overlay(predecessor

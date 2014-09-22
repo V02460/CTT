@@ -1,6 +1,5 @@
 #include "YUVDataVideo.h"
 
-#include "NotImplementedException.h"
 #include "MacroblockType.h"
 #include "FileNotFoundException.h"
 #include "IOException.h"
@@ -18,7 +17,6 @@ using ::model::frame::FrameMetadata;
 using ::model::saveable::Saveable;
 using ::model::frame::MacroblockType;
 using ::model::saveable::Memento;
-using ::exception::NotImplementedException;
 using ::exception::AccessToDummyException;
 using ::exception::IllegalStateException;
 using ::exception::IllegalArgumentException;
@@ -32,20 +30,43 @@ const QString YUVDataVideo::videoPathStringId = "vidPath";
 const QString YUVDataVideo::metadataPathStringId = "metaPath";
 const QString YUVDataVideo::framerateStringId = "framerate";
 const QString YUVDataVideo::yuvTypeStringId = "yuvtype";
+const QString YUVDataVideo::isHDTVStringId = "isHDTV";
 
 YUVDataVideo::YUVDataVideo(QString pathToVideoFile,
                            QSize resolution,
                            double framerate,
                            YUVType type,
                            QSharedPointer<QOpenGLContext> context)
-	    : FileVideo(pathToVideoFile, GlobalContext::get())
-	    , metadata(resolution, framerate, 1)
-	    , pixelsPerFrame(resolution.height() * resolution.width())
-	    , type(type)
-        , videoSurfaceBuffer(kNumberOfFramesInMemory)
-        , videoBuffer(kNumberOfFramesInMemory)
-        , metadataBuffer(kNumberOfFramesInMemory)
-        , hasMetadataFile(false) {
+						   : YUVDataVideo(pathToVideoFile, resolution, framerate, type, false, context)
+{
+
+}
+
+YUVDataVideo::YUVDataVideo(QString pathToVideoFile,
+                           QString pathToMetadataFile,
+                           QSize resolution,
+                           double framerate,
+                           YUVType type,
+                           QSharedPointer<QOpenGLContext> context)
+	    : YUVDataVideo(pathToVideoFile, pathToMetadataFile, resolution, framerate, type, false, context)
+{
+	
+}
+
+YUVDataVideo::YUVDataVideo() : metadata(QSize(1, 1), 1, 1) {
+	isDummyFlag = true;
+}
+
+YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QSize resolution, double framerate, YUVType type, bool isHDTV, QSharedPointer<QOpenGLContext> context)
+	: FileVideo(pathToVideoFile, GlobalContext::get())
+	, metadata(resolution, framerate, 1)
+	, pixelsPerFrame(resolution.height() * resolution.width())
+	, type(type)
+	, isHDTV(isHDTV)
+	, videoSurfaceBuffer(kNumberOfFramesInMemory)
+	, videoBuffer(kNumberOfFramesInMemory)
+	, metadataBuffer(kNumberOfFramesInMemory)
+	, hasMetadataFile(false) {
 
 	switch (type)
 	{
@@ -55,18 +76,18 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile,
 	case YUV422:
 		if ((resolution.width() % 2) != 0) {
 			throw IllegalArgumentException(
-                "A video with an uneven number of pixels horizontally mustn't be in the YUV422 format.");
+				"A video with an uneven number of pixels horizontally mustn't be in the YUV422 format.");
 		}
 		chromaSize = pixelsPerFrame / 2;
 		break;
 	case YUV420:
 		if ((resolution.width() % 2) != 0) {
 			throw IllegalArgumentException(
-                "A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
+				"A video with an uneven number of pixels horizontally mustn't be in the YUV420 format.");
 		}
 		if ((resolution.height() % 2) != 0) {
 			throw IllegalArgumentException(
-                "A video with an uneven number of pixels vertically mustn't be in the YUV420 format.");
+				"A video with an uneven number of pixels vertically mustn't be in the YUV420 format.");
 		}
 		chromaSize = pixelsPerFrame / 4;
 		break;
@@ -78,23 +99,18 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile,
 
 	if ((videoFile.size() % bytesPerFrame) != 0)
 	{
-		throw IllegalArgumentException("The size of the submitted video file (" + QString::number(videoFile.size()) 
+		throw IllegalArgumentException("The size of the submitted video file (" + QString::number(videoFile.size())
 			+ " bytes) isn't a multiple of the calculated frame size (" + QString::number(bytesPerFrame) + " bytes).");
 	}
 	unsigned int length = videoFile.size() / bytesPerFrame;
 
 	metadata = VideoMetadata(resolution, framerate, length);
-    
-    load(0);
+
+	load(0);
 }
 
-YUVDataVideo::YUVDataVideo(QString pathToVideoFile,
-                           QString pathToMetadataFile,
-                           QSize resolution,
-                           double framerate,
-                           YUVType type,
-                           QSharedPointer<QOpenGLContext> context)
-	    : YUVDataVideo(pathToVideoFile, resolution, framerate, type, context)
+YUVDataVideo::YUVDataVideo(QString pathToVideoFile, QString pathToMetadataFile, QSize resolution, double framerate, YUVType type, bool isHDTV, QSharedPointer<QOpenGLContext> context)
+	: YUVDataVideo(pathToVideoFile, resolution, framerate, type, isHDTV, context)
 {
 	this->pathToMetadataFile = pathToMetadataFile;
 	metadataFile.setFileName(pathToMetadataFile);
@@ -107,31 +123,27 @@ YUVDataVideo::YUVDataVideo(QString pathToVideoFile,
 	if (((resolution.height() % 16) != 0) || ((resolution.width() % 16) != 0))
 	{
 		throw IllegalArgumentException(
-            "The video of the submitted resolution " +
-            QString::number(resolution.width()) + "x" + QString::number(resolution.height()) + 
-            "can't be divided into 16x16 pixel macroblocks, "
-            "that means the metadata file containing macroblock metadata can't make sense");
+			"The video of the submitted resolution " +
+			QString::number(resolution.width()) + "x" + QString::number(resolution.height()) +
+			"can't be divided into 16x16 pixel macroblocks, "
+			"that means the metadata file containing macroblock metadata can't make sense");
 	}
 
 	if (((pixelsPerFrame / 256) * metadata.getLength()) != metadataFile.size())
 	{
 		throw IllegalArgumentException(
-            "The metadata file at the submitted location doesn't contain information about the exact number of "
-            "macroblocks in the video file (assuming 16x16p macroblocks and 1 byte of metadata per macroblock).");
+			"The metadata file at the submitted location doesn't contain information about the exact number of "
+			"macroblocks in the video file (assuming 16x16p macroblocks and 1 byte of metadata per macroblock).");
 	}
 
 	hasMetadataFile = true;
 
 	loadMetadata(0);
 
-    // implant loaded metadata to frames
-    for (unsigned int i = 0; i < getFramesToLoad(firstFrameInMemory); i++) {
-        videoBuffer[i] = Frame::sptr(new Frame(videoBuffer[i].staticCast<Surface>(), *metadataBuffer[i]));
-    }
-}
-
-YUVDataVideo::YUVDataVideo() : metadata(QSize(1, 1), 1, 1) {
-	isDummyFlag = true;
+	// implant loaded metadata to frames
+	for (unsigned int i = 0; i < getFramesToLoad(firstFrameInMemory); i++) {
+		videoBuffer[i] = Frame::sptr(new Frame(videoBuffer[i].staticCast<Surface>(), *metadataBuffer[i]));
+	}
 }
 
 YUVDataVideo::~YUVDataVideo() {
@@ -213,6 +225,8 @@ Memento YUVDataVideo::getMemento() const {
 	memento.setDouble(framerateStringId, getMetadata().getFPS());
 
 	memento.setInt(yuvTypeStringId, type);
+
+	memento.setBool(isHDTVStringId, isHDTV);
 
 	return memento;
 }
@@ -303,6 +317,8 @@ void YUVDataVideo::restore(Memento memento) {
                 "macroblocks in the video file (assuming 16x16p macroblocks and 1 byte of metadata per macroblock).");
 		}
 	}
+
+	isHDTV = memento.getBool(isHDTVStringId);
 
     load(0);
 }
@@ -406,21 +422,44 @@ void YUVDataVideo::loadVideodata(unsigned int startFrame) const {
         vChannel->finishTextureUpload();
 
 		GPUSurfaceShader::uptr converter;
-		switch (type)
+
+		if (!isHDTV)
 		{
-		case YUV444:
-			converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV444toRGBsdtv.fs", yChannel));
-			break;
-		case YUV422:
-			converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV422toRGBsdtv.fs", yChannel));
-			break;
-		case YUV420:
-			converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV420toRGBsdtv.fs", yChannel));
-			break;
-		default:
-			throw IllegalStateException("YUV type not supported.");
-			break;
+			switch (type)
+			{
+			case YUV444:
+				converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV444toRGBsdtv.fs", yChannel));
+				break;
+			case YUV422:
+				converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV422toRGBsdtv.fs", yChannel));
+				break;
+			case YUV420:
+				converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV420toRGBsdtv.fs", yChannel));
+				break;
+			default:
+				throw IllegalStateException("YUV type not supported.");
+				break;
+			}
 		}
+		else
+		{
+			switch (type)
+			{
+			case YUV444:
+				converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV444toRGBhdtv.fs", yChannel));
+				break;
+			case YUV422:
+				converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV422toRGBhdtv.fs", yChannel));
+				break;
+			case YUV420:
+				converter.reset(new GPUSurfaceShader(":/Shader/Conversion/YUV420toRGBhdtv.fs", yChannel));
+				break;
+			default:
+				throw IllegalStateException("YUV type not supported.");
+				break;
+			}
+		}
+		
 
 		converter->setValue("uChannel", uChannel);
 		converter->setValue("vChannel", vChannel);

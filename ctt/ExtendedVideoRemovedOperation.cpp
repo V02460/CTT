@@ -31,9 +31,9 @@ void ExtendedVideoRemovedOperation::undoOperation() {
 	videoList->restore(videoListMemento);
 	filteredVideos->restore(filteredVideosMemento);
 	playerList->restore(playerListMemento);
+	playerList->changed();
 	videoList->changed();
 	filteredVideos->changed();
-	playerList->changed();
 }
 
 }  // namespace operation

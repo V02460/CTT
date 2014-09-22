@@ -1,7 +1,5 @@
 #include "TimeshiftFilter.h"
 
-#include "NotImplementedException.h"
-
 namespace model {
 namespace filter {
 
@@ -9,11 +7,10 @@ using ::model::frame::Frame;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::exception::AccessToDummyException;
-using ::exception::NotImplementedException;
 
 const QByteArray TimeshiftFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_timeshift");
 
-const QString TimeshiftFilter::kParamShiftStr = QT_TR_NOOP("filter_timeshift_param_shift");
+const QByteArray TimeshiftFilter::kParamShiftStr = QT_TRANSLATE_NOOP("Param", "filter_timeshift_param_shift");
 
 TimeshiftFilter::TimeshiftFilter(Module::sptr predecessor) : Filter(predecessor) {
     newParameter(kParamShiftStr, 0);

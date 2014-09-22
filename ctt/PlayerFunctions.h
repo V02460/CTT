@@ -68,6 +68,7 @@ private:
     QPushButton *btnDefaultFPS; /**< The button to change back to the default frame rate */
     QDoubleSpinBox *spinboxFPS; /**< The spin box to change the frame rate */
 	QSlider *sliderCurrentFrame;
+	QSize buttonSize;
 
 	::controller::PlayerController::sptr playerController;
 };

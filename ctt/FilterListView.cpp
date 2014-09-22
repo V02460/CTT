@@ -40,16 +40,18 @@ void FilterListView::removeVideo() {
 		video->unsubscribe(this);
 	}
 
-	removeAllItems();
-	setupUi();
+	items.clear();
+	clear();
 }
 
 void FilterListView::update() {
-	removeAllItems();
+	QList<AbstractListViewItem*> newItems;
 	for each (Filter::sptr filter in video->getFilterList()) {
-		items.append(new FilterListViewItem(filter, filterController, this));
+		newItems.append(new FilterListViewItem(filter, filterController, this));
 	}
-	setupUi();
+	setupUi(newItems);
+
+	newItems.clear();
 }
 
 void FilterListView::filterSelectionChanged() {

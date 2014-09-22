@@ -3,7 +3,6 @@
 #include "IOException.h"
 #include "FileNotFoundException.h"
 #include "OpenGLException.h"
-#include "NotImplementedException.h"
 #include "IllegalStateException.h"
 
 // #define WARN_INVALID_UNIFORM
@@ -14,7 +13,6 @@ using ::model::Surface;
 using ::exception::OpenGLException;
 using ::exception::IOException;
 using ::exception::FileNotFoundException;
-using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
 
 GPUSurfaceShader::GPUSurfaceShader(QString fragmentShaderFile, 

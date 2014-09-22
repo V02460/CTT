@@ -26,7 +26,7 @@ public:
     typedef QWeakPointer<BlurFilter> wptr;
 
     static const QByteArray kFilterID;
-    static const QString kParamRadiusStr;
+    static const QByteArray kParamRadiusStr;
 
     /**
      * Creates a new BlurFilter object with a given previous module.

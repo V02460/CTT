@@ -2,7 +2,6 @@
 
 #include <QOffscreenSurface>
 
-#include "NotImplementedException.h"
 #include "ViewState.h"
 #include "OpenGLException.h"
 #include "Frame.h"
@@ -12,7 +11,6 @@ namespace view {
 
 using ::model::player::VideoScrubber;
 using ::model::Observer;
-using ::exception::NotImplementedException;
 using ::exception::OpenGLException;
 using ::model::frame::Frame;
 using ::model::Surface;

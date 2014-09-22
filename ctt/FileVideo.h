@@ -5,6 +5,7 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 #include <QFile>
+#include <QFileInfo>
 
 #include "Video.h"
 
@@ -28,6 +29,8 @@ public:
 	* @throws IllegalStateException if the method is called on a dummy
     */
     QString getPath() const;
+
+	virtual QString getIdentifier() const Q_DECL_OVERRIDE;
 
 	virtual QList<const Module*> getUsesList() const;
 

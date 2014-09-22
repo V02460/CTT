@@ -9,7 +9,6 @@ namespace project {
 using ::exception::IOException;
 using ::exception::ParseException;
 using ::exception::IllegalStateException;
-using ::exception::NotImplementedException;
 using ::controller::project::XMLSaver;
 using ::controller::project::Project;
 using ::model::saveable::Saveable;
@@ -24,6 +23,7 @@ using ::model::filter::CoffeeFilter;
 using ::model::filter::GreyscaleFilter;
 using ::model::filter::MixFilter;
 using ::model::filter::NoiseFilter;
+using ::model::filter::InvertFilter;
 using ::model::filter::overlay::HeatmapOverlay;
 using ::model::filter::overlay::MacroblockOverlay;
 using ::model::filter::overlay::MotionVectorOverlay;
@@ -121,7 +121,7 @@ void XMLLoader::readElements() {
 				pointerMap.insert(id, project->getPlayer2()); break;
 			case XMLSaver::BaseSaveableType::DiffList:
 				pointerMap.insert(id, project->getDiffList()); break;
-			default: throw new NotImplementedException("Unknown base savable type."); break;
+			default: throw new IllegalArgumentException("Unknown base savable type."); break;
 			}
 		} else {
 			if (!attributes.hasAttribute(XMLSaver::CLASS)) {
@@ -144,6 +144,7 @@ void XMLLoader::readElements() {
 			case Saveable::SaveableType::greyscaleFilter: dummy = GreyscaleFilter::getDummy(); break;
 			case Saveable::SaveableType::mixFilter: dummy = MixFilter::getDummy(); break;
 			case Saveable::SaveableType::noiseFilter: dummy = NoiseFilter::getDummy(); break;
+			case Saveable::SaveableType::invertFilter: dummy = InvertFilter::getDummy(); break;
 			case Saveable::SaveableType::heatmapOverlay: dummy = HeatmapOverlay::getDummy(); break;
 			case Saveable::SaveableType::macroblockOverlay: dummy = MacroblockOverlay::getDummy(); break;
 			case Saveable::SaveableType::motionVektorOverlay: dummy = MotionVectorOverlay::getDummy(); break;
@@ -196,7 +197,7 @@ void XMLLoader::readElements() {
 				case Saveable::SaveableType::saveableList:
 					throw new ParseException("A saveable list may not contain another saveable list.");
 					break;
-				default: throw new NotImplementedException("Unknown saveable type."); break;
+				default: throw new IllegalArgumentException("Unknown saveable type."); break;
 				}
 				break;
 			}

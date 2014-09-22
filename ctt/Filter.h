@@ -109,7 +109,7 @@ public:
     QList<UIntegerInterval::sptr> getListOfActiveIntervals();
 
     template <class T>
-    T getParamValue(QString key, T defaultValue = T()) const {
+    T getParamValue(QByteArray key, T defaultValue = T()) const {
         if (isDummy()) {
             throw ::exception::AccessToDummyException();
         }
@@ -129,7 +129,7 @@ public:
 protected:
 
     template <class T>
-    void newParameter(QString name, T initValue) {
+    void newParameter(QByteArray name, T initValue) {
         if (isDummy()) {
             throw ::exception::AccessToDummyException();
         }
@@ -147,7 +147,7 @@ private:
     Q_DISABLE_COPY(Filter)
 
     ::model::FilterIntervalList::sptr intervals; /**< The Intervals in which the Filter is active */
-    QMap<QString, FilterParam::sptr> parameters; /**< Parameters modifying the filters behavior */
+    QMap<QByteArray, FilterParam::sptr> parameters; /**< Parameters modifying the filters behavior */
     Module::sptr predecessor; /**< The Filter gets the frames it modifies from this module */
 };
 

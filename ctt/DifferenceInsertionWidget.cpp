@@ -20,10 +20,10 @@ namespace view {
 	}
 
 	void DifferenceInsertionWidget::generateButtons() {
-		QList<QString> diffIds = DifferenceFactory::getAllFrameDiffIDs();
+		QList<QByteArray> diffIds = DifferenceFactory::getAllFrameDiffIDs();
 		for (int i = 0; i < diffIds.size(); i++) {
 			ListedPushButton *button = new ListedPushButton(i, this);
-			button->setText(diffIds.at(i));
+			button->setText(QCoreApplication::translate("Diff", diffIds.at(i)));
 			button->setMinimumSize(preferredButtonSize);
 			button->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 			insertionButtons.append(button);
@@ -35,7 +35,7 @@ namespace view {
 		QList<FilteredVideo::sptr> selectedVideos = orderingWidget->getVideos(2);
 
 		if (selectedVideos.size() == 2) {
-			emit inserted(DifferenceFactory::getAllFrameDiffIDs().at(id), selectedVideos.value(0).dynamicCast<Video>(), selectedVideos.value(1).dynamicCast<Video>());
+			emit inserted(DifferenceFactory::getAllFrameDiffIDs().at(id), selectedVideos.value(0)->getBaseVideo(), selectedVideos.value(1)->getBaseVideo());
 		} else if(selectedVideos.size() != 0) {
 			QMessageBox::warning(this, tr("DIFFERENCE_INSERTION_FAILED_TITLE"), tr("DIFFERENCE_INSERTION_FAILED"));
 		}

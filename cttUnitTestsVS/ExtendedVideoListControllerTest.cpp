@@ -28,12 +28,14 @@ public:
 			QSize(720, 576),
 			24,
 			YUVType::YUV422,
+			false,
 			testContext));
 
 		video2.reset(new YUVDataVideo("Resources/Videos/YUV420/raftingNEW_352x288_113.yuv",
 			QSize(352, 288),
 			24,
 			YUVType::YUV420,
+			false,
 			testContext));
 	}
 
@@ -49,10 +51,10 @@ public:
 		videoList1->getSize();
 		videoList1->get(0)->getBaseVideo();
 
-		videoListController.addVideo("Resources/Videos/YUV422/squirrel-720x576-422P.yuv", 720, 576, 24, YUVType::YUV422);
+		videoListController.addVideo("Resources/Videos/YUV422/squirrel-720x576-422P.yuv", 720, 576, 24, YUVType::YUV422, false);
 		videoList1->getSize();
 		
-		videoListController.addVideo("Resources/Videos/YUV420/raftingNEW_352x288_113.yuv", "Resources/Videos/YUV420/ModeGrid_raf_512my.dat", 352, 288, 24, YUVType::YUV420);
+		videoListController.addVideo("Resources/Videos/YUV420/raftingNEW_352x288_113.yuv", "Resources/Videos/YUV420/ModeGrid_raf_512my.dat", 352, 288, 24, YUVType::YUV420, false);
 		videoList1->getSize();
 
 		videoListController.removeVideo(2);

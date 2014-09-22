@@ -2,8 +2,6 @@
 
 #include "GPUSurfaceShader.h"
 
-#include "NotImplementedException.h"
-
 namespace model {
 namespace filter {
 
@@ -16,7 +14,7 @@ using ::helper::GPUSurfaceShader;
 
 const QByteArray MixFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_mix");
 
-const QString MixFilter::kParamMixRatioStr = QT_TR_NOOP("filter_mix_param_mixRatio");
+const QByteArray MixFilter::kParamMixRatioStr = QT_TRANSLATE_NOOP("Param", "filter_mix_param_mixRatio");
 
 MixFilter::MixFilter(Module::sptr module1, Module::sptr module2) : Filter(module1), module2(module2) {
     if (module1->getResolution() != module2->getResolution()) {

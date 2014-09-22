@@ -52,6 +52,8 @@ int main(int argc, char *argv[])
 	//view::ProcessingWidget *processingWidget;
 	view::MainWindow *mainWindow;
 
+	a.setWindowIcon(QIcon("Resources/Icons/Logo.png"));
+
     QTranslator qtTranslator;
     qtTranslator.load("qt_" + QLocale::system().name(),
                       QLibraryInfo::location(QLibraryInfo::TranslationsPath));

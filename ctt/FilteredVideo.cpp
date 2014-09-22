@@ -1,7 +1,5 @@
 #include "FilteredVideo.h"
 
-#include "NotImplementedException.h"
-
 namespace model {
 namespace filter {
 
@@ -9,7 +7,6 @@ using ::model::video::VideoMetadata;
 using ::model::frame::Frame;
 using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
-using ::exception::NotImplementedException;
 using ::exception::AccessToDummyException;
 using ::model::saveable::Saveable;
 using ::model::video::Video;
@@ -166,6 +163,10 @@ QList<const Module*> FilteredVideo::getUsesList() const {
 	}
 //	result.append(filters.last()->getUsesList());
 	return result;
+}
+
+QString FilteredVideo::getIdentifier() const {
+	return baseVideo->getIdentifier();
 }
 
 unsigned int FilteredVideo::getFrameCount() const {

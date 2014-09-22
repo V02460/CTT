@@ -34,22 +34,22 @@ void VideoListController::addVideo(QString path) {
 		new VideoAddedOperation(video, videoList)));
 }
 
-void VideoListController::addVideo(QString path, int width, int height, double fps, YUVType type) {
-	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(new YUVDataVideo(path, QSize(width, height), fps, type, GlobalContext::get()))));
+void VideoListController::addVideo(QString path, int width, int height, double fps, YUVType type, bool isHDTV) {
+	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(new YUVDataVideo(path, QSize(width, height), fps, type, isHDTV, GlobalContext::get()))));
 	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
 		new VideoAddedOperation(video, videoList)));
 }
 
-void VideoListController::addVideo(QString pathToVideoFile, QString pathToMetadataFile, int width, int height, double fps, YUVType type) {
-	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(new YUVDataVideo(pathToVideoFile, pathToMetadataFile, QSize(width, height), fps, type, GlobalContext::get()))));
+void VideoListController::addVideo(QString pathToVideoFile, QString pathToMetadataFile, int width, int height, double fps, YUVType type, bool isHDTV) {
+	FilteredVideo::sptr video(new FilteredVideo(QSharedPointer<YUVDataVideo>(new YUVDataVideo(pathToVideoFile, pathToMetadataFile, QSize(width, height), fps, type, isHDTV, GlobalContext::get()))));
 	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
 		new VideoAddedOperation(video, videoList)));
 }
 
 void VideoListController::addVideo(Video::sptr video) {
-	for (int i = 0; i < videoList->getSize(); i++) {
+	/*for (int i = 0; i < videoList->getSize(); i++) {
 		if (videoList->get(i)->getBaseVideo() == video) return;
-	}
+	}*/
 	FilteredVideo::sptr filteredVideo(new FilteredVideo(video));
 	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
 		new VideoAddedOperation(filteredVideo, videoList)));
@@ -70,8 +70,9 @@ void VideoListController::removeVideo(const Video &video) {
 				new VideoRemovedOperation(i, videoList)));
 			return;
 		}
-		throw exception::IllegalArgumentException("The Video which is to be removed is not part of this VideoList.");
 	}
+
+	throw exception::IllegalArgumentException("The Video which is to be removed is not part of this VideoList.");
 }
 
 }  // namespace controller

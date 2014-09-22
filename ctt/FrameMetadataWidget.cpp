@@ -1,9 +1,5 @@
 #include "FrameMetadataWidget.h"
 
-#include "NotImplementedException.h"
-
-using ::exception::NotImplementedException;
-
 namespace view { // TODO translations
 
 using ::model::player::VideoScrubber;

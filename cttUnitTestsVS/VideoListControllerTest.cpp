@@ -23,6 +23,7 @@ public:
 			QSize(720, 576),
 			24,
 			YUVType::YUV422,
+			false,
 			testContext));
 	}
 	
@@ -35,7 +36,7 @@ public:
 		videoList->getSize();
 		videoList->get(0)->getBaseVideo();
 
-		videoListController.addVideo("Resources/Videos/YUV422/squirrel-720x576-422P.yuv", 720, 576, 24, YUVType::YUV422);
+		videoListController.addVideo("Resources/Videos/YUV422/squirrel-720x576-422P.yuv", 720, 576, 24, YUVType::YUV422, false);
 		videoList->getSize();
 
 		videoListController.removeVideo(1);

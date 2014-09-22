@@ -25,8 +25,10 @@ public:
     /**
      * Creates a PlayerWidget.
      */
-    PlayerWidget(model::player::Player::sptr player, ::controller::VideoListController::sptr controller,
-		QWidget *parent = 0);
+    PlayerWidget(model::player::Player::sptr player,
+		        ::model::saveable::SaveableList<::model::filter::FilteredVideo>::sptr filteredVideos,
+		        ::controller::VideoListController::sptr controller,
+				QWidget *parent = 0);
 
 private:
     Q_DISABLE_COPY(PlayerWidget);

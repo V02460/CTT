@@ -3,7 +3,6 @@
 #include "IOException.h"
 #include "FileNotFoundException.h"
 #include "OpenGLException.h"
-#include "NotImplementedException.h"
 #include "IllegalArgumentException.h"
 #include "IllegalStateException.h"
 
@@ -16,7 +15,6 @@ using ::helper::VertexAttribute;
 using ::exception::OpenGLException;
 using ::exception::IOException;
 using ::exception::FileNotFoundException;
-using ::exception::NotImplementedException;
 using ::exception::IllegalArgumentException;
 using ::exception::IllegalStateException;
 

@@ -10,6 +10,7 @@
 #include "Observable.h"
 #include "AbstractListViewItem.h"
 #include "FilteredVideo.h"
+#include "ListedPushButton.h"
 
 namespace view {
 
@@ -33,13 +34,15 @@ signals:
 
 protected:
 	AbstractListView(QWidget *parent);
-	void removeAllItems();
-	void setupUi();
+	void setupUi(QList<AbstractListViewItem*> newItems);
 
 	QList<AbstractListViewItem*> items;
 
 protected slots:
 	void buttonRemoveClicked(bool checked, int id);
+
+private:
+	QList<ListedPushButton::sptr> removeButtonList;
 };
 
 }  // namespace view

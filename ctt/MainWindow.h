@@ -8,6 +8,7 @@
 #include <QMainWindow>
 #include <QStackedLayout>
 #include <QAction>
+#include <QCloseEvent>
 
 #include "Observable.h"
 #include "Observer.h"
@@ -56,6 +57,10 @@ signals:
 
 	void loadProject(QString path);
 	void saveProjectAs(QString path, ::controller::project::SaveFileType type);
+	void saveProjectDirectly();
+
+protected:
+	virtual void closeEvent(QCloseEvent *ev) Q_DECL_OVERRIDE;
 
 private slots:
 	void videoActivated(int id);
@@ -71,6 +76,7 @@ private:
 	QAction *toABXView;
 	QAction *undo;
 	QAction *redo;
+	QAction *saveProject;
 	QStackedLayout *centralWidgetLayout;
 	QDialog *startABXTesting;
 	QPushButton *dialogAcceptButton;

@@ -10,19 +10,32 @@
 
 using ::exception::IOException;
 using ::exception::AccessToDummyException;
+using ::model::player::VideoScrubber;
+using ::controller::VideoListController;
+using ::model::saveable::SaveableList;
+using ::model::filter::FilteredVideo;
+using ::model::video::Video;
 
 namespace view {
 
-VideoProcessingWidget::VideoProcessingWidget(::model::player::VideoScrubber::sptr scrubber,
-	::controller::VideoListController::sptr controller, bool showSaveButton, QWidget *parent) : QWidget(parent) {
-	if (scrubber.data() != 0) {
+VideoProcessingWidget::VideoProcessingWidget(VideoScrubber::sptr scrubber,
+	                                         SaveableList<FilteredVideo>::sptr filteredVideos,
+	                                         VideoListController::sptr controller,
+											 bool showSaveButton, QWidget *parent) : QWidget(parent),
+											                                         filteredVideos(filteredVideos) {
+	if (!scrubber.isNull()) {
 		this->videoWidget = new VideoWidget(scrubber);
 		this->showSaveButton = showSaveButton;
 
 		setupUi();
 
 		subscribe(controller);
+		filteredVideos->subscribe(this);
 	}
+}
+
+VideoProcessingWidget::~VideoProcessingWidget() {
+	filteredVideos->unsubscribe(this);
 }
 
 void VideoProcessingWidget::checkboxUseForAnalysisValueChanged(int state) {
@@ -35,12 +48,14 @@ void VideoProcessingWidget::checkboxUseForAnalysisValueChanged(int state) {
 
 void VideoProcessingWidget::btnSaveVideoClicked() {
 	QString saveFileName = QFileDialog::getSaveFileName(this, tr("SAVE_VIDEO_DIALOG"), "", tr("YUV_FILES *.yuv"));
-	if (!saveFileName.endsWith(".yuv")) {
-		saveFileName.append(".yuv");
+	if (saveFileName.endsWith(".yuv")) {
+		saveFileName = saveFileName.mid(0, saveFileName.length() - 4);
 	}
 
 	try {
-		videoWidget->getScrubber()->getVideo()->save(saveFileName, model::video::VideoFileType::YUV);
+		Video::sptr video = videoWidget->getScrubber()->getVideo();
+		saveFileName.append("_" + QString::number(video->getResolution().width()) + "x" + QString::number(video->getResolution().height()) + "_YUV444_" + QString::number(video->getMetadata().getFPS(), 'g', 2).replace('.', ',') + "FPS.yuv");
+		video->save(saveFileName, model::video::VideoFileType::YUV);
 	}
 	catch (IOException e) {
 		QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_SAVING_FAILED_IO_TITLE"), tr("VIDEO_SAVING_FAILED_IO_DETAILS"), QMessageBox::Ok, this);
@@ -102,4 +117,19 @@ void VideoProcessingWidget::unsubscribe(const ::controller::VideoListController 
 	QObject::disconnect(this, SIGNAL(videoForAnalysingRemoved(const ::model::video::Video&)),
 		&observer, SLOT(removeVideo(const ::model::video::Video&)));
 }
+
+void VideoProcessingWidget::update() {
+	bool isUsedForAnalysis = false;
+	for (int i = 0; i < filteredVideos->getSize(); i++) {
+		if (filteredVideos->get(i)->getBaseVideo() == videoWidget->getScrubber()->getVideo()) {
+			isUsedForAnalysis = true;
+			break;
+		}
+	}
+
+	bool oldState = checkboxUseForAnalysis->blockSignals(true);
+	checkboxUseForAnalysis->setChecked(isUsedForAnalysis);
+	checkboxUseForAnalysis->blockSignals(oldState);
+}
+
 }  // namespace view

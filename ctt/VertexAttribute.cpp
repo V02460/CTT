@@ -1,12 +1,10 @@
 #include "VertexAttribute.h"
 
-#include "NotImplementedException.h"
 #include "OpenGLException.h"
 #include "IllegalStateException.h"
 
 namespace helper {
 
-using ::exception::NotImplementedException;
 using ::exception::OpenGLException;
 using ::exception::IllegalStateException;
 

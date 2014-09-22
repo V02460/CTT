@@ -18,7 +18,7 @@ using ::helper::GPUSurfacePainter;
 using ::helper::VertexAttribute;
 using ::exception::IllegalStateException;
 
-const QByteArray MacroblockOverlay::kFilterID = QT_TR_NOOP("overlay_macroblock");
+const QByteArray MacroblockOverlay::kFilterID = QT_TRANSLATE_NOOP("Filter", "overlay_macroblock");
 const float MacroblockOverlay::kBlockAlpha = 0.5f;
 
 MacroblockOverlay::MacroblockOverlay(Module::sptr predecessor)

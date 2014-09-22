@@ -151,7 +151,6 @@ void AnalysingOrderingWidget::dialogButtonToggled(bool checked, int id) {
         if (checked && !activeDialogButtonIds.contains(id)) {
             if (activeDialogButtonIds.size() == selectableDialogButtons) {
 				dialogButtons.at(activeDialogButtonIds.first())->setChecked(false);
-                activeDialogButtonIds.removeFirst();
             }
 
             activeDialogButtonIds.append(id);

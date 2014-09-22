@@ -4,6 +4,7 @@
 #include <QDialogButtonBox>
 #include <QMessageBox>
 #include <QRegExp>
+#include <QImageReader>
 #include "YUVType.h"
 #include "FileNotFoundException.h"
 #include "IOException.h"
@@ -19,9 +20,18 @@ using ::exception::FileNotFoundException;
 using ::exception::IOException;
 
 ThumbnailListWidget::ThumbnailListWidget(SaveableList<FilteredVideo>::sptr filteredVideos,
-	int selectableCount, bool isHorizontal, QWidget *parent) : QScrollArea(parent), macroblockFilePath(""),
-	isInUpdateRequest(false), activatedButtons(), thumbnailList(), backupThumbnailList(), filteredVideos(filteredVideos), 
-	selectableCount(selectableCount), isHorizontal(isHorizontal) {
+	                                     int selectableCount,
+										 bool isHorizontal,
+										 bool autoActivate,
+										 QWidget *parent) : QScrollArea(parent),
+										                    macroblockFilePath(""),
+															activatedButtons(),
+															thumbnailList(),
+															backupThumbnailList(),
+															filteredVideos(filteredVideos),
+															selectableCount(selectableCount),
+															isHorizontal(isHorizontal),
+															autoActivate(autoActivate) {
 
 	if (!filteredVideos.isNull()) {
 		filteredVideos->subscribe(this);
@@ -46,12 +56,12 @@ void ThumbnailListWidget::setupUi() {
 	if (isHorizontal) {
 		thumbnailListLayout = new QHBoxLayout();
 		thumbnailListLayout->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-		setMinimumHeight(ListedPushButton::MINIMUM_SIZE.height() + 20);
+		setMinimumHeight(ListedPushButton::MINIMUM_SIZE.height() + 30);
 		setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
 	} else {
 		thumbnailListLayout = new QVBoxLayout();
 		thumbnailListLayout->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
-		setMinimumWidth(ListedPushButton::MINIMUM_SIZE.width() + 20);
+		setMinimumWidth(ListedPushButton::MINIMUM_SIZE.width() + 30);
 		setSizePolicy(QSizePolicy::Fixed, QSizePolicy::MinimumExpanding);
 	}
 	thumbnailListLayout->setContentsMargins(5, 5, 5, 5);
@@ -64,10 +74,21 @@ void ThumbnailListWidget::setupUi() {
 
 	btnAddVideo = new QPushButton(this);
 	btnAddVideo->setAccessibleName("ThumbnailListWidget->btnAddVideo");
-	btnAddVideo->setMinimumSize(QSize(50, 50));
-	btnAddVideo->setText(tr("ADD_VIDEO"));
+	btnAddVideo->setMinimumSize(ListedPushButton::MINIMUM_SIZE);
+	
+	QString addVideoIconPath = "Resources/Icons/video.png";
+	if (!QImageReader::imageFormat(addVideoIconPath).isEmpty()) {
+		btnAddVideo->setIcon(QIcon(addVideoIconPath));
+		btnAddVideo->setIconSize(btnAddVideo->size()*0.80);
+	} else {
+		btnAddVideo->setText(tr("ADD_VIDEO"));
+	}
+	btnAddVideo->setToolTip(tr("ADD_VIDEO"));
+
 	thumbnailListLayout->addWidget(btnAddVideo);
 	QObject::connect(btnAddVideo, SIGNAL(clicked(bool)), this, SLOT(btnAddVideoClicked(bool)));
+
+	thumbnailListLayout->addStretch(5);
 
 	update();
 
@@ -111,14 +132,18 @@ void ThumbnailListWidget::setupOpenVideoDialog() {
 	dialogMainLayout->addWidget(fpsLabel, 1, 2);
 	dialogMainLayout->addWidget(fpsSpinBox, 1, 3);
 
+	hdtv = new QCheckBox(openVideoDialog);
+	hdtv->setText(tr("USE_HDTV_YUV_TO_RGB_CONVERSION"));
+	dialogMainLayout->addWidget(hdtv, 2, 0, 1, 4);
+
 	macroblockFileLabel = new QLabel(tr("NO_MACROOBLOCK_FILE_CHOSEN"));
 	QPushButton *macroblockFile = new QPushButton(tr("ADD_MACROBLOCK_FILE"));
 	QObject::connect(macroblockFile, SIGNAL(clicked(bool)), this, SLOT(btnAddMacroblockFileClicked(bool)));
-	dialogMainLayout->addWidget(macroblockFileLabel, 2, 0, 1, 3);
-	dialogMainLayout->addWidget(macroblockFile, 2, 3);
+	dialogMainLayout->addWidget(macroblockFileLabel, 3, 0, 1, 3);
+	dialogMainLayout->addWidget(macroblockFile, 3, 3);
 
 	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, openVideoDialog);
-	dialogMainLayout->addWidget(buttonBox, 3, 0);
+	dialogMainLayout->addWidget(buttonBox, 4, 0);
 	QObject::connect(buttonBox, SIGNAL(accepted()), openVideoDialog, SLOT(accept()));
 	QObject::connect(buttonBox, SIGNAL(rejected()), openVideoDialog, SLOT(reject()));
 
@@ -127,45 +152,46 @@ void ThumbnailListWidget::setupOpenVideoDialog() {
 }
 
 void ThumbnailListWidget::update() {
-	//Remove all contents of the ThumbnailListWidget
-	isInUpdateRequest = true;
-
-	//Remove all ListedPushButtons of this widget
-	for each (ListedPushButton::sptr btn in thumbnailList) {
-		thumbnailListLayout->removeWidget(btn.data());
-		btn->hide();
-		btn->setChecked(false);
-		QObject::disconnect(btn.data(), SIGNAL(toggled(bool, int)), this, SLOT(listedButtonToggled(bool, int)));
-		QObject::disconnect(btn.data(), SIGNAL(removed(bool, int)), this, SLOT(listedButtonRemoved(bool, int)));
-	}
-	//Delete all ListedPushButtons from the previous update
 	backupThumbnailList.clear();
-	//Mark all ListedPushButtons for deletion
-	backupThumbnailList.swap(thumbnailList);
-
-	thumbnailListLayout->removeWidget(btnAddVideo);
-
-	//Remove strech at the end of the layout
-	if (thumbnailListLayout->count() > 0) {
-		QLayoutItem *childItem = thumbnailListLayout->itemAt(0);
-		thumbnailListLayout->removeItem(childItem);
-		delete childItem;
+	for (int i = 0; i < std::min(thumbnailList.length(), filteredVideos->getSize());) {
+		ListedPushButton::sptr button = thumbnailList[i];
+		if (button->getVideo() != filteredVideos->get(i)) {
+			thumbnailListLayout->removeWidget(button.data());
+			button->hide();
+			button->setChecked(false);
+			QObject::disconnect(button.data(), SIGNAL(toggled(bool, int)),
+				                this, SLOT(listedButtonToggled(bool, int)));
+			QObject::disconnect(button.data(), SIGNAL(removed(bool, int)),
+				                this, SLOT(listedButtonRemoved(bool, int)));
+			thumbnailList.removeOne(button);
+			backupThumbnailList.append(button);
+		} else {
+			button->setIndex(i++);
+		}
+	}
+	while (thumbnailList.length() > filteredVideos->getSize()) {
+		ListedPushButton::sptr button = thumbnailList.takeAt(filteredVideos->getSize());
+		thumbnailListLayout->removeWidget(button.data());
+		button->hide();
+		button->setChecked(false);
+		QObject::disconnect(button.data(), SIGNAL(toggled(bool, int)),
+			this, SLOT(listedButtonToggled(bool, int)));
+		QObject::disconnect(button.data(), SIGNAL(removed(bool, int)),
+			this, SLOT(listedButtonRemoved(bool, int)));
+		backupThumbnailList.append(button);
+	}
+	while (thumbnailList.length() < filteredVideos->getSize()) {
+		int index = thumbnailList.length();
+		ListedPushButton::sptr button(new ListedPushButton(index, filteredVideos->get(index)));
+		thumbnailList.insert(index, button);
+		thumbnailListLayout->insertWidget(index, button.data());
+		QObject::connect(button.data(), SIGNAL(toggled(bool, int)), this, SLOT(listedButtonToggled(bool, int)));
+		QObject::connect(button.data(), SIGNAL(removed(bool, int)), this, SLOT(listedButtonRemoved(bool, int)));
+		if (autoActivate) { button->setChecked(true); }
 	}
 
-	//Repopulate the ThumbnailListWidget
-	for (int i = 0; i < filteredVideos->getSize(); i++) {
-		ListedPushButton::sptr addedButton =
-			ListedPushButton::sptr(new ListedPushButton(i, filteredVideos->get(i), this));
-		thumbnailList.insert(i, addedButton);
-		thumbnailListLayout->addWidget(addedButton.data());
-		QObject::connect(addedButton.data(), SIGNAL(toggled(bool, int)), this, SLOT(listedButtonToggled(bool, int)));
-		QObject::connect(addedButton.data(), SIGNAL(removed(bool, int)), this, SLOT(listedButtonRemoved(bool, int)));
-	}
-
-	thumbnailListLayout->addWidget(btnAddVideo);
-	thumbnailListLayout->addStretch();
-
-	isInUpdateRequest = false;
+	delete thumbnailListLayout->takeAt(thumbnailList.length() + 1);
+	thumbnailListLayout->addStretch(5);
 }
 
 void ThumbnailListWidget::listedButtonToggled(bool checked, int id) {
@@ -181,14 +207,8 @@ void ThumbnailListWidget::listedButtonToggled(bool checked, int id) {
 			emit buttonReplaced(oldActiveId, id);
 		}
 	} else if (!checked && activatedButtons.contains(id)) {
-		if (activatedButtons.size() > 1) {
-			activatedButtons.removeOne(id);
-			if (!isInUpdateRequest) {
-				emit buttonDeactivated(id);
-			}
-		} else {
-			thumbnailList.at(id)->setChecked(true);
-		}
+		activatedButtons.removeOne(id);
+		emit buttonDeactivated(id);
 	}
 }
 
@@ -233,6 +253,24 @@ void ThumbnailListWidget::btnAddVideoClicked(bool checked) {
 			heightSpinBox->setValue(widthAndHeight[1].toInt());
 		}
 
+		QRegExp fpsStringRegEx("(\\d+,)?\\d+((fps|framespersecond)|FPS)");
+
+		if (fileInfo.baseName().contains(fpsStringRegEx))
+		{
+
+			fpsStringRegEx.indexIn(fileInfo.baseName());
+			QString fps = fpsStringRegEx.capturedTexts()[0];
+			fps.remove(QRegExp("((fps|framespersecond)|FPS)"));
+			fps.replace(",", ".");
+			fpsSpinBox->setValue(fps.toDouble());
+		}
+
+		if (fileInfo.baseName().contains(QRegExp("(hdtv|HDTV)"))) {
+			hdtv->setChecked(true);
+		} else {
+			hdtv->setChecked(false);
+		}
+
 		macroblockFileLabel->setText(tr("NO_MACROOBLOCK_FILE_CHOSEN"));
 		macroblockFilePath = "";
 
@@ -249,11 +287,11 @@ void ThumbnailListWidget::btnAddVideoClicked(bool checked) {
 			try {
 				if (macroblockFilePath != "") {
 					emit videoAdded(videoPath, macroblockFileLabel->text(), widthSpinBox->value(), heightSpinBox->value(),
-						fpsSpinBox->value(), videoType);
+						fpsSpinBox->value(), videoType, hdtv->isChecked());
 				}
 				else {
 					emit videoAdded(videoPath, widthSpinBox->value(), heightSpinBox->value(), fpsSpinBox->value(),
-						videoType);
+						videoType, hdtv->isChecked());
 				}
 			} catch (IllegalArgumentException e) {
 				QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_ADDING_FAILED_ILLEGEAL_ARGUMENT_TITLE"), tr("VIDEO_ADDING_FAILED_ILLEGAL_ARGUMENT_DETAILS"), QMessageBox::Ok, this);
@@ -291,19 +329,19 @@ const int ThumbnailListWidget::getSelectableCount() {
 }
 
 void ThumbnailListWidget::subscribe(::controller::VideoListController::sptr observer) {
-	QObject::connect(this, SIGNAL(videoAdded(QString, QString, int, int, double, model::video::YUVType)),
-		observer.data(), SLOT(addVideo(QString, QString, int, int, double, model::video::YUVType)));
-	QObject::connect(this, SIGNAL(videoAdded(QString, int, int, double, model::video::YUVType)),
-		observer.data(), SLOT(addVideo(QString, int, int, double, model::video::YUVType)));
+	QObject::connect(this, SIGNAL(videoAdded(QString, QString, int, int, double, model::video::YUVType, bool)),
+		observer.data(), SLOT(addVideo(QString, QString, int, int, double, model::video::YUVType, bool)));
+	QObject::connect(this, SIGNAL(videoAdded(QString, int, int, double, model::video::YUVType, bool)),
+		observer.data(), SLOT(addVideo(QString, int, int, double, model::video::YUVType, bool)));
 	QObject::connect(this, SIGNAL(videoRemoved(int)), observer.data(), SLOT(removeVideo(int)));
 	videoListController = observer;
 }
 
 void ThumbnailListWidget::unsubscribe(const ::controller::VideoListController &observer) {
-	QObject::connect(this, SIGNAL(videoAdded(QString, QString, int, int, double, model::video::YUVType)),
-		&observer, SLOT(addVideo(QString, QString, int, int, double, model::video::YUVType)));
-	QObject::connect(this, SIGNAL(videoAdded(QString, int, int, double, model::video::YUVType)),
-		&observer, SLOT(addVideo(QString, int, int, double, model::video::YUVType)));
+	QObject::connect(this, SIGNAL(videoAdded(QString, QString, int, int, double, model::video::YUVType, bool)),
+		&observer, SLOT(addVideo(QString, QString, int, int, double, model::video::YUVType, bool)));
+	QObject::connect(this, SIGNAL(videoAdded(QString, int, int, double, model::video::YUVType, bool)),
+		&observer, SLOT(addVideo(QString, int, int, double, model::video::YUVType, bool)));
 	QObject::disconnect(this, SIGNAL(videoRemoved(int)), &observer, SLOT(removeVideo(int)));
 }
 

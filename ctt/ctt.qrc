@@ -31,5 +31,9 @@
         <file>Shader/VideoWidget/VideoWidget.fs</file>
         <file>Shader/VideoWidget/VideoWidget.vs</file>
         <file>Shader/Overlay/Heatmap.fs</file>
+        <file>Shader/Conversion/RGBtoYUV444hdtv.fs</file>
+        <file>Shader/Conversion/YUV420toRGBhdtv.fs</file>
+        <file>Shader/Conversion/YUV422toRGBhdtv.fs</file>
+        <file>Shader/Conversion/YUV444toRGBhdtv.fs</file>
     </qresource>
 </RCC>

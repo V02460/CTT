@@ -42,6 +42,10 @@ void view::ABXTestWidget::setUpUI()
 	mainLayout->addWidget(xLabel, 2, 0);
 	mainLayout->addWidget(yLabel, 2, 1);
 
+	mainLayout->setColumnStretch(0, 1);
+	mainLayout->setColumnStretch(1, 1);
+	mainLayout->setColumnStretch(2, 0.2);
+
 	statusLayout = new QVBoxLayout(this);
 	triesLabel = new QLabel(tr("SUCCESSFULL_TRIES") + " : ", this);
 	guessingChanceLabel = new QLabel(tr("CHANCE_THAT_YOU_WERE_GUESSING") + " : ", this);
@@ -58,8 +62,8 @@ void view::ABXTestWidget::setUpUI()
 	xIsAButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 	xIsBButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 	resetButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-	controlsLayout->addWidget(xIsAButton);
-	controlsLayout->addWidget(xIsBButton);
+	statusLayout->addWidget(xIsAButton);
+	statusLayout->addWidget(xIsBButton);
 	controlsLayout->addStretch();
 	controlsLayout->addWidget(resetButton);
 	mainLayout->addLayout(controlsLayout, 2, 2, 2, 1);

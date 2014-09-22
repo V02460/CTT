@@ -1,7 +1,5 @@
 #include "MainController.h"
 
-#include "NotImplementedException.h"
-
 namespace controller {
 
 using project::SaveFileType;
@@ -12,6 +10,10 @@ using project::XMLLoader;
 using operation::OperationList;
 
 MainController::MainController() : currentSavePath(/* TODO standart path here */), currentSaveFileType(SaveFileType::XML) {}
+
+QString MainController::getCurrentSavePath() {
+	return currentSavePath;
+}
 
 void MainController::saveClicked() {
 	if (currentSavePath == "") {
@@ -28,6 +30,8 @@ void MainController::saveAsClicked(QString path, SaveFileType fileType) {
 	case SaveFileType::XML: XMLSaver::getInstance()->save(path); break;
 	default: throw IllegalArgumentException("No saver for given file type exists."); break;
 	}
+
+	OperationList::getInstance()->markLastSavedState();
 }
 
 void MainController::loadClicked(QString path) {
@@ -36,7 +40,9 @@ void MainController::loadClicked(QString path) {
 }
 
 void MainController::newProject() {
+	currentSavePath = "";
 	Project::getInstance()->clear();
+	OperationList::getInstance()->clear();
 }
 
 }  // namespace controller

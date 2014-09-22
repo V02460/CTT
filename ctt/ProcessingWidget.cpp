@@ -1,5 +1,4 @@
 #include "ProcessingWidget.h"
-#include "NotImplementedException.h"
 
 #include <QSplitter>
 #include "FilterController.h"
@@ -17,19 +16,22 @@ using ::controller::ExtendedVideoListController;
 namespace view {
 
 ProcessingWidget::ProcessingWidget(SaveableList<Player>::sptr players,
-	SaveableList<FilteredVideo>::sptr filteredVideos,
-	SaveableList<FilteredVideo>::sptr baseVideos,
-	VideoListController::sptr analysingVideosController, QWidget *parent) : QWidget(parent) {
-	this->analysingVideosController = analysingVideosController;
+	                               SaveableList<FilteredVideo>::sptr filteredVideos,
+								   SaveableList<FilteredVideo>::sptr baseVideos,
+								   SaveableList<FilteredVideo>::sptr analysingFilteredVideos,
+								   VideoListController::sptr analysingVideosController,
+								   QWidget *parent)
+		: QWidget(parent),
+		  players(players),
+		  filteredVideos(filteredVideos),
+		  analysingFilteredVideos(analysingFilteredVideos),
+		  analysingVideosController(analysingVideosController) {
 
-	this->players = players;
 	players->subscribe(this);
-
-	this->filteredVideos = filteredVideos;
 
 	playerWidgetsLayout = new QStackedLayout();
 
-	thumbnailWidget = new ThumbnailListWidget(filteredVideos, 1, false);
+	thumbnailWidget = new ThumbnailListWidget(filteredVideos, 1, false, true);
 	ExtendedVideoListController::sptr evlc(new ExtendedVideoListController(baseVideos, filteredVideos, players));
 	thumbnailWidget->subscribe(evlc);
 	QObject::connect(thumbnailWidget, SIGNAL(buttonActivated(int)), this, SLOT(videoActivated(int)));
@@ -80,18 +82,21 @@ void ProcessingWidget::setupUi() {
 	upperLeftWidget->setLayout(upperLeftLayout);
 
 	QHBoxLayout *upperLayout = new QHBoxLayout();
+	upperLayout->setContentsMargins(0, 0, 0, 0);
 	upperLayout->addWidget(upperLeftWidget);
 	upperLayout->addWidget(upperRightWidget);
 	upperWidget->setLayout(upperLayout);
 
 	verticalSplitter->addWidget(upperWidget);
 	verticalSplitter->addWidget(mainControlWidget);
-	verticalSplitter->setStretchFactor(0, 5);
+	verticalSplitter->setStretchFactor(0, 3);
 	verticalSplitter->setStretchFactor(1, 1);
 
 	QVBoxLayout *layout = new QVBoxLayout();
+	layout->setContentsMargins(0, 0, 0, 0);
 	layout->addWidget(verticalSplitter);
 	setLayout(layout);
+	setContentsMargins(0, 0, 0, 0);
 }
 
 void ProcessingWidget::videoActivated(int id) {
@@ -120,7 +125,7 @@ void ProcessingWidget::update() {
 	}
 
 	for (int i = 0; i < players->getSize(); i++) {
-		PlayerWidget *playerWidget = new PlayerWidget(players->get(i), analysingVideosController, this);
+		PlayerWidget *playerWidget = new PlayerWidget(players->get(i), analysingFilteredVideos, analysingVideosController, this);
 
 		playerWidgetsLayout->addWidget(playerWidget);
 		playerWidgets.append(playerWidget);

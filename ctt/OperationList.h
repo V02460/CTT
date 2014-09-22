@@ -59,6 +59,16 @@ public:
     bool canRedo() const;
 
 	/**
+	 * Removes all Operations from the list and resets the lastSavedState and currentOperation.
+	 */
+	void clear();
+
+	/**
+	 * Determines whether this is a new Project or not
+	 */
+	bool isNew() const;
+
+	/**
 	 * Returns the one instance this class can have.
 	 */
 	static OperationList *getInstance();

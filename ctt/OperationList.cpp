@@ -1,12 +1,10 @@
 #include "OperationList.h"
 
-#include "NotImplementedException.h"
 #include "IllegalStateException.h"
 
 namespace controller {
 namespace operation {
 
-using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
 
 OperationList::OperationList() : operations(), currentOperation(0), lastSavedOperation(-1) {}
@@ -55,6 +53,18 @@ bool OperationList::canUndo() const {
 
 bool OperationList::canRedo() const {
 	return currentOperation != operations.size();
+}
+
+void OperationList::clear() {
+	operations.clear();
+	currentOperation = 0;
+	lastSavedOperation = -1;
+
+	changed();
+}
+
+bool OperationList::isNew() const {
+	return (currentOperation == 0 && lastSavedOperation == -1);
 }
 
 OperationList *OperationList::getInstance() {

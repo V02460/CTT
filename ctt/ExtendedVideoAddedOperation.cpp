@@ -23,30 +23,34 @@ ExtendedVideoAddedOperation::ExtendedVideoAddedOperation(SaveableList<Player>::s
         , video2(video2)
         , videoList(videoList)
         , filteredVideos(filteredVideos)
-        , index(videoList->getSize()) {
+        , index(videoList->getSize())
+		, videoListMemento(videoList->getMemento())
+		, filteredVideosMemento(filteredVideos->getMemento())
+		, playerListMemento(playerList->getMemento()) {
 }
 
 void ExtendedVideoAddedOperation::doOperation() {
     double fps = video1->getMetadata().getFPS();
 
+	VideoScrubber::sptr scrubber1(new VideoScrubber(video1));
+	VideoScrubber::sptr scrubber2(new VideoScrubber(video2));
+
+	Player::sptr player(new Player(fps));
+	player->addScrubber(scrubber1, 0);
+	player->addScrubber(scrubber2, 1);
+
+	playerList->insert(index, player);
     videoList->insert(index, video1);
     filteredVideos->insert(index, video2);
-
-    VideoScrubber::sptr scrubber1(new VideoScrubber(video1));
-    VideoScrubber::sptr scrubber2(new VideoScrubber(video2));
-
-    Player::sptr player(new Player(fps));
-    player->addScrubber(scrubber1, 0);
-    player->addScrubber(scrubber2, 1);
-
-    playerList->insert(index, player);
-
 }
 
 void ExtendedVideoAddedOperation::undoOperation() {
-    videoList->remove(index);
-    filteredVideos->remove(index);
-    playerList->remove(index);
+	videoList->restore(videoListMemento);
+	filteredVideos->restore(filteredVideosMemento);
+	playerList->restore(playerListMemento);
+	playerList->changed();
+	videoList->changed();
+	filteredVideos->changed();
 }
 
 }  // namespace operation

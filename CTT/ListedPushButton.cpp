@@ -3,10 +3,12 @@
 #include <QApplication>
 #include <QMenu>
 
+using ::model::filter::FilteredVideo;
+
 namespace view {
 
 	ListedPushButton::ListedPushButton(int id,
-		                               model::filter::FilteredVideo::sptr video,
+									   FilteredVideo::sptr video,
 									   QWidget *parent) : QToolButton(parent),
 									                      video(video),
 														  id(id) {
@@ -14,8 +16,15 @@ namespace view {
 		if (!video.isNull()) {
 			video->subscribe(this);
 			setThumbnail();
+			QString videoIdentifier = video->getIdentifier();
+			setToolTip(videoIdentifier);
+			if (videoIdentifier.size() > 25) {
+				videoIdentifier.resize(25);
+				videoIdentifier.append("...");
+			}
+			setText(videoIdentifier);
 		} else {
-			setText(tr("NO_VIDEO_SPECIFIED") + " ID: " + QString::number(id));
+			setText(tr("NO_VIDEO_SPECIFIED"));
 		}
 
 		QSizePolicy sizePolicy = QSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
@@ -41,12 +50,17 @@ namespace view {
 	}
 
 	void ListedPushButton::init() {
+		setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 		QObject::connect(this, SIGNAL(toggled(bool)), this, SLOT(buttonToggled(bool)));
 		QObject::connect(this, SIGNAL(clicked(bool)), this, SLOT(buttonClicked(bool)));
 	}
 
 	void ListedPushButton::update() {
 		setThumbnail();
+	}
+
+	void ListedPushButton::setIndex(int index) {
+		id = index;
 	}
 
 	void ListedPushButton::setThumbnail() {
@@ -68,11 +82,15 @@ namespace view {
 		emit removed(checked, id);
 	}
 
+	FilteredVideo::sptr ListedPushButton::getVideo() {
+		return video;
+	}
+
 	void ListedPushButton::resizeEvent(QResizeEvent *ev) {
 		Q_UNUSED(ev);
 
 		double buttonRatio = (double) width() / height();
-		int border = 10;
+		int border = 20;
 
 		if (buttonRatio >= iconRatio) {
 			setIconSize(QSize((height() - border) * iconRatio, height() - border));
