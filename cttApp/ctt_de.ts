@@ -381,7 +381,7 @@
     <message>
         <location filename="../CTT/FrameMetadataWidget.cpp" line="42"/>
         <source>HAS_BLOCK</source>
-        <translation type="unfinished">Enthält Mackroblock-Typen: </translation>
+        <translation>Enthält Makroblock-Typen: </translation>
     </message>
     <message>
         <location filename="../CTT/FrameMetadataWidget.cpp" line="42"/>
@@ -691,7 +691,7 @@
     <message>
         <location filename="../CTT/ThumbnailListWidget.cpp" line="136"/>
         <source>USE_HDTV_YUV_TO_RGB_CONVERSION</source>
-        <translation>HDTV YUV zu RGB Konvertierung benutzen?</translation>
+        <translation>HDTV YUV zu RGB Konvertierung benutzen</translation>
     </message>
     <message>
         <location filename="../CTT/ThumbnailListWidget.cpp" line="127"/>
