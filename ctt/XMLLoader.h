@@ -21,6 +21,7 @@
 #include "GreyscaleFilter.h"
 #include "MixFilter.h"
 #include "NoiseFilter.h"
+#include "InvertFilter.h"
 #include "HeatmapOverlay.h"
 #include "MacroblockOverlay.h"
 #include "MotionVectorOverlay.h"

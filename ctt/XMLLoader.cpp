@@ -23,6 +23,7 @@ using ::model::filter::CoffeeFilter;
 using ::model::filter::GreyscaleFilter;
 using ::model::filter::MixFilter;
 using ::model::filter::NoiseFilter;
+using ::model::filter::InvertFilter;
 using ::model::filter::overlay::HeatmapOverlay;
 using ::model::filter::overlay::MacroblockOverlay;
 using ::model::filter::overlay::MotionVectorOverlay;
@@ -143,6 +144,7 @@ void XMLLoader::readElements() {
 			case Saveable::SaveableType::greyscaleFilter: dummy = GreyscaleFilter::getDummy(); break;
 			case Saveable::SaveableType::mixFilter: dummy = MixFilter::getDummy(); break;
 			case Saveable::SaveableType::noiseFilter: dummy = NoiseFilter::getDummy(); break;
+			case Saveable::SaveableType::invertFilter: dummy = InvertFilter::getDummy(); break;
 			case Saveable::SaveableType::heatmapOverlay: dummy = HeatmapOverlay::getDummy(); break;
 			case Saveable::SaveableType::macroblockOverlay: dummy = MacroblockOverlay::getDummy(); break;
 			case Saveable::SaveableType::motionVektorOverlay: dummy = MotionVectorOverlay::getDummy(); break;
