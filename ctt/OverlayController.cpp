@@ -63,7 +63,7 @@ namespace controller {
 	}
 
 	void OverlayController::removeOverlay(int pos) {
-		if (currentVideo->getFilterList().size() < pos) {
+		if (currentVideo->getFilterList().size() > pos) {
 			OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
 				new FilterRemovedOperation(pos, currentVideo)));
 		}

@@ -96,6 +96,16 @@
         <source>overlay_heatmap</source>
         <translation>Heatmap</translation>
     </message>
+    <message>
+        <location filename="../CTT/MacroblockOverlay.cpp" line="23"/>
+        <source>overlay_macroblock</source>
+        <translation>Macroblock</translation>
+    </message>
+    <message>
+        <location filename="../CTT/MotionVectorOverlay.cpp" line="15"/>
+        <source>overlay_motionvector</source>
+        <translation>Motion vector</translation>
+    </message>
 </context>
 <context>
     <name>FrameDiff</name>
@@ -264,17 +274,15 @@
 <context>
     <name>model::filter::overlay::MacroblockOverlay</name>
     <message>
-        <location filename="../CTT/MacroblockOverlay.cpp" line="23"/>
         <source>overlay_macroblock</source>
-        <translation>Macroblock</translation>
+        <translation type="vanished">Macroblock</translation>
     </message>
 </context>
 <context>
     <name>model::filter::overlay::MotionVectorOverlay</name>
     <message>
-        <location filename="../CTT/MotionVectorOverlay.cpp" line="15"/>
         <source>overlay_motionvector</source>
-        <translation>Motion vector</translation>
+        <translation type="vanished">Motion vector</translation>
     </message>
 </context>
 <context>
