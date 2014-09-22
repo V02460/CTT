@@ -80,6 +80,7 @@ public:
 	virtual unsigned int getFrameCount() const;
 	virtual model::video::VideoMetadata getMetadata() const;
 	virtual QSharedPointer<QOpenGLContext> getContext() const;
+	virtual QString getIdentifier() const Q_DECL_OVERRIDE;
 
     virtual ::model::saveable::Memento getMemento() const;
     virtual void restore(::model::saveable::Memento memento);

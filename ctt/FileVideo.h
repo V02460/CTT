@@ -29,6 +29,8 @@ public:
     */
     QString getPath() const;
 
+	virtual QString getIdentifier() const Q_DECL_OVERRIDE;
+
 	virtual QList<const Module*> getUsesList() const;
 
 	virtual bool uses(const model::Module &module) const;

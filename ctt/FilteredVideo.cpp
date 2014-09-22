@@ -168,6 +168,10 @@ QList<const Module*> FilteredVideo::getUsesList() const {
 	return result;
 }
 
+QString FilteredVideo::getIdentifier() const {
+	return baseVideo->getIdentifier();
+}
+
 unsigned int FilteredVideo::getFrameCount() const {
 	if (isDummy()) {
 		throw AccessToDummyException();

@@ -1,5 +1,7 @@
 #include "FileVideo.h"
 
+#include <QFileInfo>
+
 #include "NotImplementedException.h"
 #include "FileNotFoundException.h"
 
@@ -31,6 +33,12 @@ QString FileVideo::getPath() const {
 		throw AccessToDummyException();
 	}
 	return pathToVideoFile;
+}
+
+QString FileVideo::getIdentifier() const {
+	QFileInfo fileSurro(pathToVideoFile);
+
+	return fileSurro.fileName();
 }
 
 QList<const Module*> FileVideo::getUsesList() const {

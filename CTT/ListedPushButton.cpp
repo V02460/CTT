@@ -8,7 +8,7 @@ using ::model::filter::FilteredVideo;
 namespace view {
 
 	ListedPushButton::ListedPushButton(int id,
-		                               FilteredVideo::sptr video,
+									   FilteredVideo::sptr video,
 									   QWidget *parent) : QToolButton(parent),
 									                      video(video),
 														  id(id) {
@@ -16,6 +16,13 @@ namespace view {
 		if (!video.isNull()) {
 			video->subscribe(this);
 			setThumbnail();
+			QString videoIdentifier = video->getIdentifier();
+			setToolTip(videoIdentifier);
+			if (videoIdentifier.size() > 25) {
+				videoIdentifier.resize(25);
+				videoIdentifier.append("...");
+			}
+			setText(videoIdentifier);
 		} else {
 			setText(tr("NO_VIDEO_SPECIFIED"));
 		}
@@ -43,6 +50,7 @@ namespace view {
 	}
 
 	void ListedPushButton::init() {
+		setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 		QObject::connect(this, SIGNAL(toggled(bool)), this, SLOT(buttonToggled(bool)));
 		QObject::connect(this, SIGNAL(clicked(bool)), this, SLOT(buttonClicked(bool)));
 	}
@@ -82,7 +90,7 @@ namespace view {
 		Q_UNUSED(ev);
 
 		double buttonRatio = (double) width() / height();
-		int border = 10;
+		int border = 20;
 
 		if (buttonRatio >= iconRatio) {
 			setIconSize(QSize((height() - border) * iconRatio, height() - border));
