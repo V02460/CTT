@@ -1,6 +1,5 @@
 #include "HSLPixelDiff.h"
 
-#include "NotImplementedException.h"
 #include "GPUSurfaceShader.h"
 
 namespace model {
@@ -10,7 +9,6 @@ using ::model::video::Video;
 using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
 using ::helper::GPUSurfaceShader;
-using ::exception::NotImplementedException;
 using ::exception::AccessToDummyException;
 
 const QByteArray HSLPixelDiff::kDiffID = QT_TRANSLATE_NOOP("Diff", "pixeldiff_hsl");

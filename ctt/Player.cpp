@@ -2,17 +2,14 @@
 
 #include "IllegalArgumentException.h"
 #include "IllegalStateException.h"
-#include "NotImplementedException.h"
 
 namespace model {
 namespace player {
 
 using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
-using ::exception::NotImplementedException;
 using ::exception::IllegalArgumentException;
 using ::exception::AccessToDummyException;
-using ::exception::NotImplementedException;
 
 const QString Player::fpsStringId("fps");
 const QString Player::scrubbersStringId("scrubbers");

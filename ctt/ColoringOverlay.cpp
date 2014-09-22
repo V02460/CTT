@@ -2,17 +2,16 @@
 
 #include "NotImplementedException.h"
 
-// TODO bei Implementierung bitte an saveable dinge denken!
-
 namespace model {
 namespace filter {
 namespace overlay {
 
 using ::model::frame::Frame;
-using ::exception::NotImplementedException;
 using ::model::saveable::Saveable;
 using ::model::filter::GreyscaleFilter;
 using ::model::saveable::Memento;
+
+using ::exception::NotImplementedException;
 
 ColoringOverlay::ColoringOverlay(Module::sptr greyscaleFilter,
                                  Module::sptr predecessor,

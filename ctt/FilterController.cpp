@@ -15,6 +15,7 @@ using ::controller::operation::Operation;
 using ::controller::operation::FilterAddedOperation;
 using ::model::filter::FilterFactory;
 using ::model::Module;
+
 using ::exception::NotImplementedException;
 
 FilterController::FilterController(FilteredVideo::sptr video) : video(video) {}

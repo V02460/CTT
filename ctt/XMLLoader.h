@@ -10,7 +10,6 @@
 #include "ProjectLoader.h"
 #include "IOException.h"
 #include "ParseException.h"
-#include "NotImplementedException.h"
 #include "Saveable.h"
 #include "XMLSaver.h"
 

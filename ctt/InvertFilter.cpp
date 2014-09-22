@@ -3,7 +3,6 @@
 #include "GPUSurfaceShader.h"
 
 #include "AccessToDummyException.h"
-#include "NotImplementedException.h"
 
 namespace model {
 namespace filter {
@@ -12,7 +11,6 @@ using ::model::frame::Frame;
 using ::helper::GPUSurfaceShader;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
-using ::exception::NotImplementedException;
 using ::exception::AccessToDummyException;
 
 const QByteArray InvertFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_invert");

@@ -1,12 +1,10 @@
 #include "OperationList.h"
 
-#include "NotImplementedException.h"
 #include "IllegalStateException.h"
 
 namespace controller {
 namespace operation {
 
-using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
 
 OperationList::OperationList() : operations(), currentOperation(0), lastSavedOperation(-1) {}

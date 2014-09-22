@@ -2,7 +2,6 @@
 #include "Frame.h"
 #include "Memento.h"
 
-#include "NotImplementedException.h"
 #include "AccessToDummyException.h"
 
 namespace model {

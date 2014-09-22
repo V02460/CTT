@@ -1,6 +1,5 @@
 #include "YUVDataVideo.h"
 
-#include "NotImplementedException.h"
 #include "MacroblockType.h"
 #include "FileNotFoundException.h"
 #include "IOException.h"
@@ -18,7 +17,6 @@ using ::model::frame::FrameMetadata;
 using ::model::saveable::Saveable;
 using ::model::frame::MacroblockType;
 using ::model::saveable::Memento;
-using ::exception::NotImplementedException;
 using ::exception::AccessToDummyException;
 using ::exception::IllegalStateException;
 using ::exception::IllegalArgumentException;
@@ -32,6 +30,7 @@ const QString YUVDataVideo::videoPathStringId = "vidPath";
 const QString YUVDataVideo::metadataPathStringId = "metaPath";
 const QString YUVDataVideo::framerateStringId = "framerate";
 const QString YUVDataVideo::yuvTypeStringId = "yuvtype";
+const QString YUVDataVideo::isHDTVStringId = "isHDTV";
 
 YUVDataVideo::YUVDataVideo(QString pathToVideoFile,
                            QSize resolution,
@@ -227,6 +226,8 @@ Memento YUVDataVideo::getMemento() const {
 
 	memento.setInt(yuvTypeStringId, type);
 
+	memento.setBool(isHDTVStringId, isHDTV);
+
 	return memento;
 }
 
@@ -316,6 +317,8 @@ void YUVDataVideo::restore(Memento memento) {
                 "macroblocks in the video file (assuming 16x16p macroblocks and 1 byte of metadata per macroblock).");
 		}
 	}
+
+	isHDTV = memento.getBool(isHDTVStringId);
 
     load(0);
 }

@@ -1,7 +1,5 @@
 #include "TimeshiftFilter.h"
 
-#include "NotImplementedException.h"
-
 namespace model {
 namespace filter {
 
@@ -9,7 +7,6 @@ using ::model::frame::Frame;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::exception::AccessToDummyException;
-using ::exception::NotImplementedException;
 
 const QByteArray TimeshiftFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_timeshift");
 

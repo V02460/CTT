@@ -2,7 +2,6 @@
 
 #include "IllegalArgumentException.h"
 #include "IllegalStateException.h"
-#include "NotImplementedException.h"
 
 
 namespace model {
@@ -13,7 +12,6 @@ using ::model::video::VideoMetadata;
 using ::model::frame::Frame;
 using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
-using ::exception::NotImplementedException;
 using ::exception::IllegalArgumentException;
 using ::exception::AccessToDummyException;
 

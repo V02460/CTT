@@ -3,9 +3,6 @@
 #include <QCoreApplication>
 
 #include "FilterFactory.h"
-#include "NotImplementedException.h"
-
-using ::exception::NotImplementedException;
 
 namespace view {
 

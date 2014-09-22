@@ -1,7 +1,5 @@
 #include "MainController.h"
 
-#include "NotImplementedException.h"
-
 namespace controller {
 
 using project::SaveFileType;

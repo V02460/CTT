@@ -1,7 +1,5 @@
 #include "Project.h"
 
-#include "NotImplementedException.h"
-
 namespace controller {
 namespace project {
 
@@ -11,7 +9,6 @@ using ::model::video::Video;
 using ::model::filter::FilteredVideo;
 using ::model::player::Player;
 using ::model::difference::FrameDiff;
-using ::exception::NotImplementedException;
 using ::view::ViewState;
 using ::view::ViewType;
 

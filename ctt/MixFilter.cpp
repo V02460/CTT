@@ -2,8 +2,6 @@
 
 #include "GPUSurfaceShader.h"
 
-#include "NotImplementedException.h"
-
 namespace model {
 namespace filter {
 

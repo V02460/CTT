@@ -129,6 +129,7 @@ private:
 	const static QString metadataPathStringId;
 	const static QString framerateStringId;
 	const static QString yuvTypeStringId;
+	const static QString isHDTVStringId;
 
     /**
      * Creates a dummy YUVDataVideo.

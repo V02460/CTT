@@ -1,6 +1,5 @@
 #include "Video.h"
 
-#include "NotImplementedException.h"
 #include "YUVType.h"
 #include "IOException.h"
 #include "GPUSurfaceShader.h"
@@ -10,7 +9,6 @@
 namespace model {
 namespace video {
 
-using ::exception::NotImplementedException;
 using ::exception::AccessToDummyException;
 using ::exception::IOException;
 using ::model::saveable::Saveable;

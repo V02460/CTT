@@ -1,5 +1,4 @@
 #include "ProcessingWidget.h"
-#include "NotImplementedException.h"
 
 #include <QSplitter>
 #include "FilterController.h"
