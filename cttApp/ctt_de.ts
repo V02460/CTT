@@ -473,7 +473,7 @@
     <message>
         <location filename="../CTT/MainWindow.cpp" line="84"/>
         <source>MENUENTRY_SAVE_PROJECT</source>
-        <translation>Project speichern</translation>
+        <translation>Projekt speichern</translation>
     </message>
     <message>
         <location filename="../CTT/MainWindow.cpp" line="91"/>
@@ -560,7 +560,7 @@
     <message>
         <location filename="../CTT/MainWindow.cpp" line="207"/>
         <source>LOAD_PROJECT</source>
-        <translation>Project laden</translation>
+        <translation>Projekt laden</translation>
     </message>
     <message>
         <location filename="../CTT/MainWindow.cpp" line="207"/>
