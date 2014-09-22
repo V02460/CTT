@@ -1,6 +1,5 @@
 #include "NoiseFilter.h"
 
-#include "NotImplementedException.h"
 #include "GPUSurfaceShader.h"
 
 namespace model {

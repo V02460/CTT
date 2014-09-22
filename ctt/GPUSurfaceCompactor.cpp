@@ -3,7 +3,6 @@
 #include "IOException.h"
 #include "FileNotFoundException.h"
 #include "OpenGLException.h"
-#include "NotImplementedException.h"
 
 // #define WARN_INVALID_UNIFORM
 
@@ -13,7 +12,6 @@ using ::model::Surface;
 using ::exception::OpenGLException;
 using ::exception::IOException;
 using ::exception::FileNotFoundException;
-using ::exception::NotImplementedException;
 
 QSize getNewSizeDefault(QSize size) {
     return QSize(size.width() / 2, size.height() / 2);

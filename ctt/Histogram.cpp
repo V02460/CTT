@@ -5,7 +5,6 @@
 #include "GPUSurfaceShader.h"
 #include "GPUSurfaceCompactor.h"
 
-#include "NotImplementedException.h"
 #include "OpenGLException.h"
 
 namespace model {
@@ -18,7 +17,6 @@ using ::helper::ceilTo;
 using ::helper::floorTo;
 using ::exception::IllegalArgumentException;
 using ::exception::OpenGLException;
-using ::exception::NotImplementedException;
 
 typedef QSharedPointer<QOpenGLShaderProgram> QOpenGLShaderProgram_sptr;
 typedef QSharedPointer<QOpenGLTexture> QOpenGLTexture_sptr;

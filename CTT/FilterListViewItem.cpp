@@ -1,12 +1,10 @@
 #include "FilterListViewItem.h"
 
-#include "NotImplementedException.h"
 #include <QHeaderView>
 
 using ::model::filter::Filter;
 using ::model::filter::FilterParam;
 using ::controller::FilterController;
-using ::exception::NotImplementedException;
 
 namespace view {
 

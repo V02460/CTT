@@ -1,6 +1,5 @@
 #include "YUVDataVideo.h"
 
-#include "NotImplementedException.h"
 #include "MacroblockType.h"
 #include "FileNotFoundException.h"
 #include "IOException.h"
@@ -18,7 +17,6 @@ using ::model::frame::FrameMetadata;
 using ::model::saveable::Saveable;
 using ::model::frame::MacroblockType;
 using ::model::saveable::Memento;
-using ::exception::NotImplementedException;
 using ::exception::AccessToDummyException;
 using ::exception::IllegalStateException;
 using ::exception::IllegalArgumentException;

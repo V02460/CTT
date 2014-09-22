@@ -4,7 +4,6 @@
 #include "FilterParam.h"
 #include "FrameMetadata.h"
 
-#include "NotImplementedException.h"
 #include "AccessToDummyException.h"
 
 namespace model {
@@ -16,7 +15,6 @@ using ::model::filter::FilterParam;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::helper::GPUSurfaceShader;
-using ::exception::NotImplementedException;
 using ::exception::AccessToDummyException;
 
 const QByteArray RescaleFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_rescale");

@@ -3,7 +3,6 @@
 #include <QCoreApplication>
 #include <QBoxLayout>
 
-#include "NotImplementedException.h"
 #include "FilterFactory.h"
 #include "HeatmapOverlay.h"
 #include "MacroblockOverlay.h"
@@ -15,7 +14,6 @@ namespace view {
 
 namespace view {
 
-using ::exception::NotImplementedException;
 using ::controller::OverlayController;
 using ::model::player::VideoScrubber;
 using ::model::filter::FilterFactory;

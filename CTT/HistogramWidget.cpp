@@ -3,12 +3,10 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 
-#include "NotImplementedException.h"
 #include "Histogram.h"
 
 namespace view {
 
-using ::exception::NotImplementedException;
 using ::model::frame::histogram::Histogram;
 using ::model::frame::Frame;
 

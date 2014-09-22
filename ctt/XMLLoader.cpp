@@ -9,7 +9,6 @@ namespace project {
 using ::exception::IOException;
 using ::exception::ParseException;
 using ::exception::IllegalStateException;
-using ::exception::NotImplementedException;
 using ::controller::project::XMLSaver;
 using ::controller::project::Project;
 using ::model::saveable::Saveable;
@@ -121,7 +120,7 @@ void XMLLoader::readElements() {
 				pointerMap.insert(id, project->getPlayer2()); break;
 			case XMLSaver::BaseSaveableType::DiffList:
 				pointerMap.insert(id, project->getDiffList()); break;
-			default: throw new NotImplementedException("Unknown base savable type."); break;
+			default: throw new IllegalArgumentException("Unknown base savable type."); break;
 			}
 		} else {
 			if (!attributes.hasAttribute(XMLSaver::CLASS)) {
@@ -196,7 +195,7 @@ void XMLLoader::readElements() {
 				case Saveable::SaveableType::saveableList:
 					throw new ParseException("A saveable list may not contain another saveable list.");
 					break;
-				default: throw new NotImplementedException("Unknown saveable type."); break;
+				default: throw new IllegalArgumentException("Unknown saveable type."); break;
 				}
 				break;
 			}

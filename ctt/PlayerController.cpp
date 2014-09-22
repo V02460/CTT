@@ -3,8 +3,6 @@
 #include "OperationList.h"
 #include "FPSChangingOperation.h"
 
-#include "NotImplementedException.h"
-
 namespace controller {
 
 	using ::model::player::Player;

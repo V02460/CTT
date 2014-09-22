@@ -2,8 +2,6 @@
 
 #include "GPUSurfaceShader.h"
 
-#include "NotImplementedException.h"
-
 namespace model {
 namespace filter {
 
@@ -11,7 +9,6 @@ using ::model::frame::Frame;
 using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
 using ::helper::GPUSurfaceShader;
-using ::exception::NotImplementedException;
 using ::exception::AccessToDummyException;
 
 const QByteArray RGBChannelFilter::kFilterID = QT_TRANSLATE_NOOP("Filter", "filter_rgbchannel");

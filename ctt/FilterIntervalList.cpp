@@ -1,6 +1,5 @@
 #include "FilterIntervalList.h"
 
-#include "NotImplementedException.h"
 #include "IllegalArgumentException.h"
 #include "AccessToDummyException.h"
 
@@ -8,7 +7,6 @@ namespace model {
 
 using ::model::saveable::Memento;
 using ::model::saveable::Saveable;
-using ::exception::NotImplementedException;
 using ::exception::AccessToDummyException;
 
 FilterIntervalList::FilterIntervalList() : intervals() {}

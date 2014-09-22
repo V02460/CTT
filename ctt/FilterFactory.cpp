@@ -14,8 +14,6 @@
 #include "MacroblockOverlay.h"
 #include "MotionVectorOverlay.h"
 
-#include "NotImplementedException.h"
-
 namespace model {
 namespace filter {
 
@@ -23,7 +21,6 @@ using overlay::HeatmapOverlay;
 using overlay::MacroblockOverlay;
 using overlay::MotionVectorOverlay;
 using ::model::difference::PixelDiff;
-using exception::NotImplementedException;
 
 QList<QByteArray> FilterFactory::getAllNonOverlayFilterIDs() {
     QList<QByteArray> list;
