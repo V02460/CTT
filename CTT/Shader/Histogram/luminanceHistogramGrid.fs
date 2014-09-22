@@ -36,7 +36,9 @@ void main() {
 
 	 		bool isInSource = (lookupPos.x < _sourceSize.x && lookupPos.y < _sourceSize.y);
 			
-	 		bucketCount += int(bucketNr == int(255.f * color.b)) * int(isInSource);
+			float luminance = 0.299 * color.r + 0.587 * color.g + 0.114 * color.b;
+
+	 		bucketCount += int(bucketNr == int(255.f * luminance)) * int(isInSource);
 	 		totalPixelsProcessed += int(isInSource);
 		}
 	}

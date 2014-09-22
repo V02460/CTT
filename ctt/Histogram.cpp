@@ -36,9 +36,10 @@ const QList<QString> Histogram::HISTOGRAM_TYPE_STRINGS =
     QList<QString>() << kRedStr
                      << kGreenStr
                      << kBlueStr
+					 << kLuminanceStr
                      /*<< kHueStr
                      << kSaturationStr
-                     << kLuminanceStr*/;
+                     */;
 
 static const QList<QString> HISTOGRAM_TYPE_STRINGS;
 
