@@ -3,7 +3,6 @@
 #include "GPUSurfacePainter.h"
 #include "GlobalContext.h"
 
-#include "NotImplementedException.h"
 #include "IllegalStateException.h"
 
 namespace model {
@@ -17,7 +16,6 @@ using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::helper::GPUSurfacePainter;
 using ::helper::VertexAttribute;
-using ::exception::NotImplementedException;
 using ::exception::IllegalStateException;
 
 const QByteArray MacroblockOverlay::kFilterID = QT_TR_NOOP("overlay_macroblock");
@@ -279,11 +277,15 @@ Frame::sptr MacroblockOverlay::Macroblocks::getFrame(unsigned int frameNumber) c
 }
 
 Memento MacroblockOverlay::Macroblocks::getMemento() const {
-    throw NotImplementedException(); // TODO: think about the buffers
+    return Memento();
 }
 
 void MacroblockOverlay::Macroblocks::restore(::model::saveable::Memento memento) {
-    throw NotImplementedException();
+    partitionMap = Frame::sptr::create(GlobalContext::get(), QImage(":/Shader/Overlay/partitions.png"));
+
+    positionAttribute.reset(new VertexAttribute(0, 0));
+    colorAttribute.reset(new VertexAttribute(0, 0));
+    texcrdAttribute.reset(new VertexAttribute(0, 0));
 }
 
 QList<const Module*> MacroblockOverlay::Macroblocks::getUsesList() const {

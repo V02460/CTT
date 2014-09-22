@@ -50,7 +50,15 @@ public:
 	static Saveable::SaveableType getSaveableType() { return Saveable::heatmapOverlay; }
 	virtual SaveableType saveableType() const Q_DECL_OVERRIDE { return getSaveableType(); }
 
+protected:
+    /**
+     * Creates a dummy HeatmapOverlay.
+     */
+    HeatmapOverlay();
+
 private:
+    static const QString kHeatmapAttrStr;
+
     class Heatmap : public ::model::Module {
         public:
             typedef QScopedPointer<Heatmap> uptr;
@@ -77,6 +85,7 @@ private:
      * Helper constructor to enable this class to keep a reference to the Heatmap object.
      */
     HeatmapOverlay(Module::sptr predecessor, ::model::difference::PixelDiff::sptr difference, Heatmap::sptr heatmap);
+
 };
 
 }  // namespace overlay

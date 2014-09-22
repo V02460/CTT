@@ -2,9 +2,8 @@
 
 #include "GPUSurfaceShader.h"
 #include "FrameMetadata.h"
-#include "NotImplementedException.h"
 
-// TODO bei Implementierung bitte an saveable dinge denken!
+#include "NotImplementedException.h"
 
 namespace model {
 namespace filter {
@@ -46,11 +45,17 @@ QList<const Module*> HeatmapOverlay::getUsesList() const {
 }
 
 Memento HeatmapOverlay::getMemento() const {
-    throw NotImplementedException();
+    Memento memento = ColoringOverlay::getMemento();
+
+    memento.setSharedPointer(kHeatmapAttrStr, heatmap);
+
+    return memento;
 }
 
 void HeatmapOverlay::restore(Memento memento) {
-    throw NotImplementedException();
+    ColoringOverlay::restore(memento);
+
+    heatmap = memento.getSharedPointer(kHeatmapAttrStr).dynamicCast<Heatmap>();
 }
 
 Frame::sptr HeatmapOverlay::Heatmap::getFrame(unsigned int frameNumber) const {
@@ -87,9 +92,15 @@ QList<const Module*> HeatmapOverlay::Heatmap::getUsesList() const {
     return list << this;
 }
 
-Saveable::sptr HeatmapOverlay::getDummy() {
-    throw NotImplementedException();
+HeatmapOverlay::HeatmapOverlay() {
+    isDummyFlag = true;
 }
+
+Saveable::sptr HeatmapOverlay::getDummy() {
+    return HeatmapOverlay::sptr(new HeatmapOverlay());
+}
+
+const QString HeatmapOverlay::kHeatmapAttrStr = "heatmap";
 
 }  // namespace overlay
 }  // namespace filter

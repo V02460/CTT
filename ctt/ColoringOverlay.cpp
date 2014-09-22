@@ -1,15 +1,10 @@
 #include "ColoringOverlay.h"
 
-#include "NotImplementedException.h"
-
-// TODO bei Implementierung bitte an saveable dinge denken!
-
 namespace model {
 namespace filter {
 namespace overlay {
 
 using ::model::frame::Frame;
-using ::exception::NotImplementedException;
 using ::model::saveable::Saveable;
 using ::model::filter::GreyscaleFilter;
 using ::model::saveable::Memento;
@@ -44,10 +39,6 @@ QList<const Module*> ColoringOverlay::getUsesList() const {
     QList<const Module*> list = Overlay::getUsesList();
 
     return list << greyscaleFilter.data();
-}
-
-Saveable::sptr ColoringOverlay::getDummy() {
-	throw NotImplementedException();
 }
 
 ColoringOverlay::ColoringOverlay() : Overlay() {
