@@ -5,6 +5,7 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 #include <QFile>
+#include <QFileInfo>
 
 #include "Video.h"
 
