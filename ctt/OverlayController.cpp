@@ -51,7 +51,7 @@ namespace controller {
 			module = currentVideo->getFilterList().back();
 		}
 
-		PixelDiff::sptr diff = DifferenceFactory::createPixelDiff(HSLPixelDiff::kDiffID, video1, video2);
+		PixelDiff::sptr diff = DifferenceFactory::createPixelDiff(HSLPixelDiff::kDiffID, video1->getBaseVideo(), video2->getBaseVideo());
 
 		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
 			new FilterAddedOperation(FilterFactory::createFilter(id, module, diff), currentVideo)));

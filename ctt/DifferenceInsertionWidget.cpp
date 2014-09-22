@@ -35,7 +35,7 @@ namespace view {
 		QList<FilteredVideo::sptr> selectedVideos = orderingWidget->getVideos(2);
 
 		if (selectedVideos.size() == 2) {
-			emit inserted(DifferenceFactory::getAllFrameDiffIDs().at(id), selectedVideos.value(0).dynamicCast<Video>(), selectedVideos.value(1).dynamicCast<Video>());
+			emit inserted(DifferenceFactory::getAllFrameDiffIDs().at(id), selectedVideos.value(0)->getBaseVideo(), selectedVideos.value(1)->getBaseVideo());
 		} else if(selectedVideos.size() != 0) {
 			QMessageBox::warning(this, tr("DIFFERENCE_INSERTION_FAILED_TITLE"), tr("DIFFERENCE_INSERTION_FAILED"));
 		}
