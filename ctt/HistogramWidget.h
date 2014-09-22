@@ -55,6 +55,7 @@ private:
 	QString currentHistogramType;
 	QCustomPlot *histogramPlot;
 	QCPBars *histogramBars;
+	double histogramMaxY;
 	QPushButton *btnAutoRecalculation;
 	bool autoRecalculation;
     ::model::player::VideoScrubber::sptr scrubber /**< The scrubber at which the HistogramWidget is registered */;

@@ -12,7 +12,7 @@ using ::exception::NotImplementedException;
 using ::model::frame::histogram::Histogram;
 using ::model::frame::Frame;
 
-HistogramWidget::HistogramWidget(::model::player::VideoScrubber::sptr scrubber, QWidget *parent) : QWidget(parent), scrubber(scrubber), autoRecalculation(false) {
+HistogramWidget::HistogramWidget(::model::player::VideoScrubber::sptr scrubber, QWidget *parent) : QWidget(parent), scrubber(scrubber), histogramMaxY(0.025), autoRecalculation(false) {
 	scrubber->subscribe(this);
 	currentHistogramType = Histogram::HISTOGRAM_TYPE_STRINGS.at(0);
 
@@ -21,7 +21,7 @@ HistogramWidget::HistogramWidget(::model::player::VideoScrubber::sptr scrubber, 
 	histogramPlot->axisRect()->setAutoMargins(QCP::msNone);
 	histogramPlot->axisRect()->setMargins(QMargins(0, 0, 0, 0));
 	histogramPlot->xAxis->setRange(0, 255);
-	histogramPlot->yAxis->setRange(0, 0.025);
+	histogramPlot->yAxis->setRange(0, histogramMaxY);
 	histogramPlot->xAxis->setVisible(false);
 	histogramPlot->yAxis->setVisible(false);
 
@@ -90,7 +90,13 @@ void HistogramWidget::recalculateHistogram() {
 
 	for (unsigned int i = 0; i < Histogram::kSize; i++) {
 		keys.append(i);
-		values.append(histogram->getValue(i));
+		double value = histogram->getValue(i);
+		values.append(value);
+
+		if (value > histogramMaxY) {
+			histogramMaxY = value;
+			histogramPlot->yAxis->setRange(0, histogramMaxY);
+		}
 	}
 
 	histogramBars->clearData();

@@ -381,7 +381,7 @@
     <message>
         <location filename="../CTT/FrameMetadataWidget.cpp" line="42"/>
         <source>HAS_BLOCK</source>
-        <translation>Enthält Mackroblick-Typen: </translation>
+        <translation type="unfinished">Enthält Mackroblock-Typen: </translation>
     </message>
     <message>
         <location filename="../CTT/FrameMetadataWidget.cpp" line="42"/>
