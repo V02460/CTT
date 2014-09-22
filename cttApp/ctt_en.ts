@@ -694,7 +694,7 @@
     <message>
         <location filename="../CTT/ThumbnailListWidget.cpp" line="136"/>
         <source>USE_HDTV_YUV_TO_RGB_CONVERSION</source>
-        <translation>use HDTV YUVto RGB conversion?</translation>
+        <translation>Use HDTV YUVto RGB conversion</translation>
     </message>
     <message>
         <location filename="../CTT/ThumbnailListWidget.cpp" line="127"/>

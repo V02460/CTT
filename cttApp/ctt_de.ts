@@ -381,7 +381,7 @@
     <message>
         <location filename="../CTT/FrameMetadataWidget.cpp" line="42"/>
         <source>HAS_BLOCK</source>
-        <translation>Enthält Mackroblock-Typen: </translation>
+        <translation type="unfinished">Enthält Macroblock-Typen: </translation>
     </message>
     <message>
         <location filename="../CTT/FrameMetadataWidget.cpp" line="42"/>
@@ -473,7 +473,7 @@
     <message>
         <location filename="../CTT/MainWindow.cpp" line="84"/>
         <source>MENUENTRY_SAVE_PROJECT</source>
-        <translation>Project speichern</translation>
+        <translation>Projekt speichern</translation>
     </message>
     <message>
         <location filename="../CTT/MainWindow.cpp" line="91"/>
@@ -634,7 +634,7 @@
         <location filename="../CTT/PlayerFunctions.cpp" line="119"/>
         <location filename="../CTT/PlayerFunctions.cpp" line="121"/>
         <source>PAUSE</source>
-        <translation type="unfinished">Pausieren</translation>
+        <translation>Pausieren</translation>
     </message>
 </context>
 <context>
