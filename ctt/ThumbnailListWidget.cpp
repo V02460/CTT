@@ -189,6 +189,9 @@ void ThumbnailListWidget::update() {
 		QObject::connect(button.data(), SIGNAL(removed(bool, int)), this, SLOT(listedButtonRemoved(bool, int)));
 		if (autoActivate) { button->setChecked(true); }
 	}
+
+	delete thumbnailListLayout->takeAt(thumbnailList.length() + 1);
+	thumbnailListLayout->addStretch(5);
 }
 
 void ThumbnailListWidget::listedButtonToggled(bool checked, int id) {
