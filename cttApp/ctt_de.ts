@@ -34,7 +34,7 @@
         <translation>Histogramm Luminanz</translation>
     </message>
     <message>
-        <location filename="../CTT/HSLPixelDiff.cpp" line="16"/>
+        <location filename="../CTT/HSLPixelDiff.cpp" line="14"/>
         <source>pixeldiff_hsl</source>
         <translation>HSL Abstand</translation>
     </message>
@@ -47,12 +47,12 @@
 <context>
     <name>Filter</name>
     <message>
-        <location filename="../CTT/BlurFilter.cpp" line="18"/>
+        <location filename="../CTT/BlurFilter.cpp" line="16"/>
         <source>filter_blur</source>
         <translation>Weichzeichnen</translation>
     </message>
     <message>
-        <location filename="../CTT/CoffeeFilter.cpp" line="16"/>
+        <location filename="../CTT/CoffeeFilter.cpp" line="15"/>
         <source>filter_coffee</source>
         <translation>Kaffeefilter</translation>
     </message>
@@ -62,43 +62,43 @@
         <translation>Graustufen</translation>
     </message>
     <message>
-        <location filename="../CTT/MixFilter.cpp" line="17"/>
+        <location filename="../CTT/MixFilter.cpp" line="15"/>
         <source>filter_mix</source>
         <translation>Mischen</translation>
     </message>
     <message>
-        <location filename="../CTT/NoiseFilter.cpp" line="15"/>
+        <location filename="../CTT/NoiseFilter.cpp" line="14"/>
         <source>filter_noise</source>
         <translation>Rauschen</translation>
     </message>
     <message>
-        <location filename="../CTT/RescaleFilter.cpp" line="22"/>
+        <location filename="../CTT/RescaleFilter.cpp" line="20"/>
         <source>filter_rescale</source>
         <translation>Größe ändern</translation>
     </message>
     <message>
-        <location filename="../CTT/RGBChannelFilter.cpp" line="17"/>
+        <location filename="../CTT/RGBChannelFilter.cpp" line="14"/>
         <source>filter_rgbchannel</source>
         <translation>RGB Kanäle</translation>
     </message>
     <message>
-        <location filename="../CTT/TimeshiftFilter.cpp" line="14"/>
+        <location filename="../CTT/TimeshiftFilter.cpp" line="11"/>
         <source>filter_timeshift</source>
         <translation>Zeitsprung</translation>
     </message>
     <message>
-        <location filename="../CTT/InvertFilter.cpp" line="18"/>
+        <location filename="../CTT/InvertFilter.cpp" line="16"/>
         <source>filter_invert</source>
         <translation>Farben invertieren</translation>
     </message>
     <message>
-        <location filename="../CTT/HeatmapOverlay.cpp" line="21"/>
+        <location filename="../CTT/HeatmapOverlay.cpp" line="20"/>
         <source>overlay_heatmap</source>
         <translatorcomment>Heatmap</translatorcomment>
         <translation>Differenzheatmap</translation>
     </message>
     <message>
-        <location filename="../CTT/MacroblockOverlay.cpp" line="23"/>
+        <location filename="../CTT/MacroblockOverlay.cpp" line="21"/>
         <source>overlay_macroblock</source>
         <translation>Macroblöcke</translation>
     </message>
@@ -111,50 +111,26 @@
 <context>
     <name>FrameDiff</name>
     <message>
-<<<<<<< HEAD
-=======
-        <location filename="../CTT/EarthMoversHistogramDiff.cpp" line="19"/>
->>>>>>> tempBrokenMaster
         <source>framediff_earthmoverhistogram_red</source>
         <translation type="vanished">Histogramm Rot</translation>
     </message>
     <message>
-<<<<<<< HEAD
-=======
-        <location filename="../CTT/EarthMoversHistogramDiff.cpp" line="20"/>
->>>>>>> tempBrokenMaster
         <source>framediff_earthmoverhistogram_green</source>
         <translation type="vanished">Histogramm Grün</translation>
     </message>
     <message>
-<<<<<<< HEAD
-=======
-        <location filename="../CTT/EarthMoversHistogramDiff.cpp" line="21"/>
->>>>>>> tempBrokenMaster
         <source>framediff_earthmoverhistogram_blue</source>
         <translation type="vanished">Histogramm Blau</translation>
     </message>
     <message>
-<<<<<<< HEAD
-=======
-        <location filename="../CTT/EarthMoversHistogramDiff.cpp" line="22"/>
->>>>>>> tempBrokenMaster
         <source>framediff_earthmoverhistogram_hue</source>
         <translation type="vanished">Histogram Färbung</translation>
     </message>
     <message>
-<<<<<<< HEAD
-=======
-        <location filename="../CTT/EarthMoversHistogramDiff.cpp" line="23"/>
->>>>>>> tempBrokenMaster
         <source>framediff_earthmoverhistogram_saturation</source>
         <translation type="vanished">Histogramm Sättigung</translation>
     </message>
     <message>
-<<<<<<< HEAD
-=======
-        <location filename="../CTT/EarthMoversHistogramDiff.cpp" line="24"/>
->>>>>>> tempBrokenMaster
         <source>framediff_earthmoverhistogram_luminance</source>
         <translation type="vanished">Histogramm Luminanz</translation>
     </message>
@@ -162,47 +138,47 @@
 <context>
     <name>Param</name>
     <message>
-        <location filename="../CTT/BlurFilter.cpp" line="20"/>
+        <location filename="../CTT/BlurFilter.cpp" line="18"/>
         <source>filter_blur_param_radius</source>
         <translation>Radius</translation>
     </message>
     <message>
-        <location filename="../CTT/MixFilter.cpp" line="19"/>
+        <location filename="../CTT/MixFilter.cpp" line="17"/>
         <source>filter_mix_param_mixRatio</source>
         <translation>Mischverhältnis</translation>
     </message>
     <message>
-        <location filename="../CTT/NoiseFilter.cpp" line="17"/>
+        <location filename="../CTT/NoiseFilter.cpp" line="16"/>
         <source>filter_noise_param_intensity</source>
         <translation>Intensität</translation>
     </message>
     <message>
-        <location filename="../CTT/RescaleFilter.cpp" line="24"/>
+        <location filename="../CTT/RescaleFilter.cpp" line="22"/>
         <source>filter_rescale_param_newsize_width</source>
         <translation>Neue Breite</translation>
     </message>
     <message>
-        <location filename="../CTT/RescaleFilter.cpp" line="25"/>
+        <location filename="../CTT/RescaleFilter.cpp" line="23"/>
         <source>filter_rescale_param_newsize_height</source>
         <translation>Neue Höhe</translation>
     </message>
     <message>
-        <location filename="../CTT/TimeshiftFilter.cpp" line="16"/>
+        <location filename="../CTT/TimeshiftFilter.cpp" line="13"/>
         <source>filter_timeshift_param_shift</source>
         <translation>Frameverschiebung</translation>
     </message>
     <message>
-        <location filename="../CTT/RGBChannelFilter.cpp" line="19"/>
+        <location filename="../CTT/RGBChannelFilter.cpp" line="16"/>
         <source>filter_rgbchannel_param_red</source>
         <translation>Rotanteil</translation>
     </message>
     <message>
-        <location filename="../CTT/RGBChannelFilter.cpp" line="20"/>
+        <location filename="../CTT/RGBChannelFilter.cpp" line="17"/>
         <source>filter_rgbchannel_param_green</source>
         <translation>Grünanteil</translation>
     </message>
     <message>
-        <location filename="../CTT/RGBChannelFilter.cpp" line="21"/>
+        <location filename="../CTT/RGBChannelFilter.cpp" line="18"/>
         <source>filter_rgbchannel_param_blue</source>
         <translation>Blauanteil</translation>
     </message>
@@ -210,18 +186,10 @@
 <context>
     <name>PixelDiff</name>
     <message>
-<<<<<<< HEAD
-=======
-        <location filename="../CTT/HSLPixelDiff.cpp" line="16"/>
->>>>>>> tempBrokenMaster
         <source>pixeldiff_hsl</source>
         <translation type="vanished">HSL Abstand</translation>
     </message>
     <message>
-<<<<<<< HEAD
-=======
-        <location filename="../CTT/YUVPixelDiff.cpp" line="17"/>
->>>>>>> tempBrokenMaster
         <source>pixeldiff_yuv</source>
         <translation type="vanished">YUV Abstand</translation>
     </message>
@@ -242,10 +210,6 @@
 <context>
     <name>model::filter::BlurFilter</name>
     <message>
-<<<<<<< HEAD
-=======
-        <location filename="../CTT/BlurFilter.cpp" line="20"/>
->>>>>>> tempBrokenMaster
         <source>filter_blur_param_radius</source>
         <translation type="vanished">Radius</translation>
     </message>
@@ -253,10 +217,6 @@
 <context>
     <name>model::filter::MixFilter</name>
     <message>
-<<<<<<< HEAD
-=======
-        <location filename="../CTT/MixFilter.cpp" line="19"/>
->>>>>>> tempBrokenMaster
         <source>filter_mix_param_mixRatio</source>
         <translation type="vanished">Mischverhältnis</translation>
     </message>
@@ -264,10 +224,6 @@
 <context>
     <name>model::filter::NoiseFilter</name>
     <message>
-<<<<<<< HEAD
-=======
-        <location filename="../CTT/NoiseFilter.cpp" line="17"/>
->>>>>>> tempBrokenMaster
         <source>filter_noise_param_intensity</source>
         <translation type="vanished">Intensität</translation>
     </message>
@@ -275,26 +231,14 @@
 <context>
     <name>model::filter::RGBChannelFilter</name>
     <message>
-<<<<<<< HEAD
-=======
-        <location filename="../CTT/RGBChannelFilter.cpp" line="19"/>
->>>>>>> tempBrokenMaster
         <source>filter_rgbchannel_param_red</source>
         <translation type="vanished">Rotanteil</translation>
     </message>
     <message>
-<<<<<<< HEAD
-=======
-        <location filename="../CTT/RGBChannelFilter.cpp" line="20"/>
->>>>>>> tempBrokenMaster
         <source>filter_rgbchannel_param_green</source>
         <translation type="vanished">Grünanteil</translation>
     </message>
     <message>
-<<<<<<< HEAD
-=======
-        <location filename="../CTT/RGBChannelFilter.cpp" line="21"/>
->>>>>>> tempBrokenMaster
         <source>filter_rgbchannel_param_blue</source>
         <translation type="vanished">Blauanteil</translation>
     </message>
@@ -306,18 +250,10 @@
         <translation type="vanished">Neue Größe</translation>
     </message>
     <message>
-<<<<<<< HEAD
-=======
-        <location filename="../CTT/RescaleFilter.cpp" line="24"/>
->>>>>>> tempBrokenMaster
         <source>filter_rescale_param_newsize_width</source>
         <translation type="vanished">Neue Breite</translation>
     </message>
     <message>
-<<<<<<< HEAD
-=======
-        <location filename="../CTT/RescaleFilter.cpp" line="25"/>
->>>>>>> tempBrokenMaster
         <source>filter_rescale_param_newsize_height</source>
         <translation type="vanished">Neue Höhe</translation>
     </message>
@@ -325,10 +261,6 @@
 <context>
     <name>model::filter::TimeshiftFilter</name>
     <message>
-<<<<<<< HEAD
-=======
-        <location filename="../CTT/TimeshiftFilter.cpp" line="16"/>
->>>>>>> tempBrokenMaster
         <source>filter_timeshift_param_shift</source>
         <translation type="vanished">Frameverschiebung</translation>
     </message>
@@ -343,10 +275,6 @@
 <context>
     <name>model::filter::overlay::MacroblockOverlay</name>
     <message>
-<<<<<<< HEAD
-=======
-        <location filename="../CTT/MacroblockOverlay.cpp" line="23"/>
->>>>>>> tempBrokenMaster
         <source>overlay_macroblock</source>
         <translation type="vanished">Macroblöcke</translation>
     </message>
@@ -354,10 +282,6 @@
 <context>
     <name>model::filter::overlay::MotionVectorOverlay</name>
     <message>
-<<<<<<< HEAD
-=======
-        <location filename="../CTT/MotionVectorOverlay.cpp" line="15"/>
->>>>>>> tempBrokenMaster
         <source>overlay_motionvector</source>
         <translation type="vanished">Bewegungsvektoren</translation>
     </message>
@@ -395,11 +319,7 @@
 <context>
     <name>view::AbstractListView</name>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/AbstractListView.cpp" line="69"/>
-=======
-        <location filename="../CTT/AbstractListView.cpp" line="45"/>
->>>>>>> tempBrokenMaster
         <source>REMOVE</source>
         <translation>Entfernen</translation>
     </message>
@@ -444,39 +364,44 @@
 <context>
     <name>view::FrameMetadataWidget</name>
     <message>
-        <location filename="../CTT/FrameMetadataWidget.cpp" line="39"/>
+        <location filename="../CTT/FrameMetadataWidget.cpp" line="30"/>
+        <source>FILE_NAME</source>
+        <translation>Dateiname: </translation>
+    </message>
+    <message>
+        <location filename="../CTT/FrameMetadataWidget.cpp" line="45"/>
         <source>FPS</source>
         <translation>Bilder pro Sekunde: </translation>
     </message>
     <message>
-        <location filename="../CTT/FrameMetadataWidget.cpp" line="40"/>
+        <location filename="../CTT/FrameMetadataWidget.cpp" line="46"/>
         <source>FRAMECOUNT</source>
         <translation>Anzahl an Bildern: </translation>
     </message>
     <message>
-        <location filename="../CTT/FrameMetadataWidget.cpp" line="41"/>
+        <location filename="../CTT/FrameMetadataWidget.cpp" line="47"/>
         <source>VIDEO_SIZE</source>
         <translation>Videogröße: </translation>
     </message>
     <message>
-        <location filename="../CTT/FrameMetadataWidget.cpp" line="42"/>
+        <location filename="../CTT/FrameMetadataWidget.cpp" line="48"/>
         <source>HAS_BLOCK</source>
-        <translation type="unfinished">Enthält Macroblock-Typen: </translation>
+        <translation>Enthält Macroblock-Typen: </translation>
     </message>
     <message>
-        <location filename="../CTT/FrameMetadataWidget.cpp" line="42"/>
-        <location filename="../CTT/FrameMetadataWidget.cpp" line="43"/>
+        <location filename="../CTT/FrameMetadataWidget.cpp" line="48"/>
+        <location filename="../CTT/FrameMetadataWidget.cpp" line="49"/>
         <source>YES</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="../CTT/FrameMetadataWidget.cpp" line="42"/>
-        <location filename="../CTT/FrameMetadataWidget.cpp" line="43"/>
+        <location filename="../CTT/FrameMetadataWidget.cpp" line="48"/>
+        <location filename="../CTT/FrameMetadataWidget.cpp" line="49"/>
         <source>NO</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="../CTT/FrameMetadataWidget.cpp" line="43"/>
+        <location filename="../CTT/FrameMetadataWidget.cpp" line="49"/>
         <source>HAS_VECTRO</source>
         <translation>Enthält Bewegungsvektoren: </translation>
     </message>
@@ -484,52 +409,36 @@
 <context>
     <name>view::HistogramWidget</name>
     <message>
-        <location filename="../CTT/HistogramWidget.cpp" line="46"/>
+        <location filename="../CTT/HistogramWidget.cpp" line="44"/>
         <source>NEXT_HISTOGRAM</source>
-        <translation>Nächstes Histogramm</translation>
+        <translation>Nächstes</translation>
     </message>
     <message>
-        <location filename="../CTT/HistogramWidget.cpp" line="51"/>
-<<<<<<< HEAD
-        <location filename="../CTT/HistogramWidget.cpp" line="119"/>
-=======
-        <location filename="../CTT/HistogramWidget.cpp" line="113"/>
->>>>>>> tempBrokenMaster
-        <source>START_AUTO_UPDATE</source>
-        <translation>Histogramm automatisch aktualisieren</translation>
-    </message>
-    <message>
-        <location filename="../CTT/HistogramWidget.cpp" line="56"/>
-        <source>UPDATE_HISTOGRAM</source>
-        <translation>Histogramm aktualisieren</translation>
-    </message>
-    <message>
-<<<<<<< HEAD
+        <location filename="../CTT/HistogramWidget.cpp" line="49"/>
         <location filename="../CTT/HistogramWidget.cpp" line="117"/>
-=======
-        <location filename="../CTT/HistogramWidget.cpp" line="111"/>
->>>>>>> tempBrokenMaster
+        <source>START_AUTO_UPDATE</source>
+        <translation>Automatisch Aktualisieren: aus</translation>
+    </message>
+    <message>
+        <location filename="../CTT/HistogramWidget.cpp" line="54"/>
+        <source>UPDATE_HISTOGRAM</source>
+        <translation>Aktualisieren</translation>
+    </message>
+    <message>
+        <location filename="../CTT/HistogramWidget.cpp" line="115"/>
         <source>STOP_AUTO_UPDATE</source>
-        <translation>Histogramm nicht automatisch aktualisieren</translation>
+        <translation>Automatisch Aktualisieren: an</translation>
     </message>
 </context>
 <context>
     <name>view::ListedPushButton</name>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/ListedPushButton.cpp" line="27"/>
-=======
-        <location filename="../CTT/ListedPushButton.cpp" line="20"/>
->>>>>>> tempBrokenMaster
         <source>NO_VIDEO_SPECIFIED</source>
         <translation>Kein Video ausgewählt</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/ListedPushButton.cpp" line="37"/>
-=======
-        <location filename="../CTT/ListedPushButton.cpp" line="30"/>
->>>>>>> tempBrokenMaster
         <source>REMOVE</source>
         <translation>Entfernen</translation>
     </message>
@@ -537,22 +446,14 @@
 <context>
     <name>view::MainControlWidget</name>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainControlWidget.cpp" line="72"/>
         <location filename="../CTT/MainControlWidget.cpp" line="74"/>
-=======
-        <location filename="../CTT/MainControlWidget.cpp" line="65"/>
->>>>>>> tempBrokenMaster
         <source>INSERT_FILTER</source>
         <translation>Filter einfügen</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainControlWidget.cpp" line="85"/>
         <location filename="../CTT/MainControlWidget.cpp" line="87"/>
-=======
-        <location filename="../CTT/MainControlWidget.cpp" line="68"/>
->>>>>>> tempBrokenMaster
         <source>INSERT_DIFFERENCE</source>
         <translation>Abstandsfunktion einfügen</translation>
     </message>
@@ -560,138 +461,81 @@
 <context>
     <name>view::MainWindow</name>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="68"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="66"/>
->>>>>>> tempBrokenMaster
         <source>MENU_FILE</source>
         <translation>Datei</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="70"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="68"/>
->>>>>>> tempBrokenMaster
         <source>MENUENTRY_NEW_PROJECT</source>
         <translation>Neues Projekt</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="75"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="72"/>
->>>>>>> tempBrokenMaster
         <source>MENUENTRY_LOAD_PROJECT</source>
         <translation>Projekt laden</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="84"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="80"/>
->>>>>>> tempBrokenMaster
         <source>MENUENTRY_SAVE_PROJECT</source>
         <translation>Projekt speichern</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="91"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="86"/>
->>>>>>> tempBrokenMaster
         <source>MENUENTRY_SAVE_PROJECT_AS</source>
         <translation>Projekt speichern unter...</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="102"/>
         <source>MENUENTRY_CLOSE_WINDOW</source>
         <translation>Beenden</translation>
     </message>
     <message>
         <location filename="../CTT/MainWindow.cpp" line="108"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="95"/>
->>>>>>> tempBrokenMaster
         <source>MENU_EDIT</source>
         <translation>Bearbeiten</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="110"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="97"/>
->>>>>>> tempBrokenMaster
         <source>MENUENTRY_UNDO</source>
         <translation>Rückgängig</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="116"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="102"/>
->>>>>>> tempBrokenMaster
         <source>MENUENTRY_REDO</source>
         <translation>Wiederholen</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="123"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="108"/>
->>>>>>> tempBrokenMaster
         <source>MENU_VIEW</source>
         <translation>Ansicht</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="125"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="110"/>
->>>>>>> tempBrokenMaster
         <source>MENUENTRY_TO_PROCESSING</source>
         <translation>Bearbeitungsansicht</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="130"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="114"/>
->>>>>>> tempBrokenMaster
         <source>MENUENTRY_TO_ANALYSING</source>
         <translation>Analyseansicht</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="135"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="118"/>
->>>>>>> tempBrokenMaster
         <source>MENUENTRY_TO_ABX</source>
         <translation>ABX Test</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="140"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="122"/>
->>>>>>> tempBrokenMaster
         <source>MENU_HELP</source>
         <translation>Hilfe</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="142"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="124"/>
->>>>>>> tempBrokenMaster
         <source>MENUENTRY_ABOUT</source>
         <translation>Über CTT</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="159"/>
         <source>UNSAVED_PROJECT</source>
         <translation>Ungesichertes Projekt</translation>
@@ -700,94 +544,52 @@
         <location filename="../CTT/MainWindow.cpp" line="180"/>
         <location filename="../CTT/MainWindow.cpp" line="186"/>
         <location filename="../CTT/MainWindow.cpp" line="193"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="149"/>
-        <location filename="../CTT/MainWindow.cpp" line="155"/>
-        <location filename="../CTT/MainWindow.cpp" line="162"/>
->>>>>>> tempBrokenMaster
         <source>CODEC_TESTING_TOOLKIT</source>
         <translation>Codec Testing Toolkit</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="180"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="149"/>
->>>>>>> tempBrokenMaster
         <source>PROCESSING_VIEW</source>
         <translation>Videos bearbeiten</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="186"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="155"/>
->>>>>>> tempBrokenMaster
         <source>ANALYSING_VIEW</source>
         <translation>Videos analysieren</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="193"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="162"/>
->>>>>>> tempBrokenMaster
         <source>ABX_VIEW</source>
         <translation>ABX-Test durchführen</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="207"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="176"/>
->>>>>>> tempBrokenMaster
         <source>LOAD_PROJECT</source>
         <translation>Projekt laden</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="207"/>
         <location filename="../CTT/MainWindow.cpp" line="215"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="176"/>
-        <location filename="../CTT/MainWindow.cpp" line="184"/>
->>>>>>> tempBrokenMaster
         <source>CTT_FILES *.ctt</source>
         <translation>CTT-Dateien *.ctt</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="215"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="184"/>
->>>>>>> tempBrokenMaster
         <source>SAVE_PROJECT</source>
         <translation>Projekt speichern</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="245"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="214"/>
->>>>>>> tempBrokenMaster
         <source>REINITIALIZE_ABX_TESTING_TITLE</source>
         <translation>ABX-Test Videos neu setzen</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="246"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="215"/>
->>>>>>> tempBrokenMaster
         <source>REINITIALIZE_ABX_TESTING_QUESTION</source>
         <translation>Sollen die Videos für den ABX-Test neu gesetzt werden?</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/MainWindow.cpp" line="277"/>
-=======
-        <location filename="../CTT/MainWindow.cpp" line="246"/>
->>>>>>> tempBrokenMaster
         <source>CHOOSE_ABX_VIDEOS</source>
         <translation>Wähle  Videos für den ABX-Test</translation>
     </message>
@@ -805,61 +607,37 @@
 <context>
     <name>view::PlayerFunctions</name>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/PlayerFunctions.cpp" line="52"/>
         <location filename="../CTT/PlayerFunctions.cpp" line="54"/>
-=======
-        <location filename="../CTT/PlayerFunctions.cpp" line="43"/>
->>>>>>> tempBrokenMaster
         <source>PREVIOUS_FRAME</source>
         <translation>Vorheriges Bild</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/PlayerFunctions.cpp" line="68"/>
         <location filename="../CTT/PlayerFunctions.cpp" line="70"/>
-=======
-        <location filename="../CTT/PlayerFunctions.cpp" line="50"/>
->>>>>>> tempBrokenMaster
         <source>NEXT_FRAME</source>
         <translation>Nächstes Bild</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/PlayerFunctions.cpp" line="90"/>
-=======
-        <location filename="../CTT/PlayerFunctions.cpp" line="69"/>
->>>>>>> tempBrokenMaster
         <source>RESET_TO_DEFAULT_FPS</source>
         <translation>Wiedergabegeschwindigkeit zurücksetzen</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/PlayerFunctions.cpp" line="92"/>
-=======
-        <location filename="../CTT/PlayerFunctions.cpp" line="71"/>
->>>>>>> tempBrokenMaster
         <source>DEFAULT_FPS</source>
         <translation>Ursprüngliche Wiedergabegeschwindigkeit</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/PlayerFunctions.cpp" line="106"/>
         <location filename="../CTT/PlayerFunctions.cpp" line="108"/>
-=======
-        <location filename="../CTT/PlayerFunctions.cpp" line="79"/>
->>>>>>> tempBrokenMaster
         <source>PLAY</source>
         <translatorcomment>Hier hat sich das englische Wort eingebürgert, vielleicht stattdessen &quot;Abspielen&quot;</translatorcomment>
         <translation>Abspielen</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/PlayerFunctions.cpp" line="119"/>
         <location filename="../CTT/PlayerFunctions.cpp" line="121"/>
-=======
-        <location filename="../CTT/PlayerFunctions.cpp" line="83"/>
->>>>>>> tempBrokenMaster
         <source>PAUSE</source>
         <translation>Pausieren</translation>
     </message>
@@ -867,7 +645,7 @@
 <context>
     <name>view::ProcessingWidget</name>
     <message>
-        <location filename="../CTT/ProcessingWidget.cpp" line="77"/>
+        <location filename="../CTT/ProcessingWidget.cpp" line="76"/>
         <source>READY</source>
         <translation>Bereit</translation>
     </message>
@@ -875,98 +653,58 @@
 <context>
     <name>view::ThumbnailListWidget</name>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/ThumbnailListWidget.cpp" line="84"/>
         <location filename="../CTT/ThumbnailListWidget.cpp" line="86"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="68"/>
->>>>>>> tempBrokenMaster
         <source>ADD_VIDEO</source>
         <translation>Video hinzufügen</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="226"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="201"/>
->>>>>>> tempBrokenMaster
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="229"/>
         <source>MORE_VIDEO_INFORMATION</source>
         <translation>Zusätzliche Videoinformationen</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/ThumbnailListWidget.cpp" line="106"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="85"/>
->>>>>>> tempBrokenMaster
         <source>VIDEO_WIDTH</source>
         <translation>Breite</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/ThumbnailListWidget.cpp" line="113"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="92"/>
->>>>>>> tempBrokenMaster
         <source>VIDEO_HEIGHT</source>
         <translation>Höhe</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/ThumbnailListWidget.cpp" line="118"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="97"/>
->>>>>>> tempBrokenMaster
         <source>YUV444</source>
         <translation>YUV444</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/ThumbnailListWidget.cpp" line="119"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="98"/>
->>>>>>> tempBrokenMaster
         <source>YUV422</source>
         <translation>YUV422</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/ThumbnailListWidget.cpp" line="120"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="99"/>
->>>>>>> tempBrokenMaster
         <source>YUV420</source>
         <translation>YUV420</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/ThumbnailListWidget.cpp" line="122"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="101"/>
->>>>>>> tempBrokenMaster
         <source>VIDEO_YUV_TYPE</source>
         <translation>YUV-Typ</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/ThumbnailListWidget.cpp" line="136"/>
         <source>USE_HDTV_YUV_TO_RGB_CONVERSION</source>
         <translation>HDTV YUV zu RGB Konvertierung benutzen</translation>
     </message>
     <message>
         <location filename="../CTT/ThumbnailListWidget.cpp" line="127"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="106"/>
->>>>>>> tempBrokenMaster
         <source> FPS</source>
         <translation>FPS</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/ThumbnailListWidget.cpp" line="131"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="110"/>
->>>>>>> tempBrokenMaster
         <source>VIDEO_FPS</source>
         <translation>Video FPS</translation>
     </message>
@@ -979,105 +717,59 @@
         <translation type="vanished">Videolänge</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/ThumbnailListWidget.cpp" line="139"/>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="271"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="114"/>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="240"/>
->>>>>>> tempBrokenMaster
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="274"/>
         <source>NO_MACROOBLOCK_FILE_CHOSEN</source>
         <translation>Es wurde keine Metadaten-Datei ausgewählt</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../CTT/ThumbnailListWidget.cpp" line="140"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="115"/>
->>>>>>> tempBrokenMaster
         <source>ADD_MACROBLOCK_FILE</source>
         <translation>Metadaten-Datei hinzufügen</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="223"/>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="314"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="198"/>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="283"/>
->>>>>>> tempBrokenMaster
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="226"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="317"/>
         <source>OPEN_VIDEO</source>
         <translation>Video öffnen</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="223"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="198"/>
->>>>>>> tempBrokenMaster
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="226"/>
         <source>YUV_FILES (*.yuv)</source>
         <translation>YUV-Dateien (*.yuv)</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="294"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="263"/>
->>>>>>> tempBrokenMaster
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="297"/>
         <source>VIDEO_ADDING_FAILED_ILLEGEAL_ARGUMENT_TITLE</source>
         <translation>Video Hinzufügen fehlgeschlagen</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="294"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="263"/>
->>>>>>> tempBrokenMaster
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="297"/>
         <source>VIDEO_ADDING_FAILED_ILLEGAL_ARGUMENT_DETAILS</source>
         <translation>Beim Hinzufügen des Videos wurde ein falscher Parameter ausgewählt. Siehe &quot;Details&quot; für nähere Beschreibung</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="299"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="268"/>
->>>>>>> tempBrokenMaster
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="302"/>
         <source>VIDEO_ADDING_FAILED_FILE_NOT_FOUND_TITLE</source>
         <translation>Video Hinzufügen fehlgeschlagen</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="299"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="268"/>
->>>>>>> tempBrokenMaster
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="302"/>
         <source>VIDEO_ADDING_FAILED_FILE_NOT_FOUND_DETAILS</source>
         <translation>Die ausgewählte Datei konnte nicht gefunden werden. Siehe &quot;Details&quot; für nähere Beschreibung</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="304"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="273"/>
->>>>>>> tempBrokenMaster
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="307"/>
         <source>VIDEO_ADDING_FAILED_IO_TITLE</source>
         <translation>Video Hinzufügen fehlgeschlagen</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="304"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="273"/>
->>>>>>> tempBrokenMaster
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="307"/>
         <source>VIDEO_ADDING_FAILED_IO_DETAILS</source>
         <translation>Eingabe-/Ausgabefehler beim lesen des Videos. Siehe &quot;Details&quot; für nähere Beschreibung</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="314"/>
-=======
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="283"/>
->>>>>>> tempBrokenMaster
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="317"/>
         <source>DAT_FILES (*.dat)</source>
         <translation>DAT-Dateien (*.dat)</translation>
     </message>
@@ -1089,16 +781,12 @@
 <context>
     <name>view::VideoAnalysingWidget</name>
     <message>
-<<<<<<< HEAD
-        <location filename="../CTT/VideoAnalysingWidget.cpp" line="53"/>
-=======
         <location filename="../CTT/VideoAnalysingWidget.cpp" line="52"/>
->>>>>>> tempBrokenMaster
         <source>NO_OVERLAY</source>
         <translation>Kein Overlay</translation>
     </message>
     <message>
-        <location filename="../CTT/VideoAnalysingWidget.cpp" line="74"/>
+        <location filename="../CTT/VideoAnalysingWidget.cpp" line="79"/>
         <source>SHOW_INFORMATION</source>
         <translation>Videoinformationen anzeigen</translation>
     </message>

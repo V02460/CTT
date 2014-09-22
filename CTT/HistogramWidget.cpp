@@ -56,6 +56,7 @@ void HistogramWidget::setupUi() {
 	QObject::connect(btnUpdate, SIGNAL(clicked()), this, SLOT(recalculateHistogram()));
 	buttonLayout->addWidget(btnUpdate);
 
+	layout->setContentsMargins(0, 0, 0, 0);
 	layout->addLayout(buttonLayout);
 	layout->addWidget(histogramPlot);
 

@@ -43,6 +43,7 @@ void VideoAnalysingWidget::setupUi() {
 
 	QWidget *videoWidgetWrapper = QWidget::createWindowContainer(videoWidget, this, Qt::Widget);
 	videoWidgetWrapper->setMinimumSize(QSize(320, 180));
+	videoWidgetWrapper->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 	mainLayout->addWidget(videoWidgetWrapper);
 
 	QWidget *informationWidget = new QWidget(this);
@@ -62,12 +63,19 @@ void VideoAnalysingWidget::setupUi() {
 	comboboxOverlay->setCurrentIndex(0);
 	QObject::connect(comboboxOverlay, SIGNAL(currentIndexChanged(int)),
 		this, SLOT(comboboxOverlayCurrentIndexChanged(int)));
+	comboboxOverlay->setMinimumWidth(35);
 	informationLayout->addWidget(comboboxOverlay);
 
 	informationLayout->addWidget(histWidget);
 
+	metadataWidget->setMinimumWidth(115);
 	informationLayout->addWidget(metadataWidget);
+	informationLayout->setContentsMargins(0, 0, 0, 0);
+	informationLayout->setStretch(1, 5);
 	informationWidget->setLayout(informationLayout);
+	informationWidget->setMinimumWidth(320);
+	informationWidget->setMaximumHeight(110);
+	informationWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 
 	QPushButton *btnToggleInformation = new QPushButton(tr("SHOW_INFORMATION"), this);
 	btnToggleInformation->setCheckable(true);
@@ -78,7 +86,6 @@ void VideoAnalysingWidget::setupUi() {
 
 	mainLayout->addWidget(informationWidget);
 	mainLayout->setStretch(0, 5);
-	mainLayout->setStretch(2, 1);
 	mainLayout->setContentsMargins(0, 0, 0, 0);
 
 	setLayout(mainLayout);

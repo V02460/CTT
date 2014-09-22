@@ -6,27 +6,37 @@ using ::model::player::VideoScrubber;
 using ::model::video::VideoMetadata;
 using ::model::frame::FrameMetadata;
 
-FrameMetadataWidget::FrameMetadataWidget(VideoScrubber::sptr scrubber, QWidget *parent) : QWidget(parent),
+FrameMetadataWidget::FrameMetadataWidget(VideoScrubber::sptr scrubber, QWidget *parent) : QScrollArea(parent),
                                                                                           scrubber(scrubber),
-																						  fpsWidget(new QLabel(this)),
-																						  framecountWidget(new QLabel(this)),
-																						  sizeWidget(new QLabel(this)),
-																						  blockWidget(new QLabel(this)),
-																						  vectorWidget(new QLabel(this)),
+																						  contentsWidget(new QWidget(this)),
+																						  identifierWidget(new QLabel(contentsWidget)),
+																						  fpsWidget(new QLabel(contentsWidget)),
+																						  framecountWidget(new QLabel(contentsWidget)),
+																						  sizeWidget(new QLabel(contentsWidget)),
+																						  blockWidget(new QLabel(contentsWidget)),
+																						  vectorWidget(new QLabel(contentsWidget)),
 																						  moreMetadata() {
 	scrubber->subscribe(this);
-	QBoxLayout *layout = new QBoxLayout(QBoxLayout::Direction::TopToBottom, this);
-	layout->addWidget(fpsWidget);
-	layout->addWidget(framecountWidget);
-	layout->addWidget(sizeWidget);
-	layout->addWidget(blockWidget);
-	layout->addWidget(vectorWidget);
-	setLayout(layout);
+	setupUi();
 	update();
 }
 
 FrameMetadataWidget::~FrameMetadataWidget() {
 	scrubber->unsubscribe(this);
+}
+
+void FrameMetadataWidget::setupUi() {
+	QBoxLayout *layout = new QBoxLayout(QBoxLayout::Direction::TopToBottom, this);
+	identifierWidget->setText(tr("FILE_NAME") + scrubber->getVideo()->getIdentifier());
+	layout->addWidget(identifierWidget);
+	layout->addWidget(fpsWidget);
+	layout->addWidget(framecountWidget);
+	layout->addWidget(sizeWidget);
+	layout->addWidget(blockWidget);
+	layout->addWidget(vectorWidget);
+	layout->setContentsMargins(2, 2, 2, 2);
+	contentsWidget->setLayout(layout);
+	setWidget(contentsWidget);
 }
 
 void FrameMetadataWidget::update() {
