@@ -262,7 +262,7 @@ void ThumbnailListWidget::btnAddVideoClicked(bool checked) {
 			fpsSpinBox->setValue(fps.toDouble());
 		}
 
-		if (fileInfo.baseName().contains(QRegExp("(hdtv|HDTV"))) {
+		if (fileInfo.baseName().contains(QRegExp("(hdtv|HDTV)"))) {
 			hdtv->setChecked(true);
 		} else {
 			hdtv->setChecked(false);
