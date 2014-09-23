@@ -2,6 +2,7 @@
 
 #include "GPUSurfaceShader.h"
 #include "FrameMetadata.h"
+#include "GlobalContext.h"
 
 #include "NotImplementedException.h"
 
@@ -15,12 +16,13 @@ using ::model::frame::FrameMetadata;
 using ::helper::GPUSurfaceShader;
 using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
+using ::model::GlobalContext;
 using ::exception::NotImplementedException;
 
 const QByteArray HeatmapOverlay::kFilterID = QT_TRANSLATE_NOOP("Filter", "overlay_heatmap");
 
 HeatmapOverlay::HeatmapOverlay(Module::sptr predecessor, PixelDiff::sptr difference, Heatmap::sptr heatmap)
-        : ColoringOverlay(predecessor, heatmap, 0.5)
+        : ColoringOverlay(predecessor, heatmap, 1.0)
         , heatmap(heatmap) {
 }
 
@@ -31,7 +33,9 @@ HeatmapOverlay::HeatmapOverlay(Module::sptr predecessor, PixelDiff::sptr differe
 HeatmapOverlay::~HeatmapOverlay() {
 }
 
-HeatmapOverlay::Heatmap::Heatmap(PixelDiff::sptr difference) : difference(difference) {
+HeatmapOverlay::Heatmap::Heatmap(PixelDiff::sptr difference)
+        : difference(difference)
+        , lookupTexture(Frame::sptr::create(GlobalContext::get(), QImage(":/Shader/Overlay/heatmapColors.png"))) {
 }
 
 HeatmapOverlay::Heatmap::~Heatmap() {
@@ -63,6 +67,7 @@ Frame::sptr HeatmapOverlay::Heatmap::getFrame(unsigned int frameNumber) const {
 
     GPUSurfaceShader gpuHelper(":/Shader/Overlay/Heatmap.fs", pixelDiff->getContext());
     gpuHelper.setSourceTexture(pixelDiff);
+    gpuHelper.setValue("heatmapLookup", lookupTexture);
     Surface::sptr heatmapSurface = gpuHelper.run();
 
     return Frame::sptr(new Frame(heatmapSurface, FrameMetadata(pixelDiff->getSize())));
@@ -90,6 +95,14 @@ QList<const Module*> HeatmapOverlay::Heatmap::getUsesList() const {
     QList<const ::model::Module*> list;
 
     return list << this;
+}
+
+HeatmapOverlay::Heatmap::Heatmap() {
+    isDummyFlag = true;
+}
+
+Saveable::sptr HeatmapOverlay::Heatmap::getDummy() {
+    return HeatmapOverlay::Heatmap::sptr(new Heatmap());
 }
 
 HeatmapOverlay::HeatmapOverlay() {

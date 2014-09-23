@@ -35,5 +35,6 @@
         <file>Shader/Conversion/YUV420toRGBhdtv.fs</file>
         <file>Shader/Conversion/YUV422toRGBhdtv.fs</file>
         <file>Shader/Conversion/YUV444toRGBhdtv.fs</file>
+        <file>Shader/Overlay/heatmapColors.png</file>
     </qresource>
 </RCC>

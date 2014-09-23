@@ -63,6 +63,8 @@ Memento FrameDiff::getMemento() const {
 }
 
 void FrameDiff::restore(Memento memento) {
+    Saveable::restore(memento);
+
     module1 = memento.getSharedPointer("module1").dynamicCast<Module>();
     module2 = memento.getSharedPointer("module2").dynamicCast<Module>();
 }

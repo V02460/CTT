@@ -50,15 +50,6 @@ public:
 	static Saveable::SaveableType getSaveableType() { return Saveable::heatmapOverlay; }
 	virtual SaveableType saveableType() const Q_DECL_OVERRIDE { return getSaveableType(); }
 
-protected:
-    /**
-     * Creates a dummy HeatmapOverlay.
-     */
-    HeatmapOverlay();
-
-private:
-    static const QString kHeatmapAttrStr;
-
     class Heatmap : public ::model::Module {
         public:
             typedef QScopedPointer<Heatmap> uptr;
@@ -75,10 +66,22 @@ private:
             virtual QSize getResolution() const Q_DECL_OVERRIDE;
 			virtual unsigned int getFrameCount() const Q_DECL_OVERRIDE;
 			virtual SaveableType saveableType() const Q_DECL_OVERRIDE { return getSaveableType(); }
+            static Saveable::sptr getDummy();
+        protected:
+            Heatmap();
         private:
             ::model::difference::PixelDiff::sptr difference;
+            Surface::sptr lookupTexture;
     };
 
+protected:
+    /**
+     * Creates a dummy HeatmapOverlay.
+     */
+    HeatmapOverlay();
+
+private:
+    static const QString kHeatmapAttrStr;
     Heatmap::sptr heatmap;
 
     /**
