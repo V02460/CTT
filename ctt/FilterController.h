@@ -24,7 +24,7 @@ namespace controller {
  * The FilterController receives notifications of changes in the video's filters and passes this information to all
  * relevant components.
  */
-class FilterController : public QObject, public ::model::Observer {
+class FilterController : public QObject {
     Q_OBJECT
 public:
     typedef QScopedPointer<FilterController> uptr;
@@ -37,8 +37,6 @@ public:
      * @param video The observed video
      */
     FilterController(::model::filter::FilteredVideo::sptr video);
-
-	virtual void update();
 
 public slots:
     /**

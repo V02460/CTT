@@ -11,7 +11,6 @@
 #include "DifferenceListView.h"
 #include "DifferenceTimeline.h"
 #include "DifferenceController.h"
-#include "NotImplementedException.h"
 
 using ::controller::FilterController;
 using ::controller::DifferenceController;
@@ -19,7 +18,6 @@ using ::model::player::Player;
 using ::model::saveable::SaveableList;
 using ::model::difference::FrameDiff;
 using ::controller::DifferenceController;
-using ::exception::NotImplementedException;
 using ::model::filter::FilteredVideo;
 
 namespace view {
@@ -165,10 +163,6 @@ void MainControlWidget::removePlayer() {
 void MainControlWidget::removeVideo() {
 	listView->removeVideo();
 	btnInsert->setEnabled(false);
-}
-
-void MainControlWidget::update() {
-	throw NotImplementedException();
 }
 
 }  // namespace view

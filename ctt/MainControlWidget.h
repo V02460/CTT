@@ -24,7 +24,7 @@ namespace view {
 /**
  * The MainControlWidget holds all components used for video playback, filter/ difference insertion and changing.
  */
-class MainControlWidget : public QWidget, public ::model::Observer {
+class MainControlWidget : public QWidget {
     Q_OBJECT
 public:
     typedef QScopedPointer<MainControlWidget> uptr;
@@ -40,8 +40,6 @@ public:
 	void setVideo(::model::filter::FilteredVideo::sptr video);
 	void removePlayer();
 	void removeVideo();
-
-	virtual void update();
 
 public slots:
     /**
