@@ -5,56 +5,66 @@
 
 namespace controller {
 
-	using ::model::player::Player;
-	using ::controller::operation::Operation;
-	using ::controller::operation::OperationList;
-	using ::controller::operation::FPSChangingOperation;
+using ::model::player::Player;
+using ::controller::operation::Operation;
+using ::controller::operation::OperationList;
+using ::controller::operation::FPSChangingOperation;
+using ::model::UIntegerInterval;
 
-	PlayerController::PlayerController() {
-		setPlayer(player);
+PlayerController::PlayerController() {
+	setPlayer(player);
+}
+
+void PlayerController::playPause() {
+	player->togglePlayPause();
+}
+
+void PlayerController::nextFrame() {
+	player->nextFrame();
+
+}
+
+void PlayerController::previousFrame() {
+	player->previousFrame();
+}
+
+void PlayerController::currentFrameChanged(int frameNumber) {
+	unsigned int unsignedFrameNumber = static_cast<unsigned int>(frameNumber);
+
+	if (unsignedFrameNumber >= player->getVideoLength()) {
+		throw IllegalArgumentException("Frame number" +
+										QString::number(unsignedFrameNumber) +
+										"was requested but only " +
+										QString::number(player->getVideoLength()) +
+										"are available.");
 	}
+	player->jumpToFrameNr(unsignedFrameNumber);
+	player->pause();
+}
 
-	void PlayerController::playPause() {
-		player->togglePlayPause();
-	}
+void PlayerController::setToDefaultFPS() {
+	double defaultFPS = player->getDefaultFPS();
+	OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
+		new FPSChangingOperation(defaultFPS, player)));
+}
 
-	void PlayerController::nextFrame() {
-		player->nextFrame();
-
-	}
-
-	void PlayerController::previousFrame() {
-		player->previousFrame();
-	}
-
-	void PlayerController::currentFrameChanged(int frameNumber) {
-		unsigned int unsignedFrameNumber = static_cast<unsigned int>(frameNumber);
-
-		if (unsignedFrameNumber >= player->getVideoLength()) {
-			throw IllegalArgumentException("Frame number" +
-										   QString::number(unsignedFrameNumber) +
-										   "was requested but only " +
-										   QString::number(player->getVideoLength()) +
-										   "are available.");
-		}
-		player->jumpToFrameNr(unsignedFrameNumber);
-		player->pause();
-	}
-
-	void PlayerController::setToDefaultFPS() {
-		double defaultFPS = player->getDefaultFPS();
+void PlayerController::setFPS(double fps) {
+	if (fps > 0) {
 		OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
-			new FPSChangingOperation(defaultFPS, player)));
+			new FPSChangingOperation(fps, player)));
 	}
+}
 
-	void PlayerController::setFPS(double fps) {
-		if (fps > 0) {
-			OperationList::getInstance()->doOperation(QSharedPointer<Operation>(
-				new FPSChangingOperation(fps, player)));
-		}
-	}
+void PlayerController::setPlayer(Player::sptr player) {
+	this->player = player;
+}
 
-	void PlayerController::setPlayer(Player::sptr player) {
-		this->player = player;
-	}
+void PlayerController::createLoop(UIntegerInterval interval) {
+	player->setLoop(interval);
+}
+
+void PlayerController::terminateLoop() {
+	player->stopLooping();
+}
+
 }  // namespace controller

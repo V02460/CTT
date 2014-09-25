@@ -65,11 +65,11 @@ void MainControlWidget::setupUi(ViewType viewType) {
 			btnInsert->setMaximumSize(btnInsert->minimumSize());
 			btnInsert->setIcon(QIcon(insertFilterIconPath));
 			btnInsert->setIconSize(btnInsert->size() * 0.60);
+			btnInsert->setToolTip(tr("INSERT_FILTER"));
 		}
 		else {
 			btnInsert->setText(tr("INSERT_FILTER"));
 		}
-		btnInsert->setToolTip(tr("INSERT_FILTER"));
 
 		btnInsert->setEnabled(false);
 	} else if (viewType == ViewType::ANALYSING_VIEW) {
@@ -78,11 +78,11 @@ void MainControlWidget::setupUi(ViewType viewType) {
 			btnInsert->setMaximumSize(btnInsert->minimumSize());
 			btnInsert->setIcon(QIcon(insertGraphIconPath));
 			btnInsert->setIconSize(btnInsert->size() * 0.60);
+			btnInsert->setToolTip(tr("INSERT_DIFFERENCE"));
 		}
 		else {
 			btnInsert->setText(tr("INSERT_DIFFERENCE"));
 		}
-		btnInsert->setToolTip(tr("INSERT_DIFFERENCE"));
 
 		btnInsert->setEnabled(true);
 	}

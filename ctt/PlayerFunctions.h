@@ -52,9 +52,12 @@ public:
 	virtual void update() Q_DECL_OVERRIDE;
 public slots:
 	void btnPlayPauseClicked(bool checked);
+	void btnToggleLoopKlicked();
 signals:
 	void togglePlay();
 	void playerChanged(::model::player::Player::sptr player);
+	void startLoop(::model::UIntegerInterval interval);
+	void endLoop();
 private:
 	void setupUi();
 	void setPlayButton(bool isPlayButton);
@@ -69,6 +72,10 @@ private:
     QDoubleSpinBox *spinboxFPS; /**< The spin box to change the frame rate */
 	QSlider *sliderCurrentFrame;
 	QSize buttonSize;
+
+	// TODO for looping
+	QPushButton *btnToggleLoop;
+	unsigned int loopStart;
 
 	::controller::PlayerController::sptr playerController;
 };
