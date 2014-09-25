@@ -4,6 +4,8 @@
 #include <QImageReader>
 #include "PlayerController.h"
 
+using ::model::UIntegerInterval;
+
 namespace view {
 
 PlayerFunctions::PlayerFunctions( QWidget *parent) : QWidget(parent) {
@@ -35,6 +37,7 @@ void PlayerFunctions::setupUi() {
 	btnPlayPause->setMinimumSize(buttonSize);
 	btnPlayPause->setSizePolicy(buttonSizePolicy);
 	layout->addWidget(btnPlayPause);
+	// TODO disconnect?
 	QObject::connect(btnPlayPause, SIGNAL(clicked(bool)), this, SLOT(btnPlayPauseClicked(bool)));
 	layout->addSpacing(15);
 
@@ -47,11 +50,11 @@ void PlayerFunctions::setupUi() {
 		btnPreviousFrame->setMaximumSize(buttonSize);
 		btnPreviousFrame->setIcon(QIcon(previousFrameIconPath));
 		btnPreviousFrame->setIconSize(btnPreviousFrame->size() * 0.60);
+		btnPreviousFrame->setToolTip(tr("PREVIOUS_FRAME"));
 	}
 	else {
 		btnPreviousFrame->setText(tr("PREVIOUS_FRAME"));
 	}
-	btnPreviousFrame->setToolTip(tr("PREVIOUS_FRAME"));
 	layout->addWidget(btnPreviousFrame);
 
 	btnNextFrame = new QPushButton(this);
@@ -63,15 +66,24 @@ void PlayerFunctions::setupUi() {
 		btnNextFrame->setMaximumSize(buttonSize);
 		btnNextFrame->setIcon(QIcon(nextFrameIconPath));
 		btnNextFrame->setIconSize(btnNextFrame->size() * 0.60);
+		btnNextFrame->setToolTip(tr("NEXT_FRAME"));
 	}
 	else {
 		btnNextFrame->setText(tr("NEXT_FRAME"));
 	}
-	btnNextFrame->setToolTip(tr("NEXT_FRAME"));
 	layout->addWidget(btnNextFrame);
 
 	//Must be after initialisation of btnNextFrame and btnPreviousFrame
 	setPlayButton(true);
+
+	// TODO for looping
+	layout->addSpacing(15);
+	btnToggleLoop = new QPushButton(this);
+	btnToggleLoop->setMinimumSize(buttonSize);
+	btnToggleLoop->setSizePolicy(buttonSizePolicy);
+	btnToggleLoop->setText(tr("SET_LOOP_START"));
+	QObject::connect(btnToggleLoop, SIGNAL(clicked()), this, SLOT(btnToggleLoopKlicked()));
+	layout->addWidget(btnToggleLoop);
 
 	layout->addStretch();
 
@@ -89,7 +101,6 @@ void PlayerFunctions::setupUi() {
 	btnDefaultFPS->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	btnDefaultFPS->setToolTip(tr("RESET_TO_DEFAULT_FPS"));
 	layout->addWidget(btnDefaultFPS);
-	btnDefaultFPS->setToolTip(tr("DEFAULT_FPS"));
 
 	setLayout(layout);
 	setEnabledAll(false);
@@ -102,10 +113,10 @@ void PlayerFunctions::setPlayButton(bool isPlayButton) {
 			btnPlayPause->setMaximumSize(buttonSize);
 			btnPlayPause->setIcon(QIcon(playIconPath));
 			btnPlayPause->setIconSize(btnNextFrame->size() * 0.60);
+			btnPlayPause->setToolTip(tr("PLAY"));
 		} else {
 			btnPlayPause->setText(tr("PLAY"));
 		}
-		btnPlayPause->setToolTip(tr("PLAY"));
 
 		btnNextFrame->setEnabled(true);
 		btnPreviousFrame->setEnabled(true);
@@ -115,10 +126,10 @@ void PlayerFunctions::setPlayButton(bool isPlayButton) {
 			btnPlayPause->setMaximumSize(buttonSize);
 			btnPlayPause->setIcon(QIcon(pauseIconPath));
 			btnPlayPause->setIconSize(btnNextFrame->size() * 0.60);
+			btnPlayPause->setToolTip(tr("PAUSE"));
 		} else {
 			btnPlayPause->setText(tr("PAUSE"));
 		}
-		btnPlayPause->setToolTip(tr("PAUSE"));
 
 		if (player->scrubberCount() != 0) {
 			btnNextFrame->setEnabled(false);
@@ -166,6 +177,21 @@ void PlayerFunctions::btnPlayPauseClicked(bool checked) {
 	emit togglePlay();
 }
 
+void PlayerFunctions::btnToggleLoopKlicked() {
+	QString state = btnToggleLoop->text();
+	if (state == tr("SET_LOOP_START")) {
+		loopStart = player->getCurrentFrameNumber();
+		btnToggleLoop->setText(tr("SET_LOOP_END"));
+	} else if (state == tr("SET_LOOP_END")) {
+		unsigned int loopEnd = std::max(player->getCurrentFrameNumber(), loopStart);
+		emit startLoop(UIntegerInterval(loopStart, loopEnd));
+		btnToggleLoop->setText(tr("REMOVE_LOOP"));
+	} else {
+		emit endLoop();
+		btnToggleLoop->setText(tr("SET_LOOP_START"));
+	}
+}
+
 void PlayerFunctions::update() {
 	setEnabledAll(player->scrubberCount() != 0);
 	setPlayButton(!player->isPlaying());
@@ -179,6 +205,7 @@ void PlayerFunctions::update() {
 		sliderCurrentFrame->setMaximum(0);
 	}
 
+	// TODO wtf
 	try {
 	    sliderCurrentFrame->setValue(static_cast<int>(player->getCurrentFrameNumber()));
 	} catch (IllegalArgumentException e) {
@@ -187,6 +214,8 @@ void PlayerFunctions::update() {
 	sliderCurrentFrame->blockSignals(oldState);
 
 	sliderCurrentFrame->setTickInterval(static_cast<int>(player->getVideoLength()) / 10);
+
+
 
 	oldState = spinboxFPS->blockSignals(true);
 	spinboxFPS->setValue(player->getFPS());
@@ -202,6 +231,8 @@ void PlayerFunctions::subscribe(::controller::PlayerController::sptr observer) {
 	QObject::connect(spinboxFPS, SIGNAL(valueChanged(double)), observer.data(), SLOT(setFPS(double)));
 	QObject::connect(this, SIGNAL(playerChanged(::model::player::Player::sptr)), observer.data(),
 		SLOT(setPlayer(::model::player::Player::sptr)));
+	QObject::connect(this, SIGNAL(startLoop(::model::UIntegerInterval)), observer.data(), SLOT(createLoop(::model::UIntegerInterval)));
+	QObject::connect(this, SIGNAL(endLoop()), observer.data(), SLOT(terminateLoop()));
 
 	this->playerController = observer;
 
@@ -217,6 +248,8 @@ void PlayerFunctions::unsubscribe(const ::controller::PlayerController &observer
 	QObject::disconnect(spinboxFPS, SIGNAL(valueChanged(double)), &observer, SLOT(setFPS(double)));
 	QObject::disconnect(this, SIGNAL(playerChanged(::model::player::Player::sptr)), &observer,
 		SLOT(setPlayer(::model::player::Player::sptr)));
+	QObject::disconnect(this, SIGNAL(startLoop(::model::UIntegerInterval)), &observer, SLOT(createLoop(::model::UIntegerInterval)));
+	QObject::disconnect(this, SIGNAL(endLoop()), &observer, SLOT(terminateLoop()));
 
 	this->playerController = ::controller::PlayerController::sptr();
 }

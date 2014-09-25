@@ -80,10 +80,10 @@ void ThumbnailListWidget::setupUi() {
 	if (!QImageReader::imageFormat(addVideoIconPath).isEmpty()) {
 		btnAddVideo->setIcon(QIcon(addVideoIconPath));
 		btnAddVideo->setIconSize(btnAddVideo->size()*0.80);
+		btnAddVideo->setToolTip(tr("ADD_VIDEO"));
 	} else {
 		btnAddVideo->setText(tr("ADD_VIDEO"));
 	}
-	btnAddVideo->setToolTip(tr("ADD_VIDEO"));
 
 	thumbnailListLayout->addWidget(btnAddVideo);
 	QObject::connect(btnAddVideo, SIGNAL(clicked(bool)), this, SLOT(btnAddVideoClicked(bool)));
