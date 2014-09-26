@@ -39,12 +39,10 @@ TEST_MODULE_CLEANUP(ModuleClean) {
 TEST_CLASS(IntegrationTest) {
 public:
     TEST_METHOD(testRun) {
-		/*
         view::MainWindow *mainWindow = new view::MainWindow();
         mainWindow->show();
 
         a->exec();
-		*/
     }
 };
 
