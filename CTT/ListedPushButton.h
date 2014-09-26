@@ -44,6 +44,7 @@ public:
 
 	::model::filter::FilteredVideo::sptr getVideo();
 	void setIndex(int index);
+	int getIndex();
 
 	virtual void update() Q_DECL_OVERRIDE;
 

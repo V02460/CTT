@@ -166,6 +166,7 @@ void ThumbnailListWidget::update() {
 			thumbnailList.removeOne(button);
 			backupThumbnailList.append(button);
 		} else {
+			button->setChecked(false);
 			button->setIndex(i++);
 		}
 	}
@@ -203,7 +204,10 @@ void ThumbnailListWidget::listedButtonToggled(bool checked, int id) {
 			int oldActiveId = activatedButtons.at(0);
 			activatedButtons.removeFirst();
 			activatedButtons.append(id);
-			thumbnailList.at(oldActiveId)->setChecked(false);
+			ListedPushButton::sptr deactivatedButton = thumbnailList.at(oldActiveId);
+			bool oldState = deactivatedButton->blockSignals(true);
+			deactivatedButton->setChecked(false);
+			deactivatedButton->blockSignals(oldState);
 			emit buttonReplaced(oldActiveId, id);
 		}
 	} else if (!checked && activatedButtons.contains(id)) {
