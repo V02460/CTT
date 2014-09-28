@@ -149,6 +149,7 @@ void XMLLoader::readElements() {
             case Saveable::SaveableType::heatmapOverlay_heatmap: dummy = HeatmapOverlay::Heatmap::getDummy(); break;
 			case Saveable::SaveableType::macroblockOverlay: dummy = MacroblockOverlay::getDummy(); break;
 			case Saveable::SaveableType::motionVektorOverlay: dummy = MotionVectorOverlay::getDummy(); break;
+			case Saveable::SaveableType::macroblockOverlay_macroblocks: dummy = MacroblockOverlay::Macroblocks::getDummy(); break;
 			case Saveable::SaveableType::rescaleFilter: dummy = RescaleFilter::getDummy(); break;
 			case Saveable::SaveableType::rGBChannelFilter: dummy = RGBChannelFilter::getDummy(); break;
 			case Saveable::SaveableType::timeshiftFilter: dummy = TimeshiftFilter::getDummy(); break;

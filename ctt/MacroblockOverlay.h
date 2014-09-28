@@ -49,6 +49,61 @@ public:
     virtual ::model::saveable::Saveable::SaveableType saveableType() const Q_DECL_OVERRIDE{return getSaveableType();}
     static Saveable::sptr getDummy();
 
+	/**
+	* Renders the macroblock view.
+	*/
+	class Macroblocks : public Filter, public QOpenGLFunctions {
+	public:
+		typedef QScopedPointer<Macroblocks> uptr;
+		typedef QSharedPointer<Macroblocks> sptr;
+		typedef QWeakPointer<Macroblocks> wptr;
+
+		Macroblocks(::model::Module::sptr predecessor);
+		~Macroblocks();
+		virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
+		static ::model::saveable::Saveable::SaveableType getSaveableType() { return Saveable::macroblockOverlay_macroblocks; }
+		virtual QList<const Module*> getUsesList() const Q_DECL_OVERRIDE;
+		virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
+		virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
+		virtual SaveableType saveableType() const Q_DECL_OVERRIDE{ return getSaveableType(); }
+		virtual QString getName() const Q_DECL_OVERRIDE{ return "filter_macroblockoverlay_macroblocks"; }
+		virtual bool supportsIntervals() const Q_DECL_OVERRIDE{ return true; };
+		static ::model::saveable::Saveable::sptr getDummy();
+
+	private:
+		Macroblocks();
+
+		QColor getMacroblockColor(::model::frame::MacroblockType type) const;
+		QRectF getPartitionTextureCoordinates(::model::frame::MacroblockType type) const;
+
+		void buildBuffers(QVector<QVector<::model::frame::MacroblockType>> mbTypes) const;
+
+		mutable ::helper::VertexAttribute::sptr positionAttribute;
+		mutable ::helper::VertexAttribute::sptr colorAttribute;
+		mutable ::helper::VertexAttribute::sptr texcrdAttribute;
+
+		// buffer builder functionality
+		void startBuilder() const;
+		// position
+		void append(QPointF position) const;
+		void append(QRectF quad) const;
+		// color
+		void append(QColor color, unsigned int count = 1) const;
+		// texture coordinates
+		void appendTexcrd(QPointF texcrd) const;
+		void appendQuadCoordinates(QRectF texcrd) const;
+		void indexRestart() const;
+
+		mutable bool doIndexRestartPosition;
+		mutable bool doIndexRestartColor;
+		mutable bool doIndexRestartTexcrd;
+		mutable QPointF lastPosition;
+		mutable QColor lastColor;
+		mutable QPointF lastTexcrd;
+
+		Surface::sptr partitionMap;
+	};
+
 private:
     static const float kBlockAlpha;
 
@@ -56,58 +111,6 @@ private:
      * Creates a dummy MacroblockOverlay.
      */
     MacroblockOverlay();
-
-    /**
-     * Renders the macroblock view.
-     */
-    class Macroblocks : public Filter, public QOpenGLFunctions {
-    public:
-        typedef QScopedPointer<Macroblocks> uptr;
-        typedef QSharedPointer<Macroblocks> sptr;
-        typedef QWeakPointer<Macroblocks> wptr;
-
-        Macroblocks(::model::Module::sptr predecessor);
-        ~Macroblocks();
-        virtual ::model::frame::Frame::sptr getFrame(unsigned int frameNumber) const Q_DECL_OVERRIDE;
-        static ::model::saveable::Saveable::SaveableType getSaveableType() { return Saveable::macroblockOverlay_macroblocks; }
-        virtual QList<const Module*> getUsesList() const Q_DECL_OVERRIDE;
-        virtual ::model::saveable::Memento getMemento() const Q_DECL_OVERRIDE;
-		virtual void restore(::model::saveable::Memento memento) Q_DECL_OVERRIDE;
-		virtual SaveableType saveableType() const Q_DECL_OVERRIDE { return getSaveableType(); }
-        virtual QString getName() const Q_DECL_OVERRIDE { return "filter_macroblockoverlay_macroblocks"; }
-        virtual bool supportsIntervals() const Q_DECL_OVERRIDE { return true; };
-
-    private:
-        QColor getMacroblockColor(::model::frame::MacroblockType type) const;
-        QRectF getPartitionTextureCoordinates(::model::frame::MacroblockType type) const;
-
-        void buildBuffers(QVector<QVector<::model::frame::MacroblockType>> mbTypes) const;
-
-        mutable ::helper::VertexAttribute::sptr positionAttribute;
-        mutable ::helper::VertexAttribute::sptr colorAttribute;
-        mutable ::helper::VertexAttribute::sptr texcrdAttribute;
-
-        // buffer builder functionality
-        void startBuilder() const;
-        // position
-        void append(QPointF position) const;
-        void append(QRectF quad) const;
-        // color
-        void append(QColor color, unsigned int count = 1) const;
-        // texture coordinates
-        void appendTexcrd(QPointF texcrd) const;
-        void appendQuadCoordinates(QRectF texcrd) const;
-        void indexRestart() const;
-
-        mutable bool doIndexRestartPosition;
-        mutable bool doIndexRestartColor;
-        mutable bool doIndexRestartTexcrd;
-        mutable QPointF lastPosition;
-        mutable QColor lastColor;
-        mutable QPointF lastTexcrd;
-
-        Surface::sptr partitionMap;
-    };
 };
 
 }  // namespace overlay
