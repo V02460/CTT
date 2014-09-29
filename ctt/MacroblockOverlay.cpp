@@ -281,10 +281,12 @@ Frame::sptr MacroblockOverlay::Macroblocks::getFrame(unsigned int frameNumber) c
 }
 
 Memento MacroblockOverlay::Macroblocks::getMemento() const {
-    return Memento();
+    return Filter::getMemento();
 }
 
 void MacroblockOverlay::Macroblocks::restore(::model::saveable::Memento memento) {
+    Filter::restore(memento);
+
     partitionMap = Frame::sptr::create(GlobalContext::get(), QImage(":/Shader/Overlay/partitions.png"));
 
     positionAttribute.reset(new VertexAttribute(0, 0));

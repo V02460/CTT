@@ -81,6 +81,8 @@ Memento HeatmapOverlay::Heatmap::getMemento() const {
 
 void HeatmapOverlay::Heatmap::restore(Memento memento) {
     difference = memento.getSharedPointer("difference").dynamicCast<PixelDiff>();
+
+    lookupTexture = Frame::sptr::create(GlobalContext::get(), QImage(":/Shader/Overlay/heatmapColors.png"));
 }
 
 QSize HeatmapOverlay::Heatmap::getResolution() const {
