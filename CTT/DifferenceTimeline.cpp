@@ -72,12 +72,12 @@ namespace view {
 		for (int i = 0; i < differences->getSize(); i++) {
 			differences->get(i)->subscribe(this);
 
-			int differenceLength = static_cast<int>(differences->get(i)->getFrameCount());
+			int differenceLength = static_cast<int>(differences->get(i)->getFrameCount() / frameskip);
 			QVector<double> x = QVector<double>(differenceLength);
 			QVector<double> y = QVector<double>(differenceLength);
 			for (int j = 0; j < differenceLength; j++) {
 				x[j] = j;
-				y[j] = qBound(0.0, differences->get(i)->getDiff(j), 1.0);
+				y[j] = qBound(0.0, differences->get(i)->getDiff(j * frameskip), 1.0);
 				if (y[j] > maxY) {
 					maxY = y[j];
 				}
@@ -89,7 +89,7 @@ namespace view {
 		}
 
 		if (player->getVideoLength() != 0) {
-			graphPlot->xAxis->setRange(0, player->getVideoLength() - 1);
+			graphPlot->xAxis->setRange(0, (player->getVideoLength() - 1) / frameskip);
 		} else {
 			graphPlot->xAxis->setRange(0, 1);
 		}
