@@ -136,7 +136,7 @@ void Player::addScrubber(VideoScrubber::sptr scrubber) {
 
 	if (scrubber->getFrameCount() < getCurrentFrameNumber())
 	{
-		currentFrameNumber = scrubber->getFrameCount();
+		currentFrameNumber = scrubber->getFrameCount() - 1;
 		emit currentFrameNrChanged(getCurrentFrameNumber());
 }
 	else
