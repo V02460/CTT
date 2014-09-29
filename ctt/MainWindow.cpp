@@ -139,6 +139,13 @@ namespace view {
 
 		QMenu *help = menu->addMenu(tr("MENU_HELP"));
 
+		QAction *manual = new QAction(tr("SHOW_MANUAL"), help);
+		manual->setShortcut(QKeySequence(Qt::Key_F1));
+		QObject::connect(manual, SIGNAL(triggered()), this, SLOT(menuManual()));
+		help->addAction(manual);
+
+		help->addSeparator();
+
 		QAction *about = new QAction(tr("MENUENTRY_ABOUT"), help);
 		help->addAction(about);
 
@@ -253,6 +260,22 @@ namespace view {
 
 		if (abxTestingIsInitialized) {
 			ViewState::getInstance()->changeView(ABX_VIEW);
+		}
+	}
+
+	void MainWindow::menuManual() {
+		QString locale = QLocale::system().name();
+
+		QString manualPathPrefix = "Resources/Manual_";
+		if (QFileInfo(manualPathPrefix + locale + ".pdf").isFile()) {
+			QDesktopServices::openUrl(QUrl(manualPathPrefix + locale + ".pdf"));
+		} else {
+			if (QFileInfo(manualPathPrefix + "en.pdf").isFile()) {
+				QDesktopServices::openUrl(QUrl(manualPathPrefix + "en.pdf"));
+			}
+			else {
+				QMessageBox::warning(this, tr("MANUAL_FILE_MISSING_TITLE"), tr("MANUAL_FILE_MISSING_TEXT"));
+			}
 		}
 	}
 

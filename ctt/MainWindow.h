@@ -47,6 +47,8 @@ public slots:
 
 	void menuUndo();
 	void menuRedo();
+
+	void menuManual();
 signals:
     /**
      * This signal is emitted when the view state is changed.

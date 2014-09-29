@@ -92,7 +92,7 @@
         <translation>Farben invertieren</translation>
     </message>
     <message>
-        <location filename="../CTT/HeatmapOverlay.cpp" line="20"/>
+        <location filename="../CTT/HeatmapOverlay.cpp" line="22"/>
         <source>overlay_heatmap</source>
         <translatorcomment>Heatmap</translatorcomment>
         <translation>Differenzheatmap</translation>
@@ -415,7 +415,7 @@
     </message>
     <message>
         <location filename="../CTT/HistogramWidget.cpp" line="49"/>
-        <location filename="../CTT/HistogramWidget.cpp" line="117"/>
+        <location filename="../CTT/HistogramWidget.cpp" line="118"/>
         <source>START_AUTO_UPDATE</source>
         <translation>Automatisch Aktualisieren: aus</translation>
     </message>
@@ -425,7 +425,7 @@
         <translation>Aktualisieren</translation>
     </message>
     <message>
-        <location filename="../CTT/HistogramWidget.cpp" line="115"/>
+        <location filename="../CTT/HistogramWidget.cpp" line="116"/>
         <source>STOP_AUTO_UPDATE</source>
         <translation>Automatisch Aktualisieren: an</translation>
     </message>
@@ -446,14 +446,14 @@
 <context>
     <name>view::MainControlWidget</name>
     <message>
-        <location filename="../CTT/MainControlWidget.cpp" line="72"/>
-        <location filename="../CTT/MainControlWidget.cpp" line="74"/>
+        <location filename="../CTT/MainControlWidget.cpp" line="68"/>
+        <location filename="../CTT/MainControlWidget.cpp" line="71"/>
         <source>INSERT_FILTER</source>
         <translation>Filter einfügen</translation>
     </message>
     <message>
-        <location filename="../CTT/MainControlWidget.cpp" line="85"/>
-        <location filename="../CTT/MainControlWidget.cpp" line="87"/>
+        <location filename="../CTT/MainControlWidget.cpp" line="81"/>
+        <location filename="../CTT/MainControlWidget.cpp" line="84"/>
         <source>INSERT_DIFFERENCE</source>
         <translation>Abstandsfunktion einfügen</translation>
     </message>
@@ -532,74 +532,89 @@
     </message>
     <message>
         <location filename="../CTT/MainWindow.cpp" line="142"/>
+        <source>SHOW_MANUAL</source>
+        <translation>Hilfe</translation>
+    </message>
+    <message>
+        <location filename="../CTT/MainWindow.cpp" line="149"/>
         <source>MENUENTRY_ABOUT</source>
         <translation>Über CTT</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="159"/>
+        <location filename="../CTT/MainWindow.cpp" line="166"/>
         <source>UNSAVED_PROJECT</source>
         <translation>Ungesichertes Projekt</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="180"/>
-        <location filename="../CTT/MainWindow.cpp" line="186"/>
+        <location filename="../CTT/MainWindow.cpp" line="187"/>
         <location filename="../CTT/MainWindow.cpp" line="193"/>
+        <location filename="../CTT/MainWindow.cpp" line="200"/>
         <source>CODEC_TESTING_TOOLKIT</source>
         <translation>Codec Testing Toolkit</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="180"/>
+        <location filename="../CTT/MainWindow.cpp" line="187"/>
         <source>PROCESSING_VIEW</source>
         <translation>Videos bearbeiten</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="186"/>
+        <location filename="../CTT/MainWindow.cpp" line="193"/>
         <source>ANALYSING_VIEW</source>
         <translation>Videos analysieren</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="193"/>
+        <location filename="../CTT/MainWindow.cpp" line="200"/>
         <source>ABX_VIEW</source>
         <translation>ABX-Test durchführen</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="207"/>
+        <location filename="../CTT/MainWindow.cpp" line="214"/>
         <source>LOAD_PROJECT</source>
         <translation>Projekt laden</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="207"/>
-        <location filename="../CTT/MainWindow.cpp" line="215"/>
+        <location filename="../CTT/MainWindow.cpp" line="214"/>
+        <location filename="../CTT/MainWindow.cpp" line="222"/>
         <source>CTT_FILES *.ctt</source>
         <translation>CTT-Dateien *.ctt</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="215"/>
+        <location filename="../CTT/MainWindow.cpp" line="222"/>
         <source>SAVE_PROJECT</source>
         <translation>Projekt speichern</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="245"/>
+        <location filename="../CTT/MainWindow.cpp" line="252"/>
         <source>REINITIALIZE_ABX_TESTING_TITLE</source>
         <translation>ABX-Test Videos neu setzen</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="246"/>
+        <location filename="../CTT/MainWindow.cpp" line="253"/>
         <source>REINITIALIZE_ABX_TESTING_QUESTION</source>
         <translation>Sollen die Videos für den ABX-Test neu gesetzt werden?</translation>
     </message>
     <message>
         <location filename="../CTT/MainWindow.cpp" line="277"/>
+        <source>MANUAL_FILE_MISSING_TITLE</source>
+        <translation>Keine Hilfe-Datei gefunden</translation>
+    </message>
+    <message>
+        <location filename="../CTT/MainWindow.cpp" line="277"/>
+        <source>MANUAL_FILE_MISSING_TEXT</source>
+        <translation>Die aufgerufenene Hilfedatei existiert nicht oder kann nicht gefunden werden</translation>
+    </message>
+    <message>
+        <location filename="../CTT/MainWindow.cpp" line="300"/>
         <source>CHOOSE_ABX_VIDEOS</source>
         <translation>Wähle  Videos für den ABX-Test</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="317"/>
+        <location filename="../CTT/MainWindow.cpp" line="340"/>
         <source>SAVE_CHANGES_TITLE</source>
         <translation>Projekt speichern?</translation>
     </message>
     <message>
-        <location filename="../CTT/MainWindow.cpp" line="317"/>
+        <location filename="../CTT/MainWindow.cpp" line="340"/>
         <source>SAVE_CHANGES_TEXT</source>
         <translation>Sollen die bestehenden Änderungen gespeichert werden?</translation>
     </message>
@@ -607,37 +622,54 @@
 <context>
     <name>view::PlayerFunctions</name>
     <message>
-        <location filename="../CTT/PlayerFunctions.cpp" line="52"/>
-        <location filename="../CTT/PlayerFunctions.cpp" line="54"/>
+        <location filename="../CTT/PlayerFunctions.cpp" line="53"/>
+        <location filename="../CTT/PlayerFunctions.cpp" line="56"/>
         <source>PREVIOUS_FRAME</source>
         <translation>Vorheriges Bild</translation>
     </message>
     <message>
-        <location filename="../CTT/PlayerFunctions.cpp" line="68"/>
-        <location filename="../CTT/PlayerFunctions.cpp" line="70"/>
+        <location filename="../CTT/PlayerFunctions.cpp" line="69"/>
+        <location filename="../CTT/PlayerFunctions.cpp" line="72"/>
         <source>NEXT_FRAME</source>
         <translation>Nächstes Bild</translation>
     </message>
     <message>
-        <location filename="../CTT/PlayerFunctions.cpp" line="90"/>
+        <location filename="../CTT/PlayerFunctions.cpp" line="84"/>
+        <location filename="../CTT/PlayerFunctions.cpp" line="182"/>
+        <location filename="../CTT/PlayerFunctions.cpp" line="191"/>
+        <source>SET_LOOP_START</source>
+        <translation>Wiederholungsstartpunkt setzen</translation>
+    </message>
+    <message>
+        <location filename="../CTT/PlayerFunctions.cpp" line="102"/>
         <source>RESET_TO_DEFAULT_FPS</source>
         <translation>Wiedergabegeschwindigkeit zurücksetzen</translation>
     </message>
     <message>
-        <location filename="../CTT/PlayerFunctions.cpp" line="92"/>
-        <source>DEFAULT_FPS</source>
-        <translation>Ursprüngliche Wiedergabegeschwindigkeit</translation>
+        <location filename="../CTT/PlayerFunctions.cpp" line="184"/>
+        <location filename="../CTT/PlayerFunctions.cpp" line="185"/>
+        <source>SET_LOOP_END</source>
+        <translation>Wiederholungsendpunkt setzen</translation>
     </message>
     <message>
-        <location filename="../CTT/PlayerFunctions.cpp" line="106"/>
-        <location filename="../CTT/PlayerFunctions.cpp" line="108"/>
+        <location filename="../CTT/PlayerFunctions.cpp" line="188"/>
+        <source>REMOVE_LOOP</source>
+        <translation>Wiederholung deaktivieren</translation>
+    </message>
+    <message>
+        <source>DEFAULT_FPS</source>
+        <translation type="vanished">Ursprüngliche Wiedergabegeschwindigkeit</translation>
+    </message>
+    <message>
+        <location filename="../CTT/PlayerFunctions.cpp" line="116"/>
+        <location filename="../CTT/PlayerFunctions.cpp" line="118"/>
         <source>PLAY</source>
         <translatorcomment>Hier hat sich das englische Wort eingebürgert, vielleicht stattdessen &quot;Abspielen&quot;</translatorcomment>
         <translation>Abspielen</translation>
     </message>
     <message>
-        <location filename="../CTT/PlayerFunctions.cpp" line="119"/>
-        <location filename="../CTT/PlayerFunctions.cpp" line="121"/>
+        <location filename="../CTT/PlayerFunctions.cpp" line="129"/>
+        <location filename="../CTT/PlayerFunctions.cpp" line="131"/>
         <source>PAUSE</source>
         <translation>Pausieren</translation>
     </message>
@@ -653,13 +685,13 @@
 <context>
     <name>view::ThumbnailListWidget</name>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="84"/>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="86"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="83"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="85"/>
         <source>ADD_VIDEO</source>
         <translation>Video hinzufügen</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="229"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="233"/>
         <source>MORE_VIDEO_INFORMATION</source>
         <translation>Zusätzliche Videoinformationen</translation>
     </message>
@@ -718,7 +750,7 @@
     </message>
     <message>
         <location filename="../CTT/ThumbnailListWidget.cpp" line="139"/>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="274"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="278"/>
         <source>NO_MACROOBLOCK_FILE_CHOSEN</source>
         <translation>Es wurde keine Metadaten-Datei ausgewählt</translation>
     </message>
@@ -728,48 +760,48 @@
         <translation>Metadaten-Datei hinzufügen</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="226"/>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="317"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="230"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="321"/>
         <source>OPEN_VIDEO</source>
         <translation>Video öffnen</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="226"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="230"/>
         <source>YUV_FILES (*.yuv)</source>
         <translation>YUV-Dateien (*.yuv)</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="297"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="301"/>
         <source>VIDEO_ADDING_FAILED_ILLEGEAL_ARGUMENT_TITLE</source>
         <translation>Video Hinzufügen fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="297"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="301"/>
         <source>VIDEO_ADDING_FAILED_ILLEGAL_ARGUMENT_DETAILS</source>
         <translation>Beim Hinzufügen des Videos wurde ein falscher Parameter ausgewählt. Siehe &quot;Details&quot; für nähere Beschreibung</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="302"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="306"/>
         <source>VIDEO_ADDING_FAILED_FILE_NOT_FOUND_TITLE</source>
         <translation>Video Hinzufügen fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="302"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="306"/>
         <source>VIDEO_ADDING_FAILED_FILE_NOT_FOUND_DETAILS</source>
         <translation>Die ausgewählte Datei konnte nicht gefunden werden. Siehe &quot;Details&quot; für nähere Beschreibung</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="307"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="311"/>
         <source>VIDEO_ADDING_FAILED_IO_TITLE</source>
         <translation>Video Hinzufügen fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="307"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="311"/>
         <source>VIDEO_ADDING_FAILED_IO_DETAILS</source>
         <translation>Eingabe-/Ausgabefehler beim lesen des Videos. Siehe &quot;Details&quot; für nähere Beschreibung</translation>
     </message>
     <message>
-        <location filename="../CTT/ThumbnailListWidget.cpp" line="317"/>
+        <location filename="../CTT/ThumbnailListWidget.cpp" line="321"/>
         <source>DAT_FILES (*.dat)</source>
         <translation>DAT-Dateien (*.dat)</translation>
     </message>
@@ -786,7 +818,7 @@
         <translation>Kein Overlay</translation>
     </message>
     <message>
-        <location filename="../CTT/VideoAnalysingWidget.cpp" line="79"/>
+        <location filename="../CTT/VideoAnalysingWidget.cpp" line="80"/>
         <source>SHOW_INFORMATION</source>
         <translation>Videoinformationen anzeigen</translation>
     </message>
