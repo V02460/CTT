@@ -47,8 +47,8 @@ double EarthMoversHistogramDiff::getDiff(unsigned int frameNr) {
 		throw IllegalArgumentException("One or both videos have less then " + QString::number(frameNr)
 			                               + " frames.");
 	}
-	if (!isCalculated) {
-		update();
+	if (!diff.contains(frameNr)) {
+		calculateFrameDiff(frameNr);
 	}
 
 	return diff.value(frameNr);

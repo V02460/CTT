@@ -91,7 +91,6 @@ protected:
 	/** The second of the two Videos which this FrameDiff compares. */
     ::model::Module::sptr module2;
 
-	bool isCalculated;
 	QMap<unsigned int, double> diff;
 
 private:

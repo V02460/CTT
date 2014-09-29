@@ -7,7 +7,7 @@ using ::model::saveable::Saveable;
 using ::model::saveable::Memento;
 using ::exception::AccessToDummyException;
 
-FrameDiff::FrameDiff(Module::sptr module1, Module::sptr module2) : module1(module1), module2(module2), diff(), isCalculated(false) {
+FrameDiff::FrameDiff(Module::sptr module1, Module::sptr module2) : module1(module1), module2(module2), diff() {
 	if (!module1.isNull()) {
 		module1->subscribe(this);
 	}
@@ -45,11 +45,6 @@ Module::sptr FrameDiff::getModule2() {
 void FrameDiff::update() {
 	diff.clear();
 
-	for (unsigned int i = 0; i < getFrameCount(); i++) {
-		calculateFrameDiff(i);
-	}
-
-	isCalculated = true;
 	changed();
 }
 
