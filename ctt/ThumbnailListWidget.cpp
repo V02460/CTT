@@ -401,7 +401,7 @@ void ThumbnailListWidget::unsubscribe(const ::controller::VideoListController &o
 	QObject::disconnect(this, SIGNAL(videoAdded(QString, int, int, double, model::video::YUVType, bool)),
 		&observer, SLOT(addVideo(QString, int, int, double, model::video::YUVType, bool)));
 	QObject::disconnect(this, SIGNAL(videoRemoved(int)), &observer, SLOT(removeVideo(int)));
-	QObject::disconnect(this, SIGNAL(videoAdded(QString)), observer.data(), SLOT(addVideo(QString)));
+	QObject::disconnect(this, SIGNAL(videoAdded(QString)), &observer, SLOT(addVideo(QString)));
 }
 
 }  // namespace view
