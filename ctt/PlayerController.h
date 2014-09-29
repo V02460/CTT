@@ -73,6 +73,9 @@ public slots:
      */
     void setPlayer(::model::player::Player::sptr player);
 
+	void createLoop(::model::UIntegerInterval interval);
+	void terminateLoop();
+
 private:
 	::model::player::Player::sptr player;
 };

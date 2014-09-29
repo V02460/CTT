@@ -58,6 +58,10 @@ MacroblockOverlay::Macroblocks::Macroblocks(Module::sptr predecessor)
     texcrdAttribute.reset(new VertexAttribute(0, 0));
 }
 
+MacroblockOverlay::Macroblocks::Macroblocks() {
+	isDummyFlag = true;
+}
+
 MacroblockOverlay::Macroblocks::~Macroblocks() {
 }   
 
@@ -290,6 +294,10 @@ void MacroblockOverlay::Macroblocks::restore(::model::saveable::Memento memento)
 
 QList<const Module*> MacroblockOverlay::Macroblocks::getUsesList() const {
     return Filter::getUsesList();
+}
+
+Saveable::sptr MacroblockOverlay::Macroblocks::getDummy() {
+	return Saveable::sptr(new Macroblocks());
 }
 
 Saveable::sptr MacroblockOverlay::getDummy() {

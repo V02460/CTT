@@ -139,8 +139,11 @@ void AnalysingOrderingWidget::videoReplaced(int oldId, int newId) {
 }
 
 void AnalysingOrderingWidget::videoDeactivated(int id) {
-	widgetLayout->removeWidget(analysingWidget.at(id).data());
-	analysingWidget.at(id)->setParent(0);
+	VideoAnalysingWidget::sptr tmp = analysingWidget.at(id);
+	widgetLayout->removeWidget(tmp.data());
+	tmp->setParent(0);
+	player->removeScrubber(*tmp->getVideoScrubber());
+	player->removeScrubber(*tmp->getHistogramScrubber());
 	dialogLayout->removeWidget(dialogButtons.at(id).data());
 	dialogButtons.at(id)->setParent(0);
 	setupUi();

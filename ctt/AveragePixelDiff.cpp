@@ -27,8 +27,8 @@ double AveragePixelDiff::getDiff(unsigned int frameNr) {
                                        QString::number(getFrameCount()) +
                                        " frames exist.");
     }
-	if (!isCalculated) {
-		update();
+	if (!diff.contains(frameNr)) {
+		calculateFrameDiff(frameNr);
 	}
 
     return diff.value(frameNr);

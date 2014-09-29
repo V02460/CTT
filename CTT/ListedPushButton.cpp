@@ -63,6 +63,10 @@ namespace view {
 		id = index;
 	}
 
+	int ListedPushButton::getIndex() {
+		return id;
+	}
+
 	void ListedPushButton::setThumbnail() {
 		int thumbnailFrame = video->getFrameCount() * 0.09;
 		QImage iconImage = video->getFrame(thumbnailFrame)->getFramebufferObject()->toImage();

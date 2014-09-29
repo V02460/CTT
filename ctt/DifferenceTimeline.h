@@ -4,6 +4,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 #include <QWeakPointer>
+#include <QShowEvent>
 
 #include "AbstractTimeline.h"
 #include "SaveableList.h"
@@ -28,6 +29,9 @@ public:
 	~DifferenceTimeline();
 
 	virtual void update() Q_DECL_OVERRIDE;
+
+protected:
+	virtual void showEvent(QShowEvent *ev) Q_DECL_OVERRIDE;
 private:
 	void updateDifferences();
 	void setupUi();
@@ -37,6 +41,7 @@ private:
 	int frameCount;
 	int currentFrameNumber;
 	bool wasPlaying;
+	bool needsRecalculation;
 	QCustomPlot *graphPlot;
 };
 

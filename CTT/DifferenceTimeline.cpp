@@ -9,7 +9,7 @@ using ::model::difference::FrameDiff;
 using ::model::player::Player;
 
 namespace view {
-	DifferenceTimeline::DifferenceTimeline(SaveableList<FrameDiff>::sptr differences, Player::sptr player, QWidget *parent) : AbstractTimeline(parent), differences(differences), player(player), wasPlaying(false), currentFrameNumber(0), frameCount(0) {
+	DifferenceTimeline::DifferenceTimeline(SaveableList<FrameDiff>::sptr differences, Player::sptr player, QWidget *parent) : AbstractTimeline(parent), differences(differences), player(player), wasPlaying(false), needsRecalculation(false), currentFrameNumber(0), frameCount(0) {
 		differences->subscribe(this);
 		player->subscribe(this);
 
@@ -46,7 +46,12 @@ namespace view {
 		} else if (wasPlaying != player->isPlaying()) {
 			wasPlaying = player->isPlaying();
 		} else {
-			updateDifferences();
+			if (isVisible()) {
+				updateDifferences();
+			}
+			else {
+				needsRecalculation = true;
+			}
 		}
 	}
 
@@ -91,5 +96,13 @@ namespace view {
 		graphPlot->yAxis->setRange(0, maxY * 1.1);
 
 		graphPlot->replot();
+	}
+
+	void DifferenceTimeline::showEvent(QShowEvent *ev) {
+		AbstractTimeline::showEvent(ev);
+
+		if (needsRecalculation) {
+			updateDifferences();
+		}
 	}
 }  // namespace view
