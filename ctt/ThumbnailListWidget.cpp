@@ -8,6 +8,7 @@
 #include "YUVType.h"
 #include "FileNotFoundException.h"
 #include "IOException.h"
+#include "FFmpegException.h"
 
 
 namespace view {
@@ -18,6 +19,7 @@ using ::model::video::YUVType;
 using ::controller::VideoListController;
 using ::exception::FileNotFoundException;
 using ::exception::IOException;
+using ::exception::FFmpegException;
 
 ThumbnailListWidget::ThumbnailListWidget(SaveableList<FilteredVideo>::sptr filteredVideos,
 	                                     int selectableCount,
@@ -28,6 +30,7 @@ ThumbnailListWidget::ThumbnailListWidget(SaveableList<FilteredVideo>::sptr filte
 															activatedButtons(),
 															thumbnailList(),
 															backupThumbnailList(),
+															ffmpegWorks(true),
 															filteredVideos(filteredVideos),
 															selectableCount(selectableCount),
 															isHorizontal(isHorizontal),
@@ -227,93 +230,143 @@ void ThumbnailListWidget::listedButtonRemoved(bool checked, int id) {
 }
 
 void ThumbnailListWidget::btnAddVideoClicked(bool checked) {
-	QString videoPath = QFileDialog::getOpenFileName(0, tr("OPEN_VIDEO"), "", tr("YUV_FILES (*.yuv)"));
+	QString supportedFileTypes = tr("YUV_FILES (*.yuv)");
+
+	if (ffmpegWorks) {
+		supportedFileTypes += ";;" + tr("OTHER_VIDEO_FILES (*.avi *.flv *.mpg *.mpeg *.mpeg1 *.mpeg2 *.mpeg4 *.ogg *.ts *.wmv)");
+		supportedFileTypes += ";;" + tr("ALL_FILES (*.*)");
+	}
+
+	QString videoPath = QFileDialog::getOpenFileName(0, tr("OPEN_VIDEO"), "", supportedFileTypes);
 	if (videoPath != "") {
-		QFileInfo fileInfo = QFileInfo(videoPath);
-		openVideoDialog->setWindowTitle(tr("MORE_VIDEO_INFORMATION") + ": " + fileInfo.baseName());
-
-		if (fileInfo.baseName().contains("444"))
-		{
-			yuvType->setCurrentIndex(0);
-		}
-		if (fileInfo.baseName().contains("422"))
-		{
-			yuvType->setCurrentIndex(1);
-		}
-		if (fileInfo.baseName().contains("420"))
-		{
-			yuvType->setCurrentIndex(2);
-		}
-
-		QRegExp resolutionStringRegEx("((\\d+)x(\\d+))");
-
-		if (fileInfo.baseName().contains(resolutionStringRegEx))
-		{
-			
-			resolutionStringRegEx.indexIn(fileInfo.baseName());
-			QStringList widthAndHeight = resolutionStringRegEx.capturedTexts()[0].split("x");
-
-			widthSpinBox->setValue(widthAndHeight[0].toInt());
-			heightSpinBox->setValue(widthAndHeight[1].toInt());
-		}
-
-		QRegExp fpsStringRegEx("(\\d+,)?\\d+((fps|framespersecond)|FPS)");
-
-		if (fileInfo.baseName().contains(fpsStringRegEx))
-		{
-
-			fpsStringRegEx.indexIn(fileInfo.baseName());
-			QString fps = fpsStringRegEx.capturedTexts()[0];
-			fps.remove(QRegExp("((fps|framespersecond)|FPS)"));
-			fps.replace(",", ".");
-			fpsSpinBox->setValue(fps.toDouble());
-		}
-
-		if (fileInfo.baseName().contains(QRegExp("(hdtv|HDTV)"))) {
-			hdtv->setChecked(true);
+		if (!videoPath.endsWith(".yuv") && ffmpegWorks) {
+			openFFMPEGVideo(videoPath);
 		} else {
-			hdtv->setChecked(false);
+			openYUVVideo(videoPath);
+		}
+	}
+}
+
+void ThumbnailListWidget::openYUVVideo(QString videoPath) {
+	QFileInfo fileInfo = QFileInfo(videoPath);
+	openVideoDialog->setWindowTitle(tr("MORE_VIDEO_INFORMATION") + ": " + fileInfo.baseName());
+
+	if (fileInfo.baseName().contains("444"))
+	{
+		yuvType->setCurrentIndex(0);
+	}
+	if (fileInfo.baseName().contains("422"))
+	{
+		yuvType->setCurrentIndex(1);
+	}
+	if (fileInfo.baseName().contains("420"))
+	{
+		yuvType->setCurrentIndex(2);
+	}
+
+	QRegExp resolutionStringRegEx("((\\d+)x(\\d+))");
+
+	if (fileInfo.baseName().contains(resolutionStringRegEx))
+	{
+
+		resolutionStringRegEx.indexIn(fileInfo.baseName());
+		QStringList widthAndHeight = resolutionStringRegEx.capturedTexts()[0].split("x");
+
+		widthSpinBox->setValue(widthAndHeight[0].toInt());
+		heightSpinBox->setValue(widthAndHeight[1].toInt());
+	}
+
+	QRegExp fpsStringRegEx("(\\d+,)?\\d+((fps|framespersecond)|FPS)");
+
+	if (fileInfo.baseName().contains(fpsStringRegEx))
+	{
+
+		fpsStringRegEx.indexIn(fileInfo.baseName());
+		QString fps = fpsStringRegEx.capturedTexts()[0];
+		fps.remove(QRegExp("((fps|framespersecond)|FPS)"));
+		fps.replace(",", ".");
+		fpsSpinBox->setValue(fps.toDouble());
+	}
+
+	if (fileInfo.baseName().contains(QRegExp("(hdtv|HDTV)"))) {
+		hdtv->setChecked(true);
+	}
+	else {
+		hdtv->setChecked(false);
+	}
+
+	macroblockFileLabel->setText(tr("NO_MACROOBLOCK_FILE_CHOSEN"));
+	macroblockFilePath = "";
+
+	if (openVideoDialog->exec() == QDialog::Accepted) {
+		YUVType videoType;
+
+		switch (yuvType->currentIndex()) {
+		case 0: videoType = YUVType::YUV444; break;
+		case 1: videoType = YUVType::YUV422; break;
+		case 2: videoType = YUVType::YUV420; break;
+		default: break;
 		}
 
-		macroblockFileLabel->setText(tr("NO_MACROOBLOCK_FILE_CHOSEN"));
-		macroblockFilePath = "";
-
-		if (openVideoDialog->exec() == QDialog::Accepted) {
-			YUVType videoType;
-
-			switch (yuvType->currentIndex()) {
-			case 0: videoType = YUVType::YUV444; break;
-			case 1: videoType = YUVType::YUV422; break;
-			case 2: videoType = YUVType::YUV420; break;
-			default: break;
+		try {
+			if (macroblockFilePath != "") {
+				emit videoAdded(videoPath, macroblockFileLabel->text(), widthSpinBox->value(), heightSpinBox->value(),
+					fpsSpinBox->value(), videoType, hdtv->isChecked());
 			}
-
-			try {
-				if (macroblockFilePath != "") {
-					emit videoAdded(videoPath, macroblockFileLabel->text(), widthSpinBox->value(), heightSpinBox->value(),
-						fpsSpinBox->value(), videoType, hdtv->isChecked());
-				}
-				else {
-					emit videoAdded(videoPath, widthSpinBox->value(), heightSpinBox->value(), fpsSpinBox->value(),
-						videoType, hdtv->isChecked());
-				}
-			} catch (IllegalArgumentException e) {
-				QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_ADDING_FAILED_ILLEGEAL_ARGUMENT_TITLE"), tr("VIDEO_ADDING_FAILED_ILLEGAL_ARGUMENT_DETAILS"), QMessageBox::Ok, this);
-				errorBox.setDetailedText(e.getName() + "\n" + e.getMsg());
-
-				errorBox.exec();
-			} catch (FileNotFoundException e) {
-				QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_ADDING_FAILED_FILE_NOT_FOUND_TITLE"), tr("VIDEO_ADDING_FAILED_FILE_NOT_FOUND_DETAILS"), QMessageBox::Ok, this);
-				errorBox.setDetailedText(e.getName() + "\n" + e.getMsg());
-
-				errorBox.exec();
-			} catch (IOException e) {
-				QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_ADDING_FAILED_IO_TITLE"), tr("VIDEO_ADDING_FAILED_IO_DETAILS"), QMessageBox::Ok, this);
-				errorBox.setDetailedText(e.getName() + "\n" + e.getMsg());
-
-				errorBox.exec();
+			else {
+				emit videoAdded(videoPath, widthSpinBox->value(), heightSpinBox->value(), fpsSpinBox->value(),
+					videoType, hdtv->isChecked());
 			}
 		}
+		catch (IllegalArgumentException e) {
+			QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_ADDING_FAILED_ILLEGEAL_ARGUMENT_TITLE"), tr("VIDEO_ADDING_FAILED_ILLEGAL_ARGUMENT_DETAILS"), QMessageBox::Ok, this);
+			errorBox.setDetailedText(e.getName() + "\n" + e.getMsg());
+
+			errorBox.exec();
+		}
+		catch (FileNotFoundException e) {
+			QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_ADDING_FAILED_FILE_NOT_FOUND_TITLE"), tr("VIDEO_ADDING_FAILED_FILE_NOT_FOUND_DETAILS"), QMessageBox::Ok, this);
+			errorBox.setDetailedText(e.getName() + "\n" + e.getMsg());
+
+			errorBox.exec();
+		}
+		catch (IOException e) {
+			QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_ADDING_FAILED_IO_TITLE"), tr("VIDEO_ADDING_FAILED_IO_DETAILS"), QMessageBox::Ok, this);
+			errorBox.setDetailedText(e.getName() + "\n" + e.getMsg());
+
+			errorBox.exec();
+		}
+	}
+}
+
+
+void ThumbnailListWidget::openFFMPEGVideo(QString videoPath) {
+	try {
+		emit videoAdded(videoPath);
+	}
+	catch (IllegalArgumentException e) {
+		QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_ADDING_FAILED_ILLEGEAL_ARGUMENT_TITLE"), tr("VIDEO_ADDING_FAILED_ILLEGAL_ARGUMENT_DETAILS"), QMessageBox::Ok, this);
+		errorBox.setDetailedText(e.getName() + "\n" + e.getMsg());
+
+		errorBox.exec();
+	}
+	catch (FileNotFoundException e) {
+		QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_ADDING_FAILED_FILE_NOT_FOUND_TITLE"), tr("VIDEO_ADDING_FAILED_FILE_NOT_FOUND_DETAILS"), QMessageBox::Ok, this);
+		errorBox.setDetailedText(e.getName() + "\n" + e.getMsg());
+
+		errorBox.exec();
+	}
+	catch (IOException e) {
+		QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_ADDING_FAILED_IO_TITLE"), tr("VIDEO_ADDING_FAILED_IO_DETAILS"), QMessageBox::Ok, this);
+		errorBox.setDetailedText(e.getName() + "\n" + e.getMsg());
+
+		errorBox.exec();
+	}
+	catch (FFmpegException e) {
+		QMessageBox errorBox(QMessageBox::Critical, tr("VIDEO_ADDING_FAILED_FFMEPG_TITLE"), tr("VIDEO_ADDING_FAILED_FFMEPG_DETAILS"), QMessageBox::Ok, this);
+		errorBox.setDetailedText(e.getName() + "\n" + e.getMsg());
+
+		errorBox.exec();
 	}
 }
 
@@ -337,16 +390,18 @@ void ThumbnailListWidget::subscribe(::controller::VideoListController::sptr obse
 		observer.data(), SLOT(addVideo(QString, QString, int, int, double, model::video::YUVType, bool)));
 	QObject::connect(this, SIGNAL(videoAdded(QString, int, int, double, model::video::YUVType, bool)),
 		observer.data(), SLOT(addVideo(QString, int, int, double, model::video::YUVType, bool)));
+	QObject::connect(this, SIGNAL(videoAdded(QString)), observer.data(), SLOT(addVideo(QString)));
 	QObject::connect(this, SIGNAL(videoRemoved(int)), observer.data(), SLOT(removeVideo(int)));
 	videoListController = observer;
 }
 
 void ThumbnailListWidget::unsubscribe(const ::controller::VideoListController &observer) {
-	QObject::connect(this, SIGNAL(videoAdded(QString, QString, int, int, double, model::video::YUVType, bool)),
+	QObject::disconnect(this, SIGNAL(videoAdded(QString, QString, int, int, double, model::video::YUVType, bool)),
 		&observer, SLOT(addVideo(QString, QString, int, int, double, model::video::YUVType, bool)));
-	QObject::connect(this, SIGNAL(videoAdded(QString, int, int, double, model::video::YUVType, bool)),
+	QObject::disconnect(this, SIGNAL(videoAdded(QString, int, int, double, model::video::YUVType, bool)),
 		&observer, SLOT(addVideo(QString, int, int, double, model::video::YUVType, bool)));
 	QObject::disconnect(this, SIGNAL(videoRemoved(int)), &observer, SLOT(removeVideo(int)));
+	QObject::disconnect(this, SIGNAL(videoAdded(QString)), observer.data(), SLOT(addVideo(QString)));
 }
 
 }  // namespace view

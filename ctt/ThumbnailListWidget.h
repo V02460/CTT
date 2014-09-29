@@ -74,6 +74,8 @@ signals:
 
 	void videoAdded(QString path, int width, int height, double fps, model::video::YUVType type, bool isHDTV);
 
+	void videoAdded(QString path);
+
     /**
      * This signal is emitted when an existing video is removed from the program.
      *
@@ -85,6 +87,7 @@ signals:
 	void buttonReplaced(int oldActiveId, int newActiveId);
 	void buttonDeactivated(int id);
 private:
+	bool ffmpegWorks;
     QList<ListedPushButton::sptr> thumbnailList; /**< The list of buttons with the thumbnails of the specific videos as icons */
 	QList<ListedPushButton::sptr> backupThumbnailList; /**<This list is needed to avoid an error resulting from the clear of the thumbnailList */
     QPushButton *btnAddVideo; /**< The button to add a new video */
@@ -112,6 +115,8 @@ private:
 
 	void setupUi();
 	void setupOpenVideoDialog();
+	void openYUVVideo(QString videoPath);
+	void openFFMPEGVideo(QString videoPath);
 };
 
 }  // namespace view
