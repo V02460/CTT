@@ -36,7 +36,7 @@ private:
 	void updateDifferences();
 	void setupUi();
 
-	static const int frameskip = 6;
+	static const int frameskip = 1;
 
 	::model::saveable::SaveableList<::model::difference::FrameDiff>::sptr differences;
 	::model::player::Player::sptr player;
