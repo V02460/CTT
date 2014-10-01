@@ -118,7 +118,7 @@ void PlayerFunctions::setPlayButton(bool isPlayButton) {
 			btnPlayPause->setText(tr("PLAY"));
 		}
 
-		btnNextFrame->setEnabled(true);
+        btnNextFrame->setEnabled(true);
 		btnPreviousFrame->setEnabled(true);
 	} else {
 		QString pauseIconPath = "Resources/Icons/pause.png";
@@ -165,6 +165,7 @@ void PlayerFunctions::setEnabledAll(bool isEnabled) {
 	btnDefaultFPS->setEnabled(isEnabled);
 	spinboxFPS->setEnabled(isEnabled);
 	sliderCurrentFrame->setEnabled(isEnabled);
+    btnToggleLoop->setEnabled(isEnabled);
 }
 
 QSlider* PlayerFunctions::getFrameSlider() {
